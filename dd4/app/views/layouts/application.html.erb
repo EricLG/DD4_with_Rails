@@ -12,15 +12,15 @@
 </header>
 
 <nav>
-  <h2>Menu principal</h2>
-  <ul>
-    <li><a href="/objets" title="Menu dirigeant vers la page des objets magiques et commun">Objets</a></li>
-    <li><a href="/talents" title="Menu listant les talents de DD4">Talents</a></li>
-    <li><a href="/classes-et-races">Classes et Races</a></li>
-    <li><a href="/aides_de_jeux">Aides de jeux</a></li>
-    <li><a href="/generateur-de-butin" title="Générateur de butin">Trésor</a></li>
-    <li><a href="/membres">Membres</a></li>
-    <li><a href="/contribuer" title="Ajouter un objet ou talent">Contribuer</a></li>
+  <h2 role="navigation">Menu principal</h2>
+ <ul class="nav nav-tabs">
+    <li role="presentation" class="activ"><a href="/objets" title="Menu dirigeant vers la page des objets magiques et commun">Objets</a></li>
+    <li role="presentation"><a href="/talents" title="Menu listant les talents de DD4">Talents</a></li>
+    <li role="presentation"><a href="/classes-et-races">Classes et Races</a></li>
+    <li role="presentation"><a href="/aides_de_jeux">Aides de jeux</a></li>
+    <li role="presentation"><a href="/generateur-de-butin" title="Générateur de butin">Trésor</a></li>
+    <li role="presentation"><a href="/membres">Membres</a></li>
+    <li role="presentation"><a href="/contribuer" title="Ajouter un objet ou talent">Contribuer</a></li>
   </ul>
 </nav>
 <%= yield %>
