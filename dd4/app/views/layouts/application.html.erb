@@ -6,24 +6,36 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<body class="container">
 <header>
   <h1><a href="/" title="Page d&#039;accueil" class="active">Aide au jeu de rôle Donjons &amp; Dragons 4</a></h1>
 </header>
 
 <nav>
-  <h2 role="navigation">Menu principal</h2>
  <ul class="nav nav-tabs">
-    <li role="presentation" class="activ"><a href="/objets" title="Menu dirigeant vers la page des objets magiques et commun">Objets</a></li>
-    <li role="presentation"><a href="/talents" title="Menu listant les talents de DD4">Talents</a></li>
-    <li role="presentation"><a href="/classes-et-races">Classes et Races</a></li>
-    <li role="presentation"><a href="/aides_de_jeux">Aides de jeux</a></li>
+    <li role="presentation"><%= link_to "Objects", "/objects/index", title:"Pages des objets magiques et commun." %></li>
+    <li role="presentation"><%= link_to "Talents", "/talents/index", title:"Tous les talents de DD4." %></li>
+    <li role="presentation"><%= link_to "Races", "/races/index", title:"Toutes les races de DD4." %></li>
+    <li role="presentation"><%= link_to "Classes", "/classes/index", title:"Toutes les classes de DD4." %></li>
+    <li role="presentation"><%= link_to "Aides de jeux", "/aides/index", title:"Infos utiles." %></li>
     <li role="presentation"><a href="/generateur-de-butin" title="Générateur de butin">Trésor</a></li>
     <li role="presentation"><a href="/membres">Membres</a></li>
     <li role="presentation"><a href="/contribuer" title="Ajouter un objet ou talent">Contribuer</a></li>
   </ul>
 </nav>
-<%= yield %>
 
+<div class="row">
+  <div class="col-xs-6 col-md-2" style="border: 1px solid">
+    Bloc de nav et  identification
+  </div>
+  <div class="col-xs-12 col-md-10">
+    <%= yield%>
+  </div>
+</div>
+
+<footer class="col-xs-12 col-md-12" style="border: 1px solid">
+  <p>Pied de page</p>
+</footer>
 </body>
 </html>
