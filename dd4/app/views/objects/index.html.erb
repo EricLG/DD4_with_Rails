@@ -1,20 +1,6 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-<div>
-<h4>Objets communs</h4>
-  <ul>
-    <li>Les armes communes</li>
-    <li>Les armures communes</li>
-    <li>Les boucliers communs</li>
-  </ul>
-<h4>Objets magiques</h4>
-  <ul>
-    <li>Les armes magiques</li>
-    <li>Les armures magiques</li>
-    <li>Les focaliseurs magiques</li>
-    <li>Les équipements magiques</li>
-  </ul>
-</div>
+  <%= render "sidebloc/object" %>
 <% end %>
 
 <%# Page principale%>

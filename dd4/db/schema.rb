@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026073922) do
+ActiveRecord::Schema.define(version: 20150118110639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,26 @@ ActiveRecord::Schema.define(version: 20141026073922) do
 
   create_table "groupe_armes", force: true do |t|
     t.string   "nom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "objet_communs", force: true do |t|
+    t.string   "nom"
+    t.string   "type"
+    t.string   "poids"
+    t.string   "prix"
+    t.string   "degats"
+    t.string   "maniement"
+    t.string   "portee"
+    t.boolean  "deux_mains"
+    t.string   "bonus_armure"
+    t.string   "bonus_bouclier"
+    t.string   "poids_categorie"
+    t.string   "bonus_min_alteration"
+    t.string   "malus_test"
+    t.string   "malus_vd"
+    t.string   "special"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

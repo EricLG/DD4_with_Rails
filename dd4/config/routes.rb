@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   get 'objects/index'
 
 
+  # Objets communs
+  get 'objects/index_objets_commun'
+  get 'objects/create_objet_commun'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
