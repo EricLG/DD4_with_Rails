@@ -3,14 +3,14 @@
   <%= render "sidebloc/object" %>
 <% end %>
 
-<p>Liste des objets communs: </p>
+<p>Liste des armures communes: </p>
 
 <% if @communs.empty? %>
   <p>Aucun objet</p>
 <% else %>
   <%  @communs.each do |c| %>
-  c.nom
+  c.name
   <% end %>
 <% end %>
 
-<p><%= link_to "Ajouter un objet communs", "/objects/create_objet_commun" %></p>
+<p><%= link_to "Ajouter une armure commune", "/common_armors/add" %></p>

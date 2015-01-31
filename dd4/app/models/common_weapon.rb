@@ -1,4 +1,4 @@
-class ObjetCommun < ActiveRecord::Base
+class CommonWeapon < ActiveRecord::Base
 
   has_one :source
   has_one :categorie_armes

@@ -1,18 +1,13 @@
-class CreateObjetCommuns < ActiveRecord::Migration
+class CreateCommonArmors < ActiveRecord::Migration
   def change
-    create_table :objet_communs do |t|
+    create_table :common_armors do |t|
 
-      # propriété commune
-      t.string :nom
+      # Common properties
+      t.string :name
       t.string :type # Arme, armure ou bouclier
       t.string :poids
       t.string :prix
-      # propriété des armes
-      t.string :degats
-      t.string :maniement
-      t.string :portee
-      t.boolean :deux_mains # Vrai si manié à 2 mains
-      # propriété des armures et boucliers
+      # Armor properties
       t.string :bonus_armure
       t.string :bonus_bouclier
       t.string :poids_categorie # Léger ou lourd
@@ -20,7 +15,6 @@ class CreateObjetCommuns < ActiveRecord::Migration
       t.string :malus_test
       t.string :malus_vd
       t.string :special
-      
 
       t.timestamps
     end

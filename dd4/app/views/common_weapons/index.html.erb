@@ -1,0 +1,16 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/object" %>
+<% end %>
+
+<p>Liste des objets communs: </p>
+
+<% if @communs.empty? %>
+  <p>Aucun objet</p>
+<% else %>
+  <%  @communs.each do |c| %>
+  c.nom
+  <% end %>
+<% end %>
+
+<p><%= link_to "Ajouter une arme communes", "/common_weapons/add" %></p>
