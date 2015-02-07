@@ -4,7 +4,6 @@ class ObjectsController < ApplicationController
 
 
   def index_objets_commun
-    @communs = ObjetCommun.all
   end
 
 

@@ -16,12 +16,6 @@ ActiveRecord::Schema.define(version: 20150131094846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categorie_armes", force: true do |t|
-    t.string   "nom"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "common_armors", force: true do |t|
     t.string   "name"
     t.string   "type"
@@ -51,20 +45,26 @@ ActiveRecord::Schema.define(version: 20150131094846) do
     t.datetime "updated_at"
   end
 
-  create_table "groupe_armes", force: true do |t|
-    t.string   "nom"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "propriete_armes", force: true do |t|
-    t.string   "nom"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sources", force: true do |t|
-    t.string   "nom"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "weapon_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "weapon_groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "weapon_properties", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
