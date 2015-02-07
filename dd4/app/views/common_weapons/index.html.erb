@@ -9,8 +9,8 @@
   <p>Aucun objet</p>
 <% else %>
   <%  @communs.each do |c| %>
-  c.nom
+    <%= link_to c.name, object_common_weapon_path(c.id)  %><br>
   <% end %>
 <% end %>
 
-<p><%= link_to "Ajouter une arme communes", new_object_common_weapon_path %></p>
+<p><%= link_to "Ajouter une arme commune", new_object_common_weapon_path %></p>

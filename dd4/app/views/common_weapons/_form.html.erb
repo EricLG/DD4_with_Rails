@@ -1,0 +1,31 @@
+    <dl class="dl-horizontal">
+  <%= form_for [:object, @weapon] do |f| %>
+    <dt><%= f.label :name,        t("common.weapon.name"),        :class=>"col-md-4" %></dt><dd><%= f.text_field :name,        :class=>"col-md-6" %></dd>
+    <dt><%= f.label :weight,      t("common.weapon.weight"),      :class=>"col-md-4" %></dt><dd><%= f.text_field :weight,      :class=>"col-md-6" %></dd>
+    <dt><%= f.label :price,       t("common.weapon.price"),       :class=>"col-md-4" %></dt><dd><%= f.text_field :price,       :class=>"col-md-6" %></dd>
+    <dt><%= f.label :damage,      t("common.weapon.damage"),      :class=>"col-md-4" %></dt><dd><%= f.text_field :damage,      :class=>"col-md-6" %></dd>
+    <dt><%= f.label :handling,    t("common.weapon.handling"),    :class=>"col-md-4" %></dt><dd><%= f.text_field :handling,    :class=>"col-md-6" %></dd>
+    <dt><%= f.label :range,       t("common.weapon.range"),       :class=>"col-md-4" %></dt><dd><%= f.text_field :range,       :class=>"col-md-6" %></dd>
+    <dt><%= label_tag :two_handed,t("common.weapon.two_handed"),  :class=>"col-md-4" %></dt> 
+    <dd><div class="col-md-6">
+      <%= f.radio_button :two_handed, true%>                    <%= f.label :two_handed, t("common.word.w_true"),  :value => true %>
+      <%= f.radio_button :two_handed, false, :checked => true %><%= f.label :two_handed, t("common.word.w_false"), :value => false %>
+    </div></dd>
+    <%  default_source = @weapon.nil? ? @source.first : @weapon.source.name %> <!-- TODO PRESELECT -->
+    <dt><%= f.label :source_id,  t("common.source"), :class=>"col-md-4" %></dt>
+    <dd><%=f.select :source_id,
+     options_from_collection_for_select(@sources, :id, :name),
+      {include_blank: true, :selected => default_source}, {multiple: false} %></dd>
+
+    <dt><%= f.label :weapon_category_id,  t("common.categories"), :class=>"col-md-4" %></dt>
+    <dd><%=f.select :weapon_category_id, options_from_collection_for_select(@weapon_categories, :id, :name), {include_blank: true}, {multiple: false} %></dd>
+
+    <dt><%= f.label :weapon_group_ids,     t("common.groups"), :class=>"col-md-4" %></dt>
+    <dd><%=f.select :weapon_group_ids, options_from_collection_for_select(@weapon_groups, :id, :name),{}, {:multiple => true, :size => 3 }  %></dd>
+
+    <dt><%= f.label :weapon_property_ids,  t("common.properties"), :class=>"col-md-4" %></dt>
+    <dd><%=f.select :weapon_property_ids, options_from_collection_for_select(@weapon_properties, :id, :name), {}, {:multiple => true, :size => 3 } %></dd>
+   
+    <p class="col-md-4"><%= f.submit t("common.word.create") %></p>
+  <% end %>
+  </dl>

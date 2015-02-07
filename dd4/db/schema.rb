@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131094846) do
+ActiveRecord::Schema.define(version: 20150207143600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,14 @@ ActiveRecord::Schema.define(version: 20150131094846) do
     t.string   "malus_test"
     t.string   "malus_vd"
     t.string   "special"
+    t.integer  "source_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "common_armors", ["category_id"], name: "index_common_armors_on_category_id", using: :btree
+  add_index "common_armors", ["source_id"], name: "index_common_armors_on_source_id", using: :btree
 
   create_table "common_weapons", force: true do |t|
     t.string   "name"
@@ -41,9 +46,30 @@ ActiveRecord::Schema.define(version: 20150131094846) do
     t.string   "handling"
     t.string   "range"
     t.boolean  "two_handed"
+    t.integer  "source_id"
+    t.integer  "weapon_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "common_weapons", ["source_id"], name: "index_common_weapons_on_source_id", using: :btree
+  add_index "common_weapons", ["weapon_category_id"], name: "index_common_weapons_on_weapon_category_id", using: :btree
+
+  create_table "common_weapons_weapon_groups", force: true do |t|
+    t.integer "common_weapon_id"
+    t.integer "weapon_group_id"
+  end
+
+  add_index "common_weapons_weapon_groups", ["common_weapon_id"], name: "index_common_weapons_weapon_groups_on_common_weapon_id", using: :btree
+  add_index "common_weapons_weapon_groups", ["weapon_group_id"], name: "index_common_weapons_weapon_groups_on_weapon_group_id", using: :btree
+
+  create_table "common_weapons_weapon_properties", id: false, force: true do |t|
+    t.integer "common_weapon_id"
+    t.integer "weapon_property_id"
+  end
+
+  add_index "common_weapons_weapon_properties", ["common_weapon_id"], name: "index_common_weapons_weapon_properties_on_common_weapon_id", using: :btree
+  add_index "common_weapons_weapon_properties", ["weapon_property_id"], name: "index_common_weapons_weapon_properties_on_weapon_property_id", using: :btree
 
   create_table "sources", force: true do |t|
     t.string   "name"

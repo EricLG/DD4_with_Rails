@@ -15,6 +15,8 @@ class CreateCommonArmors < ActiveRecord::Migration
       t.string :malus_test
       t.string :malus_vd
       t.string :special
+      t.belongs_to :source, index: true
+      t.belongs_to :category, index: true
 
       t.timestamps
     end

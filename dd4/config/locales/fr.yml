@@ -1,5 +1,9 @@
 fr:
   common:
+    properties:       "Propriétés"
+    groups:           "Groupes"
+    categories:       "Catégories"
+    source:           "Source"
     word:
       w_true:           'Vrai'
       w_false:          'Faux'
