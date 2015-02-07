@@ -24,10 +24,13 @@ class CommonWeaponsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+     @weapon = CommonWeapon.find_by_id(params[:id])
+     @weapon.destroy
+     redirect_to action: :index
   end
 
-  def show
+  def show  
     @weapon = CommonWeapon.find_by_id(params[:id])
   end
 
@@ -40,7 +43,8 @@ class CommonWeaponsController < ApplicationController
   end
 
   def update
-    @weapon = CommonWeapon.update(common_weapon_params)
+    @weapon = CommonWeapon.find_by_id(params[:id])
+    @weapon.update!(common_weapon_params)
     if @weapon.persisted?
       redirect_to object_common_weapon_path(@weapon.id)
     else

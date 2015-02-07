@@ -9,7 +9,7 @@
   <p>Aucun objet</p>
 <% else %>
   <%  @communs.each do |c| %>
-    <%= link_to c.name, object_common_weapon_path(c.id)  %><br>
+    <p><%= link_to c.name, object_common_weapon_path(c.id)  %> - <%= link_to 'Supprimer', object_common_weapon_path(c.id), method: :delete %></p><br>
   <% end %>
 <% end %>
 

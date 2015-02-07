@@ -11,20 +11,23 @@
       <%= f.radio_button :two_handed, true%>                    <%= f.label :two_handed, t("common.word.w_true"),  :value => true %>
       <%= f.radio_button :two_handed, false, :checked => true %><%= f.label :two_handed, t("common.word.w_false"), :value => false %>
     </div></dd>
-    <%  default_source = @weapon.nil? ? @source.first : @weapon.source.name %> <!-- TODO PRESELECT -->
-    <dt><%= f.label :source_id,  t("common.source"), :class=>"col-md-4" %></dt>
-    <dd><%=f.select :source_id,
-     options_from_collection_for_select(@sources, :id, :name),
-      {include_blank: true, :selected => default_source}, {multiple: false} %></dd>
+    <% default_source = @weapon.source_id.nil? ? nil : @weapon.source.id %>
+    <dt><%= f.label :source_id,  t("common.source"), :class=>"col-md-4" %></dt> <dd><%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false} %></dd>
 
+
+    <% default_category = @weapon.weapon_category_id.nil? ? nil : @weapon.weapon_category.id %>
     <dt><%= f.label :weapon_category_id,  t("common.categories"), :class=>"col-md-4" %></dt>
-    <dd><%=f.select :weapon_category_id, options_from_collection_for_select(@weapon_categories, :id, :name), {include_blank: true}, {multiple: false} %></dd>
+    <dd><%=f.select :weapon_category_id, options_from_collection_for_select(@weapon_categories, :id, :name, default_category), {include_blank: true}, {multiple: false} %></dd>
 
+
+    <% default_group = @weapon.weapon_group_ids.empty? ? nil : @weapon.weapon_group_ids %>
     <dt><%= f.label :weapon_group_ids,     t("common.groups"), :class=>"col-md-4" %></dt>
-    <dd><%=f.select :weapon_group_ids, options_from_collection_for_select(@weapon_groups, :id, :name),{}, {:multiple => true, :size => 3 }  %></dd>
+    <dd><%=f.select :weapon_group_ids, options_from_collection_for_select(@weapon_groups, :id, :name, default_group),{}, {:multiple => true, :size => 3 }  %></dd>
 
+
+    <% default_property = @weapon.weapon_property_ids.empty? ? nil : @weapon.weapon_property_ids %>
     <dt><%= f.label :weapon_property_ids,  t("common.properties"), :class=>"col-md-4" %></dt>
-    <dd><%=f.select :weapon_property_ids, options_from_collection_for_select(@weapon_properties, :id, :name), {}, {:multiple => true, :size => 3 } %></dd>
+    <dd><%=f.select :weapon_property_ids, options_from_collection_for_select(@weapon_properties, :id, :name, default_property), {}, {:multiple => true, :size => 3 } %></dd>
    
     <p class="col-md-4"><%= f.submit t("common.word.create") %></p>
   <% end %>
