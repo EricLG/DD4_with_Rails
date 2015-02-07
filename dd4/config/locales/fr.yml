@@ -1,0 +1,14 @@
+fr:
+  common:
+    word:
+      w_true:           'Vrai'
+      w_false:          'Faux'
+      create:           'Créer'
+    weapon:
+      name:         "Nom"
+      weight:       "Poids"
+      price:        "Prix"
+      damage:       "Dégâts"
+      handling:     "Maniement"
+      range:        "Portée"
+      two_handed:   "Arme à deux mains"

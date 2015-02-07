@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
-
-
-
   # page d'accueil
-  root 'welcome#index'
+  root 'welcome#index' 
   get 'welcome/index'
 
   # Menu principal
@@ -14,22 +11,10 @@ Rails.application.routes.draw do
   get 'classes/index'
   get 'objects/index'
 
+  namespace :object do
+    resources :common_weapons, :common_armors
+  end
 
-  # Armes communes
-  get 'common_weapons/index'
-  get 'common_weapons/add'
-  get 'common_weapons/create'
-  get 'common_weapons/delete'
-  get 'common_weapons/show'
-  get 'common_weapons/update'
-
-  # Armures commune
-  get 'common_armors/index'
-  get 'common_armors/add'
-  get 'common_armors/create'
-  get 'common_armors/delete'
-  get 'common_armors/show'
-  get 'common_armors/update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

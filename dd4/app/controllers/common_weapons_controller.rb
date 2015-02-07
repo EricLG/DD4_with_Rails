@@ -4,6 +4,10 @@ class CommonWeaponsController < ApplicationController
     @communs = CommonWeapon.all
   end
 
+  def new
+    @new_weapon = CommonWeapon.new
+  end
+
   def add
   end
 
