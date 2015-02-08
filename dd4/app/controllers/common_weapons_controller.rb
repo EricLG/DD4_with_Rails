@@ -1,7 +1,9 @@
 class CommonWeaponsController < ApplicationController
 
   def index
-    @communs = CommonWeapon.all
+    @communs = CommonWeapon.all.order(:weapon_category_id, :two_handed, :name)
+    @cat = WeaponCategory.all
+
   end
 
   def new
@@ -24,7 +26,7 @@ class CommonWeaponsController < ApplicationController
   def destroy
      @weapon = CommonWeapon.find_by_id(params[:id])
      @weapon.destroy
-     redirect_to action: :index
+     redirect_to object_common_weapons_path
   end
 
   def show

@@ -1,0 +1,45 @@
+
+<% commons.each do |co| %>
+  <% if co.weapon_category == category && co.two_handed == two_handed %>
+
+    <h4><%= category.name %></h4>
+    <p><%= co.two_handed ? "Arme à 2 mains" : "Arme à 1 main" %></p>
+    <div class="table-responsive">
+      <table  class="table table-striped">
+        <tr>
+          <th>Arme</th>
+          <th>Maniement</th>
+          <th>Dégats</th>
+          <th>Portée</th>
+          <th>Prix</th>
+          <th>Groupes d'armes </th>
+          <th>Propriétés</th>
+          <th>Source</th>
+          <th>Edit</th>
+          <th>Supprimer</th>
+        </tr>
+        <tr>
+          <td><%= co.name %></td>
+          <td><%= co.handling %></td>
+          <td><%= co.damage %></td>
+          <td><%= co.range %></td>
+          <td><%= co.price %></td>
+          <td>
+            <% co.weapon_groups.each do |g| %>
+              <p><%= g.name %></p>
+            <% end %>
+          </td>
+          <td>
+            <% co.weapon_properties.each do |p| %>
+              <%= p.name %>
+            <% end %>
+          </td>
+          <td><%= co.source.name %></td>
+          <td><%= link_to 'edit', object_common_weapon_path(co.id)  %></td>
+          <td><%= link_to 'x', object_common_weapon_path(co.id), method: :delete %></td>
+        </tr>
+      </table>
+    </div>
+
+  <% end %> <!-- Fin if cat == co.cat -->
+  <% end %><!-- Fin communs -->

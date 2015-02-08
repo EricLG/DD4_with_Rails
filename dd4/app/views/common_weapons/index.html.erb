@@ -8,9 +8,11 @@
 <% if @communs.empty? %>
   <p><%= t('common.weapon.no_weapon') %></p>
 <% else %>
-  <%  @communs.each do |c| %>
-    <p><%= link_to c.name, object_common_weapon_path(c.id)  %> - <%= link_to t('common.destroy'), object_common_weapon_path(c.id), method: :delete %></p>
-  <% end %>
-<% end %>
+  <% @cat.each do |c| %>
+    <%= render "table", commons: @communs, category: c, two_handed: false %>
+    <%= render "table", commons: @communs, category: c, two_handed: true %>
+  <% end %><!-- Fin cat -->
+<% end %> <!-- Fin if -->
+
 <br>
 <p><%= link_to t('common.weapon.new_weapon'), new_object_common_weapon_path %></p>

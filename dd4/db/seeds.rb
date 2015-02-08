@@ -59,12 +59,99 @@ WeaponProperty.create([
   ])
 
 WeaponCategory.create([
-  { name: 'Armes improvisées de corps à corps' },
-  { name: 'Armes improvisées à distance' },
-  { name: 'Armes simples de corps à corps' },
-  { name: 'Armes simples à distance' },
-  { name: 'Armes de guerre de corps à corps' },
-  { name: 'Armes de guerre à distance' },
-  { name: 'Armes supérieures de corps à corps' },
-  { name: 'Armes supérieures à distance' }
+  { name: 'Armes improvisées de corps à corps', ranged: false,  code: 'impcc' },
+  { name: 'Armes improvisées à distance',       ranged: true,   code: 'impra' },
+  { name: 'Armes simples de corps à corps',     ranged: false,  code: 'simcc' },
+  { name: 'Armes simples à distance',           ranged: true,   code: 'simra' },
+  { name: 'Armes de guerre de corps à corps',   ranged: false,  code: 'warcc' },
+  { name: 'Armes de guerre à distance',         ranged: true,   code: 'warra' },
+  { name: 'Armes supérieures de corps à corps', ranged: false,  code: 'supcc' },
+  { name: 'Armes supérieures à distance',       ranged: true,   code: 'supra' }
   ])
+
+CommonWeapon.create([
+  { name: 'Gantelet cloutés',
+    weapon_category: WeaponCategory.find_by_code('simcc'),
+    two_handed: false,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Baton',
+    weapon_category: WeaponCategory.find_by_code('simcc'),
+    two_handed: true,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Cimeterre',
+    weapon_category: WeaponCategory.find_by_code('warcc'),
+    two_handed: false,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Hallebarde',
+    weapon_category: WeaponCategory.find_by_code('warcc'),
+    two_handed: true,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Katar',
+    weapon_category: WeaponCategory.find_by_code('supcc'),
+    two_handed: false,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Chaine cloutées',
+    weapon_category: WeaponCategory.find_by_code('supcc'),
+    two_handed: true,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Mains nue',
+    weapon_category: WeaponCategory.find_by_code('impcc'),
+    two_handed: false,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Objet 2H',
+    weapon_category: WeaponCategory.find_by_code('impcc'),
+    two_handed: true,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Arbalete de poing',
+    weapon_category: WeaponCategory.find_by_code('simra'),
+    two_handed: false,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Arbalete',
+    weapon_category: WeaponCategory.find_by_code('simra'),
+    two_handed: true,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Arc long',
+    weapon_category: WeaponCategory.find_by_code('warra'),
+    two_handed: true,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Shuriken',
+    weapon_category: WeaponCategory.find_by_code('supra'),
+    two_handed: false,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Grand arc',
+    weapon_category: WeaponCategory.find_by_code('supra'),
+    two_handed: true,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  },
+  { name: 'Objet 1H',
+    weapon_category: WeaponCategory.find_by_code('impra'),
+    two_handed: false,
+    weapon_group_ids: [1,2],
+    source_id: 1
+  }
+  ] )
