@@ -12,9 +12,6 @@ class CommonWeaponsController < ApplicationController
     @sources            = Source.all
   end
 
-  def add
-  end
-
   def create
     @weapon = CommonWeapon.create(common_weapon_params)
     if @weapon.persisted?
@@ -30,7 +27,7 @@ class CommonWeaponsController < ApplicationController
      redirect_to action: :index
   end
 
-  def show  
+  def show
     @weapon = CommonWeapon.find_by_id(params[:id])
   end
 

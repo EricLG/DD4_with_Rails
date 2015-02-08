@@ -4,15 +4,22 @@ fr:
     groups:           "Groupes"
     categories:       "Catégories"
     source:           "Source"
-    word:
-      w_true:           'Vrai'
-      w_false:          'Faux'
-      create:           'Créer'
+    w_true:           "Vrai"
+    w_false:          "Faux"
+    validate:         "Valider"
+    destroy:          "Supprimer"
+    empty:            "Vide"
     weapon:
-      name:         "Nom"
-      weight:       "Poids"
-      price:        "Prix"
-      damage:       "Dégâts"
-      handling:     "Maniement"
-      range:        "Portée"
-      two_handed:   "Arme à deux mains"
+      title_edit:     "Modification d'une arme commune"
+      title_index:    "Liste des armes communes"
+      title_new:      "Création d'une arme commune"
+      title_show:     "Modifier %{weapon} "
+      name:           "Nom"
+      weight:         "Poids"
+      price:          "Prix"
+      damage:         "Dégâts"
+      handling:       "Maniement"
+      range:          "Portée"
+      two_handed:     "Arme à deux mains"
+      no_weapon:     "Aucune arme n'a été créée"
+      new_weapon:     "Ajouter une arme commune"

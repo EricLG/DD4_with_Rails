@@ -15,7 +15,7 @@ Source.create([
   { name: 'Guide du maitre 2' },
   { name: 'Intervention divine' },
   { name: 'Le Comptoir de l\'aventure 1' },
-  { name: 'le Comptoir de l\'aventure' },
+  { name: 'Le Comptoir de l\'aventure 2' },
   { name: 'Manuel du Joueur 1' },
   { name: 'Manuel du Joueur 2' },
   { name: 'Manuel du Joueur 3' },

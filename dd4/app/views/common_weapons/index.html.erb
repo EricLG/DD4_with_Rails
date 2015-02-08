@@ -3,14 +3,14 @@
   <%= render "sidebloc/object" %>
 <% end %>
 
-<p>Liste des objets communs: </p>
+<h3 class="col-md-12"><%= t('common.weapon.title_index') %></h3>
 
 <% if @communs.empty? %>
-  <p>Aucun objet</p>
+  <p><%= t('common.weapon.no_weapon') %></p>
 <% else %>
   <%  @communs.each do |c| %>
-    <p><%= link_to c.name, object_common_weapon_path(c.id)  %> - <%= link_to 'Supprimer', object_common_weapon_path(c.id), method: :delete %></p><br>
+    <p><%= link_to c.name, object_common_weapon_path(c.id)  %> - <%= link_to t('common.destroy'), object_common_weapon_path(c.id), method: :delete %></p>
   <% end %>
 <% end %>
-
-<p><%= link_to "Ajouter une arme commune", new_object_common_weapon_path %></p>
+<br>
+<p><%= link_to t('common.weapon.new_weapon'), new_object_common_weapon_path %></p>

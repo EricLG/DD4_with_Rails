@@ -3,33 +3,36 @@
   <%= render "sidebloc/object" %>
 <% end %>
 
-<h3 class="col-md-12">Modifier <%= link_to @weapon.name, edit_object_common_weapon_path(@weapon.id) %> </h3>
+<h3 class="col-md-12"><%= link_to t('common.weapon.title_show', weapon: @weapon.name), edit_object_common_weapon_path(@weapon.id) %> </h3>
+
 <dl class="dl-horizontal">
-<dt><%= t("common.weapon.name",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.name %></dd>
-<dt><%= t("common.weapon.weight",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.weight %></dd>
-<dt><%= t("common.weapon.price",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.price %></dd>
-<dt><%= t("common.weapon.damage",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.damage %></dd>
-<dt><%= t("common.weapon.handling",   :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.handling %></dd>
-<dt><%= t("common.weapon.range",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.range %></dd>
-<dt><%= t("common.weapon.two_handed", :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.two_handed %></dd>
-<dt><%= t("common.source",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.source.name %></dd>
-<dt><%= t("common.categories",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.weapon_category.name%></dd>
+  <dt><%= t("common.weapon.name",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.name %></dd>
+  <dt><%= t("common.weapon.weight",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.weight %></dd>
+  <dt><%= t("common.weapon.price",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.price %></dd>
+  <dt><%= t("common.weapon.damage",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.damage %></dd>
+  <dt><%= t("common.weapon.handling",   :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.handling %></dd>
+  <dt><%= t("common.weapon.range",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.range %></dd>
+  <dt><%= t("common.weapon.two_handed", :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.two_handed %></dd>
+  <dt><%= t("common.source",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.source.name %></dd>
+  <dt><%= t("common.categories",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.weapon_category.name%></dd>
 
-<% if  @weapon.weapon_properties.empty? %>
-  <dt><%= t("common.properties", :class=>"col-md-4") %>      </dt><dd class="text-left">Vide</dd>
-<% else %>
-<% @weapon.weapon_properties.each do |p| %>
-  <dt><%= t("common.properties", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= p.name %></dd>
-  <% end %>
-<% end %>
 
-<% if  @weapon.weapon_groups.empty? %>
-  <dt><%= t("common.groups", :class=>"col-md-4") %>      </dt><dd class="text-left">Vide</dd>
-<% else %>
-<% @weapon.weapon_groups.each do |g| %>
-  <dt><%= t("common.groups", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= g.name %></dd>
+  <% if  @weapon.weapon_groups.empty? %>
+    <dt><%= t("common.groups", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= t('common.empty') %></dd>
+  <% else %>
+    <% @weapon.weapon_groups.each do |g| %>
+      <dt><%= t("common.groups", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= g.name %></dd>
+    <% end %>
   <% end %>
-<% end %>
+
+  <% if  @weapon.weapon_properties.empty? %>
+    <dt><%= t("common.properties", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= t('common.empty') %></dd>
+  <% else %>
+    <% @weapon.weapon_properties.each do |p| %>
+      <dt><%= t("common.properties", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= p.name %></dd>
+    <% end %>
+  <% end %>
+
 </dl>
 
-   
+
