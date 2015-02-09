@@ -9,10 +9,13 @@
   <p><%= t('common.weapon.no_weapon') %></p>
 <% else %>
   <% @cat.each do |c| %>
+    <h4><%= c.name %></h4>
     <%= render "table", commons: @communs, category: c, two_handed: false %>
     <%= render "table", commons: @communs, category: c, two_handed: true %>
+
   <% end %><!-- Fin cat -->
 <% end %> <!-- Fin if -->
 
 <br>
 <p><%= link_to t('common.weapon.new_weapon'), new_object_common_weapon_path %></p>
+
