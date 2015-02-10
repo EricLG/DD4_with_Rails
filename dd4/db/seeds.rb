@@ -69,6 +69,15 @@ WeaponCategory.create([
   { name: 'Armes supérieures à distance',       ranged: true,   code: 'supra' }
   ])
 
+ArmorCategory.create([
+  { name: "Armure d'étoffe",    heavy: false,  code: 'clothe'     },
+  { name: "Armure de cuir",     heavy: false,  code: 'leather'    },
+  { name: "Armure de peau",     heavy: false,  code: 'skin'       },
+  { name: "Cotte de mailles",   heavy: true,   code: 'chainmail'  },
+  { name: "Armure d'écailles",  heavy: true,   code: 'scales'     },
+  { name: "Harnois",            heavy: true,   code: 'harnois'    }
+  ])
+
 CommonWeapon.create([
   { name: 'Gantelet cloutés',
     weapon_category: WeaponCategory.find_by_code('simcc'),

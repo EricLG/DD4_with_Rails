@@ -16,25 +16,31 @@ ActiveRecord::Schema.define(version: 20150207143600) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "common_armors", force: true do |t|
+  create_table "armor_categories", force: true do |t|
+    t.string   "code"
     t.string   "name"
-    t.string   "type"
-    t.string   "poids"
-    t.string   "prix"
-    t.string   "bonus_armure"
-    t.string   "bonus_bouclier"
-    t.string   "poids_categorie"
-    t.string   "bonus_min_alteration"
-    t.string   "malus_test"
-    t.string   "malus_vd"
-    t.string   "special"
-    t.integer  "source_id"
-    t.integer  "category_id"
+    t.boolean  "heavy"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "common_armors", ["category_id"], name: "index_common_armors_on_category_id", using: :btree
+  create_table "common_armors", force: true do |t|
+    t.string   "name"
+    t.string   "weight"
+    t.string   "price"
+    t.string   "armor_bonus"
+    t.boolean  "heavy"
+    t.string   "min_alteration_bonus"
+    t.string   "skill_malus"
+    t.string   "ms_malus"
+    t.string   "special"
+    t.integer  "source_id"
+    t.integer  "armor_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "common_armors", ["armor_category_id"], name: "index_common_armors_on_armor_category_id", using: :btree
   add_index "common_armors", ["source_id"], name: "index_common_armors_on_source_id", using: :btree
 
   create_table "common_weapons", force: true do |t|

@@ -1,2 +1,20 @@
-<h1>CommonArmors#show</h1>
-<p>Find me in app/views/common_armors/show.html.erb</p>
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/object" %>
+<% end %>
+
+<h3 class="col-md-12"><%= link_to t('common.armor.title_show', armor: @armor.name), edit_object_common_armor_path(@armor.id) %> </h3>
+
+<dl class="dl-horizontal">
+  <dt><%= t("common.armor.name",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.name %></dd>
+  <dt><%= t("common.armor.weight",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.weight %></dd>
+  <dt><%= t("common.armor.price",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.price %></dd>
+  <dt><%= t("common.armor.armor_bonus",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_bonus %></dd>
+  <dt><%= t("common.armor.heavy",   :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.heavy %></dd>
+  <dt><%= t("common.armor.min_alteration_bonus",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.min_alteration_bonus %></dd>
+  <dt><%= t("common.armor.skill_malus", :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.skill_malus %></dd>
+  <dt><%= t("common.ms_malus",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.ms_malus %></dd>
+  <dt><%= t("common.special",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.special %></dd>
+  <dt><%= t("common.source",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.source.name %></dd>
+  <dt><%= t("common.categories",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_category.name%></dd>
+</dl>

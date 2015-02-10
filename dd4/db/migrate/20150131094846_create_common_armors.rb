@@ -4,19 +4,17 @@ class CreateCommonArmors < ActiveRecord::Migration
 
       # Common properties
       t.string :name
-      t.string :type # Arme, armure ou bouclier
-      t.string :poids
-      t.string :prix
+      t.string :weight
+      t.string :price
       # Armor properties
-      t.string :bonus_armure
-      t.string :bonus_bouclier
-      t.string :poids_categorie # Léger ou lourd
-      t.string :bonus_min_alteration
-      t.string :malus_test
-      t.string :malus_vd
+      t.string :armor_bonus
+      t.boolean :heavy # Léger ou lourd
+      t.string :min_alteration_bonus # Pour armure de maitre
+      t.string :skill_malus
+      t.string :ms_malus # Move speed malus
       t.string :special
       t.belongs_to :source, index: true
-      t.belongs_to :category, index: true
+      t.belongs_to :armor_category, index: true
 
       t.timestamps
     end
