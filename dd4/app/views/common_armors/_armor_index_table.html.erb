@@ -1,34 +1,31 @@
+<% bonus_local =  category.is_shield? ? t('common.armor.shield_bonus') :   t('common.armor.armor_bonus') %>
+<table  class="table table-striped table-bordered table-hover">
+  <tr>
+    <th class="col-md-1"><%= t('common.armor.armor')                %></th>
+    <th class="col-md-1"><%= bonus_local                            %></th>
+    <th class="col-md-1"><%= t('common.armor.min_alte_bonus')       %></th>
+    <th class="col-md-1"><%= t('common.armor.skill_malus')          %></th>
+    <th class="col-md-1"><%= t('common.armor.ms_malus')             %></th>
+    <th class="col-md-1"><%= t('common.price')                      %></th>
+    <th class="col-md-1"><%= t('common.weight')                     %></th>
+    <th class="col-md-1"><%= t('common.armor.special')              %></th>
+    <th class="col-md-1"><%= t('common.source')                     %></th>
+    <th class="col-md-1"><%= t('common.destroy')                    %></th>
+  </tr>
 <% commons.each do |co| %>
-
-    <div class="row">
-    <div class="table-responsive">
-      <table  class="table table-striped table-bordered table-hover">
-        <tr>
-          <th class="col-md-1"><%= t('common.armor.armor')                %></th>
-          <th class="col-md-1"><%= t('common.armor.armor_bonus')          %></th>
-          <th class="col-md-1"><%= t('common.armor.min_alteration_bonus') %></th>
-          <th class="col-md-1"><%= t('common.armor.skill_malus')          %></th>
-          <th class="col-md-1"><%= t('common.armor.ms_malus')             %></th>
-          <th class="col-md-1"><%= t('common.price')                      %></th>
-          <th class="col-md-1"><%= t('common.weight')                     %></th>
-          <th class="col-md-1"><%= t('common.weight')                     %></th>
-          <th class="col-md-1"><%= t('common.armor.special')              %></th>
-          <th class="col-md-1"><%= t('common.destroy')                    %></th>
-        </tr>
-        <tr>
-          <td><%= link_to co.name, object_common_armor_path(co.id)  %></td>
-          <td><%= co.armor_bonus %>  </td>
-          <td><%= co.min_alteration_bonus %>    </td>
-          <td><%= co.skill_malus %>     </td>
-          <td><%= co.ms_malus %>     </td>
-          <td><%= co.price %>     </td>
-          <td><%= co.weight %>     </td>
-          <td><%= co.special %>     </td>
-          <td><%= co.source.name %></td>
-          <td><%= link_to 'x', object_common_armor_path(co.id), method: :delete %></td><!-- TODO: Mettre icone suppression -->
-        </tr>
-      </table>
-    </div>
-    </div>
- <% end %><!-- Fin communs -->
-
+<% if co.armor_category == category %>
+  <tr>
+    <td><%= link_to co.name, object_common_armor_path(co.id)  %></td>
+    <td><%= co.armor_bonus %>  </td>
+    <td><%= co.min_alteration_bonus %>    </td>
+    <td><%= co.skill_malus %>     </td>
+    <td><%= co.ms_malus %>     </td>
+    <td><%= co.price %>     </td>
+    <td><%= co.weight %>     </td>
+    <td><%= co.special %>     </td>
+    <td><%= co.source.name %></td>
+    <td><%= link_to 'x', object_common_armor_path(co.id), method: :delete %></td><!-- TODO: Mettre icone suppression -->
+  </tr>
+<% end %>
+<% end %><!-- Fin communs -->
+</table>

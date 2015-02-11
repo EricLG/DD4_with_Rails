@@ -10,8 +10,8 @@
 <% else %>
   <% @cat.each do |c| %>
     <h4><%= c.name %></h4>
-    <%= render "table", commons: @communs, category: c, two_handed: false %>
-    <%= render "table", commons: @communs, category: c, two_handed: true %>
+    <%= render "weapon_index_table", commons: @communs, category: c, two_handed: false %>
+    <%= render "weapon_index_table", commons: @communs, category: c, two_handed: true %>
 
   <% end %><!-- Fin cat -->
 <% end %> <!-- Fin if -->

@@ -7,14 +7,14 @@
 
 <dl class="dl-horizontal">
   <dt><%= t("common.armor.name",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.name %></dd>
-  <dt><%= t("common.armor.weight",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.weight %></dd>
-  <dt><%= t("common.armor.price",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.price %></dd>
+  <dt><%= t("common.weight",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.weight %></dd>
+  <dt><%= t("common.price",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.price %></dd>
   <dt><%= t("common.armor.armor_bonus",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_bonus %></dd>
-  <dt><%= t("common.armor.heavy",   :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.heavy %></dd>
-  <dt><%= t("common.armor.min_alteration_bonus",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.min_alteration_bonus %></dd>
+  <dt><%= t("common.armor.heavy",   :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_category.heavy %></dd>
+  <dt><%= t("common.armor.min_alte_bonus",      :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.min_alteration_bonus %></dd>
   <dt><%= t("common.armor.skill_malus", :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.skill_malus %></dd>
-  <dt><%= t("common.ms_malus",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.ms_malus %></dd>
-  <dt><%= t("common.special",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.special %></dd>
+  <dt><%= t("common.armor.ms_malus",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.ms_malus %></dd>
+  <dt><%= t("common.armor.special",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.special %></dd>
   <dt><%= t("common.source",            :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.source.name %></dd>
   <dt><%= t("common.categories",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_category.name%></dd>
 </dl>

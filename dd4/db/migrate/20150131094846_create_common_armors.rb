@@ -8,7 +8,6 @@ class CreateCommonArmors < ActiveRecord::Migration
       t.string :price
       # Armor properties
       t.string :armor_bonus
-      t.boolean :heavy # Léger ou lourd
       t.string :min_alteration_bonus # Pour armure de maitre
       t.string :skill_malus
       t.string :ms_malus # Move speed malus

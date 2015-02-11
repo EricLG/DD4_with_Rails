@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20150207143600) do
     t.string   "weight"
     t.string   "price"
     t.string   "armor_bonus"
-    t.boolean  "heavy"
     t.string   "min_alteration_bonus"
     t.string   "skill_malus"
     t.string   "ms_malus"
@@ -45,7 +44,6 @@ ActiveRecord::Schema.define(version: 20150207143600) do
 
   create_table "common_weapons", force: true do |t|
     t.string   "name"
-    t.string   "type"
     t.string   "weight"
     t.string   "price"
     t.string   "damage"

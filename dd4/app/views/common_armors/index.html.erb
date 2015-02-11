@@ -6,11 +6,12 @@
 <h3 class="col-md-12"><%= t('common.armor.title_index') %></h3>
 
 <% if @communs.empty? %>
-  <p><%= t('common.armor.no_armor') %></p>
+  <p><%= t('common.no_result') %></p>
 <% else %>
-
-    <%= render "armor_index_table", commons: @communs %>
-
+  <% @cat.each do |c| %>
+    <h4><%= c.name %></h4>
+    <%= render "armor_index_table", commons: @communs, category: c %>
+  <% end %>
 <% end %>
 
 <br>

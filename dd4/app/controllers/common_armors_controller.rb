@@ -2,7 +2,7 @@ class CommonArmorsController < ApplicationController
 
   def index
     @communs = CommonArmor.all
-    @armor_categories  = ArmorCategory.all
+    @cat  = ArmorCategory.all
   end
 
   def new
@@ -31,7 +31,7 @@ class CommonArmorsController < ApplicationController
   end
 
   def edit
-    @armor_categories  = armorCategory.all
+    @armor_categories  = ArmorCategory.all
     @sources            = Source.all
     @armor = CommonArmor.find_by_id(params[:id])
   end
@@ -53,7 +53,6 @@ class CommonArmorsController < ApplicationController
       :weight,
       :price,
       :armor_bonus,
-      :heavy,
       :min_alteration_bonus,
       :skill_malus,
       :ms_malus,

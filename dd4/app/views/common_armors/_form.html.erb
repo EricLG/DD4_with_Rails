@@ -2,25 +2,20 @@
   <%= form_for [:object, @armor] do |f| %>
   <dt><%= f.label :name,        t("common.armor.name"),        :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :name,       :class=>"col-md-5" %></dd>
-  <dt><%= f.label :weight,      t("common.armor.weight"),      :class=>"col-md-4" %></dt>
+  <dt><%= f.label :weight,      t("common.weight"),      :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :weight,     :class=>"col-md-5" %></dd>
-  <dt><%= f.label :price,       t("common.armor.price"),       :class=>"col-md-4" %></dt>
+  <dt><%= f.label :price,       t("common.price"),       :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :price,      :class=>"col-md-5" %></dd>
   <dt><%= f.label :armor_bonus,      t("common.armor.armor_bonus"),      :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :armor_bonus,     :class=>"col-md-5" %></dd>
-  <dt><%= f.label :min_alteration_bonus,    t("common.armor.min_alteration_bonus"),    :class=>"col-md-4" %></dt>
+  <dt><%= f.label :min_alteration_bonus,    t("common.armor.min_alte_bonus"),    :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :min_alteration_bonus,   :class=>"col-md-5" %></dd>
   <dt><%= f.label :skill_malus,       t("common.armor.skill_malus"),       :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :skill_malus,      :class=>"col-md-5" %></dd>
+  <dt><%= f.label :ms_malus,       t("common.armor.ms_malus"),       :class=>"col-md-4" %></dt>
+  <dd><%= f.text_field :ms_malus,      :class=>"col-md-5" %></dd>
   <dt><%= label_tag :special,t("common.armor.special"),  :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :special,      :class=>"col-md-5" %></dd>
-  <dt><%= label_tag :heavy,t("common.armor.heavy"),  :class=>"col-md-4" %></dt>
-  <dd>
-    <div class="col-md-5">
-      <%= f.radio_button :heavy, true%>                    <%= f.label :heavy, t("common.w_true"),  :value => true %>
-      <%= f.radio_button :heavy, false, :checked => true %><%= f.label :heavy, t("common.w_false"), :value => false %>
-    </div>
-  </dd>
 
   <% default_category = @armor.armor_category_id.nil? ? nil : @armor.armor_category.id %>
   <dt><%= f.label :armor_category_id, t("common.categories"), :class=>"col-md-4" %></dt>
