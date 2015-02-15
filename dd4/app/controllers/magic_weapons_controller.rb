@@ -34,7 +34,13 @@ class MagicWeaponsController < ApplicationController
   end
 
   def update
-
+    @weapon = MagicWeapon.find_by_id(params[:id])
+    @weapon.update!(magic_weapon_params)
+    if @weapon.persisted?
+      redirect_to object_magic_weapon_path(@weapon.id)
+    else
+      render object_magic_weapon_path
+    end
   end
 
 
