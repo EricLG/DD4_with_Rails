@@ -1,23 +1,18 @@
 require 'test_helper'
 
-class CommonArmorsControllerTest < ActionController::TestCase
+class MagicWeaponsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
   end
 
-  test "should get add" do
-    get :add
+  test "should get new" do
+    get :new
     assert_response :success
   end
 
   test "should get create" do
     get :create
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get :destroy
     assert_response :success
   end
 
@@ -28,6 +23,11 @@ class CommonArmorsControllerTest < ActionController::TestCase
 
   test "should get update" do
     get :update
+    assert_response :success
+  end
+
+  test "should get destroy" do
+    get :destroy
     assert_response :success
   end
 

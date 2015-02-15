@@ -16,8 +16,8 @@ class CommonWeaponsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get delete" do
-    get :delete
+  test "should get destroy" do
+    get :destroy
     assert_response :success
   end
 

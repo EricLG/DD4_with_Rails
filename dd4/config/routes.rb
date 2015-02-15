@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # page d'accueil
-  root 'welcome#index' 
+  root 'welcome#index'
   get 'welcome/index'
 
   # Menu principal
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'objects/index'
 
   namespace :object do
-    resources :common_weapons, :common_armors
+    resources :common_weapons, :common_armors, :magic_weapons
   end
 
 
