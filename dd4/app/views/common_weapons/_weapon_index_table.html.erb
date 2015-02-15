@@ -3,16 +3,16 @@
   <div class="table-responsive">
     <table  class="table table-striped table-bordered table-hover">
       <tr>
-        <th class="col-md-1"><%= t('common.weapon.weapon')     %></th>
-        <th class="col-md-1"><%= t('common.weapon.handling')   %></th>
-        <th class="col-md-1"><%= t('common.weapon.damage')     %></th>
-        <th class="col-md-1"><%= t('common.weapon.range')      %></th>
-        <th class="col-md-1"><%= t('common.price')             %></th>
-        <th class="col-md-1"><%= t('common.weight')             %></th>
-        <th class="col-md-1"><%= t('common.weapon_groups')     %></th>
-        <th class="col-md-1"><%= t('common.weapon_properties') %></th>
-        <th class="col-md-1"><%= t('common.source')            %></th>
-        <th class="col-md-1"><%= t('common.destroy')           %></th>
+        <th class="col-sm-1"><%= t('common.weapon.handling')   %></th>
+        <th class="col-sm-1"><%= t('common.weapon.damage')     %></th>
+        <th class="col-sm-1"><%= t('common.weapon.range')      %></th>
+        <th class="col-sm-1"><%= t('common.weapon.weapon')     %></th>
+        <th class="col-sm-1"><%= t('common.price')             %></th>
+        <th class="col-sm-1"><%= t('common.weight')             %></th>
+        <th class="col-sm-1"><%= t('common.weapon_groups')     %></th>
+        <th class="col-sm-1"><%= t('common.weapon_properties') %></th>
+        <th class="col-sm-1"><%= t('common.source')            %></th>
+        <th class="col-sm-1"><%= t('common.destroy')           %></th>
       </tr>
     <% commons.each do |co| %>
     <% if co.weapon_category == category && co.two_handed == two_handed %>
