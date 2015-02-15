@@ -1,0 +1,64 @@
+<%= form_for [:object, @weapon], {:class => 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :name, t("magic.weapon.name"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :name, size: 60, :class=>"control-group" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, t("magic.weapon.description"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :description, size: 60, :class=>"control-group" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_level = @weapon.object_level_ids.empty? ? nil : @weapon.object_level_ids %>
+    <%= f.label :object_level_ids, t("magic.levels"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+       <%= f.select :object_level_ids, options_from_collection_for_select(@levels, :id, :level, default_level),{}, {:multiple => true, :size => 5, :class => "control-group"}  %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_group = @weapon.weapon_group_ids.empty? ? nil : @weapon.weapon_group_ids %>
+    <%= f.label :weapon_group_ids, t("common.weapon_groups"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%=f.select :weapon_group_ids, options_from_collection_for_select(@weapon_groups, :id, :name, default_group),{}, {:multiple => true, :size => 5, :class => "control-group"}  %>
+    </div>
+  </div>
+  <div class="form-group form-group-sm">
+    <%= f.label :alteration, t("magic.weapon.alteration"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :alteration, size: 60, :class=>"control-group" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :critical, t("magic.weapon.critical"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :critical, size: "60x5",:class=>"control-group" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :property, t("magic.weapon.property"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :property, size: "60x5", :class=>"control-group" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :power, t("magic.weapon.power"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :power, size: "60x5", :class=>"control-group" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_source = @weapon.source_id.nil? ? nil : @weapon.source.id %>
+    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "control-group"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-8">
+      <%= f.submit t("common.validate"), :class => "btn btn-default" %>
+      </div>
+  </div>
+<% end %>

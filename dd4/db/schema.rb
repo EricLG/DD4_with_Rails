@@ -76,6 +76,40 @@ ActiveRecord::Schema.define(version: 20150215121940) do
   add_index "common_weapons_weapon_properties", ["weapon_property_id"], name: "index_common_weapons_weapon_properties_on_weapon_property_id", using: :btree
 
   create_table "magic_weapons", force: true do |t|
+    t.string   "name"
+    t.string   "description", limit: 500
+    t.string   "alteration",  limit: 500
+    t.string   "critical",    limit: 500
+    t.text     "property"
+    t.text     "power"
+    t.text     "special"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "magic_weapons", ["source_id"], name: "index_magic_weapons_on_source_id", using: :btree
+
+  create_table "magic_weapons_object_levels", id: false, force: true do |t|
+    t.integer "magic_weapon_id"
+    t.integer "object_level_id"
+  end
+
+  add_index "magic_weapons_object_levels", ["magic_weapon_id"], name: "index_magic_weapons_object_levels_on_magic_weapon_id", using: :btree
+  add_index "magic_weapons_object_levels", ["object_level_id"], name: "index_magic_weapons_object_levels_on_object_level_id", using: :btree
+
+  create_table "magic_weapons_weapon_groups", id: false, force: true do |t|
+    t.integer "magic_weapon_id"
+    t.integer "weapon_group_id"
+  end
+
+  add_index "magic_weapons_weapon_groups", ["magic_weapon_id"], name: "index_magic_weapons_weapon_groups_on_magic_weapon_id", using: :btree
+  add_index "magic_weapons_weapon_groups", ["weapon_group_id"], name: "index_magic_weapons_weapon_groups_on_weapon_group_id", using: :btree
+
+  create_table "object_levels", force: true do |t|
+    t.integer  "level"
+    t.string   "price"
+    t.integer  "alteration"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
