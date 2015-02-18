@@ -13,16 +13,20 @@
 <% if  @weapon.object_levels.empty? %>
   <dt><%= t("magic.levels", :class=>"col-md-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
-  <% @weapon.object_levels.each do |l| %>
-    <dt><%= t("magic.levels", :class=>"col-md-4") %>  </dt><dd class="text-left"><%= l.level %> / +<%= l.alteration %> / <%= l.price %> PO</dd>
-  <% end %>
+   <dt><%= t("magic.levels", :class=>"col-md-4") %>  </dt><dd class="text-left">
+    <% @weapon.object_levels.each do |l| %>
+      <%= l.level %> / +<%= l.alteration %> / <%= l.price %> PO
+    <% end %>
+    </dd>
 <% end %>
 <% if  @weapon.weapon_groups.empty? %>
   <dt><%= t("common.groups", :class=>"col-md-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
-  <% @weapon.weapon_groups.each do |g| %>
-    <dt><%= t("common.groups", :class=>"col-md-4") %> </dt><dd class="text-left"><%= g.name %></dd>
-  <% end %>
+  <dt><%= t("common.groups", :class=>"col-md-4") %> </dt><dd class="text-left">
+    <% @weapon.weapon_groups.each do |g| %>
+      <%= g.name %>
+    <% end %>
+  </dd>
 <% end %>
 
   <dt><%= t("magic.weapon.alteration",  :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.alteration %></dd>
