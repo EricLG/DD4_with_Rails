@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # page d'accueil
   root 'welcome#index'
   get 'welcome/index'
-
+  get 'welcome/import'
   # Menu principal
   get 'aides/index'
   get 'talents/index'

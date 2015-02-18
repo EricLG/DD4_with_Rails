@@ -12,13 +12,13 @@ Source.create([
   { name: 'Eberron' },
   { name: 'Force de la Nature' },
   { name: 'Guide du Maitre 1' },
-  { name: 'Guide du maitre 2' },
+  { name: 'Guide du Maitre 2' },
   { name: 'Intervention divine' },
-  { name: 'Le Comptoir de l\'aventure 1' },
-  { name: 'Le Comptoir de l\'aventure 2' },
-  { name: 'Manuel du Joueur 1' },
-  { name: 'Manuel du Joueur 2' },
-  { name: 'Manuel du Joueur 3' },
+  { name: 'Le Comptoir de l\'Aventure 1' },
+  { name: 'Le Comptoir de l\'Aventure 2' },
+  { name: 'Manuel des Joueurs 1' },
+  { name: 'Manuel des Joueurs 2' },
+  { name: 'Manuel des Joueurs 3' },
   { name: 'Manuel des Monstres 1' },
   { name: 'Manuel des Monstres 2' },
   { name: 'Manuel des Monstres 3' },
@@ -81,32 +81,32 @@ ArmorCategory.create([
   ])
 
 CommonWeapon.create([
-  { name: 'Gantelet cloutés',   weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Baton',              weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Cimeterre',          weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Hallebarde',         weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Katar',              weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Chaine cloutées',    weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Mains nue',          weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Objet 2H',           weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Arbalete de poing',  weapon_category: WeaponCategory.find_by_code('simra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Arbalete',           weapon_category: WeaponCategory.find_by_code('simra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Arc long',           weapon_category: WeaponCategory.find_by_code('warra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Shuriken',           weapon_category: WeaponCategory.find_by_code('supra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Grand arc',          weapon_category: WeaponCategory.find_by_code('supra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') },
-  { name: 'Objet 1H',           weapon_category: WeaponCategory.find_by_code('impra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel du Joueur 1') }
+  { name: 'Gantelet cloutés',   weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Baton',              weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Cimeterre',          weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Hallebarde',         weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Katar',              weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Chaine cloutées',    weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Mains nue',          weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Objet 2H',           weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Arbalete de poing',  weapon_category: WeaponCategory.find_by_code('simra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Arbalete',           weapon_category: WeaponCategory.find_by_code('simra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Arc long',           weapon_category: WeaponCategory.find_by_code('warra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Shuriken',           weapon_category: WeaponCategory.find_by_code('supra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Grand arc',          weapon_category: WeaponCategory.find_by_code('supra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
+  { name: 'Objet 1H',           weapon_category: WeaponCategory.find_by_code('impra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') }
   ] )
 
 
 CommonArmor.create([
-  { name: "Armure d'étoffe",    armor_bonus: 0, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('clothe')   },
-  { name: "Armure de cuir",     armor_bonus: 2, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('leather')  },
-  { name: "Armure de peau",     armor_bonus: 3, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('skin')     },
-  { name: "Cotte de mailles",   armor_bonus: 6, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('chainmail')},
-  { name: "Armure d'écailles",  armor_bonus: 7, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('scales')   },
-  { name: "Harnois",            armor_bonus: 8, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('harnois')  },
-  { name: "Bouclier léger",     armor_bonus: 1, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('lightsh')  },
-  { name: "Bouclier lourd",     armor_bonus: 2, source: Source.find_by_name('Manuel du Joueur 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('heavysh')  }
+  { name: "Armure d'étoffe",    armor_bonus: 0, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('clothe')   },
+  { name: "Armure de cuir",     armor_bonus: 2, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('leather')  },
+  { name: "Armure de peau",     armor_bonus: 3, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('skin')     },
+  { name: "Cotte de mailles",   armor_bonus: 6, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('chainmail')},
+  { name: "Armure d'écailles",  armor_bonus: 7, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('scales')   },
+  { name: "Harnois",            armor_bonus: 8, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('harnois')  },
+  { name: "Bouclier léger",     armor_bonus: 1, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('lightsh')  },
+  { name: "Bouclier lourd",     armor_bonus: 2, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('heavysh')  }
   ])
 
 ObjectLevel.create([
