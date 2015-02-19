@@ -1,2 +1,37 @@
-<h1>MagicArmors#show</h1>
-<p>Find me in app/views/magic_armors/show.html.erb</p>
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/objects_menu" %>
+<% end %>
+
+<h3 class="col_sm-12"><%= link_to t('magic.armor.title_show', armor: @armor.name), edit_object_magic_armor_path(@armor.id) %> </h3>
+
+<dl class="dl-horizontal">
+  <dt><%= t("magic.armor.name",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.name %></dd>
+  <dt><%= t("magic.armor.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.description %></dd>
+
+
+<% if  @armor.object_levels.empty? %>
+  <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+   <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left">
+    <% @armor.object_levels.each do |l| %>
+      <%= l.level %> / +<%= l.alteration %> / <%= l.price %> PO
+    <% end %>
+    </dd>
+<% end %>
+<% if  @armor.armor_categories.empty? %>
+  <dt><%= t("common.categories", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+  <dt><%= t("common.categories", :class=>"col_sm-4") %> </dt><dd class="text-left">
+    <% @armor.armor_categories.each do |g| %>
+      <%= g.name %>
+    <% end %>
+  </dd>
+<% end %>
+
+  <dt><%= t("magic.armor.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.alteration %></dd>
+  <dt><%= t("magic.armor.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.property %></dd>
+  <dt><%= t("magic.armor.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.power %></dd>
+  <dt><%= t("magic.armor.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.special %></dd>
+  <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.source.name %></dd>
+</dl>

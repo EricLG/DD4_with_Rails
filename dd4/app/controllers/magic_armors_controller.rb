@@ -55,7 +55,7 @@ class MagicArmorsController < ApplicationController
       :power,
       :special,
       :source_id,
-      {armor_group_ids:[]},
+      {armor_category_ids:[]},
       {object_level_ids:[]}
     )
   end

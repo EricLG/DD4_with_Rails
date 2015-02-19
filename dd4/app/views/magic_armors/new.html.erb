@@ -1,2 +1,14 @@
-<h1>MagicArmors#new</h1>
-<p>Find me in app/views/magic_armors/new.html.erb</p>
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/objects_menu" %>
+<% end %>
+
+<div class="row">
+<h3 class="col-sm-12"><%= t('magic.armor.title_new')%></h3>
+</div>
+
+<div class="row">
+  <div class=" col-sm-8">
+    <%= render "form" %>
+  </div>
+</div>

@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20150219191256) do
     t.datetime "updated_at"
   end
 
+  create_table "armor_categories_magic_armors", id: false, force: true do |t|
+    t.integer "magic_armor_id"
+    t.integer "armor_category_id"
+  end
+
+  add_index "armor_categories_magic_armors", ["armor_category_id"], name: "index_armor_categories_magic_armors_on_armor_category_id", using: :btree
+  add_index "armor_categories_magic_armors", ["magic_armor_id"], name: "index_armor_categories_magic_armors_on_magic_armor_id", using: :btree
+
   create_table "common_armors", force: true do |t|
     t.string   "name"
     t.string   "weight"
@@ -77,25 +85,17 @@ ActiveRecord::Schema.define(version: 20150219191256) do
 
   create_table "magic_armors", force: true do |t|
     t.string   "name"
-    t.string   "description",  limit: 500
-    t.string   "alteration",   limit: 500
+    t.string   "description", limit: 500
+    t.string   "alteration",  limit: 500
     t.text     "property"
     t.text     "power"
     t.text     "special"
-    t.integer  "source_id_id"
+    t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "magic_armors", ["source_id_id"], name: "index_magic_armors_on_source_id_id", using: :btree
-
-  create_table "magic_armors_armor_categories", id: false, force: true do |t|
-    t.integer "magic_armor_id"
-    t.integer "armor_category_id"
-  end
-
-  add_index "magic_armors_armor_categories", ["armor_category_id"], name: "index_magic_armors_armor_categories_on_armor_category_id", using: :btree
-  add_index "magic_armors_armor_categories", ["magic_armor_id"], name: "index_magic_armors_armor_categories_on_magic_armor_id", using: :btree
+  add_index "magic_armors", ["source_id"], name: "index_magic_armors_on_source_id", using: :btree
 
   create_table "magic_armors_object_levels", id: false, force: true do |t|
     t.integer "magic_armor_id"
