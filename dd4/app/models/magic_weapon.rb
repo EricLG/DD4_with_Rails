@@ -4,7 +4,7 @@ class MagicWeapon < ActiveRecord::Base
   has_and_belongs_to_many :weapon_groups
   has_and_belongs_to_many :object_levels
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   validates :alteration, presence: true
   validates :source, presence: true
