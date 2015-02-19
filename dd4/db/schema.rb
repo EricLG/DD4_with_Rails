@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215121940) do
+ActiveRecord::Schema.define(version: 20150219191256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,36 @@ ActiveRecord::Schema.define(version: 20150215121940) do
 
   add_index "common_weapons_weapon_properties", ["common_weapon_id"], name: "index_common_weapons_weapon_properties_on_common_weapon_id", using: :btree
   add_index "common_weapons_weapon_properties", ["weapon_property_id"], name: "index_common_weapons_weapon_properties_on_weapon_property_id", using: :btree
+
+  create_table "magic_armors", force: true do |t|
+    t.string   "name"
+    t.string   "description",  limit: 500
+    t.string   "alteration",   limit: 500
+    t.text     "property"
+    t.text     "power"
+    t.text     "special"
+    t.integer  "source_id_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "magic_armors", ["source_id_id"], name: "index_magic_armors_on_source_id_id", using: :btree
+
+  create_table "magic_armors_armor_categories", id: false, force: true do |t|
+    t.integer "magic_armor_id"
+    t.integer "armor_category_id"
+  end
+
+  add_index "magic_armors_armor_categories", ["armor_category_id"], name: "index_magic_armors_armor_categories_on_armor_category_id", using: :btree
+  add_index "magic_armors_armor_categories", ["magic_armor_id"], name: "index_magic_armors_armor_categories_on_magic_armor_id", using: :btree
+
+  create_table "magic_armors_object_levels", id: false, force: true do |t|
+    t.integer "magic_armor_id"
+    t.integer "object_level_id"
+  end
+
+  add_index "magic_armors_object_levels", ["magic_armor_id"], name: "index_magic_armors_object_levels_on_magic_armor_id", using: :btree
+  add_index "magic_armors_object_levels", ["object_level_id"], name: "index_magic_armors_object_levels_on_object_level_id", using: :btree
 
   create_table "magic_weapons", force: true do |t|
     t.string   "name"
