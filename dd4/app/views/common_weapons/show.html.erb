@@ -1,6 +1,6 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-  <%= render "sidebloc/object" %>
+  <%= render "sidebloc/objects_menu" %>
 <% end %>
 
 <h3 class="col-md-12"><%= link_to t('common.weapon.title_show', weapon: @weapon.name), edit_object_common_weapon_path(@weapon.id) %> </h3>
