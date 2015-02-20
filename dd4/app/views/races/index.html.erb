@@ -1,11 +1,14 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
   <p>A venir...</p>
-
 <% end %>
 
-<%# Page principale%>
-
 <h2>Les races</h2>
-<p>Find me in app/views/races/index.html.erb</p>
-<p>Les différents races de DD4. A venir.</p>
+<p>Les différents races de DD4. Description à venir.</p>
+
+<div class="row">
+  <% @races.each do |r| %>
+    <% name = File.join('mini_icones', r.downcase + '.jpg') %>
+    <div class="col-sm-2" style="height: 100px"><%= image_tag(name, :class =>'box') %></div>
+  <% end %>
+</div>
