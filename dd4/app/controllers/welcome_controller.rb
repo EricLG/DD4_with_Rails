@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def import
-    #import_weapons
+    import_weapons
     import_armors
     redirect_to :root
   end
