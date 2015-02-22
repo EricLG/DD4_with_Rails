@@ -19,40 +19,42 @@ class WelcomeController < ApplicationController
   levels  = ObjectLevel.all
   categories = ArmorCategory.all
   filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_armure_OK/)}
-  ActiveRecord::Base.transaction do
-    File.open(File.join('tmp/import_files', filename), 'r') do |f|
-      f.readline
-      f.each_line do |l|
-        # "Titre";"Armure";"Description";"Altération";"Niveau minimum";"Propriété";"Pouvoir";"Spécial";"Source"
-        array_line = l.split(/";"/, -1)
-        m = MagicArmor.new(
-          name:           clear_field(array_line[0]),
-          description:    clear_field(array_line[2]),
-          alteration:     clear_field(array_line[3]),
-          property:       clear_field(array_line[5]),
-          power:          clear_field(array_line[6]),
-          special:        clear_field(array_line[7]),
-          source:         sources.find{|s| s.name == clear_field(array_line[8])},
-          object_levels:  calcul_level_array(clear_field(array_line[4]).to_i, levels),
-          armor_categories:  find_armor_categories(clear_field(array_line[1]), categories)
-          )
-        if m.valid?
-          begin
-            m.save!
-          rescue
-            logger.debug "Erreur lors de l'ajout de l'arme suivante: #{m.name}"
-            logger.debug "#{m.errors.full_messages}"
+  unless filename.nil?
+    ActiveRecord::Base.transaction do
+      File.open(File.join('tmp/import_files', filename), 'r') do |f|
+        f.readline
+        f.each_line do |l|
+          # "Titre";"Armure";"Description";"Altération";"Niveau minimum";"Propriété";"Pouvoir";"Spécial";"Source"
+          array_line = l.split(/";"/, -1)
+          m = MagicArmor.new(
+            name:           clear_field(array_line[0]),
+            description:    clear_field(array_line[2]),
+            alteration:     clear_field(array_line[3]),
+            property:       clear_field(array_line[5]),
+            power:          clear_field(array_line[6]),
+            special:        clear_field(array_line[7]),
+            source:         sources.find{|s| s.name == clear_field(array_line[8])},
+            object_levels:  calcul_level_array(clear_field(array_line[4]).to_i, levels),
+            armor_categories:  find_armor_categories(clear_field(array_line[1]), categories)
+            )
+          if m.valid?
+            begin
+              m.save!
+            rescue
+              logger.debug "Erreur lors de l'ajout de l'arme suivante: #{m.name}"
+              logger.debug "#{m.errors.full_messages}"
+            end
+          else
+             logger.debug "Erreur de validation sur l'arme #{m.name}"
+             logger.debug "#{m.errors.full_messages}"
           end
-        else
-           logger.debug "Erreur de validation sur l'arme #{m.name}"
-           logger.debug "#{m.errors.full_messages}"
-        end
 
+        end
       end
     end
   end
   c = MagicArmor.count
-  puts "#{c} armures magiques ont été crées"
+  logger.debug "#{c} armures magiques ont été crées"
 end
 
 
@@ -81,40 +83,41 @@ end
     levels  = ObjectLevel.all
     groups  = WeaponGroup.all
     filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_arme_OK/)}
-    ActiveRecord::Base.transaction do
-      File.open(File.join('tmp/import_files', filename), 'r') do |f|
-        f.readline
-        f.each_line do |l| # "Titre";"Description";"Altération";"Niveau minimum";"Prix par niveau et altération";"Arme";"Critique";"Propriété";"Pouvoir";"Source";"Spécial"
-          array_line = l.split(/";"/, -1)
-          m = MagicWeapon.new(
-            name:           clear_field(array_line[0]),
-            description:    clear_field(array_line[1]),
-            alteration:     clear_field(array_line[2]),
-            critical:       clear_field(array_line[6]),
-            property:       clear_field(array_line[7]),
-            power:          clear_field(array_line[8]),
-            special:        clear_field(array_line[10]),
-            source:         sources.find{|s| s.name == clear_field(array_line[9])},
-            object_levels:  calcul_level_array(clear_field(array_line[3]).to_i, levels),
-            weapon_groups:  find_weapon_groups(clear_field(array_line[5]), groups)
-            )
-          if m.valid?
-            begin
-              m.save!
-            rescue
-              logger.debug "Erreur lors de l'ajout de l'arme suivante: #{m.name}"
-              logger.debug "#{m.errors.full_messages}"
+    unless filename.nil?
+      ActiveRecord::Base.transaction do
+        File.open(File.join('tmp/import_files', filename), 'r') do |f|
+          f.readline
+          f.each_line do |l| # "Titre";"Description";"Altération";"Niveau minimum";"Prix par niveau et altération";"Arme";"Critique";"Propriété";"Pouvoir";"Source";"Spécial"
+            array_line = l.split(/";"/, -1)
+            m = MagicWeapon.new(
+              name:           clear_field(array_line[0]),
+              description:    clear_field(array_line[1]),
+              alteration:     clear_field(array_line[2]),
+              critical:       clear_field(array_line[6]),
+              property:       clear_field(array_line[7]),
+              power:          clear_field(array_line[8]),
+              special:        clear_field(array_line[10]),
+              source:         sources.find{|s| s.name == clear_field(array_line[9])},
+              object_levels:  calcul_level_array(clear_field(array_line[3]).to_i, levels),
+              weapon_groups:  find_weapon_groups(clear_field(array_line[5]), groups)
+              )
+            if m.valid?
+              begin
+                m.save!
+              rescue
+                logger.debug "Erreur lors de l'ajout de l'arme suivante: #{m.name}"
+                logger.debug "#{m.errors.full_messages}"
+              end
+            else
+               logger.debug "Erreur de validation sur l'arme #{m.name}"
+               logger.debug "#{m.errors.full_messages}"
             end
-          else
-             logger.debug "Erreur de validation sur l'arme #{m.name}"
-             logger.debug "#{m.errors.full_messages}"
           end
-
         end
       end
     end
     c = MagicWeapon.count
-    puts "#{c} armes magiques ont été crées"
+    logger.debug "#{c} armes magiques ont été crées"
   end
 
   def clear_field(field)
