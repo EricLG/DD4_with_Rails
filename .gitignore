@@ -15,3 +15,6 @@
 /log/*.log
 /tmp
 Bloc note dev.txt
+project_dd4.sublime-project
+*.sublime-workspace
+project_dd4.sublime-project
