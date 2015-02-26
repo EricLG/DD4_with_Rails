@@ -122,14 +122,14 @@ ActiveRecord::Schema.define(version: 20150226194514) do
 
   create_table "magic_implements", force: true do |t|
     t.string   "name"
-    t.string   "description",  limit: 500
-    t.string   "alteration",   limit: 500
+    t.string   "description", limit: 500
+    t.string   "alteration",  limit: 500
     t.text     "property"
     t.string   "critical"
     t.string   "string"
     t.text     "power"
     t.text     "special"
-    t.integer  "source_id_id"
+    t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

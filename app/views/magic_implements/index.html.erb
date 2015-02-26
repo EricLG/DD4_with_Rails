@@ -1,2 +1,23 @@
-<h1>MagicImplements#index</h1>
-<p>Find me in app/views/magic_implements/index.html.erb</p>
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/objects_menu" %>
+<% end %>
+<div class="row">
+<h3 class="col-sm-12"><%= t('magic.implement.title_index') %></h3>
+</div>
+
+
+<div class="row">
+<% if @implements.empty? %>
+  <p class="col-sm-5"><%= t('common.no_result') %></p>
+<% else %>
+  <div class="col-sm-12">
+    <%= render "index_table", implements: @implements %>
+  </div>
+<% end %> <!-- Fin if -->
+</div>
+
+
+<div class="row">
+<p class="col-sm-5"><%= link_to t('magic.implement.new_implement'), new_object_magic_implement_path %></p>
+</div>

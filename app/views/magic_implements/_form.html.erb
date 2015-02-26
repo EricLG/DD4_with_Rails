@@ -1,0 +1,70 @@
+<%= form_for [:object, @implement], {:class => 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :name, t("magic.implement.name"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :name, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, t("magic.implement.description"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :description, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_level = @implement.object_level_ids.empty? ? nil : @implement.object_level_ids %>
+    <%= f.label :object_level_ids, t("magic.levels"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+       <%= f.select :object_level_ids, options_from_collection_for_select(@levels, :id, :level, default_level),{}, {:multiple => true, :size => 5, :class => "form-control"}  %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_group = @implement.implement_group_ids.empty? ? nil : @implement.implement_group_ids %>
+    <%= f.label :implement_group_ids, t("common.implement_groups"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%=f.select :implement_group_ids, options_from_collection_for_select(@implement_groups, :id, :name, default_group),{}, {:multiple => true, :size => 5, :class => "form-control"}  %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :alteration, t("magic.implement.alteration"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :alteration, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :critical, t("magic.implement.critical"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :critical, size: "60x5",:class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :property, t("magic.implement.property"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :property, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :power, t("magic.implement.power"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :power, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :special, t("magic.implement.special"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :special, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_source = @implement.source_id.nil? ? nil : @implement.source.id %>
+    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-8">
+      <%= f.submit t("common.validate"), :class => "btn btn-default" %>
+      </div>
+  </div>
+<% end %>

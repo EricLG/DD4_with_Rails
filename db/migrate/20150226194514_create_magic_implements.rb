@@ -6,10 +6,9 @@ class CreateMagicImplements < ActiveRecord::Migration
       t.string :alteration,      limit: 500
       t.text :property
       t.string :critical
-      t.string :string
       t.text :power
       t.text :special
-      t.belongs_to :source_id
+      t.belongs_to :source
 
       t.timestamps
     end

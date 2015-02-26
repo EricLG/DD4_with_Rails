@@ -1,2 +1,39 @@
-<h1>MagicImplements#show</h1>
-<p>Find me in app/views/magic_implements/show.html.erb</p>
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/objects_menu" %>
+<% end %>
+
+<h3 class="col-sm-12"><%= link_to t('magic.implement.title_show', implement: @implement.name), edit_object_magic_implement_path(@implement.id) %> </h3>
+
+<dl class="dl-horizontal">
+  <dt><%= t("magic.implement.name",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.name %></dd>
+  <dt><%= t("magic.implement.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.description %></dd>
+
+
+<% if  @implement.object_levels.empty? %>
+  <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+   <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left">
+    <% @implement.object_levels.each do |l| %>
+      <%= l.level %> / +<%= l.alteration %> / <%= l.price %> PO
+    <% end %>
+    </dd>
+<% end %>
+
+<% if  @implement.implement_groups.empty? %>
+  <dt><%= t("common.groups", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+  <dt><%= t("common.groups", :class=>"col_sm-4") %> </dt><dd class="text-left">
+    <% @implement.implement_groups.each do |g| %>
+      <%= g.name %>
+    <% end %>
+  </dd>
+<% end %>
+
+  <dt><%= t("magic.implement.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.alteration %></dd>
+  <dt><%= t("magic.implement.critical",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.critical %></dd>
+  <dt><%= t("magic.implement.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.property %></dd>
+  <dt><%= t("magic.implement.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.power %></dd>
+  <dt><%= t("magic.implement.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.special %></dd>
+  <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @implement.source.name %></dd>
+</dl>
