@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219191256) do
+ActiveRecord::Schema.define(version: 20150226194514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,21 @@ ActiveRecord::Schema.define(version: 20150219191256) do
   add_index "common_weapons_weapon_properties", ["common_weapon_id"], name: "index_common_weapons_weapon_properties_on_common_weapon_id", using: :btree
   add_index "common_weapons_weapon_properties", ["weapon_property_id"], name: "index_common_weapons_weapon_properties_on_weapon_property_id", using: :btree
 
+  create_table "implement_groups", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "implement_groups_magic_implements", id: false, force: true do |t|
+    t.integer "implement_group_id"
+    t.integer "magic_implement_id"
+  end
+
+  add_index "implement_groups_magic_implements", ["implement_group_id"], name: "index_implement_groups_magic_implements_on_implement_group_id", using: :btree
+  add_index "implement_groups_magic_implements", ["magic_implement_id"], name: "index_implement_groups_magic_implements_on_magic_implement_id", using: :btree
+
   create_table "magic_armors", force: true do |t|
     t.string   "name"
     t.string   "description", limit: 500
@@ -104,6 +119,28 @@ ActiveRecord::Schema.define(version: 20150219191256) do
 
   add_index "magic_armors_object_levels", ["magic_armor_id"], name: "index_magic_armors_object_levels_on_magic_armor_id", using: :btree
   add_index "magic_armors_object_levels", ["object_level_id"], name: "index_magic_armors_object_levels_on_object_level_id", using: :btree
+
+  create_table "magic_implements", force: true do |t|
+    t.string   "name"
+    t.string   "description",  limit: 500
+    t.string   "alteration",   limit: 500
+    t.text     "property"
+    t.string   "critical"
+    t.string   "string"
+    t.text     "power"
+    t.text     "special"
+    t.integer  "source_id_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magic_implements_object_levels", id: false, force: true do |t|
+    t.integer "magic_implement_id"
+    t.integer "object_level_id"
+  end
+
+  add_index "magic_implements_object_levels", ["magic_implement_id"], name: "index_magic_implements_object_levels_on_magic_implement_id", using: :btree
+  add_index "magic_implements_object_levels", ["object_level_id"], name: "index_magic_implements_object_levels_on_object_level_id", using: :btree
 
   create_table "magic_weapons", force: true do |t|
     t.string   "name"

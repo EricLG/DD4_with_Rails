@@ -80,6 +80,16 @@ ArmorCategory.create([
   { name: "Boucliers lourds",    heavy: true,   code: 'heavysh'    }
   ])
 
+ImplementGroup.create([
+  { name: "Baguettes",        code: 'wands'         },
+  { name: "Bâtons",           code: 'batons'        },
+  { name: "Orbes",            code: 'orbs'          },
+  { name: "Sceptres",         code: 'scepters'      },
+  { name: "Symboles sacrés",  code: 'holy_symbols'  },
+  { name: "Tomes",            code: 'tomes'         },
+  { name: "Totems",           code: 'totems'        }
+  ])
+
 CommonWeapon.create([
   { name: 'Gantelet cloutés',   weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
   { name: 'Baton',              weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },

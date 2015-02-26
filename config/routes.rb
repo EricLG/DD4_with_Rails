@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'magic_implements/index'
+
+  get 'magic_implements/new'
+
+  get 'magic_implements/create'
+
+  get 'magic_implements/show'
+
+  get 'magic_implements/edit'
+
+  get 'magic_implements/update'
+
+  get 'magic_implements/destroy'
+
   # page d'accueil
   root 'welcome#index'
   get 'welcome/index'
