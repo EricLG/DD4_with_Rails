@@ -151,3 +151,20 @@ ObjectLevel.create([
   { level: 29, alteration: 6, price: "2625000"},
   { level: 30, alteration: 6, price: "3125000"},
   ])
+
+Location.create([
+{ name: "Tête"                , code: "head"},
+{ name: "Cou"                 , code: "neck"},
+{ name: "Torse"               , code: "chest"},
+{ name: "Taille"              , code: "belt"},
+{ name: "Mains"               , code: "hands"},
+{ name: "Anneau"              , code: "ring"},
+{ name: "Bras"                , code: "arm"},
+{ name: "Pieds"               , code: "foots"},
+{ name: "Arme"                , code: "weapon"},
+{ name: "Focaliseur"          , code: "implement"},
+{ name: "Compagnon"           , code: "companion"},
+{ name: "Objets merveilleux"  , code: "wonderful_object"},
+{ name: "Consommmables"       , code: "expendable"},
+{ name: "Munition"            , code: "ammo"},
+  ])

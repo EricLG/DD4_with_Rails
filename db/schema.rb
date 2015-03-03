@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226194514) do
+ActiveRecord::Schema.define(version: 20150303204421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,13 @@ ActiveRecord::Schema.define(version: 20150226194514) do
 
   add_index "implement_groups_magic_implements", ["implement_group_id"], name: "index_implement_groups_magic_implements_on_implement_group_id", using: :btree
   add_index "implement_groups_magic_implements", ["magic_implement_id"], name: "index_implement_groups_magic_implements_on_magic_implement_id", using: :btree
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "magic_armors", force: true do |t|
     t.string   "name"
