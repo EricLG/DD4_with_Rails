@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'objects/index'
 
   namespace :object do
-    resources :common_weapons, :common_armors, :magic_weapons, :magic_armors, :magic_implements
+    resources :common_weapons, :common_armors, :magic_weapons, :magic_armors, :magic_implements, :magic_gears
   end
 
 
