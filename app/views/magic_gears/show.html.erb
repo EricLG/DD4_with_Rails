@@ -15,7 +15,11 @@
 <% else %>
    <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left">
     <% @gear.object_levels.each do |l| %>
-      <%= l.level %> / +<%= l.alteration %> / <%= l.price %> PO
+      <% if @gear.alteration? %>
+        <%= "#{l.level} / +#{l.alteration} / #{l.price} PO" %>
+      <% else %>
+        <%= "#{l.level} / #{l.price} PO" %>
+      <% end %>
     <% end %>
     </dd>
 <% end %>

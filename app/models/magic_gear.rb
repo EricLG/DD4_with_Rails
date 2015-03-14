@@ -10,4 +10,8 @@ class MagicGear < ActiveRecord::Base
   validates :location, presence: true
   validates :source, presence: true
   validates :object_levels, :length => { :minimum => 1}
+
+  def alteration?
+    self.location.code == 'implement' || self.location.code == "weapon" || self.location.code == "neck"
+  end
 end
