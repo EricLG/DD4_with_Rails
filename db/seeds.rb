@@ -158,7 +158,7 @@ Location.create([
 { name: "Torse"               , code: "chest"},
 { name: "Taille"              , code: "belt"},
 { name: "Mains"               , code: "hands"},
-{ name: "Anneau"              , code: "ring"},
+{ name: "Anneaux"             , code: "ring"},
 { name: "Bras"                , code: "arm"},
 { name: "Pieds"               , code: "foots"},
 { name: "Arme"                , code: "weapon"},

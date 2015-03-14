@@ -12,7 +12,48 @@ class WelcomeController < ApplicationController
     #import_weapons
     #import_armors
     #import_implements
+    import_gears
     redirect_to :root
+  end
+
+  def import_gears
+    sources = Source.all
+    levels  = ObjectLevel.all
+    location = Location.all
+    categories = ArmorCategory.all
+    filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_equipement_OK/)}
+    unless filename.nil?
+      ActiveRecord::Base.transaction do
+        File.open(File.join('tmp/import_files', filename), 'r') do |f|
+          f.readline
+          f.each_line do |l|
+            # "Titre";"Niveau minimum";"Description";"Prix par niveau et altération";"Emplacement d'objet";"Altération";"Catégorie de bouclier";"Propriété";"Pouvoir";"Spécial";"Source"
+            array_line = l.split(/";"/, -1)
+            m = MagicGear.new(
+              name:               clear_field(array_line[0]),
+              description:        clear_field(array_line[2]),
+              alteration:         clear_field(array_line[5]),
+              location:           location.find{|l| l.name == clear_field(array_line[4])},
+              property:           clear_field(array_line[7]),
+              power:              clear_field(array_line[8]),
+              special:            clear_field(array_line[9]),
+              source:             sources.find{|s| s.name == clear_field(array_line[10])},
+              object_levels:      find_each_level(clear_field(array_line[3]), levels),
+              armor_categories:   find_armor_categories(clear_field(array_line[6]), categories)
+              )
+            if m.valid?
+              m.save
+            else
+              logger.debug "Erreur de validation sur l'équipement #{m.name}"
+              logger.debug "#{m.errors.full_messages}"
+            end
+
+          end
+        end
+      end
+    end
+    c = MagicGear.count
+    logger.debug "#{c} équipements magiques ont été crées"
   end
 
   def import_implements
@@ -203,4 +244,14 @@ class WelcomeController < ApplicationController
     array
   end
 
+  def find_each_level(str, levels)
+    # "Niv.   5  +1           1 000 PO, Niv. 15  +3         25 000 PO, Niv. 25  +5       625 000 PO"
+    result = []
+    array_str = str.split(',')
+    array_str.each do |s|
+      current_level = s.strip.match(/Niv.\s*(\d{1,2}).*/).captures.first
+      result << levels.find{|l| l.level == current_level.to_i}
+    end
+    result
+  end
 end
