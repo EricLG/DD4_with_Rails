@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305182642) do
+ActiveRecord::Schema.define(version: 20150318190125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,21 @@ ActiveRecord::Schema.define(version: 20150305182642) do
 
   add_index "armor_categories_magic_gears", ["armor_category_id"], name: "index_armor_categories_magic_gears_on_armor_category_id", using: :btree
   add_index "armor_categories_magic_gears", ["magic_gear_id"], name: "index_armor_categories_magic_gears_on_magic_gear_id", using: :btree
+
+  create_table "class_features", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "class_features_klasses", force: true do |t|
+    t.integer "class_feature_id"
+    t.integer "klass_id"
+  end
+
+  add_index "class_features_klasses", ["class_feature_id"], name: "index_class_features_klasses_on_class_feature_id", using: :btree
+  add_index "class_features_klasses", ["klass_id"], name: "index_class_features_klasses_on_klass_id", using: :btree
 
   create_table "common_armors", force: true do |t|
     t.string   "name"
@@ -91,6 +106,20 @@ ActiveRecord::Schema.define(version: 20150305182642) do
   add_index "common_weapons_weapon_properties", ["common_weapon_id"], name: "index_common_weapons_weapon_properties_on_common_weapon_id", using: :btree
   add_index "common_weapons_weapon_properties", ["weapon_property_id"], name: "index_common_weapons_weapon_properties_on_weapon_property_id", using: :btree
 
+  create_table "feats", force: true do |t|
+    t.string   "name"
+    t.string   "categorie"
+    t.string   "stat"
+    t.string   "prerequisite"
+    t.text     "avantage"
+    t.string   "errata"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
+
   create_table "implement_groups", force: true do |t|
     t.string   "name"
     t.string   "code"
@@ -105,6 +134,16 @@ ActiveRecord::Schema.define(version: 20150305182642) do
 
   add_index "implement_groups_magic_implements", ["implement_group_id"], name: "index_implement_groups_magic_implements_on_implement_group_id", using: :btree
   add_index "implement_groups_magic_implements", ["magic_implement_id"], name: "index_implement_groups_magic_implements_on_magic_implement_id", using: :btree
+
+  create_table "klasses", force: true do |t|
+    t.string   "name"
+    t.string   "power_source"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "klasses", ["source_id"], name: "index_klasses_on_source_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -217,6 +256,15 @@ ActiveRecord::Schema.define(version: 20150305182642) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "races", force: true do |t|
+    t.string   "name"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "races", ["source_id"], name: "index_races_on_source_id", using: :btree
 
   create_table "sources", force: true do |t|
     t.string   "name"

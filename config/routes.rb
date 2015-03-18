@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'welcome/import'
   # Menu principal
   get 'aides/index'
-  get 'talents/index'
   get 'races/index'
   get 'classes/index'
   get 'objects/index'
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
     resources :common_weapons, :common_armors, :magic_weapons, :magic_armors, :magic_implements, :magic_gears
   end
 
+  resources :feats
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

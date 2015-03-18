@@ -168,3 +168,11 @@ Location.create([
 { name: "Consommmables"       , code: "expendable"},
 { name: "Munition"            , code: "ammo"},
   ])
+
+["Barbare","Barde","Batailleur","Druide","Ensorceleur","Façonneur","Flamboyant","Gardien","Guerrier","Invocateur","Limier","Mage lames","Magicien","Maître de guerre","Moine","Paladin","Prêtre","Prêtre des runes","Psion","Rôdeur","Shaman","Sorcier","Vengeur","Voleur"].each do |klass|
+  Klass.create(name: klass)
+end
+
+["Changelin","Cristallien","Demi-elfe","Demi-orque","Deva","Drakeide","Drow","Eladrin","Elfe","Feral","Forgelier","Genasi","Githzerai","Gnome","Goliath","Halfelin","Humain","Kalashtar","Minotaure","Nain","Sylvien","Tieffelin"].each do |race|
+  Race.create(name: race)
+end
