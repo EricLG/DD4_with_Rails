@@ -1,3 +1,5 @@
+require 'import_data'
+
 class Feat < ActiveRecord::Base
 
   belongs_to :source
@@ -5,4 +7,8 @@ class Feat < ActiveRecord::Base
   has_and_belongs_to_many :klasses
 
   CATEGORY = %w(heroique parangonique epique)
+
+  def self.import_feats
+    puts "Do nothing"
+  end
 end
