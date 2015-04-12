@@ -1,0 +1,14 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+ <%= render "sidebloc/feats_menu" %>
+<% end %>
+
+<div class="row">
+<% if @feats.empty? %>
+  <p class="col-sm-5"><%= t('common.no_result') %></p>
+<% else %>
+  <div class="col-sm-12">
+    <%= render "index_table", feats: @feats %>
+  </div>
+<% end %> <!-- Fin if -->
+</div>

@@ -1,2 +1,14 @@
-<h1>Feats#new</h1>
-<p>Find me in app/views/feats/new.html.erb</p>
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+ <%= render "sidebloc/feats_menu" %>
+<% end %>
+
+<div class="row">
+<h3 class="col-sm-12"><%= t('feat.title_new')%></h3>
+</div>
+
+<div class="row">
+  <div class=" col-sm-8">
+    <%= render "form" %>
+  </div>
+</div>

@@ -14,8 +14,13 @@ Rails.application.routes.draw do
     resources :common_weapons, :common_armors, :magic_weapons, :magic_armors, :magic_implements, :magic_gears
   end
 
-  resources :feats
-
+  resources :feats do
+    collection do
+      get 'heroics'
+      get 'parangonics'
+      get 'epics'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

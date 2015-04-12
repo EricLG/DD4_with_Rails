@@ -1,25 +1,15 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-  <ul>
-  <li>Talents héroiques</li>
-  <li>Talents parangoniques</li>
-  <li>Talents épiques</li>
-  </ul>
+ <%= render "sidebloc/feats_menu" %>
 <% end %>
 
 <div class="row">
 <h3 class="col-sm-12"><%= t('feat.title_index') %></h3>
 </div>
 
-
-<div class="row">
-<% if @feats.empty? %>
-  <p class="col-sm-5"><%= t('common.no_result') %></p>
-<% else %>
-  <div class="col-sm-12">
-    <%= render "index_table", feats: @armors %>
-  </div>
-<% end %> <!-- Fin if -->
+<div>
+<p>Lorsque vous créez un personnage de niveau 1, vous choisissez un talent (si vous êtes humain, vous avez droit à un talent supplémentaire au niveau 1, ce qui vous en fait deux dès le départ). Ensuite, vous recevez un nouveau talent à chaque niveau pair, ainsi qu'aux niveaux 11 et 21. Pour choisir un talent, vous devez remplir les prérequis.</p>
+<p>Habituellement, il n'est pas possible de choisir le même talent plus d'une fois. Pour la plupart d'entre eux, ce serait de toute façon inutile. Cependant, quelques talents peuvent être pris à plusieurs reprises, leur avantage s'appliquant à chaque fois à une situation différente ; différents groupes d'armes, différents focaliseurs, etc. Tous les éléments nécessaires sont précisés dans leur description.</p>
 </div>
 
 

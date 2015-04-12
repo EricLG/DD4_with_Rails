@@ -1,0 +1,43 @@
+<%= form_for @feat, {:class => 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :name, t("feat.name"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :name, size: 60, :class=>"form-control" %>
+    </div>
+  <div class="form-group">
+    <%= f.label :categorie, t("feat.categorie"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+       <%= f.select :categorie, options_for_select(Feat::CATEGORY),{}, {:multiple => false, :size => 3, :class => "form-control"}  %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :prerequisite, t("feat.prerequisite"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :prerequisite, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :avantage, t("feat.avantage"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :avantage, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :errata, t("feat.errata"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :errata, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_source = @source_id.nil? ? nil : @source.id %>
+    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-8">
+      <%= f.submit t("common.validate"), :class => "btn btn-default" %>
+      </div>
+  </div>
+<% end %>

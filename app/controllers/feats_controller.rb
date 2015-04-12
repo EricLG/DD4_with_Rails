@@ -3,7 +3,21 @@ class FeatsController < ApplicationController
   before_action :find_dependancies, only: [:new, :edit]
 
   def index
-    @feats = Feat.all
+  end
+
+  def heroics
+    @feats = Feat.where(categorie: "heroic")
+    render :sorted_feats
+  end
+
+  def parangonics
+    @feats = Feat.where(categorie: "parangonic")
+    render :sorted_feats
+  end
+
+  def epics
+    @feats = Feat.where(categorie: "epic")
+    render :sorted_feats
   end
 
   def new
