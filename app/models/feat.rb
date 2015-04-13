@@ -5,6 +5,8 @@ class Feat < ActiveRecord::Base
   belongs_to :source
   has_and_belongs_to_many :races
   has_and_belongs_to_many :klasses
+  has_and_belongs_to_many :class_features
+  belongs_to :stat
 
   CATEGORY = %w(heroic parangonic epic)
 

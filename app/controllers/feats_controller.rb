@@ -6,17 +6,17 @@ class FeatsController < ApplicationController
   end
 
   def heroics
-    @feats = Feat.where(categorie: "heroic")
+    @feats = Feat.where(category: "heroic")
     render :sorted_feats
   end
 
   def parangonics
-    @feats = Feat.where(categorie: "parangonic")
+    @feats = Feat.where(category: "parangonic")
     render :sorted_feats
   end
 
   def epics
-    @feats = Feat.where(categorie: "epic")
+    @feats = Feat.where(category: "epic")
     render :sorted_feats
   end
 
@@ -25,8 +25,8 @@ class FeatsController < ApplicationController
   end
 
   def create
-    @feat = Feat.create(feat_params)
-    if @feat.persisted?
+    @feat = Feat.new(feat_params)
+    if @feat.save
       redirect_to feat_path(@feat.id)
     else
       render feat_path
@@ -64,11 +64,18 @@ class FeatsController < ApplicationController
     params.require(:feat).permit(
       :name,
       :avantage,
-      :source_id
+      :category,
+      :errata,
+      :source_id,
+      {race_ids:[]},
+      {klass_ids:[]}
     )
   end
 
   def find_dependancies
     @sources = Source.all
+    @races = Race.all
+    @klasses = Klass.all
+    @class_features = ClassFeature.all
   end
 end
