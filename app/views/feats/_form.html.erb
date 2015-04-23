@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="form-group">
-    <% default_source = @feat.source_id.nil? ? nil : @source_id %>
+    <% default_source = @feat.source_id.nil? ? nil : @feat.source_id %>
     <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>

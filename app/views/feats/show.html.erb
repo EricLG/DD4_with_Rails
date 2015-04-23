@@ -3,6 +3,32 @@
  <%= render "sidebloc/feats_menu" %>
 <% end %>
 
+<h3 class="col_sm-12"><%= link_to t('feat.title_show', feat: @feat.name), edit_feat_path(@feat.id) %> </h3>
 
-<h1>Feats#show</h1>
-<p>Find me in app/views/feats/show.html.erb</p>
+<dl class="dl-horizontal">
+  <dt><%= t("magic.feat.name",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.name %></dd>
+  <dt><%= t("magic.category",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.category %></dd>
+
+<% if  @feat.races.empty? %>
+  <dt><%= t("feat.races", :class=>"col_sm-4") %> </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+  <dt><%= t("feat.races", :class=>"col_sm-4") %> </dt><dd class="text-left">
+    <% @feat.races.each do |r| %>
+      <%= r.name %>
+    <% end %>
+  </dd>
+<% end %>
+
+<% if  @feat.klasses.empty? %>
+  <dt><%= t("feat.klasses", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+  <dt><%= t("feat.klasses", :class=>"col_sm-4") %> </dt><dd class="text-left">
+    <% @feat.klasses.each do |c| %>
+      <%= c.name %>
+    <% end %>
+  </dd>
+<% end %>
+  <dt><%= t("magic.avantage",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.avantage %></dd>
+  <dt><%= t("magic.errata.",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.errata %></dd>
+  <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.source.name %></dd>
+</dl>
