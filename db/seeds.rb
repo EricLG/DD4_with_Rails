@@ -176,3 +176,30 @@ end
 ["Changelin","Cristallien","Demi-elfe","Demi-orque","Deva","Drakeide","Drow","Eladrin","Elfe","Feral","Forgelier","Genasi","Githzerai","Gnome","Goliath","Halfelin","Humain","Kalashtar","Minotaure","Nain","Sylvien","Tieffelin"].each do |race|
   Race.create(name: race)
 end
+
+class_skill = {
+"Barbare"           => ["Agilité du barbare", "Carnage", "Ardeur sanguinaire", "Triomphe du champion", "Frappe enragée", "Colère du fils du tonnerre", "Faucheur tournoyant"],
+"Barde"             => ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", "Vertu de vaillance", "Vertu de ruse", "vertu de prescience"],
+"Batailleur"        => ["Accentuation psionique", "Défense psionique", "Résistance de combat", "Vitesse de la pensée"],
+"Druide"            => ["Harmonie de la nature", "Gardien primal", "Prédateur primal", "Magie rituelle", "Métamorphose animale", "Nuée primale"],
+"Ensorceleur"       => ["Pouvoir draconique", "Résistance draconique", "Ame draconique", "Écaille du dragon", "Explosion chaotique", "Pouvoir chaotique", "Pouvoir débridé", "Ame sauvage", "Pouvoir de la tempête", "Ame de la tempête", "Baiser de la tempête", "Vitalité cosmique", "Puissance cosmique", "Ame du cycle cosmique"],
+"Façonneur"         => ["Partage d'énergie", "Intensification d'énergie", "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"],
+"Flamboyant"        => ["Accentuation psionique", "Manteau d'allégresse", "Manteau de clarté", "Regain flamboyant"],
+"Gardien"           => ["Fontaine de vie", "Force de la terre", "Sang indompté", "Colère de la nature", "Coeur de tempête", "Esprit vital"],
+"Guerrier"          => ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"],
+"Invocateur"        => ["Alliance de colère", "Alliance protectrice", "Conduit divin", "Magie rituelle", "Alliance de malédiction"],
+"Limier"            => ["Lien désincarné", "Lien du sang", "Tir implacable"],
+"Mage lames"        => ["Écran du mage d'armes", "Égide du mage d'armes", "Porte-lame"],
+"Magicien"          => ["Grimoire d'arcaniste", "Magie rituelle", "Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Tour de magie", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"],
+"Maître de guerre"  => ["Présence inspiratrice", "Présence tactique", "Chef de troupe", "Parole inspiratrice", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Chef avisé"],
+"Moine"             => ["Combattant à mains nues", "Défense sans armure", "Déluge de coup du poing de pierre", "Bastion mental", "Déluge de coups centré", "Équilibre mental"],
+"Paladin"           => ["Conduit divin", "Défi divin", "Imposition des mains"],
+"Prêtre"            => ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"],
+"Prêtre des runes"  => ["Maitre des runes", "Rune de préparation", "Marteau de l'ire", "Parole du défi"],
+"Psion"             => ["Accentuation psionique", "Spécialisation en télékinésie", "Spécialisation en télépathie", "Magie rituelle"],
+"Rôdeur"            => ["Style de combat à distance", "Style de combat à deux armes", "Tir de proximité", "Traque", "Maitrise des bêtes", "Course d'assaut", "Style du combat du chasseur", "Style de combat du maraudeur"],
+"Shaman"            => ["Compagnon spirituel", "Esprit protecteur", "Esprit prédateur", "Guérison spirituelle", "Communication avece les esprits", "Esprit du guetteur"],
+"Sorcier"           => ["Décharge occulte", "Déplacement enténébré", "Envoutement", "Pacte féérique", "Pacte infernal", "Pacte stellaire", "Tir de proximité"],
+"Vengeur"           => ["Armure de la foi", "Censure de poursuite", "Censure rétributive", "Conduit divin", "Serment d'inimitié", "Censure collective"],
+"Voleur"            => ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", "Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité", "Tireur d'élite"]
+}
