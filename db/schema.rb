@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150318190125) do
   create_table "class_features", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "klass_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,14 +55,6 @@ ActiveRecord::Schema.define(version: 20150318190125) do
 
   add_index "class_features_feats", ["class_feature_id"], name: "index_class_features_feats_on_class_feature_id", using: :btree
   add_index "class_features_feats", ["feat_id"], name: "index_class_features_feats_on_feat_id", using: :btree
-
-  create_table "class_features_klasses", force: true do |t|
-    t.integer "class_feature_id"
-    t.integer "klass_id"
-  end
-
-  add_index "class_features_klasses", ["class_feature_id"], name: "index_class_features_klasses_on_class_feature_id", using: :btree
-  add_index "class_features_klasses", ["klass_id"], name: "index_class_features_klasses_on_klass_id", using: :btree
 
   create_table "common_armors", force: true do |t|
     t.string   "name"
