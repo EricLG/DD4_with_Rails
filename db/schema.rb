@@ -48,14 +48,6 @@ ActiveRecord::Schema.define(version: 20150318190125) do
     t.datetime "updated_at"
   end
 
-  create_table "class_features_feats", force: true do |t|
-    t.integer "feat_id"
-    t.integer "class_feature_id"
-  end
-
-  add_index "class_features_feats", ["class_feature_id"], name: "index_class_features_feats_on_class_feature_id", using: :btree
-  add_index "class_features_feats", ["feat_id"], name: "index_class_features_feats_on_feat_id", using: :btree
-
   create_table "common_armors", force: true do |t|
     t.string   "name"
     t.string   "weight"
@@ -121,22 +113,6 @@ ActiveRecord::Schema.define(version: 20150318190125) do
 
   add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
   add_index "feats", ["stat_id"], name: "index_feats_on_stat_id", using: :btree
-
-  create_table "feats_klasses", force: true do |t|
-    t.integer "feat_id"
-    t.integer "klass_id"
-  end
-
-  add_index "feats_klasses", ["feat_id"], name: "index_feats_klasses_on_feat_id", using: :btree
-  add_index "feats_klasses", ["klass_id"], name: "index_feats_klasses_on_klass_id", using: :btree
-
-  create_table "feats_races", force: true do |t|
-    t.integer "feat_id"
-    t.integer "race_id"
-  end
-
-  add_index "feats_races", ["feat_id"], name: "index_feats_races_on_feat_id", using: :btree
-  add_index "feats_races", ["race_id"], name: "index_feats_races_on_race_id", using: :btree
 
   create_table "implement_groups", force: true do |t|
     t.string   "name"
@@ -274,6 +250,30 @@ ActiveRecord::Schema.define(version: 20150318190125) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "pr_class_features_for_feat", id: false, force: true do |t|
+    t.integer "feat_id"
+    t.integer "class_feature_id"
+  end
+
+  add_index "pr_class_features_for_feat", ["class_feature_id"], name: "index_pr_class_features_for_feat_on_class_feature_id", using: :btree
+  add_index "pr_class_features_for_feat", ["feat_id"], name: "index_pr_class_features_for_feat_on_feat_id", using: :btree
+
+  create_table "pr_klasses_for_feat", id: false, force: true do |t|
+    t.integer "feat_id"
+    t.integer "klass_id"
+  end
+
+  add_index "pr_klasses_for_feat", ["feat_id"], name: "index_pr_klasses_for_feat_on_feat_id", using: :btree
+  add_index "pr_klasses_for_feat", ["klass_id"], name: "index_pr_klasses_for_feat_on_klass_id", using: :btree
+
+  create_table "pr_races_for_feat", id: false, force: true do |t|
+    t.integer "feat_id"
+    t.integer "race_id"
+  end
+
+  add_index "pr_races_for_feat", ["feat_id"], name: "index_pr_races_for_feat_on_feat_id", using: :btree
+  add_index "pr_races_for_feat", ["race_id"], name: "index_pr_races_for_feat_on_race_id", using: :btree
 
   create_table "races", force: true do |t|
     t.string   "name"

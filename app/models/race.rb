@@ -1,5 +1,5 @@
 class Race < ActiveRecord::Base
 
   belongs_to :source
-  has_and_belongs_to_many :feats, inverse_of: :pr_races
+  has_and_belongs_to_many :prerequisite_for_feats, :class_name => "Feat", :join_table => :pr_races_for_feat
 end
