@@ -26,6 +26,12 @@ Source.create([
   { name: 'Secret des arcanes' }
   ])
 
+mdj1 = Source.find_by_name('Manuel des Joueurs 1')
+mdj2 = Source.find_by_name('Manuel des Joueurs 2')
+mdj3 = Source.find_by_name('Manuel des Joueurs 3')
+eber = Source.find_by_name('Eberron')
+roou = Source.find_by_name('Royaume Oubliés')
+
 WeaponGroup.create([
   { name: 'Arbalètes' },
   { name: 'Arcs' },
@@ -91,32 +97,32 @@ ImplementGroup.create([
   ])
 
 CommonWeapon.create([
-  { name: 'Gantelet cloutés',   weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Baton',              weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Cimeterre',          weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Hallebarde',         weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Katar',              weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Chaine cloutées',    weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Mains nue',          weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Objet 2H',           weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Arbalete de poing',  weapon_category: WeaponCategory.find_by_code('simra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Arbalete',           weapon_category: WeaponCategory.find_by_code('simra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Arc long',           weapon_category: WeaponCategory.find_by_code('warra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Shuriken',           weapon_category: WeaponCategory.find_by_code('supra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Grand arc',          weapon_category: WeaponCategory.find_by_code('supra'), two_handed: true,  weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') },
-  { name: 'Objet 1H',           weapon_category: WeaponCategory.find_by_code('impra'), two_handed: false, weapon_group_ids: [1,2], source: Source.find_by_name('Manuel des Joueurs 1') }
+  { name: 'Gantelet cloutés',   weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Baton',              weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Cimeterre',          weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Hallebarde',         weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Katar',              weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Chaine cloutées',    weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Mains nue',          weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Objet 2H',           weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Arbalete de poing',  weapon_category: WeaponCategory.find_by_code('simra'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Arbalete',           weapon_category: WeaponCategory.find_by_code('simra'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Arc long',           weapon_category: WeaponCategory.find_by_code('warra'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Shuriken',           weapon_category: WeaponCategory.find_by_code('supra'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Grand arc',          weapon_category: WeaponCategory.find_by_code('supra'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
+  { name: 'Objet 1H',           weapon_category: WeaponCategory.find_by_code('impra'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id }
   ] )
 
 
 CommonArmor.create([
-  { name: "Armure d'étoffe",    armor_bonus: 0, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('clothe')   },
-  { name: "Armure de cuir",     armor_bonus: 2, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('leather')  },
-  { name: "Armure de peau",     armor_bonus: 3, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('skin')     },
-  { name: "Cotte de mailles",   armor_bonus: 6, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('chainmail')},
-  { name: "Armure d'écailles",  armor_bonus: 7, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('scales')   },
-  { name: "Harnois",            armor_bonus: 8, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('harnois')  },
-  { name: "Bouclier léger",     armor_bonus: 1, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('lightsh')  },
-  { name: "Bouclier lourd",     armor_bonus: 2, source: Source.find_by_name('Manuel des Joueurs 1'), min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('heavysh')  }
+  { name: "Armure d'étoffe",    armor_bonus: 0, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('clothe')   },
+  { name: "Armure de cuir",     armor_bonus: 2, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('leather')  },
+  { name: "Armure de peau",     armor_bonus: 3, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('skin')     },
+  { name: "Cotte de mailles",   armor_bonus: 6, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('chainmail')},
+  { name: "Armure d'écailles",  armor_bonus: 7, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('scales')   },
+  { name: "Harnois",            armor_bonus: 8, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('harnois')  },
+  { name: "Bouclier léger",     armor_bonus: 1, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('lightsh')  },
+  { name: "Bouclier lourd",     armor_bonus: 2, source_id: mdj1.id, min_alteration_bonus:0, skill_malus: 0, ms_malus: 0, armor_category: ArmorCategory.find_by_code('heavysh')  }
   ])
 
 ObjectLevel.create([
@@ -169,39 +175,60 @@ Location.create([
 { name: "Munition"            , code: "ammo"},
   ])
 
-["Changelin","Cristallien","Demi-elfe","Demi-orque","Deva","Drakeide","Drow","Eladrin","Elfe","Feral","Forgelier","Genasi","Githzerai","Gnome","Goliath","Halfelin","Humain","Kalashtar","Minotaure","Nain","Sylvien","Tieffelin"].each do |race|
-  Race.create(name: race)
+{
+"Changelin"   => eber.id,
+"Cristallien" => mdj3.id,
+"Demi-elfes"  => mdj1.id,
+"Demi-orques" => mdj2.id,
+"Déva"        => mdj2.id,
+"Drakéide"    => mdj1.id,
+"Drow"        => roou.id,
+"Eladrin"     => mdj1.id,
+"Elfe"        => mdj1.id,
+"Féral"       => mdj2.id,
+"Forgelier"   => eber.id,
+"Genasi"      => roou.id,
+"Githzerai"   => mdj3.id,
+"Gnome"       => mdj2.id,
+"Goliath"     => mdj2.id,
+"Halfelin"    => mdj1.id,
+"Humain"      => mdj1.id,
+"Kalashtar"   => eber.id,
+"Minotaure"   => mdj3.id,
+"Nain"        => mdj1.id,
+"Sylvien"     => mdj3.id,
+"Tieffelin"   => mdj1.id
+}.each do |race, manuel|
+  Race.create(name: race, source_id: manuel)
 end
 
-class_skill = {
-"Barbare"           => {:power_source  => "Primale",    :skill => ["Agilité du barbare", "Carnage", "Ardeur sanguinaire", "Triomphe du champion", "Frappe enragée", "Colère du fils du tonnerre", "Faucheur tournoyant"]},
-"Barde"             => {:power_source  => "Arcanique",  :skill => ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", "Vertu de vaillance", "Vertu de ruse", "vertu de prescience"]},
-"Batailleur"        => {:power_source  => "Psionique",  :skill => ["Accentuation psionique", "Défense psionique", "Résistance de combat", "Vitesse de la pensée"]},
-"Druide"            => {:power_source  => "Primale",    :skill => ["Harmonie de la nature", "Gardien primal", "Prédateur primal", "Magie rituelle", "Métamorphose animale", "Nuée primale"]},
-"Ensorceleur"       => {:power_source  => "Arcanique",  :skill => ["Pouvoir draconique", "Résistance draconique", "Ame draconique", "Écaille du dragon", "Explosion chaotique", "Pouvoir chaotique", "Pouvoir débridé", "Ame sauvage", "Pouvoir de la tempête", "Ame de la tempête", "Baiser de la tempête", "Vitalité cosmique", "Puissance cosmique", "Ame du cycle cosmique"]},
-"Façonneur"         => {:power_source  => "Arcanique",  :skill => ["Partage d'énergie", "Intensification d'énergie", "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"]},
-"Flamboyant"        => {:power_source  => "Psionique",  :skill => ["Accentuation psionique", "Manteau d'allégresse", "Manteau de clarté", "Regain flamboyant"]},
-"Gardien"           => {:power_source  => "Primale",    :skill => ["Fontaine de vie", "Force de la terre", "Sang indompté", "Colère de la nature", "Coeur de tempête", "Esprit vital"]},
-"Guerrier"          => {:power_source  => "Martiale",   :skill => ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"]},
-"Invocateur"        => {:power_source  => "Divine",     :skill => ["Alliance de colère", "Alliance protectrice", "Conduit divin", "Magie rituelle", "Alliance de malédiction"]},
-"Limier"            => {:power_source  => "Primale",    :skill => ["Lien désincarné", "Lien du sang", "Tir implacable"]},
-"Mage lames"        => {:power_source  => "Arcanique",  :skill => ["Écran du mage d'armes", "Égide du mage d'armes", "Porte-lame"]},
-"Magicien"          => {:power_source  => "Arcanique",  :skill => ["Grimoire d'arcaniste", "Magie rituelle", "Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Tour de magie", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"]},
-"Maître de guerre"  => {:power_source  => "Martiale",   :skill => ["Présence inspiratrice", "Présence tactique", "Chef de troupe", "Parole inspiratrice", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Chef avisé"]},
-"Moine"             => {:power_source  => "Psionique",  :skill => ["Combattant à mains nues", "Défense sans armure", "Déluge de coup du poing de pierre", "Bastion mental", "Déluge de coups centré", "Équilibre mental"]},
-"Paladin"           => {:power_source  => "Divine",     :skill => ["Conduit divin", "Défi divin", "Imposition des mains"]},
-"Prêtre"            => {:power_source  => "Divine",     :skill => ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"]},
-"Prêtre des runes"  => {:power_source  => "Divine",     :skill => ["Maitre des runes", "Rune de préparation", "Marteau de l'ire", "Parole du défi"]},
-"Psion"             => {:power_source  => "Psionique",  :skill => ["Accentuation psionique", "Spécialisation en télékinésie", "Spécialisation en télépathie", "Magie rituelle"]},
-"Rôdeur"            => {:power_source  => "Martiale",   :skill => ["Style de combat à distance", "Style de combat à deux armes", "Tir de proximité", "Traque", "Maitrise des bêtes", "Course d'assaut", "Style du combat du chasseur", "Style de combat du maraudeur"]},
-"Shaman"            => {:power_source  => "Primale",    :skill => ["Compagnon spirituel", "Esprit protecteur", "Esprit prédateur", "Guérison spirituelle", "Communication avece les esprits", "Esprit du guetteur"]},
-"Sorcier"           => {:power_source  => "Arcanique",  :skill => ["Décharge occulte", "Déplacement enténébré", "Envoutement", "Pacte féérique", "Pacte infernal", "Pacte stellaire", "Tir de proximité"]},
-"Vengeur"           => {:power_source  => "Divine",     :skill => ["Armure de la foi", "Censure de poursuite", "Censure rétributive", "Conduit divin", "Serment d'inimitié", "Censure collective"]},
-"Voleur"            => {:power_source  => "Martiale",   :skill => ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", "Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité", "Tireur d'élite"]}
-}
-
-class_skill.each do |klass, value|
-  klass = Klass.create(name: klass, power_source: value[:power_source])
+{
+"Barbare"           => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Agilité du barbare", "Carnage", "Ardeur sanguinaire", "Triomphe du champion", "Frappe enragée", "Colère du fils du tonnerre", "Faucheur tournoyant"]},
+"Barde"             => {:book_source => mdj2.id, :power_source  => "Arcanique",  :skill => ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", "Vertu de vaillance", "Vertu de ruse", "vertu de prescience"]},
+"Batailleur"        => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Accentuation psionique", "Défense psionique", "Résistance de combat", "Vitesse de la pensée"]},
+"Druide"            => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Harmonie de la nature", "Gardien primal", "Prédateur primal", "Magie rituelle", "Métamorphose animale", "Nuée primale"]},
+"Ensorceleur"       => {:book_source => mdj2.id, :power_source  => "Arcanique",  :skill => ["Pouvoir draconique", "Résistance draconique", "Ame draconique", "Écaille du dragon", "Explosion chaotique", "Pouvoir chaotique", "Pouvoir débridé", "Ame sauvage", "Pouvoir de la tempête", "Ame de la tempête", "Baiser de la tempête", "Vitalité cosmique", "Puissance cosmique", "Ame du cycle cosmique"]},
+"Façonneur"         => {:book_source => eber.id, :power_source  => "Arcanique",  :skill => ["Partage d'énergie", "Intensification d'énergie", "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"]},
+"Flamboyant"        => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Accentuation psionique", "Manteau d'allégresse", "Manteau de clarté", "Regain flamboyant"]},
+"Gardien"           => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Fontaine de vie", "Force de la terre", "Sang indompté", "Colère de la nature", "Coeur de tempête", "Esprit vital"]},
+"Guerrier"          => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"]},
+"Invocateur"        => {:book_source => mdj2.id, :power_source  => "Divine",     :skill => ["Alliance de colère", "Alliance protectrice", "Conduit divin", "Magie rituelle", "Alliance de malédiction"]},
+"Limier"            => {:book_source => mdj3.id, :power_source  => "Primale",    :skill => ["Lien désincarné", "Lien du sang", "Tir implacable"]},
+"Mage lames"        => {:book_source => roou.id, :power_source  => "Arcanique",  :skill => ["Écran du mage d'armes", "Égide du mage d'armes", "Porte-lame"]},
+"Magicien"          => {:book_source => mdj1.id, :power_source  => "Arcanique",  :skill => ["Grimoire d'arcaniste", "Magie rituelle", "Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Tour de magie", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"]},
+"Maître de guerre"  => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Présence inspiratrice", "Présence tactique", "Chef de troupe", "Parole inspiratrice", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Chef avisé"]},
+"Moine"             => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Combattant à mains nues", "Défense sans armure", "Déluge de coup du poing de pierre", "Bastion mental", "Déluge de coups centré", "Équilibre mental"]},
+"Paladin"           => {:book_source => mdj1.id, :power_source  => "Divine",     :skill => ["Conduit divin", "Défi divin", "Imposition des mains"]},
+"Prêtre"            => {:book_source => mdj1.id, :power_source  => "Divine",     :skill => ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"]},
+"Prêtre des runes"  => {:book_source => mdj3.id, :power_source  => "Divine",     :skill => ["Maitre des runes", "Rune de préparation", "Marteau de l'ire", "Parole du défi"]},
+"Psion"             => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Accentuation psionique", "Spécialisation en télékinésie", "Spécialisation en télépathie", "Magie rituelle"]},
+"Rôdeur"            => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Style de combat à distance", "Style de combat à deux armes", "Tir de proximité", "Traque", "Maitrise des bêtes", "Course d'assaut", "Style du combat du chasseur", "Style de combat du maraudeur"]},
+"Shaman"            => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Compagnon spirituel", "Esprit protecteur", "Esprit prédateur", "Guérison spirituelle", "Communication avece les esprits", "Esprit du guetteur"]},
+"Sorcier"           => {:book_source => mdj1.id, :power_source  => "Arcanique",  :skill => ["Décharge occulte", "Déplacement enténébré", "Envoutement", "Pacte féérique", "Pacte infernal", "Pacte stellaire", "Tir de proximité"]},
+"Vengeur"           => {:book_source => mdj2.id, :power_source  => "Divine",     :skill => ["Armure de la foi", "Censure de poursuite", "Censure rétributive", "Conduit divin", "Serment d'inimitié", "Censure collective"]},
+"Voleur"            => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", "Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité", "Tireur d'élite"]}
+}.each do |klass, value|
+  klass = Klass.create(name: klass, power_source: value[:power_source], source_id: value[:book_source])
   value[:skill].each do |skill|
     ClassFeature.create(name: skill, klass: klass)
   end
