@@ -7,5 +7,10 @@ class CreateKlasses < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    create_table :class_features_klasses, id: false do |t|
+      t.belongs_to :class_feature, index: true
+      t.belongs_to :klass, index: true
+    end
   end
 end

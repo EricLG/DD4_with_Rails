@@ -224,12 +224,18 @@ end
 "Psion"             => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Accentuation psionique", "Spécialisation en télékinésie", "Spécialisation en télépathie", "Magie rituelle"]},
 "Rôdeur"            => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Style de combat à distance", "Style de combat à deux armes", "Tir de proximité", "Traque", "Maitrise des bêtes", "Course d'assaut", "Style du combat du chasseur", "Style de combat du maraudeur"]},
 "Shaman"            => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Compagnon spirituel", "Esprit protecteur", "Esprit prédateur", "Guérison spirituelle", "Communication avece les esprits", "Esprit du guetteur"]},
-"Sorcier"           => {:book_source => mdj1.id, :power_source  => "Arcanique",  :skill => ["Décharge occulte", "Déplacement enténébré", "Envoutement", "Pacte féérique", "Pacte infernal", "Pacte stellaire", "Tir de proximité"]},
+"Sorcier"           => {:book_source => mdj1.id, :power_source  => "Arcanique",  :skill => ["Décharge occulte", "Déplacement enténébré", "Envoûtement", "Pacte féérique", "Pacte infernal", "Pacte stellaire", "Tir de proximité"]},
 "Vengeur"           => {:book_source => mdj2.id, :power_source  => "Divine",     :skill => ["Armure de la foi", "Censure de poursuite", "Censure rétributive", "Conduit divin", "Serment d'inimitié", "Censure collective"]},
 "Voleur"            => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", "Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité", "Tireur d'élite"]}
 }.each do |klass, value|
   klass = Klass.create(name: klass, power_source: value[:power_source], source_id: value[:book_source])
   value[:skill].each do |skill|
-    ClassFeature.create(name: skill, klass: klass)
+    c = ClassFeature.find_by_name(skill)
+    if c.nil?
+      ClassFeature.create(name: skill, klasses: [klass])
+    else
+      c.klasses << klass
+      c.save
+    end
   end
 end

@@ -14,6 +14,7 @@ class Feat < ActiveRecord::Base
     sources = Source.all
     races = Race.all
     classes = Klasse.all
+    classes_features = ClassFeature.all
     filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_talent_OK/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
@@ -22,14 +23,15 @@ class Feat < ActiveRecord::Base
           f.each_line do |l|  # "Titre";"Catégorie de talents";"Aptitude";"Classe";"Race";"Avantage";"Stats";"Source";"Errata"
             array_line = l.split(/";"/, -1)
             f = Feat.new(
-              name:           ImportData.clear_field(array_line[0]),
-              category:       ImportData.clear_field(array_line[1]),
-              class_features: ImportData.clear_field(array_line[2]),
-              critical:       ImportData.clear_field(array_line[6]),
-              property:       ImportData.clear_field(array_line[7]),
-              power:          ImportData.clear_field(array_line[8]),
-              special:        ImportData.clear_field(array_line[10]),
-              source:         sources.find{|s| s.name == ImportData.clear_field(array_line[7])},
+              name:         ImportData.clear_field(array_line[0]),
+              category:     ImportData.find_category(ImportData.clear_field(array_line[1])),
+              prerequisited_class_features: ImportData.find_class_features(ImportData.clear_field(array_line[2]), classes_features),
+              prerequisited_klasses:        ImportData.clear_field(array_line[3]),
+              prerequisited_races:          ImportData.clear_field(array_line[4]),
+              avantage:     ImportData.clear_field(array_line[5]),
+              stat:         ImportData.clear_field(array_line[6]),
+              source:       sources.find{|s| s.name == ImportData.clear_field(array_line[7])},
+              errata:       ImportData.clear_field(array_line[8]),
               )
             if f.valid?
                 f.save!

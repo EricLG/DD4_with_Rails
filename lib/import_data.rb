@@ -70,4 +70,29 @@ module ImportData
     array
   end
 
+  def self.find_category(data)
+    if data.blank? || data == "Héroïque" || data == "Héroïque" || data == "Domaine Divin"
+      category = "heroic"
+    elsif data == "Parangonique"
+      category = "parangonic"
+    end
+    category
+  end
+
+  def self.find_class_features(data, features)
+    finded_features = []
+    array_data = data.split(',')
+    array_data.each do |d|
+      if d == "Dieux"
+        finded_features << features.find{|f| f.name == "Conduit divin"}
+      elsif !d.blank?
+        founded_feat = features.find{|f| f.name == d}
+        finded_features << founded_feat if !founded_feat.nil?
+      else # Pas de feature
+
+      end
+    end
+    finded_features
+  end
+
 end
