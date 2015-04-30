@@ -43,9 +43,12 @@ ActiveRecord::Schema.define(version: 20150318190125) do
   create_table "class_features", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "top_feature_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "class_features", ["top_feature_id"], name: "index_class_features_on_top_feature_id", using: :btree
 
   create_table "class_features_klasses", id: false, force: true do |t|
     t.integer "class_feature_id"
