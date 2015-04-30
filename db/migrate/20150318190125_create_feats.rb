@@ -3,8 +3,7 @@ class CreateFeats < ActiveRecord::Migration
     create_table :feats do |t|
       t.string :name
       t.string :category
-      t.string :stat
-      t.text :avantage
+      t.text   :avantage
       t.string :errata
       t.belongs_to :stat, index: true
       t.belongs_to :source, index: true

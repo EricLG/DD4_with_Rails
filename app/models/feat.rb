@@ -6,16 +6,17 @@ class Feat < ActiveRecord::Base
   has_and_belongs_to_many :prerequisited_races,           :class_name => "Race",          :join_table => :pr_races_for_feat
   has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :pr_klasses_for_feat
   has_and_belongs_to_many :prerequisited_class_features,  :class_name => "ClassFeature",  :join_table => :pr_class_features_for_feat
+  has_and_belongs_to_many :prerequisited_race_features,   :class_name => "RaceFeature",   :join_table => :pr_race_features_for_feat
   belongs_to :stat
 
   CATEGORY = %w(heroic parangonic epic)
 
   def self.import_feats
-    sources = Source.all
-    races = Race.all
-    classes = Klasse.all
+    sources   = Source.all
+    races     = Race.all
+    classes   = Klasse.all
     classes_features = ClassFeature.all
-    filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_talent_OK/)}
+    filename  = Dir.entries('tmp/import_files').find{|f| f.match(/export_talent_OK/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
         File.open(File.join('tmp/import_files', filename), 'r') do |f|
