@@ -176,71 +176,81 @@ Location.create([
   ])
 
 {
-"Changelin"   => eber.id,
-"Cristallien" => mdj3.id,
-"Demi-elfes"  => mdj1.id,
-"Demi-orques" => mdj2.id,
-"Déva"        => mdj2.id,
-"Drakéide"    => mdj1.id,
-"Drow"        => roou.id,
-"Eladrin"     => mdj1.id,
-"Elfe"        => mdj1.id,
-"Féral"       => mdj2.id,
-"Forgelier"   => eber.id,
-"Genasi"      => roou.id,
-"Githzerai"   => mdj3.id,
-"Gnome"       => mdj2.id,
-"Goliath"     => mdj2.id,
-"Halfelin"    => mdj1.id,
-"Humain"      => mdj1.id,
-"Kalashtar"   => eber.id,
-"Minotaure"   => mdj3.id,
-"Nain"        => mdj1.id,
-"Sylvien"     => mdj3.id,
-"Tieffelin"   => mdj1.id
-}.each do |race, manuel|
-  Race.create(name: race, source_id: manuel)
+"Changelin"             => {book_source: eber.id, cat_size: "M", speed: 6, features: ["Change-forme", "Défense mentale", "Métamorphe", "Ruse du changelin"]},
+"Cristallien"           => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Créature artificielle vivante", "Esprit cristallien", "Nuée de cristaux", "Origine immortelle", "Télépathie"]},
+"Demi-elfes"            => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Dilettante", "Diplomatie de groupe", "Double héritage"]},
+"Demi-orques"           => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Assaut enragé", "Charge véloce", "Vitalité demi-orque"]},
+"Déva"                  => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Majesté astrale", "Résistance astrale", "Origine immortelle", "Mémoire d'un millier de vies"]},
+"Drakéide"              => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Fureur drakéide", "Héritage draconique", "Souffle de dragon"]},
+"Drow"                  => {book_source: roou.id, cat_size: "M", speed: 6, features: ["Lolthaïque", "Origine féerique", "Transe"]},
+"Eladrin"               => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Éclipse féerique", "Éducation éladrine", "Maniement des armes éladrines", "Origine féerique", "Transe", "Volonté éladrine"]},
+"Elfe"                  => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Maniement des armes elfiques", "Origine féerique", "Pas assuré", "Précision elfique", "Vigilance de groupe"]},
+"Féral longue-dent"     => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Sauvagerie longue-dent"]},
+"Féral griffe-effilée"  => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Sauvagerie griffe-effilée"]},
+"Forgelier"             => {book_source: eber.id, cat_size: "M", speed: 6, features: ["Créature artificielle vivante","Esprit du forgelier", "Opiniâtreté forgelière", "Résistance forgelière", "Veilleur infatigable"]},
+"Genasi"                => {book_source: roou.id, cat_size: "M", speed: 6, features: ["Origine élémentaire", "Manifestation élémentaire"]},
+"Githzerai"             => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Esprit défendu", "Heureuse fortune", "Mental d'acier", "Sens du danger"]},
+"Gnome"                 => {book_source: mdj2.id, cat_size: "P", speed: 5, features: ["Discrétion réactive", "Effacement", "Maître menteur", "Origine féerique", "Perspicacité du menteur"]},
+"Goliath"               => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Ténacité de la montagne", "Athlète puissant", "Endurance de la pierre"]},
+"Halfelin"              => {book_source: mdj1.id, cat_size: "P", speed: 6, features: ["Audacieux", "Deuxième chance", "Réflexes éclair"]},
+"Humain"                => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Bonus de défense humain", "Compétence supplémentaire", "Pouvoir à volonté supplémentaire", "Talent supplémentaire"]},
+"Kalashtar"             => {book_source: eber.id, cat_size: "M", speed: 6, features: ["Âme double", "Bastion de clarté mentale"]},
+"Minotaure"             => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Charge encornée", "Charge intrépide", "Férocité", "Vitalité"]},
+"Nain"                  => {book_source: mdj1.id, cat_size: "M", speed: 5, features: ["Ancré dans le sol", "Boyaux d'acier", "Déplacement avec charge", "Maniement des armes naines", "Résistance naine"]},
+"Sylvien"               => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Aspect de la nature", "Forme endurcie", "Origine féerique"]},
+"Tieffelin"             => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Appel du sang", "Courroux infernal", "Résistance au feu"]}
+}.each do |race, info|
+  race = Race.create(name: race, source_id: info[:book_source], cat_size: info[:cat_size], speed: info[:speed])
+  info[:features].each do |feature|
+    r = RaceFeature.find_by_name(feature)
+    if r.nil?
+       RaceFeature.create(name: feature, races: [race])
+    else
+      r.races << race
+      r.save
+    end
+  end
 end
 
 {
-"Barbare"           => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Agilité du barbare", "Carnage", {"Force indomptable" => ["Ardeur sanguinaire", "Triomphe du champion", "Colère du fils du tonnerre", "Faucheur tournoyant"]}, "Frappe enragée"]},
-"Barde"             => {:book_source => mdj2.id, :power_source  => "Arcanique",  :skill => ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", {"Vertu des bardes" => ["Vertu de vaillance", "Vertu de ruse", "vertu de prescience"]}]},
-"Batailleur"        => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Accentuation psionique", "Défense psionique", {"Étude psionique" => ["Résistance de combat", "Vitesse de la pensée"]}]},
-"Druide"            => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Harmonie de la nature", {"Aspect primal" => ["Gardien primal", "Prédateur primal", "Nuée primale"]}, "Magie rituelle", "Métamorphose animale"]},
-"Ensorceleur"       => {:book_source => mdj2.id, :power_source  => "Arcanique",  :skill => [{"Source des sorts" => ["Magie draconique", "Magie sauvage", "Magie des tempêtes", "Magie cosmique"]}]},
-"Façonneur"         => {:book_source => eber.id, :power_source  => "Arcanique",  :skill => [{"Bonification arcanique" => ["Partage d'énergie", "Intensification d'énergie"]}, "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"]},
-"Flamboyant"        => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Accentuation psionique", {"Manteau flamboyant" => ["Manteau d'allégresse", "Manteau de clarté"]}, "Regain flamboyant"]},
-"Gardien"           => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => ["Fontaine de vie", {"Puissance du gardien" => ["Force de la terre", "Sang indompté", "Coeur de tempête", "Esprit vital"]}, "Colère de la nature"]},
-"Guerrier"          => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"]},
-"Invocateur"        => {:book_source => mdj2.id, :power_source  => "Divine",     :skill => [{"Alliance divine" => ["Alliance de colère", "Alliance protectrice", "Alliance de malédiction"]}, "Conduit divin", "Magie rituelle" ]},
-"Limier"            => {:book_source => mdj3.id, :power_source  => "Primale",    :skill => [{"Lien du limier" => ["Lien désincarné", "Lien du sang"]}, "Tir implacable"]},
-"Mage lames"        => {:book_source => roou.id, :power_source  => "Arcanique",  :skill => ["Écran du mage d'armes", {"Égide du mage d'armes" => ["Égide défensive", "Égide offensive"]}, "Porte-lame"]},
-"Magicien"          => {:book_source => mdj1.id, :power_source  => "Arcanique",  :skill => ["Grimoire d'arcaniste", "Magie rituelle", {"Maîtrise des focaliseurs arcaniques" =>["Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"]}, "Tour de magie"]},
-"Maître de guerre"  => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => [{"Autorité naturelle" => ["Présence inspiratrice", "Présence tactique", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Présence du tirailleur"]}, "Chef de troupe", "Parole inspiratrice", "Chef avisé", "Maître de guerre archer", "Chef d'assaut"]},
-"Moine"             => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Combattant à mains nues", "Défense sans armure", {"Poing de pierre" => ["Déluge de coup", "Bastion mental"]}, {"Soufle centré" => ["Déluge de coups", "Équilibre mental"]}]},
-"Paladin"           => {:book_source => mdj1.id, :power_source  => "Divine",     :skill => ["Conduit divin", "Défi divin", "Imposition des mains"]},
-"Prêtre"            => {:book_source => mdj1.id, :power_source  => "Divine",     :skill => ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"]},
-"Prêtre des runes"  => {:book_source => mdj3.id, :power_source  => "Divine",     :skill => ["Maitre des runes", "Rune de préparation", {"Tradition runique" => ["Marteau de l'ire", "Parole du défi"]}]},
-"Psion"             => {:book_source => mdj3.id, :power_source  => "Psionique",  :skill => ["Accentuation psionique", {"Discipline de spécialisation" => ["Spécialisation en télékinésie", "Spécialisation en télépathie"]}, "Magie rituelle"]},
-"Rôdeur"            => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => [{"Style de combat" => ["Style de combat à distance", "Style de combat à deux armes", "Maitrise des bêtes", "Style du combat du chasseur", "Style de combat du maraudeur"]}, "Tir de proximité", "Traque", "Course d'assaut"]},
-"Shaman"            => {:book_source => mdj2.id, :power_source  => "Primale",    :skill => [{"Compagnon spirituel" => ["Esprit protecteur", "Esprit prédateur", "Esprit du guetteur", "Esprit du messager des mondes"]}, "Guérison spirituelle", "Communication avec les esprits"]},
-"Sorcier"           => {:book_source => mdj1.id, :power_source  => "Arcanique",  :skill => ["Décharge occulte", "Déplacement enténébré", "Envoûtement", {"Pacte occulte" => ["Pacte féérique", "Pacte infernal", "Pacte stellaire", "Pacte des vestiges"]}, "Tir de proximité"]},
-"Vengeur"           => {:book_source => mdj2.id, :power_source  => "Divine",     :skill => ["Armure de la foi", {"Censure du vengeur" => ["Censure de poursuite", "Censure rétributive", "Censure collective"]}, "Conduit divin", "Serment d'inimitié"]},
-"Voleur"            => {:book_source => mdj1.id, :power_source  => "Martiale",   :skill => ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", {"Tactique du roublard" => ["Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité"]}, "Tireur d'élite"]}
+"Barbare"           => {book_source: mdj2.id, power_source: "Primale",    features: ["Agilité du barbare", "Carnage", {"Force indomptable" => ["Ardeur sanguinaire", "Triomphe du champion", "Colère du fils du tonnerre", "Faucheur tournoyant"]}, "Frappe enragée"]},
+"Barde"             => {book_source: mdj2.id, power_source: "Arcanique",  features: ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", {"Vertu des bardes" => ["Vertu de vaillance", "Vertu de ruse", "vertu de prescience"]}]},
+"Batailleur"        => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", "Défense psionique", {"Étude psionique" => ["Résistance de combat", "Vitesse de la pensée"]}]},
+"Druide"            => {book_source: mdj2.id, power_source: "Primale",    features: ["Harmonie de la nature", {"Aspect primal" => ["Gardien primal", "Prédateur primal", "Nuée primale"]}, "Magie rituelle", "Métamorphose animale"]},
+"Ensorceleur"       => {book_source: mdj2.id, power_source: "Arcanique",  features: [{"Source des sorts" => ["Magie draconique", "Magie sauvage", "Magie des tempêtes", "Magie cosmique"]}]},
+"Façonneur"         => {book_source: eber.id, power_source: "Arcanique",  features: [{"Bonification arcanique" => ["Partage d'énergie", "Intensification d'énergie"]}, "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"]},
+"Flamboyant"        => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", {"Manteau flamboyant" => ["Manteau d'allégresse", "Manteau de clarté"]}, "Regain flamboyant"]},
+"Gardien"           => {book_source: mdj2.id, power_source: "Primale",    features: ["Fontaine de vie", {"Puissance du gardien" => ["Force de la terre", "Sang indompté", "Coeur de tempête", "Esprit vital"]}, "Colère de la nature"]},
+"Guerrier"          => {book_source: mdj1.id, power_source: "Martiale",   features: ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"]},
+"Invocateur"        => {book_source: mdj2.id, power_source: "Divine",     features: [{"Alliance divine" => ["Alliance de colère", "Alliance protectrice", "Alliance de malédiction"]}, "Conduit divin", "Magie rituelle" ]},
+"Limier"            => {book_source: mdj3.id, power_source: "Primale",    features: [{"Lien du limier" => ["Lien désincarné", "Lien du sang"]}, "Tir implacable"]},
+"Mage lames"        => {book_source: roou.id, power_source: "Arcanique",  features: ["Écran du mage d'armes", {"Égide du mage d'armes" => ["Égide défensive", "Égide offensive"]}, "Porte-lame"]},
+"Magicien"          => {book_source: mdj1.id, power_source: "Arcanique",  features: ["Grimoire d'arcaniste", "Magie rituelle", {"Maîtrise des focaliseurs arcaniques" =>["Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"]}, "Tour de magie"]},
+"Maître de guerre"  => {book_source: mdj1.id, power_source: "Martiale",   features: [{"Autorité naturelle" => ["Présence inspiratrice", "Présence tactique", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Présence du tirailleur"]}, "Chef de troupe", "Parole inspiratrice", "Chef avisé", "Maître de guerre archer", "Chef d'assaut"]},
+"Moine"             => {book_source: mdj3.id, power_source: "Psionique",  features: ["Combattant à mains nues", "Défense sans armure", {"Poing de pierre" => ["Déluge de coup", "Bastion mental"]}, {"Soufle centré" => ["Déluge de coups", "Équilibre mental"]}]},
+"Paladin"           => {book_source: mdj1.id, power_source: "Divine",     features: ["Conduit divin", "Défi divin", "Imposition des mains"]},
+"Prêtre"            => {book_source: mdj1.id, power_source: "Divine",     features: ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"]},
+"Prêtre des runes"  => {book_source: mdj3.id, power_source: "Divine",     features: ["Maitre des runes", "Rune de préparation", {"Tradition runique" => ["Marteau de l'ire", "Parole du défi"]}]},
+"Psion"             => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", {"Discipline de spécialisation" => ["Spécialisation en télékinésie", "Spécialisation en télépathie"]}, "Magie rituelle"]},
+"Rôdeur"            => {book_source: mdj1.id, power_source: "Martiale",   features: [{"Style de combat" => ["Style de combat à distance", "Style de combat à deux armes", "Maitrise des bêtes", "Style du combat du chasseur", "Style de combat du maraudeur"]}, "Tir de proximité", "Traque", "Course d'assaut"]},
+"Shaman"            => {book_source: mdj2.id, power_source: "Primale",    features: [{"Compagnon spirituel" => ["Esprit protecteur", "Esprit prédateur", "Esprit du guetteur", "Esprit du messager des mondes"]}, "Guérison spirituelle", "Communication avec les esprits"]},
+"Sorcier"           => {book_source: mdj1.id, power_source: "Arcanique",  features: ["Décharge occulte", "Déplacement enténébré", "Envoûtement", {"Pacte occulte" => ["Pacte féerique", "Pacte infernal", "Pacte stellaire", "Pacte des vestiges"]}, "Tir de proximité"]},
+"Vengeur"           => {book_source: mdj2.id, power_source: "Divine",     features: ["Armure de la foi", {"Censure du vengeur" => ["Censure de poursuite", "Censure rétributive", "Censure collective"]}, "Conduit divin", "Serment d'inimitié"]},
+"Voleur"            => {book_source: mdj1.id, power_source: "Martiale",   features: ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", {"Tactique du roublard" => ["Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité"]}, "Tireur d'élite"]}
 }.each do |klass, info|
   klass = Klass.create(name: klass, power_source: info[:power_source], source_id: info[:book_source])
-  info[:skill].each do |skill|
-    if skill.kind_of?(Hash)
-      skill.each do |top_skill, children_skill|
-        t = ClassFeature.create(name: top_skill, klasses: [klass])
-        children_skill.each do |child|
+  info[:features].each do |feature|
+    if feature.kind_of?(Hash)
+      feature.each do |top_feature, children_feature|
+        t = ClassFeature.create(name: top_feature, klasses: [klass])
+        children_feature.each do |child|
           ClassFeature.create(name: child, klasses: [klass], top_feature: t)
         end
       end
     else
-      c = ClassFeature.find_by_name(skill)
+      c = ClassFeature.find_by_name(feature)
       if c.nil?
-        ClassFeature.create(name: skill, klasses: [klass])
+        ClassFeature.create(name: feature, klasses: [klass])
       else
         c.klasses << klass
         c.save

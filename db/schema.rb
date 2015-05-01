@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318190125) do
+ActiveRecord::Schema.define(version: 20150501002531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,7 +112,6 @@ ActiveRecord::Schema.define(version: 20150318190125) do
   create_table "feats", force: true do |t|
     t.string   "name"
     t.string   "category"
-    t.string   "stat"
     t.text     "avantage"
     t.string   "errata"
     t.integer  "stat_id"
@@ -277,6 +276,14 @@ ActiveRecord::Schema.define(version: 20150318190125) do
   add_index "pr_klasses_for_feat", ["feat_id"], name: "index_pr_klasses_for_feat_on_feat_id", using: :btree
   add_index "pr_klasses_for_feat", ["klass_id"], name: "index_pr_klasses_for_feat_on_klass_id", using: :btree
 
+  create_table "pr_race_features_for_feat", id: false, force: true do |t|
+    t.integer "feat_id"
+    t.integer "race_feature_id"
+  end
+
+  add_index "pr_race_features_for_feat", ["feat_id"], name: "index_pr_race_features_for_feat_on_feat_id", using: :btree
+  add_index "pr_race_features_for_feat", ["race_feature_id"], name: "index_pr_race_features_for_feat_on_race_feature_id", using: :btree
+
   create_table "pr_races_for_feat", id: false, force: true do |t|
     t.integer "feat_id"
     t.integer "race_id"
@@ -285,14 +292,55 @@ ActiveRecord::Schema.define(version: 20150318190125) do
   add_index "pr_races_for_feat", ["feat_id"], name: "index_pr_races_for_feat_on_feat_id", using: :btree
   add_index "pr_races_for_feat", ["race_id"], name: "index_pr_races_for_feat_on_race_id", using: :btree
 
+  create_table "race_features", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "race_features_race", id: false, force: true do |t|
+    t.integer "race_feature_id"
+    t.integer "race_id"
+  end
+
+  add_index "race_features_race", ["race_feature_id"], name: "index_race_features_race_on_race_feature_id", using: :btree
+  add_index "race_features_race", ["race_id"], name: "index_race_features_race_on_race_id", using: :btree
+
   create_table "races", force: true do |t|
     t.string   "name"
+    t.string   "cat_size"
+    t.integer  "speed"
+    t.string   "vision"
+    t.string   "language"
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "races", ["source_id"], name: "index_races_on_source_id", using: :btree
+
+  create_table "skills", force: true do |t|
+    t.integer  "acrobatics"
+    t.integer  "arcana"
+    t.integer  "athletics"
+    t.integer  "bluff"
+    t.integer  "diplomacy"
+    t.integer  "dungeoneering"
+    t.integer  "endurance"
+    t.integer  "heal"
+    t.integer  "history"
+    t.integer  "insight"
+    t.integer  "intimidate"
+    t.integer  "nature"
+    t.integer  "perception"
+    t.integer  "religion"
+    t.integer  "stealth"
+    t.integer  "streetwise"
+    t.integer  "thievery"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sources", force: true do |t|
     t.string   "name"
