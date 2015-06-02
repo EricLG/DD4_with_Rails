@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
     #MagicArmor.import_armors
     #MagicImplement.import_implements
     #MagicGear.import_gears
-    #Feat.import_feats
+    Feat.import_feats
     redirect_to :root
   end
 

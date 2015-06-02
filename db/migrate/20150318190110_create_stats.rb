@@ -7,6 +7,7 @@ class CreateStats < ActiveRecord::Migration
       t.integer :intelligence
       t.integer :wisdom
       t.integer :charisma
+      t.references :pr_for_feat, index: true
 
       t.timestamps
     end

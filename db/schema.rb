@@ -114,14 +114,16 @@ ActiveRecord::Schema.define(version: 20150501002531) do
     t.string   "category"
     t.text     "avantage"
     t.string   "errata"
-    t.integer  "stat_id"
+    t.string   "prerequisited_power"
+    t.string   "prerequisited_skill"
+    t.string   "prerequisited_other"
+    t.integer  "top_feat_id"
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
-  add_index "feats", ["stat_id"], name: "index_feats_on_stat_id", using: :btree
 
   create_table "implement_groups", force: true do |t|
     t.string   "name"
@@ -299,13 +301,13 @@ ActiveRecord::Schema.define(version: 20150501002531) do
     t.datetime "updated_at"
   end
 
-  create_table "race_features_race", id: false, force: true do |t|
+  create_table "race_features_races", id: false, force: true do |t|
     t.integer "race_feature_id"
     t.integer "race_id"
   end
 
-  add_index "race_features_race", ["race_feature_id"], name: "index_race_features_race_on_race_feature_id", using: :btree
-  add_index "race_features_race", ["race_id"], name: "index_race_features_race_on_race_id", using: :btree
+  add_index "race_features_races", ["race_feature_id"], name: "index_race_features_races_on_race_feature_id", using: :btree
+  add_index "race_features_races", ["race_id"], name: "index_race_features_races_on_race_id", using: :btree
 
   create_table "races", force: true do |t|
     t.string   "name"
@@ -355,9 +357,12 @@ ActiveRecord::Schema.define(version: 20150501002531) do
     t.integer  "intelligence"
     t.integer  "wisdom"
     t.integer  "charisma"
+    t.integer  "pr_for_feat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "stats", ["pr_for_feat_id"], name: "index_stats_on_pr_for_feat_id", using: :btree
 
   create_table "weapon_categories", force: true do |t|
     t.string   "code"

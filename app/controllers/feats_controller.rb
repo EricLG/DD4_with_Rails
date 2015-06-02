@@ -6,17 +6,17 @@ class FeatsController < ApplicationController
   end
 
   def heroics
-    @feats = Feat.where(category: "heroic")
+    @feats = Feat.where(category: "heroic").order(name: :asc)
     render :sorted_feats
   end
 
   def parangonics
-    @feats = Feat.where(category: "parangonic")
+    @feats = Feat.where(category: "parangonic").order(name: :asc)
     render :sorted_feats
   end
 
   def epics
-    @feats = Feat.where(category: "epic")
+    @feats = Feat.where(category: "epic").order(name: :asc)
     render :sorted_feats
   end
 

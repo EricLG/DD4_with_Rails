@@ -71,11 +71,7 @@ module ImportData
   end
 
   def self.find_category(data)
-    if data.blank? || data == "Héroïque" || data == "Héroïque" || data == "Domaine Divin"
-      category = "heroic"
-    elsif data == "Parangonique"
-      category = "parangonic"
-    end
+    category = data == "Parangonique" ? "parangonic" : "heroic"
     category
   end
 
@@ -88,11 +84,88 @@ module ImportData
       elsif !d.blank?
         founded_feat = features.find{|f| f.name == d}
         finded_features << founded_feat if !founded_feat.nil?
-      else # Pas de feature
-
       end
     end
     finded_features
+  end
+
+  def self.find_race_features(data, features)
+    finded_features = []
+    array_data = data.split(',')
+    array_data.each do |d|
+      if !d.blank?
+        founded_feat = features.find{|f| f.name == d}
+        finded_features << founded_feat if !founded_feat.nil?
+      end
+    end
+    finded_features
+  end
+
+  def self.clear_array_line(line)
+    array_line = []
+    line.each do |field|
+      array_line << ImportData.clear_field(field)
+    end
+    array_line
+  end
+
+  def self.create_stats(data)
+    result = []
+    unless data.empty?
+      if data.match(/ou/)
+        data.split('ou', -1).each do |s|
+          stat = Stat.new()
+          value = s.last(2)
+          case s.first(3)
+          when "For"
+            stat.strength     = value
+          when "Con"
+            stat.constitution = value
+          when "Dex"
+            stat.dexterity    = value
+          when "Int"
+            stat.intelligence = value
+          when "Sag"
+            stat.wisdom       = value
+          when "Cha"
+            stat.charisma     = value
+          end
+          stat.save
+          result << stat
+        end
+      else
+        stat = Stat.new()
+        data.gsub(';', ',').split(',', -1).each do |s|
+          value = s.last(2)
+          case s.first(3)
+          when "For"
+            stat.strength     = value
+          when "Con"
+            stat.constitution = value
+          when "Dex"
+            stat.dexterity    = value
+          when "Int"
+            stat.intelligence = value
+          when "Sag"
+            stat.wisdom       = value
+          when "Cha"
+            stat.charisma     = value
+          end
+        end
+        stat.save
+        result << stat
+      end
+    end
+    result
+  end
+
+  def self.find_klass_or_race(data, all_collec)
+    result = []
+    unless data.empty?
+      d = data.split(',', -1).map(&:strip)
+      result = all_collec.where(name: d)
+    end
+    result
   end
 
 end
