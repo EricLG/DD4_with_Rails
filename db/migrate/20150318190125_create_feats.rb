@@ -5,7 +5,10 @@ class CreateFeats < ActiveRecord::Migration
       t.string :category
       t.text   :avantage
       t.string :errata
-      t.belongs_to :stat, index: true
+      t.string :prerequisited_power
+      t.string :prerequisited_skill
+      t.string :prerequisited_other
+      t.references :top_feat
       t.belongs_to :source, index: true
 
       t.timestamps
