@@ -13,7 +13,7 @@ Source.create([
   { name: 'Force de la Nature' },
   { name: 'Guide du Maitre 1' },
   { name: 'Guide du Maitre 2' },
-  { name: 'Intervention divine' },
+  { name: 'Intervention Divine' },
   { name: 'Le Comptoir de l\'Aventure 1' },
   { name: 'Le Comptoir de l\'Aventure 2' },
   { name: 'Manuel des Joueurs 1' },
@@ -23,7 +23,7 @@ Source.create([
   { name: 'Manuel des Monstres 2' },
   { name: 'Manuel des Monstres 3' },
   { name: 'Royaume Oubliés' },
-  { name: 'Secret des arcanes' }
+  { name: 'Secret des Arcanes' }
   ])
 
 mdj1 = Source.find_by_name('Manuel des Joueurs 1')
@@ -236,7 +236,8 @@ end
 "Shaman"            => {book_source: mdj2.id, power_source: "Primale",    features: [{"Compagnon spirituel" => ["Esprit protecteur", "Esprit prédateur", "Esprit du guetteur", "Esprit du messager des mondes"]}, "Guérison spirituelle", "Communication avec les esprits"]},
 "Sorcier"           => {book_source: mdj1.id, power_source: "Arcanique",  features: ["Décharge occulte", "Déplacement enténébré", "Envoûtement", {"Pacte occulte" => ["Pacte féerique", "Pacte infernal", "Pacte stellaire", "Pacte des vestiges"]}, "Tir de proximité"]},
 "Vengeur"           => {book_source: mdj2.id, power_source: "Divine",     features: ["Armure de la foi", {"Censure du vengeur" => ["Censure de poursuite", "Censure rétributive", "Censure collective"]}, "Conduit divin", "Serment d'inimitié"]},
-"Voleur"            => {book_source: mdj1.id, power_source: "Martiale",   features: ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", {"Tactique du roublard" => ["Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité"]}, "Tireur d'élite"]}
+"Voleur"            => {book_source: mdj1.id, power_source: "Martiale",   features: ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", {"Tactique du roublard" => ["Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité"]}, "Tireur d'élite"]},
+"Hybride"           => {book_source: mdj3.id, power_source: "Mixte",      features: []}
 }.each do |klass, info|
   klass = Klass.create(name: klass, power_source: info[:power_source], source_id: info[:book_source])
   info[:features].each do |feature|
