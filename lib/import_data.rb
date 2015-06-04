@@ -113,7 +113,8 @@ module ImportData
     result = []
     unless data.empty?
       if data.match(/ou/)
-        data.split('ou', -1).each do |s|
+        data.split(' ou ', -1).each do |s|
+          # Surement pb de tableau ici
           stat = Stat.new()
           value = s.last(2)
           case s.first(3)
@@ -135,21 +136,21 @@ module ImportData
         end
       else
         stat = Stat.new()
-        data.gsub(';', ',').split(',', -1).each do |s|
-          value = s.last(2)
-          case s.first(3)
+        data.split(', ', -1).each do |s|
+          value = s.split(' ',-1)
+          case value.first
           when "For"
-            stat.strength     = value
+            stat.strength     = value.last
           when "Con"
-            stat.constitution = value
+            stat.constitution = value.last
           when "Dex"
-            stat.dexterity    = value
+            stat.dexterity    = value.last
           when "Int"
-            stat.intelligence = value
+            stat.intelligence = value.last
           when "Sag"
-            stat.wisdom       = value
+            stat.wisdom       = value.last
           when "Cha"
-            stat.charisma     = value
+            stat.charisma     = value.last
           end
         end
         stat.save

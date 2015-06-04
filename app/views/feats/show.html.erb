@@ -6,58 +6,18 @@
 <h3 class="col_sm-12"><%= link_to t('feat.title_show', feat: @feat.name), edit_feat_path(@feat.id) %> </h3>
 
 <dl class="dl-horizontal">
-  <dt><%= t("magic.feat.name",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.name %></dd>
-  <dt><%= t("magic.category",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.category %></dd>
-
-  <dt><%= t("feat.power",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.prerequisited_power %></dd>
-  <dt><%= t("feat.skill",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.prerequisited_skill %></dd>
-  <dt><%= t("feat.other",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.prerequisited_other %></dd>
-<% if  @feat.prerequisited_races.empty? %>
-  <dt><%= t("feat.races", :class=>"col_sm-4") %> </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("feat.races", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <%= @feat.prerequisited_races.map(&:name).join(', ') %>
-  </dd>
-<% end %>
-<% if  @feat.prerequisited_klasses.empty? %>
-  <dt><%= t("feat.klasses", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("feat.klasses", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <%= @feat.prerequisited_klasses.map(&:name).join(', ') %>
-  </dd>
-<% end %>
-<% if  @feat.prerequisited_class_features.empty? %>
-  <dt><%= t("feat.klasse_features", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("feat.klasse_features", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <%= @feat.prerequisited_class_features.map(&:name).join(', ') %>
-  </dd>
-<% end %>
-
-<% if  @feat.prerequisited_race_features.empty? %>
-  <dt><%= t("feat.race_features", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("feat.race_features", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <%= @feat.prerequisited_race_features.map(&:name).join(', ') %>
-  </dd>
-<% end %>
-
-<% if  @feat.prerequisited_stats.empty? %>
-  <dt><%= t("feat.stats", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("feat.stats", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <%= @feat.prerequisited_stats %>
-  </dd>
-<% end %>
-
-<% if  @feat.needed_feats.empty? %>
-  <dt><%= t("feat.feats", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("feat.feats", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <%= @feat.needed_feats.map(&:name).join(', ') %>
-  </dd>
-<% end %>
-  <dt><%= t("feat.avantage", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.avantage %></dd>
-  <dt><%= t("feat.errata",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.errata %></dd>
-  <dt><%= t("common.source",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @feat.source.name %></dd>
+  <dt><%= t("feat.name",      :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.name %></dd>
+  <dt><%= t("feat.category",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.category %></dd>
+  <dt><%= t("feat.power",     :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.prerequisited_power %></dd>
+  <dt><%= t("feat.skill",     :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.prerequisited_skill %></dd>
+  <dt><%= t("feat.other",     :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.prerequisited_other %></dd>
+  <dt><%= t("feat.races",     :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.races %></dd>
+  <dt><%= t("feat.klasses",   :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.klasses %></dd>
+  <dt><%= t("feat.kl_featus", :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.class_features %></dd>
+  <dt><%= t("feat.ra_feats",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.race_features %></dd>
+  <dt><%= t("feat.stats",     :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.stats %> </dd>
+  <dt><%= t("feat.req_feats", :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.required_feats %> </dd>
+  <dt><%= t("feat.avantage",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.avantage %></dd>
+  <dt><%= t("feat.errata",    :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.errata %></dd>
+  <dt><%= t("common.source",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.source.name %></dd>
 </dl>

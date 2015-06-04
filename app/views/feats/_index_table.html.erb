@@ -5,14 +5,36 @@
   <table  class="table table-striped table-bordered table-hover">
     <tr>
       <th class="col-sm-1"><%= t('feat.name')       %></th>
-      <th class="col-sm-1"><%= t('feat.avantage')      %></th>
-      <th class="col-sm-1"><%= t('feat.destroy')           %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis category')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis klasse feat')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis race feat')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis req feat')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis power')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis other')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis skill')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis klasse')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis races')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis stat')      %></th>
+      <th class="col-sm-1"><%= t('feat.prerequis Source')      %></th>
+      <th class="col-sm-1"><%= t('feat.errata')      %></th>
+      <!-- <th class="col-sm-1"><%= t('feat.destroy')           %></th> -->
     </tr>
   <% feats.each do |a| %>
     <tr>
       <td><%= link_to a.name, feat_path(a.id)  %></td>
-      <td><%= a.avantage %> </td>
-      <td><%= link_to 'x', object_magic_gear_path(a.id), method: :delete %></td><!-- TODO: Mettre icone glyphicon glyphicon-remove-circle -->
+      <td><%= a.category %> </td>
+      <td><%= a.class_features %> </td>
+      <td><%= a.race_features %> </td>
+      <td><%= a.required_feats %> </td>
+      <td><%= a.prerequisited_power %> </td>
+      <td><%= a.prerequisited_other %> </td>
+      <td><%= a.prerequisited_skill %> </td>
+      <td><%= a.klasses %> </td>
+      <td><%= a.races %> </td>
+      <td><%= a.stats %> </td>
+      <td><%= a.source.name %> </td>
+      <td><%= a.errata %> </td>
+      <!-- <td><%= link_to 'x', feat_path(a.id), method: :delete %></td>--><!-- TODO: Mettre icone glyphicon glyphicon-remove-circle -->
     </tr>
   <% end %><!-- Fin communs -->
   </table>

@@ -64,4 +64,53 @@ class Feat < ActiveRecord::Base
     c = Feat.count
     logger.debug "#{c} talents ont été crées"
   end
+
+  def stats
+    if !prerequisited_stats.empty?
+      return prerequisited_stats.map(&:to_s).join('  ou ')
+    else
+      return ""
+    end
+  end
+
+  def klasses
+    if !prerequisited_klasses.empty?
+      return prerequisited_klasses.map(&:name).join(', ')
+    else
+      return ""
+    end
+  end
+
+  def races
+    if !prerequisited_races.empty?
+      return prerequisited_races.map(&:name).join(', ')
+    else
+      return ""
+    end
+  end
+
+  def class_features
+    if !prerequisited_class_features.empty?
+      return prerequisited_class_features.map(&:name).join(', ')
+    else
+      return ""
+    end
+  end
+
+  def race_features
+    if !prerequisited_race_features.empty?
+      return prerequisited_race_features.map(&:name).join(', ')
+    else
+      return ""
+    end
+  end
+
+  def required_feats
+    if !needed_feats.empty?
+      return needed_feats.map(&:name).join(', ')
+    else
+      return ""
+    end
+  end
+
 end
