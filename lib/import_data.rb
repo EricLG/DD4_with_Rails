@@ -77,7 +77,7 @@ module ImportData
 
   def self.find_class_features(data, features)
     finded_features = []
-    array_data = data.split(',')
+    array_data = data.split(', ')
     array_data.each do |d|
       if d == "Dieux"
         finded_features << features.find{|f| f.name == "Conduit divin"}
@@ -91,7 +91,7 @@ module ImportData
 
   def self.find_race_features(data, features)
     finded_features = []
-    array_data = data.split(',')
+    array_data = data.split(', ')
     array_data.each do |d|
       if !d.blank?
         founded_feat = features.find{|f| f.name == d}
