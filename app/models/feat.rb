@@ -19,10 +19,10 @@ class Feat < ActiveRecord::Base
     classes   = Klass.all
     classes_features = ClassFeature.all
     races_features = RaceFeature.all
-    filename  = Dir.entries('tmp/import_files').find{|f| f.match(/export_talent_OK/)}
+    filename  = Dir.entries('lib/import_files').find{|f| f.match(/export_talent_OK/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
-        File.open(File.join('tmp/import_files', filename), 'r') do |f|
+        File.open(File.join('lib/import_files', filename), 'r') do |f|
           f.readline
           f.each_line do |l|  # "Titre";"Catégorie de talents";"Aptitude";"Aptitude raciale";"Talent";"5: Pouvoir";"Autre prérequis";"Compétences";"8:Classe";"Race";"Avantage";"11Stats";"Source";"Errata"
             array_line  = ImportData.clear_array_line(l.split(";", -1))

@@ -17,10 +17,10 @@ class MagicImplement < ActiveRecord::Base
     sources = Source.all
     levels  = ObjectLevel.all
     groups = ImplementGroup.all
-    filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_focaliseur_OK/)}
+    filename = Dir.entries('lib/import_files').find{|f| f.match(/export_focaliseur_OK/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
-        File.open(File.join('tmp/import_files', filename), 'r') do |f|
+        File.open(File.join('lib/import_files', filename), 'r') do |f|
           f.readline
           f.each_line do |l|
             # "Titre";"Description";"Altération";"Niveau minimum";"Critique";"Propriété";"Pouvoir";"Source";"Spécial";"Focaliseur"

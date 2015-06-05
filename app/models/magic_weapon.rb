@@ -17,10 +17,10 @@ class MagicWeapon < ActiveRecord::Base
     sources = Source.all
     levels  = ObjectLevel.all
     groups  = WeaponGroup.all
-    filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_arme_OK/)}
+    filename = Dir.entries('lib/import_files').find{|f| f.match(/export_arme_OK/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
-        File.open(File.join('tmp/import_files', filename), 'r') do |f|
+        File.open(File.join('lib/import_files', filename), 'r') do |f|
           f.readline
           f.each_line do |l| # "Titre";"Description";"Altération";"Niveau minimum";"Prix par niveau et altération";"Arme";"Critique";"Propriété";"Pouvoir";"Source";"Spécial"
             array_line = l.split(/";"/, -1)

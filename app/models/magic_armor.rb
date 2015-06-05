@@ -17,10 +17,10 @@ class MagicArmor < ActiveRecord::Base
     sources = Source.all
     levels  = ObjectLevel.all
     categories = ArmorCategory.all
-    filename = Dir.entries('tmp/import_files').find{|f| f.match(/export_armure_OK/)}
+    filename = Dir.entries('lib/import_files').find{|f| f.match(/export_armure_OK/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
-        File.open(File.join('tmp/import_files', filename), 'r') do |f|
+        File.open(File.join('lib/import_files', filename), 'r') do |f|
           f.readline
           f.each_line do |l|
             # "Titre";"Armure";"Description";"Altération";"Niveau minimum";"Propriété";"Pouvoir";"Spécial";"Source"
