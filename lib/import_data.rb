@@ -113,48 +113,11 @@ module ImportData
     result = []
     unless data.empty?
       if data.match(/ou/)
-        data.split(' ou ', -1).each do |s|
-          # Surement pb de tableau ici
-          stat = Stat.new()
-          value = s.last(2)
-          case s.first(3)
-          when "For"
-            stat.strength     = value
-          when "Con"
-            stat.constitution = value
-          when "Dex"
-            stat.dexterity    = value
-          when "Int"
-            stat.intelligence = value
-          when "Sag"
-            stat.wisdom       = value
-          when "Cha"
-            stat.charisma     = value
-          end
-          stat.save
-          result << stat
+        data.split(' ou ', -1).each do |stat|
+          result << Stat.valorize_stat(stat)
         end
       else
-        stat = Stat.new()
-        data.split(', ', -1).each do |s|
-          value = s.split(' ',-1)
-          case value.first
-          when "For"
-            stat.strength     = value.last
-          when "Con"
-            stat.constitution = value.last
-          when "Dex"
-            stat.dexterity    = value.last
-          when "Int"
-            stat.intelligence = value.last
-          when "Sag"
-            stat.wisdom       = value.last
-          when "Cha"
-            stat.charisma     = value.last
-          end
-        end
-        stat.save
-        result << stat
+        result << Stat.valorize_stat(data)
       end
     end
     result
