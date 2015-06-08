@@ -54,7 +54,6 @@ class Feat < ActiveRecord::Base
                 f.save!
             else
                 logger.debug "Erreur de validation sur l'arme #{m.name}"
-                binding.pry
                 logger.debug "#{m.errors.full_messages}"
             end
           end

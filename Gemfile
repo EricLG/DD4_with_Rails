@@ -41,3 +41,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'puma', '~> 2.11.1'
 gem 'rails_12factor', :group => :production
+gem 'will_paginate', '~> 3.0.6'

@@ -3,7 +3,7 @@ class MagicWeaponsController < ApplicationController
   before_action :find_dependancies, only: [:new, :edit]
 
   def index
-    @weapons = MagicWeapon.all
+    @weapons = MagicWeapon.all.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new

@@ -1,8 +1,9 @@
 class MagicGearsController < ApplicationController
+
   before_action :find_dependancies, only: [:new, :edit]
 
   def index
-    @gears = MagicGear.all
+    @gears = MagicGear.all.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new
@@ -14,7 +15,6 @@ class MagicGearsController < ApplicationController
     if @gear.persisted?
       redirect_to object_magic_gear_path(@gear.id)
     else
-      binding.pry
       render object_magic_gears_path
     end
   end

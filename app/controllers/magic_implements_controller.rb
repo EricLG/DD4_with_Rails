@@ -1,8 +1,9 @@
 class MagicImplementsController < ApplicationController
+
   before_action :find_dependancies, only: [:new, :edit]
 
   def index
-    @implements = MagicImplement.all
+    @implements = MagicImplement.all.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new
@@ -11,7 +12,6 @@ class MagicImplementsController < ApplicationController
 
   def create
     @implement = MagicImplement.create(magic_implement_params)
-    binding.pry
     if @implement.persisted?
       redirect_to object_magic_implement_path(@implement.id)
     else

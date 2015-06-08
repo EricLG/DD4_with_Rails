@@ -6,17 +6,17 @@ class FeatsController < ApplicationController
   end
 
   def heroics
-    @feats = Feat.where(category: "heroic").order(name: :asc)
+    @feats = Feat.where(category: "heroic").order(name: :asc).paginate(:page => params[:page], :per_page => 20)
     render :sorted_feats
   end
 
   def parangonics
-    @feats = Feat.where(category: "parangonic").order(name: :asc)
+    @feats = Feat.where(category: "parangonic").order(name: :asc).paginate(:page => params[:page], :per_page => 20)
     render :sorted_feats
   end
 
   def epics
-    @feats = Feat.where(category: "epic").order(name: :asc)
+    @feats = Feat.where(category: "epic").order(name: :asc).paginate(:page => params[:page], :per_page => 20)
     render :sorted_feats
   end
 
