@@ -25,12 +25,13 @@ Source.create([
   { name: 'Royaume Oubliés' },
   { name: 'Secret des Arcanes' }
   ])
-
 mdj1 = Source.find_by_name('Manuel des Joueurs 1')
 mdj2 = Source.find_by_name('Manuel des Joueurs 2')
 mdj3 = Source.find_by_name('Manuel des Joueurs 3')
 eber = Source.find_by_name('Eberron')
 roou = Source.find_by_name('Royaume Oubliés')
+cda1 = Source.find_by_name('Le Comptoir de l\'Aventure 1')
+cda2 = Source.find_by_name('Le Comptoir de l\'Aventure 2')
 
 WeaponGroup.create([
   { name: 'Arbalètes' },
@@ -48,6 +49,21 @@ WeaponGroup.create([
   { name: 'Masses' },
   { name: 'Pics' }
   ])
+arbalete    = WeaponGroup.find_by_name('Arbalètes')
+arc         = WeaponGroup.find_by_name('Arcs')
+hast        = WeaponGroup.find_by_name('Armes d\'hast')
+baton       = WeaponGroup.find_by_name('Bâtons')
+fleau       = WeaponGroup.find_by_name('Fléaux')
+fronde      = WeaponGroup.find_by_name('Frondes')
+hache       = WeaponGroup.find_by_name('Haches')
+lame_legere = WeaponGroup.find_by_name('Lames légères')
+lame_lourde = WeaponGroup.find_by_name('Lames lourdes')
+lance       = WeaponGroup.find_by_name('Lances')
+mains_nues  = WeaponGroup.find_by_name('Mains nues')
+marteau     = WeaponGroup.find_by_name('Marteaux')
+massse      = WeaponGroup.find_by_name('Masses')
+pic         = WeaponGroup.find_by_name('Pics')
+
 
 WeaponProperty.create([
   { name: 'Allonge' },
@@ -63,6 +79,19 @@ WeaponProperty.create([
   { name: 'Rechargement (mineure)' },
   { name: 'Secondaire' }
   ])
+allonge         = WeaponProperty.find_by_name("Allonge")
+jet_leger       = WeaponProperty.find_by_name("Arme de jet légère")
+jet_lourd       = WeaponProperty.find_by_name("Arme de jet lourde")
+brutal_1        = WeaponProperty.find_by_name("Brutale 1")
+brutal_2        = WeaponProperty.find_by_name("Brutale 2")
+crit_ame        = WeaponProperty.find_by_name("Critique amélioré")
+defensive       = WeaponProperty.find_by_name("Défensive")
+petite          = WeaponProperty.find_by_name("Petite")
+polyvalente     = WeaponProperty.find_by_name("Polyvalente")
+rechar_libre    = WeaponProperty.find_by_name("Rechargement (libre)")
+rechar_mineure  = WeaponProperty.find_by_name("Rechargement (mineure")
+secondaire      = WeaponProperty.find_by_name("Secondaire")
+
 
 WeaponCategory.create([
   { name: 'Armes improvisées de corps à corps', ranged: false,  code: 'impcc' },
@@ -74,6 +103,14 @@ WeaponCategory.create([
   { name: 'Armes supérieures de corps à corps', ranged: false,  code: 'supcc' },
   { name: 'Armes supérieures à distance',       ranged: true,   code: 'supra' }
   ])
+impro_cac   = WeaponCategory.find_by_code('impcc')
+impro_dist  = WeaponCategory.find_by_code('impra')
+simple_cac  = WeaponCategory.find_by_code('simcc')
+simple_dist = WeaponCategory.find_by_code('simra')
+guerre_cac  = WeaponCategory.find_by_code('warcc')
+guerre_dist = WeaponCategory.find_by_code('warra')
+sup_cac     = WeaponCategory.find_by_code('supcc')
+sup_dist    = WeaponCategory.find_by_code('supra')
 
 ArmorCategory.create([
   { name: "Armures d'étoffe",    heavy: false,  code: 'clothe'     },
@@ -97,20 +134,46 @@ ImplementGroup.create([
   ])
 
 CommonWeapon.create([
-  { name: 'Gantelet cloutés',   weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Baton',              weapon_category: WeaponCategory.find_by_code('simcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Cimeterre',          weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Hallebarde',         weapon_category: WeaponCategory.find_by_code('warcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Katar',              weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Chaine cloutées',    weapon_category: WeaponCategory.find_by_code('supcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Mains nue',          weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Objet 2H',           weapon_category: WeaponCategory.find_by_code('impcc'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Arbalete de poing',  weapon_category: WeaponCategory.find_by_code('simra'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Arbalete',           weapon_category: WeaponCategory.find_by_code('simra'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Arc long',           weapon_category: WeaponCategory.find_by_code('warra'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Shuriken',           weapon_category: WeaponCategory.find_by_code('supra'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Grand arc',          weapon_category: WeaponCategory.find_by_code('supra'), two_handed: true,  weapon_group_ids: [1,2], source_id: mdj1.id },
-  { name: 'Objet 1H',           weapon_category: WeaponCategory.find_by_code('impra'), two_handed: false, weapon_group_ids: [1,2], source_id: mdj1.id }
+  { name: 'Gantelet cloutés',     two_handed: "one",    handling: "+2", damage: "1d6",        range: "0",     price: "5 po",  weight: "0,5 kg", source: cda1, weapon_category: simple_cac,  weapon_groups: [mains_nues],    weapon_properties: [secondaire] },
+  { name: 'Épée large',           two_handed: "one",    handling: "+2", damage: "1d10",       range: "0",     price: "20 po", weight: "2,5 kg", source: cda1, weapon_category: guerre_cac,  weapon_groups: [lame_lourde],   weapon_properties: [polyvalente] },
+  { name: 'Fouet barbelé',        two_handed: "one",    handling: "+2", damage: "1d8",        range: "0",     price: "3 po",  weight: "1 kg",   source: cda1, weapon_category: guerre_cac,  weapon_groups: [fleau],         weapon_properties: [secondaire] },
+  { name: 'Khopesh',              two_handed: "one",    handling: "+2", damage: "1d8",        range: "0",     price: "10 po", weight: "4 kg",   source: cda1, weapon_category: guerre_cac,  weapon_groups: [hache, lame_lourde], weapon_properties: [brutal_1, polyvalente] },
+  { name: 'Pic de guerre léger',  two_handed: "one",    handling: "+2", damage: "1d6",        range: "0",     price: "10 po", weight: "2 kg",   source: cda1, weapon_category: guerre_cac,  weapon_groups: [pic],           weapon_properties: [crit_ame, secondaire] },
+  { name: 'Trident',              two_handed: "one",    handling: "+2", damage: "1d8",        range: "3/6",   price: "10 po", weight: "2 kg",   source: cda1, weapon_category: guerre_cac,  weapon_groups: [lance],         weapon_properties: [jet_lourd, polyvalente] },
+  { name: 'Pic de guerre lourd',  two_handed: "two",    handling: "+2", damage: "1d12",       range: "0",     price: "20 po", weight: "4 kg",   source: cda1, weapon_category: guerre_cac,  weapon_groups: [pic],           weapon_properties: [crit_ame] },
+  { name: 'Bouclier à pointe',    two_handed: "one",    handling: "+2", damage: "1d6",        range: "0",     price: "10 po", weight: "3,5 kg", source: cda1, weapon_category: sup_cac,     weapon_groups: [lame_legere],   weapon_properties: [secondaire] },
+  { name: 'Dague de parade',      two_handed: "one",    handling: "+2", damage: "1d4",        range: "0",     price: "5 po",  weight: "0,5 kg", source: cda1, weapon_category: sup_cac,     weapon_groups: [lame_legere],   weapon_properties: [defensive, secondaire] },
+  { name: 'Fléau à trois têtes',  two_handed: "one",    handling: "+3", damage: "1d10",       range: "0",     price: "15 po", weight: "3 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [fleau],         weapon_properties: [polyvalente] },
+  { name: 'Hache de guerre',      two_handed: "one",    handling: "+2", damage: "1d12",       range: "0",     price: "30 po", weight: "5 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [hache],         weapon_properties: [polyvalente] },
+  { name: 'Kukri',                two_handed: "one",    handling: "+2", damage: "1d6",        range: "0",     price: "10 po", weight: "1 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [lame_legere],   weapon_properties: [brutal_1, secondaire] },
+  { name: "marteau d'escarpe",    two_handed: "one",    handling: "+2", damage: "1d10",       range: "0",     price: "20 po", weight: "3 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [marteau],       weapon_properties: [brutal_2, polyvalente] },
+  { name: 'Tratnyr',              two_handed: "one",    handling: "+2", damage: "1d8",        range: "10/20", price: "10 po", weight: "2,5 kg", source: cda1, weapon_category: sup_cac,     weapon_groups: [lance],         weapon_properties: [jet_lourd, polyvalente] },
+  { name: 'Espadon',              two_handed: "two",    handling: "+3", damage: "1d12",       range: "0",     price: "30 po", weight: "5 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [lame_lourde],   weapon_properties: [crit_ame] },
+  { name: 'Grande lance',         two_handed: "two",    handling: "+3", damage: "1d10",       range: "0",     price: "25 po", weight: "4 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [hast, lance],   weapon_properties: [allonge] },
+  { name: 'hache de bourreau',    two_handed: "two",    handling: "+2", damage: "1d12",       range: "0",     price: "30 po", weight: "7 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [hache],         weapon_properties: [brutal_2, crit_ame] },
+  { name: 'Mordenkrad',           two_handed: "two",    handling: "+2", damage: "2d6",        range: "0",     price: "30 po", weight: "6 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [marteau],       weapon_properties: [brutal_1] },
+  { name: 'Épée double',          two_handed: "double", handling: "+3", damage: "1d8/1d8",    range: "0",     price: "40 po", weight: "4,5 kg", source: cda1, weapon_category: sup_cac,     weapon_groups: [lame_legere, lame_lourde], weapon_properties: [defensive, secondaire] },
+  { name: 'Fléau double',         two_handed: "double", handling: "+2", damage: "1d10/1d10",  range: "0",     price: "30 po", weight: "5,5 kg", source: cda1, weapon_category: sup_cac,     weapon_groups: [fleau],         weapon_properties: [defensive, secondaire] },
+  { name: 'Hache double',         two_handed: "double", handling: "+2", damage: "1d10/1d10",  range: "0",     price: "40 po", weight: "7,5 kg", source: cda1, weapon_category: sup_cac,     weapon_groups: [hache],         weapon_properties: [defensive, secondaire] },
+  { name: 'Urgrosh',              two_handed: "double", handling: "+2", damage: "1d12/1d8",   range: "0",     price: "30 po", weight: "6 kg",   source: cda1, weapon_category: sup_cac,     weapon_groups: [hache, lance],  weapon_properties: [defensive, secondaire] },
+
+  { name: 'Arbalète à répétition',two_handed: "two",    handling: "+2", damage: "1d8",        range: "10/20", price: "35 po", weight: "3 kg",   source: cda1, weapon_category: simple_dist, weapon_groups: [arbalete],      weapon_properties: [rechar_libre] },
+  { name: 'Arbalète supérieure',  two_handed: "two",    handling: "+3", damage: "1d10",       range: "20/40", price: "30 po", weight: "3 kg",   source: cda1, weapon_category: sup_dist,    weapon_groups: [arbalete],      weapon_properties: [rechar_mineure] },
+  { name: 'Grand arc',            two_handed: "two",    handling: "+2", damage: "1d12",       range: "25/50", price: "30 po", weight: "2,5 kg", source: cda1, weapon_category: sup_dist,    weapon_groups: [arc],           weapon_properties: [rechar_libre] },
+
+  { name: 'Bâton',                two_handed: "one",  handling: "+2", damage: "1d10", range: "0",     price: "20 po", weight: "2,5kg",  source: cda1, weapon_category: guerre_cac,  weapon_groups: [lame_lourde], weapon_properties: [polyvalente] },
+  { name: 'Cimeterre',            two_handed: "one",  source: mdj1, weapon_category: guerre_cac,  weapon_groups: [] },
+  { name: 'Hallebarde',           two_handed: "two",  source: mdj1, weapon_category: guerre_cac,  weapon_groups: [] },
+  { name: 'Katar',                two_handed: "one",  source: mdj1, weapon_category: sup_cac,     weapon_groups: [] },
+  { name: 'Chaine cloutée',       two_handed: "two",  source: mdj1, weapon_category: sup_cac,     weapon_groups: [] },
+  { name: 'Mains nues',           two_handed: "one",  source: mdj1, weapon_category: impro_cac,   weapon_groups: [] },
+  { name: 'Objet 2H',             two_handed: "two",  source: mdj1, weapon_category: impro_cac,   weapon_groups: [] },
+  { name: 'Arbalète de poing',    two_handed: "one",  source: mdj1, weapon_category: simple_dist, weapon_groups: [] },
+  { name: 'Arbalete',             two_handed: "two",  source: mdj1, weapon_category: simple_dist, weapon_groups: [] },
+  { name: 'Arc long',             two_handed: "two",  source: mdj1, weapon_category: guerre_dist, weapon_groups: [] },
+  { name: 'Shuriken',             two_handed: "one",  source: mdj1, weapon_category: guerre_dist, weapon_groups: [] },
+  { name: 'Grand arc',            two_handed: "two",  source: mdj1, weapon_category: sup_dist,    weapon_groups: [] },
+  { name: 'Objet 1H',             two_handed: "one",  source: mdj1, weapon_category: sup_dist,    weapon_groups: [] }
   ] )
 
 
@@ -178,8 +241,8 @@ Location.create([
 {
 "Changelin"             => {book_source: eber.id, cat_size: "M", speed: 6, features: ["Change-forme", "Défense mentale", "Métamorphe", "Ruse du changelin"]},
 "Cristallien"           => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Créature artificielle vivante", "Esprit cristallien", "Nuée de cristaux", "Origine immortelle", "Télépathie"]},
-"Demi-elfe"            => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Dilettante", "Diplomatie de groupe", "Double héritage"]},
-"Demi-orque"           => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Assaut enragé", "Charge véloce", "Vitalité demi-orque"]},
+"Demi-elfe"             => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Dilettante", "Diplomatie de groupe", "Double héritage"]},
+"Demi-orque"            => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Assaut enragé", "Charge véloce", "Vitalité demi-orque"]},
 "Déva"                  => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Majesté astrale", "Résistance astrale", "Origine immortelle", "Mémoire d'un millier de vies"]},
 "Drakéide"              => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Fureur drakéide", "Héritage draconique", "Souffle de dragon"]},
 "Drow"                  => {book_source: roou.id, cat_size: "M", speed: 6, features: ["Lolthaïque", "Origine féerique", "Transe"]},
