@@ -4,9 +4,7 @@ class MagicWeaponsController < ApplicationController
 
   def index
     @search = MagicSearch.new(params[:magic_search])
-    @weapons = @search.build_search.paginate(:page => params[:page], :per_page => 20)
-
-   # @weapons = MagicWeapon.all.paginate(:page => params[:page], :per_page => 20)
+    @weapons = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
   end
 
   def new

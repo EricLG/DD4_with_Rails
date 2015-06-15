@@ -34,7 +34,7 @@ class MagicSearch
       end
 
       if !weapon_groups_params.empty?
-        search = search.joins(:weapon_groups).where("weapon_groups.id IN ?", weapon_groups_params)
+        search = search.joins(:weapon_groups).where(weapon_groups: {id: weapon_groups_params})
       end
 
       if object_levels_params
