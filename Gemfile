@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18.0.pre20141017160319'
 # Use SCSS for stylesheets
@@ -42,3 +42,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'puma', '~> 2.11.1'
 gem 'rails_12factor', :group => :production
 gem 'will_paginate', '~> 3.0.6'
+gem 'web-console', '~> 2.0', :group => :development
