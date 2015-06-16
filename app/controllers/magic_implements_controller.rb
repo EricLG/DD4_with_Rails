@@ -1,9 +1,10 @@
 class MagicImplementsController < ApplicationController
 
-  before_action :find_dependancies, only: [:new, :edit]
+  before_action :find_dependancies, only: [:index, :new, :edit]
 
   def index
-    @implements = MagicImplement.all.paginate(:page => params[:page], :per_page => 20)
+    @search = MagicSearch.new(params[:magic_search], MagicImplement)
+    @implements = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
   end
 
   def new

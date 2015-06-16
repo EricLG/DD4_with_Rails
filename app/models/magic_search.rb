@@ -2,7 +2,7 @@ class MagicSearch
   include ActiveModel::Model
 
 
-   FIELDS = %i(name object_levels source weapon_groups armor_categories)
+   FIELDS = %i(name object_levels source weapon_groups armor_categories implement_groups locations)
   attr_accessor(*FIELDS)
 
   attr_accessor :params, :klass
@@ -23,10 +23,12 @@ class MagicSearch
       klass.all
     else
       name_params             = params.delete(:name)
-      object_levels_params    = params.delete(:object_levels)
       source_params           = params.delete(:source)
-      weapon_groups_params    = params.delete(:weapon_groups) || []
-      armor_categories_params = params.delete(:armor_categories) || []
+      object_levels_params    = params.delete(:object_levels)
+      implement_groups_params = params.delete(:implement_groups)
+      locations_params        = params.delete(:locations)         || []
+      weapon_groups_params    = params.delete(:weapon_groups)     || []
+      armor_categories_params = params.delete(:armor_categories)  || []
 
       search = klass.where(params)
 
@@ -49,6 +51,14 @@ class MagicSearch
 
       unless armor_categories_params.reject(&:empty?).empty?
         search = search.joins(:armor_categories).where(armor_categories: {id: armor_categories_params})
+      end
+
+      if implement_groups_params
+        search = search.joins(:implement_groups).where(implement_groups: {id: implement_groups_params})
+      end
+
+      unless locations_params.reject(&:empty?).empty?
+        search = search.joins(:location).where(location: locations_params)
       end
 
       search

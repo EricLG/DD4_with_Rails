@@ -1,9 +1,10 @@
 class MagicGearsController < ApplicationController
 
-  before_action :find_dependancies, only: [:new, :edit]
+  before_action :find_dependancies, only: [:index, :new, :edit]
 
   def index
-    @gears = MagicGear.all.paginate(:page => params[:page], :per_page => 20)
+    @search = MagicSearch.new(params[:magic_search], MagicGear)
+    @gears = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
   end
 
   def new

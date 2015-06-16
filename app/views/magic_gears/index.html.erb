@@ -6,6 +6,23 @@
 <h3 class="col-sm-12"><%= t('magic.gear.title_index') %></h3>
 </div>
 
+<div>
+  <%= form_for @search, url: object_magic_gears_path, method: :get do |form| %>
+    <%= form.label(:name, "Nom:") %>
+    <%= form.text_field(:name) %>
+
+    <%= form.label(:object_levels, "Alteration max:") %>
+    <%= form.text_field(:object_levels) %>
+
+    <%= form.label(:locations, "Emplacement d'objets:") %>
+    <%= form.select :locations, options_from_collection_for_select(@locations, :id, :name),{:include_blank => 'Tous'}, {multiple: true, size: 3}  %>
+
+    <%= form.label(:source, "Source:") %>
+    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name), {:include_blank => 'Tous'}, {:multiple => false}  %>
+
+    <%= form.submit("Search") %>
+  <% end %>
+</div>
 
 <div class="row">
 <% if @gears.empty? %>
