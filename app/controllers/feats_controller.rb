@@ -1,22 +1,25 @@
 class FeatsController < ApplicationController
 
-  before_action :find_dependancies, only: [:new, :edit]
+  before_action :find_dependancies, only: [:heroics, :parangonics, :epics, :new, :edit]
 
   def index
   end
 
   def heroics
-    @feats = Feat.where(category: "heroic").order(name: :asc).paginate(:page => params[:page], :per_page => 20)
+    @search = FeatSearch.new(params["feat_search"], "heroic")
+    @feats = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     render :sorted_feats
   end
 
   def parangonics
-    @feats = Feat.where(category: "parangonic").order(name: :asc).paginate(:page => params[:page], :per_page => 20)
+    @search = FeatSearch.new(params[:feat_search], "parangonic")
+    @feats = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     render :sorted_feats
   end
 
   def epics
-    @feats = Feat.where(category: "epic").order(name: :asc).paginate(:page => params[:page], :per_page => 20)
+    @search = FeatSearch.new(params[:feat_search], "epic")
+    @feats = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     render :sorted_feats
   end
 

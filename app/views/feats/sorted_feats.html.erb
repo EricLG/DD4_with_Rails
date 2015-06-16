@@ -3,6 +3,25 @@
  <%= render "sidebloc/feats_menu" %>
 <% end %>
 
+<div>
+  <%= form_for @search, url: build_feats_link(params["action"]), method: :get do |form| %>
+
+    <%= form.label(:name, "Nom:") %>
+    <%= form.text_field(:name) %>
+
+    <%= form.label(:prerequisited_klasses, "Classes:") %>
+    <%= form.select :prerequisited_klasses, options_from_collection_for_select(@klasses, :id, :name),{:include_blank => 'Tous'}, {:multiple => true, :size => 3}  %>
+
+    <%= form.label(:prerequisited_races, "Races:") %>
+    <%= form.select :prerequisited_races, options_from_collection_for_select(@races, :id, :name),{:include_blank => 'Tous'}, {:multiple => true, :size => 3}  %>
+
+    <%= form.label(:source, "Source:") %>
+    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name), {:include_blank => 'Tous'}, {:multiple => false}  %>
+
+    <%= form.submit("Search") %>
+  <% end %>
+</div>
+
 <div class="row">
 <% if @feats.empty? %>
   <p class="col-sm-5"><%= t('common.no_result') %></p>

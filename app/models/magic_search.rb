@@ -32,7 +32,6 @@ class MagicSearch
 
       search = klass.where(params)
 
-
       if name_params
         search = search.where("#{klass.table_name}.name ILIKE ?", "%#{name_params}%")
       end

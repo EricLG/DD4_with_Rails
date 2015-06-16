@@ -2,7 +2,13 @@
   <h3 class="col-sm-12"><%= t("feat.title_index") %></h3>
 </div>
 
-  <div><p><%= will_paginate feats %></p></div>
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info feats %>
+    </div>
+    <%= will_paginate feats, :container => false %>
+</div>
+
 <div class="table-responsive">
   <table  class="table table-striped table-bordered table-hover">
     <tr>
@@ -11,19 +17,22 @@
       <th class="col-sm-1"><%= t('feat.prerequis races')      %></th>
       <th class="col-sm-1"><%= t('feat.avantage')      %></th>
       <th class="col-sm-1"><%= t('feat.prerequis Source')      %></th>
-      <!-- <th class="col-sm-1"><%= t('feat.destroy')           %></th> -->
     </tr>
   <% feats.each do |a| %>
     <tr>
       <td><%= link_to a.name, feat_path(a.id)  %></td>
       <td><%= a.klasses %> </td>
       <td><%= a.races %> </td>
-      <td><%= a.avantage %> </td>
+      <td><%= display_first_words a.avantage %> </td>
       <td><%= a.source.name %> </td>
-      <!-- <td><%= link_to 'x', feat_path(a.id), method: :delete %></td>--><!-- TODO: Mettre icone glyphicon glyphicon-remove-circle -->
     </tr>
   <% end %><!-- Fin communs -->
   </table>
-  <div><p><%= will_paginate feats %></p></div>
 </div>
 
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info feats %>
+    </div>
+    <%= will_paginate feats, :container => false %>
+</div>
