@@ -24,8 +24,8 @@ class FeatSearch
     else
       name_params     = params.delete(:name)
       source_params   = params.delete(:source)
-      klasses_params  = params.delete(:prerequisited_klasses) || []
-      races_params    = params.delete(:prerequisited_races)   || []
+      klasses_params  = params.delete(:prerequisited_klasses)
+      races_params    = params.delete(:prerequisited_races)
 
       search = Feat.where(category: category)
       if name_params
@@ -36,12 +36,12 @@ class FeatSearch
         search = search.joins(:source).where(source: source_params)
       end
 
-      unless klasses_params.reject(&:empty?).empty?
-        search = search.joins(:prerequisited_klasses).where(klass: {id: klasses_params})
+      if klasses_params
+        search = search.joins(:prerequisited_klasses).where(klasses: {id: klasses_params})
       end
 
-      unless races_params.reject(&:empty?).empty?
-        search = search.joins(:prerequisited_race_features).where(race: {id: races_params})
+      if races_params
+        search = search.joins(:prerequisited_races).where(races: {id: races_params})
       end
 
       search

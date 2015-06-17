@@ -9,14 +9,17 @@
     <%= form.label(:name, "Nom:") %>
     <%= form.text_field(:name) %>
 
+    <% default_klass =  params["feat_search"]["prerequisited_klasses"] if params["feat_search"]%>
     <%= form.label(:prerequisited_klasses, "Classes:") %>
-    <%= form.select :prerequisited_klasses, options_from_collection_for_select(@klasses, :id, :name),{:include_blank => 'Tous'}, {:multiple => true, :size => 3}  %>
+    <%= form.select :prerequisited_klasses, options_from_collection_for_select(@klasses, :id, :name, default_klass.to_i ),{:include_blank => 'Tous'} %>
 
+    <% default_race =  params["feat_search"]["prerequisited_races"] if params["feat_search"]%>
     <%= form.label(:prerequisited_races, "Races:") %>
-    <%= form.select :prerequisited_races, options_from_collection_for_select(@races, :id, :name),{:include_blank => 'Tous'}, {:multiple => true, :size => 3}  %>
+    <%= form.select :prerequisited_races, options_from_collection_for_select(@races, :id, :name, default_race.to_i),{:include_blank => 'Tous'}  %>
 
+    <% default_source =  params["feat_search"]["source"] if params["feat_search"]%>
     <%= form.label(:source, "Source:") %>
-    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name), {:include_blank => 'Tous'}, {:multiple => false}  %>
+    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name, default_source), {:include_blank => 'Tous'}, {:multiple => false}  %>
 
     <%= form.submit("Search") %>
   <% end %>
