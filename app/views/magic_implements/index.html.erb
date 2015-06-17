@@ -14,11 +14,13 @@
     <%= form.label(:object_levels, "Alteration max:") %>
     <%= form.text_field(:object_levels) %>
 
+    <% default_options =  params["magic_search"]["implement_groups"] if params["magic_search"]%>
     <%= form.label(:implement_groups, "Groupes de focaliseurs:") %>
-    <%= form.select :implement_groups, options_from_collection_for_select(@implement_groups, :id, :name),{:include_blank => 'Tous'}  %>
+    <%= form.select :implement_groups, options_from_collection_for_select(@implement_groups, :id, :name, default_options),{:include_blank => 'Tous'}  %>
 
+    <% default_source =  params["magic_search"]["source"] if params["magic_search"]%>
     <%= form.label(:source, "Source:") %>
-    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name), {:include_blank => 'Tous'}, {:multiple => false}  %>
+    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name, default_source), {:include_blank => 'Tous'}, {:multiple => false}  %>
 
     <%= form.submit("Search") %>
   <% end %>

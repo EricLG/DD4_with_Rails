@@ -14,11 +14,13 @@
     <%= form.label(:object_levels, "Alteration max:") %>
     <%= form.text_field(:object_levels) %>
 
+    <% default_options =  params["magic_search"]["weapon_groups"] if params["magic_search"]%>
     <%= form.label(:weapon_groups, "Groupes d'arme:") %>
-    <%= form.select :weapon_groups, options_from_collection_for_select(@weapon_groups, :id, :name),{:include_blank => 'Tous'}, {:multiple => true, :size => 3}  %>
+    <%= form.select :weapon_groups, options_from_collection_for_select(@weapon_groups, :id, :name, default_options),{:include_blank => 'Tous'}, {:multiple => true, :size => 3}  %>
 
+    <% default_source =  params["magic_search"]["source"] if params["magic_search"]%>
     <%= form.label(:source, "Source:") %>
-    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name), {:include_blank => 'Tous'}, {:multiple => false}  %>
+    <%= form.select :source, options_from_collection_for_select(@sources, :id, :name, default_source), {:include_blank => 'Tous'}, {:multiple => false}  %>
 
     <%= form.submit("Search") %>
   <% end %>
