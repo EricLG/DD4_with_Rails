@@ -1,7 +1,10 @@
 class CommonWeaponsController < ApplicationController
 
   def index
-    @communs = CommonWeapon.all.order(:weapon_category_id, :two_handed, :name)
+    @sorted_weapons = {}
+    CommonWeapon.includes(:weapon_category, :weapon_properties, :weapon_groups, :source).group_by(&:category).each do |category, weapons|
+      @sorted_weapons[category] = weapons.group_by(&:two_handed)
+    end
     @cat = WeaponCategory.all
 
   end
