@@ -20,7 +20,7 @@ class MagicSearch
     end
 
     if params.empty?
-      klass.all
+      find_klass(klass)
     else
       name_params             = params.delete(:name)
       source_params           = params.delete(:source)
@@ -30,7 +30,7 @@ class MagicSearch
       weapon_groups_params    = params.delete(:weapon_groups)     || []
       armor_categories_params = params.delete(:armor_categories)  || []
 
-      search = klass.where(params)
+      search = find_klass(klass).where(params)
 
       if name_params
         search = search.where("#{klass.table_name}.name ILIKE ?", "%#{name_params}%")
@@ -61,6 +61,19 @@ class MagicSearch
       end
 
       search
+    end
+  end
+
+  def find_klass(klass)
+    case klass.to_s
+    when "MagicWeapon"
+      MagicWeapon.includes(:object_levels, :source, :weapon_groups)
+    when "MagicArmor"
+      MagicArmor.includes(:object_levels, :source, :armor_categories)
+    when "MagicImplement"
+      MagicWeapon.includes(:object_levels, :source, :implement_groups)
+    when "MagicGear"
+      MagicWeapon.includes(:object_levels, :source, :locations)
     end
   end
 end
