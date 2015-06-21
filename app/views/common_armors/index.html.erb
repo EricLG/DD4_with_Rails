@@ -4,16 +4,10 @@
 <% end %>
 
 <h3 class="col-md-12"><%= t('common.armor.title_index') %></h3>
-
-<% if @communs.empty? %>
-  <p><%= t('common.no_result') %></p>
-<% else %>
-  <% @cat.each do |c| %>
-    <h4><%= c.name %></h4>
-    <%= render "armor_index_table", commons: @communs, category: c %>
+  <% @communs.each do |categorie, armors| %>
+    <h4><%= categorie %></h4>
+    <%= render "armor_index_table", commons: armors %>
   <% end %>
-<% end %>
-
 <br>
 <p><%= link_to t('common.armor.new_armor'), new_object_common_armor_path %></p>
 

@@ -1,7 +1,7 @@
 class CommonArmorsController < ApplicationController
 
   def index
-    @communs = CommonArmor.all
+    @communs = CommonArmor.includes(:armor_category, :source).group_by(&:category)
     @cat  = ArmorCategory.all
   end
 
