@@ -71,9 +71,9 @@ class MagicSearch
     when "MagicArmor"
       MagicArmor.includes(:object_levels, :source, :armor_categories)
     when "MagicImplement"
-      MagicWeapon.includes(:object_levels, :source, :implement_groups)
+      MagicImplement.includes(:object_levels, :source, :implement_groups)
     when "MagicGear"
-      MagicWeapon.includes(:object_levels, :source, :locations)
+      MagicGear.includes(:object_levels, :source, :locations)
     end
   end
 end
