@@ -65,6 +65,15 @@ fr:
       new_armor:        "Ajouter une nouvelle armure magique"
       power:            "Pouvoir"
       property:         "Propriété"
+  user:
+    title_signup: "S'enregistrer"
+    title_login:  "Se connecter"
+    name: "Pseudo"
+    email: "E-mail"
+    password: "Mot de passe"
+    password_confirmation: "Confirmer"
+    sidebar_login: "Connectez-vous"
+    sidebar_signup: "Créer un compte."
   will_paginate:
     previous_label: "&#8592; Précédent"
     next_label: "Suivant &#8594;"

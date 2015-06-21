@@ -1,5 +1,6 @@
 class FeatsController < ApplicationController
 
+  before_filter :authorize
   before_action :find_dependancies, only: [:heroics, :parangonics, :epics, :new, :edit]
 
   def index

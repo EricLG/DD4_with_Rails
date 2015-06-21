@@ -4,6 +4,16 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
   get 'welcome/import'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  # Authentification
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
+
   # Menu principal
   get 'aides/index'
   get 'races/index'

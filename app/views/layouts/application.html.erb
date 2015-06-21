@@ -8,6 +8,9 @@
 </head>
 
 <body class="container">
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
 <header>
   <h1><a href="/" title="Page d&#039;accueil" class="active">La promenade de Waukeen</a></h1>
 </header>

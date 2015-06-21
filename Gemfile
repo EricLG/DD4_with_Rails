@@ -25,8 +25,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-gem 'pry'
+gem 'bcrypt', '~> 3.1.7'
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -42,4 +41,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'puma', '~> 2.11.1'
 gem 'rails_12factor', :group => :production
 gem 'will_paginate', '~> 3.0.6'
-gem 'web-console', '~> 2.0', :group => :development
+
+group :development do
+  gem 'web-console', '~> 2.0'
+end
+
+group :test, :development do
+  gem 'pry'
+end
