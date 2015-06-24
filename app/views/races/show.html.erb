@@ -1,0 +1,20 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <p>A venir...</p>
+<% end %>
+
+<h2><%= @race.name %></h2>
+
+<h3>Traits raciaux</h3>
+
+<p>Taille:<%= @race.cat_size %></p>
+<p>Vitesse:<%= @race.speed %></p>
+
+<p>Aptitudes raciales</p>
+<ul>
+<% @race.race_features.each do |f| %>
+  <li><%= f.name %></li>
+<% end %>
+</ul>
+
+<p>Source: <%= @race.source.name %></p>

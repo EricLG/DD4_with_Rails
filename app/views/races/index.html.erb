@@ -8,7 +8,8 @@
 
 <div class="row">
   <% @races.each do |r| %>
-    <% name = File.join('mini_icones', r.downcase + '.jpg') %>
-    <div class="col-sm-2" style="height: 100px"><%= image_tag(name, :class =>'box') %></div>
+    <% name = r.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
+    <% image = File.join('mini_icones', name + '.jpg') %>
+    <div class="col-sm-2" style="height: 100px"><%= link_to(image_tag(image, :class =>'box'), race_path(r), title: r.name)%></div>
   <% end %>
 </div>
