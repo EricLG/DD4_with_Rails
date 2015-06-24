@@ -48,4 +48,5 @@ end
 
 group :test, :development do
   gem 'pry'
+  gem 'pry-rails'
 end
