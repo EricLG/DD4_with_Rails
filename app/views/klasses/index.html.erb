@@ -7,7 +7,7 @@
 <p>Les différents classes de DD4. Description à venir.</p>
 
 <div class="row">
-  <% @classes.each do |c| %>
-    <div class="col-sm-2" style="height: 40px"><%= c %></div>
+  <% @klasses.each do |klass| %>
+    <div class="col-sm-2" style="height: 40px"><%= link_to klass.name, klass_path(klass) %></div>
   <% end %>
 </div>

@@ -1,0 +1,19 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <p>A venir...</p>
+<% end %>
+
+<h2><%= @klass.name %></h2>
+
+<h3>Profil de la classe</h3>
+
+<p>Source de pouvoir:<%= @klass.power_source %></p>
+
+<p>Aptitudes de classes</p>
+<ul>
+<% @klass.class_features.each do |f| %>
+  <li><%= f.name %></li>
+<% end %>
+</ul>
+
+<p>Source: <%= @klass.source.name %></p>

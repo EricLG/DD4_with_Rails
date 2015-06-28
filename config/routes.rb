@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :races, :classes
+  resources :races, :klasses
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
