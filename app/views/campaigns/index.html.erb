@@ -1,0 +1,15 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= "A venir" %>
+<% end %>
+
+
+<h2>Campagnes</h2>
+
+<p><%= link_to "Créer une nouvelle campagne", new_campaign_path %></p>
+
+<ul>
+<% @campaigns.each do |c| %>
+  <li><%= link_to c.name, campaign_path(c.id)%></li>
+<% end %>
+</ul>

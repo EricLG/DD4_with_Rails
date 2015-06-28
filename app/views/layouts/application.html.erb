@@ -17,14 +17,14 @@
 
 <nav>
  <ul class="nav nav-tabs">
-    <li role="presentation"><%= link_to "Objects", "/objects/index", title:"Pages des objets magiques et commun." %></li>
-    <li role="presentation"><%= link_to "Talents", feats_path, title:"Tous les talents de DD4." %></li>
-    <li role="presentation"><%= link_to "Races", races_path, title:"Toutes les races de DD4." %></li>
-    <li role="presentation"><%= link_to "Classes", klasses_path, title:"Toutes les classes de DD4." %></li>
-    <li role="presentation"><%= link_to "Aides de jeux", "/aides/index", title:"Infos utiles." %></li>
+    <li role="presentation"><%= link_to "Objects",  objects_index_path, title:"Pages des objets magiques et commun." %></li>
+    <li role="presentation"><%= link_to "Talents",  feats_path,         title:"Tous les talents de DD4." %></li>
+    <li role="presentation"><%= link_to "Races",    races_path,         title:"Toutes les races de DD4." %></li>
+    <li role="presentation"><%= link_to "Classes",  klasses_path,       title:"Toutes les classes de DD4." %></li>
+    <li role="presentation"><%= link_to "Aides de jeux", aides_path,  title:"Infos utiles." %></li>
     <li role="presentation"><a href="#" title="Générateur de butin">Trésor</a></li>
     <li role="presentation"><a href="#">Membres</a></li>
-    <li role="presentation"><a href="#" title="Ajouter un objet ou talent">Contribuer</a></li>
+    <li role="presentation"><%= link_to "Campagnes", campaigns_path,  title:"Liste des campagnes." %></li>
   </ul>
 </nav>
 

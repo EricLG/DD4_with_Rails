@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621134120) do
+ActiveRecord::Schema.define(version: 20150628171800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,41 @@ ActiveRecord::Schema.define(version: 20150621134120) do
 
   add_index "armor_categories_magic_gears", ["armor_category_id"], name: "index_armor_categories_magic_gears_on_armor_category_id", using: :btree
   add_index "armor_categories_magic_gears", ["magic_gear_id"], name: "index_armor_categories_magic_gears_on_magic_gear_id", using: :btree
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "game_master_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "campaigns_characters", id: false, force: :cascade do |t|
+    t.integer "campaign_id"
+    t.integer "character_id"
+  end
+
+  add_index "campaigns_characters", ["campaign_id"], name: "index_campaigns_characters_on_campaign_id", using: :btree
+  add_index "campaigns_characters", ["character_id"], name: "index_campaigns_characters_on_character_id", using: :btree
+
+  create_table "characters", force: :cascade do |t|
+    t.string   "char_name"
+    t.integer  "experience"
+    t.integer  "level"
+    t.string   "parangon"
+    t.string   "epic"
+    t.integer  "age"
+    t.string   "height"
+    t.string   "weight"
+    t.string   "alignment"
+    t.string   "divinity"
+    t.string   "party"
+    t.integer  "user_id"
+    t.integer  "klass_id"
+    t.integer  "race_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "common_armors", force: :cascade do |t|
     t.string   "name"
@@ -108,6 +143,14 @@ ActiveRecord::Schema.define(version: 20150621134120) do
   end
 
   add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
+
+  create_table "games", force: :cascade do |t|
+    t.datetime "played"
+    t.text     "description"
+    t.integer  "campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "implement_groups", force: :cascade do |t|
     t.string   "name"

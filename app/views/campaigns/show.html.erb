@@ -1,0 +1,12 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= "A venir" %>
+<% end %>
+
+
+<h2>Campagne: "<%= @campaign.name %>"</h2>
+
+<dl>
+  <dt><%= t("campaign.name",          :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.name %></dd>
+  <dt><%= t("campaign.description",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.description %></dd>
+</dl>
