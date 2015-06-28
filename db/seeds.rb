@@ -267,15 +267,15 @@ end
   info[:features].each do |feature|
     if feature.kind_of?(Hash)
       feature.each do |top_feature, children_feature|
-        t = ClassFeature.create(name: top_feature, klasses: [klass])
+        t = KlassFeature.create(name: top_feature, klasses: [klass])
         children_feature.each do |child|
-          ClassFeature.create(name: child, klasses: [klass], top_feature: t)
+          KlassFeature.create(name: child, klasses: [klass], top_feature: t)
         end
       end
     else
-      c = ClassFeature.find_by_name(feature)
+      c = KlassFeature.find_by_name(feature)
       if c.nil?
-        ClassFeature.create(name: feature, klasses: [klass])
+        KlassFeature.create(name: feature, klasses: [klass])
       else
         c.klasses << klass
         c.save

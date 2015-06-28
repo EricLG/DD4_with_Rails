@@ -1,6 +1,6 @@
 class FeatsController < ApplicationController
 
-  before_filter :authorize
+  #before_filter :authorize
   before_action :find_dependancies, only: [:heroics, :parangonics, :epics, :new, :edit]
 
   def index
@@ -80,6 +80,6 @@ class FeatsController < ApplicationController
     @sources = Source.all
     @races = Race.all
     @klasses = Klass.all
-    @class_features = ClassFeature.all
+    @klass_features = KlassFeature.all
   end
 end

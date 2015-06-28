@@ -42,24 +42,6 @@ ActiveRecord::Schema.define(version: 20150621134120) do
   add_index "armor_categories_magic_gears", ["armor_category_id"], name: "index_armor_categories_magic_gears_on_armor_category_id", using: :btree
   add_index "armor_categories_magic_gears", ["magic_gear_id"], name: "index_armor_categories_magic_gears_on_magic_gear_id", using: :btree
 
-  create_table "class_features", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "top_feature_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "class_features", ["top_feature_id"], name: "index_class_features_on_top_feature_id", using: :btree
-
-  create_table "class_features_klasses", id: false, force: :cascade do |t|
-    t.integer "class_feature_id"
-    t.integer "klass_id"
-  end
-
-  add_index "class_features_klasses", ["class_feature_id"], name: "index_class_features_klasses_on_class_feature_id", using: :btree
-  add_index "class_features_klasses", ["klass_id"], name: "index_class_features_klasses_on_klass_id", using: :btree
-
   create_table "common_armors", force: :cascade do |t|
     t.string   "name"
     t.string   "weight"
@@ -143,6 +125,24 @@ ActiveRecord::Schema.define(version: 20150621134120) do
 
   add_index "implement_groups_magic_implements", ["implement_group_id"], name: "index_implement_groups_magic_implements_on_implement_group_id", using: :btree
   add_index "implement_groups_magic_implements", ["magic_implement_id"], name: "index_implement_groups_magic_implements_on_magic_implement_id", using: :btree
+
+  create_table "klass_features", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "top_feature_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "klass_features", ["top_feature_id"], name: "index_klass_features_on_top_feature_id", using: :btree
+
+  create_table "klass_features_klasses", id: false, force: :cascade do |t|
+    t.integer "klass_feature_id"
+    t.integer "klass_id"
+  end
+
+  add_index "klass_features_klasses", ["klass_feature_id"], name: "index_klass_features_klasses_on_klass_feature_id", using: :btree
+  add_index "klass_features_klasses", ["klass_id"], name: "index_klass_features_klasses_on_klass_id", using: :btree
 
   create_table "klasses", force: :cascade do |t|
     t.string   "name"
@@ -271,13 +271,13 @@ ActiveRecord::Schema.define(version: 20150621134120) do
 
   add_index "object_levels", ["level"], name: "index_object_levels_on_level", using: :btree
 
-  create_table "pr_class_features_for_feat", id: false, force: :cascade do |t|
+  create_table "pr_klass_features_for_feat", id: false, force: :cascade do |t|
     t.integer "feat_id"
-    t.integer "class_feature_id"
+    t.integer "klass_feature_id"
   end
 
-  add_index "pr_class_features_for_feat", ["class_feature_id"], name: "index_pr_class_features_for_feat_on_class_feature_id", using: :btree
-  add_index "pr_class_features_for_feat", ["feat_id"], name: "index_pr_class_features_for_feat_on_feat_id", using: :btree
+  add_index "pr_klass_features_for_feat", ["feat_id"], name: "index_pr_klass_features_for_feat_on_feat_id", using: :btree
+  add_index "pr_klass_features_for_feat", ["klass_feature_id"], name: "index_pr_klass_features_for_feat_on_klass_feature_id", using: :btree
 
   create_table "pr_klasses_for_feat", id: false, force: :cascade do |t|
     t.integer "feat_id"

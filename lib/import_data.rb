@@ -75,7 +75,7 @@ module ImportData
     category
   end
 
-  def self.find_class_features(data, features)
+  def self.find_klass_features(data, features)
     finded_features = []
     array_data = data.split(', ')
     array_data.each do |d|
