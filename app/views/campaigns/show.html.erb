@@ -6,7 +6,20 @@
 
 <h2>Campagne: "<%= @campaign.name %>"</h2>
 
+<p><%= link_to "Edit", edit_campaign_path(@campaign) %></p>
+<p><%= link_to "Ajouter une partie", new_campaign_game_path(@campaign.id) %></p>
+
 <dl>
+  <dt><%= t("campaign.game_master",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.game_master.try(:name) %></dd>
   <dt><%= t("campaign.name",          :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.name %></dd>
   <dt><%= t("campaign.description",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.description %></dd>
 </dl>
+
+<p>Parties jouées</p>
+
+
+<ul>
+<% @campaign.games.each do |g| %>
+  <li><%= link_to "Partie du #{g.played}", campaign_game_path(@campaign, g) %></li>
+<% end %>
+</ul>

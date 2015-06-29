@@ -1,0 +1,24 @@
+<%= form_for [@campaign, @game], {:class => 'form-horizontal'} do |f| %>
+
+  <%= f.hidden_field :campaign_id, value: @campaign.id %>
+  <div class="form-group">
+    <%= f.label :description, t("game.description"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :description, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :played, t("game.played"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :played, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-8">
+      <%= f.submit t("common.validate"), :class => "btn btn-default" %>
+      </div>
+  </div>
+
+<% end %>

@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :races, :klasses, :aides, :campaigns
+  resources :races, :klasses, :aides
+
+  resources :campaigns do
+    resources :games
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
