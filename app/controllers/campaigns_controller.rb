@@ -5,6 +5,7 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    @users = User.all
     @campaign = Campaign.new
   end
 
@@ -26,11 +27,17 @@ class CampaignsController < ApplicationController
   end
 
   def edit
-
+    @users = User.all
+    @campaign = Campaign.find_by_id(params[:id])
   end
 
   def update
-
+    @campaign = Campaign.find_by_id(params[:id])
+    if @campaign.update(campaign_params)
+      redirect_to campaigns_path
+    else
+      render new_campaign_path
+    end
   end
 
   private
@@ -38,7 +45,8 @@ class CampaignsController < ApplicationController
   def campaign_params
     params.require(:campaign).permit(
       :name,
-      :description
+      :description,
+      :game_master_id
     )
   end
 
