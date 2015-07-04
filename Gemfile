@@ -50,3 +50,5 @@ group :test, :development do
   gem 'pry'
   gem 'pry-rails'
 end
+
+gem 'jquery-ui-rails', '~> 5.0.5'

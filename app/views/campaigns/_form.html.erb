@@ -14,10 +14,16 @@
   </div>
 
   <div class="form-group">
-    <% default_user = @users.empty? ? nil : @campaign.game_master %>
+    <%= f.label :status, t("campaign.status"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+     <%= f.select :status, options_for_select([["En cours", :in_progress], ["Interrompu", :interrupted], ["Terminé", :finished]]),{}, {:class => "form-control"}  %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :game_master_id, t("campaign.game_master"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
-       <%= f.select :game_master_id, options_from_collection_for_select(@users, :id, :name, default_user),{}, {:class => "form-control"}  %>
+       <%= f.select :game_master_id, options_from_collection_for_select(@users, :id, :name, @game_master_id),{}, {:class => "form-control"}  %>
     </div>
   </div>
 

@@ -1,0 +1,12 @@
+<h5>Campagnes en cours</h5>
+  <ul>
+  <% @current_campaigns.each do |c| %>
+    <li><%= link_to c.name, campaign_path(c.id)%></li>
+  <% end %>
+  </ul>
+<h5>Campagnes terminés</h5>
+  <ul>
+  <% @finished_campaigns.each do |c| %>
+    <li><%= link_to c.name, campaign_path(c.id)%></li>
+  <% end %>
+  </ul>

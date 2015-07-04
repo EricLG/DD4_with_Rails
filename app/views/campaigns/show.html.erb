@@ -1,6 +1,6 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-  <%= "A venir" %>
+  <%= render "sidebloc/campaign_menu" %>
 <% end %>
 
 
@@ -10,16 +10,16 @@
 <p><%= link_to "Ajouter une partie", new_campaign_game_path(@campaign.id) %></p>
 
 <dl>
-  <dt><%= t("campaign.game_master",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.game_master.try(:name) %></dd>
+  <dt><%= t("campaign.game_master",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.game_master.name %></dd>
   <dt><%= t("campaign.name",          :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.name %></dd>
-  <dt><%= t("campaign.description",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.description %></dd>
+  <dt><%= t("campaign.status",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.status %></dd>
+  <dt><%= t("campaign.description",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @campaign.description %></dd>
 </dl>
 
-<p>Parties jouées</p>
-
+<p>Parties jouées : <%= @games.size %></p>
 
 <ul>
-<% @campaign.games.each do |g| %>
+<% @games.each do |g| %>
   <li><%= link_to "Partie du #{g.played}", campaign_game_path(@campaign, g) %></li>
 <% end %>
 </ul>

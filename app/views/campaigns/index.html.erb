@@ -1,15 +1,14 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-  <%= "A venir" %>
+  <%= render "sidebloc/campaign_menu" %>
 <% end %>
 
 
 <h2>Campagnes</h2>
 
-<p><%= link_to "Créer une nouvelle campagne", new_campaign_path %></p>
+<div>
+  <p>Liste de toutes les campagnes en cours et terminées</p>
+  <p><%= link_to "Créer une nouvelle campagne", new_campaign_path %></p>
+</div>
 
-<ul>
-<% @campaigns.each do |c| %>
-  <li><%= link_to c.name, campaign_path(c.id)%></li>
-<% end %>
-</ul>
+

@@ -4,6 +4,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.references :game_master
+      t.string :status
 
       t.timestamps
     end

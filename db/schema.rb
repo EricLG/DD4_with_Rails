@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150628171800) do
     t.string   "name"
     t.text     "description"
     t.integer  "game_master_id"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

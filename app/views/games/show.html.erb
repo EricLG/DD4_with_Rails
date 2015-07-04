@@ -5,4 +5,6 @@
 
 <h2>Partie du <%= @game.played %></h2>
 
-<p>Description: <%= @game.description %></p>
+<p>Description: <%= simple_format @game.description %></p>
+
+<%= link_to "Retourner vers la campagne", campaign_path(@campaign) %>
