@@ -10,29 +10,20 @@
   <dt><%= t("magic.weapon.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.description %></dd>
 
 
+
 <% if  @weapon.object_levels.empty? %>
   <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
    <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left">
-    <% @weapon.object_levels.each do |l| %>
-      <%= l.level %> / +<%= l.alteration %> / <%= l.price %> PO
-    <% end %>
+    <%= display_levels @weapon.object_levels.order(:level)%>
     </dd>
-<% end %>
-<% if  @weapon.weapon_groups.empty? %>
-  <dt><%= t("common.groups", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("common.groups", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <% @weapon.weapon_groups.each do |g| %>
-      <%= g.name %>
-    <% end %>
-  </dd>
-<% end %>
 
+<% end %>
+  <dt><%= t("common.groups",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= display_weapon_group(@weapon.weapon_groups) %></dd>
   <dt><%= t("magic.weapon.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.alteration %></dd>
   <dt><%= t("magic.weapon.critical",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.critical %></dd>
-  <dt><%= t("magic.weapon.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.property %></dd>
-  <dt><%= t("magic.weapon.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.power %></dd>
-  <dt><%= t("magic.weapon.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.special %></dd>
+  <dt><%= t("magic.weapon.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.property %></dd>
+  <dt><%= t("magic.weapon.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.power %></dd>
+  <dt><%= t("magic.weapon.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.special %></dd>
   <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.source.name %></dd>
 </dl>

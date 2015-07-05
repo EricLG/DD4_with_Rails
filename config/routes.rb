@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   # page d'accueil
-  root 'welcome#index'
-  get 'welcome/index'
-  get 'welcome/import'
+  root 'welcomes#index'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -33,6 +31,17 @@ Rails.application.routes.draw do
 
   resources :campaigns do
     resources :games
+  end
+
+  resources :welcomes, only: [:index] do
+    collection do
+      get :import
+      get :weapons
+      get :armors
+      get :gears
+      get :implements
+      get :feats
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

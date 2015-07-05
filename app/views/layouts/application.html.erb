@@ -9,7 +9,8 @@
 
 <body class="container">
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: name %>
+  <% klass = name == "notice" ? "bg-primary" : "bg-warning" %>
+  <%= content_tag :div, msg, class: "#{klass}" %>
 <% end %>
 <header>
   <h1><a href="/" title="Page d&#039;accueil" class="active">La promenade de Waukeen</a></h1>
@@ -25,6 +26,7 @@
     <li role="presentation"><a href="#" title="Générateur de butin">Trésor</a></li>
     <li role="presentation"><a href="#">Membres</a></li>
     <li role="presentation"><%= link_to "Campagnes", campaigns_path,  title:"Liste des campagnes." %></li>
+    <li role="presentation"><%= link_to "IMPORT", import_welcomes_path,  title:"Liste des campagnes."  %></li>
   </ul>
 </nav>
 

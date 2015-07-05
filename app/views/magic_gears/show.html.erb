@@ -13,15 +13,7 @@
 <% if  @gear.object_levels.empty? %>
   <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
-   <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left">
-    <% @gear.object_levels.each do |l| %>
-      <% if @gear.alteration? %>
-        <%= "#{l.level} / +#{l.alteration} / #{l.price} PO" %>
-      <% else %>
-        <%= "#{l.level} / #{l.price} PO" %>
-      <% end %>
-    <% end %>
-    </dd>
+   <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left"><%= display_levels(@gear.object_levels.order(:level), @gear.alteration?)%></dd>
 <% end %>
 <% if  @gear.armor_categories.empty? %>
   <dt><%= t("magic.gear.shield_group", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
@@ -35,8 +27,8 @@
 
   <dt><%= t("magic.gear.location",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.location.name %></dd>
   <dt><%= t("magic.gear.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.alteration %></dd>
-  <dt><%= t("magic.gear.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.property %></dd>
-  <dt><%= t("magic.gear.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.power %></dd>
+  <dt><%= t("magic.gear.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @gear.property %></dd>
+  <dt><%= t("magic.gear.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @gear.power %></dd>
   <dt><%= t("magic.gear.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.special %></dd>
   <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.source.name %></dd>
 </dl>

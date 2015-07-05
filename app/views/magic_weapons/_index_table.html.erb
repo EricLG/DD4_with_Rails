@@ -18,14 +18,10 @@
   <% weapons.each do |w| %>
     <tr>
       <td><%= link_to w.name, object_magic_weapon_path(w.id)  %></td>
-      <td>
-        <% w.weapon_groups.each do |g| %>
-          <%= g.name %></br>
-        <% end %>
-      </td>
+      <td><%= display_weapon_group(w.weapon_groups) %></td>
       <td><%= w.object_level_ids.min %> </td>
-      <td><%= w.property %> </td>
-      <td><%= w.power %> </td>
+      <td><%= display_first_words w.property %> </td>
+      <td><%= display_first_words w.power %> </td>
       <td><%= w.source.name %> </td>
       <!-- <td><%= link_to 'x', object_magic_weapon_path(w.id), method: :delete %></td> -->
     </tr>

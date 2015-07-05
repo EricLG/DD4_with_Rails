@@ -17,7 +17,7 @@
   <dt><%= t("feat.ra_feats",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.race_features %></dd>
   <dt><%= t("feat.stats",     :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.stats %> </dd>
   <dt><%= t("feat.req_feats", :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.required_feats %> </dd>
-  <dt><%= t("feat.avantage",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.avantage %></dd>
+  <dt><%= t("feat.avantage",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= simple_format @feat.avantage %></dd>
   <dt><%= t("feat.errata",    :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.errata %></dd>
   <dt><%= t("common.source",  :class=>"col_sm-4")%></dt>  <dd class="text-left"><%= @feat.source.name %></dd>
 </dl>

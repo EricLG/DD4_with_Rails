@@ -15,8 +15,8 @@
     <%= form.text_field(:object_levels) %>
 
     <% default_options =  params["magic_search"]["locations"] if params["magic_search"]%>
-    <%= form.label(:locations, "Emplacement d'objets:") %>
-    <%= form.select :locations, options_from_collection_for_select(@locations, :id, :name, default_options),{:include_blank => 'Tous'}, {multiple: true, size: 3}  %>
+    <%= form.label(:location, "Emplacement d'objets:") %>
+    <%= form.select :location, options_from_collection_for_select(@locations, :id, :name, default_options),{:include_blank => 'Tous'}, {multiple: true, size: 3}  %>
 
     <% default_source =  params["magic_search"]["source"] if params["magic_search"]%>
     <%= form.label(:source, "Source:") %>

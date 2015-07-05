@@ -2,7 +2,7 @@ class MagicSearch
   include ActiveModel::Model
 
 
-   FIELDS = %i(name object_levels source weapon_groups armor_categories implement_groups locations)
+   FIELDS = %i(name object_levels source weapon_groups armor_categories implement_groups location)
   attr_accessor(*FIELDS)
 
   attr_accessor :params, :klass
@@ -73,7 +73,7 @@ class MagicSearch
     when "MagicImplement"
       MagicImplement.includes(:object_levels, :source, :implement_groups)
     when "MagicGear"
-      MagicGear.includes(:object_levels, :source, :locations)
+      MagicGear.includes(:object_levels, :source, :location)
     end
   end
 end
