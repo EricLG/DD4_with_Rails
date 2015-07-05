@@ -3,27 +3,24 @@
   <%= render "sidebloc/objects_menu" %>
 <% end %>
 
-<h3 class="col-sm-12"><%= link_to t('magic.weapon.title_show', weapon: @weapon.name), edit_object_magic_weapon_path(@weapon.id) %> </h3>
+<h3 class="col-sm-12"><%= @weapon.name %></h3>
 
 <dl class="dl-horizontal">
-  <dt><%= t("magic.weapon.name",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.name %></dd>
-  <dt><%= t("magic.weapon.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.description %></dd>
-
-
+  <dt><%= t("magic.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.description %></dd>
 
 <% if  @weapon.object_levels.empty? %>
   <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
-   <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left">
-    <%= display_levels @weapon.object_levels.order(:level)%>
-    </dd>
-
+   <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left"><%= display_levels @weapon.object_levels.order(:level)%></dd>
 <% end %>
-  <dt><%= t("common.groups",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= display_weapon_group(@weapon.weapon_groups) %></dd>
-  <dt><%= t("magic.weapon.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.alteration %></dd>
-  <dt><%= t("magic.weapon.critical",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.critical %></dd>
-  <dt><%= t("magic.weapon.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.property %></dd>
-  <dt><%= t("magic.weapon.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.power %></dd>
-  <dt><%= t("magic.weapon.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.special %></dd>
-  <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.source.name %></dd>
+
+  <dt><%= t("common.weapon_groups", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= display_weapon_group(@weapon.weapon_groups) %></dd>
+  <dt><%= t("magic.alteration",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.alteration %></dd>
+  <dt><%= t("magic.critical",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.critical %></dd>
+  <dt><%= t("magic.property",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.property %></dd>
+  <dt><%= t("magic.power",          :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.power %></dd>
+  <dt><%= t("magic.special",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @weapon.special %></dd>
+  <dt><%= t("common.source",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @weapon.source.name %></dd>
 </dl>
+
+<%= link_to t('magic.weapon.edit_weapon', weapon: @weapon.name), edit_object_magic_weapon_path(@weapon.id) %>

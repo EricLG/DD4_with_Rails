@@ -3,16 +3,22 @@
   <%= render "sidebloc/objects_menu" %>
 <% end %>
 
-<h3 class="col-md-12"><%= t('common.weapon.title_index') %></h3>
+<div class="row">
+  <h3 class="col-md-12"><%= t('common.weapon.title_index') %></h3>
+</div>
 
-  <% @sorted_weapons.each do |category, weapons_with_handed| %>
-    <h4> <%= category %></h4>
-      <% weapons_with_handed.each do |handed, commons| %>
-      <h5><%= handed %></h5>
-        <%= render "weapon_index_table", commons: commons %>
-      <% end %>
-  <% end %>
+<div class="row">
+  <div class="col-sm-12">
+    <% @sorted_weapons.each do |category, weapons_with_handed| %>
+      <h4> <%= category %></h4>
+        <% weapons_with_handed.each do |handed, commons| %>
+        <h5><%= localize_weapon_usage handed %></h5>
+          <%= render "weapon_index_table", commons: commons %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
 
-<br>
-<p><%= link_to t('common.weapon.new_weapon'), new_object_common_weapon_path %></p>
-
+<div class="row">
+  <p><%= link_to t('common.weapon.new_weapon'), new_object_common_weapon_path %></p>
+</div>

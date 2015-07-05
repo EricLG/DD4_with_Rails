@@ -1,10 +1,10 @@
 <dl class="dl-horizontal">
   <%= form_for [:object, @weapon] do |f| %>
-  <dt><%= f.label :name,        t("common.weapon.name"),        :class=>"col-md-4" %></dt>
+  <dt><%= f.label :name,        t("common.name"),        :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :name,       :class=>"col-md-5" %></dd>
-  <dt><%= f.label :weight,      t("common.weapon.weight"),      :class=>"col-md-4" %></dt>
+  <dt><%= f.label :weight,      t("common.weight"),      :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :weight,     :class=>"col-md-5" %></dd>
-  <dt><%= f.label :price,       t("common.weapon.price"),       :class=>"col-md-4" %></dt>
+  <dt><%= f.label :price,       t("common.price"),       :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :price,      :class=>"col-md-5" %></dd>
   <dt><%= f.label :damage,      t("common.weapon.damage"),      :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :damage,     :class=>"col-md-5" %></dd>
@@ -12,11 +12,12 @@
   <dd><%= f.text_field :handling,   :class=>"col-md-5" %></dd>
   <dt><%= f.label :range,       t("common.weapon.range"),       :class=>"col-md-4" %></dt>
   <dd><%= f.text_field :range,      :class=>"col-md-5" %></dd>
-  <dt><%= label_tag :two_handed,t("common.weapon.two_handed"),  :class=>"col-md-4" %></dt>
+  <dt><%= label_tag :two_handed,t("common.weapon.w_usage"),  :class=>"col-md-4" %></dt>
   <dd>
     <div class="col-md-5">
-      <%= f.radio_button :two_handed, true%>                    <%= f.label :two_handed, t("common.w_true"),  :value => true %>
-      <%= f.radio_button :two_handed, false, :checked => true %><%= f.label :two_handed, t("common.w_false"), :value => false %>
+      <%= f.radio_button :two_handed, "one"%>                     <%= f.label :two_handed, t("common.weapon.usage.one") %>
+      <%= f.radio_button :two_handed, "two", :checked => true %>  <%= f.label :two_handed, t("common.weapon.usage.two") %>
+      <%= f.radio_button :two_handed, "double" %>                 <%= f.label :two_handed, t("common.weapon.usage.double") %>
     </div>
   </dd>
 
@@ -25,11 +26,11 @@
   <dd><%=f.select :weapon_category_id, options_from_collection_for_select(@weapon_categories, :id, :name, default_category), {include_blank: true}, {multiple: false, :class => "col-md-5"} %></dd>
 
   <% default_group = @weapon.weapon_group_ids.empty? ? nil : @weapon.weapon_group_ids %>
-  <dt><%= f.label :weapon_group_ids, t("common.groups"), :class=>"col-md-4" %></dt>
+  <dt><%= f.label :weapon_group_ids, t("common.weapon_groups"), :class=>"col-md-4" %></dt>
   <dd><%=f.select :weapon_group_ids, options_from_collection_for_select(@weapon_groups, :id, :name, default_group),{}, {:multiple => true, :size => 3, :class => "col-md-5"}  %></dd>
 
   <% default_property = @weapon.weapon_property_ids.empty? ? nil : @weapon.weapon_property_ids %>
-  <dt><%= f.label :weapon_property_ids, t("common.properties"), :class=>"col-md-4" %></dt>
+  <dt><%= f.label :weapon_property_ids, t("common.weapon.properties"), :class=>"col-md-4" %></dt>
   <dd><%=f.select :weapon_property_ids, options_from_collection_for_select(@weapon_properties, :id, :name, default_property), {}, {:multiple => true, :size => 3, :class => "col-md-5" } %></dd>
 
   <% default_source = @weapon.source_id.nil? ? nil : @weapon.source.id %>

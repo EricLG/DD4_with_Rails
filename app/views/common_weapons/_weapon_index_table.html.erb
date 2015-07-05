@@ -1,39 +1,36 @@
-<div class="row">
-  <div class="table-responsive">
-    <table  class="table table-striped table-bordered table-hover">
-      <tr>
-        <th class="col-sm-1"><%= t('common.weapon.handling')   %></th>
-        <th class="col-sm-1"><%= t('common.weapon.damage')     %></th>
-        <th class="col-sm-1"><%= t('common.weapon.range')      %></th>
-        <th class="col-sm-1"><%= t('common.weapon.weapon')     %></th>
-        <th class="col-sm-1"><%= t('common.price')             %></th>
-        <th class="col-sm-1"><%= t('common.weight')             %></th>
-        <th class="col-sm-1"><%= t('common.weapon_groups')     %></th>
-        <th class="col-sm-1"><%= t('common.weapon_properties') %></th>
-        <th class="col-sm-1"><%= t('common.source')            %></th>
-      </tr>
-      <% commons.each do |co| %>
-      <tr>
-        <td><%= link_to co.name, object_common_weapon_path(co.id)  %></td>
-        <td><%= co.handling %>  </td>
-        <td><%= co.damage %>    </td>
-        <td><%= co.range %>     </td>
-        <td><%= co.price %>     </td>
-        <td><%= co.weight %>     </td>
-        <td>
-          <% co.weapon_groups.each do |g| %>
-            <p><%= g.name %></p>
-          <% end %>
-        </td>
-        <td>
-          <% co.weapon_properties.each do |p| %>
-            <%= p.name %>
-          <% end %>
-        </td>
-        <td><%= co.source.name %></td>
-      </tr>
-      <% end %><!-- Fin communs -->
-    </table>
-  </div>
+<div class="table-responsive">
+  <table  class="table table-striped table-bordered table-hover">
+    <tr>
+      <th class="col-sm-1"><%= t('common.name') %></th>
+      <th class="col-sm-1"><%= t('common.weapon.handling')   %></th>
+      <th class="col-sm-1"><%= t('common.weapon.damage')     %></th>
+      <th class="col-sm-1"><%= t('common.weapon.range')      %></th>
+      <th class="col-sm-1"><%= t('common.price')             %></th>
+      <th class="col-sm-1"><%= t('common.weight')            %></th>
+      <th class="col-sm-1"><%= t('common.weapon_groups')     %></th>
+      <th class="col-sm-1"><%= t('common.weapon.properties') %></th>
+      <th class="col-sm-1"><%= t('common.source')            %></th>
+    </tr>
+    <% commons.each do |co| %>
+    <tr>
+      <td><%= link_to co.name, object_common_weapon_path(co.id)  %></td>
+      <td><%= co.handling %>  </td>
+      <td><%= co.damage %>    </td>
+      <td><%= co.range %>     </td>
+      <td><%= co.price %>     </td>
+      <td><%= co.weight %>     </td>
+      <td>
+        <% co.weapon_groups.each do |g| %>
+          <p><%= g.name %></p>
+        <% end %>
+      </td>
+      <td>
+        <% co.weapon_properties.each do |p| %>
+          <%= p.name %>
+        <% end %>
+      </td>
+      <td><%= co.source.name %></td>
+    </tr>
+    <% end %><!-- Fin communs -->
+  </table>
 </div>
-

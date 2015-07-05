@@ -3,32 +3,33 @@
   <%= render "sidebloc/objects_menu" %>
 <% end %>
 
-<h3 class="col_sm-12"><%= link_to t('magic.gear.title_show', gear: @gear.name), edit_object_magic_gear_path(@gear.id) %> </h3>
+<h3 class="col_sm-12"><%= @gear.name %> </h3>
 
 <dl class="dl-horizontal">
-  <dt><%= t("magic.gear.name",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.name %></dd>
-  <dt><%= t("magic.gear.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.description %></dd>
-
+  <dt><%= t("magic.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.description %></dd>
 
 <% if  @gear.object_levels.empty? %>
   <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
    <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left"><%= display_levels(@gear.object_levels.order(:level), @gear.alteration?)%></dd>
 <% end %>
+
 <% if  @gear.armor_categories.empty? %>
-  <dt><%= t("magic.gear.shield_group", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
+  <dt><%= t("magic.shield_groups", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
-  <dt><%= t("magic.gear.shield_group", :class=>"col_sm-4") %> </dt><dd class="text-left">
+  <dt><%= t("magic.shield_groups", :class=>"col_sm-4") %> </dt><dd class="text-left">
     <% @gear.armor_categories.each do |g| %>
       <%= g.name %>
     <% end %>
   </dd>
 <% end %>
 
-  <dt><%= t("magic.gear.location",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.location.name %></dd>
-  <dt><%= t("magic.gear.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.alteration %></dd>
-  <dt><%= t("magic.gear.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @gear.property %></dd>
-  <dt><%= t("magic.gear.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @gear.power %></dd>
-  <dt><%= t("magic.gear.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.special %></dd>
-  <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.source.name %></dd>
+  <dt><%= t("magic.gear.location",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.location.name %></dd>
+  <dt><%= t("magic.alteration",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.alteration %></dd>
+  <dt><%= t("magic.property",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @gear.property %></dd>
+  <dt><%= t("magic.power",          :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @gear.power %></dd>
+  <dt><%= t("magic.special",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.special %></dd>
+  <dt><%= t("common.source",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @gear.source.name %></dd>
 </dl>
+
+<%= link_to t('magic.gear.edit_gear', gear: @gear.name), edit_object_magic_gear_path(@gear.id) %>

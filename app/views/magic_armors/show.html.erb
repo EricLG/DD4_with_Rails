@@ -3,12 +3,10 @@
   <%= render "sidebloc/objects_menu" %>
 <% end %>
 
-<h3 class="col_sm-12"><%= link_to t('magic.armor.title_show', armor: @armor.name), edit_object_magic_armor_path(@armor.id) %> </h3>
+<h3 class="col_sm-12"><%= @armor.name %> </h3>
 
 <dl class="dl-horizontal">
-  <dt><%= t("magic.armor.name",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.name %></dd>
-  <dt><%= t("magic.armor.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.description %></dd>
-
+  <dt><%= t("magic.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.description %></dd>
 
 <% if  @armor.object_levels.empty? %>
   <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
@@ -19,16 +17,18 @@
 <% if  @armor.armor_categories.empty? %>
   <dt><%= t("common.categories", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
 <% else %>
-  <dt><%= t("common.categories", :class=>"col_sm-4") %> </dt><dd class="text-left">
+  <dt><%= t("common.armor_categories", :class=>"col_sm-4") %> </dt><dd class="text-left">
     <% @armor.armor_categories.each do |g| %>
       <%= g.name %>
     <% end %>
   </dd>
 <% end %>
 
-  <dt><%= t("magic.armor.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.alteration %></dd>
-  <dt><%= t("magic.armor.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @armor.property %></dd>
-  <dt><%= t("magic.armor.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @armor.power %></dd>
-  <dt><%= t("magic.armor.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.special %></dd>
+  <dt><%= t("magic.alteration",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.alteration %></dd>
+  <dt><%= t("magic.property",    :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @armor.property %></dd>
+  <dt><%= t("magic.power",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @armor.power %></dd>
+  <dt><%= t("magic.special",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.special %></dd>
   <dt><%= t("common.source",            :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @armor.source.name %></dd>
 </dl>
+
+<%= link_to t('magic.armor.edit_armor', armor: @armor.name), edit_object_magic_armor_path(@armor.id) %>
