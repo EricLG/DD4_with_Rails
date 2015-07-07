@@ -12,11 +12,21 @@ class MagicImplementsController < ApplicationController
   end
 
   def create
-    @implement = MagicImplement.create(magic_implement_params)
-    if @implement.persisted?
-      redirect_to object_magic_implement_path(@implement.id)
+    @implement = MagicImplement.new(magic_implement_params)
+    if @implement.save
+      if params["add_another"]
+        flash[:success] = "L'objet \"#{@implement.name}\" a bien été créé."
+        redirect_to new_object_magic_implement_path
+      else
+        flash[:success] = "L'objet \"#{@implement.name}\" a bien été créé."
+        redirect_to object_magic_implement_path(@implement.id)
+      end
     else
-      render object_magic_implements_path
+      @implement_groups = ImplementGroup.all
+      @levels = ObjectLevel.all
+      @sources = Source.all
+      flash[:error] = "Erreur sur les champs suivants: #{@implement.errors.full_messages}"
+      render :new
     end
   end
 

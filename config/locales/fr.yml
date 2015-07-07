@@ -35,6 +35,7 @@ fr:
     w_true:             "Vrai"
     weapon_groups:      "Groupes d'armes"
     armor_categories:   "Catégories d'armures"
+    add_another:        "Ajouter un autre élément"
     weapon:
       title_edit:       "Modification d'une arme commune"
       title_index:      "Liste des armes communes"

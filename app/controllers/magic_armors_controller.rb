@@ -12,11 +12,21 @@ class MagicArmorsController < ApplicationController
   end
 
   def create
-    @armor = MagicArmor.create(magic_armor_params)
-    if @armor.persisted?
-      redirect_to object_magic_armor_path(@armor.id)
+    @armor = MagicArmor.new(magic_armor_params)
+    if @armor.save
+      if params["add_another"]
+        flash[:success] = "L'objet \"#{@armor.name}\" a bien été créé."
+        redirect_to new_object_magic_armor_path
+      else
+        flash[:success] = "L'objet \"#{@armor.name}\" a bien été créé."
+        redirect_to object_magic_armor_path(@armor.id)
+      end
     else
-      render object_magic_armor_path
+      @armor_categories = ArmorCategory.all
+      @levels = ObjectLevel.all
+      @sources = Source.all
+      flash[:error] = "Erreur sur les champs suivants: #{@armor.errors.full_messages}"
+      render :new
     end
   end
 

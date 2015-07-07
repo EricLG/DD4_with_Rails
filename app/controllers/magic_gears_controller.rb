@@ -12,11 +12,22 @@ class MagicGearsController < ApplicationController
   end
 
   def create
-    @gear = MagicGear.create(magic_gear_params)
-    if @gear.persisted?
-      redirect_to object_magic_gear_path(@gear.id)
+    @gear = MagicGear.new(magic_gear_params)
+    if @gear.save
+      if params["add_another"]
+        flash[:success] = "L'objet \"#{@gear.name}\" a bien été créé."
+        redirect_to new_object_magic_implement_path
+      else
+        flash[:success] = "L'objet \"#{@gear.name}\" a bien été créé."
+        redirect_to object_magic_gear_path(@gear.id)
+      end
     else
-      render object_magic_gears_path
+      @locations = Location.all
+      @armor_categories = ArmorCategory.where(code: ['lightsh', 'heavysh'])
+      @levels = ObjectLevel.all
+      @sources = Source.all
+      flash[:error] = "Erreur sur les champs suivants: #{@gear.errors.full_messages}"
+      render :new
     end
   end
 

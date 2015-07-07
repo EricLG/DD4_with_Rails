@@ -12,11 +12,21 @@ class MagicWeaponsController < ApplicationController
   end
 
   def create
-    @weapon = MagicWeapon.create(magic_weapon_params)
-    if @weapon.persisted?
-      redirect_to object_magic_weapon_path(@weapon.id)
+    @weapon = MagicWeapon.new(magic_weapon_params)
+    if @weapon.save
+      if params["add_another"]
+        flash[:success] = "L'objet \"#{@weapon.name}\" a bien été créé."
+        redirect_to new_object_magic_weapon_path
+      else
+        flash[:success] = "L'objet \"#{@weapon.name}\" a bien été créé."
+        redirect_to object_magic_weapon_path(@weapon.id)
+      end
     else
-      render object_magic_weapon_path
+      @weapon_groups = WeaponGroup.all
+      @levels = ObjectLevel.all
+      @sources = Source.all
+      flash[:error] = "Erreur sur les champs suivants: #{@weapon.errors.full_messages}"
+      render :new
     end
   end
 
