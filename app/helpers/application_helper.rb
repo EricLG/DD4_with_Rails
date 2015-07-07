@@ -19,4 +19,17 @@ module ApplicationHelper
     end
     return table
   end
+
+  def find_flash_class(flash)
+    case flash
+    when "notice"
+      return "bg-info"
+    when "success"
+      return "bg-success"
+    when "error"
+      return "bg-danger"
+    else
+      return "bg-primary"
+    end
+  end
 end

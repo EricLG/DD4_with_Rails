@@ -1,4 +1,24 @@
 fr:
+  menu:
+    main_title:   "La promenade de Waukeen"
+    link:
+      object:     "Objets"
+      feat:       "Talents"
+      race:       "Races"
+      klass:      "Classes"
+      help:       "Aides de jeux"
+      loot:       "Butin"
+      campaign:   "Campagnes"
+      import:     "Import des données"
+    tooltip:
+      object:     "Pages des objets magiques et commun."
+      feat:       "Tous les talents de DD4."
+      race:       "Toutes les races de DD4."
+      klass:      "Toutes les classes de DD4."
+      help:       "Infos sur les règles."
+      loot:       "Butin"
+      campaign:   "Liste des campagnes."
+      import:     "Import des données"
   common:
     name:               "Nom"
     weight:             "Poids"

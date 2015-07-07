@@ -7,42 +7,49 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body class="container">
-<% flash.each do |name, msg| %>
-  <% klass = name == "notice" ? "bg-primary" : "bg-warning" %>
-  <%= content_tag :div, msg, class: "#{klass}" %>
-<% end %>
-<header>
-  <h1><a href="/" title="Page d&#039;accueil" class="active">La promenade de Waukeen</a></h1>
-</header>
+<body class="container background">
+  <div class="page">
+    <header >
+      <h1 class="header">
+        <%= link_to root_path, class: "active white-text" do %>
+          <%= image_tag("header/dnd_logo.png") %>
+          <%= t("menu.main_title") %>
+        <% end %>
+      </h1>
+    </header>
 
-<nav>
- <ul class="nav nav-tabs">
-    <li role="presentation"><%= link_to "Objects",  objects_index_path, title:"Pages des objets magiques et commun." %></li>
-    <li role="presentation"><%= link_to "Talents",  feats_path,         title:"Tous les talents de DD4." %></li>
-    <li role="presentation"><%= link_to "Races",    races_path,         title:"Toutes les races de DD4." %></li>
-    <li role="presentation"><%= link_to "Classes",  klasses_path,       title:"Toutes les classes de DD4." %></li>
-    <li role="presentation"><%= link_to "Aides de jeux", aides_path,  title:"Infos utiles." %></li>
-    <li role="presentation"><a href="#" title="Générateur de butin">Trésor</a></li>
-    <li role="presentation"><a href="#">Membres</a></li>
-    <li role="presentation"><%= link_to "Campagnes", campaigns_path,  title:"Liste des campagnes." %></li>
-    <li role="presentation"><%= link_to "IMPORT", import_welcomes_path,  title:"Liste des campagnes."  %></li>
-  </ul>
-</nav>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "flash #{find_flash_class(name)}" %>
+    <% end %>
 
-<div class="row">
-<% unless @hide_side_bloc  %>
-  <div class="col-sm-2" style="border: 1px solid">
-    <%= yield :sidebloc %>
+    <nav class="black-bg">
+     <ul class="nav nav-tabs">
+        <li role="presentation"><%= link_to t("menu.link.object"),   objects_index_path,   title: t("menu.tooltip.object"),   class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.feat"),     feats_path,           title: t("menu.tooltip.feat"),     class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.race"),     races_path,           title: t("menu.tooltip.race"),     class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.klass"),    klasses_path,         title: t("menu.tooltip.klass"),    class: "white-text" %></li>
+        <!-- <li role="presentation"><%= link_to t("menu.link.help"),     aides_path,           title: t("menu.tooltip.help"),     class: "white-text" %></li> -->
+        <!-- <li role="presentation"><%= link_to t("menu.link.loot"),     "#",                  title: t("menu.tooltip.loot"),     class: "white-text" %></li> -->
+        <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,       title: t("menu.tooltip.campaign"), class: "white-text" %></li>
+        <% if current_admin_user %>
+          <li role="presentation"><%= link_to t("menu.link.import"),   import_welcomes_path, title: t("menu.tooltip.import"),   class: "white-text" %></li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <div class="row no-margin sidebloc">
+    <% unless @hide_side_bloc  %>
+      <div class="col-sm-2">
+        <%= yield :sidebloc %>
+      </div>
+    <% end %>
+      <div class="col-sm-10">
+        <%= yield %>
+      </div>
+    </div>
+
+    <footer class=" row col-sm-12 no-margin">
+    </footer>
   </div>
-<% end %>
-  <div class="col-sm-10">
-    <%= yield %>
-  </div>
-</div>
-
-<footer class=" row col-sm-12" style="border: 1px solid">
-  <p>Pied de page</p>
-</footer>
 </body>
 </html>

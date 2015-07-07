@@ -1,11 +1,12 @@
 class WelcomesController < ApplicationController
 
-  before_filter :authorize, except: [:index]
+  before_filter :authorize_admin, except: [:index]
   def index
 
   end
 
   def import
+    @hide_side_bloc = true
   end
 
   def weapons
@@ -13,8 +14,8 @@ class WelcomesController < ApplicationController
       flash[:error] = "Il existe déjà des armes magiques, import annulé."
       redirect_to import_welcomes_path
     else
-      #MagicWeapon.import_weapons
-      flash[:notice] = "L'import des armes magiques à terminé"
+      MagicWeapon.import_weapons
+      flash[:success] = "L'import des armes magiques à terminé"
       redirect_to object_magic_weapons_path
     end
   end
@@ -25,7 +26,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicArmor.import_armors
-      flash[:notice] = "L'import des armures magiques à terminé"
+      flash[:success] = "L'import des armures magiques à terminé"
       redirect_to object_magic_armors_path
     end
   end
@@ -36,7 +37,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicGear.import_gears
-      flash[:notice] = "L'import des équipements magiques à terminé"
+      flash[:success] = "L'import des équipements magiques à terminé"
       redirect_to object_magic_gears_path
     end
   end
@@ -47,7 +48,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicImplement.import_implements
-      flash[:notice] = "L'import des focaliseurs magiques à terminé"
+      flash[:success] = "L'import des focaliseurs magiques à terminé"
       redirect_to object_magic_implements_path
     end
   end
@@ -58,7 +59,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       Feat.import_feats
-      flash[:notice] = "L'import des talents à terminé"
+      flash[:success] = "L'import des talents à terminé"
       redirect_to feats_path
     end
   end
