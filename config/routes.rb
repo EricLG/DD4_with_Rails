@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  resources :users, only: [:new, :show, :create]
 
   # Menu principal
   get 'objects/index'

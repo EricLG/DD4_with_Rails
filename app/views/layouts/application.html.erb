@@ -9,13 +9,18 @@
 
 <body class="container background">
   <div class="page">
-    <header >
-      <h1 class="header">
+    <header  class="header">
+      <h1 class= "no-margin" style="display: inline-block;">
         <%= link_to root_path, class: "active white-text" do %>
           <%= image_tag("header/dnd_logo.png") %>
           <%= t("menu.main_title") %>
         <% end %>
       </h1>
+      <% if current_user %>
+        <div class="account box pull-right">
+          <p>Bonjour <%= link_to current_user.name, user_path(current_user) %> | <%= link_to "Logout", '/logout' %></p>
+        </div>
+      <% end %>
     </header>
 
     <% flash.each do |name, msg| %>

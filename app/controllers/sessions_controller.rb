@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.
-      flash[:error] = "Une erreur s'est produite"
+      flash[:error] = "Email ou mot de passe incorrecte"
       redirect_to '/login'
     end
   end
