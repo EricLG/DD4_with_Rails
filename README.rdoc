@@ -1,28 +1,39 @@
-== README
+== Donjons et Dragons 4
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Site sur Donjons et Dragons 4, hébergé chez Heroku.
 
-Things you may want to cover:
+== Actuellement
+Le site gère la création, l'affichage et la mise à jour des objets communs, magiques et des talents.
+Il y a une petite section pour les classes et les races.
+On peut également créer un compte pour commencer une campagne et décrire les différentes parties jouées.
 
-* Ruby version
+== Prochainement
 
-* System dependencies
+Il y a beaucoup de chose à faire encore, notamment sur la gestion des droits de chaque utilisateur, la création de feuille de personnage, les campagnes et parties, la génération de butin selon la taille et le niveau du groupe, ...
+Après, il y a les performances du site à gérer.
+Si vous avez des idées, n'hésitez pas à m'en parler.
 
-* Configuration
+== Installation:
 
-* Database creation
+Si vous souhaitez installer le site en local, il est préférable de le faire sur un système Linux (Ubuntu fonctionne très bien et est facile à installer sur une machine virtuelle)
 
-* Database initialization
+Pour installer ce site en local (sur votre machine, vous devez disposer des logiciels suivants:
+  * Ruby 2.1.3
+  * Rails 4.2.2
+  * Postgres 9.3
 
-* How to run the test suite
+Il vous faudra créer un utilisateur pour Postgres avec les login et mot de passe suivant:
+illisae / illisae
 
-* Services (job queues, cache servers, search engines, etc.)
+Un gestionnaire de version de Ruby est fortement conseillé (RVM ou RBEnv).
 
-* Deployment instructions
+Vous pouvez ensuite cloner le site dans le dossier de votre choix et lancer les commandes suivantes
+  * bundle install
+  * rake db:create db:migrate db:seed
+  * rails s
 
-* ...
+Vous pouvez maintenant visitez le site, en local, à l'adresse suivante: localhost:3000
 
+== Bug
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Si vous rencontrez un bug, merci de me le remonter et de bien décrire ce que vous etiez en train de faire.
