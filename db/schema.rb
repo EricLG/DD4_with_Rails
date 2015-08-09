@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628171800) do
+ActiveRecord::Schema.define(version: 20150809151032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,27 @@ ActiveRecord::Schema.define(version: 20150628171800) do
 
   add_index "common_weapons_weapon_properties", ["common_weapon_id"], name: "index_common_weapons_weapon_properties_on_common_weapon_id", using: :btree
   add_index "common_weapons_weapon_properties", ["weapon_property_id"], name: "index_common_weapons_weapon_properties_on_weapon_property_id", using: :btree
+
+  create_table "consumables", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "kind"
+    t.string   "alteration"
+    t.string   "property"
+    t.string   "power"
+    t.string   "special"
+    t.integer  "source_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "consumables_object_levels", id: false, force: :cascade do |t|
+    t.integer "consumable_id"
+    t.integer "object_level_id"
+  end
+
+  add_index "consumables_object_levels", ["consumable_id"], name: "index_consumables_object_levels_on_consumable_id", using: :btree
+  add_index "consumables_object_levels", ["object_level_id"], name: "index_consumables_object_levels_on_object_level_id", using: :btree
 
   create_table "feats", force: :cascade do |t|
     t.string   "name"
@@ -311,6 +332,7 @@ ActiveRecord::Schema.define(version: 20150628171800) do
     t.integer  "alteration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cons_price"
   end
 
   add_index "object_levels", ["level"], name: "index_object_levels_on_level", using: :btree

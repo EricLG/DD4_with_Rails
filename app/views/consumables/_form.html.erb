@@ -1,0 +1,81 @@
+<%= form_for [:object, @consumable], {:class => 'form-horizontal'} do |f| %>
+  <% if @consumable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@consumable.errors.count, "error") %> prohibited this consumable from being saved:</h2>
+
+      <ul>
+      <% @consumable.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, t("magic.name"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :name, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, t("magic.description"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :description, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_level = @consumable.object_level_ids.empty? ? nil : @consumable.object_level_ids %>
+    <%= f.label :object_level_ids, t("magic.levels"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+       <%= f.select :object_level_ids, options_from_collection_for_select(@levels, :id, :level, default_level),{}, {:multiple => true, :size => 5, :class => "form-control"}  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :kind, t(".kind"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+       <%= f.select :kind, options_for_select(kind_options, @consumable.kind),{}, {:multiple => false, :size => 5, :class => "form-control"}  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :alteration, t("magic.alteration"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :alteration, size: 60, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :property, t("magic.property"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :property, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :power, t("magic.power"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :power, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :special, t("magic.special"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :special, size: "60x5", :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <% default_source = @consumable.source_id.nil? ? nil : @consumable.source.id %>
+    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
+    <div class="col-sm-8">
+      <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-8">
+      <%= f.submit t("common.validate"),    name: "commit",      :class => "btn btn-default" %>
+      <%= f.submit t("common.add_another"), name: "add_another", :class => "btn btn-default" %>
+      </div>
+  </div>
+<% end %>

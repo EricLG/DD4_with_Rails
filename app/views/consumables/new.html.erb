@@ -1,0 +1,17 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/objects_menu" %>
+<% end %>
+
+<div class="row">
+  <h3 class="col-sm-12"><%= t('.title_new')%></h3>
+</div>
+
+<div class="row">
+  <div class=" col-sm-8">
+    <%= render "form" %>
+  </div>
+</div>
+
+
+<%= link_to 'Back', object_consumables_path %>

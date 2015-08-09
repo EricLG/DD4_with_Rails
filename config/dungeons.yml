@@ -1,0 +1,8 @@
+default: &default
+  consumable_kind: ["potion", "reactive", "elixir", "ammo", "immurement", "whetstone", "other_cons"]
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  <<: *default

@@ -1,4 +1,10 @@
 fr:
+  activerecord:
+    models:
+      consumable:
+        one:      "Consommable"
+        other:    "Consommables"
+
   menu:
     main_title:   "La promenade de Waukeen"
     link:
@@ -108,6 +114,15 @@ fr:
       new_gear:         "Créer un nouvel équipement magique"
       edit_gear:        "Modifier %{gear}"
       location:         "Emplacement"
+  consumables:
+    kind:
+      reactive:       "Réactif"
+      ammo:           "Munitions"
+      potion:         "Potion"
+      elixir:         "Élixir"
+      immurement:      "Emmurement"
+      whetstone:      "Pierre à aiguiser"
+      other_cons:     "Autre consommable"
   user:
     title_signup: "S'enregistrer"
     title_login:  "Se connecter"
@@ -150,6 +165,5 @@ fr:
         zero:  "Aucun résultat"
         one:   "Affichage de <b>1</b> %{model}"
         other: "Affichage de <b>%{count}</b> %{model}"
-
       multi_page: "Affichage %{from} - %{to} sur %{count}"
       multi_page_html: "Affichage de <b>%{from}&nbsp;-&nbsp;%{to}</b> sur <b>%{count}</b>"

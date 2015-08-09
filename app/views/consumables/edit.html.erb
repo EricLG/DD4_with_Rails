@@ -1,0 +1,11 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/objects_menu" %>
+<% end %>
+
+<h3 class="col-sm-12"><%= t(".title_edit") %></h3>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', object_consumable_path(@consumable) %> |
+<%= link_to 'Back', object_consumables_path %>
