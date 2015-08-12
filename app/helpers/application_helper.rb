@@ -4,7 +4,7 @@ module ApplicationHelper
     text.truncate_words(count, omission: "...") unless text.blank?
   end
 
-  def display_levels(levels, show_alteration = true)
+  def display_levels(levels, show_alteration = true, kind = nil)
     x =  "\u00A0"
     table = content_tag("table") do
       concat(content_tag("tbody") do
@@ -12,7 +12,11 @@ module ApplicationHelper
           concat(content_tag("tr") do
             concat(content_tag("td", "Niv. #{l.level.to_s.ljust(2,x)}", style: "padding-right:20px"))
             concat(content_tag("td", "+#{l.alteration}", style: "padding-right:20px")) if show_alteration
-            concat(content_tag("td", "#{l.price} PO", style: "text-align: right"))
+            if kind == "consumable"
+              concat(content_tag("td", "#{l.cons_price} PO", style: "text-align: right"))
+            else
+              concat(content_tag("td", "#{l.price} PO", style: "text-align: right"))
+            end
           end)
         end
       end)

@@ -4,7 +4,7 @@ class ConsumablesController < ApplicationController
   before_filter :set_consumable, only: [:show, :edit, :update, :destroy]
 
   def index
-    @consumables = Consumable.all.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @consumables = Consumable.all.paginate(:page => params[:page], :per_page => 2).order(name: :asc)
   end
 
   def show
@@ -22,7 +22,12 @@ class ConsumablesController < ApplicationController
 
     respond_to do |format|
       if @consumable.save
-        format.html { redirect_to object_consumable_path(@consumable), notice: 'Consumable was successfully created.' }
+        if params["add_another"]
+          format.html { redirect_to new_object_consumable_path, notice: t('.notice', name: @consumable.name) }
+        else
+          format.html { redirect_to object_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
+        end
+
       else
         format.html { render :new }
       end
@@ -32,7 +37,7 @@ class ConsumablesController < ApplicationController
   def update
     respond_to do |format|
       if @consumable.update(consumable_params)
-        format.html { redirect_to object_consumable_path(@consumable), notice: 'Consumable was successfully updated.' }
+        format.html { redirect_to object_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
       else
         format.html { render :edit }
       end
@@ -42,7 +47,7 @@ class ConsumablesController < ApplicationController
   def destroy
     @consumable.destroy
     respond_to do |format|
-      format.html { redirect_to object_consumables_path, notice: 'Consumable was successfully destroyed.' }
+      format.html { redirect_to object_consumables_path, notice: t('.notice', name: @consumable.name) }
     end
   end
 

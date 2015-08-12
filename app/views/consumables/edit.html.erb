@@ -3,9 +3,8 @@
   <%= render "sidebloc/objects_menu" %>
 <% end %>
 
-<h3 class="col-sm-12"><%= t(".title_edit") %></h3>
+<div class="row">
+  <h3 class="col-sm-12"><%= t('.title_edit') %></h3>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', object_consumable_path(@consumable) %> |
-<%= link_to 'Back', object_consumables_path %>
+<%= render "form" %>

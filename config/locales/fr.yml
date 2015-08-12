@@ -1,9 +1,23 @@
 fr:
+  attributes:
+    alteration:   "Altération"
+    critical:     "Critique"
+    description:  "Description"
+    levels:       "Niveaux"
+    name:         "Nom"
+    property:     "Propriété"
+    power:        "Pouvoir"
+    special:      "Spécial"
+    source:       "Source"
   activerecord:
     models:
       consumable:
         one:      "Consommable"
         other:    "Consommables"
+    attributes:
+      consumable:
+        kind:     "Type de consommables"
+
 
   menu:
     main_title:   "La promenade de Waukeen"
@@ -26,6 +40,7 @@ fr:
       campaign:   "Liste des campagnes."
       import:     "Import des données"
   common:
+    edit:               "Modifier %{name}"
     name:               "Nom"
     weight:             "Poids"
     price:              "Prix"
@@ -115,12 +130,25 @@ fr:
       edit_gear:        "Modifier %{gear}"
       location:         "Emplacement"
   consumables:
+    index:
+      title_index:      "Liste des consommables"
+      new_consumable:   "Créer un nouveau consommable"
+    edit:
+      title_edit:      "Modification d'un consommable"
+    new:
+      title_new:        "Création d'un consommable"
+    update:
+      notice:         "%{name} a été mis à jour avec succès."
+    create:
+      notice:         "%{name} a été créé avec succès."
+    destroy:
+      notice:         "%{name} a été supprimé avec succès"
     kind:
       reactive:       "Réactif"
       ammo:           "Munitions"
       potion:         "Potion"
       elixir:         "Élixir"
-      immurement:      "Emmurement"
+      immurement:     "Emmurement"
       whetstone:      "Pierre à aiguiser"
       other_cons:     "Autre consommable"
   user:

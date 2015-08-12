@@ -9,11 +9,11 @@
   <table  class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-        <th class="col-sm-1"><%= t('.name') %></th>
-        <th class="col-sm-1"><%= t('.kind') %></th>
-        <th class="col-sm-1"><%= t('.property') %></th>
-        <th class="col-sm-1"><%= t('.power') %></th>
-        <th class="col-sm-1"><%= t('.source') %></th>
+        <th class="col-sm-1"><%= Consumable.human_attribute_name("name") %></th>
+        <th class="col-sm-1"><%= Consumable.human_attribute_name("kind") %></th>
+        <th class="col-sm-1"><%= Consumable.human_attribute_name("property") %></th>
+        <th class="col-sm-1"><%= Consumable.human_attribute_name("power") %></th>
+        <th class="col-sm-1"><%= Consumable.human_attribute_name("source") %></th>
       </tr>
     </thead>
 
@@ -21,10 +21,10 @@
     <% @consumables.each do |consumable| %>
       <tr>
         <td><%= link_to consumable.name, object_consumable_path(consumable) %></td>
-        <td><%= consumable.kind %></td>
+        <td><%= t("consumables.kind.#{consumable.kind}") %></td>
         <td><%= display_first_words(consumable.property) %></td>
         <td><%= display_first_words(consumable.power) %></td>
-        <td><%= consumable.source_id %></td>
+        <td><%= consumable.source.name %></td>
       </tr>
     <% end %>
   </tbody>

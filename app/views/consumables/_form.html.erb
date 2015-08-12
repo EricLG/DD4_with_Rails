@@ -12,60 +12,60 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, t("magic.name"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :name, Consumable.human_attribute_name("name"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%= f.text_field :name, size: 60, :class=>"form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :description, t("magic.description"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :description, Consumable.human_attribute_name("description"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%= f.text_field :description, size: 60, :class=>"form-control" %>
     </div>
   </div>
   <div class="form-group">
     <% default_level = @consumable.object_level_ids.empty? ? nil : @consumable.object_level_ids %>
-    <%= f.label :object_level_ids, t("magic.levels"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :object_level_ids, Consumable.human_attribute_name("levels"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
        <%= f.select :object_level_ids, options_from_collection_for_select(@levels, :id, :level, default_level),{}, {:multiple => true, :size => 5, :class => "form-control"}  %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :kind, t(".kind"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :kind, Consumable.human_attribute_name("kind"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
        <%= f.select :kind, options_for_select(kind_options, @consumable.kind),{}, {:multiple => false, :size => 5, :class => "form-control"}  %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :alteration, t("magic.alteration"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :alteration, Consumable.human_attribute_name("alteration"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%= f.text_field :alteration, size: 60, :class=>"form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :property, t("magic.property"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :property, Consumable.human_attribute_name("property"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%= f.text_area :property, size: "60x5", :class=>"form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :power, t("magic.power"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :power, Consumable.human_attribute_name("power"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%= f.text_area :power, size: "60x5", :class=>"form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :special, t("magic.special"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :special, Consumable.human_attribute_name("special"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%= f.text_area :special, size: "60x5", :class=>"form-control" %>
     </div>
   </div>
   <div class="form-group">
     <% default_source = @consumable.source_id.nil? ? nil : @consumable.source.id %>
-    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
+    <%= f.label :source_id, Consumable.human_attribute_name("source"), :class=>"col-sm-4 control-label" %>
     <div class="col-sm-8">
       <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>
     </div>
