@@ -30,6 +30,7 @@ fr:
       loot:       "Butin"
       campaign:   "Campagnes"
       import:     "Import des données"
+      contribute: "Contributions"
     tooltip:
       object:     "Pages des objets magiques et commun."
       feat:       "Tous les talents de DD4."
@@ -39,6 +40,7 @@ fr:
       loot:       "Butin"
       campaign:   "Liste des campagnes."
       import:     "Import des données"
+      contribute: "Créer de nouveaux objets et talents."
   common:
     edit:               "Modifier %{name}"
     name:               "Nom"
@@ -64,7 +66,6 @@ fr:
       title_show:       "Modifier %{weapon} "
       damage:           "Dégâts"
       handling:         "Maniement"
-      new_weapon:       "Ajouter une arme commune"
       no_weapon:        "Aucune arme n'a été créée"
       one_handed:       "Arme à une main"
       range:            "Portée"
@@ -86,7 +87,6 @@ fr:
       heavy:            "Lourd"
       min_alte_bonus:   "Bonus minimal d'altération"
       ms_malus:         "Malus de VD"
-      new_armor:        "Ajouter une armure commune ou un bouclier commun"
       skill_malus:      "Malus de compétences"
       shield_bonus:     "Bonus de bouclier"
       special:          "Spécial"
@@ -107,32 +107,27 @@ fr:
       title_edit:       "Modification d'une arme magique"
       title_index:      "Liste des armes magiques"
       title_new:        "Création d'une arme magique"
-      new_weapon:       "Créer une nouvelle arme magique"
       edit_weapon:      "Modifier %{weapon}"
     armor:
       title_edit:       "Modification d'une armure magique"
       title_index:      "Liste des armures magiques"
       title_new:        "Création d'une armure magique"
-      new_armor:        "Créer une nouvelle armure magique"
       edit_armor:       "Modifier %{armor}"
     implement:
       title_edit:       "Modification d'un focaliseur magique"
       title_index:      "Liste des focaliseurs magiques"
       title_new:        "Création d'un focaliseur magique"
       title_show:       "Modifier %{implement}"
-      new_implement:    "Créer un nouvel focaliseur magique"
       edit_implement:   "Modifier %{implement}"
     gear:
       title_edit:       "Modification d'un équipement magique"
       title_index:      "Liste des équipements magiques"
       title_new:        "Création d'un équipement magique"
-      new_gear:         "Créer un nouvel équipement magique"
       edit_gear:        "Modifier %{gear}"
       location:         "Emplacement"
   consumables:
     index:
       title_index:      "Liste des consommables"
-      new_consumable:   "Créer un nouveau consommable"
     edit:
       title_edit:      "Modification d'un consommable"
     new:
@@ -163,7 +158,6 @@ fr:
   feat:
     title_index:    "Les talents de DD4"
     title_new:      "Ajout d'un nouveau talent"
-    new_feat:       "Ajouter un nouveau talent"
     name:           "Nom"
     klass:          "Classe"
     klasses:        "Classes"
@@ -180,6 +174,17 @@ fr:
     other:          "Autre prérequis"
     stats:          "Caractéristiques"
     req_feats:       "Talent prérequis"
+  welcomes:
+    contribute:
+      title_contribute:   "Contributions"
+      new_weapon:         "Créer une nouvelle arme magique"
+      new_armor:          "Créer une nouvelle armure magique"
+      new_implement:      "Créer un nouvel focaliseur magique"
+      new_gear:           "Créer un nouvel équipement magique"
+      new_consumable:     "Créer un nouveau consommable"
+      new_feat:           "Créer un nouveau talent"
+      new_common_weapon:  "Créer une arme commune"
+      new_common_armor:   "Créer une armure commune ou un bouclier commun"
   will_paginate:
     previous_label: "Précédent"
     next_label: "Suivant"

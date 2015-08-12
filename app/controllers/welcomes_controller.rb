@@ -9,6 +9,10 @@ class WelcomesController < ApplicationController
     @hide_side_bloc = true
   end
 
+  def contribute
+
+  end
+
   def weapons
     if MagicWeapon.count != 0
       flash[:error] = "Il existe déjà des armes magiques, import annulé."

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       get :gears
       get :implements
       get :feats
+      get :contribute
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
