@@ -14,4 +14,8 @@
   <h4>Consommables</h4>
     <ul>
       <li><%= link_to "Tous les Consommables", object_consumables_path %></li>
+      <% Rails.application.config_for(:dungeons)["consumable_kind"].each do |k| %>
+        <li><%= link_to t("consumables.kind.#{k}"), object_consumables_path %></li>
+      <% end %>
+    </ul>
 </div>
