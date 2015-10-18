@@ -1,6 +1,7 @@
 class WelcomesController < ApplicationController
 
   before_filter :authorize_admin, except: [:index]
+
   def index
     @hide_side_bloc = true if current_user
   end

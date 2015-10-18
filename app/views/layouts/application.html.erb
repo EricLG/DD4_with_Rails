@@ -16,7 +16,7 @@
           <%= t("menu.main_title") %>
         <% end %>
       </h1>
-      <% if current_user %>
+      <% if current_user.kind_of? User %>
         <div class="account box pull-right">
           <p>Bonjour <%= link_to current_user.name, user_path(current_user) %> | <%= link_to "Logout", '/logout' %></p>
         </div>
