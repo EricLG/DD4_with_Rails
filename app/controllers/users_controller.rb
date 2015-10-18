@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-  def new
+  skip_before_filter :check_current_logged_user, only: [:new]
 
+  def new
   end
 
   def show

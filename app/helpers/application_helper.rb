@@ -36,4 +36,8 @@ module ApplicationHelper
       return "bg-primary"
     end
   end
+
+  def is_current_user_admin?
+    @current_user.try(:name).try(:downcase) == "illisae"
+  end
 end

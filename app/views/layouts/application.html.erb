@@ -16,9 +16,9 @@
           <%= t("menu.main_title") %>
         <% end %>
       </h1>
-      <% if current_user.kind_of? User %>
+      <% if @current_user.kind_of? User %>
         <div class="account box pull-right">
-          <p>Bonjour <%= link_to current_user.name, user_path(current_user) %> | <%= link_to "Logout", '/logout' %></p>
+          <p>Bonjour <%= link_to @current_user.name, user_path(@current_user) %> | <%= link_to "Logout", '/logout' %></p>
         </div>
       <% end %>
     </header>
@@ -36,7 +36,7 @@
         <!-- <li role="presentation"><%= link_to t("menu.link.help"),     aides_path,           title: t("menu.tooltip.help"),     class: "white-text" %></li> -->
         <!-- <li role="presentation"><%= link_to t("menu.link.loot"),     "#",                  title: t("menu.tooltip.loot"),     class: "white-text" %></li> -->
         <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,       title: t("menu.tooltip.campaign"), class: "white-text" %></li>
-        <% if current_admin_user %>
+        <% if is_current_user_admin? %>
           <li role="presentation"><%= link_to t("menu.link.import"), import_welcomes_path, title: t("menu.tooltip.import"), class: "white-text" %></li>
           <li role="presentation"><%= link_to t("menu.link.contribute"), contribute_welcomes_path, title: t("menu.tooltip.contribute"), class: "white-text" %></li>
         <% end %>

@@ -1,5 +1,5 @@
-<% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+<% if @current_user %>
+  Signed in as <%= @current_user.name %> | <%= link_to "Logout", '/logout' %>
 <% else %>
   <h4><%= t('user.sidebar_login') %></h4>
   <%= render "sessions/login_form" %>
