@@ -18,7 +18,7 @@ class CreateCampaigns < ActiveRecord::Migration
     end
 
     create_table :characters do |t|
-      t.string  :char_name
+      t.string  :name
       t.integer :experience
       t.integer :level
       t.string  :parangon
@@ -36,10 +36,5 @@ class CreateCampaigns < ActiveRecord::Migration
       t.timestamps
     end
 
-
-    create_table :campaigns_characters, id: false do |t|
-      t.belongs_to :campaign, index: true
-      t.belongs_to :character, index: true
-    end
   end
 end

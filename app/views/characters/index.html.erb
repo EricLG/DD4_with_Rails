@@ -1,0 +1,11 @@
+<div class="row">
+  <h3 class="col-sm-12"><%= t('character.title_index') %></h3>
+</div>
+
+<ul>
+<% @characters.each do |c| %>
+  <li><%= link_to c.name, character_path(c.id) %></li>
+<% end %>
+</ul>
+
+<%= link_to t('character.new_character'), new_character_path %>

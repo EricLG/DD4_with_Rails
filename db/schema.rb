@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809151032) do
+ActiveRecord::Schema.define(version: 20151018130000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,16 +51,8 @@ ActiveRecord::Schema.define(version: 20150809151032) do
     t.datetime "updated_at"
   end
 
-  create_table "campaigns_characters", id: false, force: :cascade do |t|
-    t.integer "campaign_id"
-    t.integer "character_id"
-  end
-
-  add_index "campaigns_characters", ["campaign_id"], name: "index_campaigns_characters_on_campaign_id", using: :btree
-  add_index "campaigns_characters", ["character_id"], name: "index_campaigns_characters_on_character_id", using: :btree
-
   create_table "characters", force: :cascade do |t|
-    t.string   "char_name"
+    t.string   "name"
     t.integer  "experience"
     t.integer  "level"
     t.string   "parangon"
@@ -77,6 +69,14 @@ ActiveRecord::Schema.define(version: 20150809151032) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "characters_games", id: false, force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "game_id"
+  end
+
+  add_index "characters_games", ["character_id"], name: "index_characters_games_on_character_id", using: :btree
+  add_index "characters_games", ["game_id"], name: "index_characters_games_on_game_id", using: :btree
 
   create_table "common_armors", force: :cascade do |t|
     t.string   "name"

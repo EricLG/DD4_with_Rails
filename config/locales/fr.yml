@@ -14,11 +14,31 @@ fr:
       consumable:
         one:      "Consommable"
         other:    "Consommables"
+      character:
+        one:      "Personnage"
+        other:    "Personnages"
     attributes:
       consumable:
         kind:     "Type de consommables"
+      character:
+        experience:   "Experience"
+        level:        "Niveau"
+        parangon:     "Voie parangonique"
+        epic:         "Destinée épique"
+        age:          "Age"
+        height:       "Taille"
+        weight:       "Poids"
+        party:        "Groupe"
+        race_id:      "Race"
+        klass_id:     "Classe"
+        user_id:      "Joueur"
+        alignment:    "Alignement"
+        divinity:     "Divinité"
 
-
+    errors:
+      messages:
+        blank:          "ne peut être vide"
+        not_a_number:   "doit être un nombre"
   menu:
     main_title:   "La promenade de Waukeen"
     link:
@@ -174,6 +194,12 @@ fr:
     other:          "Autre prérequis"
     stats:          "Caractéristiques"
     req_feats:       "Talent prérequis"
+  character:
+    title_edit:       "Modification d'un personnage"
+    title_index:    "Liste de mes personnages jouables"
+    title_new:      "Ajout d'un nouveau personnage"
+    title_show:       "Modifier %{character} "
+    new_character:  "Créer un nouveau personnage"
   welcomes:
     contribute:
       title_contribute:   "Contributions"

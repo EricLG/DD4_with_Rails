@@ -19,6 +19,7 @@
       <% if @current_user.kind_of? User %>
         <div class="account box pull-right">
           <p>Bonjour <%= link_to @current_user.name, user_path(@current_user) %> | <%= link_to "Logout", '/logout' %></p>
+          <p><%= link_to "Voir mes héros", characters_path %></p>
         </div>
       <% end %>
     </header>
@@ -54,7 +55,7 @@
       </div>
     </div>
 
-    <footer class=" row col-sm-12 no-margin">
+    <footer class="row col-sm-12 no-margin">
     </footer>
   </div>
 </body>

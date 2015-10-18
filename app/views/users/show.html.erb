@@ -1,6 +1,13 @@
- <h3 class="col_sm-12"><%= @user.name %> </h3>
+ <%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/user_menu" %>
+<% end %>
+
+ <h3 class="col_sm-12"><%= @current_user.name %> </h3>
 
  <ul>
-  <dt><%= t("user.name",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @user.name %></dd>
-  <dt><%= t("user.email", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @user.email %></dd>
+  <dt><%= t("user.name",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @current_user.name %></dd>
+  <dt><%= t("user.email", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @current_user.email %></dd>
 </ul>
+
+<%= link_to t('character.new_character'), new_character_path %>

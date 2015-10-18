@@ -1,0 +1,18 @@
+<%= form_for @character, {:class => 'form-horizontal'} do |f| %>
+
+  <%= input_text_form(f, :name,       Character.human_attribute_name(:name)) %>
+  <%= input_text_form(f, :experience, Character.human_attribute_name(:experience)) %>
+  <%= input_text_form(f, :parangon,   Character.human_attribute_name(:parangon)) %>
+  <%= input_text_form(f, :epic,       Character.human_attribute_name(:epic)) %>
+  <%= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>
+  <%= input_text_form(f, :height,     Character.human_attribute_name(:height)) %>
+  <%= input_text_form(f, :weight,     Character.human_attribute_name(:weight)) %>
+  <%= input_text_form(f, :alignment,  Character.human_attribute_name(:alignment)) %>
+  <%= input_text_form(f, :divinity,   Character.human_attribute_name(:divinity)) %>
+  <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
+  <%= input_select_form(f, :race_id,  @races, @character.race_id,     Character.human_attribute_name(:race_id),  true, false) %>
+  <%= input_select_form(f, :klass_id, @klasses, @character.klass_id,  Character.human_attribute_name(:klass_id), true, false) %>
+  <%= f.hidden_field :user_id, value: @current_user.id %>
+  <%= submit_text_form(f) %>
+
+<% end %>

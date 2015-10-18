@@ -40,4 +40,33 @@ module ApplicationHelper
   def is_current_user_admin?
     @current_user.try(:name).try(:downcase) == "illisae"
   end
+
+  def input_text_form(form, attribute, local)
+    input = content_tag("div", class: "form-group") do
+      concat form.label(attribute, local, :class =>"col-sm-4 control-label")
+      concat (content_tag("div", class: "col-sm-8") do
+        concat form.text_field(attribute, size: 60, :class => "form-control")
+      end)
+    end
+    return input
+  end
+
+  def input_select_form(form, attribute, sources, default_source, local, blank = true, allow_multiple = true)
+    input = content_tag("div", class: "form-group") do
+      concat form.label(attribute, local, :class =>"col-sm-4 control-label")
+      concat (content_tag("div", class: "col-sm-8") do
+        concat form.select(attribute, options_from_collection_for_select(sources, :id, :name, default_source), {include_blank: blank}, {multiple: allow_multiple, :class => "form-control"})
+      end)
+    end
+    return input
+  end
+
+  def submit_text_form(form, local = t("common.validate"))
+    submit = content_tag("div", class: "form-group") do
+      concat (content_tag("div", class: "col-sm-8") do
+        concat form.submit(local, :class => "btn btn-default")
+      end)
+    end
+    return submit
+  end
 end

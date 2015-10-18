@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @hide_side_bloc = true
-    @user = current_user
+    @characters = @current_user.characters
   end
+
   def create
     user = User.new(user_params)
     user.email = user.email.downcase

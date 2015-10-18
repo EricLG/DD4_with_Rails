@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :races, :klasses, :aides
+  resources :races, :klasses, :aides, :characters
 
   resources :campaigns do
     resources :games
