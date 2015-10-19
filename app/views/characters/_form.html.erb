@@ -10,8 +10,8 @@
   <%= input_text_form(f, :alignment,  Character.human_attribute_name(:alignment)) %>
   <%= input_text_form(f, :divinity,   Character.human_attribute_name(:divinity)) %>
   <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
-  <%= input_select_form(f, :race_id,  @races, @character.race_id,     Character.human_attribute_name(:race_id),  true, false) %>
-  <%= input_select_form(f, :klass_id, @klasses, @character.klass_id,  Character.human_attribute_name(:klass_id), true, false) %>
+  <%= input_select_form(f, :race_id,  @races,  :name,  @character.race_id,  Character.human_attribute_name(:race_id),  {blank: true}) %>
+  <%= input_select_form(f, :klass_id, @klasses, :name, @character.klass_id, Character.human_attribute_name(:klass_id), {blank: true}) %>
   <%= f.hidden_field :user_id, value: @current_user.id %>
   <%= submit_text_form(f) %>
 

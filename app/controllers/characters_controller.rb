@@ -8,7 +8,6 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
-    @characters = @current_user.characters
   end
 
   def create

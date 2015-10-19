@@ -51,20 +51,22 @@ module ApplicationHelper
     return input
   end
 
-  def input_select_form(form, attribute, sources, default_source, local, blank = true, allow_multiple = true)
+  # Options hash: {:blank => false, :multiple => false}
+  def input_select_form(form, attribute, sources, method, default_source, local, options = {})
     input = content_tag("div", class: "form-group") do
       concat form.label(attribute, local, :class =>"col-sm-4 control-label")
       concat (content_tag("div", class: "col-sm-8") do
-        concat form.select(attribute, options_from_collection_for_select(sources, :id, :name, default_source), {include_blank: blank}, {multiple: allow_multiple, :class => "form-control"})
+        concat form.select(attribute, options_from_collection_for_select(sources, :id, method, default_source), {include_blank: options[:blank]}, {multiple: options[:multiple], :class => "form-control"})
       end)
     end
     return input
   end
 
-  def submit_text_form(form, local = t("common.validate"))
+  def submit_text_form(form, options = {})
     submit = content_tag("div", class: "form-group") do
       concat (content_tag("div", class: "col-sm-8") do
-        concat form.submit(local, :class => "btn btn-default")
+        concat form.submit(t("common.validate"), name: "commit", :class => "btn btn-default")
+        concat form.submit(t("common.add_another"), name: "add_another", :class => "btn btn-default") if options[:add_another]
       end)
     end
     return submit

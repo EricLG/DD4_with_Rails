@@ -1,71 +1,18 @@
 <%= form_for [:object, @weapon], {:class => 'form-horizontal'} do |f| %>
-  <div class="form-group">
-    <%= f.label :name, t("magic.name"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :name, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, t("magic.description"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :description, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_level = @weapon.object_level_ids.empty? ? nil : @weapon.object_level_ids %>
-    <%= f.label :object_level_ids, t("magic.levels"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-       <%= f.select :object_level_ids, options_from_collection_for_select(@levels, :id, :level, default_level),{}, {:multiple => true, :size => 5, :class => "form-control"}  %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_group = @weapon.weapon_group_ids.empty? ? nil : @weapon.weapon_group_ids %>
-    <%= f.label :weapon_group_ids, t("common.weapon_groups"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :weapon_group_ids, options_from_collection_for_select(@weapon_groups, :id, :name, default_group),{}, {:multiple => true, :size => 5, :class => "form-control"}  %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :alteration, t("magic.alteration"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :alteration, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :critical, t("magic.critical"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :critical, size: "60x5",:class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :property, t("magic.property"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :property, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :power, t("magic.power"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :power, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :special, t("magic.special"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :special, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_source = @weapon.source_id.nil? ? nil : @weapon.source.id %>
-    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-8">
-      <%= f.submit t("common.validate"),    name: "commit",      :class => "btn btn-default" %>
-      <%= f.submit t("common.add_another"), name: "add_another", :class => "btn btn-default" %>
-      </div>
-  </div>
+
+  <% default_level = @weapon.object_level_ids.empty? ? nil : @weapon.object_level_ids %>
+  <% default_group = @weapon.weapon_group_ids.empty? ? nil : @weapon.weapon_group_ids %>
+
+  <%= input_text_form(f, :name,         MagicWeapon.human_attribute_name(:name)) %>
+  <%= input_text_form(f, :description,  MagicWeapon.human_attribute_name(:description)) %>
+  <%= input_select_form(f, :object_level_ids, @levels,        :level, @weapon.object_level_ids, MagicWeapon.human_attribute_name(:object_level_ids), {multiple: true}) %>
+  <%= input_select_form(f, :weapon_group_ids, @weapon_groups, :name,  @weapon.weapon_group_ids, MagicWeapon.human_attribute_name(:weapon_group_ids), {multiple: true}) %>
+  <%= input_text_form(f, :alteration,   MagicWeapon.human_attribute_name(:alteration)) %>
+  <%= input_text_form(f, :critical,     MagicWeapon.human_attribute_name(:critical)) %>
+  <%= input_text_form(f, :property,     MagicWeapon.human_attribute_name(:property)) %>
+  <%= input_text_form(f, :power,        MagicWeapon.human_attribute_name(:power)) %>
+  <%= input_text_form(f, :special,      MagicWeapon.human_attribute_name(:special)) %>
+  <%= input_select_form(f, :source_id, @sources, :name,  @weapon.source_id, MagicWeapon.human_attribute_name(:source_id), {blank: true}) %>
+  <%= submit_text_form(f, {add_another: true}) %>
+
 <% end %>
