@@ -1,72 +1,15 @@
 <%= form_for [:object, @gear], {:class => 'form-horizontal'} do |f| %>
-  <div class="form-group">
-    <%= f.label :name, t("magic.name"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :name, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, t("magic.description"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :description, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_level = @gear.object_level_ids.empty? ? nil : @gear.object_level_ids %>
-    <%= f.label :object_level_ids, t("magic.levels"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-       <%= f.select :object_level_ids, options_from_collection_for_select(@levels, :id, :level, default_level),{}, {:multiple => true, :size => 5, :class => "form-control"}  %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_location = @gear.location_id.nil? ? nil : @gear.location.id %>
-    <%= f.label :location_id, t("magic.gear.location"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :location_id, options_from_collection_for_select(@locations, :id, :name, default_location), {include_blank: true}, {multiple: false, :class => "form-control"} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_category = @gear.armor_category_ids.empty? ? nil : @gear.armor_category_ids %>
-    <%= f.label :armor_category_ids, t("magic.shield_groups"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :armor_category_ids, options_from_collection_for_select(@armor_categories, :id, :name, default_category),{include_blank: true}, {:multiple => true, :size => 3, :class => "form-control"}  %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :alteration, t("magic.alteration"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :alteration, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :property, t("magic.property"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :property, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :power, t("magic.power"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :power, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :special, t("magic.special"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :special, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_source = @gear.source_id.nil? ? nil : @gear.source.id %>
-    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-8">
-      <%= f.submit t("common.validate"),    name: "commit",      :class => "btn btn-default" %>
-      <%= f.submit t("common.add_another"), name: "add_another", :class => "btn btn-default" %>
-      </div>
-  </div>
+
+  <%= input_text_form(f, :name,         MagicGear.human_attribute_name(:name)) %>
+  <%= input_text_form(f, :description,  MagicGear.human_attribute_name(:description)) %>
+  <%= input_select_form(f, :object_level_ids,   @levels,            :level, @gear.object_level_ids,   MagicGear.human_attribute_name(:object_level_ids),   {multiple: true}) %>
+  <%= input_select_form(f, :armor_category_ids, @armor_categories,  :name,  @gear.armor_category_ids, MagicGear.human_attribute_name(:armor_category_ids), {multiple: true, size: 3}) %>
+  <%= input_select_form(f, :location_id,        @locations,         :name,  @gear.location_id,        MagicGear.human_attribute_name(:location_id),        {blank: true}) %>
+  <%= input_text_form(f, :alteration,   MagicGear.human_attribute_name(:alteration)) %>
+  <%= input_text_form(f, :property,     MagicGear.human_attribute_name(:property)) %>
+  <%= input_text_form(f, :power,        MagicGear.human_attribute_name(:power)) %>
+  <%= input_text_form(f, :special,      MagicGear.human_attribute_name(:special)) %>
+  <%= input_select_form(f, :source_id,          @sources,           :name,  @gear.source_id,          MagicGear.human_attribute_name(:source_id),          {blank: true}) %>
+  <%= submit_text_form(f, {add_another: true}) %>
+
 <% end %>

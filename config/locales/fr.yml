@@ -3,6 +3,7 @@ fr:
     alteration:   "Altération"
     critical:     "Critique"
     description:  "Description"
+    object_level_ids:             "Niveaux"
     levels:       "Niveaux"
     name:         "Nom"
     property:     "Propriété"
@@ -18,6 +19,13 @@ fr:
         one:      "Personnage"
         other:    "Personnages"
     attributes:
+      magic_weapon:
+        weapon_group_ids: "Groupes d'armes"
+      magic_armor:
+        armor_category_ids:  "Catégories d'armures"
+      magic_gear:
+        location_id:          "Emplacement"
+        armor_category_ids:  "Catégories d'armures"
       consumable:
         kind:     "Type de consommables"
       character:
