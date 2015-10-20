@@ -1,58 +1,13 @@
 <%= form_for @feat, {:class => 'form-horizontal'} do |f| %>
-  <div class="form-group">
-    <%= f.label :name, t("feat.name"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :name, size: 60, :class=>"form-control" %>
-    </div>
-  <div class="form-group">
-    <%= f.label :category, t("feat.category"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-       <%= f.select :category, options_for_select(Feat::CATEGORY, @feat.category),{}, {:multiple => false, :size => 3, :class => "form-control"}  %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :avantage, t("feat.avantage"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :avantage, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :errata, t("feat.errata"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :errata, size: "60x5", :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_source = @feat.races.empty? ? nil : @feat.race_ids %>
-    <%= f.label :prerequisited_race_ids, t("feat.race"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :prerequisited_race_ids, options_from_collection_for_select(@races, :id, :name, default_source), {include_blank: true}, {multiple: true, :class => "form-control"} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_klass = @feat.klasses.empty? ? nil : @feat.klass_ids %>
-    <%= f.label :prerequisited_klass_ids, t("feat.klass"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :prerequisited_klass_ids, options_from_collection_for_select(@klasses, :id, :name, default_source), {include_blank: true}, {multiple: true, :class => "form-control"} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_klass = @feat.prerequisited_klass_features.empty? ? nil : @feat.prerequisited_klass_features %>
-    <%= f.label :prerequisited_klass_feature_ids, t("feat.klass_feature"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :prerequisited_klass_feature_ids, options_from_collection_for_select(@klass_features, :id, :name, default_source), {include_blank: true}, {multiple: true, :class => "form-control"} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <% default_source = @feat.source_id.nil? ? nil : @feat.source_id %>
-    <%= f.label :source_id, t("common.source"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%=f.select :source_id, options_from_collection_for_select(@sources, :id, :name, default_source), {include_blank: true}, {multiple: false, :class => "form-control"} %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-8">
-      <%= f.submit t("common.validate"), :class => "btn btn-default" %>
-      </div>
-  </div>
+
+  <%= input_text_form(f, :name,         MagicImplement.human_attribute_name(:name)) %>
+  <%= input_select_form_without_collection(f, :category, Feat::CATEGORY, Feat.human_attribute_name(:category), {size: 3}) %>
+  <%= input_text_field_form(f, :avantage, Feat.human_attribute_name(:avantage)) %>
+  <%= input_text_field_form(f, :errata,   Feat.human_attribute_name(:errata)) %>
+  <%= input_select_form(f, :prerequisited_race_ids,           @races,           :name, @feat.prerequisited_race_ids,          Feat.human_attribute_name(:prerequisited_race_ids),           {blank: true, multiple: true}) %>
+  <%= input_select_form(f, :prerequisited_klass_ids,          @klasses,         :name, @feat.prerequisited_klass_ids,         Feat.human_attribute_name(:prerequisited_klass_ids),          {blank: true, multiple: true, size: 3}) %>
+  <%= input_select_form(f, :prerequisited_klass_feature_ids,  @klass_features,  :name, @feat.prerequisited_klass_feature_ids, Feat.human_attribute_name(:prerequisited_klass_feature_ids),  {blank: true, multiple: true, size: 3}) %>
+  <%= input_select_form(f, :source_id,                        @sources,         :name, @feat.source_id,                       Feat.human_attribute_name(:source_id),                        {blank: true}) %>
+  <%= submit_text_form(f, {add_another: true}) %>
+
 <% end %>
