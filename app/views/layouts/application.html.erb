@@ -25,7 +25,12 @@
     </header>
 
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: "flash #{find_flash_class(name)}" %>
+      <% flash_class =  %>
+      <div class="<%= "flash #{find_flash_class(name)}" %>">
+        <% msg.split(':').last.split(',').each do |m| %>
+          <%= m %></br>
+        <% end %>
+      </div>
     <% end %>
 
     <nav class="black-bg">
