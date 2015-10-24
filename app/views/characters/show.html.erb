@@ -6,8 +6,11 @@
 <h3 class="col_sm-12"> <%= @character.name %></h3>
 
 <dl class="dl-horizontal">
-  <dt><%= Character.human_attribute_name(:experience) %></dt>  <dd class="text-left"><%= @character.experience %></dd>
   <dt><%= Character.human_attribute_name(:level)      %></dt>  <dd class="text-left"><%= @character.level %></dd>
+  <dt><%= Character.human_attribute_name(:experience) %></dt>  <dd class="text-left"><%= @character.experience %></dd>
+  <dt><%= Character.human_attribute_name(:race_id)    %></dt>  <dd class="text-left"><%= @character.race.try(:name) %></dd>
+  <dt><%= Character.human_attribute_name(:klass_id)   %></dt>  <dd class="text-left"><%= @character.klass.try(:name) %></dd>
+  <dt><%= Character.human_attribute_name(:stat)       %></dt>  <dd class="text-left"><%= @character.initial_stat %></dd>
   <dt><%= Character.human_attribute_name(:parangon)   %></dt>  <dd class="text-left"><%= @character.parangon %></dd>
   <dt><%= Character.human_attribute_name(:epic)       %></dt>  <dd class="text-left"><%= @character.epic %></dd>
   <dt><%= Character.human_attribute_name(:age)        %></dt>  <dd class="text-left"><%= @character.age %></dd>
@@ -16,7 +19,5 @@
   <dt><%= Character.human_attribute_name(:alignment)  %></dt>  <dd class="text-left"><%= @character.alignment %></dd>
   <dt><%= Character.human_attribute_name(:party)      %></dt>  <dd class="text-left"><%= @character.party %> </dd>
   <dt><%= Character.human_attribute_name(:user_id)    %></dt>  <dd class="text-left"><%= @character.user.name %> </dd>
-  <dt><%= Character.human_attribute_name(:race_id)    %></dt>  <dd class="text-left"><%= @character.race.try(:name) %></dd>
-  <dt><%= Character.human_attribute_name(:klass_id)   %></dt>  <dd class="text-left"><%= @character.klass.try(:name) %></dd>
 </dl>
 <%= link_to t('character.title_show', character: @character.name), edit_character_path(@character.id) %>

@@ -2,17 +2,33 @@
 
   <%= input_text_form(f, :name,       Character.human_attribute_name(:name)) %>
   <%= input_text_form(f, :experience, Character.human_attribute_name(:experience)) %>
-  <%= input_text_form(f, :parangon,   Character.human_attribute_name(:parangon)) %>
-  <%= input_text_form(f, :epic,       Character.human_attribute_name(:epic)) %>
-  <%= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>
-  <%= input_text_form(f, :height,     Character.human_attribute_name(:height)) %>
-  <%= input_text_form(f, :weight,     Character.human_attribute_name(:weight)) %>
-  <%= input_text_form(f, :alignment,  Character.human_attribute_name(:alignment)) %>
-  <%= input_text_form(f, :divinity,   Character.human_attribute_name(:divinity)) %>
-  <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
-  <%= input_select_form(f, :race_id,  @races,  :name,  @character.race_id,  Character.human_attribute_name(:race_id),  {blank: true}) %>
-  <%= input_select_form(f, :klass_id, @klasses, :name, @character.klass_id, Character.human_attribute_name(:klass_id), {blank: true}) %>
+  <%= input_select_form(f, :race_id,  @races,  :name,  @character.race_id,  Character.human_attribute_name(:race_id),  {blank: true, size: 1}) %>
+  <%= input_select_form(f, :klass_id, @klasses, :name, @character.klass_id, Character.human_attribute_name(:klass_id), {blank: true, size: 1}) %>
+
+
+  <%= f.fields_for :initial_stat do |s| %>
+    <%= input_text_form(s, :strength,       Stat.human_attribute_name(:strength)) %>
+    <%= input_text_form(s, :constitution,   Stat.human_attribute_name(:constitution)) %>
+    <%= input_text_form(s, :dexterity,      Stat.human_attribute_name(:dexterity)) %>
+    <%= input_text_form(s, :intelligence,   Stat.human_attribute_name(:intelligence)) %>
+    <%= input_text_form(s, :wisdom,         Stat.human_attribute_name(:wisdom)) %>
+    <%= input_text_form(s, :charisma,       Stat.human_attribute_name(:charisma)) %>
+    <%= s.hidden_field :kind, value: 'initial' %>
+  <% end %>
+
+  <%= input_text_form(f, :parangon,   Character.human_attribute_name(:parangon))  if (@character.is_paragon?) %>
+  <%= input_text_form(f, :epic,       Character.human_attribute_name(:epic))      if (@character.is_epic?)%>
+
+
+  <%#= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>
+  <%#= input_text_form(f, :height,     Character.human_attribute_name(:height)) %>
+  <%#= input_text_form(f, :weight,     Character.human_attribute_name(:weight)) %>
+  <%#= input_text_form(f, :alignment,  Character.human_attribute_name(:alignment)) %>
+  <%#= input_text_form(f, :divinity,   Character.human_attribute_name(:divinity)) %>
+  <%#= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
+
   <%= f.hidden_field :user_id, value: @current_user.id %>
+  <%= f.hidden_field :state, value: '' %>
   <%= submit_text_form(f) %>
 
 <% end %>

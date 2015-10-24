@@ -2,6 +2,13 @@ class Stat < ActiveRecord::Base
 
   belongs_to :feat
 
+  validates  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, numericality: { only_integer: true }, allow_blank: true if Proc.new { |s| !s.is_initial? }
+  validates  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, numericality: { only_integer: true }, allow_blank: false if Proc.new { |s| s.is_initial? }
+
+  def is_initial?
+    kind == 'initial'
+  end
+
   def to_s
     result = []
     result << "For #{strength}"     if strength
@@ -34,6 +41,7 @@ class Stat < ActiveRecord::Base
         stat.charisma     = value.last
       end
     end
+    stat.kind = 'feat'
     stat.save
     stat
   end

@@ -10,6 +10,12 @@ fr:
     power:        "Pouvoir"
     special:      "Spécial"
     source:       "Source"
+    strength:     "Force"
+    constitution: "Constitution"
+    dexterity:    "Dexterité"
+    intelligence: "Intelligence"
+    wisdom:       "Sagesse"
+    charisma:     "Charisme"
   activerecord:
     models:
       consumable:

@@ -4,12 +4,21 @@ class Character < ActiveRecord::Base
   belongs_to :stat
   belongs_to :race
   belongs_to :klass
+  belongs_to :initial_stat, class_name: 'Stat', dependent: :destroy
+  accepts_nested_attributes_for :initial_stat
   has_and_belongs_to_many :games
 
   before_save :xp_to_levels
-  validates :user_id, :race_id, :klass_id, :name, :experience,  presence: true
-  validates :experience, numericality: { only_integer: true }
+  validates :user_id, :race_id, :klass_id, :name,  presence: true
+  validates :experience, presence: true, numericality: { only_integer: true }
   validates :age, :weight, :height, numericality: { only_integer: true }, allow_blank: true
+
+  def is_paragon?
+    level >= 11 if level
+  end
+  def is_epic?
+    level >= 11 if level
+  end
 
   def xp_to_levels
     self.level = case (self.experience/1000).to_f

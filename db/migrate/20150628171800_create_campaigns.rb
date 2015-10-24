@@ -29,6 +29,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string  :alignment
       t.string  :divinity
       t.string  :party
+      t.integer :initial_stat_id
       t.belongs_to :user
       t.belongs_to :klass
       t.belongs_to :race

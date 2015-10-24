@@ -8,6 +8,7 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
+    @character.build_initial_stat
   end
 
   def create
@@ -17,7 +18,7 @@ class CharactersController < ApplicationController
     else
       find_dependancies
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
-      render new_character_path
+      render :new
     end
   end
 
@@ -37,11 +38,11 @@ class CharactersController < ApplicationController
   def update
     @character = Character.find_by_id(params[:id])
     if @character.update(character_params)
-      redirect_to characters_path
+     redirect_to characters_path
     else
-      find_dependancies
-      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
-      render new_character_path
+     find_dependancies
+     flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+     render :edit
     end
   end
 
@@ -62,8 +63,10 @@ class CharactersController < ApplicationController
       :user_id,
       :race_id,
       :klass_id,
-      {game_ids:[]}
-    )
+      :state,
+      {game_ids:[]},
+      initial_stat_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind]
+      )
   end
 
   def find_dependancies
