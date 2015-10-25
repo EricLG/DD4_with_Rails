@@ -28,7 +28,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :races, :klasses, :aides, :characters
+  resources :races, :klasses, :aides
+
+  resources :characters do
+    get 'find_level'
+  end
 
   resources :campaigns do
     resources :games

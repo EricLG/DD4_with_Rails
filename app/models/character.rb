@@ -5,22 +5,170 @@ class Character < ActiveRecord::Base
   belongs_to :race
   belongs_to :klass
   belongs_to :initial_stat, class_name: 'Stat', dependent: :destroy
+  belongs_to :level_4,      class_name: 'Stat', dependent: :destroy
+  belongs_to :level_8,      class_name: 'Stat', dependent: :destroy
+  belongs_to :level_11,     class_name: 'Stat', dependent: :destroy
+  belongs_to :level_14,     class_name: 'Stat', dependent: :destroy
+  belongs_to :level_18,     class_name: 'Stat', dependent: :destroy
+  belongs_to :level_21,     class_name: 'Stat', dependent: :destroy
+  belongs_to :level_24,     class_name: 'Stat', dependent: :destroy
+  belongs_to :level_28,     class_name: 'Stat', dependent: :destroy
+  belongs_to :race_stat,    class_name: 'Stat', dependent: :destroy
   accepts_nested_attributes_for :initial_stat
+  accepts_nested_attributes_for :level_4
+  accepts_nested_attributes_for :level_8
+  accepts_nested_attributes_for :level_11
+  accepts_nested_attributes_for :level_14
+  accepts_nested_attributes_for :level_18
+  accepts_nested_attributes_for :level_21
+  accepts_nested_attributes_for :level_24
+  accepts_nested_attributes_for :level_28
+  accepts_nested_attributes_for :race_stat
   has_and_belongs_to_many :games
 
-  before_save :xp_to_levels
+  before_save :level_to_xp
   validates :user_id, :race_id, :klass_id, :name,  presence: true
-  validates :experience, presence: true, numericality: { only_integer: true }
+  validates :level, presence: true, numericality: { only_integer: true }, inclusion: { :in => 1..30}
   validates :age, :weight, :height, numericality: { only_integer: true }, allow_blank: true
+
+  def total_stat
+    s = Stat.new
+    s.strength = initial_stat.strength
+    s.strength += race_stat.strength
+    s.strength += level_4.strength  if level >= 4
+    s.strength += level_8.strength  if level >= 8
+    s.strength += level_11.strength if level >= 11
+    s.strength += level_14.strength if level >= 14
+    s.strength += level_18.strength if level >= 18
+    s.strength += level_21.strength if level >= 21
+    s.strength += level_24.strength if level >= 24
+    s.strength += level_28.strength if level >= 28
+    s.constitution = initial_stat.constitution
+    s.constitution += race_stat.constitution
+    s.constitution += level_4.constitution  if level >= 4
+    s.constitution += level_8.constitution  if level >= 8
+    s.constitution += level_11.constitution if level >= 11
+    s.constitution += level_14.constitution if level >= 14
+    s.constitution += level_18.constitution if level >= 18
+    s.constitution += level_21.constitution if level >= 21
+    s.constitution += level_24.constitution if level >= 24
+    s.constitution += level_28.constitution if level >= 28
+    s.dexterity = initial_stat.dexterity
+    s.dexterity += race_stat.dexterity
+    s.dexterity += level_4.dexterity  if level >= 4
+    s.dexterity += level_8.dexterity  if level >= 8
+    s.dexterity += level_11.dexterity if level >= 11
+    s.dexterity += level_14.dexterity if level >= 14
+    s.dexterity += level_18.dexterity if level >= 18
+    s.dexterity += level_21.dexterity if level >= 21
+    s.dexterity += level_24.dexterity if level >= 24
+    s.dexterity += level_28.dexterity if level >= 28
+    s.intelligence = initial_stat.intelligence
+    s.intelligence += race_stat.intelligence
+    s.intelligence += level_4.intelligence  if level >= 4
+    s.intelligence += level_8.intelligence  if level >= 8
+    s.intelligence += level_11.intelligence if level >= 11
+    s.intelligence += level_14.intelligence if level >= 14
+    s.intelligence += level_18.intelligence if level >= 18
+    s.intelligence += level_21.intelligence if level >= 21
+    s.intelligence += level_24.intelligence if level >= 24
+    s.intelligence += level_28.intelligence if level >= 28
+    s.wisdom = initial_stat.wisdom
+    s.wisdom += race_stat.wisdom
+    s.wisdom += level_4.wisdom  if level >= 4
+    s.wisdom += level_8.wisdom  if level >= 8
+    s.wisdom += level_11.wisdom if level >= 11
+    s.wisdom += level_14.wisdom if level >= 14
+    s.wisdom += level_18.wisdom if level >= 18
+    s.wisdom += level_21.wisdom if level >= 21
+    s.wisdom += level_24.wisdom if level >= 24
+    s.wisdom += level_28.wisdom if level >= 28
+    s.charisma = initial_stat.charisma
+    s.charisma += race_stat.charisma
+    s.charisma += level_4.charisma  if level >= 4
+    s.charisma += level_8.charisma  if level >= 8
+    s.charisma += level_11.charisma if level >= 11
+    s.charisma += level_14.charisma if level >= 14
+    s.charisma += level_18.charisma if level >= 18
+    s.charisma += level_21.charisma if level >= 21
+    s.charisma += level_24.charisma if level >= 24
+    s.charisma += level_28.charisma if level >= 28
+    return s.to_s
+  end
 
   def is_paragon?
     level >= 11 if level
   end
   def is_epic?
-    level >= 11 if level
+    level >= 21 if level
   end
 
-  def xp_to_levels
+  def level_to_xp
+    self.experience = case self.level
+                      when 2
+                        1_000
+                      when 3
+                        2_250
+                      when 4
+                        3_750
+                      when 5
+                        5_500
+                      when 6
+                        7_500
+                      when 7
+                        10_000
+                      when 8
+                        13_000
+                      when 9
+                        16_500
+                      when 10
+                        20_500
+                      when 11
+                        26_000
+                      when 12
+                        32_000
+                      when 13
+                        39_000
+                      when 14
+                        47_000
+                      when 15
+                        57_000
+                      when 16
+                        69_000
+                      when 17
+                        83_000
+                      when 18
+                        99_000
+                      when 19
+                        119_000
+                      when 20
+                        143_000
+                      when 21
+                        175_000
+                      when 22
+                        210_000
+                      when 23
+                        255_000
+                      when 24
+                        310_000
+                      when 25
+                        375_000
+                      when 26
+                        450_000
+                      when 27
+                        550_000
+                      when 28
+                        675_000
+                      when 29
+                        825_000
+                      when 30
+                        1_000_000
+                      else
+                        0
+                      end
+  end
+
+  def xp_to_level
     self.level = case (self.experience/1000).to_f
     when 0 ... 1
       1

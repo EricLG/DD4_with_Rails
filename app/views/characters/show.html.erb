@@ -10,7 +10,7 @@
   <dt><%= Character.human_attribute_name(:experience) %></dt>  <dd class="text-left"><%= @character.experience %></dd>
   <dt><%= Character.human_attribute_name(:race_id)    %></dt>  <dd class="text-left"><%= @character.race.try(:name) %></dd>
   <dt><%= Character.human_attribute_name(:klass_id)   %></dt>  <dd class="text-left"><%= @character.klass.try(:name) %></dd>
-  <dt><%= Character.human_attribute_name(:stat)       %></dt>  <dd class="text-left"><%= @character.initial_stat %></dd>
+  <dt><%= Character.human_attribute_name(:stat)       %></dt>  <dd class="text-left"><%= @character.total_stat %></dd>
   <dt><%= Character.human_attribute_name(:parangon)   %></dt>  <dd class="text-left"><%= @character.parangon %></dd>
   <dt><%= Character.human_attribute_name(:epic)       %></dt>  <dd class="text-left"><%= @character.epic %></dd>
   <dt><%= Character.human_attribute_name(:age)        %></dt>  <dd class="text-left"><%= @character.age %></dd>

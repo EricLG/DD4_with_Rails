@@ -53,6 +53,12 @@ fr:
       messages:
         blank:          "ne peut être vide"
         not_a_number:   "doit être un nombre"
+        inclusion:      "n'est pas dans les bornes admises"
+      models:
+        character:
+          attributes:
+            level:
+              inclusion:  "doit être compris entre 1 et 30"
   menu:
     main_title:   "La promenade de Waukeen"
     link:

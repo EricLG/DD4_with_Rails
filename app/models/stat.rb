@@ -4,6 +4,13 @@ class Stat < ActiveRecord::Base
 
   validates  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, numericality: { only_integer: true }, allow_blank: true if Proc.new { |s| !s.is_initial? }
   validates  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, numericality: { only_integer: true }, allow_blank: false if Proc.new { |s| s.is_initial? }
+  validate  :level_choice, if: Proc.new {|s|  /level_(4|8)|(14|18)|(24|28)/ =~ s.kind }
+
+  def level_choice
+    if total_stat > 2
+      errors.add(:kind, "trop de valeur sélectionné")
+    end
+  end
 
   def is_initial?
     kind == 'initial'
@@ -44,5 +51,9 @@ class Stat < ActiveRecord::Base
     stat.kind = 'feat'
     stat.save
     stat
+  end
+
+  def total_stat
+    t = strength + constitution + dexterity + intelligence + wisdom + charisma
   end
 end
