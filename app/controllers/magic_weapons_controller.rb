@@ -50,7 +50,7 @@ class MagicWeaponsController < ApplicationController
     if @weapon.persisted?
       redirect_to object_magic_weapon_path(@weapon.id)
     else
-      render object_magic_weapon_path
+      render :edit
     end
   end
 

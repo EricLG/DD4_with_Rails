@@ -16,7 +16,7 @@ class CommonArmorsController < ApplicationController
     if @armor.persisted?
       redirect_to object_common_armor_path(@armor.id)
     else
-      render object_common_armor_path
+      render :new
     end
   end
 
@@ -42,7 +42,7 @@ class CommonArmorsController < ApplicationController
     if @armor.persisted?
       redirect_to object_common_armor_path(@armor.id)
     else
-      render object_common_armor_path
+      render :edit
     end
   end
 

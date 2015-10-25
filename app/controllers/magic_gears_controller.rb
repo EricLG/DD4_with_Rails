@@ -51,7 +51,7 @@ class MagicGearsController < ApplicationController
     if @gear.persisted?
       redirect_to object_magic_gear_path(@gear.id)
     else
-      render object_magic_gear_path
+      render :edit
     end
   end
 

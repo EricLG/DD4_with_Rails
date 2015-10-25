@@ -22,7 +22,7 @@ class CommonWeaponsController < ApplicationController
     if @weapon.persisted?
       redirect_to object_common_weapon_path(@weapon.id)
     else
-      render object_common_weapon_path
+      render :new
     end
   end
 
@@ -50,7 +50,7 @@ class CommonWeaponsController < ApplicationController
     if @weapon.persisted?
       redirect_to object_common_weapon_path(@weapon.id)
     else
-      render object_common_weapon_path
+      render :edit
     end
   end
 

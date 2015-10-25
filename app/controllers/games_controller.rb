@@ -15,7 +15,7 @@ class GamesController < ApplicationController
     if @game.save
       redirect_to campaign_path(@campaign)
     else
-      render new_campaign_game_path(@campaign)
+      render :new
     end
   end
 

@@ -50,7 +50,7 @@ class MagicImplementsController < ApplicationController
     if @implement.persisted?
       redirect_to object_magic_implement_path(@implement.id)
     else
-      render object_magic_implements_path
+      render :edit
     end
   end
 

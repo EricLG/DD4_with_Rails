@@ -50,7 +50,7 @@ class MagicArmorsController < ApplicationController
     if @armor.persisted?
       redirect_to object_magic_armor_path(@armor.id)
     else
-      render object_magic_armor_path
+      render :edit
     end
   end
 

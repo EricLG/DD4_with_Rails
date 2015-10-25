@@ -15,7 +15,7 @@ class CampaignsController < ApplicationController
     if @campaign.save
       redirect_to campaigns_path
     else
-      render new_campaign_path
+      render :new
     end
   end
 
@@ -39,7 +39,7 @@ class CampaignsController < ApplicationController
     if @campaign.update(campaign_params)
       redirect_to campaigns_path
     else
-      render new_campaign_path
+      render :edit
     end
   end
 

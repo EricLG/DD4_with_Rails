@@ -33,7 +33,7 @@ class FeatsController < ApplicationController
     if @feat.save
       redirect_to feat_path(@feat.id)
     else
-      render feat_path
+      render :new
     end
   end
 
@@ -57,7 +57,7 @@ class FeatsController < ApplicationController
     if @feat.persisted?
       redirect_to feat_path(@feat.id)
     else
-      render feat_path
+      render :edit
     end
   end
 
