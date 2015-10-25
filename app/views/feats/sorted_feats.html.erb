@@ -1,54 +1,16 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
- <%= render "sidebloc/feats_menu" %>
+  <%= render "sidebloc/feats_menu" %>
 <% end %>
 
 <div class="row">
-  <h3 class="col-sm-12"><%= t("feat.title_index") %></h3>
+  <h3 class="col-sm-12"><%= t(".title_index") %></h3>
 </div>
 
-<div class="row" style="margin-bottom:20px;">
-  <%= form_for @search, {url: build_feats_link(params["action"]), method: :get, class: 'form-inline'} do |form| %>
-
-  <div class="form-group col-xs-4">
-    <%= form.label(:name, t('feat.name'), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.text_field(:name, :class=>"form-control") %>
-    </div>
+<div class="row">
+  <div class="col-sm-12">
+    <%= render"form_search" %>
   </div>
-
-
-  <div class="form-group col-xs-4">
-    <% default_klass =  params["feat_search"]["prerequisited_klasses"] if params["feat_search"]%>
-    <%= form.label(:prerequisited_klasses, t("feat.klass"), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.select :prerequisited_klasses, options_from_collection_for_select(@klasses, :id, :name, default_klass.to_i ),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
-    </div>
-  </div>
-
-  <div class="form-group col-xs-4">
-    <% default_race =  params["feat_search"]["prerequisited_races"] if params["feat_search"]%>
-    <%= form.label(:prerequisited_races, t("feat.race"), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.select :prerequisited_races, options_from_collection_for_select(@races, :id, :name, default_race.to_i),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
-    </div>
-  </div>
-
-  <div class="form-group col-xs-4">
-    <% default_source =  params["feat_search"]["source"] if params["feat_search"]%>
-    <%= form.label(:source, t('common.source'), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.select :source, options_from_collection_for_select(@sources, :id, :name, default_source), {:include_blank => 'Tous'}, {:multiple => false, :class=>"form-control"}  %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-8">
-      <%= form.submit t("common.validate"), :class => "btn btn-default" %>
-      <%= link_to t("common.reset"), object_magic_gears_path, :class => "btn btn-default" %>
-      </div>
-  </div>
-  <% end %>
 </div>
 
 <div class="row">

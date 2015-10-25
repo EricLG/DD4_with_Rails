@@ -11,6 +11,7 @@ class WelcomesController < ApplicationController
   end
 
   def contribute
+    @hide_side_bloc = true if @current_user
   end
 
   def weapons

@@ -1,31 +1,8 @@
 <%= form_for @campaign, {:class => 'form-horizontal'}  do |f| %>
 
-  <div class="form-group">
-    <%= f.label :name, t("campaign.name"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :name, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, t("campaign.description"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :description, size: 60, :class=>"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :status, t("campaign.status"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-     <%= f.select :status, options_for_select([["En cours", :in_progress], ["Interrompu", :interrupted], ["Terminé", :finished]]),{}, {:class => "form-control"}  %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :game_master_id, t("campaign.game_master"), :class=>"col-sm-4 control-label" %>
-    <div class="col-sm-8">
-       <%= f.select :game_master_id, options_from_collection_for_select(@users, :id, :name, @game_master_id),{}, {:class => "form-control"}  %>
-    </div>
-  </div>
-
-  <p class="col-md-4"><%= f.submit t("common.validate") %></p>
+  <%= input_text_form f, :name, Campaign.human_attribute_name(:name) %>
+  <%= input_text_field_form f, :description, Campaign.human_attribute_name(:description) %>
+  <%= input_select_form_without_collection f , :status, @status_array, Campaign.human_attribute_name(:status), {size: 1} %>
+  <%= input_select_form f , :game_master_id, @users, :name, @game_master_id, Campaign.human_attribute_name(:game_master_id), {size: 1} %>
+  <%= submit_text_form f %>
 <% end %>

@@ -3,11 +3,15 @@
   <%= render "sidebloc/campaign_menu" %>
 <% end %>
 
-<h3>Campagnes</h3>
+<div class="row">
+  <h3 class="col-sm-12"><%= t('.title_index')%></h3>
+</div>
 
-<div>
-  <p>Liste de toutes les campagnes en cours et terminées</p>
-  <p><%= link_to "Créer une nouvelle campagne", new_campaign_path %></p>
+<div class="row">
+  <div class="col-sm-12">
+    <p>Liste de toutes les campagnes en cours et terminées</p>
+    <p><%= link_to "Créer une nouvelle campagne", new_campaign_path %></p>
+  </div>
 </div>
 
 

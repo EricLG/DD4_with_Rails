@@ -50,14 +50,18 @@
     </nav>
 
     <div class="row no-margin">
-    <% unless @hide_side_bloc  %>
+    <% if @hide_side_bloc  %>
+      <div class="col-sm-12">
+        <%= yield %>
+      </div>
+    <% else %>
       <div class="col-sm-2 sidebloc">
         <%= yield :sidebloc %>
       </div>
-    <% end %>
       <div class="col-sm-10">
         <%= yield %>
       </div>
+    <% end %>
     </div>
 
     <footer class="row col-sm-12 no-margin">

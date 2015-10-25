@@ -3,12 +3,17 @@
   <%= render "sidebloc/objects_menu" %>
 <% end %>
 
-<h2>Import des objets et des talents</h2>
-
-  <ul>
-    <li><%= link_to "Armes magiques",       weapons_welcomes_path %>    </li>
-    <li><%= link_to "Armures magiques",     armors_welcomes_path %>     </li>
-    <li><%= link_to "Focaliseurs magiques", implements_welcomes_path %> </li>
-    <li><%= link_to "Équipements magiques", gears_welcomes_path %>      </li>
-    <li><%= link_to "Talents",              feats_welcomes_path %>      </li>
-  </ul>
+<div class="row">
+  <h2 class="col-sm-12">Import des objets et des talents</h2>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <ul>
+      <li><%= link_to "Armes magiques",       weapons_welcomes_path %>    </li>
+      <li><%= link_to "Armures magiques",     armors_welcomes_path %>     </li>
+      <li><%= link_to "Focaliseurs magiques", implements_welcomes_path %> </li>
+      <li><%= link_to "Équipements magiques", gears_welcomes_path %>      </li>
+      <li><%= link_to "Talents",              feats_welcomes_path %>      </li>
+    </ul>
+  </div>
+</div>

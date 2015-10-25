@@ -84,6 +84,7 @@ module ApplicationHelper
     return input
   end
 
+  # options_hash : {add_another: true}
   def submit_text_form(form, options = {})
     submit = content_tag("div", class: "form-group") do
       concat (content_tag("div", class: "col-sm-8") do
