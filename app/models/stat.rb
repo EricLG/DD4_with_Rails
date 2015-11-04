@@ -1,13 +1,25 @@
 class Stat < ActiveRecord::Base
 
+  after_initialize :init
   belongs_to :feat
 
-  validates  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, numericality: { only_integer: true }, allow_blank: true if Proc.new { |s| !s.is_initial? }
-  validates  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, numericality: { only_integer: true }, allow_blank: false if Proc.new { |s| s.is_initial? }
+  validates_numericality_of  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, only_integer: true, allow_nil: true    if Proc.new { |s| s.kind != 'initial' }
+  validates_numericality_of  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, only_integer: true, allow_blank: false if Proc.new { |s| s.kind == 'initial' }
   validate  :level_choice, if: Proc.new {|s|  /level_(4|8)|(14|18)|(24|28)/ =~ s.kind }
 
+  def init
+    if self.new_record?
+      self.strength      ||= 0
+      self.constitution  ||= 0
+      self.dexterity     ||= 0
+      self.intelligence  ||= 0
+      self.wisdom        ||= 0
+      self.charisma      ||= 0
+    end
+  end
+
   def level_choice
-    if total_stat > 2
+    if (strength + constitution + dexterity + intelligence + wisdom + charisma) > 2
       errors.add(:kind, "trop de valeur sélectionné")
     end
   end
@@ -53,7 +65,4 @@ class Stat < ActiveRecord::Base
     stat
   end
 
-  def total_stat
-    t = strength + constitution + dexterity + intelligence + wisdom + charisma
-  end
 end

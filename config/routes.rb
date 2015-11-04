@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search/index'
+
   # page d'accueil
   root 'welcomes#index'
 

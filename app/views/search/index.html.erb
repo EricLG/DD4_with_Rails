@@ -1,0 +1,22 @@
+<% if @total != 0 %>
+  <h3><%= @total %> résultats trouvés pour : <%= @request %></h3>
+  <div class="panel-group" role="tablist" aria-multiselectable="true">
+    <%= render "accordion", result: @result[:magic_weapon],     heading_id: "h_weapon",     collapse_id: "c_weapon",     local: "Résultats dans les armes magiques"       unless @result[:magic_weapon].blank? %>
+    <%= render "accordion", result: @result[:magic_armor],      heading_id: "h_armor",      collapse_id: "c_armor",      local: "Résultats dans les armures magiques"     unless @result[:magic_armor].blank? %>
+    <%= render "accordion", result: @result[:magic_implement],  heading_id: "h_implement",  collapse_id: "c_implement",  local: "Résultats dans les focaliseurs magiques" unless @result[:magic_implement].blank? %>
+    <%= render "accordion", result: @result[:magic_gear],       heading_id: "h_gear",       collapse_id: "c_gear",       local: "Résultats dans les équipements magiques" unless @result[:magic_gear].blank? %>
+  </div>
+<% else %>
+  <h3>Faire une recherche</h3>
+
+  <%= form_tag search_index_path, method: 'get', :class => '', role: 'search' do %>
+    <div class="form-group">
+      <%= text_field_tag :search, params[:search],  {class: "form-control", placeholder: "Search"}  %>
+    </div>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+  <% end %>
+
+
+<% end %>
+
+

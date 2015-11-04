@@ -1,0 +1,26 @@
+<% if result.empty? %>
+  <p>Aucun résultats pour cette catégorie</p>
+<% else %>
+<div class="table-responsive">
+  <table  class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th class="col-sm-1"><%= t('magic.name')            %></th>
+      <th class="col-sm-1"><%= t('magic.property')        %></th>
+      <th class="col-sm-1"><%= t('magic.power')           %></th>
+      <th class="col-sm-1"><%= t('magic.source')          %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% result.each do |r| %>
+    <tr>
+      <td><%= link_to r.name, object_magic_weapon_path(r.id)  %></td>
+      <td><%= display_first_words r.property %> </td>
+      <td><%= display_first_words r.power %> </td>
+      <td><%= r.source.name %> </td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>

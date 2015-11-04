@@ -3,13 +3,13 @@ require 'import_data'
 class Feat < ActiveRecord::Base
 
   belongs_to  :source
-  has_many    :prerequisited_stats, class_name: "Stat", foreign_key: "pr_for_feat_id"
+  has_many    :prerequisited_stats, class_name: "Stat", foreign_key: "pr_for_feat_id", dependent: :destroy
   has_many    :needed_feats, class_name: "Feat", foreign_key: "top_feat_id"
   #belongs_to  :prerequisite_for_feat,  class_name: "Feat"
-  has_and_belongs_to_many :prerequisited_races,           :class_name => "Race",          :join_table => :pr_races_for_feat
-  has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :pr_klasses_for_feat
-  has_and_belongs_to_many :prerequisited_klass_features,  :class_name => "KlassFeature",  :join_table => :pr_klass_features_for_feat
-  has_and_belongs_to_many :prerequisited_race_features,   :class_name => "RaceFeature",   :join_table => :pr_race_features_for_feat
+  has_and_belongs_to_many :prerequisited_races,           :class_name => "Race",          :join_table => :pr_races_for_feat, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :pr_klasses_for_feat, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_klass_features,  :class_name => "KlassFeature",  :join_table => :pr_klass_features_for_feat, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_race_features,   :class_name => "RaceFeature",   :join_table => :pr_race_features_for_feat, dependent: :destroy
 
   CATEGORY = %w(heroic parangonic epic)
 
@@ -53,8 +53,9 @@ class Feat < ActiveRecord::Base
             if f.valid?
                 f.save!
             else
-                logger.debug "Erreur de validation sur l'arme #{m.name}"
-                logger.debug "#{m.errors.full_messages}"
+                logger.debug "Erreur de validation sur le talent #{f.name}"
+                logger.debug "#{f.errors.full_messages}"
+                f.save!
             end
           end
         end
