@@ -2,6 +2,8 @@ class MagicGearsController < ApplicationController
 
   before_action :find_dependancies, only: [:index, :new, :edit]
 
+  MAGIC_GEAR_LOCATION = %w(head neck chest belt hands ring arm foots)
+
   def index
     @search = MagicSearch.new(params[:magic_search], MagicGear)
     @gears = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
@@ -74,7 +76,7 @@ class MagicGearsController < ApplicationController
   end
 
   def find_dependancies
-    @locations = Location.all
+    @locations = Location.where(code: MAGIC_GEAR_LOCATION)
     @armor_categories = ArmorCategory.where(code: ['lightsh', 'heavysh'])
     @levels = ObjectLevel.all
     @sources = Source.all
