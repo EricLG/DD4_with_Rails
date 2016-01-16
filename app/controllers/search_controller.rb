@@ -6,10 +6,10 @@ class SearchController < ApplicationController
     @result = {}
     @result[:magic_weapon], @result[:magic_armor], @result[:magic_implement], @result[:magic_gear], @total = [], [], [], [], 0
     unless @request.blank?
-      @result[:magic_weapon ]     = MagicWeapon.where('property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%")
-      @result[:magic_armor ]      = MagicArmor.where('property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%")
-      @result[:magic_implement ]  = MagicImplement.where('property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%")
-      @result[:magic_gear ]       = MagicGear.where('property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%")
+      @result[:magic_weapon ]     = MagicWeapon.where('name ILIKE ? or property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%", "%#{@request}%")
+      @result[:magic_armor ]      = MagicArmor.where('name ILIKE ? or property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%", "%#{@request}%")
+      @result[:magic_implement ]  = MagicImplement.where('name ILIKE ? or property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%", "%#{@request}%")
+      @result[:magic_gear ]       = MagicGear.where('name ILIKE ? or property ILIKE ? or power ILIKE ?', "%#{@request}%", "%#{@request}%", "%#{@request}%")
       @total = count_result(@result)
       flash.now[:error] = "Aucun résultats" if @total == 0
     end

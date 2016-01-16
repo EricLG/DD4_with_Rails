@@ -1,6 +1,14 @@
 class WelcomesController < ApplicationController
 
-  before_filter :authorize_admin, except: [:index]
+  before_filter :authorize_admin, except: [:index, :random]
+
+  def random
+    armes = MagicWeapon.all.sample(10)
+    armures = MagicArmor.all.sample(10)
+    gears = MagicGear.all.sample(10)
+    focas = MagicImplement.all.sample(10)
+    @randomObjects = [armes, armures, gears, focas].flatten.shuffle.first(10)
+  end
 
   def index
     @hide_side_bloc = true if @current_user
