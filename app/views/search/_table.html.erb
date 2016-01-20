@@ -14,7 +14,17 @@
     <tbody>
     <% result.each do |r| %>
     <tr>
-      <td><%= link_to r.name, object_magic_weapon_path(r.id)  %></td>
+      <td>
+          <% if r.class.to_s == 'MagicWeapon' %>
+            <%= link_to r.name, object_magic_weapon_path(r.id)  %>
+          <% elsif r.class.to_s == 'MagicArmor' %>
+            <%= link_to r.name, object_magic_armor_path(r.id)  %>
+          <% elsif r.class.to_s == 'MagicGear' %>
+            <%= link_to r.name, object_magic_gear_path(r.id)  %>
+          <% elsif r.class.to_s == 'MagicImplement' %>
+            <%= link_to r.name, object_magic_implement_path(r.id)  %>
+          <% end %>
+      </td>
       <td><%= display_first_words r.property %> </td>
       <td><%= display_first_words r.power %> </td>
       <td><%= r.source.name %> </td>

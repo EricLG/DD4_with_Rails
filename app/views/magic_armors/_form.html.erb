@@ -5,7 +5,7 @@
   <%= input_select_form(f, :object_level_ids,   @levels,            :level, @armor.object_level_ids,    MagicArmor.human_attribute_name(:object_level_ids),   {multiple: true}) %>
   <%= input_select_form(f, :armor_category_ids, @armor_categories,  :name,  @armor.armor_category_ids,  MagicArmor.human_attribute_name(:armor_category_ids), {multiple: true}) %>
   <%= input_text_form(f, :alteration,   MagicArmor.human_attribute_name(:alteration)) %>
-  <%= input_text_form(f, :property,     MagicArmor.human_attribute_name(:property)) %>
+  <%= input_text_field_form(f, :property,     MagicArmor.human_attribute_name(:property)) %>
   <%= input_text_form(f, :power,        MagicArmor.human_attribute_name(:power)) %>
   <%= input_text_form(f, :special,      MagicArmor.human_attribute_name(:special)) %>
   <%= input_select_form(f, :source_id,          @sources,           :name,  @armor.source_id,           MagicArmor.human_attribute_name(:source_id),          {blank: true}) %>

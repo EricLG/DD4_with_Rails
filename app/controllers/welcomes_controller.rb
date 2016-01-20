@@ -28,7 +28,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicWeapon.import_weapons
-      flash[:success] = "L'import des armes magiques à terminé"
+      flash[:success] = "L'import des armes magiques à terminé (210 objets en théorie)"
       redirect_to object_magic_weapons_path
     end
   end
@@ -39,7 +39,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicArmor.import_armors
-      flash[:success] = "L'import des armures magiques à terminé"
+      flash[:success] = "L'import des armures magiques à terminé (230 objets en théorie)"
       redirect_to object_magic_armors_path
     end
   end
@@ -50,7 +50,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicGear.import_gears
-      flash[:success] = "L'import des équipements magiques à terminé"
+      flash[:success] = "L'import des équipements magiques à terminé (559 objets en théorie)"
       redirect_to object_magic_gears_path
     end
   end
@@ -61,7 +61,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicImplement.import_implements
-      flash[:success] = "L'import des focaliseurs magiques à terminé"
+      flash[:success] = "L'import des focaliseurs magiques à terminé (147 objets en théorie)"
       redirect_to object_magic_implements_path
     end
   end
