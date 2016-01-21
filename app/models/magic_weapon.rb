@@ -22,7 +22,7 @@ class MagicWeapon < ActiveRecord::Base
       ActiveRecord::Base.transaction do
         File.open(File.join('lib/import_files', filename), 'r') do |f|
           f.readline
-          f.each_line do |l| # "Titre";"Description";"Altération";"Niveau minimum";"Prix par niveau et altération";"Arme";"Critique";"Propriété";"Pouvoir";"Source";"Spécial"
+          f.each_line do |l| # "Titre";"Description";"Altération";"Niveau minimum";"Prix par niveau et altération";"Arme";"Critique";"Propriété";"Pouvoir";"Source";"Spécial";"Rareté"
             array_line = l.split(/";"/, -1)
             m = MagicWeapon.new(
               name:           ImportData.clear_field(array_line[0]),
@@ -34,7 +34,8 @@ class MagicWeapon < ActiveRecord::Base
               special:        ImportData.clear_field(array_line[10]),
               source:         sources.find{|s| s.name == ImportData.clear_field(array_line[9])},
               object_levels:  ImportData.calcul_level_array(ImportData.clear_field(array_line[3]).to_i, levels),
-              weapon_groups:  ImportData.find_weapon_groups(ImportData.clear_field(array_line[5]), groups)
+              weapon_groups:  ImportData.find_weapon_groups(ImportData.clear_field(array_line[5]), groups),
+              rarity:         ImportData.clear_field(array_line[11])
               )
             if m.valid?
               begin

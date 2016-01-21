@@ -13,6 +13,7 @@
       <th class="col-sm-1"><%= t('magic.level_min')       %></th>
       <th class="col-sm-1"><%= t('magic.property')        %></th>
       <th class="col-sm-1"><%= t('magic.power')           %></th>
+      <th class="col-sm-1"><%= t('magic.rarity')           %></th>
       <th class="col-sm-1"><%= t('magic.source')          %></th>
     </tr>
   <% weapons.each do |w| %>
@@ -22,6 +23,7 @@
       <td><%= w.object_level_ids.min %> </td>
       <td><%= display_first_words w.property %> </td>
       <td><%= display_first_words w.power %> </td>
+      <td><%= w.rarity %> </td>
       <td><%= w.source.name %> </td>
       <!-- <td><%= link_to 'x', object_magic_weapon_path(w.id), method: :delete %></td> -->
     </tr>

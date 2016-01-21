@@ -312,6 +312,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
     t.text     "property"
     t.text     "power"
     t.text     "special"
+    t.integer  "rarity"
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
