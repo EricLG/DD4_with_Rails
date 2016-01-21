@@ -34,7 +34,8 @@ class MagicArmor < ActiveRecord::Base
               special:            ImportData.clear_field(array_line[7]),
               source:             sources.find{|s| s.name == ImportData.clear_field(array_line[8])},
               object_levels:      ImportData.calcul_level_array(ImportData.clear_field(array_line[4]).to_i, levels),
-              armor_categories:   ImportData.find_armor_categories(ImportData.clear_field(array_line[1]), categories)
+              armor_categories:   ImportData.find_armor_categories(ImportData.clear_field(array_line[1]), categories),
+              rarity:             ImportData.clear_field(array_line[9])
               )
             if m.valid?
               begin

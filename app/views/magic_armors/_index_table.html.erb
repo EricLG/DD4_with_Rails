@@ -13,6 +13,7 @@
       <th class="col-sm-1"><%= t('magic.level_min')  %></th>
       <th class="col-sm-1"><%= t('magic.property')   %></th>
       <th class="col-sm-1"><%= t('magic.power')      %></th>
+      <th class="col-sm-1"><%= t('magic.rarity')      %></th>
       <th class="col-sm-1"><%= t('magic.source')           %></th>
     </tr>
   <% armors.each do |a| %>
@@ -26,6 +27,7 @@
       <td><%= a.object_level_ids.min %> </td>
       <td><%= display_first_words(a.property) %> </td>
       <td><%= display_first_words(a.power) %> </td>
+      <td><%= a.rarity %> </td>
       <td><%= a.source.name %> </td>
     </tr>
   <% end %><!-- Fin communs -->

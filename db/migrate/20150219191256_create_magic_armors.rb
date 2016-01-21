@@ -7,6 +7,7 @@ class CreateMagicArmors < ActiveRecord::Migration
       t.text :property
       t.text :power
       t.text :special
+      t.integer :rarity
       t.belongs_to :source, index: true
 
       t.timestamps
