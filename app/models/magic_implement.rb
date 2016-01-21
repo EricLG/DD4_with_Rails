@@ -35,7 +35,8 @@ class MagicImplement < ActiveRecord::Base
               special:            ImportData.clear_field(array_line[8]),
               source:             sources.find{|s| s.name == ImportData.clear_field(array_line[7])},
               object_levels:      ImportData.calcul_level_array(ImportData.clear_field(array_line[3]).to_i, levels),
-              implement_groups:   ImportData.find_implement_group(ImportData.clear_field(array_line[9]), groups)
+              implement_groups:   ImportData.find_implement_group(ImportData.clear_field(array_line[9]), groups),
+              rarity:             ImportData.clear_field(array_line[10])
               )
             if m.valid?
               begin

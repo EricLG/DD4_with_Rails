@@ -8,6 +8,7 @@ class CreateMagicImplements < ActiveRecord::Migration
       t.string :critical
       t.text :power
       t.text :special
+      t.integer :rarity
       t.belongs_to :source
 
       t.timestamps
