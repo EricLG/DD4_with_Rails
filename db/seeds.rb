@@ -22,14 +22,14 @@ Source.create([
   { name: 'Manuel des Monstres 1' },
   { name: 'Manuel des Monstres 2' },
   { name: 'Manuel des Monstres 3' },
-  { name: 'Royaume Oubliés' },
-  { name: 'Secret des Arcanes' }
+  { name: 'Royaumes Oubliés' },
+  { name: 'Secrets des Arcanes' }
   ])
 mdj1 = Source.find_by_name('Manuel des Joueurs 1')
 mdj2 = Source.find_by_name('Manuel des Joueurs 2')
 mdj3 = Source.find_by_name('Manuel des Joueurs 3')
 eber = Source.find_by_name('Eberron')
-roou = Source.find_by_name('Royaume Oubliés')
+roou = Source.find_by_name('Royaumes Oubliés')
 cda1 = Source.find_by_name('Le Comptoir de l\'Aventure 1')
 cda2 = Source.find_by_name('Le Comptoir de l\'Aventure 2')
 
