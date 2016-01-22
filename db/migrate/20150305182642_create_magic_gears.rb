@@ -8,6 +8,7 @@ class CreateMagicGears < ActiveRecord::Migration
       t.text :power
       t.text :special
       t.belongs_to :location
+      t.integer :rarity
       t.belongs_to :source, index: true
 
       t.timestamps

@@ -28,19 +28,20 @@ class MagicGear < ActiveRecord::Base
         File.open(File.join('lib/import_files', filename), 'r') do |f|
           f.readline
           f.each_line do |l|
-            # "Titre";"Niveau minimum";"Description";"Prix par niveau et altération";"Emplacement d'objet";"Altération";"Catégorie de bouclier";"Propriété";"Pouvoir";"Spécial";"Source"
+            # "Titre";"Niveau minimum";"Description";"Prix par niveau et altération";"Emplacement d'objet";"Altération";"Catégorie de bouclier";"Propriété";"Pouvoir";"Spécial";"Source";"Rareté"
             array_line = l.split(/";"/, -1)
             m = MagicGear.new(
               name:               ImportData.clear_field(array_line[0]),
               description:        ImportData.clear_field(array_line[2]),
               alteration:         ImportData.clear_field(array_line[5]),
-              location:           location.find{|l| l.name == ImportData.clear_field(array_line[4])},
+              location:           location.find{|lo| lo.name == ImportData.clear_field(array_line[4])},
               property:           ImportData.clear_field(array_line[7]),
               power:              ImportData.clear_field(array_line[8]),
               special:            ImportData.clear_field(array_line[9]),
               source:             sources.find{|s| s.name == ImportData.clear_field(array_line[10])},
               object_levels:      ImportData.find_each_level(ImportData.clear_field(array_line[3]), levels),
-              armor_categories:   ImportData.find_armor_categories(ImportData.clear_field(array_line[6]), categories)
+              armor_categories:   ImportData.find_armor_categories(ImportData.clear_field(array_line[6]), categories),
+              rarity:             ImportData.clear_field(array_line[11])
               )
             if m.valid?
               m.save
