@@ -1,14 +1,14 @@
 <%= form_for [:object, @implement], {:class => 'form-horizontal'} do |f| %>
 
   <%= input_text_form(f, :name,         MagicImplement.human_attribute_name(:name)) %>
-  <%= input_text_form(f, :description,  MagicImplement.human_attribute_name(:description)) %>
+  <%= input_text_field_form(f, :description,  MagicImplement.human_attribute_name(:description)) %>
   <%= input_select_form(f, :object_level_ids,     @levels,            :level, @implement.object_level_ids,    MagicImplement.human_attribute_name(:object_level_ids),   {multiple: true}) %>
   <%= input_select_form(f, :implement_group_ids,  @implement_groups,  :name,  @implement.implement_group_ids, MagicImplement.human_attribute_name(:implement_group_ids), {multiple: true, size: 3}) %>
   <%= input_text_form(f, :alteration,   MagicImplement.human_attribute_name(:alteration)) %>
   <%= input_text_form(f, :critical,     MagicImplement.human_attribute_name(:critical)) %>
-  <%= input_text_form(f, :property,     MagicImplement.human_attribute_name(:property)) %>
-  <%= input_text_form(f, :power,        MagicImplement.human_attribute_name(:power)) %>
-  <%= input_text_form(f, :special,      MagicImplement.human_attribute_name(:special)) %>
+  <%= input_text_field_form(f, :property,     MagicImplement.human_attribute_name(:property)) %>
+  <%= input_text_field_form(f, :power,        MagicImplement.human_attribute_name(:power)) %>
+  <%= input_text_field_form(f, :special,      MagicImplement.human_attribute_name(:special)) %>
   <%= input_select_form(f, :source_id,            @sources,           :name,  @implement.source_id,           MagicImplement.human_attribute_name(:source_id),          {blank: true}) %>
   <%= submit_text_form(f, {add_another: true}) %>
 

@@ -1,14 +1,14 @@
 <%= form_for [:object, @weapon], {:class => 'form-horizontal'} do |f| %>
 
   <%= input_text_form(f, :name,         MagicWeapon.human_attribute_name(:name)) %>
-  <%= input_text_form(f, :description,  MagicWeapon.human_attribute_name(:description)) %>
+  <%= input_text_field_form(f, :description,  MagicWeapon.human_attribute_name(:description)) %>
   <%= input_select_form(f, :object_level_ids, @levels,        :level, @weapon.object_level_ids, MagicWeapon.human_attribute_name(:object_level_ids), {multiple: true}) %>
   <%= input_select_form(f, :weapon_group_ids, @weapon_groups, :name,  @weapon.weapon_group_ids, MagicWeapon.human_attribute_name(:weapon_group_ids), {multiple: true}) %>
   <%= input_text_form(f, :alteration,   MagicWeapon.human_attribute_name(:alteration)) %>
   <%= input_text_form(f, :critical,     MagicWeapon.human_attribute_name(:critical)) %>
-  <%= input_text_form(f, :property,     MagicWeapon.human_attribute_name(:property)) %>
-  <%= input_text_form(f, :power,        MagicWeapon.human_attribute_name(:power)) %>
-  <%= input_text_form(f, :special,      MagicWeapon.human_attribute_name(:special)) %>
+  <%= input_text_field_form(f, :property,     MagicWeapon.human_attribute_name(:property)) %>
+  <%= input_text_field_form(f, :power,        MagicWeapon.human_attribute_name(:power)) %>
+  <%= input_text_field_form(f, :special,      MagicWeapon.human_attribute_name(:special)) %>
   <%= input_select_form(f, :source_id,        @sources,       :name,  @weapon.source_id,        MagicWeapon.human_attribute_name(:source_id),        {blank: true}) %>
   <%= submit_text_form(f, {add_another: true}) %>
 
