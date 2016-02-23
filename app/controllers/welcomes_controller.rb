@@ -22,6 +22,16 @@ class WelcomesController < ApplicationController
     @hide_side_bloc = true if @current_user
   end
 
+  def items
+    if MagicItem.count != 0
+      flash[:error] = "Il existe déjà des items magiques, import annulé."
+      redirect_to import_welcomes_path
+    else
+      MagicItem.import_items
+      flash[:success] = "L'import des items magiques à terminé (1147 objets en théorie)"
+      redirect_to object_magic_items_path
+    end
+  end
   def weapons
     if MagicWeapon.count != 0
       flash[:error] = "Il existe déjà des armes magiques, import annulé."

@@ -19,7 +19,14 @@ Rails.application.routes.draw do
   get 'objects/index'
 
   namespace :object do
+    # TODO: clean useless routes
     resources :common_weapons, :common_armors, :magic_weapons, :magic_armors, :magic_implements, :magic_gears, :consumables
+    resources :magic_items do
+      get 'magic_weapons'
+      get 'magic_armors'
+      get 'magic_implements'
+      get 'magic_gears'
+    end
   end
 
   resources :feats do
@@ -43,6 +50,7 @@ Rails.application.routes.draw do
   resources :welcomes, only: [:index] do
     collection do
       get :import
+      get :items
       get :weapons
       get :armors
       get :gears

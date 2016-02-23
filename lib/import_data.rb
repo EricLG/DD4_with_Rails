@@ -5,10 +5,21 @@ module ImportData
     if field.first == '"'
       field = field[1..-1]
     end
-    if field.last == '"'
+    if (field.last(2) == "\";")
+      field = field[0...-2]
+    end
+    if (field.last == '"')
       field = field[0...-1]
     end
     field
+  end
+
+  def self.find_level_array(item, min, array_to_parse, levels)
+    if item.is_gear?
+      ImportData.find_each_level(array_to_parse, levels)
+    else
+      ImportData.calcul_level_array(min, levels)
+    end
   end
 
   def self.calcul_level_array(min, levels)
