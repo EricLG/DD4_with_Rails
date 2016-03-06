@@ -17,6 +17,10 @@ class MagicItem < ActiveRecord::Base
   validates :location, presence: true
 
   GEAR_LOCATION = %w(head neck belt hands ring arm foots)
+  scope :weapons,     -> {joins(:location).where(locations: {code: "weapon"}) }
+  scope :armors,      -> {joins(:location).where(locations: {code: "armor"}) }
+  scope :implements,  -> {joins(:location).where(locations: {code: "implement"}) }
+  scope :gears,       -> {joins(:location).where(locations: {code: GEAR_LOCATION}) }
 
   def self.import_items
     sources = Source.all
@@ -55,7 +59,6 @@ class MagicItem < ActiveRecord::Base
             else
                logger.error "Erreur de validation sur l'objet #{m.name}"
                logger.error "#{m.errors.full_messages}"
-               binding.pry
                m.save!
             end
           end

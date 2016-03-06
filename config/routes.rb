@@ -22,10 +22,12 @@ Rails.application.routes.draw do
     # TODO: clean useless routes
     resources :common_weapons, :common_armors, :magic_weapons, :magic_armors, :magic_implements, :magic_gears, :consumables
     resources :magic_items do
-      get 'magic_weapons'
-      get 'magic_armors'
-      get 'magic_implements'
-      get 'magic_gears'
+      collection do
+        get 'weapons'
+        get 'armors'
+        get 'implements'
+        get 'gears'
+      end
     end
   end
 

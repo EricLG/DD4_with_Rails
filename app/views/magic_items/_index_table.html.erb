@@ -18,7 +18,7 @@
     </tr>
   <% items.each do |i| %>
     <tr>
-      <td><%= link_to i.name, object_magic_weapon_path(i.id)  %></td>
+      <td><%= link_to i.name, object_magic_item_path(i.id)  %></td>
       <td><%= display_weapon_group(i.weapon_groups) %></td>
       <td><%= i.object_level_ids.min %> </td>
       <td><%= display_first_words i.property %> </td>

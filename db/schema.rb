@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   add_index "armor_categories_magic_gears", ["armor_category_id"], name: "index_armor_categories_magic_gears_on_armor_category_id", using: :btree
   add_index "armor_categories_magic_gears", ["magic_gear_id"], name: "index_armor_categories_magic_gears_on_magic_gear_id", using: :btree
 
+  create_table "armor_categories_magic_items", id: false, force: :cascade do |t|
+    t.integer "magic_item_id"
+    t.integer "armor_category_id"
+  end
+
+  add_index "armor_categories_magic_items", ["armor_category_id"], name: "index_armor_categories_magic_items_on_armor_category_id", using: :btree
+  add_index "armor_categories_magic_items", ["magic_item_id"], name: "index_armor_categories_magic_items_on_magic_item_id", using: :btree
+
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -201,6 +209,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   add_index "implement_groups_magic_implements", ["implement_group_id"], name: "index_implement_groups_magic_implements_on_implement_group_id", using: :btree
   add_index "implement_groups_magic_implements", ["magic_implement_id"], name: "index_implement_groups_magic_implements_on_magic_implement_id", using: :btree
 
+  create_table "implement_groups_magic_items", id: false, force: :cascade do |t|
+    t.integer "magic_item_id"
+    t.integer "implement_group_id"
+  end
+
+  add_index "implement_groups_magic_items", ["implement_group_id"], name: "index_implement_groups_magic_items_on_implement_group_id", using: :btree
+  add_index "implement_groups_magic_items", ["magic_item_id"], name: "index_implement_groups_magic_items_on_magic_item_id", using: :btree
+
   create_table "klass_features", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -306,6 +322,40 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "magic_implements_object_levels", ["magic_implement_id"], name: "index_magic_implements_object_levels_on_magic_implement_id", using: :btree
   add_index "magic_implements_object_levels", ["object_level_id"], name: "index_magic_implements_object_levels_on_object_level_id", using: :btree
+
+  create_table "magic_items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description", limit: 500
+    t.string   "alteration",  limit: 500
+    t.text     "property"
+    t.text     "power"
+    t.text     "special"
+    t.integer  "source_id"
+    t.integer  "rarity"
+    t.string   "critical",    limit: 500
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "magic_items", ["name"], name: "index_magic_items_on_name", using: :btree
+  add_index "magic_items", ["source_id"], name: "index_magic_items_on_source_id", using: :btree
+
+  create_table "magic_items_object_levels", id: false, force: :cascade do |t|
+    t.integer "magic_item_id"
+    t.integer "object_level_id"
+  end
+
+  add_index "magic_items_object_levels", ["magic_item_id"], name: "index_magic_items_object_levels_on_magic_item_id", using: :btree
+  add_index "magic_items_object_levels", ["object_level_id"], name: "index_magic_items_object_levels_on_object_level_id", using: :btree
+
+  create_table "magic_items_weapon_groups", id: false, force: :cascade do |t|
+    t.integer "magic_item_id"
+    t.integer "weapon_group_id"
+  end
+
+  add_index "magic_items_weapon_groups", ["magic_item_id"], name: "index_magic_items_weapon_groups_on_magic_item_id", using: :btree
+  add_index "magic_items_weapon_groups", ["weapon_group_id"], name: "index_magic_items_weapon_groups_on_weapon_group_id", using: :btree
 
   create_table "magic_weapons", force: :cascade do |t|
     t.string   "name"
