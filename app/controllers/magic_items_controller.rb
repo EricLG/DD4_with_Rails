@@ -3,8 +3,7 @@ class MagicItemsController < ApplicationController
   before_action :find_dependancies, only: [:index, :new, :edit, :weapons]
 
   def index
-    @search = MagicSearch.new(params[:magic_search], MagicItem)
-    @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    render "object/index"
   end
 
   def new

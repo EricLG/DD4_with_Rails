@@ -15,10 +15,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :show, :create]
 
-  # Menu principal
-  get 'objects/index'
-
   namespace :object do
+    # Lien du menu principal
+    get '/index' => 'magic_items#index'
     # TODO: clean useless routes
     resources :common_weapons, :common_armors, :magic_weapons, :magic_armors, :magic_implements, :magic_gears, :consumables
     resources :magic_items do
