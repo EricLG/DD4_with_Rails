@@ -18,7 +18,7 @@ class MagicItem < ActiveRecord::Base
 
   GEAR_LOCATION = %w(head neck belt hands ring arm foots)
   scope :weapons,     -> {joins(:location).where(locations: {code: "weapon"}) }
-  scope :armors,      -> {joins(:location).where(locations: {code: "armor"}) }
+  scope :armors,      -> {joins(:location).where(locations: {code: "chest"}) }
   scope :implements,  -> {joins(:location).where(locations: {code: "implement"}) }
   scope :gears,       -> {joins(:location).where(locations: {code: GEAR_LOCATION}) }
 
@@ -41,7 +41,6 @@ class MagicItem < ActiveRecord::Base
               m.description         = ImportData.clear_field(array_line[1])
               m.alteration          = ImportData.clear_field(array_line[2])
               m.location            = locations.find{|lo| lo.name == ImportData.clear_field(array_line[14])}
-              binding.pry if m.location.blank?
               object_levels = ImportData.find_level_array(m, ImportData.clear_field(array_line[3]).to_i, ImportData.clear_field(array_line[4]), levels)
               m.object_levels       =  object_levels
               m.property            = ImportData.clear_field(array_line[5])
