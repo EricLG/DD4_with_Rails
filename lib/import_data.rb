@@ -67,6 +67,10 @@ module ImportData
         array << categories.find{|c| c.code == 'skin'}
       elsif d.match(/écailles/)
         array << categories.find{|c| c.code == 'scales'}
+      elsif d.match(/Léger/)
+        array << categories.find{|c| c.code == 'lightsh'}
+      elsif d.match(/Lourd/)
+        array << categories.find{|c| c.code == 'heavysh'}
       end
      end
     array
