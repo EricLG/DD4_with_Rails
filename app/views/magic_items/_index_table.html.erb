@@ -10,6 +10,9 @@
     <tr>
       <th class="col-sm-1"><%= t('magic.name')            %></th>
       <th class="col-sm-1"><%= t('common.weapon_groups')  %></th>
+      <th class="col-sm-1"><%= t('common.armor_categories')%></th>
+      <th class="col-sm-1"><%= t('magic.implement_groups')    %></th>
+      <th class="col-sm-1"><%= t('magic.gear.location') %></th>
       <th class="col-sm-1"><%= t('magic.level_min')       %></th>
       <th class="col-sm-1"><%= t('magic.property')        %></th>
       <th class="col-sm-1"><%= t('magic.power')           %></th>
@@ -20,6 +23,17 @@
     <tr>
       <td><%= link_to i.name, object_magic_item_path(i.id)  %></td>
       <td><%= display_weapon_group(i.weapon_groups) %></td>
+      <td>
+        <% i.armor_categories.each do |c| %>
+          <%= c.name %></br>
+        <% end %>
+      </td>
+      <td>
+        <% i.implement_groups.each do |g| %>
+          <%= g.name %></br>
+        <% end %>
+      </td>
+      <td><%= i.location.name %> </td>
       <td><%= i.object_level_ids.min %> </td>
       <td><%= display_first_words i.property %> </td>
       <td><%= display_first_words i.power %> </td>

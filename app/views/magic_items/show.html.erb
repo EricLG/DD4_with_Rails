@@ -15,6 +15,29 @@
 <% end %>
 
   <dt><%= t("common.weapon_groups", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= display_weapon_group(@item.weapon_groups) %></dd>
+
+<% if  @item.armor_categories.empty? %>
+  <dt><%= t("common.categories", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+  <dt><%= t("common.armor_categories", :class=>"col_sm-4") %> </dt><dd class="text-left">
+    <% @item.armor_categories.each do |g| %>
+      <%= g.name %>
+    <% end %>
+  </dd>
+<% end %>
+
+
+<% if  @item.implement_groups.empty? %>
+  <dt><%= t("magic.implement_groups", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
+<% else %>
+  <dt><%= t("magic.implement_groups", :class=>"col_sm-4") %> </dt><dd class="text-left">
+    <% @item.implement_groups.each do |g| %>
+      <%= g.name %>
+    <% end %>
+  </dd>
+<% end %>
+
+  <dt><%= t("magic.gear.location",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.location.name %></dd>
   <dt><%= t("magic.alteration",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.alteration %></dd>
   <dt><%= t("magic.critical",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.critical %></dd>
   <dt><%= t("magic.property",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @item.property %></dd>
@@ -23,4 +46,4 @@
   <dt><%= t("common.source",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.source.name %></dd>
 </dl>
 
-<%= link_to t('magic.weapon.edit_weapon', weapon: @item.name), edit_object_magic_item_path(@item.id) %>
+<%= link_to t('magic.item.edit_magic_item', item: @item.name), edit_object_magic_item_path(@item.id) %>
