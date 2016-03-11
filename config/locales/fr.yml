@@ -144,8 +144,8 @@ fr:
     implement_group:    "Focaliseurs"
     location:           "Emplacement d'objet"
     rarity:
-      common:           "Commun"
-      uncommon:         "Peu commun"
+      common:           "Fréquent"
+      uncommon:         "Peu fréquent"
       rare:             "Rare"
     item:
       title_edit:       "Modification d'un objet magique"
@@ -211,10 +211,7 @@ fr:
   welcomes:
     contribute:
       title_contribute:   "Contributions"
-      new_weapon:         "Créer une nouvelle arme magique"
-      new_armor:          "Créer une nouvelle armure magique"
-      new_implement:      "Créer un nouvel focaliseur magique"
-      new_gear:           "Créer un nouvel équipement magique"
+      new_magic_item:     "Créer un nouvel objet magique"
       new_consumable:     "Créer un nouveau consommable"
       new_feat:           "Créer un nouveau talent"
       new_common_weapon:  "Créer une arme commune"

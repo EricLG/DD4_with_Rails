@@ -1,6 +1,6 @@
 <%= form_for @feat, {:class => 'form-horizontal'} do |f| %>
 
-  <%= input_text_form(f, :name,         MagicImplement.human_attribute_name(:name)) %>
+  <%= input_text_form(f, :name,         Feat.human_attribute_name(:name)) %>
   <%= input_select_form_without_collection(f, :category, Feat::CATEGORY, Feat.human_attribute_name(:category), {size: 3}) %>
   <%= input_text_field_form(f, :avantage, Feat.human_attribute_name(:avantage)) %>
   <%= input_text_field_form(f, :errata,   Feat.human_attribute_name(:errata)) %>

@@ -51,10 +51,6 @@ Rails.application.routes.draw do
     collection do
       get :import
       get :items
-      get :weapons
-      get :armors
-      get :gears
-      get :implements
       get :feats
       get :contribute
       get :random
