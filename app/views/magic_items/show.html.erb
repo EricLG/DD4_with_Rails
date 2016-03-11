@@ -3,47 +3,57 @@
   <%= render "sidebloc/objects_menu" %>
 <% end %>
 
-<h3 class="col-sm-12"><%= @item.name %></h3>
+<div class="panel panel-default">
+  <div class="panel-heading bg-title">
+    <h3 class="panel-title"><strong><%= @item.name %></strong><span class="pull-right">Niveau <%= @item.level_min %>+  <%= t("magic_item.rarity.#{@item.rarity_name}") %></span></h3>
+  </div>
 
-<dl class="dl-horizontal">
-  <dt><%= t("magic.description", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.description %></dd>
+  <div class="panel-body no-padding">
+    <ul class="list-group">
+      <li class="list-group-item no-border-line bg"><em><%= @item.description %></em></li>
+      <% #TODO display level ne gere plus les items sans alteration %>
+      <li class="list-group-item no-border-line"><%= display_levels(@item.object_levels.order(:level), !@item.alteration.blank?)%></li>
 
-<% if  @item.object_levels.empty? %>
-  <dt><%= t("magic.levels", :class=>"col_sm-4") %>    </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-   <dt><%= t("magic.levels", :class=>"col_sm-4") %>  </dt><dd class="text-left"><%= display_levels @item.object_levels.order(:level)%></dd>
-<% end %>
+      <% unless  @item.weapon_groups.empty? %>
+        <li class="list-group-item no-border-line"><strong><%= t("magic_item.weapon_groups")%></strong> : <%= display_weapon_group(@item.weapon_groups) %></li>
+      <% end %>
 
-  <dt><%= t("common.weapon_groups", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= display_weapon_group(@item.weapon_groups) %></dd>
+      <% unless  @item.armor_categories.empty? %>
+        <li class="list-group-item no-border-line"><strong><%= t("magic_item.armor_categories") %></strong> : <%= @item.armor_categories.map(&:name).join(', ') %> </li>
+      <% end %>
 
-<% if  @item.armor_categories.empty? %>
-  <dt><%= t("common.categories", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("common.armor_categories", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <% @item.armor_categories.each do |g| %>
-      <%= g.name %>
+      <% unless  @item.implement_group.nil? %>
+        <li class="list-group-item no-border-line"><strong><%= t("magic_item.implement_group") %></strong> : <%= @item.implement_group.name %></li>
+      <% end %>
+
+      <% if @item.is_gear? %>
+        <li class="list-group-item no-border-line"><strong><%= t("magic_item.location")%></strong> : <%= @item.location.name %></li>
+      <% end %>
+
+      <% unless @item.alteration.blank? %>
+        <li class="list-group-item no-border-line"><strong><%= t("magic_item.alteration")%></strong> : <%= @item.alteration %></li>
+      <% end %>
+
+      <% unless @item.critical.blank? %>
+        <li class="list-group-item no-border-line"><strong><%= t("magic_item.critical")%></strong> : <%= @item.critical %></li>
+      <% end %>
+
+      <% unless @item.property.blank? %>
+        <li class="list-group-item no-border-line"><strong><%= t("magic_item.property")%></strong> : <%= simple_format(@item.property, {}, {wrapper_tag: 'span'}) %></li>
+      <% end %>
+
+      <% unless @item.power.blank? %>
+        <li class="list-group-item no-border-line bg"><strong><%= t("magic_item.power")%></strong> : <%= simple_format(@item.power, {}, {wrapper_tag: 'span'}) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="panel-footer">
+    <p><strong>Source</strong> : <%= @item.source.name %><span class="pull-right"><%= link_to t('magic_item.item.edit_magic_item', item: @item.name), edit_object_magic_item_path(@item.id) %></span></p>
+    <% unless @item.special.empty? %>
+      <span><strong>(Special)</strong> <%= simple_format(@item.special, {}, {wrapper_tag: 'span'}) %></span>
     <% end %>
-  </dd>
-<% end %>
+  </div>
 
+</div>
 
-<% if  @item.implement_groups.empty? %>
-  <dt><%= t("magic.implement_groups", :class=>"col_sm-4") %>   </dt><dd class="text-left"><%= t('common.empty') %></dd>
-<% else %>
-  <dt><%= t("magic.implement_groups", :class=>"col_sm-4") %> </dt><dd class="text-left">
-    <% @item.implement_groups.each do |g| %>
-      <%= g.name %>
-    <% end %>
-  </dd>
-<% end %>
-
-  <dt><%= t("magic.gear.location",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.location.name %></dd>
-  <dt><%= t("magic.alteration",     :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.alteration %></dd>
-  <dt><%= t("magic.critical",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.critical %></dd>
-  <dt><%= t("magic.property",       :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @item.property %></dd>
-  <dt><%= t("magic.power",          :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @item.power %></dd>
-  <dt><%= t("magic.special",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @item.special %></dd>
-  <dt><%= t("common.source",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @item.source.name %></dd>
-</dl>
-
-<%= link_to t('magic.item.edit_magic_item', item: @item.name), edit_object_magic_item_path(@item.id) %>

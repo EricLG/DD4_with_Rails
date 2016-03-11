@@ -38,10 +38,10 @@
 
   <% if @kind == 'implements' %>
   <div class="form-group col-xs-4">
-    <% default_options =  params["magic_item_search"]["implement_groups"] if params["magic_item_search"]%>
-    <%= form.label(:implement_groups, "Groupes de focaliseurs:", :class=>"col-sm-4") %>
+    <% default_options =  params["magic_item_search"]["implement_group"] if params["magic_item_search"]%>
+    <%= form.label(:implement_group, "Groupes de focaliseurs:", :class=>"col-sm-4") %>
     <div class="col-sm-8">
-      <%= form.select :implement_groups, options_from_collection_for_select(@implement_groups, :id, :name, default_options),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
+      <%= form.select :implement_group, options_from_collection_for_select(@implement_groups, :id, :name, default_options),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
     </div>
   </div>
   <% end %>

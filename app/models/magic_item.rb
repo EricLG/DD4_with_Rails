@@ -6,7 +6,7 @@ class MagicItem < ActiveRecord::Base
   belongs_to :location
   has_and_belongs_to_many :weapon_groups
   has_and_belongs_to_many :armor_categories
-  has_and_belongs_to_many :implement_groups
+  belongs_to :implement_group
   has_and_belongs_to_many :object_levels
 
   validates :name, presence: true, uniqueness: true
@@ -16,11 +16,10 @@ class MagicItem < ActiveRecord::Base
   validates :source, presence: true
   validates :location, presence: true
 
-  GEAR_LOCATION = %w(head neck belt hands ring arm foots)
   scope :weapons,     -> {joins(:location).where(locations: {code: "weapon"}) }
   scope :armors,      -> {joins(:location).where(locations: {code: "chest"}) }
   scope :implements,  -> {joins(:location).where(locations: {code: "implement"}) }
-  scope :gears,       -> {joins(:location).where(locations: {code: GEAR_LOCATION}) }
+  scope :gears,       -> {joins(:location).where(locations: {code: Location::GEAR_CODES}) }
 
   def self.import_items
     sources = Source.all
@@ -51,7 +50,7 @@ class MagicItem < ActiveRecord::Base
               m.critical            = ImportData.clear_field(array_line[10])
               m.weapon_groups       = ImportData.find_weapon_groups(ImportData.clear_field(array_line[11]), weapon_groups)
               m.armor_categories    = ImportData.find_armor_categories(ImportData.clear_field(array_line[12]), armor_categories)
-              m.implement_groups    = ImportData.find_implement_group(ImportData.clear_field(array_line[13]), implement_groups) # Absent sur les armes et armures certaineemnt
+              m.implement_group     = implement_groups.find{|ig| ig.name == ImportData.clear_field(array_line[13])}
 
             if m.valid?
               m.save!
@@ -68,8 +67,28 @@ class MagicItem < ActiveRecord::Base
     logger.debug "#{c} armes magiques ont été crées"
   end
 
-  def is_gear?
-    GEAR_LOCATION.include?(location.code)
+  def is_weapon?
+    location.name == Location::WEAPON_CODE
   end
 
+  def is_armor?
+    location.name == Location::ARMOR_CODE
+  end
+  def is_implement?
+    location.name == Location::IMPLEMENT_CODE
+  end
+  def is_gear?
+    Location::GEAR_CODES.include?(self.location.code)
+  end
+  def level_min
+    self.object_levels.map(&:level).try(:min)
+  end
+
+  def rarity_name
+    case rarity
+    when 1 then 'common'
+    when 2 then 'uncommon'
+    when 3 then 'rare'
+    end
+  end
 end

@@ -90,10 +90,10 @@ class MagicItemsController < ApplicationController
       :property,
       :power,
       :special,
+      :implement_group_id,
       :source_id,
       {weapon_group_ids:[]},
       {armor_category_ids:[]},
-      {implement_group_ids:[]},
       {object_level_ids:[]}
     )
   end

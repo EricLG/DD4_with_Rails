@@ -3,7 +3,7 @@ fr:
     alteration:   "Altération"
     critical:     "Critique"
     description:  "Description"
-    object_level_ids:             "Niveaux"
+    object_level_ids: "Niveaux"
     levels:       "Niveaux"
     name:         "Nom"
     property:     "Propriété"
@@ -25,13 +25,10 @@ fr:
         one:      "Personnage"
         other:    "Personnages"
     attributes:
-      magic_weapon:
+      magic_item:
         weapon_group_ids: "Groupes d'armes"
-      magic_armor:
         armor_category_ids:  "Catégories d'armures"
-      magic_gear:
         location_id:          "Emplacement"
-        armor_category_ids:  "Catégories d'armures"
       consumable:
         kind:     "Type de consommables"
       character:
@@ -130,7 +127,7 @@ fr:
       skill_malus:      "Malus de compétences"
       shield_bonus:     "Bonus de bouclier"
       special:          "Spécial"
-  magic:
+  magic_item:
     name:               "Nom"
     description:        "Description"
     levels:             "Niveaux"
@@ -142,28 +139,19 @@ fr:
     power:              "Pouvoir"
     special:            "Spécial"
     shield_groups:      "Type de bouclier"
-    implement_groups:   "Type de focaliseurs"
-    weapon:
-      title_edit:       "Modification d'une arme magique"
-      title_index:      "Liste des armes magiques"
-      title_new:        "Création d'une arme magique"
-      edit_weapon:      "Modifier %{weapon}"
-    armor:
-      title_edit:       "Modification d'une armure magique"
-      title_index:      "Liste des armures magiques"
-      title_new:        "Création d'une armure magique"
-      edit_armor:       "Modifier %{armor}"
-    implement:
-      title_edit:       "Modification d'un focaliseur magique"
-      title_index:      "Liste des focaliseurs magiques"
-      title_new:        "Création d'un focaliseur magique"
-      title_show:       "Modifier %{implement}"
-      edit_implement:   "Modifier %{implement}"
-    gear:
-      title_edit:       "Modification d'un équipement magique"
-      title_index:      "Liste des équipements magiques"
-      title_new:        "Création d'un équipement magique"
-      edit_gear:        "Modifier %{gear}"
+    weapon_groups:      "Armes"
+    armor_categories:   "Armures"
+    implement_group:    "Focaliseurs"
+    location:           "Emplacement d'objet"
+    rarity:
+      common:           "Commun"
+      uncommon:         "Peu commun"
+      rare:             "Rare"
+    item:
+      title_edit:       "Modification d'un objet magique"
+      title_index:      "Liste des objets magiques"
+      title_new:        "Création d'un objet magique"
+      edit_magic_item:      "Modifier %{item}"
       location:         "Emplacement"
   consumables:
     index:

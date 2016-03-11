@@ -14,6 +14,7 @@ class CreateMagicItems < ActiveRecord::Migration
 
       # Weapon and Implement
       t.string :critical,     limit: 500
+      t.belongs_to :implement_group
       # Gear
       t.belongs_to :location
 
@@ -32,11 +33,10 @@ class CreateMagicItems < ActiveRecord::Migration
       t.belongs_to :armor_category, index: true
     end
 
-    create_table :implement_groups_magic_items, id: false do |t|
-
-      t.belongs_to :magic_item, index: true
-      t.belongs_to :implement_group, index: true
-    end
+    #create_table :implement_groups_magic_items, id: false do |t|
+    #  t.belongs_to :magic_item, index: true
+    #  t.belongs_to :implement_group, index: true
+    #end
 
     create_table :magic_items_object_levels, id: false do |t|
 

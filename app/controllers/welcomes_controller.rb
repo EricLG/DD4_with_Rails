@@ -28,7 +28,7 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       MagicItem.import_items
-      flash[:success] = "L'import des items magiques à terminé (1147 objets en théorie)"
+      flash[:success] = "L'import des items magiques à terminé (1146 objets en théorie)"
       redirect_to object_magic_items_path
     end
   end

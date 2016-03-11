@@ -1,7 +1,7 @@
 class MagicItemSearch
   include ActiveModel::Model
 
-  FIELDS = %i(name object_levels source weapon_groups armor_categories implement_groups location)
+  FIELDS = %i(name object_levels source weapon_groups armor_categories implement_group location)
   attr_accessor(*FIELDS)
 
   attr_accessor :params, :item_type
@@ -18,13 +18,13 @@ class MagicItemSearch
       params[p] = v if v && !v.blank?
     end
 
-    search = find_type(self.item_type).includes(:object_levels, :source, :weapon_groups, :armor_categories, :implement_groups, :location)
+    search = find_type(self.item_type).includes(:object_levels, :source, :weapon_groups, :armor_categories, :implement_group, :location)
 
     unless params.empty?
       name_params             = params.delete(:name)
       source_params           = params.delete(:source)
       object_levels_params    = params.delete(:object_levels)
-      implement_groups_params = params.delete(:implement_groups)
+      implement_group_params = params.delete(:implement_groups)
       locations_params        = params.delete(:location)          || []
       weapon_groups_params    = params.delete(:weapon_groups)     || []
       armor_categories_params = params.delete(:armor_categories)  || []
@@ -50,8 +50,8 @@ class MagicItemSearch
         search = search.joins(:armor_categories).where(armor_categories: {id: armor_categories_params})
       end
 
-      if implement_groups_params
-        search = search.joins(:implement_groups).where(implement_groups: {id: implement_groups_params})
+      if implement_group_params
+        search = search.joins(:implement_group).where(implement_group: {id: implement_group_params})
       end
 
       unless locations_params.reject(&:empty?).empty?

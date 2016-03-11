@@ -9,10 +9,15 @@
   <table  class="table table-striped table-bordered table-hover">
     <tr>
       <th class="col-sm-1"><%= t('magic.name')            %></th>
-      <th class="col-sm-1"><%= t('common.weapon_groups')  %></th>
-      <th class="col-sm-1"><%= t('common.armor_categories')%></th>
-      <th class="col-sm-1"><%= t('magic.implement_groups')    %></th>
-      <th class="col-sm-1"><%= t('magic.gear.location') %></th>
+      <% if @kind == 'weapons' %>
+        <th class="col-sm-1"><%= t('common.weapon_groups')  %></th>
+      <% elsif @kind == 'armors' %>
+        <th class="col-sm-1"><%= t('common.armor_categories')%></th>
+      <% elsif @kind == 'implements' %>
+        <th class="col-sm-1"><%= t('magic.implement_group')    %></th>
+      <% elsif @kind == 'gears' %>
+        <th class="col-sm-1"><%= t('magic.gear.location') %></th>
+      <% end %>
       <th class="col-sm-1"><%= t('magic.level_min')       %></th>
       <th class="col-sm-1"><%= t('magic.property')        %></th>
       <th class="col-sm-1"><%= t('magic.power')           %></th>
@@ -22,22 +27,19 @@
   <% items.each do |i| %>
     <tr>
       <td><%= link_to i.name, object_magic_item_path(i.id)  %></td>
-      <td><%= display_weapon_group(i.weapon_groups) %></td>
-      <td>
-        <% i.armor_categories.each do |c| %>
-          <%= c.name %></br>
-        <% end %>
-      </td>
-      <td>
-        <% i.implement_groups.each do |g| %>
-          <%= g.name %></br>
-        <% end %>
-      </td>
-      <td><%= i.location.name %> </td>
-      <td><%= i.object_level_ids.min %> </td>
+      <% if @kind == 'weapons' %>
+        <td><%= display_weapon_group(i.weapon_groups) %></td>
+      <% elsif @kind == 'armors' %>
+        <td><%= simple_format i.armor_categories.map(&:name).join("\n") %></td>
+      <% elsif @kind == 'implements' %>
+        <td><%= i.implement_group.try(:name) %></td>
+      <% elsif @kind == 'gears' %>
+        <td><%= i.location.name %> </td>
+      <% end %>
+      <td><%= i.level_min %> </td>
       <td><%= display_first_words i.property %> </td>
       <td><%= display_first_words i.power %> </td>
-      <td><%= i.rarity %> </td>
+      <td><%= t("magic_item.rarity.#{i.rarity_name}")%> </td>
       <td><%= i.source.name %> </td>
       <!-- <td><%#= link_to 'x', object_magic_weapon_path(i.id), method: :delete %></td> -->
     </tr>

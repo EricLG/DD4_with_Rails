@@ -5,7 +5,7 @@
   <%= input_select_form(f, :object_level_ids,     @levels,            :level, @item.object_level_ids,     MagicItem.human_attribute_name(:object_level_ids),    {multiple: true}) %>
   <%= input_select_form(f, :weapon_group_ids,     @weapon_groups,     :name,  @item.weapon_group_ids,     MagicItem.human_attribute_name(:weapon_group_ids),    {multiple: true}) %>
   <%= input_select_form(f, :armor_category_ids,   @armor_categories,  :name,  @item.armor_category_ids,   MagicItem.human_attribute_name(:armor_category_ids),  {multiple: true, size: 3}) %>
-  <%= input_select_form(f, :implement_group_ids,  @implement_groups,  :name,  @item.implement_group_ids,  MagicItem.human_attribute_name(:implement_group_ids), {multiple: true, size: 3}) %>
+  <%= input_select_form(f, :implement_group_id,   @implement_groups,  :name,  @item.implement_group_id,   MagicItem.human_attribute_name(:implement_group_id),  {size: 3}) %>
   <%= input_select_form(f, :location_id,          @locations,         :name,  @item.location_id,          MagicItem.human_attribute_name(:location_id),         {blank: true}) %>
   <%= input_text_form(f, :alteration,   MagicItem.human_attribute_name(:alteration)) %>
   <%= input_text_form(f, :critical,     MagicItem.human_attribute_name(:critical)) %>
