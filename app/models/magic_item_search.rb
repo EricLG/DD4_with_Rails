@@ -1,7 +1,7 @@
 class MagicItemSearch
   include ActiveModel::Model
 
-  FIELDS = %i(name object_levels source weapon_groups armor_categories implement_group location)
+  FIELDS = %i(name object_levels source weapon_groups armor_categories implement_group location rarity)
   attr_accessor(*FIELDS)
 
   attr_accessor :params, :item_type
@@ -24,7 +24,8 @@ class MagicItemSearch
       name_params             = params.delete(:name)
       source_params           = params.delete(:source)
       object_levels_params    = params.delete(:object_levels)
-      implement_group_params = params.delete(:implement_groups)
+      implement_group_params  = params.delete(:implement_groups)
+      rarity_params           = params.delete(:rarity)
       locations_params        = params.delete(:location)          || []
       weapon_groups_params    = params.delete(:weapon_groups)     || []
       armor_categories_params = params.delete(:armor_categories)  || []
@@ -56,6 +57,10 @@ class MagicItemSearch
 
       unless locations_params.reject(&:empty?).empty?
         search = search.joins(:location).where(location: locations_params)
+      end
+
+      if rarity_params
+        search = search.where(rarity: MagicItem.rarities[rarity_params])
       end
 
     end

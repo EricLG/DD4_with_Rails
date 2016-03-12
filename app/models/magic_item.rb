@@ -9,6 +9,8 @@ class MagicItem < ActiveRecord::Base
   belongs_to :implement_group
   has_and_belongs_to_many :object_levels
 
+  enum rarity: { common: 1, uncommon: 2, rare: 3}
+
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   #validates :alteration, presence: true
@@ -84,11 +86,12 @@ class MagicItem < ActiveRecord::Base
     self.object_levels.map(&:level).try(:min)
   end
 
-  def rarity_name
-    case rarity
-    when 1 then 'common'
-    when 2 then 'uncommon'
-    when 3 then 'rare'
+  def self.rarity_names_for_select
+    names = []
+    rarities.keys.each do |status|
+      display_name = I18n.t("magic_item.rarity.#{status}")
+      names << [display_name, status]
     end
+    names
   end
 end

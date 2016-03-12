@@ -24,6 +24,6 @@ module MagicItemsHelper
     elsif kind == 'gears'
       return gears_object_magic_items_path
     end
-
   end
+
 end

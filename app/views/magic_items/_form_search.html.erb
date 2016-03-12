@@ -65,6 +65,14 @@
     </div>
   </div>
 
+  <div class="form-group col-xs-4">
+    <% default_rarity =  params["magic_item_search"]["rarity"] if params["magic_item_search"]%>
+    <%= form.label(:rarity, t('magic_item.rarity'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :rarity, options_for_select(MagicItem.rarity_names_for_select, selected: default_rarity), {:include_blank => 'Tous'}, {:multiple => false, :class=>"form-control"}  %>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-sm-8">
       <%= form.submit t("common.validate"), :class => "btn btn-default" %>
