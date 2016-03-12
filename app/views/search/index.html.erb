@@ -5,6 +5,7 @@
     <%= render "accordion", result: @result[:magic_armor],      heading_id: "h_armor",      collapse_id: "c_armor",      local: "Résultats dans les armures magiques"     unless @result[:magic_armor].blank? %>
     <%= render "accordion", result: @result[:magic_implement],  heading_id: "h_implement",  collapse_id: "c_implement",  local: "Résultats dans les focaliseurs magiques" unless @result[:magic_implement].blank? %>
     <%= render "accordion", result: @result[:magic_gear],       heading_id: "h_gear",       collapse_id: "c_gear",       local: "Résultats dans les équipements magiques" unless @result[:magic_gear].blank? %>
+    <%= render "accordion", result: @result[:feat],             heading_id: "h_feat",       collapse_id: "c_feat",       local: "Résultats dans les talents"              unless @result[:feat].blank? %>
   </div>
 <% else %>
   <h3>Faire une recherche</h3>
