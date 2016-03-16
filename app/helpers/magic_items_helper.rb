@@ -26,4 +26,15 @@ module MagicItemsHelper
     end
   end
 
+  def display_progress_bar(label, items_number, max_item, popover = {})
+    html = content_tag(:p, label)
+    width = (items_number.to_f/max_item.to_f*100).to_s + '%;'
+    pb = content_tag(:div, "#{items_number}/#{max_item}", class: "progress-bar", style: "min-width: 4%; width: #{width}", role:"progress-bar")
+    html += content_tag(:div, pb, class:"progress")
+    unless popover.empty?
+      html = content_tag(:div, html, class: "gears", :data => {html: true, placement: 'top', toggle: 'popover', trigger: 'hover', content: popover[:content], title: popover[:title]})
+    end
+    return content_tag(:div, html)
+  end
+
 end
