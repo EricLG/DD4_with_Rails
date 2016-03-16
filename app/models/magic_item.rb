@@ -89,7 +89,7 @@ class MagicItem < ActiveRecord::Base
   def self.rarity_names_for_select
     names = []
     rarities.keys.each do |status|
-      display_name = I18n.t("magic_item.rarity.#{status}")
+      display_name = I18n.t("magic_items.rarity.#{status}")
       names << [display_name, status]
     end
     names

@@ -14,6 +14,6 @@
   <%= input_text_field_form(f, :special,      MagicItem.human_attribute_name(:special)) %>
   <%= input_select_form(f, :source_id,        @sources,       :name,  @item.source_id,        MagicItem.human_attribute_name(:source_id),        {blank: true}) %>
 
-  <%= submit_text_form(f, {add_another: true}) %>
+  <%= submit_text_form(f, {add_another: !@item.persisted?}) %>
 
 <% end %>

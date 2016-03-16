@@ -1,6 +1,6 @@
 <div class="digg_pagination">
     <div class="page_info">
-      <%= page_entries_info items, {model: "Objets magiques"} %>
+      <%= page_entries_info items, {model: MagicItem.model_name.human(count: items.count)} %>
     </div>
     <%= will_paginate items, :container => false %>
 </div>
@@ -8,21 +8,21 @@
 <div class="table-responsive">
   <table  class="table table-striped table-bordered table-hover">
     <tr>
-      <th class="col-sm-1"><%= t('magic.name')            %></th>
+      <th class="col-sm-1"><%= MagicItem.human_attribute_name('.name')            %></th>
       <% if @kind == 'weapons' %>
-        <th class="col-sm-1"><%= t('common.weapon_groups')  %></th>
+        <th class="col-sm-1"><%= MagicItem.human_attribute_name('weapon_groups')  %></th>
       <% elsif @kind == 'armors' %>
-        <th class="col-sm-1"><%= t('common.armor_categories')%></th>
+        <th class="col-sm-1"><%= MagicItem.human_attribute_name('armor_categories')%></th>
       <% elsif @kind == 'implements' %>
-        <th class="col-sm-1"><%= t('magic.implement_group')    %></th>
+        <th class="col-sm-1"><%= MagicItem.human_attribute_name('implement_groups')    %></th>
       <% elsif @kind == 'gears' %>
-        <th class="col-sm-1"><%= t('magic.gear.location') %></th>
+        <th class="col-sm-1"><%= MagicItem.human_attribute_name('location') %></th>
       <% end %>
-      <th class="col-sm-1"><%= t('magic.level_min')       %></th>
-      <th class="col-sm-1"><%= t('magic.property')        %></th>
-      <th class="col-sm-1"><%= t('magic.power')           %></th>
-      <th class="col-sm-1"><%= t('magic.rarity')           %></th>
-      <th class="col-sm-1"><%= t('magic.source')          %></th>
+      <th class="col-sm-1"><%= MagicItem.human_attribute_name('level_min')       %></th>
+      <th class="col-sm-1"><%= MagicItem.human_attribute_name('property')        %></th>
+      <th class="col-sm-1"><%= MagicItem.human_attribute_name('power')           %></th>
+      <th class="col-sm-1"><%= MagicItem.human_attribute_name('rarity')           %></th>
+      <th class="col-sm-1"><%= MagicItem.human_attribute_name('source')          %></th>
     </tr>
   <% items.each do |i| %>
     <tr>
@@ -39,9 +39,8 @@
       <td><%= i.level_min %> </td>
       <td><%= display_first_words i.property %> </td>
       <td><%= display_first_words i.power %> </td>
-      <td><%= t("magic_item.rarity.#{i.rarity}")%> </td>
+      <td><%= t("magic_items.rarity.#{i.rarity}")%> </td>
       <td><%= i.source.name %> </td>
-      <!-- <td><%#= link_to 'x', object_magic_weapon_path(i.id), method: :delete %></td> -->
     </tr>
   <% end %><!-- Fin communs -->
   </table>
@@ -49,7 +48,7 @@
 
 <div class="digg_pagination">
     <div class="page_info">
-      <%= page_entries_info items, {model: "Objets magiques"} %>
+      <%= page_entries_info items, {model: MagicItem.model_name.human(count: items.count)} %>
     </div>
     <%= will_paginate items, :container => false %>
 </div>

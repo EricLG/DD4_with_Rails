@@ -16,8 +16,16 @@ fr:
     intelligence: "Intelligence"
     wisdom:       "Sagesse"
     charisma:     "Charisme"
+    weapon_group_ids:     "Armes"
+    armor_category_ids:   "Armures"
+    implement_group_id:   "Focaliseur"
+    location_id:             "Emplacement"
+    rarity:       "Rareté"
   activerecord:
     models:
+      magic_item:
+        one:      "Objet magique"
+        other:    "Objets magiques"
       consumable:
         one:      "Consommable"
         other:    "Consommables"
@@ -25,10 +33,6 @@ fr:
         one:      "Personnage"
         other:    "Personnages"
     attributes:
-      magic_item:
-        weapon_group_ids: "Groupes d'armes"
-        armor_category_ids:  "Catégories d'armures"
-        location_id:          "Emplacement"
       consumable:
         kind:     "Type de consommables"
       character:
@@ -127,32 +131,26 @@ fr:
       skill_malus:      "Malus de compétences"
       shield_bonus:     "Bonus de bouclier"
       special:          "Spécial"
-  magic_item:
-    name:               "Nom"
-    description:        "Description"
-    levels:             "Niveaux"
-    level_min:          "Niveau minimum"
-    alteration:         "Altération"
-    max_alteration:     "Altération max"
-    critical:           "Critique"
-    property:           "Propriété"
-    power:              "Pouvoir"
-    special:            "Spécial"
-    shield_groups:      "Type de bouclier"
-    weapon_groups:      "Armes"
-    armor_categories:   "Armures"
-    implement_group:    "Focaliseurs"
-    location:           "Emplacement d'objet"
+  magic_items:
+    index:
+      title_index:      "Liste des %{kind} magiques"
+      weapons:            "armes"
+      armors:            "armures"
+      implements:            "focaliseurs"
+      gears:            "équipements"
+    form_search:
+      object_level_max: "Niveau maximum"
+    show:
+      level_min:        "Niveau %{lvl}+"
+      edit:             "Modifier %{item}"
+    edit:
+      title_edit:        "Modification %{item}"
+    new:
+      title_new:        "Création d'un nouvel objet magique"
     rarity:
       common:           "Fréquent"
       uncommon:         "Peu fréquent"
       rare:             "Rare"
-    item:
-      title_edit:       "Modification d'un objet magique"
-      title_index:      "Liste des objets magiques"
-      title_new:        "Création d'un objet magique"
-      edit_magic_item:      "Modifier %{item}"
-      location:         "Emplacement"
   consumables:
     index:
       title_index:      "Liste des consommables"
