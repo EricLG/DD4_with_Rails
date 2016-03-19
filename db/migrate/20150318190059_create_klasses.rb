@@ -3,6 +3,7 @@ class CreateKlasses < ActiveRecord::Migration
     create_table :klasses do |t|
       t.string :name
       t.string :power_source
+      t.text  :information
       t.belongs_to :source, index: true
 
       t.timestamps

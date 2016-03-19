@@ -24,7 +24,8 @@ Source.create([
   { name: 'Manuel des Monstres 3' },
   { name: 'Royaumes Oubliés' },
   { name: 'Secrets des Arcanes' }
-  ])
+])
+
 mdj1 = Source.find_by_name('Manuel des Joueurs 1')
 mdj2 = Source.find_by_name('Manuel des Joueurs 2')
 mdj3 = Source.find_by_name('Manuel des Joueurs 3')
@@ -65,7 +66,6 @@ rechar_mineure  = WeaponProperty.create(name: "Rechargement (mineure")
 secondaire      = WeaponProperty.create(name: "Secondaire")
 no_property     = WeaponProperty.create(name: "-")
 
-
 impro_cac   = WeaponCategory.create(name: 'Armes improvisées de corps à corps', ranged: false,  code: 'impcc')
 impro_dist  = WeaponCategory.create(name: 'Armes improvisées à distance',       ranged: true,   code: 'impra')
 simple_cac  = WeaponCategory.create(name: 'Armes simples de corps à corps',     ranged: false,  code: 'simcc')
@@ -83,7 +83,7 @@ ImplementGroup.create([
   { name: "Symboles sacrés",  code: 'holy_symbols'  },
   { name: "Tomes",            code: 'tomes'         },
   { name: "Totems",           code: 'totems'        }
-  ])
+])
 
 CommonWeapon.create([
   { name: 'Dague',                  two_handed: "one",    handling: "+3", damage: "1d4",      range: "5/10",  price: "1 po",  weight: "0,5 kg",         source: mdj1, weapon_category: simple_cac,  weapon_groups: [lame_legere],               weapon_properties: [jet_leger, secondaire] },
@@ -151,8 +151,7 @@ CommonWeapon.create([
   { name: 'Arbalète à répétition',  two_handed: "two",    handling: "+2", damage: "1d8",      range: "10/20", price: "35 po", weight: "3 kg",           source: cda1, weapon_category: simple_dist, weapon_groups: [arbalete],                  weapon_properties: [rechar_libre] },
   { name: 'Arbalète supérieure',    two_handed: "two",    handling: "+3", damage: "1d10",     range: "20/40", price: "30 po", weight: "3 kg",           source: cda1, weapon_category: sup_dist,    weapon_groups: [arbalete],                  weapon_properties: [rechar_mineure] },
   { name: 'Grand arc',              two_handed: "two",    handling: "+2", damage: "1d12",     range: "25/50", price: "30 po", weight: "2,5 kg",         source: cda1, weapon_category: sup_dist,    weapon_groups: [arc],                       weapon_properties: [rechar_libre] }
- ] )
-
+])
 
 clothe      = ArmorCategory.create( name: "Armures d'étoffe",    heavy: false,  code: 'clothe'    )
 leather     = ArmorCategory.create( name: "Armures de cuir",     heavy: false,  code: 'leather'   )
@@ -220,7 +219,7 @@ CommonArmor.create([
 
   { name: "Bouclier léger",                 armor_bonus: 1,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0,   ms_malus: 0,    price: "5 PO",    weight: "3 kg",     armor_category: lightsh  },
   { name: "Bouclier lourd",                 armor_bonus: 2,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0-2, ms_malus: 0,    price: "10 PO",   weight: "7,5 kg",   armor_category: heavysh  }
-  ])
+])
 
 ObjectLevel.create([
   { level: 1,  alteration: 1, price: "360",     cons_price: "-"},
@@ -253,51 +252,53 @@ ObjectLevel.create([
   { level: 28, alteration: 6, price: "2125000", cons_price: "85000"},
   { level: 29, alteration: 6, price: "2625000", cons_price: "105000"},
   { level: 30, alteration: 6, price: "3125000", cons_price: "125000"},
-  ])
+])
 
 Location.create([
-{ name: "Tête"                , code: "head"},
-{ name: "Cou"                 , code: "neck"},
-{ name: "Torse"               , code: "chest"},
-{ name: "Taille"              , code: "belt"},
-{ name: "Mains"               , code: "hands"},
-{ name: "Anneaux"             , code: "ring"},
-{ name: "Bras"                , code: "arm"},
-{ name: "Pieds"               , code: "foots"},
-{ name: "Arme"                , code: "weapon"},
-{ name: "Focaliseur"          , code: "implement"},
-{ name: "Compagnon"           , code: "companion"},
-{ name: "Objets merveilleux"  , code: "wonderful_object"},
-{ name: "Consommmables"       , code: "expendable"},
-{ name: "Munition"            , code: "ammo"},
-  ])
+  { name: "Tête"                , code: "head"},
+  { name: "Cou"                 , code: "neck"},
+  { name: "Torse"               , code: "chest"},
+  { name: "Taille"              , code: "belt"},
+  { name: "Mains"               , code: "hands"},
+  { name: "Anneaux"             , code: "ring"},
+  { name: "Bras"                , code: "arm"},
+  { name: "Pieds"               , code: "foots"},
+  { name: "Arme"                , code: "weapon"},
+  { name: "Focaliseur"          , code: "implement"},
+  { name: "Compagnon"           , code: "companion"},
+  { name: "Objets merveilleux"  , code: "wonderful_object"},
+  { name: "Consommmables"       , code: "expendable"},
+  { name: "Munition"            , code: "ammo"},
+])
 
+r = "race"
+kalashtar_language = 'commun, télépathie 5 (vous êtes capable de communiquer mentalement avec toute créature douée de langage située dans votre ligne de mire et dans un rayon de 5 cases, sachant que la communication se fait dans les deux sens)'
 {
-"Changelin"             => {book_source: eber.id, cat_size: "M", speed: 6, features: ["Change-forme", "Défense mentale", "Métamorphe", "Ruse du changelin"]},
-"Cristallien"           => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Créature artificielle vivante", "Esprit cristallien", "Nuée de cristaux", "Origine immortelle", "Télépathie"]},
-"Demi-elfe"             => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Dilettante", "Diplomatie de groupe", "Double héritage"]},
-"Demi-orque"            => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Assaut enragé", "Charge véloce", "Vitalité demi-orque"]},
-"Déva"                  => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Majesté astrale", "Résistance astrale", "Origine immortelle", "Mémoire d'un millier de vies"]},
-"Drakéide"              => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Fureur drakéide", "Héritage draconique", "Souffle de dragon"]},
-"Drow"                  => {book_source: roou.id, cat_size: "M", speed: 6, features: ["Lolthaïque", "Origine féerique", "Transe"]},
-"Éladrin"               => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Éclipse féerique", "Éducation éladrine", "Maniement des armes éladrines", "Origine féerique", "Transe", "Volonté éladrine"]},
-"Elfe"                  => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Maniement des armes elfiques", "Origine féerique", "Pas assuré", "Précision elfique", "Vigilance de groupe"]},
-"Féral longue-dent"     => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Sauvagerie longue-dent"]},
-"Féral griffe-effilée"  => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Sauvagerie griffe-effilée"]},
-"Forgelier"             => {book_source: eber.id, cat_size: "M", speed: 6, features: ["Créature artificielle vivante","Esprit du forgelier", "Opiniâtreté forgelière", "Résistance forgelière", "Veilleur infatigable"]},
-"Genasi"                => {book_source: roou.id, cat_size: "M", speed: 6, features: ["Origine élémentaire", "Manifestation élémentaire"]},
-"Githzerai"             => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Esprit défendu", "Heureuse fortune", "Mental d'acier", "Sens du danger"]},
-"Gnome"                 => {book_source: mdj2.id, cat_size: "P", speed: 5, features: ["Discrétion réactive", "Effacement", "Maître menteur", "Origine féerique", "Perspicacité du menteur"]},
-"Goliath"               => {book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Ténacité de la montagne", "Athlète puissant", "Endurance de la pierre"]},
-"Halfelin"              => {book_source: mdj1.id, cat_size: "P", speed: 6, features: ["Audacieux", "Deuxième chance", "Réflexes éclair"]},
-"Humain"                => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Bonus de défense humain", "Compétence supplémentaire", "Pouvoir à volonté supplémentaire", "Talent supplémentaire"]},
-"Kalashtar"             => {book_source: eber.id, cat_size: "M", speed: 6, features: ["Âme double", "Bastion de clarté mentale"]},
-"Minotaure"             => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Charge encornée", "Charge intrépide", "Férocité", "Vitalité"]},
-"Nain"                  => {book_source: mdj1.id, cat_size: "M", speed: 5, features: ["Ancré dans le sol", "Boyaux d'acier", "Déplacement avec charge", "Maniement des armes naines", "Résistance naine"]},
-"Silvyen"               => {book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Aspect de la nature", "Forme endurcie", "Origine féerique"]},
-"Tieffelin"             => {book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Appel du sang", "Courroux infernal", "Résistance au feu"]}
+"Changelin"             => {skill: Skill.new(bluff: 2, insight: 2),            average_height: '1,65 m à 1,80 m',  average_weight: '60 à 80 kg',   vision: 'normale',  language: 'commun',                                       stats: [Stat.new(intelligence:  2, charisma:      2, kind: r), Stat.new(intelligence:   2, dexterity:     2,  kind: r)], book_source: eber.id, cat_size: "M", speed: 6, features: ["Change-forme", "Défense mentale", "Métamorphe", "Ruse du changelin"]},
+"Cristallien"           => {skill: Skill.new(arcana: 2, endurance: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '90 à 115 kg',  vision: 'normale',  language: 'commun, profond, une autre au choix',          stats: [Stat.new(intelligence:  2, wisdom:        2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Créature artificielle vivante", "Esprit cristallien", "Nuée de cristaux", "Origine immortelle", "Télépathie"]},
+"Demi-elfe"             => {skill: Skill.new(diplomacy:  2, insight:     2),   average_height: '1,65 m à 1,85 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique, une supplémentaire au choix', stats: [Stat.new(constitution:  2, wisdom:        2, kind: r), Stat.new(constitution:   2, charisma:      2,  kind: r)], book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Dilettante", "Diplomatie de groupe", "Double héritage"]},
+"Demi-orque"            => {skill: Skill.new(endurance: 2, intimidate: 2),     average_height: '1,90 m à 2,10 m',  average_weight: '77 à 112 kg',  vision: 'nocturne', language: 'commun, géant',                                stats: [Stat.new(dexterity:     2, strength:      2, kind: r), Stat.new(dexterity:      2, constitution:  2,  kind: r)], book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Assaut enragé", "Charge véloce", "Vitalité demi-orque"]},
+"Déva"                  => {skill: Skill.new(history: 2, religion: 2),         average_height: '2 m à 2,15 m',     average_weight: '87 à 140 kg',  vision: 'normale',  language: 'commun, deux supplémentaires au choix',        stats: [Stat.new(intelligence:  2, wisdom:        2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Majesté astrale", "Résistance astrale", "Origine immortelle", "Mémoire d'un millier de vies"]},
+"Drakéide"              => {skill: Skill.new(history:    2, intimidate:  2),   average_height: '1,85 m à 2 m',     average_weight: '110 à 160 kg', vision: 'normale',  language: 'commun, draconique',                           stats: [Stat.new(charisma:      2, strength:      2, kind: r), Stat.new(charisma:       2, constitution:  2,  kind: r)], book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Fureur drakéide", "Héritage draconique", "Souffle de dragon"]},
+"Drow"                  => {skill: Skill.new(stealth: 2, intimidate: 2),       average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(dexterity:     2, charisma:      2, kind: r), Stat.new(dexterity:      2, wisdom:        2,  kind: r)], book_source: roou.id, cat_size: "M", speed: 6, features: ["Lolthaïque", "Origine féerique", "Transe"]},
+"Éladrin"               => {skill: Skill.new(arcana: 2, history: 2),           average_height: '1,65 m à 1,85 m',  average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(intelligence:  2, dexterity:     2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Éclipse féerique", "Éducation éladrine", "Maniement des armes éladrines", "Origine féerique", "Transe", "Volonté éladrine"]},
+"Elfe"                  => {skill: Skill.new(nature: 2, perception: 2),        average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r), Stat.new(dexterity:      2, intelligence:  2,  kind: r)], book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Maniement des armes elfiques", "Origine féerique", "Pas assuré", "Précision elfique", "Vigilance de groupe"]},
+"Féral griffe-effilée"  => {skill: Skill.new(acrobatics: 2, stealth: 2),       average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r)],                                                          book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Sauvagerie griffe-effilée"]},
+"Féral longue-dent"     => {skill: Skill.new(athletics: 2, endurance: 2),      average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength:      2, wisdom:        2, kind: r)],                                                          book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Sauvagerie longue-dent"]},
+"Forgelier"             => {skill: Skill.new(endurance: 2, intimidate: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '135 à 150 kg', vision: 'normale',  language: 'commun',                                       stats: [Stat.new(constitution:  2, strength:      2, kind: r), Stat.new(constitution:   2, intelligence:  2,  kind: r)], book_source: eber.id, cat_size: "M", speed: 6, features: ["Créature artificielle vivante","Esprit du forgelier", "Opiniâtreté forgelière", "Résistance forgelière", "Veilleur infatigable"]},
+"Genasi"                => {skill: Skill.new(endurance: 2, nature: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, originel',                             stats: [Stat.new(strength:      2, intelligence:  2, kind: r), Stat.new(strength:       2, constitution:  2,  kind: r)], book_source: roou.id, cat_size: "M", speed: 6, features: ["Origine élémentaire", "Manifestation élémentaire"]},
+"Githzerai"             => {skill: Skill.new(acrobatics: 2, athletics: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '80 à 95 kg',   vision: 'normale',  language: 'commun, profond',                              stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r), Stat.new(dexterity:      2, intelligence:  2,  kind: r)], book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Esprit défendu", "Heureuse fortune", "Mental d'acier", "Sens du danger"]},
+"Gnome"                 => {skill: Skill.new(arcana: 2, stealth: 2),           average_height: '1,10 m à 1,20 m',  average_weight: '25 à 37 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(intelligence:  2, charisma:      2, kind: r), Stat.new(intelligence:   2, dexterity:     2,  kind: r)], book_source: mdj2.id, cat_size: "P", speed: 5, features: ["Discrétion réactive", "Effacement", "Maître menteur", "Origine féerique", "Perspicacité du menteur"]},
+"Goliath"               => {skill: Skill.new(athletics: 2, nature: 2),         average_height: '2,40 m à 2,50 m',  average_weight: '140 à 170 kg', vision: 'normale',  language: 'commun, et nain ou géant',                     stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], book_source: mdj2.id, cat_size: "M", speed: 6, features: ["Ténacité de la montagne", "Athlète puissant", "Endurance de la pierre"]},
+"Halfelin"              => {skill: Skill.new(acrobatics: 2, thievery: 2),      average_height: '1,15 m à 1,25 m',  average_weight: '37 à 42 kg',   vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(dexterity:     2, constitution:  2, kind: r), Stat.new(dexterity:      2, charisma:      2,  kind: r)], book_source: mdj1.id, cat_size: "P", speed: 6, features: ["Audacieux", "Deuxième chance", "Réflexes éclair"]},
+"Humain"                => {skill: nil,                                        average_height: '1,65 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength: 2, kind: r), Stat.new(constitution: 2, kind: r), Stat.new(dexterity: 2, kind: r), Stat.new(intelligence: 2, kind: r), Stat.new(wisdom: 2, kind: r), Stat.new(charisma: 2, kind: r)], book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Bonus de défense humain", "Compétence supplémentaire", "Pouvoir à volonté supplémentaire", "Talent supplémentaire"]},
+"Kalashtar"             => {skill: Skill.new(insight: 2),                      average_height: '1,70 m à 1,90 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: kalashtar_language,                             stats: [Stat.new(wisdom:        2, charisma:      2, kind: r), Stat.new(wisdom:         2, intelligence:  2,  kind: r)], book_source: eber.id, cat_size: "M", speed: 6, features: ["Âme double", "Bastion de clarté mentale"]},
+"Minotaure"             => {skill: Skill.new(nature: 2, perception: 2),        average_height: '2,15 m à 2,30 m',  average_weight: '160 à 175 kg', vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Charge encornée", "Charge intrépide", "Férocité", "Vitalité"]},
+"Nain"                  => {skill: Skill.new(endurance: 2, dungeoneering: 2),  average_height: '1,25 m à 1,45 m',  average_weight: '80 à 110 kg',  vision: 'nocturne', language: 'commun, nain',                                 stats: [Stat.new(constitution:  2, strength:      2, kind: r), Stat.new(constitution:   2, wisdom:        2,  kind: r)], book_source: mdj1.id, cat_size: "M", speed: 5, features: ["Ancré dans le sol", "Boyaux d'acier", "Déplacement avec charge", "Maniement des armes naines", "Résistance naine"]},
+"Silvyen"               => {skill: Skill.new(stealth: 2, nature: 2),           average_height: '1,80 m à 1,95 m',  average_weight: '70 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(constitution:  2, wisdom:        2, kind: r), Stat.new(constitution:   2, dexterity:     2,  kind: r)], book_source: mdj3.id, cat_size: "M", speed: 6, features: ["Aspect de la nature", "Forme endurcie", "Origine féerique"]},
+"Tieffelin"             => {skill: Skill.new(bluff: 2, stealth: 2),            average_height: '1,65 m à 1,85 m',  average_weight: '70 à 115 kg',  vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(charisma:      2, constitution:  2, kind: r), Stat.new(charisma:       2, intelligence:  2,  kind: r)], book_source: mdj1.id, cat_size: "M", speed: 6, features: ["Appel du sang", "Courroux infernal", "Résistance au feu"]}
 }.each do |race, info|
-  race = Race.create(name: race, source_id: info[:book_source], cat_size: info[:cat_size], speed: info[:speed])
+  race = Race.create(name: race, source_id: info[:book_source], cat_size: info[:cat_size], stats: info[:stats], speed: info[:speed], language: info[:language], vision: info[:vision], average_weight: info[:average_weight], average_height: info[:average_height], skill: info[:skill])
   info[:features].each do |feature|
     r = RaceFeature.find_by_name(feature)
     if r.nil?
@@ -356,3 +357,6 @@ end
     end
   end
 end
+
+# password: plop
+User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')

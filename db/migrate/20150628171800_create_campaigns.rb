@@ -29,6 +29,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string  :alignment
       t.string  :divinity
       t.string  :party
+      t.integer :status
       t.integer :initial_stat_id
       t.integer :level_4_id
       t.integer :level_8_id

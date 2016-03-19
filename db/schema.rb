@@ -26,22 +26,6 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "armor_categories", ["code"], name: "index_armor_categories_on_code", using: :btree
 
-  create_table "armor_categories_magic_armors", id: false, force: :cascade do |t|
-    t.integer "magic_armor_id"
-    t.integer "armor_category_id"
-  end
-
-  add_index "armor_categories_magic_armors", ["armor_category_id"], name: "index_armor_categories_magic_armors_on_armor_category_id", using: :btree
-  add_index "armor_categories_magic_armors", ["magic_armor_id"], name: "index_armor_categories_magic_armors_on_magic_armor_id", using: :btree
-
-  create_table "armor_categories_magic_gears", id: false, force: :cascade do |t|
-    t.integer "magic_gear_id"
-    t.integer "armor_category_id"
-  end
-
-  add_index "armor_categories_magic_gears", ["armor_category_id"], name: "index_armor_categories_magic_gears_on_armor_category_id", using: :btree
-  add_index "armor_categories_magic_gears", ["magic_gear_id"], name: "index_armor_categories_magic_gears_on_magic_gear_id", using: :btree
-
   create_table "armor_categories_magic_items", id: false, force: :cascade do |t|
     t.integer "magic_item_id"
     t.integer "armor_category_id"
@@ -71,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
     t.string   "alignment"
     t.string   "divinity"
     t.string   "party"
+    t.integer  "status"
     t.integer  "initial_stat_id"
     t.integer  "level_4_id"
     t.integer  "level_8_id"
@@ -201,14 +186,6 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "implement_groups", ["code"], name: "index_implement_groups_on_code", using: :btree
 
-  create_table "implement_groups_magic_implements", id: false, force: :cascade do |t|
-    t.integer "implement_group_id"
-    t.integer "magic_implement_id"
-  end
-
-  add_index "implement_groups_magic_implements", ["implement_group_id"], name: "index_implement_groups_magic_implements_on_implement_group_id", using: :btree
-  add_index "implement_groups_magic_implements", ["magic_implement_id"], name: "index_implement_groups_magic_implements_on_magic_implement_id", using: :btree
-
   create_table "klass_features", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -230,6 +207,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   create_table "klasses", force: :cascade do |t|
     t.string   "name"
     t.string   "power_source"
+    t.text     "information"
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -245,75 +223,6 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   end
 
   add_index "locations", ["code"], name: "index_locations_on_code", using: :btree
-
-  create_table "magic_armors", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description", limit: 500
-    t.string   "alteration",  limit: 500
-    t.text     "property"
-    t.text     "power"
-    t.text     "special"
-    t.integer  "rarity"
-    t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "magic_armors", ["source_id"], name: "index_magic_armors_on_source_id", using: :btree
-
-  create_table "magic_armors_object_levels", id: false, force: :cascade do |t|
-    t.integer "magic_armor_id"
-    t.integer "object_level_id"
-  end
-
-  add_index "magic_armors_object_levels", ["magic_armor_id"], name: "index_magic_armors_object_levels_on_magic_armor_id", using: :btree
-  add_index "magic_armors_object_levels", ["object_level_id"], name: "index_magic_armors_object_levels_on_object_level_id", using: :btree
-
-  create_table "magic_gears", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description", limit: 500
-    t.string   "alteration",  limit: 500
-    t.text     "property"
-    t.text     "power"
-    t.text     "special"
-    t.integer  "location_id"
-    t.integer  "rarity"
-    t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "magic_gears", ["source_id"], name: "index_magic_gears_on_source_id", using: :btree
-
-  create_table "magic_gears_object_levels", id: false, force: :cascade do |t|
-    t.integer "magic_gear_id"
-    t.integer "object_level_id"
-  end
-
-  add_index "magic_gears_object_levels", ["magic_gear_id"], name: "index_magic_gears_object_levels_on_magic_gear_id", using: :btree
-  add_index "magic_gears_object_levels", ["object_level_id"], name: "index_magic_gears_object_levels_on_object_level_id", using: :btree
-
-  create_table "magic_implements", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description", limit: 500
-    t.string   "alteration",  limit: 500
-    t.text     "property"
-    t.string   "critical"
-    t.text     "power"
-    t.text     "special"
-    t.integer  "rarity"
-    t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "magic_implements_object_levels", id: false, force: :cascade do |t|
-    t.integer "magic_implement_id"
-    t.integer "object_level_id"
-  end
-
-  add_index "magic_implements_object_levels", ["magic_implement_id"], name: "index_magic_implements_object_levels_on_magic_implement_id", using: :btree
-  add_index "magic_implements_object_levels", ["object_level_id"], name: "index_magic_implements_object_levels_on_object_level_id", using: :btree
 
   create_table "magic_items", force: :cascade do |t|
     t.string   "name"
@@ -349,39 +258,6 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "magic_items_weapon_groups", ["magic_item_id"], name: "index_magic_items_weapon_groups_on_magic_item_id", using: :btree
   add_index "magic_items_weapon_groups", ["weapon_group_id"], name: "index_magic_items_weapon_groups_on_weapon_group_id", using: :btree
-
-  create_table "magic_weapons", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description", limit: 500
-    t.string   "alteration",  limit: 500
-    t.string   "critical",    limit: 500
-    t.text     "property"
-    t.text     "power"
-    t.text     "special"
-    t.integer  "rarity"
-    t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "magic_weapons", ["name"], name: "index_magic_weapons_on_name", using: :btree
-  add_index "magic_weapons", ["source_id"], name: "index_magic_weapons_on_source_id", using: :btree
-
-  create_table "magic_weapons_object_levels", id: false, force: :cascade do |t|
-    t.integer "magic_weapon_id"
-    t.integer "object_level_id"
-  end
-
-  add_index "magic_weapons_object_levels", ["magic_weapon_id"], name: "index_magic_weapons_object_levels_on_magic_weapon_id", using: :btree
-  add_index "magic_weapons_object_levels", ["object_level_id"], name: "index_magic_weapons_object_levels_on_object_level_id", using: :btree
-
-  create_table "magic_weapons_weapon_groups", id: false, force: :cascade do |t|
-    t.integer "magic_weapon_id"
-    t.integer "weapon_group_id"
-  end
-
-  add_index "magic_weapons_weapon_groups", ["magic_weapon_id"], name: "index_magic_weapons_weapon_groups_on_magic_weapon_id", using: :btree
-  add_index "magic_weapons_weapon_groups", ["weapon_group_id"], name: "index_magic_weapons_weapon_groups_on_weapon_group_id", using: :btree
 
   create_table "object_levels", force: :cascade do |t|
     t.integer  "level"
@@ -443,10 +319,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   create_table "races", force: :cascade do |t|
     t.string   "name"
+    t.string   "average_height"
+    t.string   "average_weight"
     t.string   "cat_size"
     t.integer  "speed"
     t.string   "vision"
     t.string   "language"
+    t.text     "information"
+    t.integer  "skill_id"
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -455,23 +335,23 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   add_index "races", ["source_id"], name: "index_races_on_source_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.integer  "acrobatics"
-    t.integer  "arcana"
-    t.integer  "athletics"
-    t.integer  "bluff"
-    t.integer  "diplomacy"
-    t.integer  "dungeoneering"
-    t.integer  "endurance"
-    t.integer  "heal"
-    t.integer  "history"
-    t.integer  "insight"
-    t.integer  "intimidate"
-    t.integer  "nature"
-    t.integer  "perception"
-    t.integer  "religion"
-    t.integer  "stealth"
-    t.integer  "streetwise"
-    t.integer  "thievery"
+    t.integer  "acrobatics",    default: 0
+    t.integer  "arcana",        default: 0
+    t.integer  "athletics",     default: 0
+    t.integer  "bluff",         default: 0
+    t.integer  "diplomacy",     default: 0
+    t.integer  "dungeoneering", default: 0
+    t.integer  "endurance",     default: 0
+    t.integer  "heal",          default: 0
+    t.integer  "history",       default: 0
+    t.integer  "insight",       default: 0
+    t.integer  "intimidate",    default: 0
+    t.integer  "nature",        default: 0
+    t.integer  "perception",    default: 0
+    t.integer  "religion",      default: 0
+    t.integer  "stealth",       default: 0
+    t.integer  "streetwise",    default: 0
+    t.integer  "thievery",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -490,6 +370,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
     t.integer  "wisdom"
     t.integer  "charisma"
     t.string   "kind"
+    t.integer  "race_id"
     t.integer  "pr_for_feat_id"
     t.datetime "created_at"
     t.datetime "updated_at"

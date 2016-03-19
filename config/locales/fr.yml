@@ -32,6 +32,9 @@ fr:
       character:
         one:      "Personnage"
         other:    "Personnages"
+      race:
+        one:      "Race"
+        other:    "Races"
     attributes:
       consumable:
         kind:     "Type de consommables"
@@ -49,6 +52,16 @@ fr:
         user_id:      "Joueur"
         alignment:    "Alignement"
         divinity:     "Divinité"
+      race:
+        average_height: "Taille moyenne"
+        average_weight: "Poids moyen"
+        stats:          "Bonus aux caractéristiques"
+        cat_size:       "Catégorie de taille"
+        speed:          "Vitesse de déplacement"
+        vision:         "Vision"
+        language:       "Langues"
+        skill:          "Bonus aux compétences"
+
 
     errors:
       messages:
