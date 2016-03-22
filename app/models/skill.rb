@@ -2,6 +2,8 @@ class Skill < ActiveRecord::Base
 
   has_one :race
 
+  SKILL = %w(acrobatics arcana athletics bluff diplomacy dungeoneering endurance heal history insight intimidate nature perception religion stealth streetwise thievery)
+
   def to_s
     result = []
     result << "Acrobaties : #{acrobatics}"             if acrobatics > 0
@@ -21,6 +23,14 @@ class Skill < ActiveRecord::Base
     result << "Discrétion : #{stealth}"                if stealth > 0
     result << "Connaissance de la rue : #{streetwise}" if streetwise > 0
     result << "larcin : #{thievery}"                   if thievery > 0
+    result.join(', ')
+  end
+
+  def to_s_for_class
+    result = []
+    SKILL.each do |s|
+         result << Skill.human_attribute_name(s) if self[s] > 0
+    end
     result.join(', ')
   end
 end

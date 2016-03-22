@@ -61,7 +61,35 @@ fr:
         vision:         "Vision"
         language:       "Langues"
         skill:          "Bonus aux compétences"
-
+      klass:
+        role:               "Rôle"
+        power_source:       "Source de pouvoir"
+        main_stats:         "Caractéristiques principales"
+        armor_categories:   "Port des armures"
+        weapon_categories:  "Maniement des armes"
+        defense_bonus:      "Bonus en défense"
+        base_hp:            "Points de vie au niveau 1"
+        hp_per_level:       "Points de vie par niveau"
+        healing_surge:      "Récupérations par jour"
+        options_creation:   "Options de création"
+      skill:
+        acrobatics:     "Acrobaties"
+        arcana:         "Arcanes"
+        athletics:      "Athlétisme"
+        bluff:          "Bluff"
+        diplomacy:      "Diplomatie"
+        dungeoneering:  "Exploration"
+        endurance:      "Endurance"
+        heal:           "Soins"
+        history:        "Histoire"
+        insight:        "Intuition"
+        intimidate:     "Intimidation"
+        nature:         "Nature"
+        perception:     "Perception"
+        religion:       "Religion"
+        stealth:        "Discrétion"
+        streetwise:     "Connaissance"
+        thievery:       "larcin"
 
     errors:
       messages:

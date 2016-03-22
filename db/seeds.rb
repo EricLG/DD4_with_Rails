@@ -13,7 +13,7 @@ Source.create([
   { name: 'Force de la Nature' },
   { name: 'Guide du Maître 1' },
   { name: 'Guide du Maître 2' },
-  { name: 'Intervention Divine' },
+  { name: 'Intervention divine' },
   { name: 'Le Comptoir de l\'Aventure 1' },
   { name: 'Le Comptoir de l\'Aventure 2' },
   { name: 'Manuel des Joueurs 1' },
@@ -75,15 +75,14 @@ guerre_dist = WeaponCategory.create(name: 'Armes de guerre à distance',        
 sup_cac     = WeaponCategory.create(name: 'Armes supérieures de corps à corps', ranged: false,  code: 'supcc')
 sup_dist    = WeaponCategory.create(name: 'Armes supérieures à distance',       ranged: true,   code: 'supra')
 
-ImplementGroup.create([
-  { name: "Baguettes",        code: 'wands'         },
-  { name: "Bâtons",           code: 'batons'        },
-  { name: "Orbes",            code: 'orbs'          },
-  { name: "Sceptres",         code: 'scepters'      },
-  { name: "Symboles sacrés",  code: 'holy_symbols'  },
-  { name: "Tomes",            code: 'tomes'         },
-  { name: "Totems",           code: 'totems'        }
-])
+baguettes   =  ImplementGroup.create(name: "Baguettes",        code: 'wands'         )
+batons_i    =  ImplementGroup.create(name: "Bâtons",           code: 'batons'        )
+orbes       =  ImplementGroup.create(name: "Orbes",            code: 'orbs'          )
+sceptres    =  ImplementGroup.create(name: "Sceptres",         code: 'scepters'      )
+symboles    =  ImplementGroup.create(name: "Symboles sacrés",  code: 'holy_symbols'  )
+tomes       =  ImplementGroup.create(name: "Tomes",            code: 'tomes'         )
+totems      =  ImplementGroup.create(name: "Totems",           code: 'totems'        )
+focus_ki    =  ImplementGroup.create(name: "Focus ki",         code: 'focus_ki'      )
 
 CommonWeapon.create([
   { name: 'Dague',                  two_handed: "one",    handling: "+3", damage: "1d4",      range: "5/10",  price: "1 po",  weight: "0,5 kg",         source: mdj1, weapon_category: simple_cac,  weapon_groups: [lame_legere],               weapon_properties: [jet_leger, secondaire] },
@@ -153,11 +152,29 @@ CommonWeapon.create([
   { name: 'Grand arc',              two_handed: "two",    handling: "+2", damage: "1d12",     range: "25/50", price: "30 po", weight: "2,5 kg",         source: cda1, weapon_category: sup_dist,    weapon_groups: [arc],                       weapon_properties: [rechar_libre] }
 ])
 
-clothe      = ArmorCategory.create( name: "Armures d'étoffe",    heavy: false,  code: 'clothe'    )
-leather     = ArmorCategory.create( name: "Armures de cuir",     heavy: false,  code: 'leather'   )
-skin        = ArmorCategory.create( name: "Armures de peau",     heavy: false,  code: 'skin'      )
-chainmail   = ArmorCategory.create( name: "Cottes de mailles",   heavy: true,   code: 'chainmail' )
-scales      = ArmorCategory.create( name: "Armures d'écailles",  heavy: true,   code: 'scales'    )
+dague       = CommonWeapon.find_by_name("Dague")
+baton       = CommonWeapon.find_by_name("Bâton")
+cimeterre   = CommonWeapon.find_by_name("Cimeterre")
+epee_courte = CommonWeapon.find_by_name("Épée courte")
+epee_longue = CommonWeapon.find_by_name("Épée longue")
+cim2mains   = CommonWeapon.find_by_name("Cimeterre à deux mains")
+coutile     = CommonWeapon.find_by_name("Coutille")
+epee2mains  = CommonWeapon.find_by_name("Épée à deux mains")
+epeelarge   = CommonWeapon.find_by_name("Épée large")
+khopesh     = CommonWeapon.find_by_name("Khopesh")
+mains_nues  = CommonWeapon.find_by_name("Mains nues")
+fronde_arme = CommonWeapon.find_by_name("Fronde")
+gourdin     = CommonWeapon.find_by_name("Gourdin")
+lance_arme  = CommonWeapon.find_by_name("Lance")
+shuriken    = CommonWeapon.find_by_name("Shuriken(5)")
+pique       = CommonWeapon.find_by_name("Pique")
+arba_poing  = CommonWeapon.find_by_name("Arbalète de poing")
+
+etoffe      = ArmorCategory.create( name: "Armures d'étoffe",    heavy: false,  code: 'clothe'    )
+cuir        = ArmorCategory.create( name: "Armures de cuir",     heavy: false,  code: 'leather'   )
+peau        = ArmorCategory.create( name: "Armures de peau",     heavy: false,  code: 'skin'      )
+mailles     = ArmorCategory.create( name: "Cottes de mailles",   heavy: true,   code: 'chainmail' )
+ecailles    = ArmorCategory.create( name: "Armures d'écailles",  heavy: true,   code: 'scales'    )
 harnois     = ArmorCategory.create( name: "Harnois",             heavy: true,   code: 'harnois'   )
 lightsh     = ArmorCategory.create( name: "Boucliers légers",    heavy: false,  code: 'lightsh'   )
 heavysh     = ArmorCategory.create( name: "Boucliers lourds",    heavy: true,   code: 'heavysh'   )
@@ -165,47 +182,47 @@ heavysh     = ArmorCategory.create( name: "Boucliers lourds",    heavy: true,   
 
 
 CommonArmor.create([
-  { name: "Vêtements normaux",              armor_bonus: 0,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0,   ms_malus: 0,    price: "1 PO",    weight: "2 kg" ,    armor_category: clothe   },
-  { name: "Armure d'étoffe féerique",       armor_bonus: 1,   source: mdj1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "2,5 kg",   armor_category: clothe   },
-  { name: "Armure d'étoffe céleste",        armor_bonus: 2,   source: mdj1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1,5 kg",   armor_category: clothe   },
-  { name: "Armure d'étoffe gith",           armor_bonus: 0,   source: cda1, min_alteration_bonus: 3,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: clothe, special: "+1 en Volonté"   },
-  { name: "Armure d'étoffe mentale",        armor_bonus: 0,   source: cda1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: clothe, special: "+2 en Volonté"   },
-  { name: "Armure d'étoffe éfrit",          armor_bonus: 1,   source: cda1, min_alteration_bonus: 5,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: clothe, special: "+1 en Volonté"   },
-  { name: "Armure d'étoffe mentaux",        armor_bonus: 1,   source: cda1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: clothe, special: "+2 en Volonté"   },
+  { name: "Vêtements normaux",              armor_bonus: 0,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0,   ms_malus: 0,    price: "1 PO",    weight: "2 kg" ,    armor_category: etoffe   },
+  { name: "Armure d'étoffe féerique",       armor_bonus: 1,   source: mdj1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "2,5 kg",   armor_category: etoffe   },
+  { name: "Armure d'étoffe céleste",        armor_bonus: 2,   source: mdj1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1,5 kg",   armor_category: etoffe   },
+  { name: "Armure d'étoffe gith",           armor_bonus: 0,   source: cda1, min_alteration_bonus: 3,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: etoffe, special: "+1 en Volonté"   },
+  { name: "Armure d'étoffe mentale",        armor_bonus: 0,   source: cda1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: etoffe, special: "+2 en Volonté"   },
+  { name: "Armure d'étoffe éfrit",          armor_bonus: 1,   source: cda1, min_alteration_bonus: 5,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: etoffe, special: "+1 en Volonté"   },
+  { name: "Armure d'étoffe mentaux",        armor_bonus: 1,   source: cda1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "1 kg",     armor_category: etoffe, special: "+2 en Volonté"   },
 
-  { name: "Armure de cuir",                 armor_bonus: 2,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0,   ms_malus: 0,    price: "25 PO",   weight: "7,5 kg",   armor_category: leather  },
-  { name: "Armure de cuir féerique",        armor_bonus: 3,   source: mdj1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "7,5 kg",   armor_category: leather  },
-  { name: "Armure de cuir céleste",         armor_bonus: 4,   source: mdj1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "7,5 kg",   armor_category: leather  },
-  { name: "Armure de tramée drow",          armor_bonus: 2,   source: cda1, min_alteration_bonus: 3,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",   armor_category: leather, special: "+1 en Réflexes"  },
-  { name: "Armure ophidienne",              armor_bonus: 2,   source: cda1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",   armor_category: leather, special: "+2 en Réflexes"  },
-  { name: "Armure anathème",                armor_bonus: 3,   source: cda1, min_alteration_bonus: 5,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",   armor_category: leather, special: "+1 en Réflexes"  },
-  { name: "Armure de faucheur ailé",        armor_bonus: 3,   source: cda1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",   armor_category: leather, special: "+2 en Réflexes"  },
+  { name: "Armure de cuir",                 armor_bonus: 2,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0,   ms_malus: 0,    price: "25 PO",   weight: "7,5 kg",   armor_category: cuir  },
+  { name: "Armure de cuir féerique",        armor_bonus: 3,   source: mdj1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "7,5 kg",   armor_category: cuir  },
+  { name: "Armure de cuir céleste",         armor_bonus: 4,   source: mdj1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "7,5 kg",   armor_category: cuir  },
+  { name: "Armure de tramée drow",          armor_bonus: 2,   source: cda1, min_alteration_bonus: 3,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",     armor_category: cuir, special: "+1 en Réflexes"  },
+  { name: "Armure ophidienne",              armor_bonus: 2,   source: cda1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",     armor_category: cuir, special: "+2 en Réflexes"  },
+  { name: "Armure anathème",                armor_bonus: 3,   source: cda1, min_alteration_bonus: 5,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",     armor_category: cuir, special: "+1 en Réflexes"  },
+  { name: "Armure de faucheur ailé",        armor_bonus: 3,   source: cda1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: 0,    price: "Spécial", weight: "5 kg",     armor_category: cuir, special: "+2 en Réflexes"  },
 
-  { name: "Armure de peau",                 armor_bonus: 3,   source: mdj1, min_alteration_bonus: 0,  skill_malus: -1,  ms_malus: 0,    price: "30 PO",   weight: "12,5 kg",  armor_category: skin     },
-  { name: "Armure de sombrepeau",           armor_bonus: 4,   source: mdj1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: skin     },
-  { name: "Armure de peau vénérable",       armor_bonus: 5,   source: mdj1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: skin     },
-  { name: "Armure de peau rocheuse",        armor_bonus: 3,   source: cda1, min_alteration_bonus: 3,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: skin, special: "+1 en Vigueur"     },
-  { name: "Armure de peau féerique",        armor_bonus: 3,   source: cda1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: skin, special: "+2 en Vigueur"     },
-  { name: "Armure de peau de traqueur",     armor_bonus: 4,   source: cda1, min_alteration_bonus: 5,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: skin, special: "+1 en Vigueur"     },
-  { name: "Armure de peau-néant",           armor_bonus: 4,   source: cda1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: skin, special: "+ en Vigueur"     },
+  { name: "Armure de peau",                 armor_bonus: 3,   source: mdj1, min_alteration_bonus: 0,  skill_malus: -1,  ms_malus: 0,    price: "30 PO",   weight: "12,5 kg",  armor_category: peau     },
+  { name: "Armure de sombrepeau",           armor_bonus: 4,   source: mdj1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: peau     },
+  { name: "Armure de peau vénérable",       armor_bonus: 5,   source: mdj1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: peau     },
+  { name: "Armure de peau rocheuse",        armor_bonus: 3,   source: cda1, min_alteration_bonus: 3,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: peau, special: "+1 en Vigueur"     },
+  { name: "Armure de peau féerique",        armor_bonus: 3,   source: cda1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: peau, special: "+2 en Vigueur"     },
+  { name: "Armure de peau de traqueur",     armor_bonus: 4,   source: cda1, min_alteration_bonus: 5,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: peau, special: "+1 en Vigueur"     },
+  { name: "Armure de peau-néant",           armor_bonus: 4,   source: cda1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: 0,    price: "Spécial", weight: "12,5 kg",  armor_category: peau, special: "+ en Vigueur"     },
 
-  { name: "Cotte de mailles",               armor_bonus: 6,   source: mdj1, min_alteration_bonus: 0,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail},
-  { name: "Cotte de forgemailles",          armor_bonus: 9,   source: mdj1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail},
-  { name: "Cotte de mailles céleste",       armor_bonus: 12,  source: mdj1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail},
-  { name: "Armure de mailles fines",        armor_bonus: 7,   source: cda1, min_alteration_bonus: 2,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail},
-  { name: "Armure de mailles tressées",     armor_bonus: 8,   source: cda1, min_alteration_bonus: 3,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail},
-  { name: "Armure de cristacier",           armor_bonus: 8,   source: cda1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail, special: "+2 en Volonté"},
-  { name: "Armure de mailles tissées",      armor_bonus: 10,  source: cda1, min_alteration_bonus: 5,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail, special: "+1 en Volonté"},
-  { name: "Armure de diantremailles ",      armor_bonus: 11,  source: cda1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: chainmail, special: "+2 en Volonté"},
+  { name: "Cotte de mailles",               armor_bonus: 6,   source: mdj1, min_alteration_bonus: 0,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles},
+  { name: "Cotte de forgemailles",          armor_bonus: 9,   source: mdj1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles},
+  { name: "Cotte de mailles céleste",       armor_bonus: 12,  source: mdj1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles},
+  { name: "Armure de mailles fines",        armor_bonus: 7,   source: cda1, min_alteration_bonus: 2,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles},
+  { name: "Armure de mailles tressées",     armor_bonus: 8,   source: cda1, min_alteration_bonus: 3,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles},
+  { name: "Armure de cristacier",           armor_bonus: 8,   source: cda1, min_alteration_bonus: 4,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles, special: "+2 en Volonté"},
+  { name: "Armure de mailles tissées",      armor_bonus: 10,  source: cda1, min_alteration_bonus: 5,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles, special: "+1 en Volonté"},
+  { name: "Armure de diantremailles ",      armor_bonus: 11,  source: cda1, min_alteration_bonus: 6,  skill_malus: -1,  ms_malus: -1,   price: "Spécial", weight: "20 kg",    armor_category: mailles, special: "+2 en Volonté"},
 
-  { name: "Armure d'écailles",              armor_bonus: 7,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0,   ms_malus: -1,   price: "45 PO",   weight: "22,5 kg",  armor_category: scales   },
-  { name: "Armure draconique",              armor_bonus: 10,  source: mdj1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: scales   },
-  { name: "Armure d'écailles vénérables",   armor_bonus: 13,  source: mdj1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: scales   },
-  { name: "Armure d'écailles drakéennes",   armor_bonus: 8,   source: cda1, min_alteration_bonus: 2,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: scales   },
-  { name: "Armure d'écailles guivrées",     armor_bonus: 9,   source: cda1, min_alteration_bonus: 3,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: scales   },
-  { name: "Armure d'écailles tempétueuses", armor_bonus: 9,   source: cda1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: scales, special: "+2 en Vigueur"   },
-  { name: "Armure d'écailles nagas",        armor_bonus: 11,  source: cda1, min_alteration_bonus: 5,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: scales, special: "+1 en Vigueur"   },
-  { name: "Armure d'écailles titanesques",  armor_bonus: 12,  source: cda1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: scales, special: "+2 en Vigueur"   },
+  { name: "Armure d'écailles",              armor_bonus: 7,   source: mdj1, min_alteration_bonus: 0,  skill_malus: 0,   ms_malus: -1,   price: "45 PO",   weight: "22,5 kg",  armor_category: ecailles   },
+  { name: "Armure draconique",              armor_bonus: 10,  source: mdj1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: ecailles   },
+  { name: "Armure d'écailles vénérables",   armor_bonus: 13,  source: mdj1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: ecailles   },
+  { name: "Armure d'écailles drakéennes",   armor_bonus: 8,   source: cda1, min_alteration_bonus: 2,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: ecailles   },
+  { name: "Armure d'écailles guivrées",     armor_bonus: 9,   source: cda1, min_alteration_bonus: 3,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: ecailles   },
+  { name: "Armure d'écailles tempétueuses", armor_bonus: 9,   source: cda1, min_alteration_bonus: 4,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: ecailles, special: "+2 en Vigueur"   },
+  { name: "Armure d'écailles nagas",        armor_bonus: 11,  source: cda1, min_alteration_bonus: 5,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: ecailles, special: "+1 en Vigueur"   },
+  { name: "Armure d'écailles titanesques",  armor_bonus: 12,  source: cda1, min_alteration_bonus: 6,  skill_malus: 0,   ms_malus: -1,   price: "Spécial", weight: "22,5 kg",  armor_category: ecailles, special: "+2 en Vigueur"   },
 
   { name: "Harnois",                        armor_bonus: 8,   source: mdj1, min_alteration_bonus: 0,  skill_malus: -2,  ms_malus: -10,  price: "50 PO",   weight: "25 kg",    armor_category: harnois  },
   { name: "Harnois de guerre",              armor_bonus: 11,  source: mdj1, min_alteration_bonus: 4,  skill_malus: -2,  ms_malus: -10,  price: "Spécial", weight: "25 kg",    armor_category: harnois  },
@@ -274,29 +291,29 @@ Location.create([
 r = "race"
 kalashtar_language = 'commun, télépathie 5 (vous êtes capable de communiquer mentalement avec toute créature douée de langage située dans votre ligne de mire et dans un rayon de 5 cases, sachant que la communication se fait dans les deux sens)'
 
-changelin            = Race.create(name: "Changelin",            skill: Skill.new(bluff: 2, insight: 2),            average_height: '1,65 m à 1,80 m',  average_weight: '60 à 80 kg',   vision: 'normale',  language: 'commun',                                       stats: [Stat.new(intelligence:  2, charisma:      2, kind: r), Stat.new(intelligence:   2, dexterity:     2,  kind: r)], source_id: eber.id, cat_size: "M", speed: 6)
-cristallien          = Race.create(name: "Cristallien",          skill: Skill.new(arcana: 2, endurance: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '90 à 115 kg',  vision: 'normale',  language: 'commun, profond, une autre au choix',          stats: [Stat.new(intelligence:  2, wisdom:        2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
-demi_elfe            = Race.create(name: "Demi-elfe",            skill: Skill.new(diplomacy:  2, insight:     2),   average_height: '1,65 m à 1,85 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique, une supplémentaire au choix', stats: [Stat.new(constitution:  2, wisdom:        2, kind: r), Stat.new(constitution:   2, charisma:      2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
-demi_orque           = Race.create(name: "Demi-orque",           skill: Skill.new(endurance: 2, intimidate: 2),     average_height: '1,90 m à 2,10 m',  average_weight: '77 à 112 kg',  vision: 'nocturne', language: 'commun, géant',                                stats: [Stat.new(dexterity:     2, strength:      2, kind: r), Stat.new(dexterity:      2, constitution:  2,  kind: r)], source_id: mdj2.id, cat_size: "M", speed: 6)
-deva                 = Race.create(name: "Déva",                 skill: Skill.new(history: 2, religion: 2),         average_height: '2 m à 2,15 m',     average_weight: '87 à 140 kg',  vision: 'normale',  language: 'commun, deux supplémentaires au choix',        stats: [Stat.new(intelligence:  2, wisdom:        2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], source_id: mdj2.id, cat_size: "M", speed: 6)
-drakeide             = Race.create(name: "Drakéide",             skill: Skill.new(history:    2, intimidate:  2),   average_height: '1,85 m à 2 m',     average_weight: '110 à 160 kg', vision: 'normale',  language: 'commun, draconique',                           stats: [Stat.new(charisma:      2, strength:      2, kind: r), Stat.new(charisma:       2, constitution:  2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
-drow                 = Race.create(name: "Drow",                 skill: Skill.new(stealth: 2, intimidate: 2),       average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(dexterity:     2, charisma:      2, kind: r), Stat.new(dexterity:      2, wisdom:        2,  kind: r)], source_id: roou.id, cat_size: "M", speed: 6)
-eladrin              = Race.create(name: "Éladrin",              skill: Skill.new(arcana: 2, history: 2),           average_height: '1,65 m à 1,85 m',  average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(intelligence:  2, dexterity:     2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
-elfe                 = Race.create(name: "Elfe",                 skill: Skill.new(nature: 2, perception: 2),        average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r), Stat.new(dexterity:      2, intelligence:  2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
-feral_griffe_effilee = Race.create(name: "Féral griffe-effilée", skill: Skill.new(acrobatics: 2, stealth: 2),       average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r)],                                                          source_id: mdj2.id, cat_size: "M", speed: 6)
-feral_longue_dent    = Race.create(name: "Féral longue-dent",    skill: Skill.new(athletics: 2, endurance: 2),      average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength:      2, wisdom:        2, kind: r)],                                                          source_id: mdj2.id, cat_size: "M", speed: 6)
-forgelier            = Race.create(name: "Forgelier",            skill: Skill.new(endurance: 2, intimidate: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '135 à 150 kg', vision: 'normale',  language: 'commun',                                       stats: [Stat.new(constitution:  2, strength:      2, kind: r), Stat.new(constitution:   2, intelligence:  2,  kind: r)], source_id: eber.id, cat_size: "M", speed: 6)
-genasi               = Race.create(name: "Genasi",               skill: Skill.new(endurance: 2, nature: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, originel',                             stats: [Stat.new(strength:      2, intelligence:  2, kind: r), Stat.new(strength:       2, constitution:  2,  kind: r)], source_id: roou.id, cat_size: "M", speed: 6)
-githzerai            = Race.create(name: "Githzerai",            skill: Skill.new(acrobatics: 2, athletics: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '80 à 95 kg',   vision: 'normale',  language: 'commun, profond',                              stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r), Stat.new(dexterity:      2, intelligence:  2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
-gnome                = Race.create(name: "Gnome",                skill: Skill.new(arcana: 2, stealth: 2),           average_height: '1,10 m à 1,20 m',  average_weight: '25 à 37 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(intelligence:  2, charisma:      2, kind: r), Stat.new(intelligence:   2, dexterity:     2,  kind: r)], source_id: mdj2.id, cat_size: "P", speed: 5)
-goliath              = Race.create(name: "Goliath",              skill: Skill.new(athletics: 2, nature: 2),         average_height: '2,40 m à 2,50 m',  average_weight: '140 à 170 kg', vision: 'normale',  language: 'commun, et nain ou géant',                     stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], source_id: mdj2.id, cat_size: "M", speed: 6)
-halfelin             = Race.create(name: "Halfelin",             skill: Skill.new(acrobatics: 2, thievery: 2),      average_height: '1,15 m à 1,25 m',  average_weight: '37 à 42 kg',   vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(dexterity:     2, constitution:  2, kind: r), Stat.new(dexterity:      2, charisma:      2,  kind: r)], source_id: mdj1.id, cat_size: "P", speed: 6)
+changelin            = Race.create(name: "Changelin",            skill: Skill.new(origin: r, bluff: 2, insight: 2),            average_height: '1,65 m à 1,80 m',  average_weight: '60 à 80 kg',   vision: 'normale',  language: 'commun',                                       stats: [Stat.new(intelligence:  2, charisma:      2, kind: r), Stat.new(intelligence:   2, dexterity:     2,  kind: r)], source_id: eber.id, cat_size: "M", speed: 6)
+cristallien          = Race.create(name: "Cristallien",          skill: Skill.new(origin: r, arcana: 2, endurance: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '90 à 115 kg',  vision: 'normale',  language: 'commun, profond, une autre au choix',          stats: [Stat.new(intelligence:  2, wisdom:        2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
+demi_elfe            = Race.create(name: "Demi-elfe",            skill: Skill.new(origin: r, diplomacy:  2, insight:     2),   average_height: '1,65 m à 1,85 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique, une supplémentaire au choix', stats: [Stat.new(constitution:  2, wisdom:        2, kind: r), Stat.new(constitution:   2, charisma:      2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
+demi_orque           = Race.create(name: "Demi-orque",           skill: Skill.new(origin: r, endurance: 2, intimidate: 2),     average_height: '1,90 m à 2,10 m',  average_weight: '77 à 112 kg',  vision: 'nocturne', language: 'commun, géant',                                stats: [Stat.new(dexterity:     2, strength:      2, kind: r), Stat.new(dexterity:      2, constitution:  2,  kind: r)], source_id: mdj2.id, cat_size: "M", speed: 6)
+deva                 = Race.create(name: "Déva",                 skill: Skill.new(origin: r, history: 2, religion: 2),         average_height: '2 m à 2,15 m',     average_weight: '87 à 140 kg',  vision: 'normale',  language: 'commun, deux supplémentaires au choix',        stats: [Stat.new(intelligence:  2, wisdom:        2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], source_id: mdj2.id, cat_size: "M", speed: 6)
+drakeide             = Race.create(name: "Drakéide",             skill: Skill.new(origin: r, history:    2, intimidate:  2),   average_height: '1,85 m à 2 m',     average_weight: '110 à 160 kg', vision: 'normale',  language: 'commun, draconique',                           stats: [Stat.new(charisma:      2, strength:      2, kind: r), Stat.new(charisma:       2, constitution:  2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
+drow                 = Race.create(name: "Drow",                 skill: Skill.new(origin: r, stealth: 2, intimidate: 2),       average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(dexterity:     2, charisma:      2, kind: r), Stat.new(dexterity:      2, wisdom:        2,  kind: r)], source_id: roou.id, cat_size: "M", speed: 6)
+eladrin              = Race.create(name: "Éladrin",              skill: Skill.new(origin: r, arcana: 2, history: 2),           average_height: '1,65 m à 1,85 m',  average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(intelligence:  2, dexterity:     2, kind: r), Stat.new(intelligence:   2, charisma:      2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
+elfe                 = Race.create(name: "Elfe",                 skill: Skill.new(origin: r, nature: 2, perception: 2),        average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r), Stat.new(dexterity:      2, intelligence:  2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
+feral_griffe_effilee = Race.create(name: "Féral griffe-effilée", skill: Skill.new(origin: r, acrobatics: 2, stealth: 2),       average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r)],                                                          source_id: mdj2.id, cat_size: "M", speed: 6)
+feral_longue_dent    = Race.create(name: "Féral longue-dent",    skill: Skill.new(origin: r, athletics: 2, endurance: 2),      average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength:      2, wisdom:        2, kind: r)],                                                          source_id: mdj2.id, cat_size: "M", speed: 6)
+forgelier            = Race.create(name: "Forgelier",            skill: Skill.new(origin: r, endurance: 2, intimidate: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '135 à 150 kg', vision: 'normale',  language: 'commun',                                       stats: [Stat.new(constitution:  2, strength:      2, kind: r), Stat.new(constitution:   2, intelligence:  2,  kind: r)], source_id: eber.id, cat_size: "M", speed: 6)
+genasi               = Race.create(name: "Genasi",               skill: Skill.new(origin: r, endurance: 2, nature: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, originel',                             stats: [Stat.new(strength:      2, intelligence:  2, kind: r), Stat.new(strength:       2, constitution:  2,  kind: r)], source_id: roou.id, cat_size: "M", speed: 6)
+githzerai            = Race.create(name: "Githzerai",            skill: Skill.new(origin: r, acrobatics: 2, athletics: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '80 à 95 kg',   vision: 'normale',  language: 'commun, profond',                              stats: [Stat.new(dexterity:     2, wisdom:        2, kind: r), Stat.new(dexterity:      2, intelligence:  2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
+gnome                = Race.create(name: "Gnome",                skill: Skill.new(origin: r, arcana: 2, stealth: 2),           average_height: '1,10 m à 1,20 m',  average_weight: '25 à 37 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(intelligence:  2, charisma:      2, kind: r), Stat.new(intelligence:   2, dexterity:     2,  kind: r)], source_id: mdj2.id, cat_size: "P", speed: 5)
+goliath              = Race.create(name: "Goliath",              skill: Skill.new(origin: r, athletics: 2, nature: 2),         average_height: '2,40 m à 2,50 m',  average_weight: '140 à 170 kg', vision: 'normale',  language: 'commun, et nain ou géant',                     stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], source_id: mdj2.id, cat_size: "M", speed: 6)
+halfelin             = Race.create(name: "Halfelin",             skill: Skill.new(origin: r, acrobatics: 2, thievery: 2),      average_height: '1,15 m à 1,25 m',  average_weight: '37 à 42 kg',   vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(dexterity:     2, constitution:  2, kind: r), Stat.new(dexterity:      2, charisma:      2,  kind: r)], source_id: mdj1.id, cat_size: "P", speed: 6)
 humain               = Race.create(name: "Humain",               skill: nil,                                        average_height: '1,65 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength: 2, kind: r), Stat.new(constitution: 2, kind: r), Stat.new(dexterity: 2, kind: r), Stat.new(intelligence: 2, kind: r), Stat.new(wisdom: 2, kind: r), Stat.new(charisma: 2, kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
-kalashtar            = Race.create(name: "Kalashtar",            skill: Skill.new(insight: 2),                      average_height: '1,70 m à 1,90 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: kalashtar_language,                             stats: [Stat.new(wisdom:        2, charisma:      2, kind: r), Stat.new(wisdom:         2, intelligence:  2,  kind: r)], source_id: eber.id, cat_size: "M", speed: 6)
-minotaure            = Race.create(name: "Minotaure",            skill: Skill.new(nature: 2, perception: 2),        average_height: '2,15 m à 2,30 m',  average_weight: '160 à 175 kg', vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
-nain                 = Race.create(name: "Nain",                 skill: Skill.new(endurance: 2, dungeoneering: 2),  average_height: '1,25 m à 1,45 m',  average_weight: '80 à 110 kg',  vision: 'nocturne', language: 'commun, nain',                                 stats: [Stat.new(constitution:  2, strength:      2, kind: r), Stat.new(constitution:   2, wisdom:        2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 5)
-silvyen              = Race.create(name: "Silvyen",              skill: Skill.new(stealth: 2, nature: 2),           average_height: '1,80 m à 1,95 m',  average_weight: '70 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(constitution:  2, wisdom:        2, kind: r), Stat.new(constitution:   2, dexterity:     2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
-tieffelin            = Race.create(name: "Tieffelin",            skill: Skill.new(bluff: 2, stealth: 2),            average_height: '1,65 m à 1,85 m',  average_weight: '70 à 115 kg',  vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(charisma:      2, constitution:  2, kind: r), Stat.new(charisma:       2, intelligence:  2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
+kalashtar            = Race.create(name: "Kalashtar",            skill: Skill.new(origin: r, insight: 2),                      average_height: '1,70 m à 1,90 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: kalashtar_language,                             stats: [Stat.new(wisdom:        2, charisma:      2, kind: r), Stat.new(wisdom:         2, intelligence:  2,  kind: r)], source_id: eber.id, cat_size: "M", speed: 6)
+minotaure            = Race.create(name: "Minotaure",            skill: Skill.new(origin: r, nature: 2, perception: 2),        average_height: '2,15 m à 2,30 m',  average_weight: '160 à 175 kg', vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
+nain                 = Race.create(name: "Nain",                 skill: Skill.new(origin: r, endurance: 2, dungeoneering: 2),  average_height: '1,25 m à 1,45 m',  average_weight: '80 à 110 kg',  vision: 'nocturne', language: 'commun, nain',                                 stats: [Stat.new(constitution:  2, strength:      2, kind: r), Stat.new(constitution:   2, wisdom:        2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 5)
+silvyen              = Race.create(name: "Silvyen",              skill: Skill.new(origin: r, stealth: 2, nature: 2),           average_height: '1,80 m à 1,95 m',  average_weight: '70 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(constitution:  2, wisdom:        2, kind: r), Stat.new(constitution:   2, dexterity:     2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
+tieffelin            = Race.create(name: "Tieffelin",            skill: Skill.new(origin: r, bluff: 2, stealth: 2),            average_height: '1,65 m à 1,85 m',  average_weight: '70 à 115 kg',  vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(charisma:      2, constitution:  2, kind: r), Stat.new(charisma:       2, intelligence:  2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
 
 RaceFeature.create(races: [eladrin, elfe, gnome, silvyen, drow],  name: "Origine féerique",     description: "vos ancêtres étaient natifs de Féerie, vous êtes donc considéré comme une créature féerique au regard des effets liés à cette origine.")
 RaceFeature.create(races: [cristallien, forgelier],   name: "Créature artificielle vivante",    description: "vous êtes une créature artificielle vivante. Vous n'avez pas besoin de manger, de boire, de respirer et de dormir. Vous n'effectuez jamais de tests d'Endurance pour résister aux effets de la faim, de la soif ou de l'asphyxie.")
@@ -382,62 +399,701 @@ Au niveau 21, la résistance augmente à électricité 15.<br>
 <em>Âme de vent</em> : vous bénéficiezd'une résistance au froid 5 du pouvoir <em>Arpenteur des vents</em>.<br>
 Au niveau 11, la résistance augmente à froid 10.<br>
 Au niveau 21, la résistance augmente à froid 15.")
+acrobatics    = Skill.create(origin: 'required_skill_for_class', acrobatics:     5)
+arcana        = Skill.create(origin: 'required_skill_for_class', arcana:         5)
+athletics     = Skill.create(origin: 'required_skill_for_class', athletics:      5)
+bluff         = Skill.create(origin: 'required_skill_for_class', bluff:          5)
+diplomacy     = Skill.create(origin: 'required_skill_for_class', diplomacy:      5)
+dungeoneering = Skill.create(origin: 'required_skill_for_class', dungeoneering:  5)
+endurance     = Skill.create(origin: 'required_skill_for_class', endurance:      5)
+heal          = Skill.create(origin: 'required_skill_for_class', heal:           5)
+history       = Skill.create(origin: 'required_skill_for_class', history:        5)
+insight       = Skill.create(origin: 'required_skill_for_class', insight:        5)
+intimidate    = Skill.create(origin: 'required_skill_for_class', intimidate:     5)
+nature        = Skill.create(origin: 'required_skill_for_class', nature:         5)
+perception    = Skill.create(origin: 'required_skill_for_class', perception:     5)
+religion      = Skill.create(origin: 'required_skill_for_class', religion:       5)
+stealth       = Skill.create(origin: 'required_skill_for_class', stealth:        5)
+streetwise    = Skill.create(origin: 'required_skill_for_class', streetwise:     5)
+thievery      = Skill.create(origin: 'required_skill_for_class', thievery:       5)
 
 
 
+barbare = Klass.create(
+  name:               "Barbare",
+  role:               "cogneur",
+  source:             mdj2,
+  power_source:       "primale",
+  main_stats:         "Force, Constitution, Charisme",
+  armor_categories:   [etoffe, cuir, peau],
+  weapon_categories:  [simple_cac, guerre_cac],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Vigueur +2",
+  base_hp:            15,
+  hp_per_level:       6,
+  healing_surge:      8,
+  required_skills:    [],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              acrobatics: 5,
+                              athletics: 5,
+                              endurance: 5,
+                              heal: 5,
+                              intimidate: 5,
+                              nature: 5,
+                              perception: 5),
+  options_creation:   "barbare sanguinaire, barbare champion tribal, barbare fils du tonnerre, barbare tournoyant",
+  skills_number:      3)
+barde = Klass.create(
+  name:               "Barde",
+  role:               "meneur",
+  source:             mdj2,
+  power_source:       "arcanique",
+  main_stats:         "Charisme, Intelligence, Constitution",
+  armor_categories:   [etoffe, cuir, peau, mailles, lightsh],
+  weapon_categories:  [simple_cac, simple_dist,guerre_dist],
+  common_weapons:     [cimeterre, epee_courte, epee_longue],
+  implement_groups:   [baguettes],
+  defense_bonus:      "Réflexes +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [arcana],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              acrobatics: 5,
+                              arcana: 5,
+                              athletics: 5,
+                              bluff: 5,
+                              diplomacy: 5,
+                              dungeoneering: 5,
+                              heal: 5,
+                              history: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              nature: 5,
+                              perception: 5,
+                              religion: 5,
+                              streetwise: 5),
+  options_creation:   "barde rusé, barde valeureux, barde prescient",
+  skills_number:      4)
+batailleur = Klass.create(
+  name:               "Batailleur",
+  role:               "protecteur",
+  source:             mdj3,
+  power_source:       "psionique",
+  main_stats:         "Constitution, Sagesse, Charisme",
+  armor_categories:   [etoffe, cuir, peau, mailles, ecailles, lightsh, heavysh],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Volonté +2",
+  base_hp:            15,
+  hp_per_level:       6,
+  healing_surge:      9,
+  required_skills:    [],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              athletics: 5,
+                              bluff: 5,
+                              diplomacy: 5,
+                              endurance: 5,
+                              heal: 5,
+                              insight: 5,
+                              intimidate: 5),
+  options_creation:   "batailleur rapide, batailleur robuste",
+  skills_number:      3)
+druide = Klass.create(
+  name:               "Druide",
+  role:               "contrôleur",
+  source:             mdj2,
+  power_source:       "primale",
+  main_stats:         "Sagesse, Dextérité, Constitution",
+  armor_categories:   [etoffe, cuir, peau],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [batons_i, totems],
+  defense_bonus:      "Réflexes +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [nature],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              athletics: 5,
+                              diplomacy: 5,
+                              endurance: 5,
+                              heal: 5,
+                              history: 5,
+                              insight: 5,
+                              nature: 5,
+                              perception: 5),
+  options_creation:   "druide gardien, druide prédateur, druide des nuées, druide convocateur",
+  skills_number:      3)
+ensorceleur = Klass.create(
+  name:               "Ensorceleur",
+  role:               "cogneur",
+  source:             mdj2,
+  power_source:       "arcanique",
+  main_stats:         "Charisme, Dextérité, Force",
+  armor_categories:   [etoffe],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [batons_i],
+  defense_bonus:      "Volonté +2",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      6,
+  required_skills:    [arcana],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              athletics: 5,
+                              bluff: 5,
+                              diplomacy: 5,
+                              dungeoneering: 5,
+                              endurance: 5,
+                              history: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              nature: 5),
+  options_creation:   "ensorceleur du chaos, ensorceleur dragon, ensorceleur des tempêtes, ensorceleur cosmique",
+  skills_number:      3)
+faconneur = Klass.create(
+  name:               "Façonneur",
+  role:               "meneur",
+  source:             eber,
+  power_source:       "arcanique",
+  main_stats:         "Intelligence, Constitution, Sagesse",
+  armor_categories:   [etoffe, cuir],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [baguettes, batons_i, sceptres],
+  defense_bonus:      "Vigueur +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      6,
+  required_skills:    [arcana],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              diplomacy: 5,
+                              dungeoneering: 5,
+                              heal: 5,
+                              history: 5,
+                              perception: 5,
+                              thievery: 5),
+  options_creation:   "façonneur bricoleur, façonneur forgeron de guerre",
+  skills_number:      3)
+flamboyant = Klass.create(
+  name:               "Flamboyant",
+  role:               "meneur",
+  source:             mdj3,
+  power_source:       "psionique",
+  main_stats:         "Charisme, Constitution,Sagesse",
+  armor_categories:   [etoffe, cuir, peau, mailles],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Vigueur +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              athletics: 5,
+                              bluff: 5,
+                              diplomacy: 5,
+                              endurance: 5,
+                              heal: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              streetwise: 5),
+  options_creation:   "flamboyant euphorique, flamboyant illuminé",
+  skills_number:      4)
+gardien = Klass.create(
+  name:               "Gardien",
+  role:               "protecteur",
+  source:             mdj2,
+  power_source:       "primale"  ,
+  main_stats:         "Force, Constitution, Sagesse",
+  armor_categories:   [etoffe, cuir, peau, lightsh, heavysh],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Vigueur +2",
+  base_hp:            17,
+  hp_per_level:       7,
+  healing_surge:      9,
+  required_skills:    [nature],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              athletics: 5,
+                              dungeoneering: 5,
+                              endurance: 5,
+                              heal: 5,
+                              intimidate: 5,
+                              nature: 5,
+                              perception: 5),
+  options_creation:   "gardien de la terre, gardien indompté, gardien de la tempête, gardien de la vie",
+  skills_number:      3)
+guerrier = Klass.create(
+  name:               "Guerrier",
+  role:               "protecteur",
+  source:             mdj1,
+  power_source:       "martiale" ,
+  main_stats:         "Force, Dextérité, Sagesse, Constitution",
+  armor_categories:   [etoffe, cuir, peau, mailles, ecailles, lightsh, heavysh],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac, guerre_dist],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Vigueur +2",
+  base_hp:            15,
+  hp_per_level:       6,
+  healing_surge:      9,
+  required_skills:    [],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              athletics: 5,
+                              streetwise: 5,
+                              endurance: 5,
+                              intimidate: 5,
+                              heal: 5),
+  options_creation:   "guerrier offensif, guerrier défensif",
+  skills_number:      3)
+invocateur = Klass.create(
+  name:               "Invocateur",
+  role:               "contrôleur",
+  source:             mdj2,
+  power_source:       "divine",
+  main_stats:         "Sagesse, Constitution, Intelligence",
+  armor_categories:   [etoffe, cuir, peau, mailles],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [batons_i, sceptres],
+  defense_bonus:      "Réflexes +1, Vigueur +1, Volonté +1",
+  base_hp:            10,
+  hp_per_level:       4,
+  healing_surge:      6,
+  required_skills:    [religion],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              diplomacy: 5,
+                              endurance: 5,
+                              history: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              religion: 5),
+  options_creation:   "invocateur protecteur, invocateur courroucé, invocateur des malédictions",
+  skills_number:      3)
+limier = Klass.create(
+  name:               "Limier",
+  role:               "contrôleur",
+  source:             mdj3,
+  power_source:       "primale",
+  main_stats:         "Sagesse, Force, Dextérité",
+  armor_categories:   [etoffe, cuir],
+  weapon_categories:  [simple_cac, simple_dist, guerre_dist],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Réflexes +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [nature],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              acrobatics: 5,
+                              athletics: 5,
+                              endurance: 5,
+                              heal: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              nature: 5,
+                              perception: 5,
+                              stealth: 5),
+  options_creation:   "limier protecteur, limier vengeur",
+  skills_number:      3)
+mage_lames = Klass.create(
+  name:               "Mage lames",
+  role:               "protecteur",
+  source:             roou,
+  power_source:       "arcanique",
+  main_stats:         "intelligence, force, constitution",
+  armor_categories:   [etoffe ,cuir],
+  weapon_categories:  [simple_cac, simple_dist, ],
+  common_weapons:     [cimeterre, epee_courte, epee_longue, cim2mains, coutile, epee2mains, epeelarge, khopesh],
+  implement_groups:   [],
+  defense_bonus:      "Volonté +2",
+  base_hp:            15,
+  hp_per_level:       6,
+  healing_surge:      8,
+  required_skills:    [arcana],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              athletics: 5,
+                              diplomacy: 5,
+                              endurance: 5,
+                              history: 5,
+                              insight: 5,
+                              intimidate: 5),
+  options_creation:   "mage lame défensif, mage lame offensif, mage lame prédateur",
+  skills_number:      3)
+magicien = Klass.create(
+  name:               "Magicien",
+  role:               "contrôleur",
+  source:             mdj1,
+  power_source:       "arcanique",
+  main_stats:         "Intelligence, Sagesse, Dextérité",
+  armor_categories:   [etoffe],
+  weapon_categories:  [],
+  common_weapons:     [dague, baton],
+  implement_groups:   [baguettes, batons_i, orbes],
+  defense_bonus:      "Volonté +2",
+  base_hp:            10,
+  hp_per_level:       4,
+  healing_surge:      6,
+  required_skills:    [arcana],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              diplomacy: 5,
+                              dungeoneering: 5,
+                              history: 5,
+                              insight: 5,
+                              nature: 5,
+                              religion: 5),
+ options_creation:    "magicien de guerre, magicien manipulateur",
+ skills_number:       3)
+maitre_guerre = Klass.create(
+  name:               "Maître de guerre",
+  role:               "meneur",
+  source:             mdj1,
+  power_source:       "martiale",
+  main_stats:         "Force, Intelligence, Charisme",
+  armor_categories:   [etoffe, cuir, peau, mailles, lightsh],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Vigueur +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              athletics: 5,
+                              diplomacy: 5,
+                              endurance: 5,
+                              heal: 5,
+                              history: 5,
+                              intimidate: 5),
+  options_creation:   "maître de guerre charismatique, maître de guerre tacticien, maître de guerre ingénieux, maître de guerre perspicace, maître de guerre intrépide, maître de guerre tirailleur",
+  skills_number:      4)
+moine = Klass.create(
+  name:               "Moine",
+  role:               "cogneur",
+  source:             mdj3,
+  power_source:       "psionique",
+  main_stats:         "Dexterité, Force, Sagesse",
+  armor_categories:   [etoffe],
+  weapon_categories:  [],
+  common_weapons:     [mains_nues, baton, dague, fronde_arme, gourdin, lance_arme, shuriken],
+  implement_groups:   [focus_ki],
+  defense_bonus:      "Réflexes +1, Vigueur +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              acrobatics: 5,
+                              athletics: 5,
+                              diplomacy: 5,
+                              endurance: 5,
+                              heal: 5,
+                              insight: 5,
+                              perception: 5,
+                              religion: 5,
+                              stealth: 5,
+                              thievery: 5),
+  options_creation:   "moine du poing de pierre, moine du souffle centré",
+  skills_number:      4)
+paladin = Klass.create(
+  name:               "Paladin",
+  role:               "protecteur",
+  source:             mdj1,
+  power_source:       "divine",
+  main_stats:         "Force, Charisme, Sagesse",
+  armor_categories:   [etoffe, cuir, peau, mailles, ecailles, harnois, lightsh, heavysh],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac],
+  common_weapons:     [],
+  implement_groups:   [symboles],
+  defense_bonus:      "Vigueur +1, Réflexes +1, Volonté +1",
+  base_hp:            15,
+  hp_per_level:       6,
+  healing_surge:      10,
+  required_skills:    [religion],
+  available_skills: Skill.new(origin: 'available_skills',
+                              diplomacy: 5,
+                              endurance: 5,
+                              heal: 5,
+                              history: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              religion: 5),
+  options_creation:   "paladin défenseur, paladin vengeur, paladin fougueux, paladin vertueux",
+  skills_number:      3)
+pretre = Klass.create(
+  name:               "Prêtre",
+  role:               "meneur",
+  source:             mdj1,
+  power_source:       "divine",
+  main_stats:         "Sagesse, Force, Charisme",
+  armor_categories:   [etoffe, cuir, peau, mailles],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [symboles],
+  defense_bonus:      "Volonté +2",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [religion],
+  available_skills: Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              diplomacy: 5,
+                              heal: 5,
+                              history: 5,
+                              insight: 5,
+                              religion: 5),
+  options_creation:   "prêtre de combat, prêtre dévoué, prêtre protecteur",
+  skills_number:      3)
+pretre_runes = Klass.create(
+  name:               "Prêtre des runes",
+  role:               "meneur",
+  source:             mdj3,
+  power_source:       "divine",
+  main_stats:         "Force, Constitution, Sagesse",
+  armor_categories:   [etoffe, cuir, peau, mailles, ecailles, lightsh],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Volonté +2",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [religion],
+  available_skills: Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              athletics: 5,
+                              endurance: 5,
+                              heal: 5,
+                              history: 5,
+                              insight: 5,
+                              religion: 5,
+                              thievery: 5),
+  options_creation:   "prêtre des runes de l'ire, prêtre des runes du défi",
+  skills_number:      3)
+psion = Klass.create(
+  name:               "Psion",
+  role:               "contrôleur",
+  source:             mdj3,
+  power_source:       "psionique",
+  main_stats:         "Intelligence, Charisme, Sagesse",
+  armor_categories:   [etoffe],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [batons_i, orbes],
+  defense_bonus:      "Volonté+2",
+  base_hp:            12,
+  hp_per_level:       4,
+  healing_surge:      6,
+  required_skills:    [],
+  available_skills: Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              bluff: 5,
+                              diplomacy: 5,
+                              dungeoneering: 5,
+                              history: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              perception: 5),
+  options_creation:   "psion télékinétique, psion télépathe",
+  skills_number:      4)
+rodeur = Klass.create(
+  name:               "Rôdeur",
+  role:               "cogneur",
+  source:             mdj1,
+  power_source:       "martiale",
+  main_stats:         "Force, Dextérité, Sagesse",
+  armor_categories:   [etoffe, cuir, peau],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac, guerre_dist],
+  common_weapons:     [],
+  implement_groups:   [],
+  defense_bonus:      "Réflexes +1, Vigueur +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      6,
+  required_skills:    [dungeoneering, nature],
+  available_skills:   Skill.new(origin: 'available_skills',
+                              acrobatics: 5,
+                              athletics: 5,
+                              stealth: 5,
+                              endurance: 5,
+                              dungeoneering: 5,
+                              nature: 5,
+                              perception: 5,
+                              heal: 5),
+  options_creation:   "rôdeur archer, rôdeur double-lame, rôdeur maître des bêtes, rôdeur chasseur, rôdeur maraudeur",
+  skills_number:      4)
+shaman = Klass.create(
+  name:               "Shaman",
+  role:               "meneur",
+  source:             mdj2,
+  power_source:       "primale",
+  main_stats:         "Sagesse, Constitution, Intelligence",
+  armor_categories:   [etoffe, cuir],
+  weapon_categories:  [simple_cac],
+  common_weapons:     [pique],
+  implement_groups:   [totems],
+  defense_bonus:      "Vigueur +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      7,
+  required_skills:    [nature],
+  available_skills: Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              athletics: 5,
+                              endurance: 5,
+                              heal: 5,
+                              history: 5,
+                              insight: 5,
+                              nature: 5,
+                              perception: 5,
+                              religion: 5),
+  options_creation:   "shaman de l'ours, shaman de la panthère, shaman de l'aigle, shaman messager des mondes",
+  skills_number:      3)
+sorcier = Klass.create(
+  name:               "Sorcier",
+  role:               "cogneur",
+  source:             mdj1,
+  power_source:       "arcanique",
+  main_stats:         "Charisme, Constitution, Intelligence",
+  armor_categories:   [etoffe, cuir],
+  weapon_categories:  [simple_cac, simple_dist],
+  common_weapons:     [],
+  implement_groups:   [baguettes, sceptres],
+  defense_bonus:      "Réflexes +1, Volonté +1",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      6,
+  required_skills:    [],
+  available_skills: Skill.new(origin: 'available_skills',
+                              arcana: 5,
+                              bluff: 5,
+                              history: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              religion: 5,
+                              streetwise: 5,
+                              thievery: 5),
+  options_creation:   "sorcier dévastateur, sorcier perfide",
+  skills_number:      4)
+vengeur = Klass.create(
+  name:               "Vengeur",
+  role:               "cogneur",
+  source:             mdj2,
+  power_source:       "divine",
+  main_stats:         "Sagesse, Dextérité, Intelligence",
+  armor_categories:   [etoffe],
+  weapon_categories:  [simple_cac, simple_dist, guerre_cac],
+  common_weapons:     [],
+  implement_groups:   [symboles],
+  defense_bonus:      "Vigueur +1, Réflexes +1, Volonté+1",
+  base_hp:            14,
+  hp_per_level:       6,
+  healing_surge:      7,
+  required_skills:    [religion],
+  available_skills: Skill.new(origin: 'available_skills',
+                              acrobatics: 5,
+                              athletics: 5,
+                              endurance: 5,
+                              intimidate: 5,
+                              perception: 5,
+                              religion: 5,
+                              stealth: 5,
+                              streetwise: 5),
+  options_creation:   "vengeur solitaire, vengeur acharné, vengeur commandeur",
+  skills_number:      3)
+voleur         = Klass.create(
+  name:               "Voleur",
+  role:               "cogneur",
+  source:             mdj1,
+  power_source:       "martiale",
+  main_stats:         "Dexterité, Force, Charisme",
+  armor_categories:   [etoffe, cuir],
+  weapon_categories:  [],
+  common_weapons:     [arba_poing, dague, epee_courte, fronde_arme, shuriken],
+  implement_groups:   [],
+  defense_bonus:      "Réflexes +2",
+  base_hp:            12,
+  hp_per_level:       5,
+  healing_surge:      6,
+  required_skills:    [stealth, thievery],
+  available_skills: Skill.new(origin: 'available_skills',
+                              acrobatics: 5,
+                              athletics: 5,
+                              bluff: 5,
+                              dungeoneering: 5,
+                              insight: 5,
+                              intimidate: 5,
+                              perception: 5,
+                              stealth: 5,
+                              streetwise: 5,
+                              thievery: 5),
+  options_creation:   "voleur brutale, voleur fourbe, voleur coupe-jarret, voleur voltigeur, voleur des ombres",
+  skills_number:      4)
 
-
-
-
-
-
-{
-"Barbare"           => {book_source: mdj2.id, power_source: "Primale",    features: ["Agilité du barbare", "Carnage", {"Force indomptable" => ["Ardeur sanguinaire", "Triomphe du champion", "Colère du fils du tonnerre", "Faucheur tournoyant"]}, "Frappe enragée"]},
-"Barde"             => {book_source: mdj2.id, power_source: "Arcanique",  features: ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", {"Vertu des bardes" => ["Vertu de vaillance", "Vertu de ruse", "vertu de prescience"]}]},
-"Batailleur"        => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", "Défense psionique", {"Étude psionique" => ["Résistance de combat", "Vitesse de la pensée"]}]},
-"Druide"            => {book_source: mdj2.id, power_source: "Primale",    features: ["Harmonie de la nature", {"Aspect primal" => ["Gardien primal", "Prédateur primal", "Nuée primale"]}, "Magie rituelle", "Métamorphose animale"]},
-"Ensorceleur"       => {book_source: mdj2.id, power_source: "Arcanique",  features: [{"Source des sorts" => ["Magie draconique", "Magie sauvage", "Magie des tempêtes", "Magie cosmique"]}]},
-"Façonneur"         => {book_source: eber.id, power_source: "Arcanique",  features: [{"Bonification arcanique" => ["Partage d'énergie", "Intensification d'énergie"]}, "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"]},
-"Flamboyant"        => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", {"Manteau flamboyant" => ["Manteau d'allégresse", "Manteau de clarté"]}, "Regain flamboyant"]},
-"Gardien"           => {book_source: mdj2.id, power_source: "Primale",    features: ["Fontaine de vie", {"Puissance du gardien" => ["Force de la terre", "Sang indompté", "Coeur de tempête", "Esprit vital"]}, "Colère de la nature"]},
-"Guerrier"          => {book_source: mdj1.id, power_source: "Martiale",   features: ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"]},
-"Invocateur"        => {book_source: mdj2.id, power_source: "Divine",     features: [{"Alliance divine" => ["Alliance de colère", "Alliance protectrice", "Alliance de malédiction"]}, "Conduit divin", "Magie rituelle" ]},
-"Limier"            => {book_source: mdj3.id, power_source: "Primale",    features: [{"Lien du limier" => ["Lien désincarné", "Lien du sang"]}, "Tir implacable"]},
-"Mage lames"        => {book_source: roou.id, power_source: "Arcanique",  features: ["Écran du mage d'armes", {"Égide du mage d'armes" => ["Égide défensive", "Égide offensive"]}, "Porte-lame"]},
-"Magicien"          => {book_source: mdj1.id, power_source: "Arcanique",  features: ["Grimoire d'arcaniste", "Magie rituelle", {"Maîtrise des focaliseurs arcaniques" =>["Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"]}, "Tour de magie"]},
-"Maître de guerre"  => {book_source: mdj1.id, power_source: "Martiale",   features: [{"Autorité naturelle" => ["Présence inspiratrice", "Présence tactique", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Présence du tirailleur"]}, "Chef de troupe", "Parole inspiratrice", "Chef avisé", "Maître de guerre archer", "Chef d'assaut"]},
-"Moine"             => {book_source: mdj3.id, power_source: "Psionique",  features: ["Combattant à mains nues", "Défense sans armure", {"Poing de pierre" => ["Déluge de coup", "Bastion mental"]}, {"Soufle centré" => ["Déluge de coups", "Équilibre mental"]}]},
-"Paladin"           => {book_source: mdj1.id, power_source: "Divine",     features: ["Conduit divin", "Défi divin", "Imposition des mains"]},
-"Prêtre"            => {book_source: mdj1.id, power_source: "Divine",     features: ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"]},
-"Prêtre des runes"  => {book_source: mdj3.id, power_source: "Divine",     features: ["Maître des runes", "Rune de préparation", {"Tradition runique" => ["Marteau de l'ire", "Parole du défi"]}]},
-"Psion"             => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", {"Discipline de spécialisation" => ["Spécialisation en télékinésie", "Spécialisation en télépathie"]}, "Magie rituelle"]},
-"Rôdeur"            => {book_source: mdj1.id, power_source: "Martiale",   features: [{"Style de combat" => ["Style de combat à distance", "Style de combat à deux armes", "Maîtrise des bêtes", "Style du combat du chasseur", "Style de combat du maraudeur"]}, "Tir de proximité", "Traque", "Course d'assaut"]},
-"Shaman"            => {book_source: mdj2.id, power_source: "Primale",    features: [{"Compagnon spirituel" => ["Esprit protecteur", "Esprit prédateur", "Esprit du guetteur", "Esprit du messager des mondes"]}, "Guérison spirituelle", "Communication avec les esprits"]},
-"Sorcier"           => {book_source: mdj1.id, power_source: "Arcanique",  features: ["Décharge occulte", "Déplacement enténébré", "Envoûtement", {"Pacte occulte" => ["Pacte féerique", "Pacte infernal", "Pacte stellaire", "Pacte des vestiges"]}, "Tir de proximité"]},
-"Vengeur"           => {book_source: mdj2.id, power_source: "Divine",     features: ["Armure de la foi", {"Censure du vengeur" => ["Censure de poursuite", "Censure rétributive", "Censure collective"]}, "Conduit divin", "Serment d'inimitié"]},
-"Voleur"            => {book_source: mdj1.id, power_source: "Martiale",   features: ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", {"Tactique du roublard" => ["Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité"]}, "Tireur d'élite"]},
-"Hybride"           => {book_source: mdj3.id, power_source: "Mixte",      features: []}
-}.each do |klass, info|
-  klass = Klass.create(name: klass, power_source: info[:power_source], source_id: info[:book_source])
-  info[:features].each do |feature|
-    if feature.kind_of?(Hash)
-      feature.each do |top_feature, children_feature|
-        t = KlassFeature.create(name: top_feature, klasses: [klass])
-        children_feature.each do |child|
-          KlassFeature.create(name: child, klasses: [klass], top_feature: t)
-        end
-      end
-    else
-      c = KlassFeature.find_by_name(feature)
-      if c.nil?
-        KlassFeature.create(name: feature, klasses: [klass])
-      else
-        c.klasses << klass
-        c.save
-      end
-    end
-  end
-end
+#{
+#"Barbare"           => {book_source: mdj2.id, power_source: "Primale",    features: ["Agilité du barbare", "Carnage", {"Force indomptable" => ["Ardeur sanguinaire", "Triomphe du champion", "Colère du fils du tonnerre", "Faucheur tournoyant"]}, "Frappe enragée"]},
+#"Barde"             => {book_source: mdj2.id, power_source: "Arcanique",  features: ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", {"Vertu des bardes" => ["Vertu de vaillance", "Vertu de ruse", "vertu de prescience"]}]},
+#"Batailleur"        => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", "Défense psionique", {"Étude psionique" => ["Résistance de combat", "Vitesse de la pensée"]}]},
+#"Druide"            => {book_source: mdj2.id, power_source: "Primale",    features: ["Harmonie de la nature", {"Aspect primal" => ["Gardien primal", "Prédateur primal", "Nuée primale"]}, "Magie rituelle", "Métamorphose animale"]},
+#"Ensorceleur"       => {book_source: mdj2.id, power_source: "Arcanique",  features: [{"Source des sorts" => ["Magie draconique", "Magie sauvage", "Magie des tempêtes", "Magie cosmique"]}]},
+#"Façonneur"         => {book_source: eber.id, power_source: "Arcanique",  features: [{"Bonification arcanique" => ["Partage d'énergie", "Intensification d'énergie"]}, "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"]},
+#"Flamboyant"        => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", {"Manteau flamboyant" => ["Manteau d'allégresse", "Manteau de clarté"]}, "Regain flamboyant"]},
+#"Gardien"           => {book_source: mdj2.id, power_source: "Primale",    features: ["Fontaine de vie", {"Puissance du gardien" => ["Force de la terre", "Sang indompté", "Coeur de tempête", "Esprit vital"]}, "Colère de la nature"]},
+#"Guerrier"          => {book_source: mdj1.id, power_source: "Martiale",   features: ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"]},
+#"Invocateur"        => {book_source: mdj2.id, power_source: "Divine",     features: [{"Alliance divine" => ["Alliance de colère", "Alliance protectrice", "Alliance de malédiction"]}, "Conduit divin", "Magie rituelle" ]},
+#"Limier"            => {book_source: mdj3.id, power_source: "Primale",    features: [{"Lien du limier" => ["Lien désincarné", "Lien du sang"]}, "Tir implacable"]},
+#"Mage lames"        => {book_source: roou.id, power_source: "Arcanique",  features: ["Écran du mage d'armes", {"Égide du mage d'armes" => ["Égide défensive", "Égide offensive"]}, "Porte-lame"]},
+#"Magicien"          => {book_source: mdj1.id, power_source: "Arcanique",  features: ["Grimoire d'arcaniste", "Magie rituelle", {"Maîtrise des focaliseurs arcaniques" =>["Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"]}, "Tour de magie"]},
+#"Maître de guerre"  => {book_source: mdj1.id, power_source: "Martiale",   features: [{"Autorité naturelle" => ["Présence inspiratrice", "Présence tactique", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Présence du tirailleur"]}, "Chef de troupe", "Parole inspiratrice", "Chef avisé", "Maître de guerre archer", "Chef d'assaut"],
+#"Moine"             => {book_source: mdj3.id, power_source: "Psionique",  features: ["Combattant à mains nues", "Défense sans armure", {"Poing de pierre" => ["Déluge de coup", "Bastion mental"]}, {"Soufle centré" => ["Déluge de coups", "Équilibre mental"]}]},
+#"Paladin"           => {book_source: mdj1.id, power_source: "Divine",     features: ["Conduit divin", "Défi divin", "Imposition des mains"]},
+#"Prêtre"            => {book_source: mdj1.id, power_source: "Divine",     features: ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"]},
+#"Prêtre des runes"  => {book_source: mdj3.id, power_source: "Divine",     features: ["Maître des runes", "Rune de préparation", {"Tradition runique" => ["Marteau de l'ire", "Parole du défi"]}]},
+#"Psion"             => {book_source: mdj3.id, power_source: "Psionique",  features: ["Accentuation psionique", {"Discipline de spécialisation" => ["Spécialisation en télékinésie", "Spécialisation en télépathie"]}, "Magie rituelle"]},
+#"Rôdeur"            => {book_source: mdj1.id, power_source: "Martiale",   features: [{"Style de combat" => ["Style de combat à distance", "Style de combat à deux armes", "Maîtrise des bêtes", "Style du combat du chasseur", "Style de combat du maraudeur"]}, "Tir de proximité", "Traque", "Course d'assaut"]},
+#"Shaman"            => {book_source: mdj2.id, power_source: "Primale",    features: [{"Compagnon spirituel" => ["Esprit protecteur", "Esprit prédateur", "Esprit du guetteur", "Esprit du messager des mondes"]}, "Guérison spirituelle", "Communication avec les esprits"]},
+#"Sorcier"           => {book_source: mdj1.id, power_source: "Arcanique",  features: ["Décharge occulte", "Déplacement enténébré", "Envoûtement", {"Pacte occulte" => ["Pacte féerique", "Pacte infernal", "Pacte stellaire", "Pacte des vestiges"]}, "Tir de proximité"]},
+#"Vengeur"           => {book_source: mdj2.id, power_source: "Divine",     features: ["Armure de la foi", {"Censure du vengeur" => ["Censure de poursuite", "Censure rétributive", "Censure collective"]}, "Conduit divin", "Serment d'inimitié"]},
+#"Voleur"            => {book_source: mdj1.id, power_source: "Martiale",   features: ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", {"Tactique du roublard" => ["Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité"]}, "Tireur d'élite"]},
+#"Hybride"           => {book_source: mdj3.id, power_source: "Mixte",      features: []}
+#}.each do |klass, info|, source: info[:source])
+#  info[:features].each do |feature|
+#    if feature.kind_of?(Hash)
+#      feature.each do |top_feature, children_feature|
+#        t = KlassFeature.create(name: top_feature, klasses: [klass])
+#        children_feature.each do |child|
+#          KlassFeature.create(name: child, klasses: [klass], top_feature: t)
+#        end
+#      end
+#    else
+#      c = KlassFeature.find_by_name(feature)
+#      if c.nil?
+#        KlassFeature.create(name: feature, klasses: [klass])
+#      else
+#        c.klasses << klass
+#        c.save
+#      end
+#    end
+#  end
+#end
 
 # password: plop
 User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')
+
+

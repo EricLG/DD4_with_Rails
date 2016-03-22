@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "armor_categories", ["code"], name: "index_armor_categories_on_code", using: :btree
 
+  create_table "armor_categories_klasses", id: false, force: :cascade do |t|
+    t.integer "armor_category_id"
+    t.integer "klass_id"
+  end
+
+  add_index "armor_categories_klasses", ["armor_category_id"], name: "index_armor_categories_klasses_on_armor_category_id", using: :btree
+  add_index "armor_categories_klasses", ["klass_id"], name: "index_armor_categories_klasses_on_klass_id", using: :btree
+
   create_table "armor_categories_magic_items", id: false, force: :cascade do |t|
     t.integer "magic_item_id"
     t.integer "armor_category_id"
@@ -33,6 +41,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "armor_categories_magic_items", ["armor_category_id"], name: "index_armor_categories_magic_items_on_armor_category_id", using: :btree
   add_index "armor_categories_magic_items", ["magic_item_id"], name: "index_armor_categories_magic_items_on_magic_item_id", using: :btree
+
+  create_table "available_skills_for_klass", id: false, force: :cascade do |t|
+    t.integer "skill_id"
+    t.integer "klass_id"
+  end
+
+  add_index "available_skills_for_klass", ["klass_id"], name: "index_available_skills_for_klass_on_klass_id", using: :btree
+  add_index "available_skills_for_klass", ["skill_id"], name: "index_available_skills_for_klass_on_skill_id", using: :btree
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
@@ -116,6 +132,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   add_index "common_weapons", ["source_id"], name: "index_common_weapons_on_source_id", using: :btree
   add_index "common_weapons", ["weapon_category_id"], name: "index_common_weapons_on_weapon_category_id", using: :btree
 
+  create_table "common_weapons_klasses", id: false, force: :cascade do |t|
+    t.integer "common_weapon_id"
+    t.integer "klass_id"
+  end
+
+  add_index "common_weapons_klasses", ["common_weapon_id"], name: "index_common_weapons_klasses_on_common_weapon_id", using: :btree
+  add_index "common_weapons_klasses", ["klass_id"], name: "index_common_weapons_klasses_on_klass_id", using: :btree
+
   create_table "common_weapons_weapon_groups", id: false, force: :cascade do |t|
     t.integer "common_weapon_id"
     t.integer "weapon_group_id"
@@ -186,6 +210,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "implement_groups", ["code"], name: "index_implement_groups_on_code", using: :btree
 
+  create_table "implement_groups_klasses", id: false, force: :cascade do |t|
+    t.integer "implement_group_id"
+    t.integer "klass_id"
+  end
+
+  add_index "implement_groups_klasses", ["implement_group_id"], name: "index_implement_groups_klasses_on_implement_group_id", using: :btree
+  add_index "implement_groups_klasses", ["klass_id"], name: "index_implement_groups_klasses_on_klass_id", using: :btree
+
   create_table "klass_features", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -206,14 +238,31 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   create_table "klasses", force: :cascade do |t|
     t.string   "name"
+    t.string   "role"
     t.string   "power_source"
+    t.string   "main_stats"
+    t.string   "defense_bonus"
+    t.integer  "base_hp"
+    t.integer  "hp_per_level"
+    t.integer  "healing_surge"
+    t.integer  "skills_number"
+    t.string   "options_creation"
     t.text     "information"
+    t.integer  "available_skills_id"
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "klasses", ["source_id"], name: "index_klasses_on_source_id", using: :btree
+
+  create_table "klasses_weapon_categories", id: false, force: :cascade do |t|
+    t.integer "weapon_category_id"
+    t.integer "klass_id"
+  end
+
+  add_index "klasses_weapon_categories", ["klass_id"], name: "index_klasses_weapon_categories_on_klass_id", using: :btree
+  add_index "klasses_weapon_categories", ["weapon_category_id"], name: "index_klasses_weapon_categories_on_weapon_category_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -334,6 +383,14 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   add_index "races", ["source_id"], name: "index_races_on_source_id", using: :btree
 
+  create_table "required_skills_for_klass", id: false, force: :cascade do |t|
+    t.integer "skill_id"
+    t.integer "klass_id"
+  end
+
+  add_index "required_skills_for_klass", ["klass_id"], name: "index_required_skills_for_klass_on_klass_id", using: :btree
+  add_index "required_skills_for_klass", ["skill_id"], name: "index_required_skills_for_klass_on_skill_id", using: :btree
+
   create_table "skills", force: :cascade do |t|
     t.integer  "acrobatics",    default: 0
     t.integer  "arcana",        default: 0
@@ -352,6 +409,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
     t.integer  "stealth",       default: 0
     t.integer  "streetwise",    default: 0
     t.integer  "thievery",      default: 0
+    t.string   "origin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

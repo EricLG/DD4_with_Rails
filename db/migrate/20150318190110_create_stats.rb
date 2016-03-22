@@ -32,7 +32,7 @@ class CreateStats < ActiveRecord::Migration
       t.integer :stealth       , default:0 # Discrétion
       t.integer :streetwise    , default:0 # Connais. de la rue
       t.integer :thievery      , default:0 # Larcin
-
+      t.string  :origin
       t.timestamps
     end
   end
