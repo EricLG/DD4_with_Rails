@@ -24,6 +24,7 @@
       <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("healing_surge")%></strong> :  <%= @klass.healing_surge %> + modificateur de Constitution</li>
       <li class="list-group-item no-border-line bg"><strong>Formations de compétences</strong> : <%= display_formations(@klass).html_safe %> </li>
       <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("options_creation") %></strong> : <%= @klass.options_creation %> </li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("klass_features") %></strong> : <%= @klass.klass_features.map(&:name).join(', ') %> </li>
     </ul>
   </div>
   <div class="panel-footer no-padding bg">

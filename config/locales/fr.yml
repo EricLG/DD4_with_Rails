@@ -72,6 +72,7 @@ fr:
         hp_per_level:       "Points de vie par niveau"
         healing_surge:      "Récupérations par jour"
         options_creation:   "Options de création"
+        klass_features:     "Aptitudes de classes"
       skill:
         acrobatics:     "Acrobaties"
         arcana:         "Arcanes"

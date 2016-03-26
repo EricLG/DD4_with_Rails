@@ -40,7 +40,9 @@ Rails.application.routes.draw do
   resources :races, :klasses, :aides
 
   resources :characters do
-    get 'find_level'
+    get 'choose_carac'
+    get 'choose_skill'
+    get 'optional_fields'
   end
 
   resources :campaigns do

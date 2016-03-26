@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   create_table "klass_features", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.string   "status"
     t.integer  "top_feature_id"
     t.datetime "created_at"
     t.datetime "updated_at"
