@@ -1,5 +1,8 @@
 class CreateCampaigns < ActiveRecord::Migration
   def change
+
+    enable_extension :hstore
+
     create_table :campaigns do |t|
       t.string :name
       t.text :description
@@ -30,16 +33,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string  :divinity
       t.string  :party
       t.integer :status
-      t.integer :initial_stat_id
-      t.integer :level_4_id
-      t.integer :level_8_id
-      t.integer :level_11_id
-      t.integer :level_14_id
-      t.integer :level_18_id
-      t.integer :level_21_id
-      t.integer :level_24_id
-      t.integer :level_28_id
-      t.integer :race_stat_id
+      t.hstore  :stats
       t.belongs_to :user
       t.belongs_to :klass
       t.belongs_to :race

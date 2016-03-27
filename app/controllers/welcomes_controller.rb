@@ -1,6 +1,6 @@
 class WelcomesController < ApplicationController
 
-  before_filter :authorize_admin, except: [:index, :random]
+  before_filter :authorize_admin, except: [:index, :random, :stats]
 
   def random
     @hide_side_bloc = true
@@ -42,6 +42,12 @@ class WelcomesController < ApplicationController
   end
 
   def stats
+
+    #models =[ArmorCategory, CommonArmor, CommonWeapon, ImplementGroup, Klass, KlassFeature, Location, ObjectLevel, Race, RaceFeature, Source, Stat, User, WeaponCategory, WeaponGroup, WeaponProperty]
+    #models.each do |m|
+    #  m.destroy_all
+    #end
+
     @stats = []
     @stats << {table_name: "ArmorCategory",    table_count: ArmorCategory.count}
     @stats << {table_name: "Campaign",         table_count: Campaign.count}

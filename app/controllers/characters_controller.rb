@@ -1,29 +1,34 @@
 class CharactersController < ApplicationController
 
-  before_filter :find_dependancies, only: [:index, :new, :edit, :show]
+  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_carac, :choose_skill, :optional_fields]
 
   def index
     @hide_side_bloc =true
   end
 
   def new
+    @hide_side_bloc =true
     @character = Character.new
-    @character.build_initial_stat
-    @character.build_level_4
-    @character.build_level_8
-    @character.build_level_11
-    @character.build_level_14
-    @character.build_level_18
-    @character.build_level_21
-    @character.build_level_24
-    @character.build_level_28
-    @character.build_race_stat
+  end
+
+  def choose_carac
+    @hide_side_bloc =true
+    @character = Character.find_by_id(params["character_id"])
+  end
+
+  def choose_skill
+
+  end
+
+  def optional_fields
+
   end
 
   def create
     @character = Character.new(character_params)
+    @character.status = 'draft'
     if @character.save
-      redirect_to characters_path
+      redirect_to character_choose_carac_path(@character.id)
     else
       find_dependancies
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
@@ -47,11 +52,11 @@ class CharactersController < ApplicationController
   def update
     @character = Character.find_by_id(params[:id])
     if @character.update(character_params)
-     redirect_to characters_path
+      redirect_to characters_path
     else
-     find_dependancies
-     flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
-     render :edit
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :edit
     end
   end
 
@@ -73,22 +78,67 @@ class CharactersController < ApplicationController
       :user_id,
       :race_id,
       :klass_id,
-      {game_ids:[]},
-      initial_stat_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_4_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_8_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_11_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_14_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_18_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_21_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_24_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      level_28_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind],
-      race_stat_attributes: [:id, :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, :kind]
+      :stats,
+      :level_1_strength,
+      :level_4_strength,
+      :level_8_strength,
+      :level_11_strength,
+      :level_14_strength,
+      :level_18_strength,
+      :level_21_strength,
+      :level_24_strength,
+      :level_28_strength,
+      :level_1_constitution,
+      :level_4_constitution,
+      :level_8_constitution,
+      :level_11_constitution,
+      :level_14_constitution,
+      :level_18_constitution,
+      :level_21_constitution,
+      :level_24_constitution,
+      :level_28_constitution,
+      :level_1_dexterity,
+      :level_4_dexterity,
+      :level_8_dexterity,
+      :level_11_dexterity,
+      :level_14_dexterity,
+      :level_18_dexterity,
+      :level_21_dexterity,
+      :level_24_dexterity,
+      :level_28_dexterity,
+      :level_1_intelligence,
+      :level_4_intelligence,
+      :level_8_intelligence,
+      :level_11_intelligence,
+      :level_14_intelligence,
+      :level_18_intelligence,
+      :level_21_intelligence,
+      :level_24_intelligence,
+      :level_28_intelligence,
+      :level_1_wisdom,
+      :level_4_wisdom,
+      :level_8_wisdom,
+      :level_11_wisdom,
+      :level_14_wisdom,
+      :level_18_wisdom,
+      :level_21_wisdom,
+      :level_24_wisdom,
+      :level_28_wisdom,
+      :level_1_charisma,
+      :level_4_charisma,
+      :level_8_charisma,
+      :level_11_charisma,
+      :level_14_charisma,
+      :level_18_charisma,
+      :level_21_charisma,
+      :level_24_charisma,
+      :level_28_charisma,
+      {game_ids:[]}
       )
   end
 
   def find_dependancies
-    @characters = @current_user.characters
+    @characters = @current_user.characters.complete
     @races = Race.all
     @klasses = Klass.all
   end

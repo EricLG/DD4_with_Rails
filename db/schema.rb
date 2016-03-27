@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "armor_categories", force: :cascade do |t|
     t.string   "code"
@@ -72,16 +73,7 @@ ActiveRecord::Schema.define(version: 20151018130000) do
     t.string   "divinity"
     t.string   "party"
     t.integer  "status"
-    t.integer  "initial_stat_id"
-    t.integer  "level_4_id"
-    t.integer  "level_8_id"
-    t.integer  "level_11_id"
-    t.integer  "level_14_id"
-    t.integer  "level_18_id"
-    t.integer  "level_21_id"
-    t.integer  "level_24_id"
-    t.integer  "level_28_id"
-    t.integer  "race_stat_id"
+    t.hstore   "stats"
     t.integer  "user_id"
     t.integer  "klass_id"
     t.integer  "race_id"
