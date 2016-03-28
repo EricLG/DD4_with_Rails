@@ -1,0 +1,32 @@
+<div class="row">
+  <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <%= form_for @character, url: character_choose_carac_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
+      <% @klasses.each_slice(6) do |slices| %>
+        <div class="row">
+          <% slices.each do |k| %>
+            <% name = k.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
+            <% image = File.join('mini_icones', name + '.jpg') %>
+            <div class="col-sm-2 space">
+              <figure>
+                <%= link_to(image_tag(image, :class =>'box img-responsive img-rounded center-block'), resume_klass_path(klass_id: k.id), title: k.name, remote: true) %>
+                <figcaption class="text-center"><small><%= k.name %></small></figcaption>
+              </figure>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= f.hidden_field :klass_id, value: '' %>
+      <%= f.hidden_field :user_id, value: @current_user.id %>
+      <%= f.hidden_field :status, value: 1 %>
+      <%= link_to 'Précédent', character_choose_race_path(@character.id), class: "btn btn-default" %>
+      <%= submit_text_form(f) %>
+    <% end %>
+  </div>
+  <div id="klass_resume" class="col-sm-4">
+    <%= render "klass/resume", klass: @klass unless @klass.nil?%>
+  </div>
+</div>

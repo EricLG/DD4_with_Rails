@@ -8,4 +8,5 @@ class KlassFeature < ActiveRecord::Base
   scope :children, -> {where(status: "child") }
   scope :solos,    -> {where(status: "solo") }
   scope :tops,     -> {where(status: "top") }
+  scope :main_ft,  -> {where(status: ["top", "solo"])}
 end

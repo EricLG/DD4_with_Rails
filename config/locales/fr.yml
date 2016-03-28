@@ -242,10 +242,10 @@ fr:
     other:          "Autre prérequis"
     stats:          "Caractéristiques"
     req_feats:       "Talent prérequis"
-  character:
+  characters:
+    title_new:      "Création d'un nouveau personnage"
     title_edit:       "Modification d'un personnage"
-    title_index:    "Liste de mes personnages jouables"
-    title_new:      "Ajout d'un nouveau personnage"
+    title_index:    "Liste de mes héros"
     title_show:       "Modifier %{character} "
     new_character:  "Créer un nouveau personnage"
   welcomes:

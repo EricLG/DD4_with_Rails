@@ -40,10 +40,16 @@ Rails.application.routes.draw do
   resources :races, :klasses, :aides
 
   resources :characters do
+    get 'choose_race'
+    get 'choose_class'
+    patch 'choose_class'
     get 'choose_carac'
+    patch 'choose_carac'
     get 'choose_skill'
     get 'optional_fields'
   end
+  get "/resume_race"  => 'characters#resume_race',  as: 'resume_race'
+  get "/resume_klass" => 'characters#resume_klass', as: 'resume_klass'
 
   resources :campaigns do
     resources :games

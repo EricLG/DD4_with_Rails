@@ -10,10 +10,10 @@ class Character < ActiveRecord::Base
 
   STATS = %w(strength constitution dexterity intelligence wisdom charisma)
 
-  before_save :level_to_xp
-  validates :user_id, :race_id, :klass_id, :name,  presence: true
-  validates :level, presence: true, numericality: { only_integer: true }, inclusion: { :in => 1..30}
-  validates :age, :weight, :height, numericality: { only_integer: true }, allow_blank: true
+  #before_save :level_to_xp
+  #validates :user_id, :race_id, :klass_id, :name,  presence: true
+  #validates :level, presence: true, numericality: { only_integer: true }, inclusion: { :in => 1..30}
+  #validates :age, :weight, :height, numericality: { only_integer: true }, allow_blank: true
 
   def self.meta_store_accessor
     methods = []

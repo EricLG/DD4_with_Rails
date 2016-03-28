@@ -1,53 +1,51 @@
-<div class="col-sm-12">
-  <%= form_for @character, {:class => 'form-horizontal'} do |f| %>
-    <h4>Caractérisitiques</h4>
-    <div class="row">
-      <table class="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th class="col-sm-1"></th>
-            <th class="col-sm-1">Niveau 1</th>
-            <th class="col-sm-1">Niveau 4</th>
-            <th class="col-sm-1">Niveau 8</th>
-            <th class="col-sm-1">Niveau 11</th>
-            <th class="col-sm-1">Niveau 14</th>
-            <th class="col-sm-1">Niveau 18</th>
-            <th class="col-sm-1">Niveau 21</th>
-            <th class="col-sm-1">Niveau 24</th>
-            <th class="col-sm-1">Niveau 28</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% Character::STATS.each do |s| %>
+<div class="row">
+  <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <%= form_for @character, {:class => 'form-horizontal'} do |f| %>
+      <h4>Caractérisitiques</h4>
+      <div class="row">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
             <tr>
-              <td><%= t(".#{s}") %></td>
-              <td><label><%= f.text_field "level_1_#{s}"  %></label></td>
-              <td><label><%= f.check_box  "level_4_#{s}"  %></label></td>
-              <td><label><%= f.check_box  "level_8_#{s}"  %></label></td>
-              <td><label><%= f.check_box  "level_11_#{s}" %></label></td>
-              <td><label><%= f.check_box  "level_14_#{s}" %></label></td>
-              <td><label><%= f.check_box  "level_18_#{s}" %></label></td>
-              <td><label><%= f.check_box  "level_21_#{s}" %></label></td>
-              <td><label><%= f.check_box  "level_24_#{s}" %></label></td>
-              <td><label><%= f.check_box  "level_28_#{s}" %></label></td>
+              <th class="col-sm-1"></th>
+              <th class="col-sm-1">Niveau 1</th>
+              <th class="col-sm-1">Niveau 4</th>
+              <th class="col-sm-1">Niveau 8</th>
+              <th class="col-sm-1">Niveau 11</th>
+              <th class="col-sm-1">Niveau 14</th>
+              <th class="col-sm-1">Niveau 18</th>
+              <th class="col-sm-1">Niveau 21</th>
+              <th class="col-sm-1">Niveau 24</th>
+              <th class="col-sm-1">Niveau 28</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    <h4>Informations optionnelles à mettre ailleurs</h4>
-    <div class="row">
-      <%= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>
-      <%= input_text_form(f, :height,     Character.human_attribute_name(:height)) %>
-      <%= input_text_form(f, :weight,     Character.human_attribute_name(:weight)) %>
-      <%= input_text_form(f, :alignment,  Character.human_attribute_name(:alignment)) %>
-      <%= input_text_form(f, :divinity,   Character.human_attribute_name(:divinity)) %>
-      <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
-    </div>
-
-    <%= f.hidden_field :user_id, value: @current_user.id %>
-    <%#= f.hidden_field :state, value: '' %>
-    <%= submit_text_form(f) %>
-
-  <% end %>
+          </thead>
+          <tbody>
+            <% Character::STATS.each do |s| %>
+              <tr>
+                <td><%= t(".#{s}") %></td>
+                <td><label><%= f.text_field "level_1_#{s}"  %></label></td>
+                <td><label><%= f.check_box  "level_4_#{s}"  %></label></td>
+                <td><label><%= f.check_box  "level_8_#{s}"  %></label></td>
+                <td><label><%= f.check_box  "level_11_#{s}" %></label></td>
+                <td><label><%= f.check_box  "level_14_#{s}" %></label></td>
+                <td><label><%= f.check_box  "level_18_#{s}" %></label></td>
+                <td><label><%= f.check_box  "level_21_#{s}" %></label></td>
+                <td><label><%= f.check_box  "level_24_#{s}" %></label></td>
+                <td><label><%= f.check_box  "level_28_#{s}" %></label></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= f.hidden_field :user_id, value: @current_user.id %>
+      <%#= f.hidden_field :state, value: '' %>
+      <%= link_to 'Précédent', character_choose_class_path(@character.id), class: "btn btn-default" %>
+      <%= submit_text_form(f) %>
+    <% end %>
+  </div>
+  <div id="" class="col-sm-4">
+  </div>
 </div>

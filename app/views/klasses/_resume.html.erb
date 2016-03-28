@@ -1,0 +1,28 @@
+
+<div class="panel panel-default bg">
+  <div class="panel-heading bg">
+    <h3><%= klass.name %> - <small>Profil de la classe</small></h3>
+  </div>
+  <div class="panel-body no-padding bg">
+    <ul class="list-group ">
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("role")%></strong> : <%= klass.role %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("power_source")%></strong> : <%= klass.power_source %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("main_stats")%></strong> : <%= klass.main_stats %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("armor_categories")%></strong> : <%= klass.armor_categories.map(&:name).join(', ') %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("weapon_categories")%></strong> : <%= display_weapons_handled(klass) %></li>
+      <% unless klass.implement_groups.empty? %>
+        <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("implement_groups")%></strong> : <%= klass.implement_groups.map(&:name).join(', ') %></li>
+      <% end %>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("defense_bonus")%></strong> : <%= klass.defense_bonus %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("base_hp")%></strong> : <%= klass.base_hp %> + valeur de Constitution</li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("hp_per_level")%></strong> : <%= klass.hp_per_level %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("healing_surge")%></strong> :  <%= klass.healing_surge %> + modificateur de Constitution</li>
+      <li class="list-group-item no-border-line bg"><strong>Formations de compétences</strong> : <%= display_formations(klass).html_safe %> </li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("options_creation") %></strong> : <%= klass.options_creation %> </li>
+      <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("klass_features") %></strong> : <%= klass.klass_features.main_ft.map(&:name).join(', ') %> </li>
+    </ul>
+  </div>
+  <div class="panel-footer no-padding bg">
+    <p><strong><%= Klass.human_attribute_name("source")%></strong> : <%= klass.source.name %></p>
+  </div>
+</div>

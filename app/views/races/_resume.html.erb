@@ -1,0 +1,27 @@
+<div class="panel panel-default bg">
+  <div class="panel-heading bg">
+    <h3><%= race.name %> - <small>traits raciaux</small></h3>
+  </div>
+
+  <div class="panel-body no-padding bg">
+    <ul class="list-group ">
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("average_height")%></strong> : <%= race.average_height %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("average_weight")%></strong> : <%= race.average_weight %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("stats")%></strong> : <%= race.stats.map(&:to_s).join(' ou ') %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("cat_size")%></strong> : <%= race.cat_size %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("speed")%></strong> : <%= race.speed %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("vision")%></strong> : <%= race.vision %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("language")%></strong> : <%= race.language %></li>
+      <% if race.skill %>
+        <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("skill")%></strong> : <%= race.skill.to_s %> </li>
+      <% end %>
+      <% race.race_features.each do |f| %>
+        <li class="list-group-item no-border-line bg"><strong><%= f.name %></strong> : <%= f.description.html_safe %></li>
+      <% end %>
+      <li class="list-group-item no-border-line bg"></li>
+    </ul>
+  </div>
+  <div class="panel-footer no-padding bg">
+    <p><strong><%= Race.human_attribute_name("source")%></strong> : <%= race.source.name %></p>
+  </div>
+</div>

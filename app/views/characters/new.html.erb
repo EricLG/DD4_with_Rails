@@ -1,14 +1,28 @@
-<%# Sidebloc content%>
-<% content_for :sidebloc do %>
- <%= render "sidebloc/user_menu" %>
-<% end %>
-
 <div class="row">
-  <h3 class="col-sm-12"><%= t('.title_new')%></h3>
+  <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <%= render "form" %>
-  </div>
+  <div class="col-sm-8">
+    <h3>Etape 1</h3>
+      <%= form_for @character, html: {:class => 'form-horizontal'} do |f| %>
+        <h4>Informations obligatoires</h4>
+        <div class="row">
+          <%= input_text_form(f, :name,  Character.human_attribute_name(:name)) %>
+          <%= input_text_form(f, :level, Character.human_attribute_name(:level)) %>
+        </div>
+        <h4>Informations optionnelles</h4>
+        <div class="row">
+          <%= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>
+          <%= input_text_form(f, :height,     Character.human_attribute_name(:height)) %>
+          <%= input_text_form(f, :weight,     Character.human_attribute_name(:weight)) %>
+          <%= input_text_form(f, :alignment,  Character.human_attribute_name(:alignment)) %>
+          <%= input_text_form(f, :divinity,   Character.human_attribute_name(:divinity)) %>
+          <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
+        </div>
+        <%= f.hidden_field :user_id, value: @current_user.id %>
+        <%= f.hidden_field :status, value: 1 %>
+        <%= submit_text_form(f) %>
+      <% end %>
+    </div>
 </div>

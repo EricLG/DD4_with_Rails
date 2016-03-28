@@ -1,19 +1,37 @@
 class CharactersController < ApplicationController
 
-  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_carac, :choose_skill, :optional_fields]
+  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_race, :choose_carac, :choose_class, :choose_skill, :optional_fields]
 
   def index
     @hide_side_bloc =true
   end
 
   def new
-    @hide_side_bloc =true
+    @hide_side_bloc = true
     @character = Character.new
+  end
+
+  def choose_race
+    @hide_side_bloc =true
+    @character = Character.find_by_id(params["character_id"])
+  end
+
+  def choose_class
+    @hide_side_bloc =true
+    @character = Character.find_by_id(params["character_id"])
+    if params && params["character"]
+      @character.race_id = params["character"]["race_id"]
+      @character.save!
+    end
   end
 
   def choose_carac
     @hide_side_bloc =true
     @character = Character.find_by_id(params["character_id"])
+    if params && params["character"]
+      @character.klass_id = params["character"]["klass_id"]
+      @character.save!
+    end
   end
 
   def choose_skill
@@ -28,7 +46,7 @@ class CharactersController < ApplicationController
     @character = Character.new(character_params)
     @character.status = 'draft'
     if @character.save
-      redirect_to character_choose_carac_path(@character.id)
+      redirect_to character_choose_race_path(@character.id)
     else
       find_dependancies
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
@@ -58,6 +76,20 @@ class CharactersController < ApplicationController
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
       render :edit
     end
+  end
+
+  def resume_race
+      @race = Race.find(params[:race_id])
+      respond_to do |format|
+          format.js
+      end
+  end
+
+  def resume_klass
+      @klass = Klass.find(params[:klass_id])
+      respond_to do |format|
+          format.js
+      end
   end
 
   private
