@@ -121,6 +121,7 @@ class CharactersController < ApplicationController
       :race_id,
       :klass_id,
       :stats,
+      :racial_stat_id,
       :level_1_strength,
       :level_4_strength,
       :level_8_strength,

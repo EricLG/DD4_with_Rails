@@ -106,7 +106,7 @@ module ApplicationHelper
   def submit_text_form(form, options = {})
     submit = content_tag("div", class: "form-group") do
       concat (content_tag("div", class: "col-sm-8") do
-        concat form.submit(t("common.validate"), name: "commit", :class => "btn btn-default")
+        concat form.submit(t("common.validate"), name: "commit", :class => "btn btn-default", id: "submit-button")
         concat form.submit(t("common.add_another"), name: "add_another", :class => "btn btn-default") if options[:add_another]
       end)
     end

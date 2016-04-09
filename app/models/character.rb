@@ -24,7 +24,7 @@ class Character < ActiveRecord::Base
         methods << ":level_#{l}_#{s}"
       end
     end
-    eval "store_accessor :stats, #{methods.join(', ')}"
+    eval "store_accessor :stats, #{methods.join(', ')}, :racial_stat_id"
   end
 
   meta_store_accessor
