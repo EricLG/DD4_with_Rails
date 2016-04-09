@@ -1,2 +1,4 @@
 $("#race_resume").html("<%= escape_javascript(render 'races/resume', race: @race) %>");
 $("#character_race_id").val("<%= @race.id %>")
+$(".race-image").addClass('opacite')
+$("#image_<%= @race.id %>").removeClass('opacite')

@@ -1,2 +1,4 @@
 $("#klass_resume").html("<%= escape_javascript(render 'klasses/resume', klass: @klass) %>");
 $("#character_klass_id").val("<%= @klass.id %>")
+$(".klass-image").addClass('opacite')
+$("#image_<%= @klass.id %>").removeClass('opacite')

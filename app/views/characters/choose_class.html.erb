@@ -1,6 +1,7 @@
 <div class="row">
   <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
 </div>
+<br>
 
 <div class="row">
   <div class="col-sm-8">
@@ -12,7 +13,7 @@
             <% image = File.join('mini_icones', name + '.jpg') %>
             <div class="col-sm-2 space">
               <figure>
-                <%= link_to(image_tag(image, :class =>'box img-responsive img-rounded center-block'), resume_klass_path(klass_id: k.id), title: k.name, remote: true) %>
+                <%= link_to(image_tag(image, id: "image_#{k.id}", class: 'klass-image box img-responsive img-rounded center-block opacite'), resume_klass_path(klass_id: k.id), title: k.name, remote: true) %>
                 <figcaption class="text-center"><small><%= k.name %></small></figcaption>
               </figure>
             </div>
