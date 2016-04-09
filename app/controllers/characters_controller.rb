@@ -32,6 +32,8 @@ class CharactersController < ApplicationController
       @character.klass_id = params["character"]["klass_id"]
       @character.save!
     end
+    @random_stats = [random_stat, random_stat, random_stat, random_stat, random_stat, random_stat].sort {|x,y| y <=> x }
+    @random_stats
   end
 
   def choose_skill
@@ -93,6 +95,14 @@ class CharactersController < ApplicationController
   end
 
   private
+
+  def random_stat
+    [dice, dice, dice, dice].sort.last(3).inject{|acc, i| acc+=i}
+  end
+
+  def dice
+    rand(1..6)
+  end
 
   def character_params
     params.require(:character).permit(

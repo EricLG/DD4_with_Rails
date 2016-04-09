@@ -9,6 +9,8 @@ class Character < ActiveRecord::Base
   has_and_belongs_to_many :games
 
   STATS = %w(strength constitution dexterity intelligence wisdom charisma)
+  LEVEL_STATS = %w(4 8 11 14 18 21 24 28)
+  DEFAULT_STATS = [10, 10, 10, 10, 10, 8]
 
   #before_save :level_to_xp
   #validates :user_id, :race_id, :klass_id, :name,  presence: true

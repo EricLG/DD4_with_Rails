@@ -4,42 +4,81 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, {:class => 'form-horizontal'} do |f| %>
-      <h4>Caractérisitiques</h4>
+    <%= form_for @character, html: {class: 'form-horizontal'} do |f| %>
+      <h4>Caractérisitiques initiales <small>(comprises entre 3 et 18)</small></h4>
       <div class="row">
-        <table class="table table-bordered table-striped table-hover">
-          <thead>
-            <tr>
-              <th class="col-sm-1"></th>
-              <th class="col-sm-1">Niveau 1</th>
-              <th class="col-sm-1">Niveau 4</th>
-              <th class="col-sm-1">Niveau 8</th>
-              <th class="col-sm-1">Niveau 11</th>
-              <th class="col-sm-1">Niveau 14</th>
-              <th class="col-sm-1">Niveau 18</th>
-              <th class="col-sm-1">Niveau 21</th>
-              <th class="col-sm-1">Niveau 24</th>
-              <th class="col-sm-1">Niveau 28</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% Character::STATS.each do |s| %>
-              <tr>
-                <td><%= t(".#{s}") %></td>
-                <td><label><%= f.text_field "level_1_#{s}"  %></label></td>
-                <td><label><%= f.check_box  "level_4_#{s}"  %></label></td>
-                <td><label><%= f.check_box  "level_8_#{s}"  %></label></td>
-                <td><label><%= f.check_box  "level_11_#{s}" %></label></td>
-                <td><label><%= f.check_box  "level_14_#{s}" %></label></td>
-                <td><label><%= f.check_box  "level_18_#{s}" %></label></td>
-                <td><label><%= f.check_box  "level_21_#{s}" %></label></td>
-                <td><label><%= f.check_box  "level_24_#{s}" %></label></td>
-                <td><label><%= f.check_box  "level_28_#{s}" %></label></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <p class="col-sm-12">Choisissez la méthode que vous souhaitez pour déterminer vos caractéristiques: </p>
+
+        <ul>
+          <%= radio_button_tag :"method-choice", 1, false, {class: "method-choice"} %>
+          <label for="method-choice_1" class="simple-text">Utiliser les valeurs standards suivantes: [16, 14 , 13, 12, 11, 10], à répartir dans vos caractéristiques.</label><br>
+          <%= radio_button_tag :"method-choice", 2, false, {class: "method-choice"} %>
+          <label for="method-choice_2" class="simple-text">Utiliser des valeurs personnalisées, en partant de [<%= Character::DEFAULT_STATS.join(', ') %>] selon le tableau ci-contre.</label><br>
+          <%= radio_button_tag :"method-choice", 3, false, {class: "method-choice"} %>
+          <label for="method-choice_3" class="simple-text">Utiliser des valeurs déterminés alétoirement. Votre jet donne le résultat suivant: <%= @random_stats %>.</label>
+        </ul>
+
+        <div class="col-sm-8">
+          <div class="form-group">
+              <label for="stat-points" class="col-sm-4 control-label">Points à dépenser</label>
+              <div class="col-sm-3">
+                <%= f.text_field "stat-points", value: 22, class: "form-control", disabled: true %>
+              </div>
+            </div>
+          <% Character::STATS.each_with_index do |s, i| %>
+            <div class="form-group">
+              <label for=<%= "level_1_#{s}" %> class="col-sm-4 control-label"><%= s %></label>
+              <div class="col-sm-3">
+                <%= f.number_field "level_1_#{s}", min: "3", max: "18", value: Character::DEFAULT_STATS[i], class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
+      <br>
+
+      <h4>Caractérisitiques raciales</h4>
+      <div class="row">
+        <p class="col-sm-12">Ici furent pendus 386 voleurs de boudins.</p>
+      </div>
+      <br>
+
+      <% if @character.level >= 4 %>
+        <h4>Caractérisitiques supplémentaires</h4>
+        <div class="row col-sm-12">
+          <table class="table table-bordered table-striped table-hover col-sm-12">
+            <thead>
+              <tr>
+                <th class="col-sm-1"></th>
+                <th class="col-sm-1">Niveau 4</th>
+                <th class="col-sm-1">Niveau 8</th>
+                <th class="col-sm-1">Niveau 11</th>
+                <th class="col-sm-1">Niveau 14</th>
+                <th class="col-sm-1">Niveau 18</th>
+                <th class="col-sm-1">Niveau 21</th>
+                <th class="col-sm-1">Niveau 24</th>
+                <th class="col-sm-1">Niveau 28</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Character::STATS.each do |s| %>
+                <tr>
+                  <td><%= t(".#{s}") %></td>
+                  <td><label><%= f.check_box  "level_4_#{s}"  %></label></td>
+                  <td><label><%= f.check_box  "level_8_#{s}"  %></label></td>
+                  <td><label><%= f.check_box  "level_11_#{s}" %></label></td>
+                  <td><label><%= f.check_box  "level_14_#{s}" %></label></td>
+                  <td><label><%= f.check_box  "level_18_#{s}" %></label></td>
+                  <td><label><%= f.check_box  "level_21_#{s}" %></label></td>
+                  <td><label><%= f.check_box  "level_24_#{s}" %></label></td>
+                  <td><label><%= f.check_box  "level_28_#{s}" %></label></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+
       <%= f.hidden_field :user_id, value: @current_user.id %>
       <%#= f.hidden_field :state, value: '' %>
       <%= link_to 'Précédent', character_choose_class_path(@character.id), class: "btn btn-default" %>
@@ -47,5 +86,56 @@
     <% end %>
   </div>
   <div id="" class="col-sm-4">
+  <h4>Coût d'augmentation</h4>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="col-sm-1">Valeur</th>
+                <th class="col-sm-1">Coût</th>
+                <th class="col-sm-2"></th>
+                <th class="col-sm-1">Valeur</th>
+                <th class="col-sm-1">Coût</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>9</td>
+                  <td>-(1*)</td>
+                  <td></td>
+                  <td>14</td>
+                  <td>5</td>
+              </tr>
+              <tr>
+                  <td>10</td>
+                  <td>0(2*)</td>
+                  <td></td>
+                  <td>15</td>
+                  <td>7</td>
+              </tr>
+              <tr>
+                  <td>11</td>
+                  <td>1</td>
+                  <td></td>
+                  <td>16</td>
+                  <td>9</td>
+              </tr>
+              <tr>
+                  <td>12</td>
+                  <td>2</td>
+                  <td></td>
+                  <td>17</td>
+                  <td>12</td>
+              </tr>
+              <tr>
+                  <td>13</td>
+                  <td>3</td>
+                  <td></td>
+                  <td>18</td>
+                  <td>16</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>* Pour transformer un 8 en 9, il vous en coûtera 1 point, et 2 points pour transformer un 8 en 10. Vos caractéristiques doivent d'abord atteindre 10 avant qu'elles ne puissent être augmentées de nouveau.</p>
+
   </div>
 </div>
