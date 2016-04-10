@@ -1,16 +1,18 @@
-<%# Sidebloc content%>
-<% content_for :sidebloc do %>
-  <p>A venir...</p>
-<% end %>
-
 <div class="row">
   <h3 class="col-sm-12"><%= t('.title_index') %></h3>
 </div>
 
-<div class="row">
-  <% @races.each do |r| %>
-    <% name = r.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
-    <% image = File.join('mini_icones', name + '.jpg') %>
-    <div class="col-sm-2" style="height: 100px"><%= link_to(image_tag(image, :class =>'box'), race_path(r), title: r.name)%></div>
-  <% end %>
-</div>
+<% @races.each_slice(6) do |slices| %>
+  <div class="row">
+    <% slices.each do |r| %>
+      <% name = r.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
+      <% image = File.join('mini_icones', name + '.jpg') %>
+      <div class="col-sm-2 space">
+        <figure>
+          <%= link_to(image_tag(image, id: "image_#{r.id}", class: 'box img-responsive img-rounded center-block'), race_path(r), title: r.name) %>
+          <figcaption class="text-center"><small><%= r.name %></small></figcaption>
+        </figure>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -223,7 +223,7 @@ fr:
     password_confirmation: "Confirmer"
     sidebar_login: "Connectez-vous"
     sidebar_signup: "Créer un compte."
-  feat:
+  feats:
     title_index:    "Les talents de DD4"
     title_new:      "Ajout d'un nouveau talent"
     name:           "Nom"
@@ -248,6 +248,12 @@ fr:
     title_index:    "Liste de mes héros"
     title_show:       "Modifier %{character} "
     new_character:  "Créer un nouveau personnage"
+  klasses:
+    index:
+      title_index: "Classes disponibles"
+  races:
+    index:
+      title_index: "Races disponibles"
   welcomes:
     contribute:
       title_contribute:   "Contributions"

@@ -8,11 +8,11 @@
 <div class="table-responsive">
   <table  class="table table-striped table-bordered table-hover">
     <tr>
-      <th class="col-sm-1"><%= t('feat.name')       %></th>
-      <th class="col-sm-1"><%= t('feat.klass')      %></th>
-      <th class="col-sm-1"><%= t('feat.race')      %></th>
-      <th class="col-sm-1"><%= t('feat.avantage')      %></th>
-      <th class="col-sm-1"><%= t('feat.Source')      %></th>
+      <th class="col-sm-1"><%= t('feats.name') %></th>
+      <th class="col-sm-1"><%= t('feats.klass') %></th>
+      <th class="col-sm-1"><%= t('feats.race') %></th>
+      <th class="col-sm-1"><%= t('feats.avantage') %></th>
+      <th class="col-sm-1"><%= t('feats.Source') %></th>
     </tr>
   <% feats.each do |a| %>
     <tr>
@@ -22,7 +22,7 @@
       <td><%= display_first_words a.avantage %> </td>
       <td><%= a.source.name %> </td>
     </tr>
-  <% end %><!-- Fin communs -->
+  <% end %>
   </table>
 </div>
 

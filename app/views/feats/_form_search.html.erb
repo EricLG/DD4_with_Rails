@@ -1,7 +1,7 @@
 <%= form_for @search, {url: build_feats_link(params["action"]), method: :get, class: 'form-inline'} do |form| %>
 
   <div class="form-group col-xs-4">
-    <%= form.label(:name, t('feat.name'), :class=>"col-sm-4") %>
+    <%= form.label(:name, t('feats.name'), :class=>"col-sm-4") %>
     <div class="col-sm-8">
       <%= form.text_field(:name, :class=>"form-control") %>
     </div>
@@ -10,7 +10,7 @@
 
   <div class="form-group col-xs-4">
     <% default_klass =  params["feat_search"]["prerequisited_klasses"] if params["feat_search"]%>
-    <%= form.label(:prerequisited_klasses, t("feat.klass"), :class=>"col-sm-4") %>
+    <%= form.label(:prerequisited_klasses, t("feats.klass"), :class=>"col-sm-4") %>
     <div class="col-sm-8">
       <%= form.select :prerequisited_klasses, options_from_collection_for_select(@klasses, :id, :name, default_klass.to_i ),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
     </div>
@@ -18,7 +18,7 @@
 
   <div class="form-group col-xs-4">
     <% default_race =  params["feat_search"]["prerequisited_races"] if params["feat_search"]%>
-    <%= form.label(:prerequisited_races, t("feat.race"), :class=>"col-sm-4") %>
+    <%= form.label(:prerequisited_races, t("feats.race"), :class=>"col-sm-4") %>
     <div class="col-sm-8">
       <%= form.select :prerequisited_races, options_from_collection_for_select(@races, :id, :name, default_race.to_i),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
     </div>
