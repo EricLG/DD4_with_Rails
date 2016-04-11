@@ -3,4 +3,16 @@
   <%= render "sidebloc/races_menu" %>
 <% end %>
 
-<%= render "resume", race: @race %>
+
+<div class="row">
+  <div class="col-sm-8">
+    <%
+      path = "tmp/articles/races/#{@race.name.downcase}.txt"
+      data = File.read(path)
+    %>
+    <%= data.html_safe() %>
+  </div>
+  <div class="col-sm-4">
+    <%= render "resume", race: @race %>
+  </div>
+</div>

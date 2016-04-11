@@ -8,7 +8,15 @@
 </div>
 
 <div class="row">
-  <% @klasses.each do |klass| %>
-    <div class="col-sm-2" style="height: 40px"><%= link_to klass.name, klass_path(klass) %></div>
+  <% @klasses.each do |role, klasses| %>
+
+    <div class="col-sm-3">
+    <h4><%= role.capitalize %></h4>
+      <ul>
+      <% klasses.each do |k| %>
+        <li><%= link_to k.name, klass_path(k) %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 </div>
