@@ -1,0 +1,17 @@
+<h4>Esprits immortels symboles de vertu, renaissant sans fin dans le monde des vivants.</h4>
+<p>Au plus profond de leur mémoire, les dévas se souviennent de ce qu'ils furent autrefois : les serviteurs immortels des dieux du bien, des esprits ayant choisi une existence corporelle dans le monde des vivants. Pendant des millénaires, leur âme s'est réincarnée pour mener une guerre sans fin contre des forces des ténèbres. La plupart des dévas sont farouchement déterminés à servir la cause du bien car ils savent ce qui se passera s'il se tournent vers le mal : un déva dont l'âme est corrompue court le risque d'être réincarné en rakshasa.</p>
+<p>Jouez un déva si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être le dépositaire d'un millier de vies héroïques.</li>
+  <li>♦ épouser la cause du bien et rechercher la perfection dans tout ce que vous faites.</li>
+  <li>♦ être membre d'une race qui préfère les classes d'invocateur, de magicien et de prêtre.</li>
+</ul>
+<h5>Description</h5>
+<p>En apparence, les dévas sont semblables aux humains mais d'une beauté surréelle et d'une sérénité incroyable. Ils sont presque aussi grands que les Drakéides mais bien plus minces.<br>
+La pigmentation des dévas les distingue nettement des humains. Tous les dévas ont des schémas de couleurs claires et sombres sur leurs peau. Les portions lumineuses sont blanches ou grises pâles, et les zones sombres vont du bleu ou pourpre au gris sombre ou noir. Pour chaque déva, les zones claires ou sombres peuvent dominer, avec la teinte opposée comme des schémas simple et élégants sur le visage, la poitrine ou les épaules. Les cheveux d'un déva sont souvent de la même couleur que ces schémas de couleur de peau.<br>
+Lorsqu'ils sont au repos, les dévas sont presque totalement immobiles, excepté quelques clignements des paupières. Ils ne remuent ni ne tremblent, et leurs yeux ne bougent que lorsqu'ils sont activement en train de faire quelque chose.<br>
+Les Dévas n'ont pas d'enfant. Lorsqu'un déva meurt, son âme se réincarne dans un nouveau corps adulte qui apparaît dans un lieu sacré, comme le sommet d'une montagne, les berges d'une rivière, ou une oasis. Le nouveau déva dispose de suffisamment de mémoire de ses anciennes vies pour parler de nombreuses langues et effectuer les prières et les sacrifices des dieux du bien.</p>
+Traits de caractère des dévas : dévoué, pieux, élégant, sages, introspectifs, mystiques, raffinés, vertueux, spirituels, attentifs
+Nom masculins : Adiah, Ansis, Ayab, Bavak, Beriah, Eben, Elyas, Galad, Gamal, Hiyal, Iannes, Kerem, Mahar, Marach, Mathas, Nathas, Natan, Nehem, Oris, Raham, Ronen, Samel, Sered, Tavar, Vered, Zachar
+Noms féminins : Abea, Adara, Asha, Chana, Danel, Darah, Davi, Elka, Eranah, Hania, Hava, Idria, Isa, Jael, Kana, Kayah, Lihi, Mahel, Marek, Noma, Navah, Paziah, Ravah, Riya, Sada, Shara, Tirah

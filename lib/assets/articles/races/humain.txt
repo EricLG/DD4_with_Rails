@@ -1,0 +1,16 @@
+<h4>Ambitieux, obstinés et pragmatiques (une race de héros, mais aussi de scélérats).</h4>
+<p>Comparés aux autres races civilisées, les humains sont très différents les uns des autres. D'ailleurs, leurs valeurs morales, leur coutumes et leurs motivations varient énormément. Ils n'en demeurent pas moins que ce sont eux qui bénéficient de la meilleure capacité d'adaptation, ce qui explique certainement qu'on trouve quasiment partout des communautés humaines.</p>
+<p>Jouez un humain si vous voulez …</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être un héros débrouillard avec assez de détermination pour relevé n'importe quel défi.</li>
+  <li>♦ appartenir à la race la plus diversifiées et polyvalente.</li>
+  <li>♦ être capable d'exceller dans n'importe quelle classe.</li>
+</ul>
+<h5>Description</h5>
+<p>Les humains ont une grande variété de tailles, poids et couleurs de peau. Certains ont la peau noire ou brune, d'autres sont aussi blancs que la neige. Entre les deux, ils existe toute une variété de teintes. Leurs cheveux sont noirs, bruns, blond ou roux. Leurs yeux sont le plus souvent bleus ou noisette.<br>
+Leurs vêtements changent beaucoup selon l'environnement et la société dans laquelle ils vivent. Ils peuvent être très simples comme très élaborés. Il n'est pas inhabituel que plusieurs cultures humaines vivent côte à côte dans une régions donnée et se mélangent. Du coup les armures, les armes et autres objets intègrent un grande mixité de motifs.<br>
+La durée de vie moyenne d'un humain est de 75 ans. Cependant, de vénérables membres de cette race peuvent atteindre les 90 ans, voir plus.</p>
+<p>Traits de caractère des humains : adaptables, ambitieux, corruptibles, courageux, créatifs, ingénieux, obstinés, patriotes, pragmatiques, résistants, tolérants.</p>
+<p>Noms masculins : Alain, Alek, Benn, Brandis, Donn, Drew, Erik, Gregg, John, Kris, Marc, Mikal, Pieter, Redgar, Quinn, Samm, Thom, Wil</p>
+<p>Noms féminins : Ana, Cassi, Eliza, Gwenn, Jenn, Kat, Keira, Luusi, Mari, Mika, Miri, Stasi, Shawna, Zanne.</p>

@@ -1,0 +1,15 @@
+<h4>Créés pour une guerre qui a pris fin, en quête d’un nouveau sens à leur existence.</h4>
+<p>Créés pour servir de soldats durant la Dernière Guerre, les forgeliers dont des humanoïdes artificiels doués d’intelligence et de conscience. Maintenant qu’ils n’ont plus de batailles à livrer et qu’ils sont affranchis de l’autorité de leurs créateurs, les forgeliers se cherchent une place dans ce monde, eux qui n’ont ni héritage, ni culture.</p>
+<p>Jouer un forgelier si vous voulez :</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être fort, robuste et taillé pour le combat.</li>
+  <li>♦ être une créature qui cherche à trouver un sens à son existence.</li>
+  <li>♦ être un membre d'une race qui préfère les classes de barbare, gardien, guerrier ou paladin.</li>
+</ul>
+<h5>Description</h5>
+<p>Les forgeliers sont des humanoïdes massifs dont le corps est recouvert de plaques de métal et de pierre. Un squelette de ces mêmes matériaux supporte des faisceaux de fibres ligneuses qui constituent le système musculaire. Leur corps dispose aussi d’un réseau interne de tubes remplis d’une sorte de fluide sanguin qui les nourrit et les lubrifie. Leurs bras puissants se terminent par des mains possédant chacune deux doigts et un pouce, alors que leurs pieds ne comportent que deux gros orteils.<br>
+Une tête de forgelier arbore des trais humains grossiers : d’épais sourcils, une bouche à charnières sans dents et pas de nez. Les yeux du forgelier luisent parfois quand il est parcouru d’émotions intenses. Son front porte une rune, appelée ghulra, qui l’aide à construire sa personnalité.<br>
+Les forgeliers ont une forme artificielle plutôt asexuée et ne se reproduisent pas à l’instar des autres humanoïdes. Un forgelier peut modifier son corps et enlever ou remplacer un de ses membres si besoin. Il ne ressent la douleur que lorsqu’il subit de véritables blessures. Ces modifications physiques permettent aux forgeliers de présenter une diversité d’apparence aussi grande que les autres humanoïdes.</p>
+<p>Traits de caractère des forgeliers : agressifs, courageux, curieux, francs, loyaux, méthodiques, naïfs, pragmatiques, réservés, simples, travailleurs, vigilants.</p>
+<p>Noms forgeliers: Azm, Chariot, Cimeterre, Clocher, Dévot, Inconnu, Livre, Marque, Marteau, Morg, Pavois, Perce, Personne, Relique, Rempart, Rune, Statue, Tailleur, Trois, Vainqueur, Veilleur, Zélote.</p>
