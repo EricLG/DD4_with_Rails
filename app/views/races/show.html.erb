@@ -3,26 +3,21 @@
   <%= render "sidebloc/races_menu" %>
 <% end %>
 
-
 <div class="row">
-
   <div class="col-sm-8">
     <%= render "resume", race: @race %>
   </div>
   <div class="col-sm-4">
-        <figure>
-
-          <% name = @race.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
-          <% image = File.join('images_races', 'race_' + name + '.png') %>
-          <%= (image_tag(image, id: "image_#{@race.id}", class: ' img-responsive img-rounded center-block')) %>
-          <figcaption class="text-center"><small><%= @race.name %></small></figcaption>
-        </figure>
-
+    <figure>
+      <% name = @race.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
+      <% image = File.join('images_races', 'race_' + name + '.png') %>
+      <%= (image_tag(image, id: "image_#{@race.id}", class: ' img-responsive img-rounded center-block')) %>
+      <figcaption class="text-center"><small><%= @race.name %></small></figcaption>
+    </figure>
   </div>
-
 </div>
-<div class="row">
 
+<div class="row">
   <div class="col-sm-8">
     <%
       path = "lib/assets/articles/races/#{@race.name.downcase}.txt"
@@ -30,5 +25,4 @@
     %>
     <%= data.html_safe() %>
   </div>
-
 </div>

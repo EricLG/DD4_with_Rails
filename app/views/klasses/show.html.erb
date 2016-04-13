@@ -3,4 +3,16 @@
  <%= render "sidebloc/klasses_menu" %>
 <% end %>
 
-<%= render "resume", klass: @klass %>
+<div class="row">
+  <div class="col-sm-8">
+    <%= render "resume", klass: @klass %>
+  </div>
+  <div class="col-sm-4">
+    <figure>
+      <% name = @klass.name.downcase.gsub(/[Ééê]/, 'e').gsub(/[\s]/, '_').gsub(/[\î]/, 'i').gsub(/[\ô]/, 'o') %>
+      <% image = File.join('images_classes', 'image_' + name + '.png') %>
+      <%= (image_tag(image, id: "image_#{@klass.id}", class: ' img-responsive img-rounded center-block')) %>
+      <figcaption class="text-center"><small><%= @klass.name %></small></figcaption>
+    </figure>
+  </div>
+</div>
