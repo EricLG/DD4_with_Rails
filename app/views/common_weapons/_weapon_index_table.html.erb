@@ -26,7 +26,7 @@
       </td>
       <td>
         <% co.weapon_properties.each do |p| %>
-          <%= p.name %>
+          <span class="property" data-placement='top' data-toggle="popover" data-trigger="hover" data-content="<%= p.description %>" data-title="<%= p.name %>" ><%= p.name %></span>
         <% end %>
       </td>
       <td><%= co.source.name %></td>
