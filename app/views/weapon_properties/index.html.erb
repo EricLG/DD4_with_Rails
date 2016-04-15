@@ -1,0 +1,27 @@
+<h1>Listing Weapon Properties</h1>
+
+<div class="">
+  <table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weapon_properties.each do |weapon_property| %>
+      <tr>
+        <td><%= link_to weapon_property.name, weapon_property %></td>
+        <td><%= weapon_property.description %></td>
+        <td><%= link_to 'Edit', edit_weapon_property_path(weapon_property) %></td>
+        <td><%= link_to 'Destroy', weapon_property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Weapon property', new_weapon_property_path %>

@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :races, :klasses, :aides
+  resources :races, :klasses, :aides, :weapon_properties
 
   resources :characters do
     get 'choose_race'

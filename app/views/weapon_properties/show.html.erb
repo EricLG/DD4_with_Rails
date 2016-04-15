@@ -1,0 +1,7 @@
+<h4><%=@weapon_property.name  %></h4>
+<p id="notice"><%= notice %></p>
+<div>
+  <p><%=@weapon_property.description  %></p>
+</div>
+<%= link_to 'Edit', edit_weapon_property_path(@weapon_property) %> |
+<%= link_to 'Back', weapon_properties_path %>

@@ -52,7 +52,7 @@ pic         = WeaponGroup.create(name:'Pics')
 no_group    = WeaponGroup.create(name:'Aucun')
 
 
-allonge         = WeaponProperty.create(name: "Allonge",                description:"Avec une arme à allonge, vous pouvez attaquez des ennemissitués à 2 cases (mais aussi des adversaires adjacents) sans malus à l'attaque. Par contre, vous ne pouvez effectuer d'attaques d'opportunité que contre les ennemis adjacents. De même, vous ne pouvez prendre en tenaille qu'un ennemi adjacent.")
+allonge         = WeaponProperty.create(name: "Allonge",                description:"Avec une arme à allonge, vous pouvez attaquez des ennemis situés à 2 cases (mais aussi des adversaires adjacents) sans malus à l'attaque. Par contre, vous ne pouvez effectuer d'attaques d'opportunité que contre les ennemis adjacents. De même, vous ne pouvez prendre en tenaille qu'un ennemi adjacent.")
 jet_leger       = WeaponProperty.create(name: "Arme de jet légère",     description:"Une attaque à distance normale avec une arme de jet légère s'appuie sur la Dextérité. Ces armes n'infligent pas autant de dégâts que les armes de jet lourdes, mais différents pouvoirs vous permettent d'en lancer plusieurs à la fois ou de suite.")
 jet_lourd       = WeaponProperty.create(name: "Arme de jet lourde",     description:"Cette arme ne lance pas de projectiles. En revanche, on peut la lancer. Une attaque à distance avec une arme de jet lourde s'appuie sur la Force (et non la Dextérité) pour les jets d'attaques et de dégâts.")
 brutal_1        = WeaponProperty.create(name: "Brutale 1",              description:"Les dégâts minimaux d'une arme brutale sont plus élevés que ceux d'une arme normale. Lorsque vous jetez les dégâts de l'arme, relancez tous les dés dont le résultat est égal ou inférieur à 1.")
