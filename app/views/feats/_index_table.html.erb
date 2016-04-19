@@ -20,7 +20,7 @@
       <td><%= a.klasses %> </td>
       <td><%= a.races %> </td>
       <td><%= display_first_words a.avantage %> </td>
-      <td><%= a.source.name %> </td>
+      <td><%= a.source.try(&:name) %> </td>
     </tr>
   <% end %>
   </table>

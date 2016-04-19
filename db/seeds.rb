@@ -13,7 +13,7 @@ Source.create([
   { name: 'Force de la Nature' },
   { name: 'Guide du Maître 1' },
   { name: 'Guide du Maître 2' },
-  { name: 'Intervention divine' },
+  { name: 'Intervention Divine' },
   { name: 'Le Comptoir de l\'Aventure 1' },
   { name: 'Le Comptoir de l\'Aventure 2' },
   { name: 'Manuel des Joueurs 1' },
