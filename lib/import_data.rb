@@ -147,4 +147,18 @@ module ImportData
     result
   end
 
+  def self.find_rarities(integer)
+    rarity = case integer.to_i
+    when 1
+      "common"
+    when 2
+      "uncommon"
+    when 3
+      "rare"
+    else
+      "common"
+    end
+    rarity
+  end
+
 end

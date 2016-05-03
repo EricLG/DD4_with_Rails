@@ -42,13 +42,13 @@ class MagicItem < ActiveRecord::Base
               m.description         = ImportData.clear_field(array_line[1])
               m.alteration          = ImportData.clear_field(array_line[2])
               m.location            = locations.find{|lo| lo.name == ImportData.clear_field(array_line[14])}
-              object_levels = ImportData.find_level_array(m, ImportData.clear_field(array_line[3]).to_i, ImportData.clear_field(array_line[4]), levels)
-              m.object_levels       =  object_levels
+              object_levels         = ImportData.find_level_array(m, ImportData.clear_field(array_line[3]).to_i, ImportData.clear_field(array_line[4]), levels)
+              m.object_levels       = object_levels
               m.property            = ImportData.clear_field(array_line[5])
               m.power               = ImportData.clear_field(array_line[6])
               m.special             = ImportData.clear_field(array_line[7])
               m.source              = sources.find{|s| s.name == ImportData.clear_field(array_line[8])}
-              m.rarity              = ImportData.clear_field(array_line[9])
+              m.rarity              = ImportData.find_rarities(ImportData.clear_field(array_line[9]))
               m.critical            = ImportData.clear_field(array_line[10])
               m.weapon_groups       = ImportData.find_weapon_groups(ImportData.clear_field(array_line[11]), weapon_groups)
               m.armor_categories    = ImportData.find_armor_categories(ImportData.clear_field(array_line[12]), armor_categories)
