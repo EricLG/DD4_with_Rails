@@ -5,12 +5,12 @@ module MagicItemsHelper
       return ""
     elsif groups.size == 14
       return "Toutes"
-    elsif groups.map(&:name) - ["Arbalètes", "Arcs", "Frondes", "Haches", "Lames légères", "Lances", "Marteaux"] == []
+    elsif groups.map(&:name).sort == ["Arbalètes", "Arcs", "Frondes", "Haches", "Lames légères", "Lances", "Marteaux"]
       return "Distances"
-    elsif groups.map(&:name) - ["Armes d'hast", "Bâtons", "Fléaux", "Haches", "Lames légères", "Lames lourdes", "Lances", "Mains nues", "Marteaux", "Masses", "Pics"] == []
+    elsif groups.map(&:name).sort == ["Armes d'hast", "Bâtons", "Fléaux", "Haches", "Lames lourdes", "Lames légères", "Lances", "Mains nues", "Marteaux", "Masses", "Pics"]
       return "Corps à corps"
     else
-      return simple_format groups.map(&:name).join("\n")
+      return simple_format groups.map(&:name).sort.join("\n")
     end
   end
 
