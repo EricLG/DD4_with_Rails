@@ -10,7 +10,7 @@ module MagicItemsHelper
     elsif groups.map(&:name).sort == ["Armes d'hast", "Bâtons", "Fléaux", "Haches", "Lames lourdes", "Lames légères", "Lances", "Mains nues", "Marteaux", "Masses", "Pics"]
       return "Corps à corps"
     else
-      return simple_format groups.map(&:name).sort.join("\n")
+      return simple_format(groups.map(&:name).sort.join("\n"), {}, {wrapper_tag: 'span'})
     end
   end
 
