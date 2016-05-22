@@ -57,7 +57,8 @@ Rails.application.routes.draw do
     get 'choose_class'
     patch 'choose_class'
     get 'choose_carac'
-    patch 'choose_carac'
+    get 'choose_skills'
+    patch 'choose_skills'
     get 'choose_skill'
     get 'optional_fields'
   end

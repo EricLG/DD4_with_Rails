@@ -5,21 +5,19 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, url: character_choose_carac_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
-      <% @klasses.each_slice(6) do |slices| %>
-        <div class="row">
-          <% slices.each do |k| %>
-            <% name = k.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
-            <% image = File.join('mini_icones', name + '.jpg') %>
-            <div class="col-sm-2 space">
-              <figure>
-                <%= link_to(image_tag(image, id: "image_#{k.id}", class: 'klass-image box img-responsive img-rounded center-block opacite'), resume_klass_path(klass_id: k.id), title: k.name, remote: true) %>
-                <figcaption class="text-center"><small><%= k.name %></small></figcaption>
-              </figure>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+    <%= form_for @character, url: character_choose_skills_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
+      <div class="row">
+        <% @klasses.each do |role, klasses| %>
+          <div class="col-sm-3">
+            <h4><%= role.capitalize %></h4>
+              <ul>
+              <% klasses.each do |k| %>
+                <li><%= link_to k.name, resume_klass_path(klass_id: k.id), title: k.name, remote: true %></li>
+              <% end %>
+              </ul>
+          </div>
+        <% end %>
+      </div>
       <%= f.hidden_field :klass_id, value: '' %>
       <%= f.hidden_field :user_id, value: @current_user.id %>
       <%= f.hidden_field :status, value: 1 %>

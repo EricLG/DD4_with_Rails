@@ -37,6 +37,16 @@ class CharactersController < ApplicationController
     @random_stats
   end
 
+  def choose_skills
+    @hide_side_bloc =true
+    @character = Character.find_by_id(params["character_id"])
+    @klass = @character.klass
+    if params && params["character"]
+      @character.klass_id = params["character"]["klass_id"]
+      @character.save!
+    end
+  end
+
   def choose_skill
 
   end
@@ -184,7 +194,7 @@ class CharactersController < ApplicationController
   def find_dependancies
     @characters = @current_user.characters.complete
     @races = Race.all
-    @klasses = Klass.all
+    @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
   end
 
 end
