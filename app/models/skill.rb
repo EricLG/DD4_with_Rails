@@ -31,6 +31,6 @@ class Skill < ActiveRecord::Base
     SKILL.each do |s|
          result << Skill.human_attribute_name(s) if self[s] > 0
     end
-    result.join(', ')
+    result.sort.join(', ')
   end
 end
