@@ -22,13 +22,13 @@
         <td><%= monster.name %></td>
         <td><%= monster.category %></td>
         <td><%= monster.px %></td>
-        <td><%= monster.type %></td>
+        <td><%= monster.race %></td>
         <td><%= monster.origin %></td>
         <td><%= monster.keywords %></td>
         <td><%= monster.source %></td>
-        <td><%= link_to 'Show', monster %></td>
-        <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
-        <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', dm_tools_monster_path(monster) %></td>
+        <td><%= link_to 'Edit', edit_dm_tools_monster_path(monster) %></td>
+        <td><%= link_to 'Destroy', dm_tools_monster_path(monster), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Monster', new_monster_path %>
+<%= link_to 'New Monster', new_dm_tools_monster_path %>

@@ -305,7 +305,7 @@ ActiveRecord::Schema.define(version: 20160604064508) do
     t.string   "name"
     t.string   "category"
     t.integer  "px"
-    t.string   "type"
+    t.string   "race"
     t.string   "origin"
     t.string   "keywords"
     t.integer  "source_id"

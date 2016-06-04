@@ -1,4 +1,4 @@
-class MonstersController < ApplicationController
+class DmTools::MonstersController < ApplicationController
   before_action :set_monster, only: [:show, :edit, :update, :destroy]
 
   # GET /monsters
@@ -28,8 +28,8 @@ class MonstersController < ApplicationController
 
     respond_to do |format|
       if @monster.save
-        format.html { redirect_to @monster, notice: 'Monster was successfully created.' }
-        format.json { render :show, status: :created, location: @monster }
+        format.html { redirect_to dm_tools_monster_path(@monster), notice: 'Monster was successfully created.' }
+        #format.json { render :show, status: :created, location: edit_dm_tools_monster_path(@monster) }
       else
         format.html { render :new }
         format.json { render json: @monster.errors, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class MonstersController < ApplicationController
   def update
     respond_to do |format|
       if @monster.update(monster_params)
-        format.html { redirect_to @monster, notice: 'Monster was successfully updated.' }
+        format.html { redirect_to dm_tools_monster_path(@monster), notice: 'Monster was successfully updated.' }
         format.json { render :show, status: :ok, location: @monster }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MonstersController < ApplicationController
   def destroy
     @monster.destroy
     respond_to do |format|
-      format.html { redirect_to monsters_url, notice: 'Monster was successfully destroyed.' }
+      format.html { redirect_to dm_tools_monsters_path, notice: 'Monster was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class MonstersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def monster_params
-      params.require(:monster).permit(:name, :category, :px, :type, :origin, :keywords, :source_id)
+      params.require(:monster).permit(:name, :category, :px, :race, :origin, :keywords, :source_id)
     end
 end

@@ -4,7 +4,7 @@ class CreateMonsters < ActiveRecord::Migration
       t.string :name
       t.string :category
       t.integer :px
-      t.string :type
+      t.string :race
       t.string :origin
       t.string :keywords
       t.references :source, index: true, foreign_key: true

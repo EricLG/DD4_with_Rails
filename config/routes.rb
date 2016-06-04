@@ -29,12 +29,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :dm_tools, only: [:index]
-  #namespace :dm_tools do
-    #get '/index' => 'dm_tools#index'
+  namespace :dm_tools do
+    get '/' => 'dm_tools#index'
     resources :monsters
-  #end
-  
+  end
+
   resources :feats do
     collection do
       get 'heroics'
