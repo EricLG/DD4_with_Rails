@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @monster.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @monster.category %>
+</p>
+
+<p>
+  <strong>Px:</strong>
+  <%= @monster.px %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @monster.type %>
+</p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @monster.origin %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @monster.keywords %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @monster.source %>
+</p>
+
+<%= link_to 'Edit', edit_monster_path(@monster) %> |
+<%= link_to 'Back', monsters_path %>

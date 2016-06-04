@@ -49,7 +49,10 @@
           <li role="presentation"><%= link_to t("menu.link.contribute"), contribute_welcomes_path, title: t("menu.tooltip.contribute"), class: "white-text" %></li>
         <% end %>
         <li role="presentation"><%= link_to t("menu.link.random"),   random_welcomes_path,   title: "Random",   class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.dmtools"),   dm_tools_path,   title: "Boite à outils",   class: "white-text" %></li>
       </ul>
+
+
       <%= form_tag search_index_path, method: 'get', :class => 'navbar-form navbar-right', role: 'search' do |f| %>
         <div class="form-group">
           <%= text_field_tag :search, params[:search],  {class: "form-control", placeholder: "Search"}  %>

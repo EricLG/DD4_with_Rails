@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018130000) do
+ActiveRecord::Schema.define(version: 20160604064508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -301,6 +301,20 @@ ActiveRecord::Schema.define(version: 20151018130000) do
   add_index "magic_items_weapon_groups", ["magic_item_id"], name: "index_magic_items_weapon_groups_on_magic_item_id", using: :btree
   add_index "magic_items_weapon_groups", ["weapon_group_id"], name: "index_magic_items_weapon_groups_on_weapon_group_id", using: :btree
 
+  create_table "monsters", force: :cascade do |t|
+    t.string   "name"
+    t.string   "category"
+    t.integer  "px"
+    t.string   "type"
+    t.string   "origin"
+    t.string   "keywords"
+    t.integer  "source_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "monsters", ["source_id"], name: "index_monsters_on_source_id", using: :btree
+
   create_table "object_levels", force: :cascade do |t|
     t.integer  "level"
     t.string   "price"
@@ -460,4 +474,5 @@ ActiveRecord::Schema.define(version: 20151018130000) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "monsters", "sources"
 end
