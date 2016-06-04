@@ -67,6 +67,7 @@ Rails.application.routes.draw do
       get :contribute
       get :random
       get :stats
+      get :monsters
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

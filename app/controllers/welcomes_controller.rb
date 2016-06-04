@@ -41,6 +41,16 @@ class WelcomesController < ApplicationController
     end
   end
 
+  def monsters
+    if Monster.count != 0
+      flash[:error] = "Il existe déjà des monstres, import annulé."
+      redirect_to import_welcomes_path
+    else
+      Monster.import_monsters
+      flash[:success] = "L'import des monstres à terminé."
+      redirect_to dm_tools_monsters_path
+    end
+  end
   def stats
 
     #models =[ArmorCategory, CommonArmor, CommonWeapon, ImplementGroup, Klass, KlassFeature, Location, ObjectLevel, Race, RaceFeature, Source, Stat, User, WeaponCategory, WeaponGroup, WeaponProperty]

@@ -303,14 +303,18 @@ ActiveRecord::Schema.define(version: 20160604064508) do
 
   create_table "monsters", force: :cascade do |t|
     t.string   "name"
+    t.string   "main_role"
+    t.string   "second_role"
+    t.boolean  "leader"
+    t.integer  "level"
     t.string   "category"
     t.integer  "px"
     t.string   "race"
     t.string   "origin"
     t.string   "keywords"
     t.integer  "source_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "monsters", ["source_id"], name: "index_monsters_on_source_id", using: :btree

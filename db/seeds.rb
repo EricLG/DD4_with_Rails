@@ -9,7 +9,12 @@
 Source.create([
   { name: 'Art de la Guerre 1' },
   { name: 'Art de la Guerre 2' },
+  { name: 'Bestiaire Fantastique 1' },
+  { name: 'Bestiaire Fantastique 2' },
+  { name: 'Bestiaire Fantastique 3' },
+  { name: 'Chaos Élémentaire' },
   { name: 'Eberron' },
+  { name: 'Encyclopédie des Royaumes Oubliés' },
   { name: 'Force de la Nature' },
   { name: 'Guide du Maître 1' },
   { name: 'Guide du Maître 2' },
@@ -19,9 +24,9 @@ Source.create([
   { name: 'Manuel des Joueurs 1' },
   { name: 'Manuel des Joueurs 2' },
   { name: 'Manuel des Joueurs 3' },
-  { name: 'Manuel des Monstres 1' },
-  { name: 'Manuel des Monstres 2' },
-  { name: 'Manuel des Monstres 3' },
+  { name: 'Manuel des Plans' },
+  { name: 'Mer Astrale' },
+  { name: 'Outreterre' },
   { name: 'Royaumes Oubliés' },
   { name: 'Secrets des Arcanes' }
 ])
