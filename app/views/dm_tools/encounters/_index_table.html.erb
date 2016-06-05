@@ -1,0 +1,36 @@
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info encounters, {model: Encounter.model_name.human(count: encounters.count)} %>
+    </div>
+    <%= will_paginate encounters, :container => false %>
+</div>
+
+<div class="table-responsive">
+  <table  class="table table-striped table-bordered table-hover">
+    <tr>
+      <th class="col-sm-1"><%= Encounter.human_attribute_name('level')         %></th>
+      <th class="col-sm-8"><%= Encounter.human_attribute_name('description')   %></th>
+      <th class="col-sm-1"><%= Encounter.human_attribute_name('experience')    %></th>
+      <th class="col-sm-2"><%= Encounter.human_attribute_name('source')        %></th>
+    </tr>
+  <% encounters.each do |e| %>
+    <tr>
+      <td><%= link_to e.level, dm_tools_encounter_path(e.id)  %></td>
+      <td><%= simple_format(e.description) %> </td>
+      <td><%= e.experience %> </td>
+      <td><%= e.source.name %> </td>
+    </tr>
+  <% end %><!-- Fin communs -->
+  </table>
+</div>
+
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info encounters, {model: Encounter.model_name.human(count: encounters.count)} %>
+    </div>
+    <%= will_paginate encounters, :container => false %>
+</div>
+
+
+
+

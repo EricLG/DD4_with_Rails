@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604064508) do
+ActiveRecord::Schema.define(version: 20160605143427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,17 @@ ActiveRecord::Schema.define(version: 20160604064508) do
 
   add_index "consumables_object_levels", ["consumable_id"], name: "index_consumables_object_levels_on_consumable_id", using: :btree
   add_index "consumables_object_levels", ["object_level_id"], name: "index_consumables_object_levels_on_object_level_id", using: :btree
+
+  create_table "encounters", force: :cascade do |t|
+    t.integer  "level"
+    t.integer  "experience"
+    t.string   "description"
+    t.integer  "source_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "encounters", ["source_id"], name: "index_encounters_on_source_id", using: :btree
 
   create_table "feats", force: :cascade do |t|
     t.string   "name"
@@ -478,5 +489,6 @@ ActiveRecord::Schema.define(version: 20160604064508) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "encounters", "sources"
   add_foreign_key "monsters", "sources"
 end

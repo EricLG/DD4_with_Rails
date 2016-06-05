@@ -1,0 +1,11 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/dm_tools_menu" %>
+<% end %>
+
+<h1>Editing Encounter</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', edit_dm_tools_encounter_path(@encounter) %> |
+<%= link_to 'Back', dm_tools_encounters_path %>

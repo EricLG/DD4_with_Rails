@@ -47,10 +47,25 @@ class WelcomesController < ApplicationController
       redirect_to import_welcomes_path
     else
       Monster.import_monsters
-      flash[:success] = "L'import des monstres à terminé."
+      m = Monster.count
+      flash[:success] = "L'import des monstres à terminé (#{m}/1331 en théorie)."
       redirect_to dm_tools_monsters_path
     end
   end
+
+  def encounters
+    Encounter.destroy_all
+    if Encounter.count != 0
+      flash[:error] = "Il existe déjà des rencontres, import annulé."
+      redirect_to import_welcomes_path
+    else
+      Encounter.import_encounters
+      e = Encounter.count
+      flash[:success] = "L'import des rencontres à terminé (#{e}/652 rencontres)."
+      redirect_to dm_tools_encounters_path
+    end
+  end
+
   def stats
 
     #models =[ArmorCategory, CommonArmor, CommonWeapon, ImplementGroup, Klass, KlassFeature, Location, ObjectLevel, Race, RaceFeature, Source, Stat, User, WeaponCategory, WeaponGroup, WeaponProperty]

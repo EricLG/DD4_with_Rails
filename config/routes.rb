@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   namespace :dm_tools do
     get '/' => 'dm_tools#index'
-    resources :monsters
+    resources :monsters, :encounters
   end
 
   resources :feats do
@@ -68,6 +68,7 @@ Rails.application.routes.draw do
       get :random
       get :stats
       get :monsters
+      get :encounters
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

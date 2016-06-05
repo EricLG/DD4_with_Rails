@@ -1,0 +1,16 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/dm_tools_menu" %>
+<% end %>
+
+<h3><%= link_to 'Créer une nouvelle rencontre', new_dm_tools_encounter_path %></h3>
+
+<div class="row">
+  <h3 class="col-sm-12"><%= t('.title_index') %></h3>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= render "index_table", encounters: @encounters %>
+  </div>
+</div>

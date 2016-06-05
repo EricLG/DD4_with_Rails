@@ -1,0 +1,27 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/dm_tools_menu" %>
+<% end %>
+
+<p>
+  <strong>Level:</strong>
+  <%= @encounter.level %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @encounter.description %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @encounter.experience %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @encounter.source.name %>
+</p>
+
+<%= link_to 'Edit', edit_dm_tools_encounter_path(@encounter) %> |
+<%= link_to 'Back', dm_tools_encounters_path %>
