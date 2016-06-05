@@ -54,7 +54,6 @@ class WelcomesController < ApplicationController
   end
 
   def encounters
-    Encounter.destroy_all
     if Encounter.count != 0
       flash[:error] = "Il existe déjà des rencontres, import annulé."
       redirect_to import_welcomes_path
