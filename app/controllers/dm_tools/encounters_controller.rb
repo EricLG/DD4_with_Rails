@@ -15,6 +15,7 @@ class DmTools::EncountersController < ApplicationController
   # GET /encounters/new
   def new
     @encounter = Encounter.new
+    @budget_encounter = 500
   end
 
   # GET /encounters/1/edit
@@ -58,6 +59,15 @@ class DmTools::EncountersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to dm_tools_encounter_path, notice: 'Encounter was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def calcul_budget
+    party_size  = params[:party_size].to_i
+    party_level = params[:party_level].to_i
+    @budget_encounter = Monster.level_to_xp(party_level) * party_size
+    respond_to do |format|
+      format.json { render json: {budget: @budget_encounter}}
     end
   end
 

@@ -45,5 +45,30 @@ class Monster < ActiveRecord::Base
     logger.debug "#{c} monstres ont été créés"
   end
 
-
+  def self.level_to_xp(level)
+    case level
+      when 1 .. 5
+          100 + ((level - 1) * 25)
+      when 6 .. 9
+          250 + ((level - 6) * 50)
+      when 10 .. 13
+          500 + ((level - 10) * 100)
+      when 14 .. 17
+          1000 + ((level - 14) * 200)
+      when 18 .. 21
+          2000 + ((level - 18) * 400)
+      when 22 .. 25
+          4150 + ((level - 22) * 950)
+      when 26 .. 29
+          9000 + ((level - 26) * 2000)
+      when 30 .. 33
+          19000 + ((level - 30) * 4000)
+      when 34 .. 37
+          39000 + ((level - 34) * 8000)
+      when 38 .. 40
+          79000 + ((level - 38) * 16000)
+      else
+        0
+      end
+    end
 end

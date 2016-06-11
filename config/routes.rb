@@ -31,7 +31,12 @@ Rails.application.routes.draw do
 
   namespace :dm_tools do
     get '/' => 'dm_tools#index'
-    resources :monsters, :encounters
+    resources :monsters
+    resources :encounters do
+      collection do
+        get 'calcul_budget'
+      end
+    end
   end
 
   resources :feats do
