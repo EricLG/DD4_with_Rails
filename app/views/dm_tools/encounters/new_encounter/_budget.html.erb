@@ -1,14 +1,19 @@
 <h4>Définissez votre budget : <span id="encounter_budget"><%= @budget_encounter %></span> px</h4>
 <div>
   <%= form_tag(calcul_budget_dm_tools_encounters_path, method: :get, remote: true, id: "budget_form", class: 'form-horizontal') do %>
-    <div class="form-group">
-      <%= label_tag(:party_size, "Nombre de héros", class:"col-sm-3 control-label") %>
-      <div class="col-sm-2">
-        <%= number_field_tag(:party_size, 5, in: 1..10, step: 1, class:"budget form-control") %>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <%= label_tag(:party_size, "Nombre de héros", class:"small col-sm-4 control-label") %>
+        <div class="col-sm-8">
+          <%= number_field_tag(:party_size, 5, in: 1..10, step: 1, class:"budget form-control") %>
+        </div>
       </div>
-      <%= label_tag(:party_level, "Niveau du groupe", class:"col-sm-3 control-label") %>
-      <div class="col-sm-2">
-        <%= number_field_tag(:party_level, 1, in: 1..30, step: 1, class:"budget form-control") %>
+
+      <div class="form-group col-sm-6">
+        <%= label_tag(:party_level, "Niveau du groupe", class:"small col-sm-4 control-label") %>
+        <div class="col-sm-8">
+          <%= number_field_tag(:party_level, 1, in: 1..30, step: 1, class:"budget form-control") %>
+        </div>
       </div>
     </div>
   <% end %>
