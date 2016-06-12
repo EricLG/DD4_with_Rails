@@ -2,7 +2,7 @@
 <% content_for :sidebloc do %>
   <%= render "sidebloc/dm_tools_menu" %>
 <% end %>
-<div class="col-sm-7">
+<div class="col-sm-8">
 
 <div class="row">
   <h3>Préparer un nouveau combat !</h3>
@@ -19,11 +19,11 @@
 <%= link_to 'Liste des rencontres', dm_tools_encounters_path %>
 
 </div>
-<div class="col-sm-5">
+<div class="col-sm-4">
 <h3>Exemple de rencontres</h3>
   <ul>
   <% @encounters_exemple.each do |e| %>
-      <li><%= simple_format e.description %></li>
+      <li class="small"><%= simple_format e.description %></li>
   <% end %>
   </ul>
 </div>

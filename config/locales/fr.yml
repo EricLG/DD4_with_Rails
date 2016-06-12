@@ -23,6 +23,9 @@ fr:
     rarity:       "Rareté"
   activerecord:
     models:
+      monster:
+        one:      "Monstre"
+        other:    "Monstres"
       magic_item:
         one:      "Objet magique"
         other:    "Objets magiques"
@@ -36,6 +39,12 @@ fr:
         one:      "Race"
         other:    "Races"
     attributes:
+      monster:
+        main_role:    "Rôle 1"
+        second_role:  "Rôle 2"
+        leader:       "Meneur"
+        category:     "Catégorie"
+        level:        "Niveau"
       consumable:
         kind:     "Type de consommables"
       character:

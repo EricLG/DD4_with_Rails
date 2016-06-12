@@ -69,13 +69,14 @@ class DmTools::MonstersController < ApplicationController
   end
 
   def ajax_search
-    monsters = Monster.select(:id, :name).where("name ILIKE ?", "%#{params[:q]}%")
+    monsters = Monster.select(:id, :name, :level)
     if (params[:monster_search])
       monsters = monsters.where(main_role: params[:monster_search][:main_role]) unless params[:monster_search][:main_role].empty?
       monsters = monsters.where(second_role: params[:monster_search][:second_role]) unless params[:monster_search][:second_role].empty?
       monsters = monsters.where(race: params[:monster_search][:race]) unless params[:monster_search][:race].empty?
+      monsters = monsters.where(leader: params[:monster_search][:leader]) unless params[:monster_search][:leader].empty?
     end
-    monsters += monsters.order(level: :asc, name: :asc)
+    monsters = monsters.order(level: :asc, name: :asc)
 
     respond_to do |format|
         format.js { render json: monsters}

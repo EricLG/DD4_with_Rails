@@ -8,6 +8,9 @@ class Monster < ActiveRecord::Base
   SECOND_ROLE = %w(Élite Solo Sbire Normal)
   ORIGIN      = %w(Aberrante Élémentaire Féerique Immortelle Naturelle Ombreuse)
 
+  def show_level_name
+    "Niv. #{level} | #{name}"
+  end
   def self.import_monsters
     sources = Source.all
     filename = Dir.entries('lib/import_files').find{|f| f.match(/monstres.csv/)}

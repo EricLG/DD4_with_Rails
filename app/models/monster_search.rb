@@ -1,7 +1,7 @@
 class MonsterSearch
   include ActiveModel::Model
 
-  FIELDS = %i(name main_role second_role level category race origin keywords source)
+  FIELDS = %i(name main_role second_role level category race origin keywords source leader)
   attr_accessor(*FIELDS)
 
   attr_accessor :params
@@ -30,6 +30,7 @@ class MonsterSearch
       origin_params         = params.delete(:origin)
       keywords_params       = params.delete(:keywords)
       source_params         = params.delete(:source)
+      leader_params         = params.delete(:leader)
 
       search = search.where(params)
       if name_params
@@ -62,7 +63,9 @@ class MonsterSearch
       if source_params
         search = search.joins(:source).where(source: source_params)
       end
-
+      unless leader_params.empty?
+        search = search.where(leader: leader_params)
+      end
 
     end
     search

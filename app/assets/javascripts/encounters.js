@@ -6,6 +6,10 @@ $(document).on("page:change", function() {
     $("#budget_form").submit();
   });
 
+  $(".select_form").change(function() {
+    $("#new_monster_search").submit();
+  });
+
   $('#budget_form').on('ajax:success', function(event, xhr, status, error) {
     $("#encounter_budget").text(xhr.budget);
   });
@@ -21,7 +25,7 @@ $(document).on("page:change", function() {
     $( ".select-monster").empty();
     $( ".select-monster").append($("<option value=\"\"></option>"));
     $.each(xhr, function(key, value) {
-      $( ".select-monster" ).append($("<option></option>").attr("value", value.id).text(value.name));
+      $( ".select-monster" ).append($("<option></option>").attr("value", value.id).text("Niv. " + value.level + " | " +value.name));
     });
 
     $( ".select-monster" ).trigger('change');
