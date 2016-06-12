@@ -31,7 +31,11 @@ Rails.application.routes.draw do
 
   namespace :dm_tools do
     get '/' => 'dm_tools#index'
-    resources :monsters
+    resources :monsters do
+      collection do
+        get 'ajax_search'
+      end
+    end
     resources :encounters do
       collection do
         get 'calcul_budget'

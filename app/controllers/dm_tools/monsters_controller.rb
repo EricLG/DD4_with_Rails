@@ -7,6 +7,11 @@ class DmTools::MonstersController < ApplicationController
     @sources = Source.all
     @search = MonsterSearch.new(params[:monster_search])
     @monsters = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(level: :asc, name: :asc)
+
+    respond_to do |format|
+        format.html { render :index }
+        format.js { render json: {monsters: @monsters}}
+    end
   end
 
   # GET /monsters/1
@@ -60,6 +65,20 @@ class DmTools::MonstersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to dm_tools_monsters_path, notice: 'Monster was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def ajax_search
+    monsters = Monster.select(:id, :name).where("name ILIKE ?", "%#{params[:q]}%")
+    if (params[:monster_search])
+      monsters = monsters.where(main_role: params[:monster_search][:main_role]) unless params[:monster_search][:main_role].empty?
+      monsters = monsters.where(second_role: params[:monster_search][:second_role]) unless params[:monster_search][:second_role].empty?
+      monsters = monsters.where(race: params[:monster_search][:race]) unless params[:monster_search][:race].empty?
+    end
+    monsters += monsters.order(level: :asc, name: :asc)
+
+    respond_to do |format|
+        format.js { render json: monsters}
     end
   end
 

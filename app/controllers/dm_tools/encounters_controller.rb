@@ -1,6 +1,5 @@
 class DmTools::EncountersController < ApplicationController
   before_action :set_encounter, only: [:show, :edit, :update, :destroy]
-
   # GET /encounters
   # GET /encounters.json
   def index
@@ -16,6 +15,9 @@ class DmTools::EncountersController < ApplicationController
   def new
     @encounter = Encounter.new
     @budget_encounter = 500
+    @encounters_exemple = Encounter.select(:description).where(level: 1)
+    @search = MonsterSearch.new(params[:monster_search])
+    @monsters = @search.build_search.order(level: :asc, name: :asc)
   end
 
   # GET /encounters/1/edit

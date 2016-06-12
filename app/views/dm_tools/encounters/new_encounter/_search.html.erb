@@ -1,0 +1,39 @@
+<h4>Recherchez vos monstres et ajoutez-les à votre rencontre</h4>
+<%= form_for @search, {url: ajax_search_dm_tools_monsters_path, method: :get, class: 'form-inline', remote: true, data: {type: "json"}} do |form| %>
+<div class="row">
+
+  <div class="form-group col-xs-4">
+    <% default_options =  params["monster_search"]["main_role"] if params["monster_search"]%>
+    <%= form.label(:main_role, Monster.human_attribute_name('main_role'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :main_role, Monster::MAIN_ROLE.collect{|r| [r, r]}, {:include_blank => 'Tous'}, {:class=>"form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group col-xs-4">
+    <% default_options =  params["monster_search"]["second_role"] if params["monster_search"]%>
+    <%= form.label(:second_role, Monster.human_attribute_name('second_role'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :second_role, Monster::SECOND_ROLE.collect{|r| [r, r]}, {:include_blank => 'Tous'}, {:class=>"form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group col-xs-4">
+    <% default_options =  params["monster_search"]["race"] if params["monster_search"]%>
+    <%= form.label(:race, Monster.human_attribute_name('race'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :race, Monster::RACE.collect{|r| [r, r]}, {:include_blank => 'Toutes'}, {:class=>"form-control"} %>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-8">
+      <%= link_to t("common.reset"), new_dm_tools_encounter_path, :class => "btn btn-default" %>
+      <%= form.submit t("common.validate"), :class => "btn btn-default" %>
+      </div>
+  </div>
+</div>
+<% end %>
