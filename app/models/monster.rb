@@ -69,6 +69,6 @@ class Monster < ActiveRecord::Base
           79000 + ((level - 38) * 16000)
       else
         0
-      end
     end
+  end
 end
