@@ -17,6 +17,10 @@ class DmTools::MonstersController < ApplicationController
   # GET /monsters/1
   # GET /monsters/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @monster}
+    end
   end
 
   # GET /monsters/new
