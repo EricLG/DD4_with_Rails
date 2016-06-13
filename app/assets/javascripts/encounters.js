@@ -70,9 +70,21 @@ $(document).on("page:change", function() {
     });
   });
 
+  $("#monsters_list").on("click", ".plus-btn", function(){
+    var qty = $(this).parent().prev();
+    qty.text(parseInt(qty.text()) + 1)
+  });
+  $("#monsters_list").on("click", ".moins-btn", function(){
+    var qty = $(this).parent().next();
+    if (parseInt(qty.text()) > 0) {
+      qty.text(parseInt(qty.text()) - 1)
+    }
+  });
+
   function addMonsterToTable(data) {
         $("#monsters_list").find('tbody')
           .append($('<tr>')
+              .attr('id', 'mob-' + data.id)
             .append($('<input>')
               .attr('type', 'hidden')
               .attr('class', 'monster_id')
@@ -82,7 +94,7 @@ $(document).on("page:change", function() {
               .append($('<span>')
                 .append($('<button>')
                       .attr('type', 'button')
-                      .attr('class', 'btn btn-default btn-xs')
+                      .attr('class', 'moins-btn btn btn-default btn-xs')
                       .text('- ')
                   )
               )
@@ -92,7 +104,8 @@ $(document).on("page:change", function() {
               .append($('<span>')
                 .append($('<button>')
                       .attr('type', 'button')
-                      .attr('class', 'btn btn-default btn-xs')
+                      .attr('id', 'plusBtn')
+                      .attr('class', 'plus-btn btn btn-default btn-xs')
                       .text(' +')
                   )
               )
