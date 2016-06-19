@@ -47,92 +47,125 @@ $(document).on("page:change", function() {
   // Add monster
   $("#add_monster").click(function() {
     var monster_id = $("#monster").val();
-    $.ajax({
-      url: "/dm_tools/monsters/" + monster_id,
-      success: function(data, textStatus, jqHhr) {
-        var alreadyAdded = false;
-        if ($("#monsters_list .monster_id").length == 0) {
-          addMonsterToTable(data);
-        } else {
-          $("#monsters_list .monster_id").each(function(index) {
-            if ($(this).val() === data.id.toString()) {
-              alreadyAdded = $(this).val()
-              var qty = $(this).parent().find($(".qty_mob"));
-              qty.text(parseInt(qty.text()) + 1);
-            }
-          });
-          if (alreadyAdded === false) {
-              addMonsterToTable(data);
-          }
-        }
-      },
-      dataType: "json"
-    });
+    if (monster_id !== undefined && monster_id !== "") {
+      $.ajax({
+        url: "/dm_tools/monsters/" + monster_id,
+        success: function(data, textStatus, jqHhr) {
+          addMonster(data)
+        },
+        dataType: "json"
+      });
+    }
   });
 
+  // Callback de la réponse ajax
+  function addMonster(data) {
+    var alreadyAdded = false;
+    if ($("#monsters_list .monster_id").length == 0) {
+      addMonsterToTable(data);
+    } else {
+      $("#monsters_list .monster_id").each(function(index) {
+        if ($(this).val() === data.id.toString()) {
+          alreadyAdded = $(this).val()
+          var qty = $(this).parent().find($("td.qty"));
+          qty.text(parseInt(qty.text()) + 1);
+          updateRowTotalXp($(this).parent());
+        }
+      });
+      if (alreadyAdded === false) {
+          addMonsterToTable(data);
+      }
+    }
+    difficultyEncounter(data.px, 0);
+  }
+
+  // Evenements sur la table
   $("#monsters_list").on("click", ".plus-btn", function(){
     var qty = $(this).parent().prev();
-    qty.text(parseInt(qty.text()) + 1)
+    qty.text(parseInt(qty.text()) + 1);
+    difficultyEncounter(qty.parents("tr").find("td + .experience").text(), 0);
+    updateRowTotalXp($(this).parents("tr"));
   });
   $("#monsters_list").on("click", ".moins-btn", function(){
     var qty = $(this).parent().next();
     if (parseInt(qty.text()) > 0) {
-      qty.text(parseInt(qty.text()) - 1)
+      qty.text(parseInt(qty.text()) - 1);
+      difficultyEncounter(0, qty.parents("tr").find("td + .experience").text());
     }
+    updateRowTotalXp($(this).parents("tr"));
+  });
+  $("#monsters_list").on("click", ".deleteRow", function(){
+    var row = $(this).parent();
+    difficultyEncounter(0, xpPerRow(row));
+    row.remove();
   });
 
+  // Ajout du template de ligne html
   function addMonsterToTable(data) {
-        $("#monsters_list").find('tbody')
-          .append($('<tr>')
-              .attr('id', 'mob-' + data.id)
-            .append($('<input>')
-              .attr('type', 'hidden')
-              .attr('class', 'monster_id')
-              .attr('value', data.id)
-            )
-            .append($('<td>')
-              .append($('<span>')
-                .append($('<button>')
-                      .attr('type', 'button')
-                      .attr('class', 'moins-btn btn btn-default btn-xs')
-                      .text('- ')
-                  )
-              )
-              .append($('<span class="qty_mob">')
-                .text("1")
-              )
-              .append($('<span>')
-                .append($('<button>')
-                      .attr('type', 'button')
-                      .attr('id', 'plusBtn')
-                      .attr('class', 'plus-btn btn btn-default btn-xs')
-                      .text(' +')
-                  )
-              )
-            )
-            .append($('<td>')
-              .text(data.name)
-            )
-            .append($('<td>')
-              .text(data.main_role)
-            )
-            .append($('<td>')
-              .text(data.second_role)
-            )
-            .append($('<td>')
-              .text(data.leader ? "Oui" : '')
-            )
-            .append($('<td>')
-              .text(data.level)
-            )
-            .append($('<td>')
-              .text(data.px)
-            )
-            .append($('<td>')
-              .text(data.id)
-            )
-          );
+    $("#monsters_list").find('tbody')
+      .append($('<tr>')
+        .attr('id', 'mob-' + data.id)
+        .append($('<input>')
+          .attr('type', 'hidden')
+          .attr('class', 'monster_id')
+          .attr('value', data.id)
+        )
+        .append($('<td class="noborder-right">')
+          .append($('<button>')
+            .attr('type', 'button')
+            .attr('class', 'moins-btn btn btn-default btn-xs')
+            .text('-')
+          )
+        )
+        .append($('<td class="qty">').text("1"))
+        .append($('<td class="noborder-left">')
+          .append($('<button>')
+            .attr('type', 'button')
+            .attr('class', 'plus-btn btn btn-default btn-xs')
+            .text('+')
+          )
+        )
+        .append($('<td>').text(data.name))
+        .append($('<td>').text(formatRole(data.main_role, data.second_role, data.leader)))
+        .append($('<td>').text(data.level))
+        .append($('<td class="experience">').text(data.px))
+        .append($('<td class="totalXp">').text(data.px))
+        .append($('<td class="deleteRow">')
+          .append($('<button>')
+            .attr('type', 'button')
+            .attr('class', 'btn btn-default btn-xs')
+            .text('X')
+          )
+        )
+      );
   };
+
+  function xpPerRow(row) {
+    var nbRow = parseInt(row.find("td.qty").text());
+    var exp   = parseInt(row.find("td.experience").text());
+    return nbRow * exp;
+  };
+
+  function updateRowTotalXp(row) {
+    row.find("td.totalXp").text(xpPerRow(row));
+  }
+
+  function difficultyEncounter(addXp, removeXp) {
+    var spanBudget = $("#currentBudget");
+    spanBudget.text(parseInt(spanBudget.text()) + parseInt(addXp) - parseInt(removeXp));
+  }
+
+  function formatRole(main_role, second_role, leader) {
+    var text = main_role;
+    if (second_role !== "Normal") {
+      text += " " + second_role
+    }
+    if (leader) {
+      text += " (M)"
+    }
+    return text
+  }
+
   // Initialisation
   initNewEncounterPage();
 });

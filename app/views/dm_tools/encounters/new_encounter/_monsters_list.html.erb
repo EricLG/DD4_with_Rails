@@ -1,16 +1,15 @@
-<h4>Recontre en cours</h4>
+<h4>Rencontre en cours. budget : <span id="currentBudget">0</span> XP</h4>
 
-<table id="monsters_list" class="table table-striped table-bordered table-hover">
+<table id="monsters_list" class="table table-striped table-bordered table-hover table-condensed">
   <thead>
     <tr>
-      <th class="col-sm-2"># </th>
-      <th class="col-sm-4"><%= Monster.human_attribute_name('name')         %></th>
-      <th class="col-sm-1"><%= Monster.human_attribute_name('main_role')    %></th>
-      <th class="col-sm-1"><%= Monster.human_attribute_name('second_role')  %></th>
-      <th class="col-sm-1"><%= Monster.human_attribute_name('leader')       %></th>
-      <th class="col-sm-1"><%= Monster.human_attribute_name('level')        %></th>
-      <th class="col-sm-1"><%= Monster.human_attribute_name('px')        %></th>
-      <th class="col-sm-1"><%= Monster.human_attribute_name('id')        %></th>
+      <th class="col-sm-1" colspan="3"># </th>
+      <th class="col-sm-4">Nom</th>
+      <th class="col-sm-2">Rôle</th>
+      <th class="col-sm-1">Niv.</th>
+      <th class="col-sm-2">Exp.</th>
+      <th class="col-sm-2">Total</th>
+      <th class="col-sm-1" ></th>
     </tr>
   </thead>
   <tbody>

@@ -1,3 +1,16 @@
 // Place all the styles related to the encounters controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table-bordered > tbody > tr > td.noborder-right {
+    border-right: hidden;
+    padding-right: 1px;
+}
+.table-bordered > tbody > tr > td.noborder-left {
+    border-left: hidden;
+    padding-left: 1px;
+}
+.table-bordered > tbody > tr > td.qty {
+    padding-right: 1px;
+    padding-left: 1px;
+}
