@@ -36,9 +36,9 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
-gem 'puma', '~> 2.11.1'
+gem 'puma', '~> 2.16.0'
 gem 'rails_12factor', :group => :production
 gem 'will_paginate', '~> 3.0.6'
 
