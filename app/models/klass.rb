@@ -11,4 +11,8 @@ class Klass < ActiveRecord::Base
   has_and_belongs_to_many :prerequisite_for_feats, :class_name => "Feat", :join_table => :pr_klasses_for_feat
   #has_and_belongs_to_many :available_skills, :class_name => "Skill", :join_table => :available_skills_for_klass
   has_and_belongs_to_many :required_skills, :class_name => "Skill", :join_table => :required_skills_for_klass
+
+  def is_divine?
+    self.power_source == 'divine'
+  end
 end

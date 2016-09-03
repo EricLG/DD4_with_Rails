@@ -1097,6 +1097,47 @@ voleur         = Klass.create(
   end
 end
 
+God.create([
+{name: "Amaunator"           , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Soleil"},
+{name: "Angharradh"          , rank: "Mineurs",   alignment: "Bon"                , influence: "Sagesse"},
+{name: "Asmodée"             , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Péché"},
+{name: "Avandra"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Changement"},
+{name: "Baine"               , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Tyrannie"},
+{name: "Bahamut"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Justice"},
+{name: "Berronar Purargent"  , rank: "Mineurs",   alignment: "Loyal bon"          , influence: "Famille"},
+{name: "Chauntéa"            , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Vie"},
+{name: "Corellon"            , rank: "Majeurs",   alignment: "Bon"                , influence: "Fées"},
+{name: "Cyric"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Conflit"},
+{name: "Erathis"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Civilisation"},
+{name: "Garl Brilledor"      , rank: "Mineurs",   alignment: "Bon"                , influence: "Protection"},
+{name: "Ghaunadaur"          , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Abominations"},
+{name: "Gond"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Artisanat"},
+{name: "Gruumsh"             , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Sauvagerie"},
+{name: "Ilmater"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Souffrance"},
+{name: "Ioun"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Connaissance"},
+{name: "Kelemvor"            , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Mort"},
+{name: "Kord"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Bataille"},
+{name: "Lolth"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Drows"},
+{name: "Mailiki"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Forêts"},
+{name: "Mélora"              , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Mer"},
+{name: "Moradin"             , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Nains"},
+{name: "Oghma"               , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Connaissance"},
+{name: "Pélor"               , rank: "Mineurs",   alignment: "Bon"                , influence: "Été"},
+{name: "Reine Corneille"     , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Hiver"},
+{name: "Séhanine"            , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Automne"},
+{name: "Séluné"              , rank: "Majeurs",   alignment: "Bon"                , influence: "Lune"},
+{name: "Shar"                , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Ombres"},
+{name: "Sheela Peryroyl"     , rank: "Mineurs",   alignment: "Bon"                , influence: "Beauté"},
+{name: "Sunie"               , rank: "Majeurs",   alignment: "Bon"                , influence: "Beauté"},
+{name: "Sylvanus"            , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Nature"},
+{name: "Tempus"              , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Guerre"},
+{name: "Torm"                , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Loi"},
+{name: "Torog"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Outreterre"},
+{name: "Tymora"              , rank: "Mineurs",   alignment: "Bon"                , influence: "Chance"},
+{name: "Vecna"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Morts-vivants"},
+{name: "Waukyne"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Marchands"},
+{name: "Zéhir"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Poison"}
+])
 # password: plop
 User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')
 

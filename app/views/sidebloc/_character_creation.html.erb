@@ -1,0 +1,8 @@
+<h4>Votre personnage</h4>
+<ul>
+  <li><%= @character.try(:name) %> (niv.<%= @character.try(:level) %>)</li>
+  <% unless @character.race.nil? %><li><%= @character.race.try(:name) %></li><% end %>
+  <% unless @character.klass.nil? %><li><%= @character.klass.try(:name) %></li><% end %>
+  <% unless @character.alignment.blank? %><li><%= @character.alignment %></li><% end %>
+  <% unless @character.god.nil? %><li><%= @character.god.try(:name) %></li><% end %>
+</ul>

@@ -13,12 +13,10 @@ class CharactersController < ApplicationController
   end
 
   def choose_race
-    @hide_side_bloc =true
     @character = Character.find_by_id(params["character_id"])
   end
 
   def choose_class
-    @hide_side_bloc =true
     @character = Character.find_by_id(params["character_id"])
     if params && params["character"]
       @character.race_id = params["character"]["race_id"]
@@ -26,11 +24,25 @@ class CharactersController < ApplicationController
     end
   end
 
-  def choose_carac
-    @hide_side_bloc =true
+  def choose_optional_fields
+    @gods = God.all.order(:name)
     @character = Character.find_by_id(params["character_id"])
+    @alignment = [["Bon", "Bon"], ["Loyal bon", "Loyal bon"], ["Mauvais", "Mauvais"], ["Chaotique mauvais", "Chaotique mauvais"], ["Non aligné", "Non aligné"]]
     if params && params["character"]
       @character.klass_id = params["character"]["klass_id"]
+      @character.save!
+    end
+  end
+
+  def choose_carac
+    @character = Character.find_by_id(params["character_id"])
+    if params && params["character"]
+      @character.age = params["character"]["age"]
+      @character.height = params["character"]["height"]
+      @character.weight = params["character"]["weight"]
+      @character.alignment = params["character"]["alignment"]
+      @character.god_id = params["character"]["god_id"]
+      @character.party = params["character"]["party"]
       @character.save!
     end
     @random_stats = [random_stat, random_stat, random_stat, random_stat, random_stat, random_stat].sort {|x,y| y <=> x }
@@ -38,7 +50,6 @@ class CharactersController < ApplicationController
   end
 
   def choose_skills
-    @hide_side_bloc =true
     @character = Character.find_by_id(params["character_id"])
     @klass = @character.klass
     if params && params["character"]
@@ -51,9 +62,6 @@ class CharactersController < ApplicationController
 
   end
 
-  def optional_fields
-
-  end
 
   def create
     @character = Character.new(character_params)

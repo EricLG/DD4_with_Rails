@@ -1,0 +1,38 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/character_creation" %>
+<% end %>
+
+<div class="row">
+  <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <%= form_for @character, url: character_choose_carac_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
+        <h4>Informations importantes</h4>
+        <div class="row">
+          <% if @character.klass.is_divine? %>
+            <p id="is-divine"> NB : En tant que classe divine, vous devez obligatoirement choisir un dieu, et celui-ci définira votre alignement.</p>
+            <%= input_select_form f , :god_id, @gods, :display_name_and_alignemnt, nil, Character.human_attribute_name(:divinity), {size: 1} %>
+            <%= input_select_form_without_collection f , :alignment, @alignment, Character.human_attribute_name(:alignment), {size: 1, disabled: true} %>
+            <%= hidden_field f , :alignment, value: nil %>
+          <% else %>
+            <%= input_select_form f , :god_id, @gods, :display_name_and_alignemnt, nil, Character.human_attribute_name(:divinity), {size: 1, blank: true} %>
+            <%= input_select_form_without_collection f , :alignment, @alignment, Character.human_attribute_name(:alignment), {size: 1} %>
+          <% end %>
+        </div>
+
+        <h4>Informations optionnelles</h4>
+        <div class="row">
+          <%= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>
+          <%= input_text_form(f, :height,     Character.human_attribute_name(:height)) %>
+          <%= input_text_form(f, :weight,     Character.human_attribute_name(:weight)) %>
+          <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
+          <%= f.hidden_field :user_id, value: @current_user.id %>
+          <%= f.hidden_field :status, value: 1 %>
+          <%= link_to 'Précédent', character_choose_class_path(@character.id), class: "btn btn-default" %>
+          <%= submit_text_form(f) %>
+        </div>
+     <% end %>
+   </div>
+</div>

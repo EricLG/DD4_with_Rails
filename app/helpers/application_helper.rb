@@ -63,11 +63,12 @@ module ApplicationHelper
     ['illisae', 'ashera', 'chomb'].include? @current_user.try(:name).try(:downcase)
   end
 
-  def input_text_form(form, attribute, local)
+  # Options hash: {:readonly => false}
+  def input_text_form(form, attribute, local, options = {})
     input = content_tag("div", class: "form-group") do
       concat form.label(attribute, local, :class =>"col-sm-4 control-label")
       concat (content_tag("div", class: "col-sm-8") do
-        concat form.text_field(attribute, size: 60, :class => "form-control")
+        concat form.text_field(attribute, size: 60, :class => "form-control", readonly: options[:readonly])
       end)
     end
     return input
@@ -100,7 +101,7 @@ module ApplicationHelper
     input = content_tag("div", class: "form-group") do
       concat form.label(attribute, local, :class =>"col-sm-4 control-label")
       concat (content_tag("div", class: "col-sm-8") do
-        concat form.select(attribute, options_for_select(array, attribute), {include_blank: options[:blank]}, {multiple: options[:multiple], size: default_size, :class => "form-control"})
+        concat form.select(attribute, options_for_select(array, attribute), {include_blank: options[:blank]}, {multiple: options[:multiple], size: default_size, :class => "form-control", disabled: options[:disabled]})
       end)
     end
     return input

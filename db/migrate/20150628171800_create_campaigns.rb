@@ -30,7 +30,6 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string  :height
       t.string  :weight
       t.string  :alignment
-      t.string  :divinity
       t.string  :party
       t.integer :status
       t.hstore  :stats

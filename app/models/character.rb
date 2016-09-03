@@ -6,6 +6,7 @@ class Character < ActiveRecord::Base
   belongs_to :stat
   belongs_to :race
   belongs_to :klass
+  belongs_to :god
   has_and_belongs_to_many :games
 
   STATS = %w(strength constitution dexterity intelligence wisdom charisma)

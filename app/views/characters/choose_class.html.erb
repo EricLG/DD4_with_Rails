@@ -1,3 +1,8 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/character_creation" %>
+<% end %>
+
 <div class="row">
   <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
 </div>
@@ -5,7 +10,7 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, url: character_choose_skills_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
+    <%= form_for @character, url: character_choose_optional_fields_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
       <div class="row">
         <% @klasses.each do |role, klasses| %>
           <div class="col-sm-3">

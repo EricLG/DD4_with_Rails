@@ -1,3 +1,9 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/character_creation" %>
+<% end %>
+
+
 <div class="row">
   <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
 </div>
@@ -85,7 +91,7 @@
 
       <%= f.hidden_field :user_id, value: @current_user.id %>
       <%#= f.hidden_field :state, value: '' %>
-      <%= link_to 'Précédent', character_choose_class_path(@character.id), class: "btn btn-default" %>
+      <%= link_to 'Précédent', character_choose_optional_fields_path(@character.id), class: "btn btn-default" %>
       <%= submit_text_form(f) %>
     <% end %>
   </div>
