@@ -3,7 +3,6 @@ $(document).on("page:change", function() {
   var stats = $('.stat');
 
   $('.method-choice').click(function () {
-    console.log("Methode choisie : " + $(this).val());
     method = $(this).val();
     if (method == 3) {
       $("#submit-button").prop( "disabled", false );
@@ -15,13 +14,26 @@ $(document).on("page:change", function() {
     }
   });
 
-  stats.change(function() {
-    if (method == 3) {
-    } else {
-      countCost();
-    }
+  $('.btn-plus').click(function (e) {
+    e.preventDefault();
+    countStat($(this), 1);
+  });
+  $('.btn-minus').click(function (e) {
+    e.preventDefault();
+    countStat($(this), -1);
   });
 
+  function countStat(btnModif, modif) {
+    var stat = btnModif.parents("tr").find($('.stat'));
+    var new_value = parseInt(stat.val()) + modif;
+    if (new_value < 3) {
+      new_value = 3
+    } else if (new_value > 18) {
+      new_value = 18
+    }
+    stat.val(new_value);
+    countCost();
+  }
 
   function countCost() {
     var totalPoints = 2;
@@ -40,7 +52,7 @@ $(document).on("page:change", function() {
   }
 
   function convertValueToCost(value) {
-    if (value == 8) { 
+    if (value == 8) {
       return -2
     } else if (value == 9) {
       return -1

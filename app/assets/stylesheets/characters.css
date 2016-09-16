@@ -1,0 +1,54 @@
+figure {
+  display: table;
+}
+
+figcaption {
+  display: table-caption;
+  caption-side: bottom ;
+}
+
+.space {
+  min-height: 120px;
+}
+
+.black-bg {
+  background: black;
+}
+.bonus-racial {
+  width: 10%;
+}
+.button-space {
+  width: 10%;
+}
+.small-space {
+  width: 5%;
+}
+
+.white-text {
+  color: white;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.table-width {
+  width: 15%
+}
+
+.small-width {
+  width: 5%;
+}
+
+.medium-width {
+  width: 8%;
+}
+
+.center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.max-width {
+  width:  100%;
+}
