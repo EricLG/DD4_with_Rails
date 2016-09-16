@@ -68,7 +68,7 @@
                   <td class="black-bg center"><button class="btn-minus btn btn-default rounded"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td>
                   <td class="black-bg"><%= f.text_field "level_1_#{s}", value: Character::DEFAULT_STATS[i], class: "center stat max-width text-right", size: 1, readonly: true %></td>
                   <td class="black-bg center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
-                  <td><%= text_field_tag("racial_stat_#{s}", "0", class: "center max-width", size: 1, :disabled =>true) %></td>
+                  <td><%= text_field_tag("racial_stat_#{s}", "0", class: "racial-bonus center max-width", size: 1, :disabled =>true) %></td>
                   <td class="center">=</td>
                   <td class=""><button type="button" class="btn btn-default max-width" disabled="disabled">10</button></td>
                   <td class=""><button type="button" class="btn btn-default max-width" disabled="disabled">+0</button></td>

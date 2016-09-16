@@ -129,4 +129,33 @@ $(document).on("page:change", function() {
       $("#character_alignment").val(alignment);
     }
   });
+
+  /* Calcul du bonus racial */
+  $("#character_racial_stat_id").on("change", function() {
+    applyRacialBonus();
+  });
+
+  function applyRacialBonus() {
+    $(".racial-bonus").val(0);
+    var racial_bonus = $("#character_racial_stat_id").find('option:selected').text();
+    racial_bonus = racial_bonus.split(", ");
+    racial_bonus.forEach(function (item) {
+      if (item == "For 2") {
+        $("#racial_stat_strength").val(2);
+      } else if (item == "Con 2") {
+        $("#racial_stat_constitution").val(2);
+      } else if (item == "Dex 2") {
+        $("#racial_stat_dexterity").val(2);
+      } else if (item == "Int 2") {
+        $("#racial_stat_intelligence").val(2);
+      } else if (item == "Sag 2") {
+        $("#racial_stat_wisdom").val(2);
+      } else if (item == "Cha 2") {
+        $("#racial_stat_charisma").val(2);
+      }
+    });
+  }
+  applyRacialBonus();
+  /* Fin calcul du bonus racial */
+
 });
