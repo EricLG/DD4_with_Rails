@@ -33,6 +33,7 @@ $(document).on("page:change", function() {
     }
     stat.val(new_value);
     countCost();
+    adjustFinalValueWithRacialBonus();
   }
 
   function countCost() {
@@ -133,29 +134,45 @@ $(document).on("page:change", function() {
   /* Calcul du bonus racial */
   $("#character_racial_stat_id").on("change", function() {
     applyRacialBonus();
+    adjustFinalValueWithRacialBonus();
   });
 
   function applyRacialBonus() {
-    $(".racial-bonus").val(0);
+    $(".racial-bonus").text(0);
     var racial_bonus = $("#character_racial_stat_id").find('option:selected').text();
     racial_bonus = racial_bonus.split(", ");
     racial_bonus.forEach(function (item) {
       if (item == "For 2") {
-        $("#racial_stat_strength").val(2);
+        $("#racial_stat_strength").text(2);
       } else if (item == "Con 2") {
-        $("#racial_stat_constitution").val(2);
+        $("#racial_stat_constitution").text(2);
       } else if (item == "Dex 2") {
-        $("#racial_stat_dexterity").val(2);
+        $("#racial_stat_dexterity").text(2);
       } else if (item == "Int 2") {
-        $("#racial_stat_intelligence").val(2);
+        $("#racial_stat_intelligence").text(2);
       } else if (item == "Sag 2") {
-        $("#racial_stat_wisdom").val(2);
+        $("#racial_stat_wisdom").text(2);
       } else if (item == "Cha 2") {
-        $("#racial_stat_charisma").val(2);
+        $("#racial_stat_charisma").text(2);
       }
     });
   }
   applyRacialBonus();
+  adjustFinalValueWithRacialBonus();
   /* Fin calcul du bonus racial */
+
+  /* Calcul de la valeur finale et des modificateurs associés */
+  function adjustFinalValueWithRacialBonus() {
+    $("#character-stats tr").each(function() {
+      var baseValue   = $(this).find($(".stat")).val()
+      var racialBonus = $(this).find($(".racial-bonus")).text();
+      var finalValue  = parseInt(baseValue) + parseInt(racialBonus)
+      var halfLevel   = Math.floor(parseInt($("#level").val())/2);
+      var mod         = Math.floor((finalValue -10)/2);
+      $(this).find($(".final-value")).text(finalValue);
+      $(this).find($(".mod-carac")).text(mod);
+      $(this).find($(".mod-carac-half_lvl")).text(mod + halfLevel);
+    });
+  }
 
 });

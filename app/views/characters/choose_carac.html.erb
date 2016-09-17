@@ -45,8 +45,8 @@
             </div>
           </div>
         </div>
-
         <div class="row col-sm-12">
+          <%= hidden_field_tag :level, @character.level  %>
           <table class="table table-condensed">
             <thead>
               <tr>
@@ -61,18 +61,18 @@
                 <th class="medium-width center">Mod carac + 1/2 niv.</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="character-stats">
               <% Character::STATS.each_with_index do |s, i| %>
                 <tr>
                   <td class="black-bg white-text"><%= s %></td>
                   <td class="black-bg center"><button class="btn-minus btn btn-default rounded"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td>
                   <td class="black-bg"><%= f.text_field "level_1_#{s}", value: Character::DEFAULT_STATS[i], class: "center stat max-width text-right", size: 1, readonly: true %></td>
                   <td class="black-bg center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
-                  <td><%= text_field_tag("racial_stat_#{s}", "0", class: "racial-bonus center max-width", size: 1, :disabled =>true) %></td>
+                  <td><%= button_tag 0, id: "racial_stat_#{s}", class: "racial-bonus center max-width btn btn-default", disabled: true %></td>
                   <td class="center">=</td>
-                  <td class=""><button type="button" class="btn btn-default max-width" disabled="disabled">10</button></td>
-                  <td class=""><button type="button" class="btn btn-default max-width" disabled="disabled">+0</button></td>
-                  <td class=""><button type="button" class="btn btn-default max-width" disabled="disabled">+0</button></td>
+                  <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= Character::DEFAULT_STATS[i] %></button></td>
+                  <td><button type="button" class="mod-carac btn btn-default max-width bold" disabled="disabled">+0</button></td>
+                  <td><button type="button" class="mod-carac-half_lvl btn btn-default max-width bold" disabled="disabled">+0</button></td>
                 </tr>
               <% end %>
             </tbody>

@@ -18,3 +18,10 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).on("page:change", function() {
+  $(".btn").click(function(event) {
+    // Removes focus of the button.
+    $(this).blur();
+  });
+});
