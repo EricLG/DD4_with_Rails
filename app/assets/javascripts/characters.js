@@ -22,6 +22,9 @@ $(document).on("page:change", function() {
     e.preventDefault();
     countStat($(this), -1);
   });
+  $(stats).change(function() {
+    countStat($(this), 0);
+  });
 
   function countStat(btnModif, modif) {
     var stat = btnModif.parents("tr").find($('.stat'));
