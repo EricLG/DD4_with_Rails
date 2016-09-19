@@ -2,94 +2,10 @@ $(document).on("page:change", function() {
   var method = 2;
   var stats = $('.stat');
 
-  $('.method-choice').click(function () {
-    method = $(this).val();
-    if (method == 3) {
-      $("#submit-button").prop( "disabled", false );
-      $("#stat-point-div").removeClass("has-error");
-      $("#stat-point-div").hide("fast");
-    } else {
-      $("#stat-point-div").show("fast");
-      countCost();
-    }
-  });
-
-  $('.btn-plus').click(function (e) {
-    e.preventDefault();
-    countStat($(this), 1);
-  });
-  $('.btn-minus').click(function (e) {
-    e.preventDefault();
-    countStat($(this), -1);
-  });
-  $(stats).change(function() {
-    countStat($(this), 0);
-  });
-
-  function countStat(btnModif, modif) {
-    var stat = btnModif.parents("tr").find($('.stat'));
-    var new_value = parseInt(stat.val()) + modif;
-    if (new_value < 3) {
-      new_value = 3
-    } else if (new_value > 18) {
-      new_value = 18
-    }
-    stat.val(new_value);
-    countCost();
-    adjustFinalValueWithRacialBonus();
-  }
-
-  function countCost() {
-    var totalPoints = 2;
-    $.each(stats, function() {
-      var stat = $(this).val()
-      totalPoints += convertValueToCost(stat);
-    })
-    $("#character_stat-points").val(totalPoints)
-    if (totalPoints > 22) {
-      $("#submit-button").prop( "disabled", true );
-      $("#stat-point-div").addClass("has-error");
-    } else {
-      $("#submit-button").prop( "disabled", false );
-      $("#stat-point-div").removeClass("has-error");
-    }
-  }
-
-  function convertValueToCost(value) {
-    if (value == 8) {
-      return -2
-    } else if (value == 9) {
-      return -1
-    } else if (value == 10) {
-      return 0
-    } else if (value == 11) {
-      return 1
-    } else if (value == 12) {
-      return 2
-    } else if (value == 13) {
-      return 3
-    } else if (value == 14) {
-      return 5
-    } else if (value == 15) {
-      return 7
-    } else if (value == 16) {
-      return 9
-    } else if (value == 17) {
-      return 12
-    } else if (value == 18) {
-      return 16
-    } else {
-      return -2
-    }
-  }
-
+  // Etape 1 - détermination du niveau selon l'expérience
   $("#character_experience").change(function(){
     $("#character_level").val(convertXpToLevel($(this).val()));
   });
-
-  function between(value, min, max) {
-    return (value >= min && value < max)
-  }
 
   function convertXpToLevel(xpBrute) {
     var xp = xpBrute/1000;
@@ -126,7 +42,13 @@ $(document).on("page:change", function() {
     return level;
   }
 
+  function between(value, min, max) {
+    return (value >= min && value < max)
+  }
 
+  // Etape 2 et 3 sont gérés dans les vues avec des link_to en mode remote
+
+  // Etape 4 - choix du dieu et de l'alignement.
   $("#character_god_id").on("change", function() {
     if ($("#is-divine")) {
       var alignment = $("#character_god_id option:selected").text().split(" - ")[1];
@@ -134,7 +56,93 @@ $(document).on("page:change", function() {
     }
   });
 
-  /* Calcul du bonus racial */
+  // Etape 5 - caractéristiques
+
+  // Choix de la méthode
+  $('.method-choice').click(function () {
+    method = $(this).val();
+    if (method == 3) {
+      $("#submit-button").prop( "disabled", false );
+      $("#stat-point-div").removeClass("has-error");
+      $("#stat-point-div").hide("fast");
+    } else {
+      $("#stat-point-div").show("fast");
+      countCost();
+    }
+  });
+
+  // Gestion de la saisie manuelle et par les boutons plus et moins des caracs
+  $('.btn-plus').click(function (e) {
+    e.preventDefault();
+    countStat($(this), 1);
+  });
+  $('.btn-minus').click(function (e) {
+    e.preventDefault();
+    countStat($(this), -1);
+  });
+  $(stats).change(function() {
+    countStat($(this), 0);
+  });
+
+  // Vérifie que la stat est bien bornée et appel les calculs supplémentaires
+  function countStat(btnModif, modif) {
+    var stat = btnModif.parents("tr").find($('.stat'));
+    var new_value = parseInt(stat.val()) + modif;
+    if (new_value < 3) {
+      new_value = 3
+    } else if (new_value > 18) {
+      new_value = 18
+    }
+    stat.val(new_value);
+    countCost();
+    adjustFinalValueWithRacialBonus();
+  }
+
+   // Compte le cout en point des caractéristiques (pour la méthode 2)
+  function countCost() {
+    var totalPoints = 2;
+    $.each(stats, function() {
+      var stat = $(this).val()
+      totalPoints += convertValueToCost(stat);
+    })
+    $("#character_stat-points").val(totalPoints)
+    if (totalPoints > 22) {
+      $("#submit-button").prop( "disabled", true );
+      $("#stat-point-div").addClass("has-error");
+    } else {
+      $("#submit-button").prop( "disabled", false );
+      $("#stat-point-div").removeClass("has-error");
+    }
+  }
+  function convertValueToCost(value) {
+    if (value == 8) {
+      return -2
+    } else if (value == 9) {
+      return -1
+    } else if (value == 10) {
+      return 0
+    } else if (value == 11) {
+      return 1
+    } else if (value == 12) {
+      return 2
+    } else if (value == 13) {
+      return 3
+    } else if (value == 14) {
+      return 5
+    } else if (value == 15) {
+      return 7
+    } else if (value == 16) {
+      return 9
+    } else if (value == 17) {
+      return 12
+    } else if (value == 18) {
+      return 16
+    } else {
+      return -2
+    }
+  }
+
+  // Calcul du bonus racial
   $("#character_racial_stat_id").on("change", function() {
     applyRacialBonus();
     adjustFinalValueWithRacialBonus();
@@ -162,7 +170,6 @@ $(document).on("page:change", function() {
   }
   applyRacialBonus();
   adjustFinalValueWithRacialBonus();
-  /* Fin calcul du bonus racial */
 
   /* Calcul de la valeur finale et des modificateurs associés */
   function adjustFinalValueWithRacialBonus() {
