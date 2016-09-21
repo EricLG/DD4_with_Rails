@@ -95,7 +95,7 @@ $(document).on("page:change", function() {
     }
     stat.val(new_value);
     countCost();
-    adjustFinalValueWithRacialBonus();
+    adjustFinalValueWithRacialAndlevelBonus();
   }
 
    // Compte le cout en point des caractéristiques (pour la méthode 2)
@@ -145,7 +145,7 @@ $(document).on("page:change", function() {
   // Calcul du bonus racial
   $("#character_racial_stat_id").on("change", function() {
     applyRacialBonus();
-    adjustFinalValueWithRacialBonus();
+    adjustFinalValueWithRacialAndlevelBonus();
   });
 
   function applyRacialBonus() {
@@ -169,14 +169,16 @@ $(document).on("page:change", function() {
     });
   }
   applyRacialBonus();
-  adjustFinalValueWithRacialBonus();
+  adjustFinalValueWithRacialAndlevelBonus();
 
   /* Calcul de la valeur finale et des modificateurs associés */
-  function adjustFinalValueWithRacialBonus() {
+  function adjustFinalValueWithRacialAndlevelBonus() {
+    adjustTotalBonusCarac()
     $("#character-stats tr").each(function() {
       var baseValue   = $(this).find($(".stat")).val()
       var racialBonus = $(this).find($(".racial-bonus")).text();
-      var finalValue  = parseInt(baseValue) + parseInt(racialBonus)
+      var levelBonus  = $(this).find($(".total-bonus-level-stat")).text();
+      var finalValue  = parseInt(baseValue) + parseInt(racialBonus) + parseInt(levelBonus);
       var halfLevel   = Math.floor(parseInt($("#level").val())/2);
       var mod         = Math.floor((finalValue -10)/2);
       $(this).find($(".final-value")).text(finalValue);
@@ -185,4 +187,69 @@ $(document).on("page:change", function() {
     });
   }
 
+  // Calcul des bonus de carac par niveau
+  $('.btn-bonus-carac').click(function (e) {
+    e.preventDefault();
+    adjustBonusCarac($(this));
+  });
+
+  function resetBonusCarac() {
+    $('.btn-bonus-carac').each(function() {
+      var clickBtn = $(this);
+      var bonusCaracInput = $(this).find($(".bonus-carac"));
+      var bonusCaracSpan = $(this).find($("span"));
+      if (bonusCaracInput.val() == '1') {
+        selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
+      } else {
+        unSelectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
+      }
+    });
+  }
+  resetBonusCarac();
+
+  function adjustBonusCarac(clickBtn) {
+    var bonusCaracInput = clickBtn.find($(".bonus-carac"));
+    var bonusCaracSpan = clickBtn.find($("span"));
+    if (bonusCaracInput.val().toString() == '0') {
+      selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
+    } else {
+      unSelectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
+    }
+    adjustFinalValueWithRacialAndlevelBonus();
+  }
+
+  function selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan) {
+    bonusCaracInput.val(1);
+    clickBtn.removeClass("btn-default");
+    clickBtn.addClass("btn-info");
+    bonusCaracSpan.removeClass("glyphicon-plus");
+    bonusCaracSpan.addClass("glyphicon-ok");
+  }
+  function unSelectCarac(bonusCaracInput, clickBtn, bonusCaracSpan) {
+    bonusCaracInput.val(0);
+    clickBtn.addClass("btn-default");
+    clickBtn.removeClass("btn-info");
+    bonusCaracSpan.addClass("glyphicon-plus");
+    bonusCaracSpan.removeClass("glyphicon-ok");
+  }
+
+  $('.prevent-default').click(function (e) {
+    e.preventDefault();
+  });
+
+  function adjustTotalBonusCarac() {
+    $("#level-bonus-stats tr").each(function() {
+      adjustTotalBonusCaracPerRow($(this));
+    });
+  }
+
+  function adjustTotalBonusCaracPerRow(row) {
+    var totalBonusRow = 0;
+    var caracType = row.attr("class")
+    row.find($(".bonus-carac")).each(function() {
+      var caracInput = $(this);
+      totalBonusRow += parseInt(caracInput.val());
+    });
+    $("#total_bonus_level_stat_" + caracType).text(totalBonusRow);
+  }
 });

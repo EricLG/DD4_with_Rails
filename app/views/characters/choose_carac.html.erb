@@ -55,6 +55,7 @@
                 <th class="medium-width center">Valeur brute</th>
                 <th class="small-width"></th>
                 <th class="medium-width center">Bonus racial</th>
+                <th class="medium-width center">Bonus niv.</th>
                 <th class="small-width"></th>
                 <th class="medium-width center">Valeur finale</th>
                 <th class="medium-width center">Mod carac</th>
@@ -69,6 +70,7 @@
                   <td class="black-bg"><%= f.text_field "level_1_#{s}", value: Character::DEFAULT_STATS[i], class: "center stat max-width text-right", size: 1 %></td>
                   <td class="black-bg center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
                   <td><%= button_tag 0, id: "racial_stat_#{s}", class: "racial-bonus center max-width btn btn-default", disabled: true %></td>
+                  <td><%= button_tag default_bonus_level, id: "total_bonus_level_stat_#{s}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %></td>
                   <td class="center">=</td>
                   <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= Character::DEFAULT_STATS[i] %></button></td>
                   <td><button type="button" class="mod-carac btn btn-default max-width bold" disabled="disabled">+0</button></td>
@@ -82,33 +84,74 @@
 
         <% if @character.level >= 4 %>
           <h4>Caractérisitiques supplémentaires</h4>
+          <p>Vous pouvez ajouter 1 point dans deux de vos caractéristiques aux niveau 4, 8, 14, 18, 24, 28.<br>Au niveau 11 et 21, vous gagnez 1 point dans chaque caractéristiques</p>
           <div class="row col-sm-12">
-            <table class="table table-bordered table-striped table-hover col-sm-12">
+            <table class="table table-condensed">
               <thead>
                 <tr>
-                  <th class="col-sm-1"></th>
-                  <th class="col-sm-1">Niveau 4</th>
-                  <th class="col-sm-1">Niveau 8</th>
-                  <th class="col-sm-1">Niveau 11</th>
-                  <th class="col-sm-1">Niveau 14</th>
-                  <th class="col-sm-1">Niveau 18</th>
-                  <th class="col-sm-1">Niveau 21</th>
-                  <th class="col-sm-1">Niveau 24</th>
-                  <th class="col-sm-1">Niveau 28</th>
+                  <th class="center"></th>
+                  <th class="center">Niv. 4</th>
+                  <th class="center">Niv. 8</th>
+                  <th class="center">Niv. 11</th>
+                  <th class="center">Niv. 14</th>
+                  <th class="center">Niv. 18</th>
+                  <th class="center">Niv. 21</th>
+                  <th class="center">Niv. 24</th>
+                  <th class="center">Niv. 28</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="level-bonus-stats">
                 <% Character::STATS.each do |s| %>
-                  <tr>
-                    <td><%= t(".#{s}") %></td>
-                    <td><label><%= f.check_box  "level_4_#{s}"  %></label></td>
-                    <td><label><%= f.check_box  "level_8_#{s}"  %></label></td>
-                    <td><label><%= f.check_box  "level_11_#{s}" %></label></td>
-                    <td><label><%= f.check_box  "level_14_#{s}" %></label></td>
-                    <td><label><%= f.check_box  "level_18_#{s}" %></label></td>
-                    <td><label><%= f.check_box  "level_21_#{s}" %></label></td>
-                    <td><label><%= f.check_box  "level_24_#{s}" %></label></td>
-                    <td><label><%= f.check_box  "level_28_#{s}" %></label></td>
+                  <tr class="<%= s %>">
+                    <td class="black-bg white-text"><%= t(".#{s}") %></td>
+                    <td class="center">
+                      <button type="button" class="btn btn-default btn-bonus-carac">
+                        <%= f.hidden_field "level_4_#{s}", value: "0", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td class="center">
+                      <button type="button" class="btn btn-default btn-bonus-carac">
+                        <%= f.hidden_field "level_8_#{s}", value: "0", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td class="center">
+                      <button type="button" class="btn btn-info active prevent-default">
+                        <%= f.hidden_field "level_11_#{s}", value: "1", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-ok"></span>
+                      </button>
+                    </td>
+                    <td class="center">
+                      <button type="button" class="btn btn-default btn-bonus-carac">
+                        <%= f.hidden_field "level_14_#{s}", value: "0", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td class="center">
+                      <button type="button" class="btn btn-default btn-bonus-carac">
+                        <%= f.hidden_field "level_18_#{s}", value: "0", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td class="center">
+                      <button type="button" class="btn btn-info active prevent-default">
+                        <%= f.hidden_field "level_21_#{s}", value: "1", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-ok"></span>
+                      </button>
+                    </td>
+                    <td class="center">
+                      <button type="button" class="btn btn-default btn-bonus-carac">
+                        <%= f.hidden_field "level_24_#{s}", value: "0", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td class="center">
+                      <button type="button" class="btn btn-default btn-bonus-carac">
+                        <%= f.hidden_field "level_28_#{s}", value: "0", class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
