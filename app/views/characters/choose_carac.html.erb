@@ -40,7 +40,7 @@
             <div class="form-group">
               <%= f.label :racial_stat_id, "Bonus racial", class: "col-sm-8 control-label" %>
               <div class="col-sm-4 ">
-                <%= f.select :racial_stat_id, options_from_collection_for_select(@character.race.stats, :id, :to_s), {},{class: "form-control"}  %>
+                <%= f.select :racial_stat_id, options_from_collection_for_select(@character.race.stats, :id, :to_s, @character.racial_stat_id), {},{class: "form-control"}  %>
               </div>
             </div>
           </div>
@@ -65,9 +65,10 @@
             <tbody id="character-stats">
               <% Character::STATS.each_with_index do |s, i| %>
                 <tr>
+                  <% default_char_value = @character.send("level_1_#{s}") || Character::DEFAULT_STATS[i] %>
                   <td class="black-bg white-text"><%= s %></td>
                   <td class="black-bg center"><button class="btn-minus btn btn-default rounded"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td>
-                  <td class="black-bg"><%= f.text_field "level_1_#{s}", value: Character::DEFAULT_STATS[i], class: "center stat max-width text-right", size: 1 %></td>
+                  <td class="black-bg"><%= f.text_field "level_1_#{s}", value: default_char_value, class: "center stat max-width text-right", size: 1 %></td>
                   <td class="black-bg center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
                   <td><%= button_tag 0, id: "racial_stat_#{s}", class: "racial-bonus center max-width btn btn-default", disabled: true %></td>
                   <td><%= button_tag default_bonus_level, id: "total_bonus_level_stat_#{s}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %></td>
@@ -106,51 +107,100 @@
                     <td class="black-bg white-text"><%= t(".#{s}") %></td>
                     <td class="center">
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_4_#{s}", value: "0", class: "bonus-carac" %>
+                        <%= f.hidden_field "level_4_#{s}", value: @character.send("level_4_#{s}"), class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     </td>
                     <td class="center">
+                    <% if @character.level >= 8 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_8_#{s}", value: "0", class: "bonus-carac" %>
+                        <%= f.hidden_field "level_8_#{s}", value: @character.send("level_8_#{s}"), class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
+                    <% else %>
+                      <button type="button" class="btn btn-default btn-bonus-carac" disabled>
+                        <%= f.hidden_field "level_8_#{s}", value: 0, class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
                     </td>
                     <td class="center">
+                    <% if @character.level >= 11 %>
                       <button type="button" class="btn btn-info active prevent-default">
                         <%= f.hidden_field "level_11_#{s}", value: "1", class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-ok"></span>
                       </button>
+                    <% else %>
+                      <button type="button" class="btn btn-default btn-bonus-carac" disabled>
+                        <%= f.hidden_field "level_11_#{s}", value: 0, class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
                     </td>
                     <td class="center">
+                    <% if @character.level >= 14 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_14_#{s}", value: "0", class: "bonus-carac" %>
+                        <%= f.hidden_field "level_14_#{s}", value: @character.send("level_14_#{s}"), class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
+                    <% else %>
+                      <button type="button" class="btn btn-default btn-bonus-carac" disabled>
+                        <%= f.hidden_field "level_14_#{s}", value: 0, class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
                     </td>
                     <td class="center">
+                    <% if @character.level >= 18 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_18_#{s}", value: "0", class: "bonus-carac" %>
+                        <%= f.hidden_field "level_18_#{s}", value: @character.send("level_18_#{s}"), class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
+                    <% else %>
+                      <button type="button" class="btn btn-default btn-bonus-carac" disabled>
+                        <%= f.hidden_field "level_18_#{s}", value: 0, class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
                     </td>
                     <td class="center">
+                    <% if @character.level >= 21 %>
                       <button type="button" class="btn btn-info active prevent-default">
                         <%= f.hidden_field "level_21_#{s}", value: "1", class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-ok"></span>
                       </button>
+                    <% else %>
+                      <button type="button" class="btn btn-default btn-bonus-carac" disabled>
+                        <%= f.hidden_field "level_21_#{s}", value: 0, class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
                     </td>
                     <td class="center">
+                    <% if @character.level >= 24 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_24_#{s}", value: "0", class: "bonus-carac" %>
+                        <%= f.hidden_field "level_24_#{s}", value: @character.send("level_24_#{s}"), class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
+                    <% else %>
+                      <button type="button" class="btn btn-default btn-bonus-carac" disabled>
+                        <%= f.hidden_field "level_24_#{s}", value: 0, class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
                     </td>
                     <td class="center">
+                    <% if @character.level >= 28 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_28_#{s}", value: "0", class: "bonus-carac" %>
+                        <%= f.hidden_field "level_28_#{s}", value: @character.send("level_28_#{s}"), class: "bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
+                    <% else %>
+                      <button type="button" class="btn btn-default btn-bonus-carac" disabled>
+                        <%= f.hidden_field "level_28_#{s}", value: 0, class: "bonus-carac" %>
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
                     </td>
                   </tr>
                 <% end %>
