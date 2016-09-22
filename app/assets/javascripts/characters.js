@@ -210,7 +210,7 @@ $(document).on("page:change", function() {
   function adjustBonusCarac(clickBtn) {
     var bonusCaracInput = clickBtn.find($(".bonus-carac"));
     var bonusCaracSpan = clickBtn.find($("span"));
-    if (bonusCaracInput.val().toString() == '0') {
+    if ((countBonusCaracByLevel(bonusCaracInput) < 2) && bonusCaracInput.val().toString() == '0') {
       selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
     } else {
       unSelectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
@@ -231,6 +231,12 @@ $(document).on("page:change", function() {
     clickBtn.removeClass("btn-info");
     bonusCaracSpan.addClass("glyphicon-plus");
     bonusCaracSpan.removeClass("glyphicon-ok");
+  }
+
+  function countBonusCaracByLevel(input) {
+    var level = input.attr("id").match(/level_\d{1,2}/)[0];
+    var colClass = "." + level + "[value='1']";
+    return $(colClass).size();
   }
 
   $('.prevent-default').click(function (e) {

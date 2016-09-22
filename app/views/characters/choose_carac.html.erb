@@ -107,14 +107,14 @@
                     <td class="black-bg white-text"><%= t(".#{s}") %></td>
                     <td class="center">
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_4_#{s}", value: @character.send("level_4_#{s}"), class: "bonus-carac" %>
+                        <%= f.hidden_field "level_4_#{s}", value: @character.send("level_4_#{s}"), class: "level_4 bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     </td>
                     <td class="center">
                     <% if @character.level >= 8 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_8_#{s}", value: @character.send("level_8_#{s}"), class: "bonus-carac" %>
+                        <%= f.hidden_field "level_8_#{s}", value: @character.send("level_8_#{s}"), class: "level_8 bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     <% else %>
@@ -140,7 +140,7 @@
                     <td class="center">
                     <% if @character.level >= 14 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_14_#{s}", value: @character.send("level_14_#{s}"), class: "bonus-carac" %>
+                        <%= f.hidden_field "level_14_#{s}", value: @character.send("level_14_#{s}"), class: "level_14 bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     <% else %>
@@ -153,7 +153,7 @@
                     <td class="center">
                     <% if @character.level >= 18 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_18_#{s}", value: @character.send("level_18_#{s}"), class: "bonus-carac" %>
+                        <%= f.hidden_field "level_18_#{s}", value: @character.send("level_18_#{s}"), class: "level_18 bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     <% else %>
@@ -179,7 +179,7 @@
                     <td class="center">
                     <% if @character.level >= 24 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_24_#{s}", value: @character.send("level_24_#{s}"), class: "bonus-carac" %>
+                        <%= f.hidden_field "level_24_#{s}", value: @character.send("level_24_#{s}"), class: "level_24 bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     <% else %>
@@ -192,7 +192,7 @@
                     <td class="center">
                     <% if @character.level >= 28 %>
                       <button type="button" class="btn btn-default btn-bonus-carac">
-                        <%= f.hidden_field "level_28_#{s}", value: @character.send("level_28_#{s}"), class: "bonus-carac" %>
+                        <%= f.hidden_field "level_28_#{s}", value: @character.send("level_28_#{s}"), class: "level_28 bonus-carac" %>
                         <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     <% else %>
