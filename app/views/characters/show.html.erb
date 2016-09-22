@@ -11,7 +11,7 @@
   <dt><%= Character.human_attribute_name(:race_id)    %></dt>  <dd class="text-left"><%= @character.race.try(:name) %></dd>
   <dt><%= Character.human_attribute_name(:klass_id)   %></dt>  <dd class="text-left"><%= @character.klass.try(:name) %></dd>
   <% Character::STATS.each_with_index do |s, i| %>
-        <dt><%=s%></dt>  <dd> <%= @character.stats["level_1_#{s}"] %></dd>
+        <dt><%=s%></dt>  <dd> <%= @character.total_stat(s) %></dd>
   <% end %>
   <dt><%= Character.human_attribute_name(:parangon)   %></dt>  <dd class="text-left"><%= @character.parangon %></dd>
   <dt><%= Character.human_attribute_name(:epic)       %></dt>  <dd class="text-left"><%= @character.epic %></dd>

@@ -30,69 +30,17 @@ class Character < ActiveRecord::Base
 
   meta_store_accessor
 
-  def total_stat
-    s = Stat.new
-    s.strength = initial_stat.strength
-    s.strength += race_stat.strength
-    s.strength += level_4.strength  if level >= 4
-    s.strength += level_8.strength  if level >= 8
-    s.strength += level_11.strength if level >= 11
-    s.strength += level_14.strength if level >= 14
-    s.strength += level_18.strength if level >= 18
-    s.strength += level_21.strength if level >= 21
-    s.strength += level_24.strength if level >= 24
-    s.strength += level_28.strength if level >= 28
-    s.constitution = initial_stat.constitution
-    s.constitution += race_stat.constitution
-    s.constitution += level_4.constitution  if level >= 4
-    s.constitution += level_8.constitution  if level >= 8
-    s.constitution += level_11.constitution if level >= 11
-    s.constitution += level_14.constitution if level >= 14
-    s.constitution += level_18.constitution if level >= 18
-    s.constitution += level_21.constitution if level >= 21
-    s.constitution += level_24.constitution if level >= 24
-    s.constitution += level_28.constitution if level >= 28
-    s.dexterity = initial_stat.dexterity
-    s.dexterity += race_stat.dexterity
-    s.dexterity += level_4.dexterity  if level >= 4
-    s.dexterity += level_8.dexterity  if level >= 8
-    s.dexterity += level_11.dexterity if level >= 11
-    s.dexterity += level_14.dexterity if level >= 14
-    s.dexterity += level_18.dexterity if level >= 18
-    s.dexterity += level_21.dexterity if level >= 21
-    s.dexterity += level_24.dexterity if level >= 24
-    s.dexterity += level_28.dexterity if level >= 28
-    s.intelligence = initial_stat.intelligence
-    s.intelligence += race_stat.intelligence
-    s.intelligence += level_4.intelligence  if level >= 4
-    s.intelligence += level_8.intelligence  if level >= 8
-    s.intelligence += level_11.intelligence if level >= 11
-    s.intelligence += level_14.intelligence if level >= 14
-    s.intelligence += level_18.intelligence if level >= 18
-    s.intelligence += level_21.intelligence if level >= 21
-    s.intelligence += level_24.intelligence if level >= 24
-    s.intelligence += level_28.intelligence if level >= 28
-    s.wisdom = initial_stat.wisdom
-    s.wisdom += race_stat.wisdom
-    s.wisdom += level_4.wisdom  if level >= 4
-    s.wisdom += level_8.wisdom  if level >= 8
-    s.wisdom += level_11.wisdom if level >= 11
-    s.wisdom += level_14.wisdom if level >= 14
-    s.wisdom += level_18.wisdom if level >= 18
-    s.wisdom += level_21.wisdom if level >= 21
-    s.wisdom += level_24.wisdom if level >= 24
-    s.wisdom += level_28.wisdom if level >= 28
-    s.charisma = initial_stat.charisma
-    s.charisma += race_stat.charisma
-    s.charisma += level_4.charisma  if level >= 4
-    s.charisma += level_8.charisma  if level >= 8
-    s.charisma += level_11.charisma if level >= 11
-    s.charisma += level_14.charisma if level >= 14
-    s.charisma += level_18.charisma if level >= 18
-    s.charisma += level_21.charisma if level >= 21
-    s.charisma += level_24.charisma if level >= 24
-    s.charisma += level_28.charisma if level >= 28
-    return s.to_s
+  def total_stat(carac)
+    total_carac = self.send("level_1_#{carac}").to_i
+    LEVEL_STATS.each do |l|
+      total_carac += self.send("level_#{l}_#{carac}").to_i if level >= l.to_i
+    end
+    total_carac += self.racial_stats.send(carac).to_i if racial_stat_id
+    return total_carac
+  end
+
+  def racial_stats
+    Stat.find(racial_stat_id)
   end
 
   def is_paragon?

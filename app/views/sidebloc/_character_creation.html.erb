@@ -5,4 +5,7 @@
   <% unless @character.klass.nil? %><li><%= @character.klass.try(:name) %></li><% end %>
   <% unless @character.alignment.blank? %><li><%= @character.alignment %></li><% end %>
   <% unless @character.god.nil? %><li><%= @character.god.try(:name) %></li><% end %>
+  <% Character::STATS.each_with_index do |s, i| %>
+    <% unless  @character.total_stat(s) == 0 %><li><%= s %> <%= @character.total_stat(s) %></li><% end %>
+  <% end %>
 </ul>
