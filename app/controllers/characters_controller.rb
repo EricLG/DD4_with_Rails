@@ -49,6 +49,10 @@ class CharactersController < ApplicationController
     @random_stats
   end
 
+  def choose_features
+    @character = Character.find_by_id(params["character_id"])
+  end
+
   def choose_skills
     @character = Character.find_by_id(params["character_id"])
     @klass = @character.klass

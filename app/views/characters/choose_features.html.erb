@@ -1,0 +1,26 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "sidebloc/character_creation" %>
+<% end %>
+
+<div class="row">
+  <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-sm-8">
+    <%= form_for @character, url: character_choose_skill_path(@character.id), html: {class: 'form-horizontal'} do |f| %>
+      <h4>Choix des aptitudes de classes</h4>
+        <ul>
+          <% @character.klass.klass_features.each do |feature| %>
+            <li><%= feature.name %></li>
+          <% end %>
+        </ul>
+
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <p>En tant que rodeur</p>
+  </div>
+</div>
