@@ -68,7 +68,7 @@ petite          = WeaponProperty.create(name: "Petite",                 descript
 polyvalente     = WeaponProperty.create(name: "Polyvalente",            description:"Les armes polyvalentes sont des armes à une main, mais vous pouvez les utilisez à deux mains. Si vous maniez une arme polyvalente à deux mains, vous infligez 1 dégât supplémentaire quand vous frappez. Un personnage de taille P est obligé d'utiliser les deux mains pour manier une arme polyvalente et n'inflige pas de dégât supplémentaire.")
 rechar_libre    = WeaponProperty.create(name: "Rechargement (libre)",   description:"Les armes à distance qui tirent des projectiles doivent être rechargées. Cette arme nécessite une action libre pour être rechargée.")
 rechar_mineure  = WeaponProperty.create(name: "Rechargement (mineure",  description:"Les armes à distance qui tirent des projectiles doivent être rechargées. Cette arme nécessite une action mineure pour être rechargée.")
-secondaire      = WeaponProperty.create(name: "Secondaire",             description:"Une arme secondaire est assez légère pour que vous puissiez la tenir dans la main non directrice et attaquer tout en portant une arme dans la main principale. Vous ne pouvez attaquer avec les deux armes durant le même tour à moins d'avoir unpouvoir qui vous le permette. En revanche, vous pouvez attaquer avec l'une ou l'autre.")
+secondaire      = WeaponProperty.create(name: "Secondaire",             description:"Une arme secondaire est assez légère pour que vous puissiez la tenir dans la main non directrice et attaquer tout en portant une arme dans la main principale. Vous ne pouvez attaquer avec les deux armes durant le même tour à moins d'avoir un pouvoir qui vous le permette. En revanche, vous pouvez attaquer avec l'une ou l'autre.")
 no_property     = WeaponProperty.create(name: "-",                      description:"")
 
 impro_cac   = WeaponCategory.create(name: 'Armes improvisées de corps à corps', ranged: false,  code: 'impcc')
@@ -350,11 +350,11 @@ RaceFeature.create(races: [nain],                     name: "Déplacement avec c
 RaceFeature.create(races: [nain],                     name: "Maniement des armes naines",       description: "vous êtes formé au maniement du marteau de lancer et du marteau de guerre.")
 RaceFeature.create(races: [nain],                     name: "Résistance naine",                 description: "vous pouvez recourir à votre second souffle au prix d'une action mineure au lieu d'une action simple.")
 RaceFeature.create(races: [tieffelin],                name: "Appel du sang",                    description: "vous bénéficiez d'un bonus racial de +1 aux jets d'attaque contre les adversaires en péril.")
-RaceFeature.create(races: [tieffelin],                name: "Courroux infernal",                description: "vous pouvez utilisez <em>Courroux infernal</em> en tant que poiuvoir de rencontre.")
+RaceFeature.create(races: [tieffelin],                name: "Courroux infernal",                description: "vous pouvez utilisez <em>Courroux infernal</em> en tant que pouvoir de rencontre.")
 RaceFeature.create(races: [tieffelin],                name: "Résistance au feu",                description: "vous bénéficiez d'une résistance au feu 5 + la moitié de votre niveau.")
 RaceFeature.create(races: [demi_orque],               name: "Assaut enragé",                    description: "vous avez le pouvoir <em>Assaut enragé</em>.")
 RaceFeature.create(races: [demi_orque],               name: "Charge véloce",                    description: "vous gagnez un bonus de +2 à la vitesse de déplacement lorsque vous chargez.")
-RaceFeature.create(races: [demi_orque],               name: "Vitalité demi-orque",              description: "la première fois que vous êtes en péril au cours d'une rencontre, vous gagnez5 points de vie temporaires. Ce nombre augment à 10 au niveau 11 et 15 au niveau 21.")
+RaceFeature.create(races: [demi_orque],               name: "Vitalité demi-orque",              description: "la première fois que vous êtes en péril au cours d'une rencontre, vous gagnez 5 points de vie temporaires. Ce nombre augment à 10 au niveau 11 et 15 au niveau 21.")
 RaceFeature.create(races: [deva],                     name: "Majesté astrale",                  description: "vous bénéficiez d'un bonus de +1 à toutes vos défenses contre les attaques effectuées par une créature en péril.")
 RaceFeature.create(races: [deva],                     name: "Mémoire d'un millier de vies",     description: "vous avez le pouvoir <em>Mémoire d'un millier de vies</em>.")
 RaceFeature.create(races: [deva, cristallien],        name: "Origine immortelle",               description: "votre âme est native de la Mer Astrale et vous êtes considéré comme une créature immortelle pour déterminer les effets relatifs à l'origine d'une créature.")
@@ -362,7 +362,7 @@ RaceFeature.create(races: [deva],                     name: "Résistance astrale
 RaceFeature.create(races: [feral_griffe_effilee],     name: "Sauvagerie griffe-effilée",        description: "Vous avez le pouvoir <em>Sauvagerie griffe-effilée</em>.")
 RaceFeature.create(races: [feral_longue_dent],        name: "Sauvagerie longue-dent",           description: "Vous avez le pouvoir <em>Sauvagerie longue-dent</em>.")
 RaceFeature.create(races: [gnome],                    name: "Discrétion réactive",              description: "Vous avez le pouvoir <em>Effacement</em>.")
-RaceFeature.create(races: [gnome],                    name: "Maître menteur",                   description: "une fois par rencontre, vous pouvez utilisez le tour de prestigitation de magicien <em>Son imaginaire</em> (cf. p.76 du <em>Manuel des Joueurs</em>) au prix d'une action mineure.")
+RaceFeature.create(races: [gnome],                    name: "Maître menteur",                   description: "une fois par rencontre, vous pouvez utilisez le tour de prestidigitation de magicien <em>Son imaginaire</em> (cf. p.76 du <em>Manuel des Joueurs</em>) au prix d'une action mineure.")
 RaceFeature.create(races: [gnome],                    name: "Perspicacité du menteur",          description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre les illusions.")
 RaceFeature.create(races: [goliath],                  name: "Athlète puissant",                 description: "lorsque vous effectuez un test d'Athlétisme pour sauter ou grimper, jetez deux dés et conservez l'un des résultats.")
 RaceFeature.create(races: [goliath],                  name: "Endurance de la pierre",           description: "Vous avez le pouvoir <em>Endurance de la pierre</em>.")
@@ -370,9 +370,9 @@ RaceFeature.create(races: [goliath],                  name: "Ténacité de la mo
 RaceFeature.create(races: [cristallien],              name: "Esprit cristallin",                description: "vous bénéficiez d'une résistance psychique 5. Cette résistance augment à 10 au niveau 11 et 15 au niveau 21.")
 RaceFeature.create(races: [cristallien],              name: "Nuée de cristaux",                 description: "Vous avez le pouvoir <em>Nué de cristaux</em>.")
 RaceFeature.create(races: [cristallien],              name: "Télépathie",                       description: "vous pouvez communiquer par télépathie avec toute créature douée de langage située dans un rayon de 5 cases.")
-RaceFeature.create(races: [githzerai],                name: "Esprit défendu",                   description: "vous bénéficiez d'un bonus racial de +2 aux jets de sauvegardecontre les effets qui hébètent, dominent ou étourdissent.")
+RaceFeature.create(races: [githzerai],                name: "Esprit défendu",                   description: "vous bénéficiez d'un bonus racial de +2 aux jets de sauvegarde contre les effets qui hébètent, dominent ou étourdissent.")
 RaceFeature.create(races: [githzerai],                name: "Heureuse fortune",                 description: "quand vous utilisez votre second souffle, vous pouvez vous décalez de 3 cases au prix d'une action libre.")
-RaceFeature.create(races: [githzerai],                name: "Mental dacier",                    description: "Vous avez le pouvoir <em>Mental d'acier</em>.")
+RaceFeature.create(races: [githzerai],                name: "Mental d'acier",                    description: "Vous avez le pouvoir <em>Mental d'acier</em>.")
 RaceFeature.create(races: [githzerai],                name: "Sens du danger",                   description: "vous bénéficiez d'un bonus racial de +2 aux tests d'initiative.")
 RaceFeature.create(races: [minotaure],                name: "Charge encornée",                  description: "Vous avez le pouvoir <em>Charge encornée</em>.")
 RaceFeature.create(races: [minotaure],                name: "Charge intrépide",                 description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunités que vous provoquez lors d'une charge.")
@@ -382,7 +382,7 @@ RaceFeature.create(races: [silvyen],                  name: "Aspect de la nature
 RaceFeature.create(races: [silvyen],                  name: "Forme endurcie",                   description: "choisissez les Réflexes, la Vigueur ou la Volonté. Vous bénéficiez d'un bonus racial de +1 dans cette défense.")
 RaceFeature.create(races: [changelin],                name: "Change-forme",                     description: "vous avez le pouvoir <em>Déguisement du changelin</em>.")
 RaceFeature.create(races: [changelin],                name: "Défense mentale",                  description: "vous bénéficiez d'un bonus racial de +1 en Volonté.")
-RaceFeature.create(races: [changelin],                name: "Métamorphe",                       description: "vous êtes un métmorphe et pouvez modifier votre apparence. Vous êtes donc sujet aux effets et états préjudiciables qui affectent les métmorphes.")
+RaceFeature.create(races: [changelin],                name: "Métamorphe",                       description: "vous êtes un métamorphe et pouvez modifier votre apparence. Vous êtes donc sujet aux effets et états préjudiciables qui affectent les métamorphes.")
 RaceFeature.create(races: [changelin],                name: "Ruse du changelin",                description: "vous avez le pouvoir <em>Ruse du changelin</em>.")
 RaceFeature.create(races: [forgelier],                name: "Esprit du forgelier",              description: "vous bénéficiez d'un bonus racial de +1 en Volonté.")
 RaceFeature.create(races: [forgelier],                name: "Opiniâtreté forgelière",           description: "vous avez le pouvoir <em>Opiniâtreté forgelière</em.")
@@ -392,7 +392,7 @@ RaceFeature.create(races: [kalashtar],                name: "Âme double",      
 RaceFeature.create(races: [kalashtar],                name: "Bastion de clarté mentale",        description: "vous avez le pouvoir <em>Bastion de clarté mentale</em.")
 RaceFeature.create(races: [drow],                     name: "Lolthaïque",                       description: "une fois par rencontre, vous pouvez utilisez <em>Chape d'obscurité</em> ou <em>Noirfeu</em>.")
 RaceFeature.create(races: [genasi],                   name: "Origine élémentaire",              description: "vos ancêtres étaient natifs du Chaos Élémentaire, vous êtes donc considéré comme une créature élémentaire au regard des effets liés à cette origine.")
-RaceFeature.create(races: [genasi],                   name: "Manifestation élémentaire",        description: "choisissez une manifestation élémentaire: âme d'eau, âme de feu, âme d'orage, âme de terre ou âme de vent. Cette manifestation fait partie intégrante de votre nature(le talent <em>Manifestation élémentaire</em>, p.136, vous permet cependant de prendre des manifestations en plus et d'en changer). Chaque manifestation élémentaire propose des avantages particuliers et un pouvoir de rencontre. Enfin votre apparence change selon l'élement que vous manifestez.<br>
+RaceFeature.create(races: [genasi],                   name: "Manifestation élémentaire",        description: "choisissez une manifestation élémentaire: âme d'eau, âme de feu, âme d'orage, âme de terre ou âme de vent. Cette manifestation fait partie intégrante de votre nature(le talent <em>Manifestation élémentaire</em>, p.136, vous permet cependant de prendre des manifestations en plus et d'en changer). Chaque manifestation élémentaire propose des avantages particuliers et un pouvoir de rencontre. Enfin votre apparence change selon l’élément que vous manifestez.<br>
 <em>Âme d'eau</em> : vous pouvez respirer sous l'eau. Vous bénéficiez également d'un bonus racial de +2 aux jets de sauvegarde contre les dégâts continus et du pouvoir <em>Cours rapide</em>.<br>
 <em>Âme de feu</em> : vous bénéficiez d'un bonus racial de +1 en Réflexes, d'une résistance au feu 5 et du pouvoir <em>Retour de flammes</em>.<br>
 Au niveau 11, la résistance augmente à feu 10.<br>
@@ -401,7 +401,7 @@ Au niveau 21, la résistance augmente à feu 15.<br>
 Au niveau 11, la résistance augmente à électricité 10.<br>
 Au niveau 21, la résistance augmente à électricité 15.<br>
 <em>Âme de terre</em> : vous bénéficiez d'un bonus racial de +1 en Vigueur, d'un bonus racial de +1 aux jets de sauvegarde et du pouvoir <em>Secousse sismique</em>.<br>
-<em>Âme de vent</em> : vous bénéficiezd'une résistance au froid 5 du pouvoir <em>Arpenteur des vents</em>.<br>
+<em>Âme de vent</em> : vous bénéficiez d'une résistance au froid 5 du pouvoir <em>Arpenteur des vents</em>.<br>
 Au niveau 11, la résistance augmente à froid 10.<br>
 Au niveau 21, la résistance augmente à froid 15.")
 acrobatics    = Skill.create(origin: 'required_skill_for_class', acrobatics:     5)
@@ -793,7 +793,7 @@ moine = Klass.create(
   role:               "cogneur",
   source:             mdj3,
   power_source:       "psionique",
-  main_stats:         "Dexterité, Force, Sagesse",
+  main_stats:         "Dextérité, Force, Sagesse",
   armor_categories:   [etoffe],
   weapon_categories:  [],
   common_weapons:     [mains_nues, baton, dague, fronde_arme, gourdin, lance_arme, shuriken],
@@ -1027,7 +1027,7 @@ voleur         = Klass.create(
   role:               "cogneur",
   source:             mdj1,
   power_source:       "martiale",
-  main_stats:         "Dexterité, Force, Charisme",
+  main_stats:         "Dextérité, Force, Charisme",
   armor_categories:   [etoffe, cuir],
   weapon_categories:  [],
   common_weapons:     [arba_poing, dague, epee_courte, fronde_arme, shuriken],
