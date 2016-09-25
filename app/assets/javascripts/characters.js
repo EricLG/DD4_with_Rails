@@ -168,8 +168,6 @@ $(document).on("page:change", function() {
       }
     });
   }
-  applyRacialBonus();
-  adjustFinalValueWithRacialAndlevelBonus();
 
   /* Calcul de la valeur finale et des modificateurs associés */
   function adjustFinalValueWithRacialAndlevelBonus() {
@@ -205,7 +203,6 @@ $(document).on("page:change", function() {
       }
     });
   }
-  resetBonusCarac();
 
   function adjustBonusCarac(clickBtn) {
     var bonusCaracInput = clickBtn.find($(".bonus-carac"));
@@ -258,4 +255,8 @@ $(document).on("page:change", function() {
     });
     $("#total_bonus_level_stat_" + caracType).text(totalBonusRow);
   }
+
+  applyRacialBonus();
+  resetBonusCarac();
+  adjustFinalValueWithRacialAndlevelBonus();
 });

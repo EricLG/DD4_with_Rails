@@ -51,6 +51,7 @@ class CharactersController < ApplicationController
 
   def choose_features
     @character = Character.find_by_id(params["character_id"])
+    @character.update(character_params)
   end
 
   def choose_skills
