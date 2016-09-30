@@ -64,7 +64,6 @@ Rails.application.routes.draw do
     patch 'choose_features'
     get 'choose_skills'
     patch 'choose_skills'
-    get 'choose_skill'
   end
   get "/resume_race"  => 'characters#resume_race',  as: 'resume_race'
   get "/resume_klass" => 'characters#resume_klass', as: 'resume_klass'
