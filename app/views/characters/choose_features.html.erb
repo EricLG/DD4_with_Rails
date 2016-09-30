@@ -10,17 +10,81 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, url: character_choose_skill_path(@character.id), html: {class: 'form-horizontal'} do |f| %>
-      <h4>Choix des aptitudes de classes</h4>
+    <h4>Choix des aptitudes de classes</h4>
+    <%= form_for @character, url: character_choose_skills_path(@character.id), html: {class: 'form-horizontal'} do |form| %>
+      <%= form.hidden_field(:klass, value: @character.klass.name, disabled: :true) %>
+      <%
+        klass_features = @character.klass.klass_features
+       %>
+      <div class="row">
+        <p>Vous disposez des aptitudes de classes obligatoires suivantes :</p>
+        <div class="form-group">
         <ul>
-          <% @character.klass.klass_features.each do |feature| %>
+          <% klass_features.required.each do |feature| %>
             <li><%= feature.name %></li>
+            <%= form.hidden_field("features_choice_ids[required]", value: feature.id, :multiple => true) %>
           <% end %>
         </ul>
+        </div>
+      </div>
+      <% unless klass_features.first_choice.empty? %>
+      <div id="first-choice" class="row">
+        <p>Vous devez ensuite choisir parmi les aptitudes suivantes : </p>
+        <div class="form-group">
+          <div class="radio col-sm-offset-1">
+            <% klass_features.first_choice.each do |feature| %>
+              <%= (render(feature.children_features) || render(feature)) if (feature.parent_feature.nil? || feature.parent_feature.required == 'required') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if !klass_features.second_choice.empty? && klass_features.second_choice.first.parent_feature.nil? %>
+      <div id="second-choice" class="row">
+        <p>Choisissez votre style de combat :</p>
+        <div class="form-group">
+          <div class="radio col-sm-offset-1">
+            <% klass_features.second_choice.each do |feature| %>
+                <%= (render(feature.children_features) || render(feature)) if feature.parent_feature.nil? %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% if !klass_features.third_choice.empty? && klass_features.third_choice.first.parent_feature.nil? %>
+        <div id="third-choice" class="row">
+          <p>Enfin, choisissez votre dernière aptitude de classe : </p>
+          <div class="form-group">
+            <% if klass_features.third_choice.size == 1 %>
+              <div class="checkbox col-sm-offset-1">
+                <label>
+                  <% klass_feature = klass_features.third_choice.first %>
+                  <% choice = klass_feature.parent_feature.try(&:required) ||klass_feature.required %>
+                  <%= check_box_tag "character[features_choice_ids][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
+                  <%= klass_feature.complete_name %>
+                </label><br>
+              </div>
+            <% else %>
+              <div class="radio col-sm-offset-1">
+                <% klass_features.third_choice.each do |feature| %>
+                  <%= (render(feature.children_features) || render(feature)) if feature.parent_feature.nil? %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
 
+      <%= submit_text_form(form) %>
     <% end %>
   </div>
   <div class="col-sm-4">
-    <p>En tant que rodeur</p>
+    <% @character.klass.klass_features.each do |feature| %>
+    <div class="row">
+    <h4><%= feature.name %> :</h4>
+    <p><%= !feature.description.blank? ? simple_format(feature.description) : "Pas de description disponible." %></p>
+    </div>
+    <% end %>
   </div>
+
 </div>

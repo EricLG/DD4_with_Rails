@@ -3,8 +3,8 @@ class CreateKlassFeatures < ActiveRecord::Migration
     create_table :klass_features do |t|
       t.string :name
       t.text :description
-      t.string :status
-      t.references :top_feature, index: true
+      t.string :required
+      t.references :parent_feature, index: true
 
       t.timestamps
     end

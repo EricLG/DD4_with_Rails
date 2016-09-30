@@ -51,22 +51,27 @@ class CharactersController < ApplicationController
 
   def choose_features
     @character = Character.find_by_id(params["character_id"])
-    @character.update(character_params)
+    @character.update(character_params) if params && params["character"]
+
   end
 
   def choose_skills
     @character = Character.find_by_id(params["character_id"])
     @klass = @character.klass
+
     if params && params["character"]
-      @character.klass_id = params["character"]["klass_id"]
-      @character.save!
+      choices = params["character"]["features_choice_ids"].values.flatten
+      @character.features_choices.clear
+      features = KlassFeature.find choices
+      features.each do |f|
+        choices << f.parent_feature_id unless f.parent_feature_id.nil?
+      end
+      choices = choices.uniq
+      choices.each do |c|
+        FeaturesChoice.create(character: @character, klass_feature_id: c)
+      end
     end
   end
-
-  def choose_skill
-
-  end
-
 
   def create
     @character = Character.new(character_params)
@@ -200,7 +205,8 @@ class CharactersController < ApplicationController
       :level_21_charisma,
       :level_24_charisma,
       :level_28_charisma,
-      {game_ids:[]}
+      {game_ids:[]},
+      {features_choice_ids:[]},
       )
   end
 

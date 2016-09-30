@@ -1051,51 +1051,1008 @@ voleur         = Klass.create(
   options_creation:   "voleur brutale, voleur fourbe, voleur coupe-jarret, voleur voltigeur, voleur des ombres",
   skills_number:      4)
 
-{
-"Barbare"           => {klass: barbare          , features: ["Agilité du barbare", "Carnage", {"Force indomptable" => ["Ardeur sanguinaire", "Triomphe du champion", "Colère du fils du tonnerre", "Faucheur tournoyant"]}, "Frappe enragée"]},
-"Barde"             => {klass: barde            , features: ["Chant apaisant", "Formation de barde", "Multiclassage versatile", "Paroles d'amitié", "Paroles de majesté", "Savoir-faire polyvalent", {"Vertu des bardes" => ["Vertu de vaillance", "Vertu de ruse", "vertu de prescience"]}]},
-"Batailleur"        => {klass: batailleur       , features: ["Accentuation psionique", "Défense psionique", {"Étude psionique" => ["Résistance de combat", "Vitesse de la pensée"]}]},
-"Druide"            => {klass: druide           , features: ["Harmonie de la nature", {"Aspect primal" => ["Gardien primal", "Prédateur primal", "Nuée primale"]}, "Magie rituelle", "Métamorphose animale"]},
-"Ensorceleur"       => {klass: ensorceleur      , features: [{"Source des sorts" => ["Magie draconique", "Magie sauvage", "Magie des tempêtes", "Magie cosmique"]}]},
-"Façonneur"         => {klass: faconneur        , features: [{"Bonification arcanique" => ["Partage d'énergie", "Intensification d'énergie"]}, "Infusion vulnéraire" , "Jouvence arcanique", "Magie rituelle"]},
-"Flamboyant"        => {klass: flamboyant       , features: ["Accentuation psionique", {"Manteau flamboyant" => ["Manteau d'allégresse", "Manteau de clarté"]}, "Regain flamboyant"]},
-"Gardien"           => {klass: gardien          , features: ["Fontaine de vie", {"Puissance du gardien" => ["Force de la terre", "Sang indompté", "Coeur de tempête", "Esprit vital"]}, "Colère de la nature"]},
-"Guerrier"          => {klass: guerrier         , features: ["Catégorie d'arme favorite", "Défi en combat", "Supériorité au combat", "Technique de la tempête", "Vigueur du guerrier téméraire", "Agilité en combat", "Style du bagarreur"]},
-"Invocateur"        => {klass: invocateur       , features: [{"Alliance divine" => ["Alliance de colère", "Alliance protectrice", "Alliance de malédiction"]}, "Conduit divin", "Magie rituelle" ]},
-"Limier"            => {klass: limier           , features: [{"Lien du limier" => ["Lien désincarné", "Lien du sang"]}, "Tir implacable"]},
-"Mage lames"        => {klass: mage_lames       , features: ["Écran du mage d'armes", {"Égide du mage d'armes" => ["Égide défensive", "Égide offensive"]}, "Porte-lame"]},
-"Magicien"          => {klass: magicien         , features: ["Grimoire d'arcaniste", "Magie rituelle", {"Maîtrise des focaliseurs arcaniques" =>["Baguette de défense", "Bâton de défense", "Orbe du châtiment", "Orbe de tromperie", "Tome de coercition", "Tome de préparation"]}, "Tour de magie"]},
-"Maître de guerre"  => {klass: maitre_guerre    , features: [{"Autorité naturelle" => ["Présence inspiratrice", "Présence tactique", "Présence ingénieuse", "Présence intrépide", "Présence perspicace", "Présence du tirailleur"]}, "Chef de troupe", "Parole inspiratrice", "Chef avisé", "Maître de guerre archer", "Chef d'assaut"]},
-"Moine"             => {klass: moine            , features: ["Combattant à mains nues", "Défense sans armure", {"Poing de pierre" => ["Déluge de coups", "Bastion mental"]}, {"Soufle centré" => ["Déluge de coups", "Équilibre mental"]}]},
-"Paladin"           => {klass: paladin          , features: ["Conduit divin", "Défi divin", "Imposition des mains"]},
-"Prêtre"            => {klass: pretre           , features: ["Conduit divin", "Magie rituelle", "Mot de guérison", "Savoir de soigneur"]},
-"Prêtre des runes"  => {klass: pretre_runes     , features: ["Maître des runes", "Rune de préparation", {"Tradition runique" => ["Marteau de l'ire", "Parole du défi"]}]},
-"Psion"             => {klass: psion            , features: ["Accentuation psionique", {"Discipline de spécialisation" => ["Spécialisation en télékinésie", "Spécialisation en télépathie"]}, "Magie rituelle"]},
-"Rôdeur"            => {klass: rodeur           , features: [{"Style de combat" => ["Style de combat à distance", "Style de combat à deux armes", "Maîtrise des bêtes", "Style du combat du chasseur", "Style de combat du maraudeur"]}, "Tir de proximité", "Traque", "Course d'assaut"]},
-"Shaman"            => {klass: shaman           , features: [{"Compagnon spirituel" => ["Esprit protecteur", "Esprit prédateur", "Esprit du guetteur", "Esprit du messager des mondes"]}, "Guérison spirituelle", "Communication avec les esprits"]},
-"Sorcier"           => {klass: sorcier          , features: ["Décharge occulte", "Déplacement enténébré", "Envoûtement", {"Pacte occulte" => ["Pacte féerique", "Pacte infernal", "Pacte stellaire", "Pacte des vestiges"]}, "Tir de proximité"]},
-"Vengeur"           => {klass: vengeur          , features: ["Armure de la foi", {"Censure du vengeur" => ["Censure de poursuite", "Censure rétributive", "Censure collective"]}, "Conduit divin", "Serment d'inimitié"]},
-"Voleur"            => {klass: voleur           , features: ["Armes du voleur", "Attaque sournoise", "Frappe de la mante", {"Tactique du roublard" => ["Brute des bas-fonds", "Esthète de l'esquive", "Ruffian impitoyable", "Furtivité"]}, "Tireur d'élite"]}
-}.each do |klass, info|
-  info[:features].each do |feature|
-    if feature.kind_of?(Hash)
-      feature.each do |top_feature, children_feature|
-        t = KlassFeature.create(name: top_feature, klasses: [info[:klass]], status: "top")
-        children_feature.each do |child|
-          KlassFeature.create(name: child, klasses: [info[:klass]], top_feature: t, status: "child")
-        end
-      end
-    else
-      c = KlassFeature.find_by_name(feature)
-      if c.nil?
-        KlassFeature.create(name: feature, klasses: [info[:klass]], status: "solo")
-      else
-        c.klasses << info[:klass]
-        c.save
-      end
-    end
-  end
-end
+
+KlassFeature.create(
+  name: "Agilité du barbare",
+  klasses: [barbare],
+  description: "Tant que vous ne portez pas d'armure lourde, vous bénéficiez d'un bonus de +1 à votre CA et vos Réflexes. Ce bonus passe à +2 au niveau 11 et +3 au niveau 21.",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Carnage",
+  klasses: [barbare],
+  description: "Sur un coup critique, une fois par round, vous pouvez effectuer une attaque de base de corps à corps en action libre.",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Frappe enragée",
+  klasses: [barbare],
+  description: "Les pouvoirs d'attaque quotidiens du barbare s'accompagnent du mot-clé Rage.",
+  required: "required"
+)
+force_indomptable = KlassFeature.create(
+  name: "Force indomptable",
+  klasses: [barbare],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Ardeur sanguinaire",
+  klasses: [barbare],
+  description: "Vous gagnez le pouvoir Charge véloce. En outre, lorsque vous amenez un adversaire à 0 point de vie, vous gagnez des points de vie temporaire égaux à votre modificateur de Constitution.",
+  parent_feature: force_indomptable,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Triomphe du champion",
+  klasses: [barbare],
+  description: "",
+  parent_feature: force_indomptable,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Colère du fils du tonnerre",
+  klasses: [barbare],
+  description: "",
+  parent_feature: force_indomptable,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Faucheur tournoyant",
+  klasses: [barbare],
+  description: "",
+  parent_feature: force_indomptable,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Chant apaisant",
+  klasses: [barde],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Formation de barde",
+  klasses: [barde],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Multiclassage versatile",
+  klasses: [barde],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Paroles d'amitié",
+  klasses: [barde],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Paroles de majesté",
+  klasses: [barde],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Savoir-faire polyvalent",
+  klasses: [barde],
+  description: "",
+  required: "required"
+)
+vertu_barde = KlassFeature.create(
+  name: "Vertu des bardes",
+  klasses: [barde],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Vertu de vaillance",
+  klasses: [barde],
+  description: "",
+  parent_feature: vertu_barde,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Vertu de ruse",
+  klasses: [barde],
+  description: "",
+  parent_feature: vertu_barde,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Vertu de prescience",
+  klasses: [barde],
+  description: "",
+  parent_feature: vertu_barde,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Accentuation psionique",
+  klasses: [batailleur, flamboyant, psion],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Défense psionique",
+  klasses: [batailleur],
+  description: "",
+  required: "required"
+)
+etude_psionqiue = KlassFeature.create(
+  name: "Étude psionique",
+  klasses: [batailleur],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Résistance de combat",
+  klasses: [batailleur],
+  description: "",
+  parent_feature: etude_psionqiue,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Vitesse de la pensée",
+  klasses: [batailleur],
+  description: "",
+  parent_feature: etude_psionqiue,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Harmonie de la nature",
+  klasses: [druide],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Magie rituelle",
+  klasses: [druide, faconneur, invocateur, magicien, pretre, psion],
+  description: "Vous gagnez le talent Lanceur de rituels (cf. p.199) en tant que talent supplémentaire, ce qui vous permet d’utiliser des rituels magiques (cf. Chapitre 10).",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Métamorphose animale",
+  klasses: [druide],
+  description: "",
+  required: "required"
+)
+aspect_primal = KlassFeature.create(
+  name: "Aspect primal",
+  klasses: [druide],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Gardien primal",
+  klasses: [druide],
+  description: "",
+  parent_feature: aspect_primal,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Prédateur primal",
+  klasses: [druide],
+  description: "",
+  parent_feature: aspect_primal,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Nuée primale",
+  klasses: [druide],
+  description: "",
+  parent_feature: aspect_primal,
+  required: "choice_1"
+)
+source_sorts = KlassFeature.create(
+  name: "Source des sorts",
+  klasses: [ensorceleur],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Magie draconique",
+  klasses: [ensorceleur],
+  description: "",
+  parent_feature: source_sorts,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Magie sauvage",
+  klasses: [ensorceleur],
+  description: "",
+  parent_feature: source_sorts,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Magie des tempêtes",
+  klasses: [ensorceleur],
+  description: "",
+  parent_feature: source_sorts,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Magie cosmique",
+  klasses: [ensorceleur],
+  description: "",
+  parent_feature: source_sorts,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Infusion vulnéraire",
+  klasses: [faconneur],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Jouvence arcanique",
+  klasses: [faconneur],
+  description: "",
+  required: "required"
+)
+bonification = KlassFeature.create(
+  name: "Bonification arcanique",
+  klasses: [faconneur],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Partage d'énergie",
+  klasses: [faconneur],
+  description: "",
+  parent_feature: bonification,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Intensification d'énergie",
+  klasses: [faconneur],
+  description: "",
+  parent_feature: bonification,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Regain flamboyant",
+  klasses: [flamboyant],
+  description: "",
+  required: "required"
+)
+manteau_flamboyant = KlassFeature.create(
+  name: "Manteau flamboyant",
+  klasses: [flamboyant],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Manteau d'allégresse",
+  klasses: [flamboyant],
+  parent_feature: manteau_flamboyant,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Manteau de clarté",
+  klasses: [flamboyant],
+  description: "",
+  parent_feature: manteau_flamboyant,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Fontaine de vie",
+  klasses: [gardien],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Colère de la nature",
+  klasses: [gardien],
+  description: "",
+  required: "required"
+)
+puissance_gardien = KlassFeature.create(
+  name: "Puissance du gardien",
+  klasses: [gardien],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Force de la terre",
+  klasses: [gardien],
+  description: "",
+  parent_feature: puissance_gardien,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Sang indompté",
+  klasses: [gardien],
+  description: "",
+  parent_feature: puissance_gardien,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Coeur de tempête",
+  klasses: [gardien],
+  description: "",
+  parent_feature: puissance_gardien,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Esprit vital",
+  klasses: [gardien],
+  description: "",
+  parent_feature: puissance_gardien,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Défi en combat",
+  klasses: [guerrier],
+  description: "Il est dangereux d'ignorer un guerrier au combat.
+  À chaque fois que vous attaquez un ennemi, que votre coup le touche ou pas, vous avez la possibilité de le marquer.
+  La marque dure jusqu'à la ﬁn de votre tour de jeu suivant. Tant qu'une cible est marquée. elle subit un malus de -2 aux jets d`attaque qui ne vous prennent pas pour cible. Une créature ne peut être sujette qu'à une marque à la fois, une nouvelle marque remplaçant la précédente.
+  De plus, à chaque fois qu'un ennemi marqué qui vous est adjacent se décale ou effectue une attaque dont vous n'êtes pas la cible. vous pouvez lui porter une attaque de base de corps à corps au pris, d'une interruption immédiate.",
+  required: "required"
+)
+categorie_arme_favorite = KlassFeature.create(
+  name: "Catégorie d'arme favorite",
+  klasses: [guerrier],
+  description: "Choisissez une catégorie d`armes : armes à une main ou armes à deux mains. Lorsque vous utilisez une arme de cette catégorie. vous bénéficiez d'un bonus de +1 aux jets d'attaque.",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Technique de la tempête",
+  klasses: [guerrier],
+  description: "",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Vigueur du guerrier téméraire",
+  klasses: [guerrier],
+  description: "",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Style du bagarreur",
+  klasses: [guerrier],
+  description: "",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Supériorité au combat",
+  klasses: [guerrier],
+  description: "Vous bénéﬁciez d`un bonus égal à votre modificateur de Sagesse aux attaques d`opportunité. Si le déplacement d'un ennemi provoque une attaque d'opportunité et que vous le touchez. il interrompt immédiatement son déplacement.  S'il lui reste des actions. il peut en entreprendre pour poursuivre son déplacement.",
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Agilité au combat",
+  klasses: [guerrier],
+  description: "",
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Arme à une main",
+  klasses: [guerrier],
+  description: "+1 aux jets d'attaque avec les armes à une main.",
+  parent_feature: categorie_arme_favorite,
+  required: "choice_3"
+)
+KlassFeature.create(
+  name: "Arme à deux mains",
+  klasses: [guerrier],
+  description: "+1 aux jets d'attaque avec les armes à deux mains.",
+  parent_feature: categorie_arme_favorite,
+  required: "choice_3"
+)
+KlassFeature.create(
+  name: "Conduit divin",
+  klasses: [invocateur, paladin, pretre, vengeur],
+  description: "",
+  required: "required"
+)
+alliance_divine = KlassFeature.create(
+  name: "Alliance divine",
+  klasses: [invocateur],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Alliance de colère",
+  klasses: [invocateur],
+  description: "",
+  parent_feature: alliance_divine,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Alliance protectrice",
+  klasses: [invocateur],
+  description: "",
+  parent_feature: alliance_divine,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Alliance de malédiction",
+  klasses: [invocateur],
+  description: "",
+  parent_feature: alliance_divine,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Tir implacable",
+  klasses: [limier],
+  description: "",
+  required: "required"
+)
+lien_limier = KlassFeature.create(
+  name: "Lien du limier",
+  klasses: [limier],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Lien désincarné",
+  klasses: [limier],
+  description: "",
+  parent_feature: lien_limier,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Lien du sang",
+  klasses: [limier],
+  description: "",
+  parent_feature: lien_limier,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Porte-lame",
+  klasses: [mage_lames],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Écran du mage d'armes",
+  klasses: [mage_lames],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+ecran_mage_lame = KlassFeature.create(
+  name: "Égide du mage d'armes",
+  klasses: [mage_lames],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Égide défensive",
+  klasses: [mage_lames],
+  description: "",
+  parent_feature: ecran_mage_lame,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Égide offensive",
+  klasses: [mage_lames],
+  description: "",
+  parent_feature: ecran_mage_lame,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Égide prédatrice",
+  klasses: [mage_lames],
+  description: "",
+  parent_feature: ecran_mage_lame,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Tour de magie",
+  klasses: [magicien],
+  description: "Les tours de magie sont des sorts mineurs que vous acquerrez au niveau 1. Vous pouvez ainsi employer les sorts de <i>lumière</i>, <i>manipulation à distance</i>, <i>prestidigitation</i> et <i>son imaginaire</i> en tant que pouvoir à volonté.",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Grimoire",
+  klasses: [magicien],
+  description: "Vous possédez un grimoire, livre rempli de savoir mystique dans lequel vous gardez une trace écrite de vos rituels et de vos sorts quotidiens et utilitaires. (cf MdJ1 p.74)",
+  required: "required"
+)
+maitrise_foca_arca = KlassFeature.create(
+  name: "Maîtrise des focaliseurs arcaniques",
+  klasses: [magicien],
+  description: "Vous vous spécialiser dans un type de Focaliseur pour profiter d'avantages supplémentaires quand vous y recouvrez.",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Baguette de précision",
+  klasses: [magicien],
+  description: "Une fois par rencontre. vous pouvez. au prix d'une action libre, bénéficiez d'un bonus égal à votre modificateur de Dextérité à un jet d'attaque unique. Vous ne pouvez profiter de cet avantage que si vous vous servez de la baguette. Cette forme de maîtrise est idéale pour les magiciens de guerre, car elle leur permet de faire plus souvent mouche avec leurs pouvoirs dévastateurs.",
+  parent_feature: maitrise_foca_arca,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Bâton de défense",
+  klasses: [magicien],
+  description: "
+il vous confère un bonus de +1 à la CA. Par ailleurs, une fois par rencontre, dans le cadre d'une interruption immédiate, vous pouvez bénéficiez d'un bonus égal à votre modificateur de Constitution à la défense contre une attaque. Vous pouvez recourir à ce bonus même si me MD vous a déjà informé du total des dégâts infligés par l'attaque. Vous ne pouvez profiter de ces avantages que si vous vous servez du bâton. Cette forme de maîtrise est utile pour tous les magiciens, qu'ils s’intéressent aux sorts de contrôle ou à ceux infligeant des dégâts.",
+  parent_feature: maitrise_foca_arca,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Orbe du châtiment",
+  klasses: [magicien],
+  description: "Une fois par rencontre. vous pouvez, au prix d'une action libre, vous servir de votre orbe pour acquérir l'un des deux effets suivants.
+Vous pouvez désigner une créature sur laquelle vous avez lancé un sort de magicien dont les effets persistent jusqu'à ce que le sujet ait réussi un jet de sauvegarde. Cette créature subit un malus égal à votre modificateur de Sagesse aux jets de sauvegarde contre cet effet.
+Au lieu de cela, vous pouvez choisir de rallonger la durée d'un effet créé par un sort à volonté de magicien (comme <i>nuage de dague</i> ou <i>rayon de givre</i> qui se terminerait sans cela à la fin de votre tour de jeu actuel. L'effet persiste alors jusqu'à la fin de votre tour de jeu suivant.
+Vous ne pouvez profiter de ces avantages que si vous vous servez de l'orbe. Les magiciens manipulateurs choisissent généralement cette forme de maîtrise, car elle leur permet de prolonger la durée de leurs sorts de contrôle.",
+  parent_feature: maitrise_foca_arca,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Orbe de tromperie",
+  klasses: [magicien],
+  description: "",
+  parent_feature: maitrise_foca_arca,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Tome de coercition",
+  klasses: [magicien],
+  description: "",
+  parent_feature: maitrise_foca_arca,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Tome de préparation",
+  klasses: [magicien],
+  description: "",
+  parent_feature: maitrise_foca_arca,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Parole inspiratrice",
+  klasses: [maitre_guerre],
+  description: "",
+  required: "required"
+)
+autorite_naturelle = KlassFeature.create(
+  name: "Autorité naturelle",
+  klasses: [maitre_guerre],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Présence inspiratrice",
+  klasses: [maitre_guerre],
+  description: "",
+  parent_feature: autorite_naturelle,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Présence tactique",
+  klasses: [maitre_guerre],
+  description: "",
+  parent_feature: autorite_naturelle,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Présence ingénieuse",
+  klasses: [maitre_guerre],
+  description: "",
+  parent_feature: autorite_naturelle,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Présence intrépide",
+  klasses: [maitre_guerre],
+  description: "",
+  parent_feature: autorite_naturelle,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Présence perspicace",
+  klasses: [maitre_guerre],
+  description: "",
+  parent_feature: autorite_naturelle,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Présence du tirailleur",
+  klasses: [maitre_guerre],
+  description: "",
+  parent_feature: autorite_naturelle,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Chef de troupe",
+  klasses: [maitre_guerre],
+  description: "",
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Chef avisé",
+  klasses: [maitre_guerre],
+  description: "",
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Chef d'assaut",
+  klasses: [maitre_guerre],
+  description: "",
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Maître de guerre archer",
+  klasses: [maitre_guerre],
+  description: "",
+  required: "choice_3"
+)
+KlassFeature.create(
+  name: "Combattant à mains nues",
+  klasses: [moine],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Défense sans armure",
+  klasses: [moine],
+  description: "",
+  required: "required"
+)
+tradition_monastique = KlassFeature.create(
+  name: "Tradition monastique",
+  klasses: [moine],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Poing de pierre",
+  klasses: [moine],
+  description: "",
+  parent_feature: tradition_monastique,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Soufle centré",
+  klasses: [moine],
+  description: "",
+  parent_feature: tradition_monastique,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Défi divin",
+  klasses: [paladin],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Imposition des mains",
+  klasses: [paladin],
+  description: "",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Serment ardent",
+  klasses: [paladin],
+  description: "",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Toucher de la vertu",
+  klasses: [paladin],
+  description: "",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Mot de guérison",
+  klasses: [pretre],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Savoir de soigneur",
+  klasses: [pretre],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Maître des runes",
+  klasses: [pretre_runes],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Runes de préparation",
+  klasses: [pretre_runes],
+  description: "",
+  required: "required"
+)
+tradition_runique = KlassFeature.create(
+  name: "Tradition runique",
+  klasses: [pretre_runes],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Marteau de l'ire",
+  klasses: [pretre_runes],
+  description: "",
+  parent_feature: tradition_runique,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Parole du défi",
+  klasses: [pretre_runes],
+  description: "",
+  parent_feature: tradition_runique,
+  required: "choice_1"
+)
+discipline_spe = KlassFeature.create(
+  name: "Discipline de spécialisation",
+  klasses: [psion],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Spécialisation en télékinésie",
+  klasses: [psion],
+  description: "",
+  parent_feature: discipline_spe,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Spécialisation en télépathie",
+  klasses: [psion],
+  description: "",
+  parent_feature: discipline_spe,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Traque",
+  klasses: [rodeur],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Maîtrise des bêtes",
+  klasses: [rodeur],
+  description: "",
+  required: "choice_1"
+)
+style_combat = KlassFeature.create(
+  name: "Style de combat",
+  klasses: [rodeur],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Style de combat à distance",
+  klasses: [rodeur],
+  description: "",
+  parent_feature: style_combat,
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Style de combat à deux armes",
+  klasses: [rodeur],
+  description: "",
+  parent_feature: style_combat,
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Style du combat du chasseur",
+  klasses: [rodeur],
+  description: "",
+  parent_feature: style_combat,
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Style de combat du maraudeur",
+  klasses: [rodeur],
+  description: "",
+  parent_feature: style_combat,
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Tir de proximité",
+  klasses: [rodeur, sorcier],
+  description: "",
+  required: "choice_3"
+)
+KlassFeature.create(
+  name: "Course d'assaut",
+  klasses: [rodeur],
+  description: "",
+  required: "choice_3"
+)
+KlassFeature.create(
+  name: "Guérison spirituelle",
+  klasses: [shaman],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Communication avec les esprits",
+  klasses: [shaman],
+  description: "",
+  required: "required"
+)
+compagnon = KlassFeature.create(
+  name: "Compagnon sprituel",
+  klasses: [shaman],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Esprit protecteur",
+  klasses: [shaman],
+  description: "",
+  parent_feature: compagnon,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Esprit prédateur",
+  klasses: [shaman],
+  description: "",
+  parent_feature: compagnon,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Esprit du guetteur",
+  klasses: [shaman],
+  description: "",
+  parent_feature: compagnon,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Esprit du messager des mondes",
+  klasses: [shaman],
+  description: "",
+  parent_feature: compagnon,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Décharge occulte",
+  klasses: [sorcier],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Déplacement enténébré",
+  klasses: [sorcier],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Envoûtement",
+  klasses: [sorcier],
+  description: "",
+  required: "required"
+)
+pacte_occulte = KlassFeature.create(
+  name: "Pacte occulte",
+  klasses: [sorcier],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Pacte féerique",
+  klasses: [sorcier],
+  description: "",
+  parent_feature: pacte_occulte,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Pacte infernal",
+  klasses: [sorcier],
+  description: "",
+  parent_feature: pacte_occulte,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Pacte stellaire",
+  klasses: [sorcier],
+  description: "",
+  parent_feature: pacte_occulte,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Pacte des vestiges",
+  klasses: [sorcier],
+  description: "",
+  parent_feature: pacte_occulte,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Armure de la foi",
+  klasses: [vengeur],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Serment d'inimitié",
+  klasses: [vengeur],
+  description: "",
+  required: "required"
+)
+censure_vengeur = KlassFeature.create(
+  name: "Censure du vengeur",
+  klasses: [vengeur],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Censure de poursuite",
+  klasses: [vengeur],
+  description: "",
+  parent_feature: censure_vengeur,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Censure rétributive",
+  klasses: [vengeur],
+  description: "",
+  parent_feature: censure_vengeur,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Censure collective",
+  klasses: [vengeur],
+  description: "",
+  parent_feature: censure_vengeur,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Attaque sournoise",
+  klasses: [voleur],
+  description: "",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Frappe de la mante",
+  klasses: [voleur],
+  description: "",
+  required: "required"
+)
+tactique_roublard = KlassFeature.create(
+  name: "Tactique du roublard",
+  klasses: [voleur],
+  description: "choisissez une aptitude parmi les options suivantes",
+  required: "required"
+)
+KlassFeature.create(
+  name: "Brute des bas-fonds",
+  klasses: [voleur],
+  description: "",
+  parent_feature: tactique_roublard,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Esthète de l'esquive",
+  klasses: [voleur],
+  description: "",
+  parent_feature: tactique_roublard,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Ruffian impitoyable",
+  klasses: [voleur],
+  description: "",
+  parent_feature: tactique_roublard,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Furtivité",
+  klasses: [voleur],
+  description: "",
+  parent_feature: tactique_roublard,
+  required: "choice_1"
+)
+KlassFeature.create(
+  name: "Armes du voleur",
+  klasses: [voleur],
+  description: "",
+  required: "choice_2"
+)
+KlassFeature.create(
+  name: "Tireur d'élite",
+  klasses: [voleur],
+  description: "",
+  required: "choice_2"
+)
 
 God.create([
 {name: "Amaunator"           , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Soleil"},

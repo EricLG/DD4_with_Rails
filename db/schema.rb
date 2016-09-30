@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903133100) do
+ActiveRecord::Schema.define(version: 20160927193400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160903133100) do
     t.string   "height"
     t.string   "weight"
     t.string   "alignment"
-    t.string   "divinity"
     t.string   "party"
     t.integer  "status"
     t.hstore   "stats"
@@ -197,6 +196,14 @@ ActiveRecord::Schema.define(version: 20160903133100) do
 
   add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
 
+  create_table "features_choices", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "klass_feature_id"
+  end
+
+  add_index "features_choices", ["character_id"], name: "index_features_choices_on_character_id", using: :btree
+  add_index "features_choices", ["klass_feature_id"], name: "index_features_choices_on_klass_feature_id", using: :btree
+
   create_table "games", force: :cascade do |t|
     t.datetime "played"
     t.text     "description"
@@ -235,13 +242,13 @@ ActiveRecord::Schema.define(version: 20160903133100) do
   create_table "klass_features", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "status"
-    t.integer  "top_feature_id"
+    t.string   "required"
+    t.integer  "parent_feature_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "klass_features", ["top_feature_id"], name: "index_klass_features_on_top_feature_id", using: :btree
+  add_index "klass_features", ["parent_feature_id"], name: "index_klass_features_on_parent_feature_id", using: :btree
 
   create_table "klass_features_klasses", id: false, force: :cascade do |t|
     t.integer "klass_feature_id"

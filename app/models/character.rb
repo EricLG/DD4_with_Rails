@@ -8,6 +8,8 @@ class Character < ActiveRecord::Base
   belongs_to :klass
   belongs_to :god
   has_and_belongs_to_many :games
+  has_many :features_choices
+  has_many :klass_features, through: :features_choices
 
   STATS = %w(strength constitution dexterity intelligence wisdom charisma)
   LEVEL_STATS = %w(4 8 11 14 18 21 24 28)
