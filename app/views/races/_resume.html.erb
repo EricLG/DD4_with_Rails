@@ -15,7 +15,7 @@
       <% if race.skill %>
         <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("skill")%></strong> : <%= race.skill.to_s %> </li>
       <% end %>
-      <% race.race_features.each do |f| %>
+      <% race.race_features.main_ft.each do |f| %>
         <li class="list-group-item no-border-line bg"><strong><%= f.name %></strong> : <%= f.description.html_safe %></li>
       <% end %>
       <li class="list-group-item no-border-line bg"></li>
