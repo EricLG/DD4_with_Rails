@@ -289,7 +289,7 @@ Location.create([
   { name: "Focaliseur"          , code: "implement"},
   { name: "Compagnon"           , code: "companion"},
   { name: "Objets merveilleux"  , code: "wonderful_object"},
-  { name: "Consommmables"       , code: "expendable"},
+  { name: "Consommables"        , code: "expendable"},
   { name: "Munition"            , code: "ammo"},
 ])
 
@@ -336,7 +336,7 @@ RaceFeature.create(races: [eladrin],                  name: "Volonté éladrine"
 RaceFeature.create(races: [elfe],                     name: "Maniement des armes elfiques",     description: "vous êtes formé au maniement de l'arc court et de l'arc long.")
 RaceFeature.create(races: [elfe],                     name: "Pas assuré",                       description: "vous ignorez un terrain difficile lorsque vous vous décalez (même si vous possédez un pouvoir vous permettant de vous décalez sur plusieurs cases).")
 RaceFeature.create(races: [elfe],                     name: "Précision elfique",                description: "vous pouvez utilisez <em>Précision elfique</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [elfe],                     name: "Vigilance de groupe",              description: "vous conférez un bonus racial de +1 aux tests de Perception de tous vos alliés non elfes situés dans un rauon de 5 cases.")
+RaceFeature.create(races: [elfe],                     name: "Vigilance de groupe",              description: "vous conférez un bonus racial de +1 aux tests de Perception de tous vos alliés non elfes situés dans un rayon de 5 cases.")
 RaceFeature.create(races: [halfelin],                 name: "Audacieux",                        description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre la terreur.")
 RaceFeature.create(races: [halfelin],                 name: "Deuxième chance",                  description: "vous pouvez utilisez <em>Deuxième chance</em> en tant que pouvoir de rencontre.")
 RaceFeature.create(races: [halfelin],                 name: "Réflexes éclair",                  description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunité.")
@@ -2065,7 +2065,7 @@ God.create([
 {name: "Chauntéa"            , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Vie"},
 {name: "Corellon"            , rank: "Majeurs",   alignment: "Bon"                , influence: "Fées"},
 {name: "Cyric"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Conflit"},
-{name: "Erathis"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Civilisation"},
+{name: "Érathis"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Civilisation"},
 {name: "Garl Brilledor"      , rank: "Mineurs",   alignment: "Bon"                , influence: "Protection"},
 {name: "Ghaunadaur"          , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Abominations"},
 {name: "Gond"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Artisanat"},
@@ -2075,13 +2075,13 @@ God.create([
 {name: "Kelemvor"            , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Mort"},
 {name: "Kord"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Bataille"},
 {name: "Lolth"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Drows"},
-{name: "Mailiki"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Forêts"},
+{name: "Mailikki"            , rank: "Mineurs",   alignment: "Bon"                , influence: "Forêts"},
 {name: "Mélora"              , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Mer"},
 {name: "Moradin"             , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Nains"},
 {name: "Oghma"               , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Connaissance"},
 {name: "Pélor"               , rank: "Mineurs",   alignment: "Bon"                , influence: "Été"},
 {name: "Reine Corneille"     , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Hiver"},
-{name: "Séhanine"            , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Automne"},
+{name: "Sehanine"            , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Automne"},
 {name: "Séluné"              , rank: "Majeurs",   alignment: "Bon"                , influence: "Lune"},
 {name: "Shar"                , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Ombres"},
 {name: "Sheela Peryroyl"     , rank: "Mineurs",   alignment: "Bon"                , influence: "Beauté"},
@@ -2095,6 +2095,7 @@ God.create([
 {name: "Waukyne"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Marchands"},
 {name: "Zéhir"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Poison"}
 ])
+
 # password: plop
 User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')
 
