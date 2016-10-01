@@ -60,15 +60,15 @@ class CharactersController < ApplicationController
     @klass = @character.klass
 
     if params && params["character"]
-      choices = params["character"]["features_choice_ids"].values.flatten
-      @character.features_choices.clear
+      choices = params["character"]["character_choice_ids"].values.flatten
+      @character.character_choices.klass_features_choices.clear
       features = KlassFeature.find choices
       features.each do |f|
         choices << f.parent_feature_id unless f.parent_feature_id.nil?
       end
       choices = choices.uniq
       choices.each do |c|
-        FeaturesChoice.create(character: @character, klass_feature_id: c)
+        CharacterChoice.create(character: @character, klass_feature_id: c)
       end
     end
   end
@@ -206,7 +206,7 @@ class CharactersController < ApplicationController
       :level_24_charisma,
       :level_28_charisma,
       {game_ids:[]},
-      {features_choice_ids:[]},
+      {character_choice_ids:[]},
       )
   end
 

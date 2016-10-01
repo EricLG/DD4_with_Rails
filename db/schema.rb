@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927193400) do
+ActiveRecord::Schema.define(version: 20161001174700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 20160927193400) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "character_choices", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "klass_feature_id"
+    t.integer "race_feature_id"
+    t.integer "language_id"
+  end
+
+  add_index "character_choices", ["character_id"], name: "index_character_choices_on_character_id", using: :btree
+  add_index "character_choices", ["klass_feature_id"], name: "index_character_choices_on_klass_feature_id", using: :btree
+  add_index "character_choices", ["language_id"], name: "index_character_choices_on_language_id", using: :btree
+  add_index "character_choices", ["race_feature_id"], name: "index_character_choices_on_race_feature_id", using: :btree
 
   create_table "characters", force: :cascade do |t|
     t.string   "name"
@@ -196,14 +208,6 @@ ActiveRecord::Schema.define(version: 20160927193400) do
 
   add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
 
-  create_table "features_choices", force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "klass_feature_id"
-  end
-
-  add_index "features_choices", ["character_id"], name: "index_features_choices_on_character_id", using: :btree
-  add_index "features_choices", ["klass_feature_id"], name: "index_features_choices_on_klass_feature_id", using: :btree
-
   create_table "games", force: :cascade do |t|
     t.datetime "played"
     t.text     "description"
@@ -285,6 +289,16 @@ ActiveRecord::Schema.define(version: 20160927193400) do
 
   add_index "klasses_weapon_categories", ["klass_id"], name: "index_klasses_weapon_categories_on_klass_id", using: :btree
   add_index "klasses_weapon_categories", ["weapon_category_id"], name: "index_klasses_weapon_categories_on_weapon_category_id", using: :btree
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "language"
+    t.string   "writing"
+    t.string   "spoken_by"
+    t.text     "description"
+    t.boolean  "level_1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -394,9 +408,13 @@ ActiveRecord::Schema.define(version: 20160927193400) do
   create_table "race_features", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.string   "required",          default: "required"
+    t.integer  "parent_feature_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "race_features", ["parent_feature_id"], name: "index_race_features_on_parent_feature_id", using: :btree
 
   create_table "race_features_races", id: false, force: :cascade do |t|
     t.integer "race_feature_id"

@@ -322,13 +322,14 @@ tieffelin            = Race.create(name: "Tieffelin",            skill: Skill.ne
 
 RaceFeature.create(races: [eladrin, elfe, gnome, silvyen, drow],  name: "Origine féerique",     description: "vos ancêtres étaient natifs de Féerie, vous êtes donc considéré comme une créature féerique au regard des effets liés à cette origine.")
 RaceFeature.create(races: [cristallien, forgelier],   name: "Créature artificielle vivante",    description: "vous êtes une créature artificielle vivante. Vous n'avez pas besoin de manger, de boire, de respirer et de dormir. Vous n'effectuez jamais de tests d'Endurance pour résister aux effets de la faim, de la soif ou de l'asphyxie.")
-RaceFeature.create(races: [demi_elfe],                name: "Dilettante",                       description: "au niveau 1, vous choisissez un pouvoir à volonté d'une classe différente de la vôtre, que vous pouvez utiliser en tant que pouvoir de rencontre.")
+RaceFeature.create(races: [demi_elfe], required: "choice_1", name: "Dilettante",                description: "au niveau 1, vous choisissez un pouvoir à volonté d'une classe différente de la vôtre, que vous pouvez utiliser en tant que pouvoir de rencontre.")
+RaceFeature.create(races: [demi_elfe], required: "choice_1", name: "La clé du succès",          description: "vous pouvez utiliser <em>la clé du succès</em> en tant que pouvoir de rencontre.")
 RaceFeature.create(races: [demi_elfe],                name: "Diplomatie de groupe",             description: "vous conférez un bonus racial de +1 aux tests de Diplomatie de tous vos alliés situés dans un rayon de 10 cases.")
 RaceFeature.create(races: [demi_elfe],                name: "Double héritage",                  description: "vous avez accès aux talents ayant elfe ou humain comme prérequis (ainsi que ceux qui s'adressent spécifiquement aux demi-elfes), du moment que vous remplissez les autres conditions.")
 RaceFeature.create(races: [drakeide],                 name: "Fureur drakéide",                  description: "lorsque vous êtes en péril, vous bénéficiez d'un bonus racial de +1 aux jets d'attaque.")
 RaceFeature.create(races: [drakeide],                 name: "Héritage draconique",              description: "votre valeur de récupération est égale au quart de vos points de vie maximums + votre modificateur de Constitution.")
 RaceFeature.create(races: [drakeide],                 name: "Souffle de dragon",                description: "vous pouvez utilisez <em>souffle de dragon</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [eladrin],                  name: "Éclipse féerique",                 description: "vous pouvez utilisez <em>Éclipse féerique</em> en tant que pouvoir de rencontre.")
+RaceFeature.create(races: [eladrin],                  name: "Éclipse féerique",                 description: "vous pouvez utilisez <em>éclipse féerique</em> en tant que pouvoir de rencontre.")
 RaceFeature.create(races: [eladrin],                  name: "Éducation éladrine",               description: "vous bénéficiez d'une formation supplémentaire dans une compétence choisie dans la liste du Chapitre 5.")
 RaceFeature.create(races: [eladrin],                  name: "Maniement des armes éladrines",    description: "vous êtes formé au maniement de l'épée longue.")
 RaceFeature.create(races: [eladrin, drow],            name: "Transe",                           description: "plutôt que de dormir, vous entrez dans un état méditatif connu sous le nom de transe. Quatre heures de transe vous procurent les mêmes effets que six heures de repos prolongé pour toute autre race. Lorsque vous êtes en transe, vous êtes parfaitement conscient de ce qui vous entoure. Vous pouvez ainsi détecter les ennemis en approche et tout autre événement.")
@@ -342,7 +343,8 @@ RaceFeature.create(races: [halfelin],                 name: "Deuxième chance", 
 RaceFeature.create(races: [halfelin],                 name: "Réflexes éclair",                  description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunité.")
 RaceFeature.create(races: [humain],                   name: "Bonus de défense humain",          description: "vous bénéficiez d'un bonus de +1 en Vigueur, Réflexes et Volonté.")
 RaceFeature.create(races: [humain],                   name: "Compétence supplémentaire",        description: "vous gagnez une formation supplémentaire dans une de vos compétences de classe.")
-RaceFeature.create(races: [humain],                   name: "Pouvoir à volonté supplémentaire", description: "vous connaissez un pouvoir à volonté supplémentaire de votre classe.")
+RaceFeature.create(races: [humain], required: "choice_1", name: "Pouvoir à volonté supplémentaire", description: "vous connaissez un pouvoir à volonté supplémentaire de votre classe.")
+RaceFeature.create(races: [humain], required: "choice_1", name: "Effort héroïque",                  description: "vous pouvez utiliser <em>effort héroïque</em> en tant que pouvoir de rencontre.")
 RaceFeature.create(races: [humain],                   name: "Talent supplémentaire",            description: "vous gagnez un talent supplémentaire au niveau 1. Vous devez cependant en remplir les prérequis.")
 RaceFeature.create(races: [nain],                     name: "Ancré dans le sol",                description: "lorsque vous êtes la cible d'une poussée, d'un tirage ou d'une glissade, vous pouvez réduire de 1 le nombre de case de déplacement qui vous est imposé. Cela signifie qu'un effet qui pousse, tire ou fait glisser de 1 case ne vous affecte que si vous le désirez.<br>De plus, lorsqu'une attaque vous fait tomber à terre, vous pouvez immédiatement effectuer un jet de sauvegarde pour éviter cette chute.")
 RaceFeature.create(races: [nain],                     name: "Boyaux d'acier",                   description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre le poison.")
@@ -372,14 +374,17 @@ RaceFeature.create(races: [cristallien],              name: "Nuée de cristaux",
 RaceFeature.create(races: [cristallien],              name: "Télépathie",                       description: "vous pouvez communiquer par télépathie avec toute créature douée de langage située dans un rayon de 5 cases.")
 RaceFeature.create(races: [githzerai],                name: "Esprit défendu",                   description: "vous bénéficiez d'un bonus racial de +2 aux jets de sauvegarde contre les effets qui hébètent, dominent ou étourdissent.")
 RaceFeature.create(races: [githzerai],                name: "Heureuse fortune",                 description: "quand vous utilisez votre second souffle, vous pouvez vous décalez de 3 cases au prix d'une action libre.")
-RaceFeature.create(races: [githzerai],                name: "Mental d'acier",                    description: "Vous avez le pouvoir <em>Mental d'acier</em>.")
+RaceFeature.create(races: [githzerai],                name: "Mental d'acier",                   description: "Vous avez le pouvoir <em>Mental d'acier</em>.")
 RaceFeature.create(races: [githzerai],                name: "Sens du danger",                   description: "vous bénéficiez d'un bonus racial de +2 aux tests d'initiative.")
 RaceFeature.create(races: [minotaure],                name: "Charge encornée",                  description: "Vous avez le pouvoir <em>Charge encornée</em>.")
 RaceFeature.create(races: [minotaure],                name: "Charge intrépide",                 description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunités que vous provoquez lors d'une charge.")
 RaceFeature.create(races: [minotaure],                name: "Férocité",                         description: "lorsque vous êtes réduit à 0 point de vie ou moins, vous pouvez effectuer une attaque de base de corps à corps au prix d'une interruption immédiate.")
 RaceFeature.create(races: [minotaure],                name: "Vitalité",                         description: "vous avez une récupération supplémentaire")
 RaceFeature.create(races: [silvyen],                  name: "Aspect de la nature",              description: "quand vous arrivez au bout d'un repos prolongé, choisissez lequel des aspects de la nature suivant vous manifestez.<br><em>Aspect des anciens</em> : vous pouvez utilisez le pouvoir <em>Voyage des anciens</em> quand vous manifestez cet aspect.<br><em>Aspect du chasseur</em> : vous pouvez utilisez le pouvoir <em>Poursuite du chasseur</em> quand vous manifestez cet aspect.<br><em>Aspect du destructeur</em> : vous pouvez utilisez le pouvoir <em>Courroux du destructeur</em> quand vous manifestez cet aspect.")
-RaceFeature.create(races: [silvyen],                  name: "Forme endurcie",                   description: "choisissez les Réflexes, la Vigueur ou la Volonté. Vous bénéficiez d'un bonus racial de +1 dans cette défense.")
+forme_endurcie = RaceFeature.create(races: [silvyen],  name: "Forme endurcie",                   description: "choisissez les Réflexes, la Vigueur ou la Volonté. Vous bénéficiez d'un bonus racial de +1 dans cette défense.")
+RaceFeature.create(races: [silvyen], parent_feature: forme_endurcie, required:"choice_1", name: "Réflexes endurcie", description: "vous choisissez les Réflexes.")
+RaceFeature.create(races: [silvyen], parent_feature: forme_endurcie, required:"choice_1", name: "Vigueur endurcie",  description: "vous choisissez la Vigueur.")
+RaceFeature.create(races: [silvyen], parent_feature: forme_endurcie, required:"choice_1", name: "Volonté endurcie",  description: "vous choisissez la Volonté.")
 RaceFeature.create(races: [changelin],                name: "Change-forme",                     description: "vous avez le pouvoir <em>Déguisement du changelin</em>.")
 RaceFeature.create(races: [changelin],                name: "Défense mentale",                  description: "vous bénéficiez d'un bonus racial de +1 en Volonté.")
 RaceFeature.create(races: [changelin],                name: "Métamorphe",                       description: "vous êtes un métamorphe et pouvez modifier votre apparence. Vous êtes donc sujet aux effets et états préjudiciables qui affectent les métamorphes.")
@@ -392,7 +397,7 @@ RaceFeature.create(races: [kalashtar],                name: "Âme double",      
 RaceFeature.create(races: [kalashtar],                name: "Bastion de clarté mentale",        description: "vous avez le pouvoir <em>Bastion de clarté mentale</em.")
 RaceFeature.create(races: [drow],                     name: "Lolthaïque",                       description: "une fois par rencontre, vous pouvez utilisez <em>Chape d'obscurité</em> ou <em>Noirfeu</em>.")
 RaceFeature.create(races: [genasi],                   name: "Origine élémentaire",              description: "vos ancêtres étaient natifs du Chaos Élémentaire, vous êtes donc considéré comme une créature élémentaire au regard des effets liés à cette origine.")
-RaceFeature.create(races: [genasi],                   name: "Manifestation élémentaire",        description: "choisissez une manifestation élémentaire: âme d'eau, âme de feu, âme d'orage, âme de terre ou âme de vent. Cette manifestation fait partie intégrante de votre nature(le talent <em>Manifestation élémentaire</em>, p.136, vous permet cependant de prendre des manifestations en plus et d'en changer). Chaque manifestation élémentaire propose des avantages particuliers et un pouvoir de rencontre. Enfin votre apparence change selon l’élément que vous manifestez.<br>
+manif_elem = RaceFeature.create(races: [genasi],      name: "Manifestation élémentaire",        description: "choisissez une manifestation élémentaire: âme d'eau, âme de feu, âme d'orage, âme de terre ou âme de vent. Cette manifestation fait partie intégrante de votre nature(le talent <em>Manifestation élémentaire</em>, p.136, vous permet cependant de prendre des manifestations en plus et d'en changer). Chaque manifestation élémentaire propose des avantages particuliers et un pouvoir de rencontre. Enfin votre apparence change selon l’élément que vous manifestez.<br>
 <em>Âme d'eau</em> : vous pouvez respirer sous l'eau. Vous bénéficiez également d'un bonus racial de +2 aux jets de sauvegarde contre les dégâts continus et du pouvoir <em>Cours rapide</em>.<br>
 <em>Âme de feu</em> : vous bénéficiez d'un bonus racial de +1 en Réflexes, d'une résistance au feu 5 et du pouvoir <em>Retour de flammes</em>.<br>
 Au niveau 11, la résistance augmente à feu 10.<br>
@@ -404,6 +409,13 @@ Au niveau 21, la résistance augmente à électricité 15.<br>
 <em>Âme de vent</em> : vous bénéficiez d'une résistance au froid 5 du pouvoir <em>Arpenteur des vents</em>.<br>
 Au niveau 11, la résistance augmente à froid 10.<br>
 Au niveau 21, la résistance augmente à froid 15.")
+RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme d'eau",     parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme d'eau")
+RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme de feu",    parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme de feu")
+RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme d'orage",   parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme d'orage")
+RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme de terre",  parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme de terre")
+RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme de vent",   parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme de vent")
+
+
 acrobatics    = Skill.create(origin: 'required_skill_for_class', acrobatics:     5)
 arcana        = Skill.create(origin: 'required_skill_for_class', arcana:         5)
 athletics     = Skill.create(origin: 'required_skill_for_class', athletics:      5)
@@ -2096,6 +2108,19 @@ God.create([
 {name: "Zéhir"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Poison"}
 ])
 
+
+Language.create([
+  {language: "Abyssal",     writing: "Barazhad",    level_1: false, spoken_by: "Démons, gnolls, sahuagins"},
+  {language: "Commun",      writing: "Commune",     level_1: true,  spoken_by: "Halfelins, humains, tieffelins"},
+  {language: "Draconique",  writing: "Lokharique",  level_1: true,  spoken_by: "Dragons, drakéides, kobolds"},
+  {language: "Elfique",     writing: "Rellanique",  level_1: true,  spoken_by: "Éladrins, elfes, fomorians"},
+  {language: "Géant",       writing: "Davekc",      level_1: true,  spoken_by: "Géant, ogres, orques"},
+  {language: "Gobelin",     writing: "Commune",     level_1: true,  spoken_by: "Gobelins, gobelours, hobgobelins"},
+  {language: "Nain",        writing: "Davek",       level_1: true,  spoken_by: "Azers, nains"},
+  {language: "Originel",    writing: "Barazhad",    level_1: false, spoken_by: "Archons, éfrits, élémentaires"},
+  {language: "Profond",     writing: "Rellanique",  level_1: true,  spoken_by: "Flagelleurs mentaux, githyanki, kuo-toas"},
+  {language: "Universel",   writing: "Universelle", level_1: true,  spoken_by: "Anges, diables, dieux"}
+])
 # password: plop
 User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')
 

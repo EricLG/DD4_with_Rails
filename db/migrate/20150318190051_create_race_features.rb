@@ -3,6 +3,8 @@ class CreateRaceFeatures < ActiveRecord::Migration
     create_table :race_features do |t|
       t.string :name
       t.text :description
+      t.string :required, default: "required"
+      t.references :parent_feature, index: true
 
       t.timestamps
     end

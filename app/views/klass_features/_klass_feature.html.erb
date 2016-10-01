@@ -1,5 +1,5 @@
 <label>
   <% choice = klass_feature.parent_feature.try(&:required) ||klass_feature.required %>
-  <%= radio_button_tag "character[features_choice_ids][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
+  <%= radio_button_tag "character[character_choice_ids][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
   <%= klass_feature.complete_name %>
 </label><br>
