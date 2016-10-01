@@ -12,7 +12,9 @@
   <div class="col-sm-8">
 
     <%= form_for @character, url: character_choose_skills_path(@character.id), html: {class: 'form-horizontal'} do |form| %>
-
+      <div class="row">
+        <%= render "choose_race_features", form: form %>
+      </div>
       <div class="row">
         <%= render "choose_klass_features", form: form %>
       </div>
