@@ -39,17 +39,17 @@ class MagicItem < ActiveRecord::Base
             array_line = l.split(/";"/, -1)
             m = MagicItem.new()
               m.name                = ImportData.clear_field(array_line[0])
-              m.description         = ImportData.clear_field(array_line[1])
+              m.description         = ImportData.clear_field(array_line[1]).gsub("\\r\\n", "\r\n")
               m.alteration          = ImportData.clear_field(array_line[2])
               m.location            = locations.find{|lo| lo.name == ImportData.clear_field(array_line[14])}
               object_levels         = ImportData.find_level_array(m, ImportData.clear_field(array_line[3]).to_i, ImportData.clear_field(array_line[4]), levels)
               m.object_levels       = object_levels
-              m.property            = ImportData.clear_field(array_line[5])
-              m.power               = ImportData.clear_field(array_line[6])
-              m.special             = ImportData.clear_field(array_line[7])
+              m.property            = ImportData.clear_field(array_line[5]).gsub("\\r\\n", "\r\n")
+              m.power               = ImportData.clear_field(array_line[6]).gsub("\\r\\n", "\r\n")
+              m.special             = ImportData.clear_field(array_line[7]).gsub("\\r\\n", "\r\n")
               m.source              = sources.find{|s| s.name == ImportData.clear_field(array_line[8])}
               m.rarity              = ImportData.find_rarities(ImportData.clear_field(array_line[9]))
-              m.critical            = ImportData.clear_field(array_line[10])
+              m.critical            = ImportData.clear_field(array_line[10]).gsub("\\r\\n", "\r\n")
               m.weapon_groups       = ImportData.find_weapon_groups(ImportData.clear_field(array_line[11]), weapon_groups)
               m.armor_categories    = ImportData.find_armor_categories(ImportData.clear_field(array_line[12]), armor_categories)
               m.implement_group     = implement_groups.find{|ig| ig.name == ImportData.clear_field(array_line[13])}

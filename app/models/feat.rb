@@ -43,7 +43,7 @@ class Feat < ActiveRecord::Base
               prerequisited_skill:          array_line[7],
               prerequisited_klasses:        sel_klasses,
               prerequisited_races:          sel_races,
-              avantage:                     array_line[10],
+              avantage:                     array_line[10].gsub("\\r\\n", "\r\n"),
               prerequisited_stats:          stats,
               source:                       source,
               errata:                       array_line[13]
