@@ -39,7 +39,6 @@ roou = Source.find_by_name('Royaumes Oubliés')
 cda1 = Source.find_by_name('Le Comptoir de l\'Aventure 1')
 cda2 = Source.find_by_name('Le Comptoir de l\'Aventure 2')
 
-
 arbalete    = WeaponGroup.create(name:'Arbalètes')
 arc         = WeaponGroup.create(name:'Arcs')
 hast        = WeaponGroup.create(name:'Armes d\'hast')
@@ -55,7 +54,6 @@ marteau     = WeaponGroup.create(name:'Marteaux')
 massse      = WeaponGroup.create(name:'Masses')
 pic         = WeaponGroup.create(name:'Pics')
 no_group    = WeaponGroup.create(name:'Aucun')
-
 
 allonge         = WeaponProperty.create(name: "Allonge",                description:"Avec une arme à allonge, vous pouvez attaquez des ennemis situés à 2 cases (mais aussi des adversaires adjacents) sans malus à l'attaque. Par contre, vous ne pouvez effectuer d'attaques d'opportunité que contre les ennemis adjacents. De même, vous ne pouvez prendre en tenaille qu'un ennemi adjacent.")
 jet_leger       = WeaponProperty.create(name: "Arme de jet légère",     description:"Une attaque à distance normale avec une arme de jet légère s'appuie sur la Dextérité. Ces armes n'infligent pas autant de dégâts que les armes de jet lourdes, mais différents pouvoirs vous permettent d'en lancer plusieurs à la fois ou de suite.")
@@ -313,91 +311,15 @@ githzerai            = Race.create(name: "Githzerai",            skill: Skill.ne
 gnome                = Race.create(name: "Gnome",                skill: Skill.new(origin: r, arcana: 2, stealth: 2),           average_height: '1,10 m à 1,20 m',  average_weight: '25 à 37 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(intelligence:  2, charisma:      2, kind: r), Stat.new(intelligence:   2, dexterity:     2,  kind: r)], source_id: mdj2.id, cat_size: "P", speed: 5)
 goliath              = Race.create(name: "Goliath",              skill: Skill.new(origin: r, athletics: 2, nature: 2),         average_height: '2,40 m à 2,50 m',  average_weight: '140 à 170 kg', vision: 'normale',  language: 'commun, et nain ou géant',                     stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], source_id: mdj2.id, cat_size: "M", speed: 6)
 halfelin             = Race.create(name: "Halfelin",             skill: Skill.new(origin: r, acrobatics: 2, thievery: 2),      average_height: '1,15 m à 1,25 m',  average_weight: '37 à 42 kg',   vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(dexterity:     2, constitution:  2, kind: r), Stat.new(dexterity:      2, charisma:      2,  kind: r)], source_id: mdj1.id, cat_size: "P", speed: 6)
-humain               = Race.create(name: "Humain",               skill: nil,                                        average_height: '1,65 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength: 2, kind: r), Stat.new(constitution: 2, kind: r), Stat.new(dexterity: 2, kind: r), Stat.new(intelligence: 2, kind: r), Stat.new(wisdom: 2, kind: r), Stat.new(charisma: 2, kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
+humain               = Race.create(name: "Humain",               skill: nil,                                                   average_height: '1,65 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength: 2, kind: r), Stat.new(constitution: 2, kind: r), Stat.new(dexterity: 2, kind: r), Stat.new(intelligence: 2, kind: r), Stat.new(wisdom: 2, kind: r), Stat.new(charisma: 2, kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
 kalashtar            = Race.create(name: "Kalashtar",            skill: Skill.new(origin: r, insight: 2),                      average_height: '1,70 m à 1,90 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: kalashtar_language,                             stats: [Stat.new(wisdom:        2, charisma:      2, kind: r), Stat.new(wisdom:         2, intelligence:  2,  kind: r)], source_id: eber.id, cat_size: "M", speed: 6)
 minotaure            = Race.create(name: "Minotaure",            skill: Skill.new(origin: r, nature: 2, perception: 2),        average_height: '2,15 m à 2,30 m',  average_weight: '160 à 175 kg', vision: 'normale',  language: 'commun, une supplémentaire au choix',          stats: [Stat.new(strength:      2, constitution:  2, kind: r), Stat.new(strength:       2, wisdom:        2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
 nain                 = Race.create(name: "Nain",                 skill: Skill.new(origin: r, endurance: 2, dungeoneering: 2),  average_height: '1,25 m à 1,45 m',  average_weight: '80 à 110 kg',  vision: 'nocturne', language: 'commun, nain',                                 stats: [Stat.new(constitution:  2, strength:      2, kind: r), Stat.new(constitution:   2, wisdom:        2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 5)
 silvyen              = Race.create(name: "Silvyen",              skill: Skill.new(origin: r, stealth: 2, nature: 2),           average_height: '1,80 m à 1,95 m',  average_weight: '70 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              stats: [Stat.new(constitution:  2, wisdom:        2, kind: r), Stat.new(constitution:   2, dexterity:     2,  kind: r)], source_id: mdj3.id, cat_size: "M", speed: 6)
 tieffelin            = Race.create(name: "Tieffelin",            skill: Skill.new(origin: r, bluff: 2, stealth: 2),            average_height: '1,65 m à 1,85 m',  average_weight: '70 à 115 kg',  vision: 'nocturne', language: 'commun, une supplémentaire au choix',          stats: [Stat.new(charisma:      2, constitution:  2, kind: r), Stat.new(charisma:       2, intelligence:  2,  kind: r)], source_id: mdj1.id, cat_size: "M", speed: 6)
 
-RaceFeature.create(races: [eladrin, elfe, gnome, silvyen, drow],  name: "Origine féerique",     description: "vos ancêtres étaient natifs de Féerie, vous êtes donc considéré comme une créature féerique au regard des effets liés à cette origine.")
-RaceFeature.create(races: [cristallien, forgelier],   name: "Créature artificielle vivante",    description: "vous êtes une créature artificielle vivante. Vous n'avez pas besoin de manger, de boire, de respirer et de dormir. Vous n'effectuez jamais de tests d'Endurance pour résister aux effets de la faim, de la soif ou de l'asphyxie.")
-RaceFeature.create(races: [demi_elfe], required: "choice_1", name: "Dilettante",                description: "au niveau 1, vous choisissez un pouvoir à volonté d'une classe différente de la vôtre, que vous pouvez utiliser en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [demi_elfe], required: "choice_1", name: "La clé du succès",          description: "vous pouvez utiliser <em>la clé du succès</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [demi_elfe],                name: "Diplomatie de groupe",             description: "vous conférez un bonus racial de +1 aux tests de Diplomatie de tous vos alliés situés dans un rayon de 10 cases.")
-RaceFeature.create(races: [demi_elfe],                name: "Double héritage",                  description: "vous avez accès aux talents ayant elfe ou humain comme prérequis (ainsi que ceux qui s'adressent spécifiquement aux demi-elfes), du moment que vous remplissez les autres conditions.")
-RaceFeature.create(races: [drakeide],                 name: "Fureur drakéide",                  description: "lorsque vous êtes en péril, vous bénéficiez d'un bonus racial de +1 aux jets d'attaque.")
-RaceFeature.create(races: [drakeide],                 name: "Héritage draconique",              description: "votre valeur de récupération est égale au quart de vos points de vie maximums + votre modificateur de Constitution.")
-RaceFeature.create(races: [drakeide],                 name: "Souffle de dragon",                description: "vous pouvez utilisez <em>souffle de dragon</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [eladrin],                  name: "Éclipse féerique",                 description: "vous pouvez utilisez <em>éclipse féerique</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [eladrin],                  name: "Éducation éladrine",               description: "vous bénéficiez d'une formation supplémentaire dans une compétence choisie dans la liste du Chapitre 5.")
-RaceFeature.create(races: [eladrin],                  name: "Maniement des armes éladrines",    description: "vous êtes formé au maniement de l'épée longue.")
-RaceFeature.create(races: [eladrin, drow],            name: "Transe",                           description: "plutôt que de dormir, vous entrez dans un état méditatif connu sous le nom de transe. Quatre heures de transe vous procurent les mêmes effets que six heures de repos prolongé pour toute autre race. Lorsque vous êtes en transe, vous êtes parfaitement conscient de ce qui vous entoure. Vous pouvez ainsi détecter les ennemis en approche et tout autre événement.")
-RaceFeature.create(races: [eladrin],                  name: "Volonté éladrine",                 description: "vous bénéficiez d'un bonus racial de +1 en Volonté, et d'un bonus racial de +5 aux jets de sauvegarde contre les effets de charme.")
-RaceFeature.create(races: [elfe],                     name: "Maniement des armes elfiques",     description: "vous êtes formé au maniement de l'arc court et de l'arc long.")
-RaceFeature.create(races: [elfe],                     name: "Pas assuré",                       description: "vous ignorez un terrain difficile lorsque vous vous décalez (même si vous possédez un pouvoir vous permettant de vous décalez sur plusieurs cases).")
-RaceFeature.create(races: [elfe],                     name: "Précision elfique",                description: "vous pouvez utilisez <em>Précision elfique</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [elfe],                     name: "Vigilance de groupe",              description: "vous conférez un bonus racial de +1 aux tests de Perception de tous vos alliés non elfes situés dans un rayon de 5 cases.")
-RaceFeature.create(races: [halfelin],                 name: "Audacieux",                        description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre la terreur.")
-RaceFeature.create(races: [halfelin],                 name: "Deuxième chance",                  description: "vous pouvez utilisez <em>Deuxième chance</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [halfelin],                 name: "Réflexes éclair",                  description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunité.")
-RaceFeature.create(races: [humain],                   name: "Bonus de défense humain",          description: "vous bénéficiez d'un bonus de +1 en Vigueur, Réflexes et Volonté.")
-RaceFeature.create(races: [humain],                   name: "Compétence supplémentaire",        description: "vous gagnez une formation supplémentaire dans une de vos compétences de classe.")
-RaceFeature.create(races: [humain], required: "choice_1", name: "Pouvoir à volonté supplémentaire", description: "vous connaissez un pouvoir à volonté supplémentaire de votre classe.")
-RaceFeature.create(races: [humain], required: "choice_1", name: "Effort héroïque",                  description: "vous pouvez utiliser <em>effort héroïque</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [humain],                   name: "Talent supplémentaire",            description: "vous gagnez un talent supplémentaire au niveau 1. Vous devez cependant en remplir les prérequis.")
-RaceFeature.create(races: [nain],                     name: "Ancré dans le sol",                description: "lorsque vous êtes la cible d'une poussée, d'un tirage ou d'une glissade, vous pouvez réduire de 1 le nombre de case de déplacement qui vous est imposé. Cela signifie qu'un effet qui pousse, tire ou fait glisser de 1 case ne vous affecte que si vous le désirez.<br>De plus, lorsqu'une attaque vous fait tomber à terre, vous pouvez immédiatement effectuer un jet de sauvegarde pour éviter cette chute.")
-RaceFeature.create(races: [nain],                     name: "Boyaux d'acier",                   description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre le poison.")
-RaceFeature.create(races: [nain],                     name: "Déplacement avec charge",          description: "vous avancez à la hauteur de votre VD, même lorsque celle-ci doit être réduite du fait de votre armure ou d'une charge lourde. Les autres effets qui diminuent votre VD vous affecte normalement (comme un terrain difficile ou un effet magique).")
-RaceFeature.create(races: [nain],                     name: "Maniement des armes naines",       description: "vous êtes formé au maniement du marteau de lancer et du marteau de guerre.")
-RaceFeature.create(races: [nain],                     name: "Résistance naine",                 description: "vous pouvez recourir à votre second souffle au prix d'une action mineure au lieu d'une action simple.")
-RaceFeature.create(races: [tieffelin],                name: "Appel du sang",                    description: "vous bénéficiez d'un bonus racial de +1 aux jets d'attaque contre les adversaires en péril.")
-RaceFeature.create(races: [tieffelin],                name: "Courroux infernal",                description: "vous pouvez utilisez <em>Courroux infernal</em> en tant que pouvoir de rencontre.")
-RaceFeature.create(races: [tieffelin],                name: "Résistance au feu",                description: "vous bénéficiez d'une résistance au feu 5 + la moitié de votre niveau.")
-RaceFeature.create(races: [demi_orque],               name: "Assaut enragé",                    description: "vous avez le pouvoir <em>Assaut enragé</em>.")
-RaceFeature.create(races: [demi_orque],               name: "Charge véloce",                    description: "vous gagnez un bonus de +2 à la vitesse de déplacement lorsque vous chargez.")
-RaceFeature.create(races: [demi_orque],               name: "Vitalité demi-orque",              description: "la première fois que vous êtes en péril au cours d'une rencontre, vous gagnez 5 points de vie temporaires. Ce nombre augment à 10 au niveau 11 et 15 au niveau 21.")
-RaceFeature.create(races: [deva],                     name: "Majesté astrale",                  description: "vous bénéficiez d'un bonus de +1 à toutes vos défenses contre les attaques effectuées par une créature en péril.")
-RaceFeature.create(races: [deva],                     name: "Mémoire d'un millier de vies",     description: "vous avez le pouvoir <em>Mémoire d'un millier de vies</em>.")
-RaceFeature.create(races: [deva, cristallien],        name: "Origine immortelle",               description: "votre âme est native de la Mer Astrale et vous êtes considéré comme une créature immortelle pour déterminer les effets relatifs à l'origine d'une créature.")
-RaceFeature.create(races: [deva],                     name: "Résistance astrale",               description: "vous bénéficiez d'une résistance aux dégâts nécrotiques et radiants égale à 5 + la moitié de votre niveau.")
-RaceFeature.create(races: [feral_griffe_effilee],     name: "Sauvagerie griffe-effilée",        description: "Vous avez le pouvoir <em>Sauvagerie griffe-effilée</em>.")
-RaceFeature.create(races: [feral_longue_dent],        name: "Sauvagerie longue-dent",           description: "Vous avez le pouvoir <em>Sauvagerie longue-dent</em>.")
-RaceFeature.create(races: [gnome],                    name: "Discrétion réactive",              description: "Vous avez le pouvoir <em>Effacement</em>.")
-RaceFeature.create(races: [gnome],                    name: "Maître menteur",                   description: "une fois par rencontre, vous pouvez utilisez le tour de prestidigitation de magicien <em>Son imaginaire</em> (cf. p.76 du <em>Manuel des Joueurs</em>) au prix d'une action mineure.")
-RaceFeature.create(races: [gnome],                    name: "Perspicacité du menteur",          description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre les illusions.")
-RaceFeature.create(races: [goliath],                  name: "Athlète puissant",                 description: "lorsque vous effectuez un test d'Athlétisme pour sauter ou grimper, jetez deux dés et conservez l'un des résultats.")
-RaceFeature.create(races: [goliath],                  name: "Endurance de la pierre",           description: "Vous avez le pouvoir <em>Endurance de la pierre</em>.")
-RaceFeature.create(races: [goliath],                  name: "Ténacité de la montagne",          description: "vous bénéficiez d'un bonus racial de +1 à la Volonté.")
-RaceFeature.create(races: [cristallien],              name: "Esprit cristallin",                description: "vous bénéficiez d'une résistance psychique 5. Cette résistance augment à 10 au niveau 11 et 15 au niveau 21.")
-RaceFeature.create(races: [cristallien],              name: "Nuée de cristaux",                 description: "Vous avez le pouvoir <em>Nué de cristaux</em>.")
-RaceFeature.create(races: [cristallien],              name: "Télépathie",                       description: "vous pouvez communiquer par télépathie avec toute créature douée de langage située dans un rayon de 5 cases.")
-RaceFeature.create(races: [githzerai],                name: "Esprit défendu",                   description: "vous bénéficiez d'un bonus racial de +2 aux jets de sauvegarde contre les effets qui hébètent, dominent ou étourdissent.")
-RaceFeature.create(races: [githzerai],                name: "Heureuse fortune",                 description: "quand vous utilisez votre second souffle, vous pouvez vous décalez de 3 cases au prix d'une action libre.")
-RaceFeature.create(races: [githzerai],                name: "Mental d'acier",                   description: "Vous avez le pouvoir <em>Mental d'acier</em>.")
-RaceFeature.create(races: [githzerai],                name: "Sens du danger",                   description: "vous bénéficiez d'un bonus racial de +2 aux tests d'initiative.")
-RaceFeature.create(races: [minotaure],                name: "Charge encornée",                  description: "Vous avez le pouvoir <em>Charge encornée</em>.")
-RaceFeature.create(races: [minotaure],                name: "Charge intrépide",                 description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunités que vous provoquez lors d'une charge.")
-RaceFeature.create(races: [minotaure],                name: "Férocité",                         description: "lorsque vous êtes réduit à 0 point de vie ou moins, vous pouvez effectuer une attaque de base de corps à corps au prix d'une interruption immédiate.")
-RaceFeature.create(races: [minotaure],                name: "Vitalité",                         description: "vous avez une récupération supplémentaire")
-RaceFeature.create(races: [silvyen],                  name: "Aspect de la nature",              description: "quand vous arrivez au bout d'un repos prolongé, choisissez lequel des aspects de la nature suivant vous manifestez.<br><em>Aspect des anciens</em> : vous pouvez utilisez le pouvoir <em>Voyage des anciens</em> quand vous manifestez cet aspect.<br><em>Aspect du chasseur</em> : vous pouvez utilisez le pouvoir <em>Poursuite du chasseur</em> quand vous manifestez cet aspect.<br><em>Aspect du destructeur</em> : vous pouvez utilisez le pouvoir <em>Courroux du destructeur</em> quand vous manifestez cet aspect.")
-forme_endurcie = RaceFeature.create(races: [silvyen],  name: "Forme endurcie",                   description: "choisissez les Réflexes, la Vigueur ou la Volonté. Vous bénéficiez d'un bonus racial de +1 dans cette défense.")
-RaceFeature.create(races: [silvyen], parent_feature: forme_endurcie, required:"choice_1", name: "Réflexes endurcie", description: "vous choisissez les Réflexes.")
-RaceFeature.create(races: [silvyen], parent_feature: forme_endurcie, required:"choice_1", name: "Vigueur endurcie",  description: "vous choisissez la Vigueur.")
-RaceFeature.create(races: [silvyen], parent_feature: forme_endurcie, required:"choice_1", name: "Volonté endurcie",  description: "vous choisissez la Volonté.")
-RaceFeature.create(races: [changelin],                name: "Change-forme",                     description: "vous avez le pouvoir <em>Déguisement du changelin</em>.")
-RaceFeature.create(races: [changelin],                name: "Défense mentale",                  description: "vous bénéficiez d'un bonus racial de +1 en Volonté.")
-RaceFeature.create(races: [changelin],                name: "Métamorphe",                       description: "vous êtes un métamorphe et pouvez modifier votre apparence. Vous êtes donc sujet aux effets et états préjudiciables qui affectent les métamorphes.")
-RaceFeature.create(races: [changelin],                name: "Ruse du changelin",                description: "vous avez le pouvoir <em>Ruse du changelin</em>.")
-RaceFeature.create(races: [forgelier],                name: "Esprit du forgelier",              description: "vous bénéficiez d'un bonus racial de +1 en Volonté.")
-RaceFeature.create(races: [forgelier],                name: "Opiniâtreté forgelière",           description: "vous avez le pouvoir <em>Opiniâtreté forgelière</em.")
-RaceFeature.create(races: [forgelier],                name: "Résistance forgelière",            description: "vous bénéficiez d'un bonus racial de +2 aux jets de sauvegarde contre les dégâts continus. De plus, lorsque vous effectuez un jet de sauvegarde contre la mort, vous pouvez choisir de faire 10 pour remplacer le résultat de votre jet.")
-RaceFeature.create(races: [forgelier],                name: "Veilleur infatigable",             description: "vous n'avez pas besoin de dormir, mais vous devez rester inactif pendant 4 heures pour prendre un repos prolongé. Dans cet état de passivité, vous êtes pleinement conscient de ce qui vous entoure. Vous pouvez ainsi remarquez les ennemis en approche et tout autre événement.")
-RaceFeature.create(races: [kalashtar],                name: "Âme double",                       description: "au début de votre tour de jeu, vous pouvez effectuer un jet de sauvegarde contre chaque effet qui vous hébète ou vous domine. Si vous ratez ce jet de sauvegarde, vous n'en effectuez pas un autre contre l'effet en question à la fin de votre tour de jeu.")
-RaceFeature.create(races: [kalashtar],                name: "Bastion de clarté mentale",        description: "vous avez le pouvoir <em>Bastion de clarté mentale</em.")
-RaceFeature.create(races: [drow],                     name: "Lolthaïque",                       description: "une fois par rencontre, vous pouvez utilisez <em>Chape d'obscurité</em> ou <em>Noirfeu</em>.")
-RaceFeature.create(races: [genasi],                   name: "Origine élémentaire",              description: "vos ancêtres étaient natifs du Chaos Élémentaire, vous êtes donc considéré comme une créature élémentaire au regard des effets liés à cette origine.")
-manif_elem = RaceFeature.create(races: [genasi],      name: "Manifestation élémentaire",        description: "choisissez une manifestation élémentaire: âme d'eau, âme de feu, âme d'orage, âme de terre ou âme de vent. Cette manifestation fait partie intégrante de votre nature(le talent <em>Manifestation élémentaire</em>, p.136, vous permet cependant de prendre des manifestations en plus et d'en changer). Chaque manifestation élémentaire propose des avantages particuliers et un pouvoir de rencontre. Enfin votre apparence change selon l’élément que vous manifestez.<br>
+forme_endurcie  = Feature.create(races: [silvyen],  kind: "race", name: "Forme endurcie",             description: "choisissez les Réflexes, la Vigueur ou la Volonté. Vous bénéficiez d'un bonus racial de +1 dans cette défense.")
+manif_elem      = Feature.create(races: [genasi],   kind: "race", name: "Manifestation élémentaire",  description: "choisissez une manifestation élémentaire: âme d'eau, âme de feu, âme d'orage, âme de terre ou âme de vent. Cette manifestation fait partie intégrante de votre nature(le talent <em>Manifestation élémentaire</em>, p.136, vous permet cependant de prendre des manifestations en plus et d'en changer). Chaque manifestation élémentaire propose des avantages particuliers et un pouvoir de rencontre. Enfin votre apparence change selon l’élément que vous manifestez.<br>
 <em>Âme d'eau</em> : vous pouvez respirer sous l'eau. Vous bénéficiez également d'un bonus racial de +2 aux jets de sauvegarde contre les dégâts continus et du pouvoir <em>Cours rapide</em>.<br>
 <em>Âme de feu</em> : vous bénéficiez d'un bonus racial de +1 en Réflexes, d'une résistance au feu 5 et du pouvoir <em>Retour de flammes</em>.<br>
 Au niveau 11, la résistance augmente à feu 10.<br>
@@ -409,11 +331,90 @@ Au niveau 21, la résistance augmente à électricité 15.<br>
 <em>Âme de vent</em> : vous bénéficiez d'une résistance au froid 5 du pouvoir <em>Arpenteur des vents</em>.<br>
 Au niveau 11, la résistance augmente à froid 10.<br>
 Au niveau 21, la résistance augmente à froid 15.")
-RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme d'eau",     parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme d'eau")
-RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme de feu",    parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme de feu")
-RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme d'orage",   parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme d'orage")
-RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme de terre",  parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme de terre")
-RaceFeature.create(races: [genasi], required: "choice_1",name: "Âme de vent",   parent_feature: manif_elem, description: "vos choisissez la manifestation élémentaire de l'âme de vent")
+origin_feerique = [eladrin, elfe, gnome, silvyen, drow]
+Feature.create([
+  {races: origin_feerique,            kind: "race", name: "Origine féerique",                 description: "vos ancêtres étaient natifs de Féerie, vous êtes donc considéré comme une créature féerique au regard des effets liés à cette origine."},
+  {races: [cristallien, forgelier],   kind: "race", name: "Créature artificielle vivante",    description: "vous êtes une créature artificielle vivante. Vous n'avez pas besoin de manger, de boire, de respirer et de dormir. Vous n'effectuez jamais de tests d'Endurance pour résister aux effets de la faim, de la soif ou de l'asphyxie."},
+  {races: [demi_elfe],                kind: "race", name: "Dilettante",                       description: "au niveau 1, vous choisissez un pouvoir à volonté d'une classe différente de la vôtre, que vous pouvez utiliser en tant que pouvoir de rencontre.", required: "choice_1"},
+  {races: [demi_elfe],                kind: "race", name: "La clé du succès",                 description: "vous pouvez utiliser <em>La clé du succès</em> en tant que pouvoir de rencontre.", required: "choice_1"},
+  {races: [demi_elfe],                kind: "race", name: "Diplomatie de groupe",             description: "vous conférez un bonus racial de +1 aux tests de Diplomatie de tous vos alliés situés dans un rayon de 10 cases."},
+  {races: [demi_elfe],                kind: "race", name: "Double héritage",                  description: "vous avez accès aux talents ayant elfe ou humain comme prérequis (ainsi que ceux qui s'adressent spécifiquement aux demi-elfes), du moment que vous remplissez les autres conditions."},
+  {races: [drakeide],                 kind: "race", name: "Fureur drakéide",                  description: "lorsque vous êtes en péril, vous bénéficiez d'un bonus racial de +1 aux jets d'attaque."},
+  {races: [drakeide],                 kind: "race", name: "Héritage draconique",              description: "votre valeur de récupération est égale au quart de vos points de vie maximums + votre modificateur de Constitution."},
+  {races: [drakeide],                 kind: "race", name: "Souffle de dragon",                description: "vous pouvez utilisez <em>Souffle de dragon</em> en tant que pouvoir de rencontre."},
+  {races: [eladrin],                  kind: "race", name: "Éclipse féerique",                 description: "vous pouvez utilisez <em>Éclipse féerique</em> en tant que pouvoir de rencontre."},
+  {races: [eladrin],                  kind: "race", name: "Éducation éladrine",               description: "vous bénéficiez d'une formation supplémentaire dans une compétence choisie dans la liste du Chapitre 5."},
+  {races: [eladrin],                  kind: "race", name: "Maniement des armes éladrines",    description: "vous êtes formé au maniement de l'épée longue."},
+  {races: [eladrin, drow],            kind: "race", name: "Transe",                           description: "plutôt que de dormir, vous entrez dans un état méditatif connu sous le nom de transe. Quatre heures de transe vous procurent les mêmes effets que six heures de repos prolongé pour toute autre race. Lorsque vous êtes en transe, vous êtes parfaitement conscient de ce qui vous entoure. Vous pouvez ainsi détecter les ennemis en approche et tout autre événement."},
+  {races: [eladrin],                  kind: "race", name: "Volonté éladrine",                 description: "vous bénéficiez d'un bonus racial de +1 en Volonté, et d'un bonus racial de +5 aux jets de sauvegarde contre les effets de charme."},
+  {races: [elfe],                     kind: "race", name: "Maniement des armes elfiques",     description: "vous êtes formé au maniement de l'arc court et de l'arc long."},
+  {races: [elfe],                     kind: "race", name: "Pas assuré",                       description: "vous ignorez un terrain difficile lorsque vous vous décalez (même si vous possédez un pouvoir vous permettant de vous décalez sur plusieurs cases)."},
+  {races: [elfe],                     kind: "race", name: "Précision elfique",                description: "vous pouvez utilisez <em>Précision elfique</em> en tant que pouvoir de rencontre."},
+  {races: [elfe],                     kind: "race", name: "Vigilance de groupe",              description: "vous conférez un bonus racial de +1 aux tests de Perception de tous vos alliés non elfes situés dans un rayon de 5 cases."},
+  {races: [halfelin],                 kind: "race", name: "Audacieux",                        description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre la terreur."},
+  {races: [halfelin],                 kind: "race", name: "Deuxième chance",                  description: "vous pouvez utilisez <em>Deuxième chance</em> en tant que pouvoir de rencontre."},
+  {races: [halfelin],                 kind: "race", name: "Réflexes éclair",                  description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunité."},
+  {races: [humain],                   kind: "race", name: "Bonus de défense humain",          description: "vous bénéficiez d'un bonus de +1 en Vigueur, Réflexes et Volonté."},
+  {races: [humain],                   kind: "race", name: "Compétence supplémentaire",        description: "vous gagnez une formation supplémentaire dans une de vos compétences de classe."},
+  {races: [humain],                   kind: "race", name: "Pouvoir à volonté supplémentaire", description: "vous connaissez un pouvoir à volonté supplémentaire de votre classe.",             required: "choice_1"},
+  {races: [humain],                   kind: "race", name: "Effort héroïque",                  description: "vous pouvez utiliser <em>Effort héroïque</em> en tant que pouvoir de rencontre.",  required: "choice_1"},
+  {races: [humain],                   kind: "race", name: "Talent supplémentaire",            description: "vous gagnez un talent supplémentaire au niveau 1. Vous devez cependant en remplir les prérequis."},
+  {races: [nain],                     kind: "race", name: "Ancré dans le sol",                description: "lorsque vous êtes la cible d'une poussée, d'un tirage ou d'une glissade, vous pouvez réduire de 1 le nombre de case de déplacement qui vous est imposé. Cela signifie qu'un effet qui pousse, tire ou fait glisser de 1 case ne vous affecte que si vous le désirez.<br>De plus, lorsqu'une attaque vous fait tomber à terre, vous pouvez immédiatement effectuer un jet de sauvegarde pour éviter cette chute."},
+  {races: [nain],                     kind: "race", name: "Boyaux d'acier",                   description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre le poison."},
+  {races: [nain],                     kind: "race", name: "Déplacement avec charge",          description: "vous avancez à la hauteur de votre VD, même lorsque celle-ci doit être réduite du fait de votre armure ou d'une charge lourde. Les autres effets qui diminuent votre VD vous affecte normalement (comme un terrain difficile ou un effet magique)."},
+  {races: [nain],                     kind: "race", name: "Maniement des armes naines",       description: "vous êtes formé au maniement du marteau de lancer et du marteau de guerre."},
+  {races: [nain],                     kind: "race", name: "Résistance naine",                 description: "vous pouvez recourir à votre second souffle au prix d'une action mineure au lieu d'une action simple."},
+  {races: [tieffelin],                kind: "race", name: "Appel du sang",                    description: "vous bénéficiez d'un bonus racial de +1 aux jets d'attaque contre les adversaires en péril."},
+  {races: [tieffelin],                kind: "race", name: "Courroux infernal",                description: "vous pouvez utilisez <em>Courroux infernal</em> en tant que pouvoir de rencontre."},
+  {races: [tieffelin],                kind: "race", name: "Résistance au feu",                description: "vous bénéficiez d'une résistance au feu 5 + la moitié de votre niveau."},
+  {races: [demi_orque],               kind: "race", name: "Assaut enragé",                    description: "vous avez le pouvoir <em>Assaut enragé</em>."},
+  {races: [demi_orque],               kind: "race", name: "Charge véloce",                    description: "vous gagnez un bonus de +2 à la vitesse de déplacement lorsque vous chargez."},
+  {races: [demi_orque],               kind: "race", name: "Vitalité demi-orque",              description: "la première fois que vous êtes en péril au cours d'une rencontre, vous gagnez 5 points de vie temporaires. Ce nombre augment à 10 au niveau 11 et 15 au niveau 21."},
+  {races: [deva],                     kind: "race", name: "Majesté astrale",                  description: "vous bénéficiez d'un bonus de +1 à toutes vos défenses contre les attaques effectuées par une créature en péril."},
+  {races: [deva],                     kind: "race", name: "Mémoire d'un millier de vies",     description: "vous avez le pouvoir <em>Mémoire d'un millier de vies</em>."},
+  {races: [deva, cristallien],        kind: "race", name: "Origine immortelle",               description: "votre âme est native de la Mer Astrale et vous êtes considéré comme une créature immortelle pour déterminer les effets relatifs à l'origine d'une créature."},
+  {races: [deva],                     kind: "race", name: "Résistance astrale",               description: "vous bénéficiez d'une résistance aux dégâts nécrotiques et radiants égale à 5 + la moitié de votre niveau."},
+  {races: [feral_griffe_effilee],     kind: "race", name: "Sauvagerie griffe-effilée",        description: "Vous avez le pouvoir <em>Sauvagerie griffe-effilée</em>."},
+  {races: [feral_longue_dent],        kind: "race", name: "Sauvagerie longue-dent",           description: "Vous avez le pouvoir <em>Sauvagerie longue-dent</em>."},
+  {races: [gnome],                    kind: "race", name: "Discrétion réactive",              description: "Vous avez le pouvoir <em>Effacement</em>."},
+  {races: [gnome],                    kind: "race", name: "Maître menteur",                   description: "une fois par rencontre, vous pouvez utilisez le tour de prestidigitation de magicien <em>Son imaginaire</em> (cf. p.76 du <em>Manuel des Joueurs</em>) au prix d'une action mineure."},
+  {races: [gnome],                    kind: "race", name: "Perspicacité du menteur",          description: "vous bénéficiez d'un bonus racial de +5 aux jets de sauvegarde contre les illusions."},
+  {races: [goliath],                  kind: "race", name: "Athlète puissant",                 description: "lorsque vous effectuez un test d'Athlétisme pour sauter ou grimper, jetez deux dés et conservez l'un des résultats."},
+  {races: [goliath],                  kind: "race", name: "Endurance de la pierre",           description: "Vous avez le pouvoir <em>Endurance de la pierre</em>."},
+  {races: [goliath],                  kind: "race", name: "Ténacité de la montagne",          description: "vous bénéficiez d'un bonus racial de +1 à la Volonté."},
+  {races: [cristallien],              kind: "race", name: "Esprit cristallin",                description: "vous bénéficiez d'une résistance psychique 5. Cette résistance augment à 10 au niveau 11 et 15 au niveau 21."},
+  {races: [cristallien],              kind: "race", name: "Nuée de cristaux",                 description: "Vous avez le pouvoir <em>Nué de cristaux</em>."},
+  {races: [cristallien],              kind: "race", name: "Télépathie",                       description: "vous pouvez communiquer par télépathie avec toute créature douée de langage située dans un rayon de 5 cases."},
+  {races: [githzerai],                kind: "race", name: "Esprit défendu",                   description: "vous bénéficiez d'un bonus racial de +2 aux jets de sauvegarde contre les effets qui hébètent, dominent ou étourdissent."},
+  {races: [githzerai],                kind: "race", name: "Heureuse fortune",                 description: "quand vous utilisez votre second souffle, vous pouvez vous décalez de 3 cases au prix d'une action libre."},
+  {races: [githzerai],                kind: "race", name: "Mental d'acier",                   description: "Vous avez le pouvoir <em>Mental d'acier</em>."},
+  {races: [githzerai],                kind: "race", name: "Sens du danger",                   description: "vous bénéficiez d'un bonus racial de +2 aux tests d'initiative."},
+  {races: [minotaure],                kind: "race", name: "Charge encornée",                  description: "Vous avez le pouvoir <em>Charge encornée</em>."},
+  {races: [minotaure],                kind: "race", name: "Charge intrépide",                 description: "vous bénéficiez d'un bonus racial de +2 à la CA contre les attaques d'opportunités que vous provoquez lors d'une charge."},
+  {races: [minotaure],                kind: "race", name: "Férocité",                         description: "lorsque vous êtes réduit à 0 point de vie ou moins, vous pouvez effectuer une attaque de base de corps à corps au prix d'une interruption immédiate."},
+  {races: [minotaure],                kind: "race", name: "Vitalité",                         description: "vous avez une récupération supplémentaire"},
+  {races: [silvyen],                  kind: "race", name: "Aspect de la nature",              description: "quand vous arrivez au bout d'un repos prolongé, choisissez lequel des aspects de la nature suivant vous manifestez.<br><em>Aspect des anciens</em> : vous pouvez utilisez le pouvoir <em>Voyage des anciens</em> quand vous manifestez cet aspect.<br><em>Aspect du chasseur</em> : vous pouvez utilisez le pouvoir <em>Poursuite du chasseur</em> quand vous manifestez cet aspect.<br><em>Aspect du destructeur</em> : vous pouvez utilisez le pouvoir <em>Courroux du destructeur</em> quand vous manifestez cet aspect."},
+  {races: [silvyen],                  kind: "race", name: "Réflexes endurcie",                description: "vous choisissez les Réflexes.",  required:"choice_1", parent_feature: forme_endurcie},
+  {races: [silvyen],                  kind: "race", name: "Vigueur endurcie",                 description: "vous choisissez la Vigueur.",    required:"choice_1", parent_feature: forme_endurcie},
+  {races: [silvyen],                  kind: "race", name: "Volonté endurcie",                 description: "vous choisissez la Volonté.",    required:"choice_1", parent_feature: forme_endurcie},
+  {races: [changelin],                kind: "race", name: "Change-forme",                     description: "vous avez le pouvoir <em>Déguisement du changelin</em>."},
+  {races: [changelin],                kind: "race", name: "Défense mentale",                  description: "vous bénéficiez d'un bonus racial de +1 en Volonté."},
+  {races: [changelin],                kind: "race", name: "Métamorphe",                       description: "vous êtes un métamorphe et pouvez modifier votre apparence. Vous êtes donc sujet aux effets et états préjudiciables qui affectent les métamorphes."},
+  {races: [changelin],                kind: "race", name: "Ruse du changelin",                description: "vous avez le pouvoir <em>Ruse du changelin</em>."},
+  {races: [forgelier],                kind: "race", name: "Esprit du forgelier",              description: "vous bénéficiez d'un bonus racial de +1 en Volonté."},
+  {races: [forgelier],                kind: "race", name: "Opiniâtreté forgelière",           description: "vous avez le pouvoir <em>Opiniâtreté forgelière</em>."},
+  {races: [forgelier],                kind: "race", name: "Résistance forgelière",            description: "vous bénéficiez d'un bonus racial de +2 aux jets de sauvegarde contre les dégâts continus. De plus, lorsque vous effectuez un jet de sauvegarde contre la mort, vous pouvez choisir de faire 10 pour remplacer le résultat de votre jet."},
+  {races: [forgelier],                kind: "race", name: "Veilleur infatigable",             description: "vous n'avez pas besoin de dormir, mais vous devez rester inactif pendant 4 heures pour prendre un repos prolongé. Dans cet état de passivité, vous êtes pleinement conscient de ce qui vous entoure. Vous pouvez ainsi remarquez les ennemis en approche et tout autre événement."},
+  {races: [kalashtar],                kind: "race", name: "Âme double",                       description: "au début de votre tour de jeu, vous pouvez effectuer un jet de sauvegarde contre chaque effet qui vous hébète ou vous domine. Si vous ratez ce jet de sauvegarde, vous n'en effectuez pas un autre contre l'effet en question à la fin de votre tour de jeu."},
+  {races: [kalashtar],                kind: "race", name: "Bastion de clarté mentale",        description: "vous avez le pouvoir <em>Bastion de clarté mentale</em."},
+  {races: [drow],                     kind: "race", name: "Lolthaïque",                       description: "une fois par rencontre, vous pouvez utilisez <em>Chape d'obscurité</em> ou <em>Noirfeu</em>."},
+  {races: [genasi],                   kind: "race", name: "Origine élémentaire",              description: "vos ancêtres étaient natifs du Chaos Élémentaire, vous êtes donc considéré comme une créature élémentaire au regard des effets liés à cette origine."},
+  {races: [genasi],                   kind: "race", name: "Âme d'eau",                        description: "vos choisissez la manifestation élémentaire de l'âme d'eau",    required: "choice_1", parent_feature: manif_elem},
+  {races: [genasi],                   kind: "race", name: "Âme de feu",                       description: "vos choisissez la manifestation élémentaire de l'âme de feu",   required: "choice_1", parent_feature: manif_elem},
+  {races: [genasi],                   kind: "race", name: "Âme d'orage",                      description: "vos choisissez la manifestation élémentaire de l'âme d'orage",  required: "choice_1", parent_feature: manif_elem},
+  {races: [genasi],                   kind: "race", name: "Âme de terre",                     description: "vos choisissez la manifestation élémentaire de l'âme de terre", required: "choice_1", parent_feature: manif_elem},
+  {races: [genasi],                   kind: "race", name: "Âme de vent",                      description: "vos choisissez la manifestation élémentaire de l'âme de vent",  required: "choice_1", parent_feature: manif_elem},
+])
 
 
 acrobatics    = Skill.create(origin: 'required_skill_for_class', acrobatics:     5)
@@ -436,7 +437,7 @@ thievery      = Skill.create(origin: 'required_skill_for_class', thievery:      
 
 
 
-barbare = Klass.create(
+barbare       = Klass.create(
   name:               "Barbare",
   role:               "cogneur",
   source:             mdj2,
@@ -461,7 +462,7 @@ barbare = Klass.create(
                               perception: 5),
   options_creation:   "barbare sanguinaire, barbare champion tribal, barbare fils du tonnerre, barbare tournoyant",
   skills_number:      3)
-barde = Klass.create(
+barde         = Klass.create(
   name:               "Barde",
   role:               "meneur",
   source:             mdj2,
@@ -493,7 +494,7 @@ barde = Klass.create(
                               streetwise: 5),
   options_creation:   "barde rusé, barde valeureux, barde prescient",
   skills_number:      4)
-batailleur = Klass.create(
+batailleur    = Klass.create(
   name:               "Batailleur",
   role:               "protecteur",
   source:             mdj3,
@@ -519,7 +520,7 @@ batailleur = Klass.create(
                               intimidate: 5),
   options_creation:   "batailleur rapide, batailleur robuste",
   skills_number:      3)
-druide = Klass.create(
+druide        = Klass.create(
   name:               "Druide",
   role:               "contrôleur",
   source:             mdj2,
@@ -546,7 +547,7 @@ druide = Klass.create(
                               perception: 5),
   options_creation:   "druide gardien, druide prédateur, druide des nuées, druide convocateur",
   skills_number:      3)
-ensorceleur = Klass.create(
+ensorceleur   = Klass.create(
   name:               "Ensorceleur",
   role:               "cogneur",
   source:             mdj2,
@@ -574,7 +575,7 @@ ensorceleur = Klass.create(
                               nature: 5),
   options_creation:   "ensorceleur du chaos, ensorceleur dragon, ensorceleur des tempêtes, ensorceleur cosmique",
   skills_number:      3)
-faconneur = Klass.create(
+faconneur     = Klass.create(
   name:               "Façonneur",
   role:               "meneur",
   source:             eber,
@@ -599,7 +600,7 @@ faconneur = Klass.create(
                               thievery: 5),
   options_creation:   "façonneur bricoleur, façonneur forgeron de guerre",
   skills_number:      3)
-flamboyant = Klass.create(
+flamboyant    = Klass.create(
   name:               "Flamboyant",
   role:               "meneur",
   source:             mdj3,
@@ -626,7 +627,7 @@ flamboyant = Klass.create(
                               streetwise: 5),
   options_creation:   "flamboyant euphorique, flamboyant illuminé",
   skills_number:      4)
-gardien = Klass.create(
+gardien       = Klass.create(
   name:               "Gardien",
   role:               "protecteur",
   source:             mdj2,
@@ -651,7 +652,7 @@ gardien = Klass.create(
                               perception: 5),
   options_creation:   "gardien de la terre, gardien indompté, gardien de la tempête, gardien de la vie",
   skills_number:      3)
-guerrier = Klass.create(
+guerrier      = Klass.create(
   name:               "Guerrier",
   role:               "protecteur",
   source:             mdj1,
@@ -674,7 +675,7 @@ guerrier = Klass.create(
                               heal: 5),
   options_creation:   "guerrier offensif, guerrier défensif",
   skills_number:      3)
-invocateur = Klass.create(
+invocateur    = Klass.create(
   name:               "Invocateur",
   role:               "contrôleur",
   source:             mdj2,
@@ -699,7 +700,7 @@ invocateur = Klass.create(
                               religion: 5),
   options_creation:   "invocateur protecteur, invocateur courroucé, invocateur des malédictions",
   skills_number:      3)
-limier = Klass.create(
+limier        = Klass.create(
   name:               "Limier",
   role:               "contrôleur",
   source:             mdj3,
@@ -726,7 +727,7 @@ limier = Klass.create(
                               stealth: 5),
   options_creation:   "limier protecteur, limier vengeur",
   skills_number:      3)
-mage_lames = Klass.create(
+mage_lames    = Klass.create(
   name:               "Mage lames",
   role:               "protecteur",
   source:             roou,
@@ -751,7 +752,7 @@ mage_lames = Klass.create(
                               intimidate: 5),
   options_creation:   "mage lame défensif, mage lame offensif, mage lame prédateur",
   skills_number:      3)
-magicien = Klass.create(
+magicien      = Klass.create(
   name:               "Magicien",
   role:               "contrôleur",
   source:             mdj1,
@@ -800,7 +801,7 @@ maitre_guerre = Klass.create(
                               intimidate: 5),
   options_creation:   "maître de guerre charismatique, maître de guerre tacticien, maître de guerre ingénieux, maître de guerre perspicace, maître de guerre intrépide, maître de guerre tirailleur",
   skills_number:      4)
-moine = Klass.create(
+moine         = Klass.create(
   name:               "Moine",
   role:               "cogneur",
   source:             mdj3,
@@ -828,7 +829,7 @@ moine = Klass.create(
                               thievery: 5),
   options_creation:   "moine du poing de pierre, moine du souffle centré",
   skills_number:      4)
-paladin = Klass.create(
+paladin       = Klass.create(
   name:               "Paladin",
   role:               "protecteur",
   source:             mdj1,
@@ -853,7 +854,7 @@ paladin = Klass.create(
                               religion: 5),
   options_creation:   "paladin défenseur, paladin vengeur, paladin fougueux, paladin vertueux",
   skills_number:      3)
-pretre = Klass.create(
+pretre        = Klass.create(
   name:               "Prêtre",
   role:               "meneur",
   source:             mdj1,
@@ -877,7 +878,7 @@ pretre = Klass.create(
                               religion: 5),
   options_creation:   "prêtre de combat, prêtre dévoué, prêtre protecteur",
   skills_number:      3)
-pretre_runes = Klass.create(
+pretre_runes  = Klass.create(
   name:               "Prêtre des runes",
   role:               "meneur",
   source:             mdj3,
@@ -903,7 +904,7 @@ pretre_runes = Klass.create(
                               thievery: 5),
   options_creation:   "prêtre des runes de l'ire, prêtre des runes du défi",
   skills_number:      3)
-psion = Klass.create(
+psion         = Klass.create(
   name:               "Psion",
   role:               "contrôleur",
   source:             mdj3,
@@ -929,7 +930,7 @@ psion = Klass.create(
                               perception: 5),
   options_creation:   "psion télékinétique, psion télépathe",
   skills_number:      4)
-rodeur = Klass.create(
+rodeur        = Klass.create(
   name:               "Rôdeur",
   role:               "cogneur",
   source:             mdj1,
@@ -955,7 +956,7 @@ rodeur = Klass.create(
                               heal: 5),
   options_creation:   "rôdeur archer, rôdeur double-lame, rôdeur maître des bêtes, rôdeur chasseur, rôdeur maraudeur",
   skills_number:      4)
-shaman = Klass.create(
+shaman        = Klass.create(
   name:               "Shaman",
   role:               "meneur",
   source:             mdj2,
@@ -982,7 +983,7 @@ shaman = Klass.create(
                               religion: 5),
   options_creation:   "shaman de l'ours, shaman de la panthère, shaman de l'aigle, shaman messager des mondes",
   skills_number:      3)
-sorcier = Klass.create(
+sorcier       = Klass.create(
   name:               "Sorcier",
   role:               "cogneur",
   source:             mdj1,
@@ -1008,7 +1009,7 @@ sorcier = Klass.create(
                               thievery: 5),
   options_creation:   "sorcier dévastateur, sorcier perfide",
   skills_number:      4)
-vengeur = Klass.create(
+vengeur       = Klass.create(
   name:               "Vengeur",
   role:               "cogneur",
   source:             mdj2,
@@ -1034,7 +1035,7 @@ vengeur = Klass.create(
                               streetwise: 5),
   options_creation:   "vengeur solitaire, vengeur acharné, vengeur commandeur",
   skills_number:      3)
-voleur         = Klass.create(
+voleur        = Klass.create(
   name:               "Voleur",
   role:               "cogneur",
   source:             mdj1,
@@ -1063,1049 +1064,209 @@ voleur         = Klass.create(
   options_creation:   "voleur brutale, voleur fourbe, voleur coupe-jarret, voleur voltigeur, voleur des ombres",
   skills_number:      4)
 
-
-KlassFeature.create(
-  name: "Agilité du barbare",
-  klasses: [barbare],
-  description: "Tant que vous ne portez pas d'armure lourde, vous bénéficiez d'un bonus de +1 à votre CA et vos Réflexes. Ce bonus passe à +2 au niveau 11 et +3 au niveau 21.",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Carnage",
-  klasses: [barbare],
-  description: "Sur un coup critique, une fois par round, vous pouvez effectuer une attaque de base de corps à corps en action libre.",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Frappe enragée",
-  klasses: [barbare],
-  description: "Les pouvoirs d'attaque quotidiens du barbare s'accompagnent du mot-clé Rage.",
-  required: "required"
-)
-force_indomptable = KlassFeature.create(
-  name: "Force indomptable",
-  klasses: [barbare],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Ardeur sanguinaire",
-  klasses: [barbare],
-  description: "Vous gagnez le pouvoir Charge véloce. En outre, lorsque vous amenez un adversaire à 0 point de vie, vous gagnez des points de vie temporaire égaux à votre modificateur de Constitution.",
-  parent_feature: force_indomptable,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Triomphe du champion",
-  klasses: [barbare],
-  description: "",
-  parent_feature: force_indomptable,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Colère du fils du tonnerre",
-  klasses: [barbare],
-  description: "",
-  parent_feature: force_indomptable,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Faucheur tournoyant",
-  klasses: [barbare],
-  description: "",
-  parent_feature: force_indomptable,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Chant apaisant",
-  klasses: [barde],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Formation de barde",
-  klasses: [barde],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Multiclassage versatile",
-  klasses: [barde],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Paroles d'amitié",
-  klasses: [barde],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Paroles de majesté",
-  klasses: [barde],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Savoir-faire polyvalent",
-  klasses: [barde],
-  description: "",
-  required: "required"
-)
-vertu_barde = KlassFeature.create(
-  name: "Vertu des bardes",
-  klasses: [barde],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Vertu de vaillance",
-  klasses: [barde],
-  description: "",
-  parent_feature: vertu_barde,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Vertu de ruse",
-  klasses: [barde],
-  description: "",
-  parent_feature: vertu_barde,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Vertu de prescience",
-  klasses: [barde],
-  description: "",
-  parent_feature: vertu_barde,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Accentuation psionique",
-  klasses: [batailleur, flamboyant, psion],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Défense psionique",
-  klasses: [batailleur],
-  description: "",
-  required: "required"
-)
-etude_psionqiue = KlassFeature.create(
-  name: "Étude psionique",
-  klasses: [batailleur],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Résistance de combat",
-  klasses: [batailleur],
-  description: "",
-  parent_feature: etude_psionqiue,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Vitesse de la pensée",
-  klasses: [batailleur],
-  description: "",
-  parent_feature: etude_psionqiue,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Harmonie de la nature",
-  klasses: [druide],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Magie rituelle",
-  klasses: [druide, faconneur, invocateur, magicien, pretre, psion],
-  description: "Vous gagnez le talent Lanceur de rituels (cf. p.199) en tant que talent supplémentaire, ce qui vous permet d’utiliser des rituels magiques (cf. Chapitre 10).",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Métamorphose animale",
-  klasses: [druide],
-  description: "",
-  required: "required"
-)
-aspect_primal = KlassFeature.create(
-  name: "Aspect primal",
-  klasses: [druide],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Gardien primal",
-  klasses: [druide],
-  description: "",
-  parent_feature: aspect_primal,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Prédateur primal",
-  klasses: [druide],
-  description: "",
-  parent_feature: aspect_primal,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Nuée primale",
-  klasses: [druide],
-  description: "",
-  parent_feature: aspect_primal,
-  required: "choice_1"
-)
-source_sorts = KlassFeature.create(
-  name: "Source des sorts",
-  klasses: [ensorceleur],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Magie draconique",
-  klasses: [ensorceleur],
-  description: "",
-  parent_feature: source_sorts,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Magie sauvage",
-  klasses: [ensorceleur],
-  description: "",
-  parent_feature: source_sorts,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Magie des tempêtes",
-  klasses: [ensorceleur],
-  description: "",
-  parent_feature: source_sorts,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Magie cosmique",
-  klasses: [ensorceleur],
-  description: "",
-  parent_feature: source_sorts,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Infusion vulnéraire",
-  klasses: [faconneur],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Jouvence arcanique",
-  klasses: [faconneur],
-  description: "",
-  required: "required"
-)
-bonification = KlassFeature.create(
-  name: "Bonification arcanique",
-  klasses: [faconneur],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Partage d'énergie",
-  klasses: [faconneur],
-  description: "",
-  parent_feature: bonification,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Intensification d'énergie",
-  klasses: [faconneur],
-  description: "",
-  parent_feature: bonification,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Regain flamboyant",
-  klasses: [flamboyant],
-  description: "",
-  required: "required"
-)
-manteau_flamboyant = KlassFeature.create(
-  name: "Manteau flamboyant",
-  klasses: [flamboyant],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Manteau d'allégresse",
-  klasses: [flamboyant],
-  parent_feature: manteau_flamboyant,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Manteau de clarté",
-  klasses: [flamboyant],
-  description: "",
-  parent_feature: manteau_flamboyant,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Fontaine de vie",
-  klasses: [gardien],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Colère de la nature",
-  klasses: [gardien],
-  description: "",
-  required: "required"
-)
-puissance_gardien = KlassFeature.create(
-  name: "Puissance du gardien",
-  klasses: [gardien],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Force de la terre",
-  klasses: [gardien],
-  description: "",
-  parent_feature: puissance_gardien,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Sang indompté",
-  klasses: [gardien],
-  description: "",
-  parent_feature: puissance_gardien,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Coeur de tempête",
-  klasses: [gardien],
-  description: "",
-  parent_feature: puissance_gardien,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Esprit vital",
-  klasses: [gardien],
-  description: "",
-  parent_feature: puissance_gardien,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Défi en combat",
-  klasses: [guerrier],
-  description: "Il est dangereux d'ignorer un guerrier au combat.
+force_indomptable       = Feature.create(kind: "klass", name: "Force indomptable",                   klasses: [barbare],       description: "Choisissez une aptitude parmi les options suivantes")
+vertu_barde             = Feature.create(kind: "klass", name: "Vertu des bardes",                    klasses: [barde],         description: "Choisissez une aptitude parmi les options suivantes")
+etude_psionqiue         = Feature.create(kind: "klass", name: "Étude psionique",                     klasses: [batailleur],    description: "Choisissez une aptitude parmi les options suivantes")
+aspect_primal           = Feature.create(kind: "klass", name: "Aspect primal",                       klasses: [druide],        description: "Choisissez une aptitude parmi les options suivantes")
+source_sorts            = Feature.create(kind: "klass", name: "Source des sorts",                    klasses: [ensorceleur],   description: "Choisissez une aptitude parmi les options suivantes")
+bonification            = Feature.create(kind: "klass", name: "Bonification arcanique",              klasses: [faconneur],     description: "Choisissez une aptitude parmi les options suivantes")
+manteau_flamboyant      = Feature.create(kind: "klass", name: "Manteau flamboyant",                  klasses: [flamboyant],    description: "Choisissez une aptitude parmi les options suivantes")
+puissance_gardien       = Feature.create(kind: "klass", name: "Puissance du gardien",                klasses: [gardien],       description: "Choisissez une aptitude parmi les options suivantes")
+categorie_arme_favorite = Feature.create(kind: "klass", name: "Catégorie d'arme favorite",           klasses: [guerrier],      description: "Choisissez une catégorie d`armes : armes à une main ou armes à deux mains. Lorsque vous utilisez une arme de cette catégorie. vous bénéficiez d'un bonus de +1 aux jets d'attaque.", required: "choice_1")
+alliance_divine         = Feature.create(kind: "klass", name: "Alliance divine",                     klasses: [invocateur],    description: "Choisissez une aptitude parmi les options suivantes")
+lien_limier             = Feature.create(kind: "klass", name: "Lien du limier",                      klasses: [limier],        description: "Choisissez une aptitude parmi les options suivantes")
+ecran_mage_lame         = Feature.create(kind: "klass", name: "Égide du mage d'armes",               klasses: [mage_lames],    description: "Choisissez une aptitude parmi les options suivantes")
+maitrise_foca_arca      = Feature.create(kind: "klass", name: "Maîtrise des focaliseurs arcaniques", klasses: [magicien],      description: "Vous vous spécialiser dans un type de Focaliseur pour profiter d'avantages supplémentaires quand vous y recouvrez.")
+autorite_naturelle      = Feature.create(kind: "klass", name: "Autorité naturelle",                  klasses: [maitre_guerre], description: "Choisissez une aptitude parmi les options suivantes")
+tradition_monastique    = Feature.create(kind: "klass", name: "Tradition monastique",                klasses: [moine],         description: "Choisissez une aptitude parmi les options suivantes")
+tradition_runique       = Feature.create(kind: "klass", name: "Tradition runique",                   klasses: [pretre_runes],  description: "Choisissez une aptitude parmi les options suivantes")
+discipline_spe          = Feature.create(kind: "klass", name: "Discipline de spécialisation",        klasses: [psion],         description: "Choisissez une aptitude parmi les options suivantes")
+style_combat            = Feature.create(kind: "klass", name: "Style de combat",                     klasses: [rodeur],        description: "Choisissez une aptitude parmi les options suivantes", required: "choice_1")
+compagnon               = Feature.create(kind: "klass", name: "Compagnon spirituel",                 klasses: [shaman],        description: "Choisissez une aptitude parmi les options suivantes")
+pacte_occulte           = Feature.create(kind: "klass", name: "Pacte occulte",                       klasses: [sorcier],       description: "Choisissez une aptitude parmi les options suivantes")
+censure_vengeur         = Feature.create(kind: "klass", name: "Censure du vengeur",                  klasses: [vengeur],       description: "Choisissez une aptitude parmi les options suivantes")
+tactique_roublard       = Feature.create(kind: "klass", name: "Tactique du roublard",                klasses: [voleur],        description: "Choisissez une aptitude parmi les options suivantes")
+Feature.create([
+  {kind: "klass", name: "Agilité du barbare",            klasses: [barbare],     description: "Tant que vous ne portez pas d'armure lourde, vous bénéficiez d'un bonus de +1 à votre CA et vos Réflexes. Ce bonus passe à +2 au niveau 11 et +3 au niveau 21."},
+  {kind: "klass", name: "Carnage",                       klasses: [barbare],     description: "Sur un coup critique, une fois par round, vous pouvez effectuer une attaque de base de corps à corps en action libre."},
+  {kind: "klass", name: "Frappe enragée",                klasses: [barbare],     description: "Les pouvoirs d'attaque quotidiens du barbare s'accompagnent du mot-clé Rage."},
+  {kind: "klass", name: "Ardeur sanguinaire",            klasses: [barbare],     description: "Vous gagnez le pouvoir Charge véloce. En outre, lorsque vous amenez un adversaire à 0 point de vie, vous gagnez des points de vie temporaire égaux à votre modificateur de Constitution.", parent_feature: force_indomptable, required: "choice_1"},
+  {kind: "klass", name: "Triomphe du champion",          klasses: [barbare],     description: "", parent_feature: force_indomptable, required: "choice_1"},
+  {kind: "klass", name: "Colère du fils du tonnerre",    klasses: [barbare],     description: "", parent_feature: force_indomptable, required: "choice_1"},
+  {kind: "klass", name: "Faucheur tournoyant",           klasses: [barbare],     description: "", parent_feature: force_indomptable, required: "choice_1"},
+  {kind: "klass", name: "Chant apaisant",                klasses: [barde],       description: ""},
+  {kind: "klass", name: "Formation de barde",            klasses: [barde],       description: ""},
+  {kind: "klass", name: "Multiclassage versatile",       klasses: [barde],       description: ""},
+  {kind: "klass", name: "Paroles d'amitié",              klasses: [barde],       description: ""},
+  {kind: "klass", name: "Paroles de majesté",            klasses: [barde],       description: ""},
+  {kind: "klass", name: "Savoir-faire polyvalent",       klasses: [barde],       description: ""},
+  {kind: "klass", name: "Vertu de vaillance",            klasses: [barde],       description: "", parent_feature: vertu_barde, required: "choice_1"},
+  {kind: "klass", name: "Vertu de ruse",                 klasses: [barde],       description: "", parent_feature: vertu_barde, required: "choice_1"},
+  {kind: "klass", name: "Vertu de prescience",           klasses: [barde],       description: "", parent_feature: vertu_barde, required: "choice_1"},
+  {kind: "klass", name: "Accentuation psionique",        klasses: [batailleur, flamboyant, psion], description: ""},
+  {kind: "klass", name: "Défense psionique",             klasses: [batailleur],  description: ""},
+  {kind: "klass", name: "Résistance de combat",          klasses: [batailleur],  description: "", parent_feature: etude_psionqiue, required: "choice_1"},
+  {kind: "klass", name: "Vitesse de la pensée",          klasses: [batailleur],  description: "", parent_feature: etude_psionqiue, required: "choice_1"},
+  {kind: "klass", name: "Harmonie de la nature",         klasses: [druide],      description: ""},
+  {kind: "klass", name: "Magie rituelle",                klasses: [druide, faconneur, invocateur, magicien, pretre, psion], description: "Vous gagnez le talent Lanceur de rituels (cf. p.199) en tant que talent supplémentaire, ce qui vous permet d’utiliser des rituels magiques (cf. Chapitre 10)."},
+  {kind: "klass", name: "Métamorphose animale",          klasses: [druide],      description: ""},
+  {kind: "klass", name: "Gardien primal",                klasses: [druide],      description: "", parent_feature: aspect_primal, required: "choice_1"},
+  {kind: "klass", name: "Prédateur primal",              klasses: [druide],      description: "", parent_feature: aspect_primal, required: "choice_1"},
+  {kind: "klass", name: "Nuée primale",                  klasses: [druide],      description: "", parent_feature: aspect_primal, required: "choice_1"},
+  {kind: "klass", name: "Magie draconique",              klasses: [ensorceleur], description: "", parent_feature: source_sorts, required: "choice_1"},
+  {kind: "klass", name: "Magie sauvage",                 klasses: [ensorceleur], description: "", parent_feature: source_sorts, required: "choice_1"},
+  {kind: "klass", name: "Magie des tempêtes",            klasses: [ensorceleur], description: "", parent_feature: source_sorts, required: "choice_1"},
+  {kind: "klass", name: "Magie cosmique",                klasses: [ensorceleur], description: "", parent_feature: source_sorts, required: "choice_1"},
+  {kind: "klass", name: "Infusion vulnéraire",           klasses: [faconneur],   description: ""},
+  {kind: "klass", name: "Jouvence arcanique",            klasses: [faconneur],   description: ""},
+  {kind: "klass", name: "Partage d'énergie",             klasses: [faconneur],   description: "", parent_feature: bonification, required: "choice_1"},
+  {kind: "klass", name: "Intensification d'énergie",     klasses: [faconneur],   description: "", parent_feature: bonification, required: "choice_1"},
+  {kind: "klass", name: "Regain flamboyant",             klasses: [flamboyant],  description: ""},
+  {kind: "klass", name: "Manteau d'allégresse",          klasses: [flamboyant],  description: "", parent_feature: manteau_flamboyant, required: "choice_1"},
+  {kind: "klass", name: "Manteau de clarté",             klasses: [flamboyant],  description: "", parent_feature: manteau_flamboyant, required: "choice_1"},
+  {kind: "klass", name: "Fontaine de vie",               klasses: [gardien],     description: ""},
+  {kind: "klass", name: "Colère de la nature",           klasses: [gardien],     description: ""},
+  {kind: "klass", name: "Force de la terre",             klasses: [gardien],     description: "", parent_feature: puissance_gardien, required: "choice_1"},
+  {kind: "klass", name: "Sang indompté",                 klasses: [gardien],     description: "", parent_feature: puissance_gardien, required: "choice_1"},
+  {kind: "klass", name: "Cœur de tempête",               klasses: [gardien],     description: "", parent_feature: puissance_gardien, required: "choice_1"},
+  {kind: "klass", name: "Esprit vital",                  klasses: [gardien],     description: "", parent_feature: puissance_gardien, required: "choice_1"},
+  {kind: "klass", name: "Défi en combat",                klasses: [guerrier],    description: "Il est dangereux d'ignorer un guerrier au combat.
   À chaque fois que vous attaquez un ennemi, que votre coup le touche ou pas, vous avez la possibilité de le marquer.
   La marque dure jusqu'à la ﬁn de votre tour de jeu suivant. Tant qu'une cible est marquée. elle subit un malus de -2 aux jets d`attaque qui ne vous prennent pas pour cible. Une créature ne peut être sujette qu'à une marque à la fois, une nouvelle marque remplaçant la précédente.
-  De plus, à chaque fois qu'un ennemi marqué qui vous est adjacent se décale ou effectue une attaque dont vous n'êtes pas la cible. vous pouvez lui porter une attaque de base de corps à corps au pris, d'une interruption immédiate.",
-  required: "required"
-)
-categorie_arme_favorite = KlassFeature.create(
-  name: "Catégorie d'arme favorite",
-  klasses: [guerrier],
-  description: "Choisissez une catégorie d`armes : armes à une main ou armes à deux mains. Lorsque vous utilisez une arme de cette catégorie. vous bénéficiez d'un bonus de +1 aux jets d'attaque.",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Technique de la tempête",
-  klasses: [guerrier],
-  description: "",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Vigueur du guerrier téméraire",
-  klasses: [guerrier],
-  description: "",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Style du bagarreur",
-  klasses: [guerrier],
-  description: "",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Supériorité au combat",
-  klasses: [guerrier],
-  description: "Vous bénéﬁciez d`un bonus égal à votre modificateur de Sagesse aux attaques d`opportunité. Si le déplacement d'un ennemi provoque une attaque d'opportunité et que vous le touchez. il interrompt immédiatement son déplacement.  S'il lui reste des actions. il peut en entreprendre pour poursuivre son déplacement.",
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Agilité au combat",
-  klasses: [guerrier],
-  description: "",
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Arme à une main",
-  klasses: [guerrier],
-  description: "+1 aux jets d'attaque avec les armes à une main.",
-  parent_feature: categorie_arme_favorite,
-  required: "choice_3"
-)
-KlassFeature.create(
-  name: "Arme à deux mains",
-  klasses: [guerrier],
-  description: "+1 aux jets d'attaque avec les armes à deux mains.",
-  parent_feature: categorie_arme_favorite,
-  required: "choice_3"
-)
-KlassFeature.create(
-  name: "Conduit divin",
-  klasses: [invocateur, paladin, pretre, vengeur],
-  description: "",
-  required: "required"
-)
-alliance_divine = KlassFeature.create(
-  name: "Alliance divine",
-  klasses: [invocateur],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Alliance de colère",
-  klasses: [invocateur],
-  description: "",
-  parent_feature: alliance_divine,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Alliance protectrice",
-  klasses: [invocateur],
-  description: "",
-  parent_feature: alliance_divine,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Alliance de malédiction",
-  klasses: [invocateur],
-  description: "",
-  parent_feature: alliance_divine,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Tir implacable",
-  klasses: [limier],
-  description: "",
-  required: "required"
-)
-lien_limier = KlassFeature.create(
-  name: "Lien du limier",
-  klasses: [limier],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Lien désincarné",
-  klasses: [limier],
-  description: "",
-  parent_feature: lien_limier,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Lien du sang",
-  klasses: [limier],
-  description: "",
-  parent_feature: lien_limier,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Porte-lame",
-  klasses: [mage_lames],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Écran du mage d'armes",
-  klasses: [mage_lames],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-ecran_mage_lame = KlassFeature.create(
-  name: "Égide du mage d'armes",
-  klasses: [mage_lames],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Égide défensive",
-  klasses: [mage_lames],
-  description: "",
-  parent_feature: ecran_mage_lame,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Égide offensive",
-  klasses: [mage_lames],
-  description: "",
-  parent_feature: ecran_mage_lame,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Égide prédatrice",
-  klasses: [mage_lames],
-  description: "",
-  parent_feature: ecran_mage_lame,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Tour de magie",
-  klasses: [magicien],
-  description: "Les tours de magie sont des sorts mineurs que vous acquerrez au niveau 1. Vous pouvez ainsi employer les sorts de <i>lumière</i>, <i>manipulation à distance</i>, <i>prestidigitation</i> et <i>son imaginaire</i> en tant que pouvoir à volonté.",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Grimoire",
-  klasses: [magicien],
-  description: "Vous possédez un grimoire, livre rempli de savoir mystique dans lequel vous gardez une trace écrite de vos rituels et de vos sorts quotidiens et utilitaires. (cf MdJ1 p.74)",
-  required: "required"
-)
-maitrise_foca_arca = KlassFeature.create(
-  name: "Maîtrise des focaliseurs arcaniques",
-  klasses: [magicien],
-  description: "Vous vous spécialiser dans un type de Focaliseur pour profiter d'avantages supplémentaires quand vous y recouvrez.",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Baguette de précision",
-  klasses: [magicien],
-  description: "Une fois par rencontre. vous pouvez. au prix d'une action libre, bénéficiez d'un bonus égal à votre modificateur de Dextérité à un jet d'attaque unique. Vous ne pouvez profiter de cet avantage que si vous vous servez de la baguette. Cette forme de maîtrise est idéale pour les magiciens de guerre, car elle leur permet de faire plus souvent mouche avec leurs pouvoirs dévastateurs.",
-  parent_feature: maitrise_foca_arca,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Bâton de défense",
-  klasses: [magicien],
-  description: "
-il vous confère un bonus de +1 à la CA. Par ailleurs, une fois par rencontre, dans le cadre d'une interruption immédiate, vous pouvez bénéficiez d'un bonus égal à votre modificateur de Constitution à la défense contre une attaque. Vous pouvez recourir à ce bonus même si me MD vous a déjà informé du total des dégâts infligés par l'attaque. Vous ne pouvez profiter de ces avantages que si vous vous servez du bâton. Cette forme de maîtrise est utile pour tous les magiciens, qu'ils s’intéressent aux sorts de contrôle ou à ceux infligeant des dégâts.",
-  parent_feature: maitrise_foca_arca,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Orbe du châtiment",
-  klasses: [magicien],
-  description: "Une fois par rencontre. vous pouvez, au prix d'une action libre, vous servir de votre orbe pour acquérir l'un des deux effets suivants.
+  De plus, à chaque fois qu'un ennemi marqué qui vous est adjacent se décale ou effectue une attaque dont vous n'êtes pas la cible. vous pouvez lui porter une attaque de base de corps à corps au pris, d'une interruption immédiate."},
+  {kind: "klass", name: "Technique de la tempête",       klasses: [guerrier],     description: "", required: "choice_1"},
+  {kind: "klass", name: "Vigueur du guerrier téméraire", klasses: [guerrier],     description: "", required: "choice_1"},
+  {kind: "klass", name: "Style du bagarreur",            klasses: [guerrier],     description: "", required: "choice_1"},
+  {kind: "klass", name: "Supériorité au combat",         klasses: [guerrier],     description: "Vous bénéﬁciez d`un bonus égal à votre modificateur de Sagesse aux attaques d`opportunité. Si le déplacement d'un ennemi provoque une attaque d'opportunité et que vous le touchez. il interrompt immédiatement son déplacement.  S'il lui reste des actions. il peut en entreprendre pour poursuivre son déplacement.", required: "choice_2"},
+  {kind: "klass", name: "Agilité au combat",             klasses: [guerrier],     description: "", required: "choice_2"},
+  {kind: "klass", name: "Arme à une main",               klasses: [guerrier],     description: "+1 aux jets d'attaque avec les armes à une main.", parent_feature: categorie_arme_favorite, required: "choice_3"},
+  {kind: "klass", name: "Arme à deux mains",             klasses: [guerrier],     description: "+1 aux jets d'attaque avec les armes à deux mains.", parent_feature: categorie_arme_favorite, required: "choice_3"},
+  {kind: "klass", name: "Conduit divin",                 klasses: [invocateur, paladin, pretre, vengeur], description: ""},
+  {kind: "klass", name: "Alliance de colère",            klasses: [invocateur],   description: "", parent_feature: alliance_divine, required: "choice_1"},
+  {kind: "klass", name: "Alliance protectrice",          klasses: [invocateur],   description: "", parent_feature: alliance_divine, required: "choice_1"},
+  {kind: "klass", name: "Alliance de malédiction",       klasses: [invocateur],   description: "", parent_feature: alliance_divine, required: "choice_1"},
+  {kind: "klass", name: "Tir implacable",                klasses: [limier],       description: ""},
+  {kind: "klass", name: "Lien désincarné",               klasses: [limier],       description: "", parent_feature: lien_limier, required: "choice_1"},
+  {kind: "klass", name: "Lien du sang",                  klasses: [limier],       description: "", parent_feature: lien_limier, required: "choice_1"},
+  {kind: "klass", name: "Porte-lame",                    klasses: [mage_lames],   description: ""},
+  {kind: "klass", name: "Écran du mage d'armes",         klasses: [mage_lames],   description: "choisissez une aptitude parmi les options suivantes"},
+  {kind: "klass", name: "Égide défensive",               klasses: [mage_lames],   description: "", parent_feature: ecran_mage_lame, required: "choice_1"},
+  {kind: "klass", name: "Égide offensive",               klasses: [mage_lames],   description: "", parent_feature: ecran_mage_lame, required: "choice_1"},
+  {kind: "klass", name: "Égide prédatrice",              klasses: [mage_lames],   description: "", parent_feature: ecran_mage_lame, required: "choice_1"},
+  {kind: "klass", name: "Tour de magie",                 klasses: [magicien],     description: "Les tours de magie sont des sorts mineurs que vous acquerrez au niveau 1. Vous pouvez ainsi employer les sorts de <i>lumière</i>, <i>manipulation à distance</i>, <i>prestidigitation</i> et <i>son imaginaire</i> en tant que pouvoir à volonté."},
+  {kind: "klass", name: "Grimoire",                      klasses: [magicien],     description: "Vous possédez un grimoire, livre rempli de savoir mystique dans lequel vous gardez une trace écrite de vos rituels et de vos sorts quotidiens et utilitaires. (cf MdJ1 p.74)"},
+  {kind: "klass", name: "Baguette de précision",         klasses: [magicien],     description: "Une fois par rencontre. vous pouvez. au prix d'une action libre, bénéficiez d'un bonus égal à votre modificateur de Dextérité à un jet d'attaque unique. Vous ne pouvez profiter de cet avantage que si vous vous servez de la baguette. Cette forme de maîtrise est idéale pour les magiciens de guerre, car elle leur permet de faire plus souvent mouche avec leurs pouvoirs dévastateurs.", parent_feature: maitrise_foca_arca, required: "choice_1"},
+  {kind: "klass", name: "Bâton de défense",              klasses: [magicien],     description: "Il vous confère un bonus de +1 à la CA. Par ailleurs, une fois par rencontre, dans le cadre d'une interruption immédiate, vous pouvez bénéficiez d'un bonus égal à votre modificateur de Constitution à la défense contre une attaque. Vous pouvez recourir à ce bonus même si me MD vous a déjà informé du total des dégâts infligés par l'attaque. Vous ne pouvez profiter de ces avantages que si vous vous servez du bâton. Cette forme de maîtrise est utile pour tous les magiciens, qu'ils s’intéressent aux sorts de contrôle ou à ceux infligeant des dégâts.", parent_feature: maitrise_foca_arca, required: "choice_1"},
+  {kind: "klass", name: "Orbe du châtiment", klasses: [magicien], description: "Une fois par rencontre. vous pouvez, au prix d'une action libre, vous servir de votre orbe pour acquérir l'un des deux effets suivants.
 Vous pouvez désigner une créature sur laquelle vous avez lancé un sort de magicien dont les effets persistent jusqu'à ce que le sujet ait réussi un jet de sauvegarde. Cette créature subit un malus égal à votre modificateur de Sagesse aux jets de sauvegarde contre cet effet.
 Au lieu de cela, vous pouvez choisir de rallonger la durée d'un effet créé par un sort à volonté de magicien (comme <i>nuage de dague</i> ou <i>rayon de givre</i> qui se terminerait sans cela à la fin de votre tour de jeu actuel. L'effet persiste alors jusqu'à la fin de votre tour de jeu suivant.
-Vous ne pouvez profiter de ces avantages que si vous vous servez de l'orbe. Les magiciens manipulateurs choisissent généralement cette forme de maîtrise, car elle leur permet de prolonger la durée de leurs sorts de contrôle.",
-  parent_feature: maitrise_foca_arca,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Orbe de tromperie",
-  klasses: [magicien],
-  description: "",
-  parent_feature: maitrise_foca_arca,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Tome de coercition",
-  klasses: [magicien],
-  description: "",
-  parent_feature: maitrise_foca_arca,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Tome de préparation",
-  klasses: [magicien],
-  description: "",
-  parent_feature: maitrise_foca_arca,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Parole inspiratrice",
-  klasses: [maitre_guerre],
-  description: "",
-  required: "required"
-)
-autorite_naturelle = KlassFeature.create(
-  name: "Autorité naturelle",
-  klasses: [maitre_guerre],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Présence inspiratrice",
-  klasses: [maitre_guerre],
-  description: "",
-  parent_feature: autorite_naturelle,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Présence tactique",
-  klasses: [maitre_guerre],
-  description: "",
-  parent_feature: autorite_naturelle,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Présence ingénieuse",
-  klasses: [maitre_guerre],
-  description: "",
-  parent_feature: autorite_naturelle,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Présence intrépide",
-  klasses: [maitre_guerre],
-  description: "",
-  parent_feature: autorite_naturelle,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Présence perspicace",
-  klasses: [maitre_guerre],
-  description: "",
-  parent_feature: autorite_naturelle,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Présence du tirailleur",
-  klasses: [maitre_guerre],
-  description: "",
-  parent_feature: autorite_naturelle,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Chef de troupe",
-  klasses: [maitre_guerre],
-  description: "",
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Chef avisé",
-  klasses: [maitre_guerre],
-  description: "",
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Chef d'assaut",
-  klasses: [maitre_guerre],
-  description: "",
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Maître de guerre archer",
-  klasses: [maitre_guerre],
-  description: "",
-  required: "choice_3"
-)
-KlassFeature.create(
-  name: "Combattant à mains nues",
-  klasses: [moine],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Défense sans armure",
-  klasses: [moine],
-  description: "",
-  required: "required"
-)
-tradition_monastique = KlassFeature.create(
-  name: "Tradition monastique",
-  klasses: [moine],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Poing de pierre",
-  klasses: [moine],
-  description: "",
-  parent_feature: tradition_monastique,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Soufle centré",
-  klasses: [moine],
-  description: "",
-  parent_feature: tradition_monastique,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Défi divin",
-  klasses: [paladin],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Imposition des mains",
-  klasses: [paladin],
-  description: "",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Serment ardent",
-  klasses: [paladin],
-  description: "",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Toucher de la vertu",
-  klasses: [paladin],
-  description: "",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Mot de guérison",
-  klasses: [pretre],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Savoir de soigneur",
-  klasses: [pretre],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Maître des runes",
-  klasses: [pretre_runes],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Runes de préparation",
-  klasses: [pretre_runes],
-  description: "",
-  required: "required"
-)
-tradition_runique = KlassFeature.create(
-  name: "Tradition runique",
-  klasses: [pretre_runes],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Marteau de l'ire",
-  klasses: [pretre_runes],
-  description: "",
-  parent_feature: tradition_runique,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Parole du défi",
-  klasses: [pretre_runes],
-  description: "",
-  parent_feature: tradition_runique,
-  required: "choice_1"
-)
-discipline_spe = KlassFeature.create(
-  name: "Discipline de spécialisation",
-  klasses: [psion],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Spécialisation en télékinésie",
-  klasses: [psion],
-  description: "",
-  parent_feature: discipline_spe,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Spécialisation en télépathie",
-  klasses: [psion],
-  description: "",
-  parent_feature: discipline_spe,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Traque",
-  klasses: [rodeur],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Maîtrise des bêtes",
-  klasses: [rodeur],
-  description: "",
-  required: "choice_1"
-)
-style_combat = KlassFeature.create(
-  name: "Style de combat",
-  klasses: [rodeur],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Style de combat à distance",
-  klasses: [rodeur],
-  description: "",
-  parent_feature: style_combat,
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Style de combat à deux armes",
-  klasses: [rodeur],
-  description: "",
-  parent_feature: style_combat,
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Style du combat du chasseur",
-  klasses: [rodeur],
-  description: "",
-  parent_feature: style_combat,
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Style de combat du maraudeur",
-  klasses: [rodeur],
-  description: "",
-  parent_feature: style_combat,
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Tir de proximité",
-  klasses: [rodeur, sorcier],
-  description: "",
-  required: "choice_3"
-)
-KlassFeature.create(
-  name: "Course d'assaut",
-  klasses: [rodeur],
-  description: "",
-  required: "choice_3"
-)
-KlassFeature.create(
-  name: "Guérison spirituelle",
-  klasses: [shaman],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Communication avec les esprits",
-  klasses: [shaman],
-  description: "",
-  required: "required"
-)
-compagnon = KlassFeature.create(
-  name: "Compagnon sprituel",
-  klasses: [shaman],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Esprit protecteur",
-  klasses: [shaman],
-  description: "",
-  parent_feature: compagnon,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Esprit prédateur",
-  klasses: [shaman],
-  description: "",
-  parent_feature: compagnon,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Esprit du guetteur",
-  klasses: [shaman],
-  description: "",
-  parent_feature: compagnon,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Esprit du messager des mondes",
-  klasses: [shaman],
-  description: "",
-  parent_feature: compagnon,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Décharge occulte",
-  klasses: [sorcier],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Déplacement enténébré",
-  klasses: [sorcier],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Envoûtement",
-  klasses: [sorcier],
-  description: "",
-  required: "required"
-)
-pacte_occulte = KlassFeature.create(
-  name: "Pacte occulte",
-  klasses: [sorcier],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Pacte féerique",
-  klasses: [sorcier],
-  description: "",
-  parent_feature: pacte_occulte,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Pacte infernal",
-  klasses: [sorcier],
-  description: "",
-  parent_feature: pacte_occulte,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Pacte stellaire",
-  klasses: [sorcier],
-  description: "",
-  parent_feature: pacte_occulte,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Pacte des vestiges",
-  klasses: [sorcier],
-  description: "",
-  parent_feature: pacte_occulte,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Armure de la foi",
-  klasses: [vengeur],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Serment d'inimitié",
-  klasses: [vengeur],
-  description: "",
-  required: "required"
-)
-censure_vengeur = KlassFeature.create(
-  name: "Censure du vengeur",
-  klasses: [vengeur],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Censure de poursuite",
-  klasses: [vengeur],
-  description: "",
-  parent_feature: censure_vengeur,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Censure rétributive",
-  klasses: [vengeur],
-  description: "",
-  parent_feature: censure_vengeur,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Censure collective",
-  klasses: [vengeur],
-  description: "",
-  parent_feature: censure_vengeur,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Attaque sournoise",
-  klasses: [voleur],
-  description: "",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Frappe de la mante",
-  klasses: [voleur],
-  description: "",
-  required: "required"
-)
-tactique_roublard = KlassFeature.create(
-  name: "Tactique du roublard",
-  klasses: [voleur],
-  description: "choisissez une aptitude parmi les options suivantes",
-  required: "required"
-)
-KlassFeature.create(
-  name: "Brute des bas-fonds",
-  klasses: [voleur],
-  description: "",
-  parent_feature: tactique_roublard,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Esthète de l'esquive",
-  klasses: [voleur],
-  description: "",
-  parent_feature: tactique_roublard,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Ruffian impitoyable",
-  klasses: [voleur],
-  description: "",
-  parent_feature: tactique_roublard,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Furtivité",
-  klasses: [voleur],
-  description: "",
-  parent_feature: tactique_roublard,
-  required: "choice_1"
-)
-KlassFeature.create(
-  name: "Armes du voleur",
-  klasses: [voleur],
-  description: "",
-  required: "choice_2"
-)
-KlassFeature.create(
-  name: "Tireur d'élite",
-  klasses: [voleur],
-  description: "",
-  required: "choice_2"
-)
+Vous ne pouvez profiter de ces avantages que si vous vous servez de l'orbe. Les magiciens manipulateurs choisissent généralement cette forme de maîtrise, car elle leur permet de prolonger la durée de leurs sorts de contrôle.", parent_feature: maitrise_foca_arca, required: "choice_1"},
+  {kind: "klass", name: "Orbe de tromperie",               klasses: [magicien],          description: "", parent_feature: maitrise_foca_arca, required: "choice_1"},
+  {kind: "klass", name: "Tome de coercition",              klasses: [magicien],          description: "", parent_feature: maitrise_foca_arca, required: "choice_1"},
+  {kind: "klass", name: "Tome de préparation",             klasses: [magicien],          description: "", parent_feature: maitrise_foca_arca, required: "choice_1"},
+  {kind: "klass", name: "Parole inspiratrice",             klasses: [maitre_guerre],     description: ""},
+  {kind: "klass", name: "Présence inspiratrice",           klasses: [maitre_guerre],     description: "", parent_feature: autorite_naturelle, required: "choice_1"},
+  {kind: "klass", name: "Présence tactique",               klasses: [maitre_guerre],     description: "", parent_feature: autorite_naturelle, required: "choice_1"},
+  {kind: "klass", name: "Présence ingénieuse",             klasses: [maitre_guerre],     description: "", parent_feature: autorite_naturelle, required: "choice_1"},
+  {kind: "klass", name: "Présence intrépide",              klasses: [maitre_guerre],     description: "", parent_feature: autorite_naturelle, required: "choice_1"},
+  {kind: "klass", name: "Présence perspicace",             klasses: [maitre_guerre],     description: "", parent_feature: autorite_naturelle, required: "choice_1"},
+  {kind: "klass", name: "Présence du tirailleur",          klasses: [maitre_guerre],     description: "", parent_feature: autorite_naturelle, required: "choice_1"},
+  {kind: "klass", name: "Chef de troupe",                  klasses: [maitre_guerre],     description: "", required: "choice_2"},
+  {kind: "klass", name: "Chef avisé",                      klasses: [maitre_guerre],     description: "", required: "choice_2"},
+  {kind: "klass", name: "Chef d'assaut",                   klasses: [maitre_guerre],     description: "", required: "choice_2"},
+  {kind: "klass", name: "Maître de guerre archer",         klasses: [maitre_guerre],     description: "", required: "choice_3"},
+  {kind: "klass", name: "Combattant à mains nues",         klasses: [moine],             description: ""},
+  {kind: "klass", name: "Défense sans armure",             klasses: [moine],             description: ""},
+  {kind: "klass", name: "Poing de pierre",                 klasses: [moine],             description: "", parent_feature: tradition_monastique, required: "choice_1"},
+  {kind: "klass", name: "Souffle centré",                  klasses: [moine],             description: "", parent_feature: tradition_monastique, required: "choice_1"},
+  {kind: "klass", name: "Défi divin",                      klasses: [paladin],           description: ""},
+  {kind: "klass", name: "Imposition des mains",            klasses: [paladin],           description: "", required: "choice_1"},
+  {kind: "klass", name: "Serment ardent",                  klasses: [paladin],           description: "", required: "choice_1"},
+  {kind: "klass", name: "Toucher de la vertu",             klasses: [paladin],           description: "", required: "choice_1"},
+  {kind: "klass", name: "Mot de guérison",                 klasses: [pretre],            description: ""},
+  {kind: "klass", name: "Savoir de soigneur",              klasses: [pretre],            description: ""},
+  {kind: "klass", name: "Maître des runes",                klasses: [pretre_runes],      description: ""},
+  {kind: "klass", name: "Runes de préparation",            klasses: [pretre_runes],      description: ""},
+  {kind: "klass", name: "Marteau de l'ire",                klasses: [pretre_runes],      description: "", parent_feature: tradition_runique, required: "choice_1"},
+  {kind: "klass", name: "Parole du défi",                  klasses: [pretre_runes],      description: "", parent_feature: tradition_runique, required: "choice_1"},
+  {kind: "klass", name: "Spécialisation en télékinésie",   klasses: [psion],             description: "", parent_feature: discipline_spe, required: "choice_1"},
+  {kind: "klass", name: "Spécialisation en télépathie",    klasses: [psion],             description: "", parent_feature: discipline_spe, required: "choice_1"},
+  {kind: "klass", name: "Traque",                          klasses: [rodeur],            description: ""},
+  {kind: "klass", name: "Maîtrise des bêtes",              klasses: [rodeur],            description: "", required: "choice_1"},
+  {kind: "klass", name: "Style de combat à distance",      klasses: [rodeur],            description: "", parent_feature: style_combat, required: "choice_2"},
+  {kind: "klass", name: "Style de combat à deux armes",    klasses: [rodeur],            description: "", parent_feature: style_combat, required: "choice_2"},
+  {kind: "klass", name: "Style du combat du chasseur",     klasses: [rodeur],            description: "", parent_feature: style_combat, required: "choice_2"},
+  {kind: "klass", name: "Style de combat du maraudeur",    klasses: [rodeur],            description: "", parent_feature: style_combat, required: "choice_2"},
+  {kind: "klass", name: "Tir de proximité",                klasses: [rodeur, sorcier],   description: "", required: "choice_3"},
+  {kind: "klass", name: "Course d'assaut",                 klasses: [rodeur],            description: "", required: "choice_3"},
+  {kind: "klass", name: "Guérison spirituelle",            klasses: [shaman],            description: ""},
+  {kind: "klass", name: "Communication avec les esprits",  klasses: [shaman],            description: ""},
+  {kind: "klass", name: "Esprit protecteur",               klasses: [shaman],            description: "", parent_feature: compagnon, required: "choice_1"},
+  {kind: "klass", name: "Esprit prédateur",                klasses: [shaman],            description: "", parent_feature: compagnon, required: "choice_1"},
+  {kind: "klass", name: "Esprit du guetteur",              klasses: [shaman],            description: "", parent_feature: compagnon, required: "choice_1"},
+  {kind: "klass", name: "Esprit du messager des mondes",   klasses: [shaman],            description: "", parent_feature: compagnon, required: "choice_1"},
+  {kind: "klass", name: "Décharge occulte",                klasses: [sorcier],           description: ""},
+  {kind: "klass", name: "Déplacement enténébré",           klasses: [sorcier],           description: ""},
+  {kind: "klass", name: "Envoûtement",                     klasses: [sorcier],           description: ""},
+  {kind: "klass", name: "Pacte féerique",                  klasses: [sorcier],           description: "", parent_feature: pacte_occulte, required: "choice_1"},
+  {kind: "klass", name: "Pacte infernal",                  klasses: [sorcier],           description: "", parent_feature: pacte_occulte, required: "choice_1"},
+  {kind: "klass", name: "Pacte stellaire",                 klasses: [sorcier],           description: "", parent_feature: pacte_occulte, required: "choice_1"},
+  {kind: "klass", name: "Pacte des vestiges",              klasses: [sorcier],           description: "", parent_feature: pacte_occulte, required: "choice_1"},
+  {kind: "klass", name: "Armure de la foi",                klasses: [vengeur],           description: ""},
+  {kind: "klass", name: "Serment d'inimitié",              klasses: [vengeur],           description: ""},
+  {kind: "klass", name: "Censure de poursuite",            klasses: [vengeur],           description: "", parent_feature: censure_vengeur, required: "choice_1"},
+  {kind: "klass", name: "Censure rétributive",             klasses: [vengeur],           description: "", parent_feature: censure_vengeur, required: "choice_1"},
+  {kind: "klass", name: "Censure collective",              klasses: [vengeur],           description: "", parent_feature: censure_vengeur, required: "choice_1"},
+  {kind: "klass", name: "Attaque sournoise",               klasses: [voleur],            description: ""},
+  {kind: "klass", name: "Frappe de la mante",              klasses: [voleur],            description: ""},
+  {kind: "klass", name: "Brute des bas-fonds",             klasses: [voleur],            description: "", parent_feature: tactique_roublard, required: "choice_1"},
+  {kind: "klass", name: "Esthète de l'esquive",            klasses: [voleur],            description: "", parent_feature: tactique_roublard, required: "choice_1"},
+  {kind: "klass", name: "Ruffian impitoyable",             klasses: [voleur],            description: "", parent_feature: tactique_roublard, required: "choice_1"},
+  {kind: "klass", name: "Furtivité",                       klasses: [voleur],            description: "", parent_feature: tactique_roublard, required: "choice_1"},
+  {kind: "klass", name: "Armes du voleur",                 klasses: [voleur],            description: "", required: "choice_2"},
+  {kind: "klass", name: "Tireur d'élite",                  klasses: [voleur],            description: "", required: "choice_2"}
+])
 
 God.create([
-{name: "Amaunator"           , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Soleil"},
-{name: "Angharradh"          , rank: "Mineurs",   alignment: "Bon"                , influence: "Sagesse"},
-{name: "Asmodée"             , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Péché"},
-{name: "Avandra"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Changement"},
-{name: "Baine"               , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Tyrannie"},
-{name: "Bahamut"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Justice"},
-{name: "Berronar Purargent"  , rank: "Mineurs",   alignment: "Loyal bon"          , influence: "Famille"},
-{name: "Chauntéa"            , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Vie"},
-{name: "Corellon"            , rank: "Majeurs",   alignment: "Bon"                , influence: "Fées"},
-{name: "Cyric"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Conflit"},
-{name: "Érathis"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Civilisation"},
-{name: "Garl Brilledor"      , rank: "Mineurs",   alignment: "Bon"                , influence: "Protection"},
-{name: "Ghaunadaur"          , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Abominations"},
-{name: "Gond"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Artisanat"},
-{name: "Gruumsh"             , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Sauvagerie"},
-{name: "Ilmater"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Souffrance"},
-{name: "Ioun"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Connaissance"},
-{name: "Kelemvor"            , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Mort"},
-{name: "Kord"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Bataille"},
-{name: "Lolth"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Drows"},
-{name: "Mailikki"            , rank: "Mineurs",   alignment: "Bon"                , influence: "Forêts"},
-{name: "Mélora"              , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Mer"},
-{name: "Moradin"             , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Nains"},
-{name: "Oghma"               , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Connaissance"},
-{name: "Pélor"               , rank: "Mineurs",   alignment: "Bon"                , influence: "Été"},
-{name: "Reine Corneille"     , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Hiver"},
-{name: "Sehanine"            , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Automne"},
-{name: "Séluné"              , rank: "Majeurs",   alignment: "Bon"                , influence: "Lune"},
-{name: "Shar"                , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Ombres"},
-{name: "Sheela Peryroyl"     , rank: "Mineurs",   alignment: "Bon"                , influence: "Beauté"},
-{name: "Sunie"               , rank: "Majeurs",   alignment: "Bon"                , influence: "Beauté"},
-{name: "Sylvanus"            , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Nature"},
-{name: "Tempus"              , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Guerre"},
-{name: "Torm"                , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Loi"},
-{name: "Torog"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Outreterre"},
-{name: "Tymora"              , rank: "Mineurs",   alignment: "Bon"                , influence: "Chance"},
-{name: "Vecna"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Morts-vivants"},
-{name: "Waukyne"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Marchands"},
-{name: "Zéhir"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Poison"}
+  {name: "Amaunator"           , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Soleil"},
+  {name: "Angharradh"          , rank: "Mineurs",   alignment: "Bon"                , influence: "Sagesse"},
+  {name: "Asmodée"             , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Péché"},
+  {name: "Avandra"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Changement"},
+  {name: "Baine"               , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Tyrannie"},
+  {name: "Bahamut"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Justice"},
+  {name: "Berronar Purargent"  , rank: "Mineurs",   alignment: "Loyal bon"          , influence: "Famille"},
+  {name: "Chauntéa"            , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Vie"},
+  {name: "Corellon"            , rank: "Majeurs",   alignment: "Bon"                , influence: "Fées"},
+  {name: "Cyric"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Conflit"},
+  {name: "Érathis"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Civilisation"},
+  {name: "Garl Brilledor"      , rank: "Mineurs",   alignment: "Bon"                , influence: "Protection"},
+  {name: "Ghaunadaur"          , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Abominations"},
+  {name: "Gond"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Artisanat"},
+  {name: "Gruumsh"             , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Sauvagerie"},
+  {name: "Ilmater"             , rank: "Mineurs",   alignment: "Bon"                , influence: "Souffrance"},
+  {name: "Ioun"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Connaissance"},
+  {name: "Kelemvor"            , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Mort"},
+  {name: "Kord"                , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Bataille"},
+  {name: "Lolth"               , rank: "Majeurs",   alignment: "Chaotique mauvais"  , influence: "Drows"},
+  {name: "Mailikki"            , rank: "Mineurs",   alignment: "Bon"                , influence: "Forêts"},
+  {name: "Mélora"              , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Mer"},
+  {name: "Moradin"             , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Nains"},
+  {name: "Oghma"               , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Connaissance"},
+  {name: "Pélor"               , rank: "Mineurs",   alignment: "Bon"                , influence: "Été"},
+  {name: "Reine Corneille"     , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Hiver"},
+  {name: "Sehanine"            , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Automne"},
+  {name: "Séluné"              , rank: "Majeurs",   alignment: "Bon"                , influence: "Lune"},
+  {name: "Shar"                , rank: "Majeurs",   alignment: "Mauvais"            , influence: "Ombres"},
+  {name: "Sheela Peryroyl"     , rank: "Mineurs",   alignment: "Bon"                , influence: "Beauté"},
+  {name: "Sunie"               , rank: "Majeurs",   alignment: "Bon"                , influence: "Beauté"},
+  {name: "Sylvanus"            , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Nature"},
+  {name: "Tempus"              , rank: "Majeurs",   alignment: "Non aligné"         , influence: "Guerre"},
+  {name: "Torm"                , rank: "Majeurs",   alignment: "Loyal bon"          , influence: "Loi"},
+  {name: "Torog"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Outreterre"},
+  {name: "Tymora"              , rank: "Mineurs",   alignment: "Bon"                , influence: "Chance"},
+  {name: "Vecna"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Morts-vivants"},
+  {name: "Waukyne"             , rank: "Mineurs",   alignment: "Non aligné"         , influence: "Marchands"},
+  {name: "Zéhir"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Poison"}
 ])
 
 
@@ -2123,5 +1284,3 @@ Language.create([
 ])
 # password: plop
 User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')
-
-
