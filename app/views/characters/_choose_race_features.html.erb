@@ -1,19 +1,19 @@
-<h4>Choix des aptitudes raciales</h4>
+<h4>Aptitudes raciales</h4>
 <div class="">
   <p>Vous disposez de toutes les aptitudes raciales suivantes :</p>
   <ul>
-    <% @character.race.race_features.required.each do |rf| %>
+    <% @character.race.features.required.each do |rf| %>
       <li><span data-placement='top' data-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= rf.description.html_safe %>" data-title="<%= rf.name %>" ><%= rf.name %></span></li>
-      <%= form.hidden_field("character_choice_ids[race_ft][required]", value: rf.id, :multiple => true) %>
+      <%= form.hidden_field("character_choice_ids[required]", value: rf.id, :multiple => true) %>
     <% end %>
   </ul>
-  <% unless @character.race.race_features.first_choice.empty? %>
+  <% unless @character.race.features.first_choice.empty? %>
     <p>Choisissez parmi les aptitudes raciales suivantes :</p>
     <div class="radio col-sm-offset-1">
-    <% @character.race.race_features.first_choice.each do |rf| %>
+    <% @character.race.features.first_choice.each do |rf| %>
       <span data-placement='top' data-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= rf.description.html_safe %>" data-title="<%= rf.name %>" >
         <label>
-          <%= radio_button_tag "character[character_choice_ids][race_ft][choice_1][]", "#{rf.id}", false, {class: "choice-1"} %>
+          <%= radio_button_tag "character[character_choice_ids][choice_1][]", "#{rf.id}", false, {class: "choice-1"} %>
           <%= rf.name %>
         </label>
       </span>

@@ -24,7 +24,7 @@
   </div>
 
   <div class="col-sm-4">
-    <% @character.klass.klass_features.each do |feature| %>
+    <% @character.klass.features.each do |feature| %>
     <div class="row">
     <h4><%= feature.name %> :</h4>
     <p><%= !feature.description.blank? ? simple_format(feature.description) : "Pas de description disponible." %></p>
