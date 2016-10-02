@@ -7,7 +7,7 @@ class KlassesController < ApplicationController
 
   def show
     @klasses = Klass.select(:id, :name).all
-    @klass = Klass.includes(:klass_features, :source).find_by_id(params[:id])
+    @klass = Klass.includes(:features, :source).find_by_id(params[:id])
   end
 
 end

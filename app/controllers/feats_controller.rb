@@ -80,6 +80,6 @@ class FeatsController < ApplicationController
     @sources = Source.all
     @races = Race.all
     @klasses = Klass.all
-    @klass_features = KlassFeature.all
+    @features = Feature.all
   end
 end

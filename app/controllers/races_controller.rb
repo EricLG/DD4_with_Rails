@@ -7,7 +7,7 @@ class RacesController < ApplicationController
 
   def show
     @races = Race.select(:id, :name).all
-    @race = Race.includes(:race_features, :source).find_by_id(params[:id])
+    @race = Race.includes(:features, :source).find_by_id(params[:id])
   end
 
 end

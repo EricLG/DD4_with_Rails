@@ -67,7 +67,7 @@ class WelcomesController < ApplicationController
 
   def stats
 
-    #models =[ArmorCategory, CommonArmor, CommonWeapon, ImplementGroup, Klass, KlassFeature, Location, ObjectLevel, Race, RaceFeature, Source, Stat, User, WeaponCategory, WeaponGroup, WeaponProperty]
+    #models =[ArmorCategory, CommonArmor, CommonWeapon, Feature, ImplementGroup, Klass, Location, ObjectLevel, Race, Source, Stat, User, WeaponCategory, WeaponGroup, WeaponProperty]
     #models.each do |m|
     #  m.destroy_all
     #end
@@ -80,15 +80,14 @@ class WelcomesController < ApplicationController
     @stats << {table_name: "CommonWeapon",     table_count: CommonWeapon.count}
     @stats << {table_name: "Consumable",       table_count: Consumable.count}
     @stats << {table_name: "Feat",             table_count: Feat.count}
+    @stats << {table_name: "Feature",          table_count: Feature.count}
     @stats << {table_name: "Game",             table_count: Game.count}
     @stats << {table_name: "ImplementGroup",   table_count: ImplementGroup.count}
     @stats << {table_name: "Klass",            table_count: Klass.count}
-    @stats << {table_name: "KlassFeature",     table_count: KlassFeature.count}
     @stats << {table_name: "Location",         table_count: Location.count}
     @stats << {table_name: "MagicItem",        table_count: MagicItem.count}
     @stats << {table_name: "ObjectLevel",      table_count: ObjectLevel.count}
     @stats << {table_name: "Race",             table_count: Race.count}
-    @stats << {table_name: "RaceFeature",      table_count: RaceFeature.count}
     @stats << {table_name: "Source",           table_count: Source.count}
     @stats << {table_name: "Stat",             table_count: Stat.count}
     @stats << {table_name: "User",             table_count: User.count}
