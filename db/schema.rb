@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20161001174700) do
   add_index "armor_categories_magic_items", ["armor_category_id"], name: "index_armor_categories_magic_items_on_armor_category_id", using: :btree
   add_index "armor_categories_magic_items", ["magic_item_id"], name: "index_armor_categories_magic_items_on_magic_item_id", using: :btree
 
+  create_table "available_features", id: false, force: :cascade do |t|
+    t.integer "feature_id"
+    t.integer "klass_id"
+    t.integer "race_id"
+  end
+
+  add_index "available_features", ["feature_id"], name: "index_available_features_on_feature_id", using: :btree
+  add_index "available_features", ["klass_id"], name: "index_available_features_on_klass_id", using: :btree
+  add_index "available_features", ["race_id"], name: "index_available_features_on_race_id", using: :btree
+
   create_table "available_skills_for_klass", id: false, force: :cascade do |t|
     t.integer "skill_id"
     t.integer "klass_id"
@@ -62,15 +72,13 @@ ActiveRecord::Schema.define(version: 20161001174700) do
 
   create_table "character_choices", force: :cascade do |t|
     t.integer "character_id"
-    t.integer "klass_feature_id"
-    t.integer "race_feature_id"
+    t.integer "feature_id"
     t.integer "language_id"
   end
 
   add_index "character_choices", ["character_id"], name: "index_character_choices_on_character_id", using: :btree
-  add_index "character_choices", ["klass_feature_id"], name: "index_character_choices_on_klass_feature_id", using: :btree
+  add_index "character_choices", ["feature_id"], name: "index_character_choices_on_feature_id", using: :btree
   add_index "character_choices", ["language_id"], name: "index_character_choices_on_language_id", using: :btree
-  add_index "character_choices", ["race_feature_id"], name: "index_character_choices_on_race_feature_id", using: :btree
 
   create_table "characters", force: :cascade do |t|
     t.string   "name"
@@ -208,6 +216,18 @@ ActiveRecord::Schema.define(version: 20161001174700) do
 
   add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
 
+  create_table "features", force: :cascade do |t|
+    t.string   "name"
+    t.string   "kind"
+    t.text     "description"
+    t.string   "required",          default: "required"
+    t.integer  "parent_feature_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "features", ["parent_feature_id"], name: "index_features_on_parent_feature_id", using: :btree
+
   create_table "games", force: :cascade do |t|
     t.datetime "played"
     t.text     "description"
@@ -242,25 +262,6 @@ ActiveRecord::Schema.define(version: 20161001174700) do
 
   add_index "implement_groups_klasses", ["implement_group_id"], name: "index_implement_groups_klasses_on_implement_group_id", using: :btree
   add_index "implement_groups_klasses", ["klass_id"], name: "index_implement_groups_klasses_on_klass_id", using: :btree
-
-  create_table "klass_features", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "required"
-    t.integer  "parent_feature_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "klass_features", ["parent_feature_id"], name: "index_klass_features_on_parent_feature_id", using: :btree
-
-  create_table "klass_features_klasses", id: false, force: :cascade do |t|
-    t.integer "klass_feature_id"
-    t.integer "klass_id"
-  end
-
-  add_index "klass_features_klasses", ["klass_feature_id"], name: "index_klass_features_klasses_on_klass_feature_id", using: :btree
-  add_index "klass_features_klasses", ["klass_id"], name: "index_klass_features_klasses_on_klass_id", using: :btree
 
   create_table "klasses", force: :cascade do |t|
     t.string   "name"
@@ -373,13 +374,13 @@ ActiveRecord::Schema.define(version: 20161001174700) do
 
   add_index "object_levels", ["level"], name: "index_object_levels_on_level", using: :btree
 
-  create_table "pr_klass_features_for_feat", id: false, force: :cascade do |t|
+  create_table "pr_features_for_feat", id: false, force: :cascade do |t|
     t.integer "feat_id"
-    t.integer "klass_feature_id"
+    t.integer "feature_id"
   end
 
-  add_index "pr_klass_features_for_feat", ["feat_id"], name: "index_pr_klass_features_for_feat_on_feat_id", using: :btree
-  add_index "pr_klass_features_for_feat", ["klass_feature_id"], name: "index_pr_klass_features_for_feat_on_klass_feature_id", using: :btree
+  add_index "pr_features_for_feat", ["feat_id"], name: "index_pr_features_for_feat_on_feat_id", using: :btree
+  add_index "pr_features_for_feat", ["feature_id"], name: "index_pr_features_for_feat_on_feature_id", using: :btree
 
   create_table "pr_klasses_for_feat", id: false, force: :cascade do |t|
     t.integer "feat_id"
@@ -389,14 +390,6 @@ ActiveRecord::Schema.define(version: 20161001174700) do
   add_index "pr_klasses_for_feat", ["feat_id"], name: "index_pr_klasses_for_feat_on_feat_id", using: :btree
   add_index "pr_klasses_for_feat", ["klass_id"], name: "index_pr_klasses_for_feat_on_klass_id", using: :btree
 
-  create_table "pr_race_features_for_feat", id: false, force: :cascade do |t|
-    t.integer "feat_id"
-    t.integer "race_feature_id"
-  end
-
-  add_index "pr_race_features_for_feat", ["feat_id"], name: "index_pr_race_features_for_feat_on_feat_id", using: :btree
-  add_index "pr_race_features_for_feat", ["race_feature_id"], name: "index_pr_race_features_for_feat_on_race_feature_id", using: :btree
-
   create_table "pr_races_for_feat", id: false, force: :cascade do |t|
     t.integer "feat_id"
     t.integer "race_id"
@@ -404,25 +397,6 @@ ActiveRecord::Schema.define(version: 20161001174700) do
 
   add_index "pr_races_for_feat", ["feat_id"], name: "index_pr_races_for_feat_on_feat_id", using: :btree
   add_index "pr_races_for_feat", ["race_id"], name: "index_pr_races_for_feat_on_race_id", using: :btree
-
-  create_table "race_features", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "required",          default: "required"
-    t.integer  "parent_feature_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "race_features", ["parent_feature_id"], name: "index_race_features_on_parent_feature_id", using: :btree
-
-  create_table "race_features_races", id: false, force: :cascade do |t|
-    t.integer "race_feature_id"
-    t.integer "race_id"
-  end
-
-  add_index "race_features_races", ["race_feature_id"], name: "index_race_features_races_on_race_feature_id", using: :btree
-  add_index "race_features_races", ["race_id"], name: "index_race_features_races_on_race_id", using: :btree
 
   create_table "races", force: :cascade do |t|
     t.string   "name"

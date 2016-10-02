@@ -9,8 +9,7 @@ class Character < ActiveRecord::Base
   belongs_to :god
   has_and_belongs_to_many :games
   has_many :character_choices
-  has_many :klass_features, through: :character_choices
-  has_many :race_features, through: :character_choices
+  has_many :features, through: :character_choices
   has_many :language_features, through: :character_choices
 
   has_many :klass_choices, -> {klass_features_choices}, class_name: "CharacterChoice"

@@ -90,25 +90,13 @@ module ImportData
     category
   end
 
-  def self.find_klass_features(data, features)
+  def self.find_features(data, features)
     finded_features = []
     array_data = data.split(', ')
     array_data.each do |d|
       if d == "Dieux"
         finded_features << features.find{|f| f.name == "Conduit divin"}
       elsif !d.blank?
-        founded_feat = features.find{|f| f.name == d}
-        finded_features << founded_feat if !founded_feat.nil?
-      end
-    end
-    finded_features
-  end
-
-  def self.find_race_features(data, features)
-    finded_features = []
-    array_data = data.split(', ')
-    array_data.each do |d|
-      if !d.blank?
         founded_feat = features.find{|f| f.name == d}
         finded_features << founded_feat if !founded_feat.nil?
       end

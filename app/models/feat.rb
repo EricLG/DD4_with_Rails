@@ -8,8 +8,7 @@ class Feat < ActiveRecord::Base
   #belongs_to  :prerequisite_for_feat,  class_name: "Feat"
   has_and_belongs_to_many :prerequisited_races,           :class_name => "Race",          :join_table => :pr_races_for_feat, dependent: :destroy
   has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :pr_klasses_for_feat, dependent: :destroy
-  has_and_belongs_to_many :prerequisited_klass_features,  :class_name => "KlassFeature",  :join_table => :pr_klass_features_for_feat, dependent: :destroy
-  has_and_belongs_to_many :prerequisited_race_features,   :class_name => "RaceFeature",   :join_table => :pr_race_features_for_feat, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_features,        :class_name => "Feature",       :join_table => :pr_features_for_feat, dependent: :destroy
 
   CATEGORY = %w(heroic parangonic epic)
 
@@ -17,8 +16,7 @@ class Feat < ActiveRecord::Base
     sources   = Source.all
     races     = Race.all
     klasses   = Klass.all
-    klasses_features = KlassFeature.all
-    races_features = RaceFeature.all
+    features  = Feature.all
     filename  = Dir.entries('lib/import_files').find{|f| f.match(/export_talent_OK/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
@@ -27,18 +25,18 @@ class Feat < ActiveRecord::Base
           f.each_line do |l|  # "Titre";"Catégorie de talents";"Aptitude";"Aptitude raciale";"Talent";"5: Pouvoir";"Autre prérequis";"Compétences";"8:Classe";"Race";"Avantage";"11Stats";"Source";"Errata"
             array_line  = ImportData.clear_array_line(l.split(";", -1))
             categorie   = ImportData.find_category(array_line[1])
-            klass_feat  = ImportData.find_klass_features(array_line[2], klasses_features)
-            race_feat   = ImportData.find_race_features(array_line[3], races_features)
+            klass_feat  = ImportData.find_features(array_line[2], features)
+            race_feat   = ImportData.find_features(array_line[3], features)
             stats       = ImportData.create_stats(array_line[11])
             feat_pr     = Feat.where(name: array_line[4].split(',', -1).map(&:strip)) unless array_line[4].blank?
             sel_klasses = ImportData.find_klass_or_race(array_line[8], klasses)
             sel_races   = ImportData.find_klass_or_race(array_line[9], races)
             source      = sources.find{|s| s.name == array_line[12]}
+            all_features = klass_feat + race_feat
             f = Feat.new(
               name:                         array_line[0],
               category:                     categorie,
-              prerequisited_klass_features: klass_feat,
-              prerequisited_race_features:  race_feat,
+              prerequisited_features:       all_features,
               needed_feats:                 feat_pr || [],
               prerequisited_power:          array_line[5],
               prerequisited_other:          array_line[6],
@@ -89,17 +87,9 @@ class Feat < ActiveRecord::Base
     end
   end
 
-  def klass_features
-    if !prerequisited_klass_features.empty?
-      return prerequisited_klass_features.map(&:name).join(', ')
-    else
-      return ""
-    end
-  end
-
-  def race_features
-    if !prerequisited_race_features.empty?
-      return prerequisited_race_features.map(&:name).join(', ')
+  def features
+    if !prerequisited_features.empty?
+      return prerequisited_features.map(&:name).join(', ')
     else
       return ""
     end

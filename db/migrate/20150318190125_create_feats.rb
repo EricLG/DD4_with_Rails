@@ -18,18 +18,15 @@ class CreateFeats < ActiveRecord::Migration
       t.belongs_to :feat, index: true
       t.belongs_to :race, index: true
     end
-    create_table :pr_race_features_for_feat, id: false do |t|
-      t.belongs_to :feat, index: true
-      t.belongs_to :race_feature, index: true
-    end
 
     create_table :pr_klasses_for_feat, id: false do |t|
       t.belongs_to :feat, index: true
       t.belongs_to :klass, index: true
     end
-    create_table :pr_klass_features_for_feat, id: false do |t|
+
+    create_table :pr_features_for_feat, id: false do |t|
       t.belongs_to :feat, index: true
-      t.belongs_to :klass_feature, index: true
+      t.belongs_to :feature, index: true
     end
   end
 end
