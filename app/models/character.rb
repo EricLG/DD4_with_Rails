@@ -13,6 +13,9 @@ class Character < ActiveRecord::Base
   has_many :race_features, through: :character_choices
   has_many :language_features, through: :character_choices
 
+  has_many :klass_choices, -> {klass_features_choices}, class_name: "CharacterChoice"
+  has_many :race_choices, -> {race_features_choices}, class_name: "CharacterChoice"
+
   STATS = %w(strength constitution dexterity intelligence wisdom charisma)
   LEVEL_STATS = %w(4 8 11 14 18 21 24 28)
   DEFAULT_STATS = [10, 10, 10, 10, 10, 8]

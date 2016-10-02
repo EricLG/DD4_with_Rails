@@ -21,5 +21,11 @@
   <dt><%= Character.human_attribute_name(:alignment)  %></dt>  <dd class="text-left"><%= @character.alignment %></dd>
   <dt><%= Character.human_attribute_name(:party)      %></dt>  <dd class="text-left"><%= @character.party %> </dd>
   <dt><%= Character.human_attribute_name(:user_id)    %></dt>  <dd class="text-left"><%= @character.user.name %> </dd>
+  <% @character.race_choices.each do |rc| %>
+        <dt><%= "APT RACE"%></dt>  <dd> <%= rc.race_feature.name %></dd>
+  <% end %>
+  <% @character.klass_choices.each do |rc| %>
+        <dt><%= "APT Classe"%></dt>  <dd> <%= rc.klass_feature.name %></dd>
+  <% end %>
 </dl>
 <%= link_to t('character.title_show', character: @character.name), edit_character_path(@character.id) %>
