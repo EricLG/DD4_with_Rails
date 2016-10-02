@@ -24,4 +24,9 @@ $(document).on("page:change", function() {
     // Removes focus of the button.
     $(this).blur();
   });
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+
 });
