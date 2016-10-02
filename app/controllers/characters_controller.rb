@@ -60,14 +60,27 @@ class CharactersController < ApplicationController
     @klass = @character.klass
 
     if params && params["character"]
-      choices = params["character"]["character_choice_ids"].values.flatten
-      @character.character_choices.klass_features_choices.clear
-      features = KlassFeature.find choices
+      # Race features
+      race_choices = params["character"]["character_choice_ids"]["race_ft"].values.flatten
+     # binding.pry
+      @character.character_choices.race_features_choices.clear
+      features = RaceFeature.find race_choices
       features.each do |f|
-        choices << f.parent_feature_id unless f.parent_feature_id.nil?
+        race_choices << f.parent_feature_id unless f.parent_feature_id.nil?
       end
-      choices = choices.uniq
-      choices.each do |c|
+      race_choices = race_choices.uniq
+      race_choices.each do |c|
+        CharacterChoice.create(character: @character, race_feature_id: c)
+      end
+      # Klass features
+      klass_choices = params["character"]["character_choice_ids"]["klass_ft"].values.flatten
+      @character.character_choices.klass_features_choices.clear
+      features = KlassFeature.find klass_choices
+      features.each do |f|
+        klass_choices << f.parent_feature_id unless f.parent_feature_id.nil?
+      end
+      klass_choices = klass_choices.uniq
+      klass_choices.each do |c|
         CharacterChoice.create(character: @character, klass_feature_id: c)
       end
     end

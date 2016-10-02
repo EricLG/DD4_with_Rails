@@ -1,18 +1,18 @@
 <h4>Choix des aptitudes de classes</h4>
 <% klass_features = @character.klass.klass_features %>
-<div class="row">
+<div class="">
   <p>Vous disposez des aptitudes de classes obligatoires suivantes :</p>
   <div class="form-group">
   <ul>
     <% klass_features.required.each do |feature| %>
       <li><%= feature.name %></li>
-      <%= form.hidden_field("character_choice_ids[required]", value: feature.id, :multiple => true) %>
+      <%= form.hidden_field("character_choice_ids[klass_ft][required]", value: feature.id, :multiple => true) %>
     <% end %>
   </ul>
   </div>
 </div>
 <% unless klass_features.first_choice.empty? %>
-  <div id="first-choice" class="row">
+  <div id="first-choice" class="">
     <p>Vous devez ensuite choisir parmi les aptitudes suivantes : </p>
     <div class="form-group">
       <div class="radio col-sm-offset-1">
@@ -24,7 +24,7 @@
   </div>
 <% end %>
 <% if !klass_features.second_choice.empty? && klass_features.second_choice.first.parent_feature.nil? %>
-  <div id="second-choice" class="row">
+  <div id="second-choice" class="">
     <p>Choisissez votre style de combat :</p>
     <div class="form-group">
       <div class="radio col-sm-offset-1">
@@ -36,7 +36,7 @@
   </div>
 <% end %>
 <% if !klass_features.third_choice.empty? && klass_features.third_choice.first.parent_feature.nil? %>
-  <div id="third-choice" class="row">
+  <div id="third-choice" class="">
     <p>Enfin, choisissez votre dernière aptitude de classe : </p>
     <div class="form-group">
       <% if klass_features.third_choice.size == 1 %>
@@ -44,7 +44,7 @@
           <label>
             <% klass_feature = klass_features.third_choice.first %>
             <% choice = klass_feature.parent_feature.try(&:required) ||klass_feature.required %>
-            <%= check_box_tag "character[character_choice_ids][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
+            <%= check_box_tag "character[character_choice_ids][klass_ft][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
             <%= klass_feature.complete_name %>
           </label><br>
         </div>
