@@ -36,6 +36,14 @@ class Character < ActiveRecord::Base
 
   meta_store_accessor
 
+  def show_languages
+    if self.languages.empty?
+      "Vous ne parlez aucune langue. C'est dommage."
+    else
+      self.languages.map(&:language).join(", ")
+    end
+  end
+
   def total_stat(carac)
     total_carac = self.send("level_1_#{carac}").to_i
     LEVEL_STATS.each do |l|

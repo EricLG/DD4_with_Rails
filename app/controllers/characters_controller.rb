@@ -37,13 +37,9 @@ class CharactersController < ApplicationController
   def choose_carac
     @character = Character.find_by_id(params["character_id"])
     if params && params["character"]
-      @character.age = params["character"]["age"]
-      @character.height = params["character"]["height"]
-      @character.weight = params["character"]["weight"]
-      @character.alignment = params["character"]["alignment"]
-      @character.god_id = params["character"]["god_id"]
-      @character.party = params["character"]["party"]
-      @character.save!
+      params["character"]["language_ids"].delete("")
+      @character.language_ids.clear
+      @character.update(character_params)
     end
     @random_stats = [random_stat, random_stat, random_stat, random_stat, random_stat, random_stat].sort {|x,y| y <=> x }
     @random_stats
@@ -207,7 +203,7 @@ class CharactersController < ApplicationController
       :level_24_charisma,
       :level_28_charisma,
       {game_ids:[]},
-      {choice_ids:[]},
+      {language_ids: []}
       )
   end
 
@@ -215,6 +211,7 @@ class CharactersController < ApplicationController
     @characters = @current_user.characters.complete
     @races = Race.all
     @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
+    @languages = Language.where(level_1: true).order(:language)
   end
 
 end

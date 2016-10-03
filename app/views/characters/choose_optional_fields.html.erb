@@ -20,6 +20,7 @@
             <%= input_select_form f , :god_id, @gods, :display_name_and_alignemnt, nil, Character.human_attribute_name(:divinity), {size: 1, blank: true} %>
             <%= input_select_form_without_collection f , :alignment, @alignment, Character.human_attribute_name(:alignment), {size: 1} %>
           <% end %>
+            <%= input_select_form f, :language_ids, @languages, :language, nil, Character.human_attribute_name(:languages), {size: 3, multiple: true} %>
         </div>
 
         <h4>Informations optionnelles</h4>
