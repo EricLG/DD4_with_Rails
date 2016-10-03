@@ -8,12 +8,12 @@ class Character < ActiveRecord::Base
   belongs_to :klass
   belongs_to :god
   has_and_belongs_to_many :games
-  has_many :character_choices
-  has_many :features, through: :character_choices
-  has_many :language_features, through: :character_choices
+  has_many :choices, inverse_of: :character
+  has_many :features, through: :choices
+  has_many :languages, through: :choices
 
-  has_many :klass_choices, -> {klass_features_choices}, class_name: "CharacterChoice"
-  has_many :race_choices, -> {race_features_choices}, class_name: "CharacterChoice"
+  has_many :klass_choices,  -> {klass_features_choices},  class_name: "Choice"
+  has_many :race_choices,   -> {race_features_choices},   class_name: "Choice"
 
   STATS = %w(strength constitution dexterity intelligence wisdom charisma)
   LEVEL_STATS = %w(4 8 11 14 18 21 24 28)

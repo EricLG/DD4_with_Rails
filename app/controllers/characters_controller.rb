@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
 
-  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_race, :choose_carac, :choose_class, :choose_skill, :optional_fields]
+  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_race, :choose_carac, :choose_class, :choose_skill, :choose_optional_fields]
 
   def index
     @hide_side_bloc =true
@@ -61,7 +61,7 @@ class CharactersController < ApplicationController
 
     if params && params["character"]
       choices = params["character"]["character_choice_ids"].values.flatten
-      @character.character_choices.features_choices.delete_all
+      @character.choices.features_choices.delete_all
       features = Feature.find choices
       features.each do |f|
         choices << f.parent_feature_id unless f.parent_feature_id.nil?
@@ -149,6 +149,7 @@ class CharactersController < ApplicationController
       :user_id,
       :race_id,
       :klass_id,
+      :god_id,
       :stats,
       :racial_stat_id,
       :level_1_strength,
@@ -206,7 +207,7 @@ class CharactersController < ApplicationController
       :level_24_charisma,
       :level_28_charisma,
       {game_ids:[]},
-      {character_choice_ids:[]},
+      {choice_ids:[]},
       )
   end
 

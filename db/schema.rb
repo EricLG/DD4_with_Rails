@@ -70,16 +70,6 @@ ActiveRecord::Schema.define(version: 20161001174700) do
     t.datetime "updated_at"
   end
 
-  create_table "character_choices", force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "feature_id"
-    t.integer "language_id"
-  end
-
-  add_index "character_choices", ["character_id"], name: "index_character_choices_on_character_id", using: :btree
-  add_index "character_choices", ["feature_id"], name: "index_character_choices_on_feature_id", using: :btree
-  add_index "character_choices", ["language_id"], name: "index_character_choices_on_language_id", using: :btree
-
   create_table "characters", force: :cascade do |t|
     t.string   "name"
     t.integer  "experience"
@@ -108,6 +98,16 @@ ActiveRecord::Schema.define(version: 20161001174700) do
 
   add_index "characters_games", ["character_id"], name: "index_characters_games_on_character_id", using: :btree
   add_index "characters_games", ["game_id"], name: "index_characters_games_on_game_id", using: :btree
+
+  create_table "choices", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "feature_id"
+    t.integer "language_id"
+  end
+
+  add_index "choices", ["character_id"], name: "index_choices_on_character_id", using: :btree
+  add_index "choices", ["feature_id"], name: "index_choices_on_feature_id", using: :btree
+  add_index "choices", ["language_id"], name: "index_choices_on_language_id", using: :btree
 
   create_table "common_armors", force: :cascade do |t|
     t.string   "name"
