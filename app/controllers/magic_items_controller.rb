@@ -76,6 +76,7 @@ class MagicItemsController < ApplicationController
     @kind = 'gears'
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
     @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @locations = @locations.gears
     render :index
   end
 

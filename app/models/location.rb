@@ -6,4 +6,6 @@ class Location < ActiveRecord::Base
   ARMOR_CODE = 'chest'
   IMPLEMENT_CODE = 'implement'
   GEAR_CODES = %w(head neck belt hands ring arm foots)
+
+  scope :gears, -> {where(code: Location::GEAR_CODES) }
 end
