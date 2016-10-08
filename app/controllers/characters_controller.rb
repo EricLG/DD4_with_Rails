@@ -60,7 +60,7 @@ class CharactersController < ApplicationController
       end
       choices = choices.uniq
       choices.each do |c|
-        CharacterChoice.create(character: @character, feature_id: c)
+        Choice.create(character: @character, feature_id: c)
       end
     end
   end
