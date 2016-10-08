@@ -5,9 +5,16 @@
   <% unless @character.klass.nil? %><li><%= @character.klass.try(:name) %></li><% end %>
   <% unless @character.alignment.blank? %><li><%= @character.alignment %></li><% end %>
   <% unless @character.god.nil? %><li><%= @character.god.try(:name) %></li><% end %>
-  <% unless @character.languages.empty? %><li><%= @character.languages.map(&:language).join(', ') %></li><% end %>
+</ul>
+<% unless @character.languages.empty? %>
+  <h5>Langues connues :<br><%= @character.languages.map(&:language).join(', ') %></h5>
+<% end %>
 
-  <% Character::STATS.each_with_index do |s, i| %>
-    <% unless  @character.total_stat(s) == 0 %><li><%= s %> <%= @character.total_stat(s) %></li><% end %>
+<%= "<h5>Caracteristiques :</h5>".html_safe if @character.stats_defined? %>
+<ul>
+<% Character::STATS.each_with_index do |s, i| %>
+  <% unless  @character.total_stat(s) == 0 %>
+    <li><%= Stat.human_attribute_name(s) %> <%= @character.total_stat(s) %></li>
   <% end %>
+<% end %>
 </ul>

@@ -44,6 +44,10 @@ class Character < ActiveRecord::Base
     end
   end
 
+  def stats_defined?
+    !self.level_1_strength.nil?
+  end
+
   def total_stat(carac)
     total_carac = self.send("level_1_#{carac}").to_i
     LEVEL_STATS.each do |l|

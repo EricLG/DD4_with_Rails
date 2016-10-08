@@ -66,7 +66,7 @@
               <% Character::STATS.each_with_index do |s, i| %>
                 <tr>
                   <% default_char_value = @character.send("level_1_#{s}") || Character::DEFAULT_STATS[i] %>
-                  <td class="black-bg white-text"><%= s %></td>
+                  <td class="black-bg white-text"><%= Stat.human_attribute_name s %></td>
                   <td class="black-bg center"><button class="btn-minus btn btn-default rounded"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td>
                   <td class="black-bg"><%= f.text_field "level_1_#{s}", value: default_char_value, class: "center stat max-width text-right", size: 1 %></td>
                   <td class="black-bg center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
