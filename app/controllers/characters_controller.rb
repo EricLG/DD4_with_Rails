@@ -18,20 +18,16 @@ class CharactersController < ApplicationController
 
   def choose_class
     @character = Character.find_by_id(params["character_id"])
-    if params && params["character"]
-      @character.race_id = params["character"]["race_id"]
-      @character.save!
-    end
+    @character.update(character_params) if params && params["character"]
   end
 
   def choose_optional_fields
-    @gods = God.all.order(:name)
-    @character = Character.find_by_id(params["character_id"])
-    @alignment = [["Bon", "Bon"], ["Loyal bon", "Loyal bon"], ["Mauvais", "Mauvais"], ["Chaotique mauvais", "Chaotique mauvais"], ["Non aligné", "Non aligné"]]
-    if params && params["character"]
-      @character.klass_id = params["character"]["klass_id"]
-      @character.save!
-    end
+    # TODO : FAIRE UN CONTROLE SUR LE NOMBRE DE LANGUES CHOISIES
+    @character  = Character.find_by_id(params["character_id"])
+    @known_languages = @character.race.known_level_1_languages
+    @languages = @character.race.available_level_1_languages
+    @alignment = Character::ALIGNMENT
+    @character.update(character_params) if params && params["character"]
   end
 
   def choose_carac
@@ -209,9 +205,10 @@ class CharactersController < ApplicationController
 
   def find_dependancies
     @characters = @current_user.characters.complete
-    @races = Race.all
+    @gods = God.all.order(:name)
+    @races = Race.all.order(:name)
     @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
-    @languages = Language.where(level_1: true).order(:language)
+    @languages = Language.all.order(:language)
   end
 
 end

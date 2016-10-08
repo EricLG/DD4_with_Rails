@@ -8,6 +8,7 @@ class CreateRaces < ActiveRecord::Migration
       t.integer :speed
       t.string :vision
       t.string :language
+      t.integer :nb_language_sup, default: 0
       t.text  :information
       t.belongs_to :skill
       t.belongs_to :source, index: true

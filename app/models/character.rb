@@ -18,7 +18,7 @@ class Character < ActiveRecord::Base
   STATS = %w(strength constitution dexterity intelligence wisdom charisma)
   LEVEL_STATS = %w(4 8 11 14 18 21 24 28)
   DEFAULT_STATS = [10, 10, 10, 10, 10, 8]
-
+  ALIGNMENT = [["Bon", "Bon"], ["Loyal bon", "Loyal bon"], ["Mauvais", "Mauvais"], ["Chaotique mauvais", "Chaotique mauvais"], ["Non aligné", "Non aligné"]]
   #before_save :level_to_xp
   #validates :user_id, :race_id, :klass_id, :name,  presence: true
   #validates :level, presence: true, numericality: { only_integer: true }, inclusion: { :in => 1..30}
