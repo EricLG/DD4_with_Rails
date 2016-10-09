@@ -104,7 +104,7 @@
               <tbody id="level-bonus-stats">
                 <% Character::STATS.each do |s| %>
                   <tr class="<%= s %>">
-                    <td class="black-bg white-text"><%= t(".#{s}") %></td>
+                    <td class="black-bg white-text"><%= Stat.human_attribute_name s %></td>
                     <td class="center">
                       <button type="button" class="btn btn-default btn-bonus-carac">
                         <%= f.hidden_field "level_4_#{s}", value: @character.send("level_4_#{s}"), class: "level_4 bonus-carac" %>
