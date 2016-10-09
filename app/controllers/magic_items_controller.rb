@@ -1,6 +1,6 @@
 class MagicItemsController < ApplicationController
 
-  before_action :find_dependancies, only: [:index, :new, :edit, :weapons, :armors, :implements, :gears]
+  before_action :find_dependancies, only: [:index, :new, :edit, :weapons, :armors, :implements, :gears, :amulets]
 
   def index
     render "object/index"
@@ -78,6 +78,13 @@ class MagicItemsController < ApplicationController
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
     @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     @locations = @locations.gears
+    render :index
+  end
+
+  def amulets
+    @kind = 'amulets'
+    @search = MagicItemSearch.new(params[:magic_item_search], @kind)
+    @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     render :index
   end
 

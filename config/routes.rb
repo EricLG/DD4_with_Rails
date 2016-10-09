@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         get 'armors'
         get 'implements'
         get 'gears'
+        get 'amulets'
       end
     end
   end

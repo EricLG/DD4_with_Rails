@@ -189,6 +189,7 @@ fr:
       armors:            "armures"
       implements:            "focaliseurs"
       gears:            "équipements"
+      amulets:          "capes et amulettes"
     form_search:
       object_level_max: "Niveau maximum"
     show:

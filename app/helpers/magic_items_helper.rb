@@ -23,6 +23,8 @@ module MagicItemsHelper
       return implements_object_magic_items_path
     elsif kind == 'gears'
       return gears_object_magic_items_path
+    elsif kind == 'amulets'
+      return amulets_object_magic_items_path
     end
   end
 

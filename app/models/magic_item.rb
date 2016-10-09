@@ -22,6 +22,7 @@ class MagicItem < ActiveRecord::Base
   scope :armors,      -> {joins(:location).where(locations: {code: "chest"}) }
   scope :implements,  -> {joins(:location).where(locations: {code: "implement"}) }
   scope :gears,       -> {joins(:location).where(locations: {code: Location::GEAR_CODES}) }
+  scope :amulets,     -> {joins(:location).where(locations: {code: "neck"}) }
 
   def self.import_items
     sources = Source.all

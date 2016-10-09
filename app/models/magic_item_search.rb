@@ -77,6 +77,8 @@ class MagicItemSearch
       MagicItem.implements
     when "gears"
       MagicItem.gears
+    when "amulets"
+      MagicItem.amulets
     else
       MagicItem
     end
