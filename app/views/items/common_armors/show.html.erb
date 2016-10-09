@@ -1,0 +1,23 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "items/items_side_menu" %>
+<% end %>
+<div class="row">
+  <h3 class="col-md-12"><%= link_to t('.title_show', armor: @armor.name), edit_items_common_armor_path(@armor.id) %> </h3>
+</div>
+
+<div class="row">
+  <dl class="dl-horizontal">
+    <dt><%= CommonArmor.human_attribute_name("name",           :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.name %></dd>
+    <dt><%= CommonArmor.human_attribute_name("weight",         :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.weight %></dd>
+    <dt><%= CommonArmor.human_attribute_name("price",          :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.price %></dd>
+    <dt><%= CommonArmor.human_attribute_name("armor_bonus",    :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_bonus %></dd>
+    <dt><%= CommonArmor.human_attribute_name("heavy",          :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_category.heavy %></dd>
+    <dt><%= CommonArmor.human_attribute_name("min_alte_bonus", :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.min_alteration_bonus %></dd>
+    <dt><%= CommonArmor.human_attribute_name("skill_malus",    :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.skill_malus %></dd>
+    <dt><%= CommonArmor.human_attribute_name("ms_malus",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.ms_malus %></dd>
+    <dt><%= CommonArmor.human_attribute_name("special",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.special %></dd>
+    <dt><%= CommonArmor.human_attribute_name("source",         :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.source.name %></dd>
+    <dt><%= CommonArmor.human_attribute_name("categories",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @armor.armor_category.name%></dd>
+  </dl>
+</div>

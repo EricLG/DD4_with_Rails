@@ -15,10 +15,15 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :show, :create]
 
-  namespace :object do
+  namespace :items do
     # Lien du menu principal
     get '/index' => 'magic_items#index'
-    resources :common_weapons, :common_armors, :consumables
+    resources :common_weapons, :consumables
+    resources :common_armors do
+      collection do
+        get 'shields'
+      end
+    end
     resources :magic_items do
       collection do
         get 'weapons'

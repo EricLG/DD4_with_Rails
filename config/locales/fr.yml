@@ -1,26 +1,37 @@
 fr:
   attributes:
-    alteration:   "Altération"
-    critical:     "Critique"
-    description:  "Description"
-    object_level_ids: "Niveaux"
-    levels:       "Niveaux"
-    name:         "Nom"
-    property:     "Propriété"
-    power:        "Pouvoir"
-    special:      "Spécial"
-    source:       "Source"
-    strength:     "Force"
-    constitution: "Constitution"
-    dexterity:    "Dexterité"
-    intelligence: "Intelligence"
-    wisdom:       "Sagesse"
-    charisma:     "Charisme"
-    weapon_group_ids:     "Armes"
-    armor_category_ids:   "Armures"
-    implement_group_id:   "Focaliseur"
-    location_id:             "Emplacement"
-    rarity:       "Rareté"
+    alteration:         "Altération"
+    armor_categories:   "Catégories d'armures"
+    armor_category_ids: "Armures"
+    categories:         "Catégories"
+    charisma:           "Charisme"
+    constitution:       "Constitution"
+    critical:           "Critique"
+    damage:             "Dégâts"
+    description:        "Description"
+    dexterity:          "Dexterité"
+    handling:           "Maniement"
+    implement_group_id: "Focaliseur"
+    intelligence:       "Intelligence"
+    levels:             "Niveaux"
+    location_id:        "Emplacement"
+    name:               "Nom"
+    object_level_ids:   "Niveaux"
+    price:              "Prix"
+    property:           "Propriété"
+    power:              "Pouvoir"
+    range:              "Portée"
+    rarity:             "Rareté"
+    special:            "Spécial"
+    source:             "Source"
+    strength:           "Force"
+    weapon_category_id: "Catégorie d'arme"
+    weapon_groups:      "Groupes d'armes"
+    weapon_group_ids:   "Armes"
+    weapon_property_ids: "Propriétés"
+    weapon_properties:  "Propriétés"
+    wisdom:             "Sagesse"
+    weight:             "Poids"
   activerecord:
     models:
       monster:
@@ -100,6 +111,20 @@ fr:
         stealth:        "Discrétion"
         streetwise:     "Connaissance"
         thievery:       "larcin"
+      common_weapon:
+        two_handeds: "Utilisation"
+        one:      "Arme à une main"
+        two:      "Arme à deux main"
+        double:   "Arme double"
+        unknow:   "Arme inconnue"
+      common_armor:
+        armor_bonus:        "Bonus d'armure"
+        armor_category_id:  "Catégorie"
+        heavy:              "Lourd"
+        min_alte_bonus:     "Bonus minimal d'altération"
+        ms_malus:           "Malus de VD"
+        skill_malus:        "Malus de compétences"
+        shield_bonus:       "Bonus de bouclier"
 
     errors:
       messages:
@@ -133,97 +158,95 @@ fr:
       campaign:   "Liste des campagnes."
       import:     "Import des données"
       contribute: "Créer de nouveaux objets et talents."
+
+
   common:
-    edit:               "Modifier %{name}"
-    name:               "Nom"
-    weight:             "Poids"
-    price:              "Prix"
-    categories:         "Catégories"
+    add_another:        "Ajouter un autre élément"
     destroy:            "Supprimer"
+    edit:               "Modifier %{name}"
     empty:              "Vide"
     no_result:          "Aucun résultat"
+    reset:              "Effacer les filtres"
     show:               "Voir"
     source:             "Source"
     validate:           "Valider"
-    reset:              "Effacer les filtres"
     w_false:            "Faux"
     w_true:             "Vrai"
-    weapon_groups:      "Groupes d'armes"
-    armor_categories:   "Catégories d'armures"
-    add_another:        "Ajouter un autre élément"
-    weapon:
-      title_edit:       "Modification d'une arme commune"
-      title_index:      "Liste des armes communes"
-      title_new:        "Création d'une arme commune"
-      title_show:       "Modifier %{weapon} "
-      damage:           "Dégâts"
-      handling:         "Maniement"
+  items:
+    common:
+      edit:               "Modifier %{name}"
+      name:               "Nom"
+      destroy:            "Supprimer"
+      empty:              "Vide"
+      no_result:          "Aucun résultat"
+      show:               "Voir"
+      source:             "Source"
+      validate:           "Valider"
+      reset:              "Effacer les filtres"
+      w_false:            "Faux"
+      w_true:             "Vrai"
+      add_another:        "Ajouter un autre élément"
+    common_weapons:
+      index:
+        title_index:      "Liste des armes communes"
+      edit:
+        title_edit:       "Modification de l'arme %{weapon}"
+      new:
+        title_new:        "Création d'une arme commune"
+      show:
+        title_show:       "Modifier %{weapon}"
       no_weapon:        "Aucune arme n'a été créée"
-      one_handed:       "Arme à une main"
-      range:            "Portée"
-      w_usage:          "Utilisation"
-      weapon:           "Arme"
-      properties:       "Propriétés"
-      usage:
-        one:            "Arme à une main"
-        two:            "Arme à deux mains"
-        double:         "Arme double"
-        unknown:          "Inconnue"
-    armor:
-      title_edit:       "Modification d'une armure commune"
-      title_index:      "Liste des armures communes"
-      title_new:        "Création d'une armure commune"
-      title_show:       "Modifier %{armor} "
-      armor:            "Armure"
-      armor_bonus:      "Bonus d'armure"
-      heavy:            "Lourd"
-      min_alte_bonus:   "Bonus minimal d'altération"
-      ms_malus:         "Malus de VD"
-      skill_malus:      "Malus de compétences"
-      shield_bonus:     "Bonus de bouclier"
-      special:          "Spécial"
-  magic_items:
-    index:
-      title_index:      "Liste des %{kind} magiques"
-      weapons:            "armes"
-      armors:            "armures"
-      implements:            "focaliseurs"
-      gears:            "équipements"
-      amulets:          "capes et amulettes"
-    form_search:
-      object_level_max: "Niveau maximum"
-    show:
-      level_min:        "Niveau %{lvl}+"
-      edit:             "Modifier %{item}"
-    edit:
-      title_edit:        "Modification %{item}"
-    new:
-      title_new:        "Création d'un nouvel objet magique"
-    rarity:
-      common:           "Fréquent"
-      uncommon:         "Peu fréquent"
-      rare:             "Rare"
-  consumables:
-    index:
-      title_index:      "Liste des consommables"
-    edit:
-      title_edit:      "Modification d'un consommable"
-    new:
-      title_new:        "Création d'un consommable"
-    update:
-      notice:         "%{name} a été mis à jour avec succès."
-    create:
-      notice:         "%{name} a été créé avec succès."
-    destroy:
-      notice:         "%{name} a été supprimé avec succès"
-    kind:
-      reactive:       "Réactif"
-      ammo:           "Munitions"
-      potion:         "Potion"
-      elixir:         "Élixir"
-      immurement:     "Emmurement"
-      whetstone:      "Pierre à aiguiser"
-      other_cons:     "Autre consommable"
+    common_armors:
+      index:
+        title_index:      "Liste des armures communes"
+      edit:
+        title_edit:       "Modification de l'armure commune %{armor}"
+      new:
+        title_new:        "Création d'une armure commune"
+      show:
+        title_show:       "Modifier %{armor}"
+    magic_items:
+      index:
+        title_index:      "Liste des %{kind} magiques"
+        weapons:            "armes"
+        armors:            "armures"
+        implements:            "focaliseurs"
+        gears:            "équipements"
+        amulets:          "capes et amulettes"
+      form_search:
+        item_level_max: "Niveau maximum"
+      show:
+        level_min:        "Niveau %{lvl}+"
+        edit:             "Modifier %{item}"
+      edit:
+        title_edit:        "Modification %{item}"
+      new:
+        title_new:        "Création d'un nouvel objet magique"
+      rarity:
+        common:           "Fréquent"
+        uncommon:         "Peu fréquent"
+        rare:             "Rare"
+    consumables:
+      index:
+        title_index:      "Liste des consommables"
+      edit:
+        title_edit:      "Modification d'un consommable"
+      new:
+        title_new:        "Création d'un consommable"
+      update:
+        notice:         "%{name} a été mis à jour avec succès."
+      create:
+        notice:         "%{name} a été créé avec succès."
+      destroy:
+        notice:         "%{name} a été supprimé avec succès"
+      kind:
+        reactive:       "Réactif"
+        ammo:           "Munitions"
+        potion:         "Potion"
+        elixir:         "Élixir"
+        immurement:     "Emmurement"
+        whetstone:      "Pierre à aiguiser"
+        other_cons:     "Autre consommable"
   user:
     title_signup: "S'enregistrer"
     title_login:  "Se connecter"

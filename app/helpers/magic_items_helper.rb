@@ -16,15 +16,15 @@ module MagicItemsHelper
 
   def find_correct_url(kind)
     if kind == 'weapons'
-      return weapons_object_magic_items_path
+      return weapons_items_magic_items_path
     elsif kind == 'armors'
-      return armors_object_magic_items_path
+      return armors_items_magic_items_path
     elsif kind == 'implements'
-      return implements_object_magic_items_path
+      return implements_items_magic_items_path
     elsif kind == 'gears'
-      return gears_object_magic_items_path
+      return gears_items_magic_items_path
     elsif kind == 'amulets'
-      return amulets_object_magic_items_path
+      return amulets_items_magic_items_path
     end
   end
 

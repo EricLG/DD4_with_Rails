@@ -1,0 +1,24 @@
+
+<%= form_for [:items, @weapon], {:class => 'form-horizontal'} do |f| %>
+
+  <%= input_text_form f, :name,     CommonWeapon.human_attribute_name(:name) %>
+  <%= input_text_form f, :weight,   CommonWeapon.human_attribute_name(:weight) %>
+  <%= input_text_form f, :price,    CommonWeapon.human_attribute_name(:price) %>
+  <%= input_text_form f, :damage,   CommonWeapon.human_attribute_name(:damage) %>
+  <%= input_text_form f, :handling, CommonWeapon.human_attribute_name(:handling) %>
+  <%= input_text_form f, :range,    CommonWeapon.human_attribute_name(:range) %>
+  <div class="form-group">
+    <%= label_tag :two_handed, CommonWeapon.human_attribute_name("two_handeds"),  :class=>"col-sm-4 control-label" %>
+    <div class="checkbox col-sm-8">
+      <%= f.label :two_handed_one,    CommonWeapon.human_attribute_name("one")   , class: "radio-inline"  %> <%= f.radio_button :two_handed, "one" %>
+      <%= f.label :two_handed_two,    CommonWeapon.human_attribute_name("two")   , class: "radio-inline"  %> <%= f.radio_button :two_handed, "two", :checked => true %>
+      <%= f.label :two_handed_double, CommonWeapon.human_attribute_name("double"), class: "radio-inline"  %> <%= f.radio_button :two_handed, "double" %>
+    </div>
+  </div>
+  <%= input_select_form(f, :weapon_category_id,   @weapon_categories,   :name,  @weapon.weapon_category_id,   CommonArmor.human_attribute_name(:weapon_category_id), {multiple: false, blank: false, size: 3}) %>
+  <%= input_select_form(f, :weapon_group_ids,     @weapon_groups,       :name,  @weapon.weapon_group_ids,     CommonArmor.human_attribute_name(:weapon_group_ids),   {multiple: true, blank: false, size: 3}) %>
+  <%= input_select_form(f, :weapon_property_ids,  @weapon_properties,   :name,  @weapon.weapon_property_ids,  CommonArmor.human_attribute_name(:weapon_property_ids), {multiple: true, blank: true}) %>
+  <%= input_select_form(f, :source_id,            @sources,             :name,  @weapon.source_id,            CommonArmor.human_attribute_name(:source_id),          {blank: false, size: 1}) %>
+
+  <%= submit_text_form(f, {add_another: true}) %>
+<% end %>

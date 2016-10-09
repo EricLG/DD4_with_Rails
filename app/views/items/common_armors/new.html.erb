@@ -1,0 +1,14 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "items/items_side_menu" %>
+<% end %>
+
+<div class="row">
+  <h3 class="col-sm-12"><%= t('.title_new')%></h3>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= render "form" %>
+  </div>
+</div>

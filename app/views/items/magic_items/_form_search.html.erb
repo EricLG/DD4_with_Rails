@@ -1,0 +1,82 @@
+<%= form_for @search, {url: url, method: :get, class: 'form-inline'} do |form| %>
+
+  <div class="form-group col-xs-4">
+    <%= form.label(:name, MagicItem.human_attribute_name('name'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.text_field(:name, :class=>"form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group col-xs-4">
+    <%= form.label(:object_levels, t('.item_level_max'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.text_field(:object_levels, :class=>"form-control") %>
+    </div>
+  </div>
+
+  <% if @kind == 'weapons' %>
+  <div class="form-group col-xs-4">
+    <% default_options =  params["magic_item_search"]["weapon_groups"] if params["magic_item_search"]%>
+    <%= form.label(:weapon_groups, MagicItem.human_attribute_name('weapon_group_ids'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :weapon_groups, options_from_collection_for_select(@weapon_groups, :id, :name, default_options), {:include_blank => 'Toutes'}, {:multiple => true, :size => 3, :class=>"form-control"} %>
+    </div>
+  </div>
+  <% end %>
+
+
+  <% if @kind == 'armors' %>
+  <div class="form-group col-xs-4">
+    <% default_options =  params["magic_item_search"]["armor_categories"] if params["magic_item_search"]%>
+    <%= form.label(:armor_categories, MagicItem.human_attribute_name('armor_category_ids'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :armor_categories, options_from_collection_for_select(@armor_categories, :id, :name, default_options),{:include_blank => 'Toutes'}, {:multiple => true, :size => 3, :class=>"form-control"} %>
+    </div>
+  </div>
+  <% end %>
+
+
+  <% if @kind == 'implements' %>
+  <div class="form-group col-xs-4">
+    <% default_options =  params["magic_item_search"]["implement_group"] if params["magic_item_search"]%>
+    <%= form.label(:implement_group, MagicItem.human_attribute_name('implement_group_id'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :implement_group, options_from_collection_for_select(@implement_groups, :id, :name, default_options),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @kind == 'gears' %>
+  <div class="form-group col-xs-4">
+    <% default_options =  params["magic_item_search"]["location"] if params["magic_item_search"]%>
+    <%= form.label(:location, MagicItem.human_attribute_name('location_id'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :location, options_from_collection_for_select(@locations, :id, :name, default_options),{:include_blank => 'Tous'}, {multiple: true, size: 3, :class=>"form-control"}  %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="form-group col-xs-4">
+    <% default_source =  params["magic_item_search"]["source"] if params["magic_item_search"]%>
+    <%= form.label(:source, MagicItem.human_attribute_name('source'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :source, options_from_collection_for_select(@sources, :id, :name, default_source), {:include_blank => 'Tous'}, {:multiple => false, :class=>"form-control"}  %>
+    </div>
+  </div>
+
+  <div class="form-group col-xs-4">
+    <% default_rarity =  params["magic_item_search"]["rarity"] if params["magic_item_search"]%>
+    <%= form.label(:rarity, MagicItem.human_attribute_name('rarity'), :class=>"col-sm-4") %>
+    <div class="col-sm-8">
+      <%= form.select :rarity, options_for_select(MagicItem.rarity_names_for_select, selected: default_rarity), {:include_blank => 'Tous'}, {:multiple => false, :class=>"form-control"}  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-8">
+      <%= form.submit t("common.validate"), :class => "btn btn-default" %>
+      <%= link_to t("common.reset"), url, :class => "btn btn-default" %>
+      </div>
+  </div>
+
+<% end %>

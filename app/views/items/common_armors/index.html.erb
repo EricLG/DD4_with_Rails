@@ -1,0 +1,17 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "items/items_side_menu" %>
+<% end %>
+
+<div class="row">
+  <h3 class="col-md-12"><%= t('.title_index') %></h3>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <% @communs.each do |categorie, armors| %>
+      <h4><%= categorie %></h4>
+      <%= render "armor_index_table", commons: armors %>
+    <% end %>
+  </div>
+</div>

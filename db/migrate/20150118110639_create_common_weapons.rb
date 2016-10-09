@@ -10,7 +10,7 @@ class CreateCommonWeapons < ActiveRecord::Migration
       t.string :damage
       t.string :handling # Maniement
       t.string :range
-      t.string :two_handed # arme à 1 ou 2 mains ou double
+      t.integer :two_handed # enum : arme à 1 ou 2 mains ou double
       t.belongs_to :source, index: true
       t.belongs_to :weapon_category, index: true
 

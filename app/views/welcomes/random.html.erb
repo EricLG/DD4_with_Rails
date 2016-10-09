@@ -18,7 +18,7 @@
     </tr>
   <% @randomObjects.each do |w| %>
     <tr>
-      <td><%= link_to w.name, object_magic_item_path(w.id)  %></td>
+      <td><%= link_to w.name, items_magic_item_path(w.id)  %></td>
       <td><%= w.level_min %> </td>
       <td><%= display_first_words w.property %> </td>
       <td><%= display_first_words w.power %> </td>

@@ -7,10 +7,10 @@ class CreateCommonArmors < ActiveRecord::Migration
       t.string :weight
       t.string :price
       # Armor properties
-      t.string :armor_bonus
-      t.string :min_alteration_bonus # Pour armure de maitre
-      t.string :skill_malus
-      t.string :ms_malus # Move speed malus
+      t.integer :armor_bonus
+      t.integer :min_alteration_bonus # Pour armure de maitre
+      t.integer :skill_malus
+      t.integer :ms_malus # Move speed malus
       t.string :special
       t.belongs_to :source, index: true
       t.belongs_to :armor_category, index: true

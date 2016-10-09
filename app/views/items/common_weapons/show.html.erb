@@ -1,0 +1,40 @@
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "items/items_side_menu" %>
+<% end %>
+
+<div class="row">
+  <h3 class="col-md-12"><%= link_to t('.title_show', weapon: @weapon.name), edit_items_common_weapon_path(@weapon.id) %> </h3>
+</div>
+
+<div class="row">
+  <dl class="dl-horizontal">
+    <dt><%= CommonWeapon.human_attribute_name("name",         :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.name %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("handling",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.handling %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("damage",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.damage %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("range",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.range %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("price",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.price %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("weight",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.weight %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("two_handeds",  :class=>"col-md-4")%></dt> <dd class="text-left"><%= CommonWeapon.human_attribute_name(@weapon.two_handed) %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("categories",   :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.weapon_category.name%></dd>
+
+    <% if  @weapon.weapon_groups.empty? %>
+      <dt><%= CommonWeapon.human_attribute_name("weapon_groups", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= t('common.empty') %></dd>
+    <% else %>
+      <% @weapon.weapon_groups.each do |g| %>
+        <dt><%= CommonWeapon.human_attribute_name("weapon_groups", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= g.name %></dd>
+      <% end %>
+    <% end %>
+
+    <% if  @weapon.weapon_properties.empty? %>
+      <dt><%= CommonWeapon.human_attribute_name("weapon_properties", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= t('common.empty') %></dd>
+    <% else %>
+      <% @weapon.weapon_properties.each do |p| %>
+        <dt><%= CommonWeapon.human_attribute_name("weapon_properties", :class=>"col-md-4") %>      </dt><dd class="text-left"><%= p.name %></dd>
+      <% end %>
+    <% end %>
+
+    <dt><%= t("common.source", :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.source.name %></dd>
+  </dl>
+</div>
+
