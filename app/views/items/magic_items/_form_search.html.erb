@@ -68,7 +68,7 @@
     <% default_rarity =  params["magic_item_search"]["rarity"] if params["magic_item_search"]%>
     <%= form.label(:rarity, MagicItem.human_attribute_name('rarity'), :class=>"col-sm-4") %>
     <div class="col-sm-8">
-      <%= form.select :rarity, options_for_select(MagicItem.rarity_names_for_select, selected: default_rarity), {:include_blank => 'Tous'}, {:multiple => false, :class=>"form-control"}  %>
+      <%= form.select :rarity, options_for_select_with_enum(MagicItem, MagicItem.rarities, selected: default_rarity), {:include_blank => 'Tous'}, {:multiple => false, :class=>"form-control"}  %>
     </div>
   </div>
 

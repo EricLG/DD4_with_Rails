@@ -14,7 +14,7 @@
     <tbody>
     <% result.each do |r| %>
     <tr>
-      <td><%= link_to r.name, object_magic_item_path(r.id)%></td>
+      <td><%= link_to r.name, items_magic_item_path(r.id)%></td>
       <td><%= display_first_words r.property %> </td>
       <td><%= display_first_words r.power %> </td>
       <td><%= r.source.name %> </td>

@@ -32,11 +32,18 @@ module MagicItemsHelper
     html = content_tag(:p, label)
     width = (items_number.to_f/max_item.to_f*100).to_s + '%;'
     pb = content_tag(:div, "#{items_number}/#{max_item}", class: "progress-bar", style: "min-width: 4%; width: #{width}", role:"progress-bar")
-    html += content_tag(:div, pb, class:"progress")
+    html += content_tag(:div, pb, class: "progress")
     unless popover.empty?
       html = content_tag(:div, html, class: "gears", :data => {html: true, placement: 'top', toggle: 'popover', trigger: 'hover', content: popover[:content], title: popover[:title]})
     end
     return content_tag(:div, html)
   end
 
+  def options_for_select_with_enum(klass, enum, selected = nil)
+    options = []
+    enum.keys.each do |enum_key|
+      options << [klass.human_attribute_name(enum_key), enum_key]
+    end
+    options_for_select(options, selected)
+  end
 end

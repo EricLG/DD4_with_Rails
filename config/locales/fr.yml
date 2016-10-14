@@ -125,6 +125,11 @@ fr:
         ms_malus:           "Malus de VD"
         skill_malus:        "Malus de compétences"
         shield_bonus:       "Bonus de bouclier"
+      magic_item:
+        rarities: "Rareté"
+        common:           "Fréquent"
+        uncommon:         "Peu fréquent"
+        rare:             "Rare"
 
     errors:
       messages:
@@ -222,10 +227,7 @@ fr:
         title_edit:        "Modification %{item}"
       new:
         title_new:        "Création d'un nouvel objet magique"
-      rarity:
-        common:           "Fréquent"
-        uncommon:         "Peu fréquent"
-        rare:             "Rare"
+
     consumables:
       index:
         title_index:      "Liste des consommables"
