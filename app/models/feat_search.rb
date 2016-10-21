@@ -29,7 +29,7 @@ class FeatSearch
 
       search = Feat.where(category: category)
       if name_params
-        search = search.where("feats.name ILIKE ?", "%#{name_params}%")
+        search = search.where("feats.name ILIKE ? or avantage ILIKE ?", "%#{name_params}%", "%#{name_params}%")
       end
 
       if source_params
@@ -37,14 +37,16 @@ class FeatSearch
       end
 
       if klasses_params
-        search = search.joins(:prerequisited_klasses).where(klasses: {id: klasses_params})
+        #search = search.joins(:prerequisited_klasses).where(klasses: {id: klasses_params})
+        search = search.feats_for_klass_and_every_klasses(klasses_params)
       end
 
       if races_params
-        search = search.joins(:prerequisited_races).where(races: {id: races_params})
+        #search = search.joins(:prerequisited_races).where(races: {id: races_params})
+        search = search.feats_for_race_and_every_races(races_params)
       end
 
-      search
+      search = search.no_divine_channel
     end
   end
 end

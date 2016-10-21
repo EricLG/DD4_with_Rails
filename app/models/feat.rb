@@ -10,6 +10,10 @@ class Feat < ActiveRecord::Base
   has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :pr_klasses_for_feat, dependent: :destroy
   has_and_belongs_to_many :prerequisited_features,        :class_name => "Feature",       :join_table => :pr_features_for_feat, dependent: :destroy
 
+  scope :feats_for_klass_and_every_klasses, -> (klasses_params) {joins("LEFT OUTER JOIN pr_klasses_for_feat as p ON p.feat_id = feats.id").where("p.klass_id IS NULL OR p.klass_id = ?", klasses_params)}
+  scope :feats_for_race_and_every_races,    -> (races_params)   {joins("LEFT OUTER JOIN pr_races_for_feat   as r ON r.feat_id = feats.id").where("r.race_id IS NULL OR r.race_id = ?", races_params)}
+  scope :no_divine_channel, -> (id = 157) {joins("LEFT OUTER JOIN pr_features_for_feat as pr_fff ON pr_fff.feat_id = feats.id").where("pr_fff.feature_id IS NULL OR pr_fff.feature_id != ?", id)}
+
   CATEGORY = %w(heroic parangonic epic)
 
   def self.import_feats

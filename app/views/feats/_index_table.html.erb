@@ -19,7 +19,11 @@
       <td><%= link_to a.name, feat_path(a.id)  %></td>
       <td><%= a.klasses %> </td>
       <td><%= a.races %> </td>
-      <td><%= display_first_words a.avantage %> </td>
+      <td>
+        <span class="" data-placement='top' data-toggle="popover" data-trigger="hover" data-content="<%= a.avantage %>" data-title="<%= a.name %>" >
+          <p><%= display_first_words a.avantage %></p>
+        </span>
+      </td>
       <td><%= a.source.try(&:name) %> </td>
     </tr>
   <% end %>
