@@ -11,7 +11,7 @@
   <dt><%= Character.human_attribute_name(:race_id)    %></dt>  <dd class="text-left"><%= @character.race.try(:name) %></dd>
   <dt><%= Character.human_attribute_name(:klass_id)   %></dt>  <dd class="text-left"><%= @character.klass.try(:name) %></dd>
   <% Character::STATS.each_with_index do |s, i| %>
-        <dt><%=s%></dt>  <dd> <%= @character.total_stat(s) %></dd>
+        <dt><%= Character.human_attribute_name s %></dt>  <dd> <%= @character.total_stat(s) %></dd>
   <% end %>
   <dt><%= Character.human_attribute_name(:parangon)   %></dt>  <dd class="text-left"><%= @character.parangon %></dd>
   <dt><%= Character.human_attribute_name(:epic)       %></dt>  <dd class="text-left"><%= @character.epic %></dd>
@@ -29,4 +29,10 @@
         <dt><%= "APT Classe"%></dt>  <dd> <%= rc.feature.name %></dd>
   <% end %>
 </dl>
-<%= link_to t('character.title_show', character: @character.name), edit_character_path(@character.id) %>
+<%= link_to t('character.title_edit', character: @character.name), edit_character_path(@character.id) %><br>
+<%= link_to "Modifier race", character_choose_race_path(@character.id) %><br>
+<%= link_to "Modifier classe", character_choose_class_path(@character.id) %><br>
+<%= link_to "Modifier infos", character_choose_optional_fields_path(@character.id) %><br>
+<%= link_to "Modifier caractéristiques", character_choose_carac_path(@character.id) %><br>
+<%= link_to "Modifier aptitudes", character_choose_features_path(@character.id) %><br>
+<%= link_to "Modifier compétences", character_choose_skills_path(@character.id) %><br>
