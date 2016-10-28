@@ -109,8 +109,8 @@ fr:
         perception:     "Perception"
         religion:       "Religion"
         stealth:        "Discrétion"
-        streetwise:     "Connaissance"
-        thievery:       "larcin"
+        streetwise:     "Connaissance de la rue"
+        thievery:       "Larcin"
       common_weapon:
         two_handeds: "Utilisation"
         one:      "Arme à une main"
