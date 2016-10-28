@@ -8,8 +8,64 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <p>Lorsque vous créez un personnage de niveau 1, vous choisissez un talent (si vous êtes humain, vous avez droit à un talent supplémentaire au niveau 1, ce qui vous en fait deux dès le départ). Ensuite, vous recevez un nouveau talent à chaque niveau pair, ainsi qu'aux niveaux 11 et 21. Pour choisir un talent, vous devez remplir les prérequis.</p>
-    <p>Habituellement, il n'est pas possible de choisir le même talent plus d'une fois. Pour la plupart d'entre eux, ce serait de toute façon inutile. Cependant, quelques talents peuvent être pris à plusieurs reprises, leur avantage s'appliquant à chaque fois à une situation différente ; différents groupes d'armes, différents focaliseurs, etc. Tous les éléments nécessaires sont précisés dans leur description.</p>
+
+  <div class="panel-group col-sm-8" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+
+      <div class="panel-heading" role="tab" id="h_mdj1">
+        <h4 class="panel-title">
+        <% collapse_id = 'mdj1' %>
+        <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="mdj1">
+          Talents héroiques&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+        </a>
+        </h4>
+      </div>
+      <div id="mdj1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_mdj1">
+        <div class="panel-body">
+          <%= display_progress_bar("Total (avec tous les conduits divins)", 706, 706) %>
+          <%= display_progress_bar("Manuel du Joueur 1 (+3 talents suite errata)", 84, 84) %>
+          <%= display_progress_bar("Manuel du Joueur 2", 62, 62) %>
+          <%= display_progress_bar("Manuel du Joueur 3", 80, 80) %>
+          <%= display_progress_bar("Art de la Guerre 1", 89, 89) %>
+          <%= display_progress_bar("Art de la Guerre 2", 91, 91) %>
+          <%= display_progress_bar("Force de la Nature", 73, 73) %>
+          <%= display_progress_bar("Intervention divine", 76, 76) %>
+          <%= display_progress_bar("Secret des Arcanes (les familiers ne sont pas comptés)", 58, 58) %>
+          <%= display_progress_bar("Guide des Joueurs d'Eberron (avec Dracogramme)", 52, 52) %>
+          <%= display_progress_bar("Guide des Joueurs des Royaumes Oubliés", 41, 41) %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel-group col-sm-8" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+
+      <div class="panel-heading" role="tab" id="h_mdj1">
+        <h4 class="panel-title">
+        <% collapse_id = 'mdj1' %>
+        <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="mdj1">
+          Talents parangonique&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+        </a>
+        </h4>
+      </div>
+      <div id="mdj1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_mdj1">
+        <div class="panel-body">
+          <%= display_progress_bar("Total", 205, 332) %>
+          <%= display_progress_bar("Manuel du Joueur 1 (3 talents parangoniques sont passés héroiques)", 49, 49) %>
+          <%= display_progress_bar("Manuel du Joueur 2", 39, 39) %>
+          <%= display_progress_bar("Manuel du Joueur 3", 52, 52) %>
+          <%= display_progress_bar("Art de la Guerre 1", 23, 51) %>
+          <%= display_progress_bar("Art de la Guerre 2", 42, 42) %>
+          <%= display_progress_bar("Force de la Nature", 0, 31) %>
+          <%= display_progress_bar("Intervention divine", 0, 29) %>
+          <%= display_progress_bar("Secret des Arcanes", 0, 23) %>
+          <%= display_progress_bar("Guide des Joueurs d'Eberron (avec Dracogramme)", 0, 4) %>
+          <%= display_progress_bar("Guide des Joueurs des Royaumes Oubliés", 0, 12) %>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
