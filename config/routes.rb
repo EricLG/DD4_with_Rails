@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         get 'amulets'
       end
     end
+    get '/random' => "magic_items#random"
   end
 
   namespace :dm_tools do
@@ -57,7 +58,19 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :races, :klasses, :aides, :weapon_properties
+  namespace :admin do
+    resources :weapon_properties
+    get "/index"      => 'admin#index'
+    get "/import"     => 'admin#import'
+    get "/items"      => 'admin#items'
+    get "/feats"      => 'admin#feats'
+    get "/contribute" => 'admin#contribute'
+    get "/monsters"   => 'admin#monsters'
+    get "/encounters" => 'admin#encounters'
+    get "/stats"      => 'admin#stats'
+  end
+
+  resources :races, :klasses, :aides
   resources :characters do
     get 'choose_race'
     get 'choose_class'
@@ -78,18 +91,8 @@ Rails.application.routes.draw do
     resources :games
   end
 
-  resources :welcomes, only: [:index] do
-    collection do
-      get :import
-      get :items
-      get :feats
-      get :contribute
-      get :random
-      get :stats
-      get :monsters
-      get :encounters
-    end
-  end
+  resources :welcomes, only: [:index]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

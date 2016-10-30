@@ -88,6 +88,11 @@ class Items::MagicItemsController < ApplicationController
     render :index
   end
 
+  def random
+    @hide_side_bloc = true
+    @randomObjects = MagicItem.all.sample(10)
+  end
+
   private
 
   def magic_item_params

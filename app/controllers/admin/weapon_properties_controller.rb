@@ -1,10 +1,10 @@
-class WeaponPropertiesController < ApplicationController
+class Admin::WeaponPropertiesController < ApplicationController
   before_action :set_weapon_property, only: [:show, :edit, :update, :destroy]
 
   # GET /weapon_properties
   # GET /weapon_properties.json
   def index
-    @weapon_properties = WeaponProperty.all
+    @weapon_properties = WeaponProperty.all.order(:name)
   end
 
   # GET /weapon_properties/1
@@ -28,7 +28,7 @@ class WeaponPropertiesController < ApplicationController
 
     respond_to do |format|
       if @weapon_property.save
-        format.html { redirect_to @weapon_property, notice: 'Weapon property was successfully created.' }
+        format.html { redirect_to admin_weapon_property_path @weapon_property, notice: 'Weapon property was successfully created.' }
         format.json { render :show, status: :created, location: @weapon_property }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class WeaponPropertiesController < ApplicationController
   def update
     respond_to do |format|
       if @weapon_property.update(weapon_property_params)
-        format.html { redirect_to @weapon_property, notice: 'Weapon property was successfully updated.' }
+        format.html { redirect_to admin_weapon_property_path(@weapon_property), notice: 'Weapon property was successfully updated.' }
         format.json { render :show, status: :ok, location: @weapon_property }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class WeaponPropertiesController < ApplicationController
   def destroy
     @weapon_property.destroy
     respond_to do |format|
-      format.html { redirect_to weapon_properties_url, notice: 'Weapon property was successfully destroyed.' }
+      format.html { redirect_to admin_weapon_properties_url, notice: 'Weapon property was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

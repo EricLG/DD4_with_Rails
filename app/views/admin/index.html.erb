@@ -1,0 +1,27 @@
+<div class="row">
+  <h2 class="col-sm-12"><%= t(".contribute.title") %> </h2>
+  <ul>
+    <li><%= link_to t('.contribute.new_magic_item'),     new_items_magic_item_path %></li>
+    <li><%= link_to t('.contribute.new_consumable'),     new_items_consumable_path %></li>
+    <li><%= link_to t('.contribute.new_feat'),           new_feat_path %></li>
+    <li><%= link_to t('.contribute.new_common_weapon'),  new_items_common_weapon_path %></li>
+    <li><%= link_to t('.contribute.new_common_armor'),   new_items_common_armor_path %></li>
+  </ul>
+</div>
+
+<div class="row">
+  <h2 class="col-sm-12"><%= t(".import.title") %> </h2>
+    <ul>
+      <li><%= link_to t(".import.items"),       admin_items_path %> </li>
+      <li><%= link_to t(".import.feats"),       admin_feats_path %> </li>
+      <li><%= link_to t(".import.monsters"),    admin_monsters_path %> </li>
+      <li><%= link_to t(".import.encounters"),  admin_encounters_path %> </li>
+    </ul>
+</div>
+
+<div class="row">
+  <h2 class="col-sm-12"><%= t(".models_source.title") %> </h2>
+    <ul>
+      <li><%= link_to t(".models_source.weapon_properties"), admin_weapon_properties_path %> </li>
+    </ul>
+</div>

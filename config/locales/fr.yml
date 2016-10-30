@@ -141,6 +141,7 @@ fr:
           attributes:
             level:
               inclusion:  "doit être compris entre 1 et 30"
+# Layout, menu principal et tooltip du menu principal
   menu:
     main_title:   "La promenade de Waukeen"
     link:
@@ -149,22 +150,21 @@ fr:
       race:       "Races"
       klass:      "Classes"
       help:       "Aides de jeux"
-      loot:       "Butin"
       campaign:   "Campagnes"
-      import:     "Import des données"
-      contribute: "Contributions"
+      dmtools:    "Boite à outils du MJ"
+      random:     "Random"
+      admin:      "Administration"
     tooltip:
       object:     "Pages des objets magiques et commun."
       feat:       "Tous les talents de DD4."
       race:       "Toutes les races de DD4."
       klass:      "Toutes les classes de DD4."
       help:       "Infos sur les règles."
-      loot:       "Butin"
       campaign:   "Liste des campagnes."
-      import:     "Import des données"
-      contribute: "Créer de nouveaux objets et talents."
-
-
+      random:     "Afficher une liste d'objets magiques alétoires"
+      dmtools:    "Boite à outils du MJ."
+      admin:      "Gestion des imports, exports et de la contribution."
+# Localisations communes à plusieurs pages (formulaires, boutons, etc.)
   common:
     add_another:        "Ajouter un autre élément"
     destroy:            "Supprimer"
@@ -177,6 +177,7 @@ fr:
     validate:           "Valider"
     w_false:            "Faux"
     w_true:             "Vrai"
+# Termes liés aux objets magiques et communs (namespace items)
   items:
     common:
       edit:               "Modifier %{name}"
@@ -249,6 +250,7 @@ fr:
         immurement:     "Emmurement"
         whetstone:      "Pierre à aiguiser"
         other_cons:     "Autre consommable"
+# Termes liés aux utilisateurs
   user:
     title_signup: "S'enregistrer"
     title_login:  "Se connecter"
@@ -258,6 +260,7 @@ fr:
     password_confirmation: "Confirmer"
     sidebar_login: "Connectez-vous"
     sidebar_signup: "Créer un compte."
+# Termes liés aux talents
   feats:
     title_index:    "Les talents de DD4"
     title_new:      "Ajout d'un nouveau talent"
@@ -277,26 +280,41 @@ fr:
     other:          "Autre prérequis"
     stats:          "Caractéristiques"
     req_feats:       "Talent prérequis"
+# Termes liés aux personnages
   characters:
     title_new:      "Création d'un nouveau personnage"
     title_edit:       "Modification d'un personnage"
     title_index:    "Liste de mes héros"
     title_show:       "Modifier %{character} "
     new_character:  "Créer un nouveau personnage"
+# Termes liés aux classes
   klasses:
     index:
       title_index: "Classes disponibles"
+# Termes liés aux races
   races:
     index:
       title_index: "Races disponibles"
-  welcomes:
-    contribute:
-      title_contribute:   "Contributions"
-      new_magic_item:     "Créer un nouvel objet magique"
-      new_consumable:     "Créer un nouveau consommable"
-      new_feat:           "Créer un nouveau talent"
-      new_common_weapon:  "Créer une arme commune"
-      new_common_armor:   "Créer une armure commune ou un bouclier commun"
+# Termes liés aux taches d'administration
+  admin:
+    index:
+      contribute:
+        title:              "Créer des nouveaux objets ou talents"
+        new_magic_item:     "Nouvel objet magique"
+        new_consumable:     "Nouveau consommable"
+        new_feat:           "Nouveau talent"
+        new_common_weapon:  "Nouvelle arme commune"
+        new_common_armor:   "Nouvelle armure commune ou un bouclier commun"
+      import:
+        title:              "Import des objets, talents, monstres et rencontres de monstres"
+        items:              "Objets magiques"
+        feats:              "Talents"
+        monsters:           "Monstres"
+        encounters:         "Rencontres de monstres"
+      models_source:
+        title:              "Gestion des modèles nécessaires aux objets et talents"
+        weapon_properties:  "Propriétés d'armes"
+# Plugin will_paginate
   will_paginate:
     previous_label: "Précédent"
     next_label: "Suivant"

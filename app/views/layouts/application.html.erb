@@ -35,21 +35,20 @@
 
     <nav class="navbar black-bg">
       <ul class="nav navbar-nav nav-pills navbar-left">
-        <li role="presentation"><%= link_to t("menu.link.object"),   items_index_path,   title: t("menu.tooltip.object"),   class: "white-text" %></li>
-        <li role="presentation"><%= link_to t("menu.link.feat"),     feats_path,           title: t("menu.tooltip.feat"),     class: "white-text" %></li>
-        <li role="presentation"><%= link_to t("menu.link.race"),     races_path,           title: t("menu.tooltip.race"),     class: "white-text" %></li>
-        <li role="presentation"><%= link_to t("menu.link.klass"),    klasses_path,         title: t("menu.tooltip.klass"),    class: "white-text" %></li>
-        <!-- <li role="presentation"><%= link_to t("menu.link.help"),     aides_path,           title: t("menu.tooltip.help"),     class: "white-text" %></li> -->
-        <!-- <li role="presentation"><%= link_to t("menu.link.loot"),     "#",                  title: t("menu.tooltip.loot"),     class: "white-text" %></li> -->
-        <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,       title: t("menu.tooltip.campaign"), class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.object"),   items_index_path,    title: t("menu.tooltip.object"),    class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.feat"),     feats_path,          title: t("menu.tooltip.feat"),      class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.race"),     races_path,          title: t("menu.tooltip.race"),      class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.klass"),    klasses_path,        title: t("menu.tooltip.klass"),     class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.help"),     aides_path,          title: t("menu.tooltip.help"),      class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,      title: t("menu.tooltip.campaign"),  class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.random"),   items_random_path,   title: t("menu.tooltip.random"),    class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.dmtools"),  dm_tools_path,       title: t("menu.tooltip.dmtools"),   class: "white-text" %></li>
         <% if is_current_user_admin? %>
           <li role="presentation"><%= link_to t("menu.link.import"), import_welcomes_path, title: t("menu.tooltip.import"), class: "white-text" %></li>
         <% end %>
         <% if is_current_user_contributor? %>
-          <li role="presentation"><%= link_to t("menu.link.contribute"), contribute_welcomes_path, title: t("menu.tooltip.contribute"), class: "white-text" %></li>
+          <li role="presentation"><%= link_to t("menu.link.admin"), admin_index_path, title: t("menu.tooltip.admin"), class: "white-text" %></li>
         <% end %>
-        <li role="presentation"><%= link_to t("menu.link.random"),   random_welcomes_path,   title: "Random",   class: "white-text" %></li>
-        <li role="presentation"><%= link_to t("menu.link.dmtools"),   dm_tools_path,   title: "Boite à outils",   class: "white-text" %></li>
       </ul>
 
 
