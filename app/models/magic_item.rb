@@ -1,5 +1,5 @@
 require 'import_data'
-
+require 'csv'
 class MagicItem < ActiveRecord::Base
 
   belongs_to :source
@@ -13,7 +13,6 @@ class MagicItem < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
-  #validates :alteration, presence: true
   validates :object_levels, :length => { :minimum => 1}
   validates :source, presence: true
   validates :location, presence: true
@@ -24,6 +23,34 @@ class MagicItem < ActiveRecord::Base
   scope :gears,       -> {joins(:location).where(locations: {code: Location::GEAR_CODES}) }
   scope :amulets,     -> {joins(:location).where(locations: {code: "neck"}) }
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << ["name", "description", "alteration", "property", "power", "special", "source", "rarity", "critical", "implement_group", "location", "weapon_groups", "armor_categories", "object_levels"]
+      all.each do |item|
+        csv << item.to_csv_row
+      end
+    end
+  end
+
+  def to_csv_row
+    row = []
+    row << self.name
+    row << self.description.gsub("\r\n", "<br>")
+    row << self.alteration.gsub("\r\n", "<br>")
+    row << self.property.gsub("\r\n", "<br>")
+    row << self.power.gsub("\r\n", "<br>")
+    row << self.special.gsub("\r\n", "<br>")
+    row << self.source.to_s
+    row << self.rarity
+    row << self.critical.gsub("\r\n", "<br>")
+    row << self.implement_group.to_s
+    row << self.location.to_s
+    row << self.weapon_groups.collect{ |wp| wp.name }.join(', ')
+    row << self.armor_categories.collect{ |ac| ac.name }.join(', ')
+    row << self.object_levels.collect{ |ol| ol.level }.sort.join(', ')
+    row
+  end
+
   def self.import_items
     sources = Source.all
     levels  = ObjectLevel.all
@@ -31,38 +58,21 @@ class MagicItem < ActiveRecord::Base
     armor_categories = ArmorCategory.all
     implement_groups = ImplementGroup.all
     locations = Location.all
-    filename = Dir.entries('lib/import_files').find{|f| f.match(/export_items/)}
+    filename = Dir.entries('lib/import_files').find{|f| f.match(/items\.csv/)}
     unless filename.nil?
       ActiveRecord::Base.transaction do
-        File.open(File.join('lib/import_files', filename), 'r') do |f|
-          f.readline
-          f.each_line do |l| # "Titre";"Description";"Altération";"Niveau minimum";"Prix par niveau et altération";"Propriété";"Pouvoir";"Spécial";"Source";"Rareté";"Critique";"Arme";"Categorie Armure";"location";"focaliseur"
-            array_line = l.split(/";"/, -1)
-            m = MagicItem.new()
-              m.name                = ImportData.clear_field(array_line[0])
-              m.description         = ImportData.clear_field(array_line[1]).gsub("\\r\\n", "\r\n")
-              m.alteration          = ImportData.clear_field(array_line[2])
-              m.location            = locations.find{|lo| lo.name == ImportData.clear_field(array_line[14])}
-              object_levels         = ImportData.find_level_array(m, ImportData.clear_field(array_line[3]).to_i, ImportData.clear_field(array_line[4]), levels)
-              m.object_levels       = object_levels
-              m.property            = ImportData.clear_field(array_line[5]).gsub("\\r\\n", "\r\n")
-              m.power               = ImportData.clear_field(array_line[6]).gsub("\\r\\n", "\r\n")
-              m.special             = ImportData.clear_field(array_line[7]).gsub("\\r\\n", "\r\n")
-              m.source              = sources.find{|s| s.name == ImportData.clear_field(array_line[8])}
-              m.rarity              = ImportData.find_rarities(ImportData.clear_field(array_line[9]))
-              m.critical            = ImportData.clear_field(array_line[10]).gsub("\\r\\n", "\r\n")
-              m.weapon_groups       = ImportData.find_weapon_groups(ImportData.clear_field(array_line[11]), weapon_groups)
-              m.armor_categories    = ImportData.find_armor_categories(ImportData.clear_field(array_line[12]), armor_categories)
-              m.implement_group     = implement_groups.find{|ig| ig.name == ImportData.clear_field(array_line[13])}
-
-            if m.valid?
-              m.save!
-            else
-               logger.error "Erreur de validation sur l'objet #{m.name}"
-               logger.error "#{m.errors.full_messages}"
-               m.save!
-            end
-          end
+        options = {headers: true, col_sep: ";", quote_char: "\""}
+        file = File.join("'lib/import_files", filename)
+        csv = CSV.parse(File.read(file), options )
+        csv.each do |row|
+          params = row.to_hash
+          params["source"]            = sources.find{|s| s.name == params['source']}
+          params["object_levels"]     = params["object_levels"].split(", ").collect { |pol| levels.find{|l| l.level == pol.to_i} }
+          params["implement_group"]   = implement_groups.find{|imp| imp.name == params["implement_group"]}
+          params["location"]          = locations.find{|location| location.name == params["location"]}
+          params["weapon_groups"]     = params["weapon_groups"].split(", ").collect{ |weapons| weapon_groups.find{|wg| wg.name == weapons} }
+          params["armor_categories"]  = params["armor_categories"].split(", ").collect{ |armors| armor_categories.find{|wg| wg.name == armors} }
+          MagicItem.create(params)
         end
       end
     end

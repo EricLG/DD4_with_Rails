@@ -8,4 +8,8 @@ class Source < ActiveRecord::Base
   has_many :races
   has_many :klasses
 
+  def to_s
+    self.try(:name) || ""
+  end
+
 end

@@ -8,4 +8,9 @@ class Location < ActiveRecord::Base
   GEAR_CODES = %w(head belt hands ring arm foots)
 
   scope :gears, -> {where(code: Location::GEAR_CODES) }
+
+  def to_s
+    self.try(:name) || ""
+  end
+
 end

@@ -11,6 +11,15 @@ class Admin::AdminController < ApplicationController
     @hide_side_bloc = true
   end
 
+  def export_items
+    @items = MagicItem.includes(:source, :weapon_groups, :armor_categories, :location, :implement_group, :object_levels).order(:name)
+    #@items = MagicItem.includes(:source, :weapon_groups, :armor_categories, :location, :implement_group, :object_levels).order("RANDOM()").limit(10)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @items.to_csv({encoding: "UTF-8", col_sep: ";", headers: true }) }
+    end
+  end
+
   def contribute
     @hide_side_bloc = true if @current_user
   end
