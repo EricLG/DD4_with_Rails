@@ -33,11 +33,6 @@ class CreateMagicItems < ActiveRecord::Migration
       t.belongs_to :armor_category, index: true
     end
 
-    #create_table :implement_groups_magic_items, id: false do |t|
-    #  t.belongs_to :magic_item, index: true
-    #  t.belongs_to :implement_group, index: true
-    #end
-
     create_table :magic_items_object_levels, id: false do |t|
 
       t.belongs_to :magic_item, index: true
