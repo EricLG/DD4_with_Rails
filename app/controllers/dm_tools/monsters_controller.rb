@@ -79,6 +79,7 @@ class DmTools::MonstersController < ApplicationController
       monsters = monsters.where(second_role: params[:monster_search][:second_role]) unless params[:monster_search][:second_role].empty?
       monsters = monsters.where(race: params[:monster_search][:race]) unless params[:monster_search][:race].empty?
       monsters = monsters.where(leader: params[:monster_search][:leader]) unless params[:monster_search][:leader].empty?
+      monsters = monsters.where(origin: params[:monster_search][:origin]) unless params[:monster_search][:origin].empty?
       unless params[:monster_search][:level].empty?
         level = params[:monster_search][:level].to_i
         monsters = monsters.where(level: level-5..level+5)

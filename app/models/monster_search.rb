@@ -63,7 +63,7 @@ class MonsterSearch
       if source_params
         search = search.joins(:source).where(source: source_params)
       end
-      unless leader_params.empty?
+      if leader_params
         search = search.where(leader: leader_params)
       end
 
