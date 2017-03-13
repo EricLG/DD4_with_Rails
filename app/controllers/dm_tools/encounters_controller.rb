@@ -18,6 +18,8 @@ class DmTools::EncountersController < ApplicationController
     @encounters_exemple = Encounter.select(:description).where(level: 1)
     @search = MonsterSearch.new(params[:monster_search])
     @monsters = @search.build_search.order(level: :asc, name: :asc)
+    @categories = Monster.pluck(:category).join(', ').split(', ').uniq.sort
+    @keywords = Monster.pluck(:keywords).join(', ').split(', ').uniq.sort
   end
 
   # GET /encounters/1/edit

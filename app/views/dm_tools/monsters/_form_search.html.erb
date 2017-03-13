@@ -10,17 +10,18 @@
     </div>
 
     <div class="form-group col-xs-4">
-      <%= form.label(:level, Monster.human_attribute_name('level'), :class=>"col-sm-4") %>
+      <%= form.label(:level, Monster.human_attribute_name('level')+" (+/-2)" , :class=>"col-sm-4") %>
       <div class="col-sm-8">
         <%= form.number_field(:level, in: 1..40, step: 1, :class=>"form-control") %>
       </div>
     </div>
 
     <div class="form-group col-xs-4">
-      <%= form.label(:category, Monster.human_attribute_name('category'), :class=>"col-sm-4") %>
+      <% default_options =  params["monster_search"]["leader"] if params["monster_search"]%>
+      <%= form.label(:leader, Monster.human_attribute_name('leader'), :class=>"col-sm-4") %>
       <div class="col-sm-8">
-        <%= form.text_field(:category, :class=>"form-control") %>
-      </div>
+        <%= form.select :leader, options_for_select([["Oui", true], ["Non", false]], default_options), {:include_blank => 'Tous'}, {:class=>"form-control"}  %>
+        </div>
     </div>
 
   </div>
@@ -64,13 +65,23 @@
     </div>
 
     <div class="form-group col-xs-4">
-      <% default_options =  params["monster_search"]["leader"] if params["monster_search"]%>
-      <%= form.label(:leader, Monster.human_attribute_name('leader'), :class=>"col-sm-4") %>
+      <%= form.label(:category, Monster.human_attribute_name('category'), :class=>"col-sm-4") %>
       <div class="col-sm-8">
-        <%= form.select :leader, options_for_select([["Oui", true], ["Non", false]], default_options), {:include_blank => 'Tous'}, {:class=>"form-control"}  %>
-        </div>
+        <%= form.select :category, @categories.collect{|r| [r, r]}, {:include_blank => 'Tous'}, {:class=>"form-control"} %>
+      </div>
     </div>
 
+    <div class="form-group col-xs-4">
+      <%= form.label(:keywords, Monster.human_attribute_name('keywords'), :class=>"col-sm-4") %>
+      <div class="col-sm-8">
+        <%= form.select :keywords, @keywords.collect{|r| [r, r]}, {:include_blank => 'Tous'}, {:class=>"form-control"} %>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="row">
     <div class="form-group col-xs-4">
       <% default_source =  params["monster_search"]["source"] if params["monster_search"]%>
       <%= form.label(:source, Monster.human_attribute_name('source'), :class=>"col-sm-4") %>
@@ -78,14 +89,14 @@
         <%= form.select :source, options_from_collection_for_select(@sources, :id, :name, default_source), {:include_blank => 'Tous'}, {:class=>"form-control"}  %>
       </div>
     </div>
+  </div>
 
-  </div>
   <div class="row">
-  <div class="form-group">
-    <div class="col-sm-offset-1 col-sm-8">
-      <%= link_to t("common.reset"), dm_tools_monsters_path, :class => "btn btn-default" %>
-      <%= form.submit t("common.validate"), :class => "btn btn-default" %>
-      </div>
-  </div>
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-8">
+        <%= link_to t("common.reset"), dm_tools_monsters_path, :class => "btn btn-default" %>
+        <%= form.submit t("common.validate"), :class => "btn btn-default" %>
+        </div>
+    </div>
   </div>
 <% end %>

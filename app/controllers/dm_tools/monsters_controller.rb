@@ -7,7 +7,8 @@ class DmTools::MonstersController < ApplicationController
     @sources = Source.all
     @search = MonsterSearch.new(params[:monster_search])
     @monsters = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(level: :asc, name: :asc)
-
+    @categories = Monster.pluck(:category).join(', ').split(', ').uniq.sort
+    @keywords = Monster.pluck(:keywords).join(', ').split(', ').uniq.sort
     respond_to do |format|
         format.html { render :index }
         format.js { render json: {monsters: @monsters}}
@@ -80,6 +81,8 @@ class DmTools::MonstersController < ApplicationController
       monsters = monsters.where(race: params[:monster_search][:race]) unless params[:monster_search][:race].empty?
       monsters = monsters.where(leader: params[:monster_search][:leader]) unless params[:monster_search][:leader].empty?
       monsters = monsters.where(origin: params[:monster_search][:origin]) unless params[:monster_search][:origin].empty?
+      monsters = monsters.where(category: params[:monster_search][:category]) unless params[:monster_search][:category].empty?
+      monsters = monsters.where("monsters.keywords ILIKE ?", "%#{params[:monster_search][:keywords]}%")
       unless params[:monster_search][:level].empty?
         level = params[:monster_search][:level].to_i
         monsters = monsters.where(level: level-5..level+5)

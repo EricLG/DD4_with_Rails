@@ -38,7 +38,8 @@ class MonsterSearch
       end
 
       if level_params
-        search = search.where("monsters.level = ?", level_params)
+        level_params = level_params.to_i
+        search = search.where(level: (level_params-2)..(level_params+2))
       end
 
       if main_role_params
@@ -57,7 +58,7 @@ class MonsterSearch
         search = search.where(origin: origin_params)
       end
       if keywords_params
-        search = search.where(keywords: keywords_params)
+        search = search.where("monsters.keywords ILIKE ?", "%#{keywords_params}%")
       end
 
       if source_params

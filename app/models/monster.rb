@@ -74,4 +74,15 @@ class Monster < ActiveRecord::Base
         0
     end
   end
+
+  def self.correct_data
+    monsters = Monster.all
+    monsters.each do |m|
+      m.category =m.category.capitalize
+      if !m.keywords.empty?
+        m.keywords = m.keywords.split(', ').map(&:capitalize).join(', ')
+      end
+      m.save
+    end
+  end
 end
