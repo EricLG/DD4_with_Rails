@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-sm-8">
     <%
-      path = "lib/assets/articles/races/#{@race.name.downcase}.txt"
+      path = "lib/assets/articles/races/#{@race.name.mb_chars.downcase.to_s}.txt"
       data = File.read(path)
     %>
     <%= data.html_safe() %>
