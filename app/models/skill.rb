@@ -33,4 +33,30 @@ class Skill < ActiveRecord::Base
     end
     result.sort.join(', ')
   end
+
+  def to_a
+    result = []
+    SKILL.each do |s|
+         result << s if self[s] > 0
+    end
+    result
+  end
+
+  def self.get_linked_carac(skill)
+    case skill
+    when 'athletics'
+      'strength'
+    when 'endurance'
+      'constitution'
+    when 'acrobatics', 'stealth', 'thievery'
+      'dexterity'
+    when 'arcana', 'history', 'religion'
+      'intelligence'
+    when 'dungeoneering', 'heal', 'insight', 'nature', 'perception'
+      'wisdom'
+    when 'bluff', 'diplomacy', 'intimidate', 'streetwise'
+      'charisma'
+    end
+  end
+
 end

@@ -11,6 +11,8 @@ class Character < ActiveRecord::Base
   has_many :choices, inverse_of: :character
   has_many :features, through: :choices
   has_many :languages, through: :choices
+  has_one  :formation_skill, :class_name => "Skill", :foreign_key => "formation_skill_id"
+  has_one  :racial_skill,    :class_name => "Skill", :foreign_key => "racial_skill_id"
 
   has_many :klass_choices,  -> {klass_features_choices},  class_name: "Choice"
   has_many :race_choices,   -> {race_features_choices},   class_name: "Choice"

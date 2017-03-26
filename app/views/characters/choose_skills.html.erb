@@ -11,7 +11,60 @@
 <div class="row">
   <div class="col-sm-8">
     <%= form_for @character, html: {class: 'form-horizontal'} do |f| %>
-      <h4>Choix des compétences de classes</h4>
-    <% end %>
+      <div class="row">
+        <h4>Choix des formations de compétences de classes</h4>
+        <p>Une formation vous donne un bonus de +5 à un test de compétence.<br>Sélectionnez <%= @character.klass.skills_number %> formations de compétence dans la liste suivante :</p>
+        <% if @character.klass.name == 'Rôdeur'  %>
+          <p>En tant que rôdeur, vous devez sélectionner soit Exploration, soit Nature.</p>
+        <% end %>
+        <div class="col-sm-12">
+
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th class="medium-width center">Bonus</th>
+                <th class="table-width center">Nom</th>
+                <th class="small-width"></th>
+                <th class="medium-width center">Carac</th>
+                <th class="medium-width center">Carac + 1/2 niv.</th>
+                <th class="medium-width center">Race</th>
+                <th class="medium-width center">Formation</th>
+              </tr>
+            </thead>
+            <tbody id="character-formation">
+              <% Skill::SKILL.each_with_index do |s, i| %>
+                <tr>
+                  <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= 10 %></button></td>
+                  <td class=""><%= Skill.human_attribute_name s %></td>
+                  <td class="center"></td>
+                  <td class="center"><%= Stat.human_attribute_name(Skill.get_linked_carac(s)) %></td>
+                  <td><button type="button" class="mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">+5</button></td>
+                  <td><%= button_tag @character.race.skill.send(s), id: "skill_racial", class: "racial-skill-bonus center max-width btn btn-default", disabled: true %></td>
+                  <td class="center"><%#= button_tag 0, id: "skill_formation", class: "racial-bonus center max-width btn btn-default", disabled: true %>
+                    <% if @character.klass.available_skills.to_a.include?(s) %>
+                      <button type="button" class="btn btn-default btn-skill-bonus-formation">
+                        <%#= f.hidden_field "level_4_#{s}", value: @character.send("level_4_#{s}"), class: "level_4 bonus-carac" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    <% else %>
+                      <button type="button" disabled class="btn btn-default btn-skill-bonus-formation">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+
+          <ul>
+            <% Skill::SKILL.each_with_index do |s, i| %>
+              <li><%= Skill.human_attribute_name s %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+     <% end %>
   </div>
 </div>
