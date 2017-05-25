@@ -103,11 +103,13 @@ ActiveRecord::Schema.define(version: 20161001174700) do
     t.integer "character_id"
     t.integer "feature_id"
     t.integer "language_id"
+    t.integer "skill_id"
   end
 
   add_index "choices", ["character_id"], name: "index_choices_on_character_id", using: :btree
   add_index "choices", ["feature_id"], name: "index_choices_on_feature_id", using: :btree
   add_index "choices", ["language_id"], name: "index_choices_on_language_id", using: :btree
+  add_index "choices", ["skill_id"], name: "index_choices_on_skill_id", using: :btree
 
   create_table "common_armors", force: :cascade do |t|
     t.string   "name"
