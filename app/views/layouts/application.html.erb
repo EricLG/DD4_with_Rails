@@ -43,9 +43,6 @@
         <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,      title: t("menu.tooltip.campaign"),  class: "white-text" %></li>
         <li role="presentation"><%= link_to t("menu.link.random"),   items_random_path,   title: t("menu.tooltip.random"),    class: "white-text" %></li>
         <li role="presentation"><%= link_to t("menu.link.dmtools"),  dm_tools_path,       title: t("menu.tooltip.dmtools"),   class: "white-text" %></li>
-        <% if is_current_user_admin? %>
-          <li role="presentation"><%= link_to t("menu.link.import"), import_welcomes_path, title: t("menu.tooltip.import"), class: "white-text" %></li>
-        <% end %>
         <% if is_current_user_contributor? %>
           <li role="presentation"><%= link_to t("menu.link.admin"), admin_index_path, title: t("menu.tooltip.admin"), class: "white-text" %></li>
         <% end %>
