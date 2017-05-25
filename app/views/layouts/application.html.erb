@@ -44,6 +44,8 @@
         <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,       title: t("menu.tooltip.campaign"), class: "white-text" %></li>
         <% if is_current_user_admin? %>
           <li role="presentation"><%= link_to t("menu.link.import"), import_welcomes_path, title: t("menu.tooltip.import"), class: "white-text" %></li>
+        <% end %>
+        <% if is_current_user_contributor? %>
           <li role="presentation"><%= link_to t("menu.link.contribute"), contribute_welcomes_path, title: t("menu.tooltip.contribute"), class: "white-text" %></li>
         <% end %>
         <li role="presentation"><%= link_to t("menu.link.random"),   random_welcomes_path,   title: "Random",   class: "white-text" %></li>

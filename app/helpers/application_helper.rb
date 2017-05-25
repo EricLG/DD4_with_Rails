@@ -59,6 +59,10 @@ module ApplicationHelper
     @current_user.try(:name).try(:downcase) == "illisae"
   end
 
+  def is_current_user_contributor?
+    ['illisae', 'ashera', 'chomb'].include? @current_user.try(:name).try(:downcase)
+  end
+
   def input_text_form(form, attribute, local)
     input = content_tag("div", class: "form-group") do
       concat form.label(attribute, local, :class =>"col-sm-4 control-label")
