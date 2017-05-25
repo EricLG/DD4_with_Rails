@@ -62,7 +62,7 @@ class MagicItem < ActiveRecord::Base
     unless filename.nil?
       ActiveRecord::Base.transaction do
         options = {headers: true, col_sep: ";", quote_char: "\""}
-        file = File.join("'lib/import_files", filename)
+        file = File.join("lib/import_files", filename)
         csv = CSV.parse(File.read(file), options )
         csv.each do |row|
           params = row.to_hash
