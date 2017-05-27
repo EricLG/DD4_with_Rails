@@ -39,7 +39,7 @@
       <td><%= i.level_min %> </td>
       <td><%= display_first_words i.property %> </td>
       <td><%= display_first_words i.power %> </td>
-      <td><%=  MagicItem.human_attribute_name(i.rarity)%> </td>
+      <td><%= MagicItem.human_attribute_name(i.rarity) %> </td>
       <td><%= i.source.name %> </td>
     </tr>
   <% end %><!-- Fin communs -->

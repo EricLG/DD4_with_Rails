@@ -15,6 +15,7 @@ class MagicItem < ActiveRecord::Base
   validates :description, presence: true
   validates :object_levels, :length => { :minimum => 1}
   validates :source, presence: true
+  validates :rarity, presence: true
   validates :location, presence: true
 
   scope :weapons,     -> {joins(:location).where(locations: {code: "weapon"}) }

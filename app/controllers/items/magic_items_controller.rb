@@ -104,8 +104,11 @@ class Items::MagicItemsController < ApplicationController
       :property,
       :power,
       :special,
+      :location_id,
+      :rarity,
       :implement_group_id,
       :source_id,
+      {object_level_ids:[]},
       {weapon_group_ids:[]},
       {armor_category_ids:[]},
       {items_level_ids:[]}
