@@ -15,7 +15,7 @@ class Items::MagicItemsController < ApplicationController
     if @item.save
       if params["add_another"]
         flash[:success] = "L'objet \"#{@item.name}\" a bien été créé."
-        redirect_to items_magic_item_path
+        redirect_to new_items_magic_item_path
       else
         flash[:success] = "L'objet \"#{@item.name}\" a bien été créé."
         redirect_to items_magic_item_path(@item.id)
@@ -43,10 +43,11 @@ class Items::MagicItemsController < ApplicationController
 
   def update
     @item = MagicItem.find_by_id(params[:id])
-    @item.update!(magic_item_params)
-    if @item.persisted?
+    if @item.update(magic_item_params)
       redirect_to items_magic_item_path(@item.id)
     else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@item.errors.full_messages}"
       render :edit
     end
   end

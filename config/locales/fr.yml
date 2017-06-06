@@ -136,7 +136,12 @@ fr:
         blank:          "ne peut être vide"
         not_a_number:   "doit être un nombre"
         inclusion:      "n'est pas dans les bornes admises"
+        record_invalid: "enregistrement invalide"
       models:
+        magic_item:
+          attributes:
+            object_levels:
+              too_short: "il faut au minimum 1 niveau"
         character:
           attributes:
             level:
