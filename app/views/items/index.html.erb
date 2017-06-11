@@ -12,13 +12,13 @@
   <div class="col-sm-12">
 
     <!-- MDJ 1 -->
-    <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
+    <div class="panel-group col-sm-4" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="h_mdj1">
           <h4 class="panel-title">
           <% collapse_id = 'mdj1' %>
           <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="mdj1">
-            Manuel des joueurs 1 Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            Manuel des joueurs 1&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
           </a>
           </h4>
         </div>
@@ -50,7 +50,6 @@
             %>
             <%= display_progress_bar("Focaliseurs", 38, 38, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
             <%= display_progress_bar("Équipements magiques", 73, 73, {:content => detailGears, :title => "Détail des équipements magiques"}) %>
-
             <%= display_progress_bar("Objets merveilleux", 0, 13) %>
             <%= display_progress_bar("Potions", 0, 4) %>
           </div>
@@ -59,13 +58,13 @@
     </div>
 
     <!-- MDJ 2 -->
-    <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
+    <div class="panel-group col-sm-4" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="h_mdj2">
           <h4 class="panel-title">
           <% collapse_id = 'mdj2' %>
           <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="mdj2">
-            Manuel des joueurs 2 Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            Manuel des joueurs 2&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
           </a>
           </h4>
         </div>
@@ -74,7 +73,6 @@
             <%= display_progress_bar("Total des objets enregistrés", 42, 72) %>
             <%= display_progress_bar("Armes magiques", 7, 7) %>
             <%= display_progress_bar("Armures magiques", 32, 32) %>
-
             <%
               detailImplements = '
                 <ul class="list-group">
@@ -84,21 +82,14 @@
                 </ul>'
             %>
             <%= display_progress_bar("Focaliseurs", 3, 21, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
-
             <%= display_progress_bar("Objets merveilleux", 0, 12) %>
           </div>
         </div>
       </div>
     </div>
 
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-
     <!-- MDJ 3 -->
-    <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
+    <div class="panel-group col-sm-4" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="h_mdj3">
           <h4 class="panel-title">
@@ -129,87 +120,11 @@
         </div>
       </div>
     </div>
-
-    <!-- Manuel des plans-->
-    <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="h_plans">
-          <h4 class="panel-title">
-          <% collapse_id = 'plans' %>
-          <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="plans">
-            Manuel des plans Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
-          </a>
-          </h4>
-        </div>
-        <div id="plans" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_plans">
-          <div class="panel-body">
-            <%= display_progress_bar("Total des objets enregistrés", 29, 38) %>
-            <%= display_progress_bar("Armes magiques", 6, 6) %>
-            <%= display_progress_bar("Armures magiques", 4, 4) %>
-            <%
-              detailImplements = '
-                <ul class="list-group">
-                  <li class="list-group-item"><span class="badge">1/1</span>Bâtons</li>
-                  <li class="list-group-item"><span class="badge">3/3</span>Orbes</li>
-                  <li class="list-group-item"><span class="badge">4/4</span>Sceptres</li>
-                  <li class="list-group-item"><span class="badge">2/2</span>Symboles sacrés</li>
-                </ul>'
-              detailGears = '
-                <ul class="list-group">
-                  <li class="list-group-item"><span class="badge">2/2</span>Anneaux</li>
-                  <li class="list-group-item"><span class="badge">3/3</span>Bottes et jambières</li>
-                  <li class="list-group-item"><span class="badge">2/2</span>Casques et bandeaux</li>
-                  <li class="list-group-item"><span class="badge">1/1</span>Ceintures</li>
-                  <li class="list-group-item"><span class="badge">1/1</span>Gants et gantelets</li>
-                </ul>'
-            %>
-            <%= display_progress_bar("Focaliseurs", 10, 10, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
-            <%= display_progress_bar("Équipements magiques", 9, 9, {:content => detailGears, :title => "Détail des équipements magiques"}) %>
-            <%= display_progress_bar("Objets merveilleux", 0, 6) %>
-            <%= display_progress_bar("vÉHICULES", 0, 3) %>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
-
-    <!-- Eberron-->
-    <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="h_gje">
-          <h4 class="panel-title">
-          <% collapse_id = 'gje' %>
-          <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="gje">
-            Guide des joueurs d'Eberron Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
-          </a>
-          </h4>
-        </div>
-        <div id="gje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_gje">
-          <div class="panel-body">
-            <%= display_progress_bar("Total des objets enregistrés", 31, 52) %>
-
-            <%
-              detailImplements = '
-                <ul class="list-group">
-                  <li class="list-group-item"><span class="badge">4/4</span>Baguettes</li>
-                  <li class="list-group-item"><span class="badge">3/3</span>Baton</li>
-                  <li class="list-group-item"><span class="badge">15/15</span>Symbole Sacrés</li>
-                  <li class="list-group-item"><span class="badge">4/4</span>Sceptres</li>
-                  <li class="list-group-item"><span class="badge">5/5</span>Totems</li>
-                </ul>'
-            %>
-            <%= display_progress_bar("Focaliseurs", 31, 31, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
-            <%= display_progress_bar("Composants de forgelier", 0, 11) %>
-            <%= display_progress_bar("Dracolithes", 0, 10) %>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Comptoir de l'aventure 1 -->
     <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
@@ -218,7 +133,7 @@
           <h4 class="panel-title">
           <% collapse_id = 'cda1' %>
           <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="cda1">
-            Le comptoir de l'aventure Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            Le comptoir de l'aventure 1&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
           </a>
           </h4>
         </div>
@@ -228,7 +143,6 @@
             <%= display_progress_bar("Armes magiques", 119, 119) %>
             <%= display_progress_bar("Armures magiques", 103, 103) %>
             <%= display_progress_bar("Amulettes magiques", 51, 51) %>
-
             <%
               detailImplements = '
                 <ul class="list-group">
@@ -265,12 +179,6 @@
       </div>
     </div>
 
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-
     <!-- Comptoir de l'aventure 2 -->
     <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
@@ -278,7 +186,7 @@
           <h4 class="panel-title">
           <% collapse_id = 'cda2' %>
           <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="cda2">
-            Le comptoir de l'aventure 2 Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            Le comptoir de l'aventure 2&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
           </a>
           </h4>
         </div>
@@ -326,6 +234,12 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
     <!-- Chaos élementaire -->
     <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
@@ -333,7 +247,7 @@
           <h4 class="panel-title">
           <% collapse_id = 'chaos' %>
           <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="chaos">
-            Chaos élémentaire Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            Chaos élémentaire&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
           </a>
           </h4>
         </div>
@@ -346,11 +260,85 @@
       </div>
     </div>
 
+    <!-- Manuel des plans -->
+    <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="h_plans">
+          <h4 class="panel-title">
+          <% collapse_id = 'plans' %>
+          <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="plans">
+            Manuel des plans&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+          </a>
+          </h4>
+        </div>
+        <div id="plans" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_plans">
+          <div class="panel-body">
+            <%= display_progress_bar("Total des objets enregistrés", 29, 38) %>
+            <%= display_progress_bar("Armes magiques", 6, 6) %>
+            <%= display_progress_bar("Armures magiques", 4, 4) %>
+            <%
+              detailImplements = '
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="badge">1/1</span>Bâtons</li>
+                  <li class="list-group-item"><span class="badge">3/3</span>Orbes</li>
+                  <li class="list-group-item"><span class="badge">4/4</span>Sceptres</li>
+                  <li class="list-group-item"><span class="badge">2/2</span>Symboles sacrés</li>
+                </ul>'
+              detailGears = '
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="badge">2/2</span>Anneaux</li>
+                  <li class="list-group-item"><span class="badge">3/3</span>Bottes et jambières</li>
+                  <li class="list-group-item"><span class="badge">2/2</span>Casques et bandeaux</li>
+                  <li class="list-group-item"><span class="badge">1/1</span>Ceintures</li>
+                  <li class="list-group-item"><span class="badge">1/1</span>Gants et gantelets</li>
+                </ul>'
+            %>
+            <%= display_progress_bar("Focaliseurs", 10, 10, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
+            <%= display_progress_bar("Équipements magiques", 9, 9, {:content => detailGears, :title => "Détail des équipements magiques"}) %>
+            <%= display_progress_bar("Objets merveilleux", 0, 6) %>
+            <%= display_progress_bar("vÉHICULES", 0, 3) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
+
+    <!-- Eberron -->
+    <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="h_gje">
+          <h4 class="panel-title">
+          <% collapse_id = 'gje' %>
+          <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="gje">
+            Guide des joueurs d'Eberron&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+          </a>
+          </h4>
+        </div>
+        <div id="gje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_gje">
+          <div class="panel-body">
+            <%= display_progress_bar("Total des objets enregistrés", 31, 52) %>
+            <%
+              detailImplements = '
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="badge">4/4</span>Baguettes</li>
+                  <li class="list-group-item"><span class="badge">3/3</span>Baton</li>
+                  <li class="list-group-item"><span class="badge">15/15</span>Symbole Sacrés</li>
+                  <li class="list-group-item"><span class="badge">4/4</span>Sceptres</li>
+                  <li class="list-group-item"><span class="badge">5/5</span>Totems</li>
+                </ul>'
+            %>
+            <%= display_progress_bar("Focaliseurs", 31, 31, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
+            <%= display_progress_bar("Composants de forgelier", 0, 11) %>
+            <%= display_progress_bar("Dracolithes", 0, 10) %>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Secret des arcannes -->
     <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
@@ -359,7 +347,7 @@
           <h4 class="panel-title">
           <% collapse_id = 'sda' %>
           <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="sda">
-            Le secret des arcannes Objects&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            Le secret des arcannes&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
           </a>
           </h4>
         </div>
@@ -374,4 +362,3 @@
 
   </div>
 </div>
-
