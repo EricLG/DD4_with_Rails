@@ -143,7 +143,7 @@
         </div>
         <div id="cda1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_cda1">
           <div class="panel-body">
-            <%= display_progress_bar("Total des objets enregistrés", 652, 848) %>
+            <%= display_progress_bar("Total des objets enregistrés", 652, 822) %>
             <%= display_progress_bar("Armes magiques", 119, 119) %>
             <%= display_progress_bar("Armures magiques", 103, 103) %>
             <%
@@ -343,33 +343,34 @@
         </div>
         <div id="gje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_gje">
           <div class="panel-body">
-            <%= display_progress_bar("Total des objets enregistrés", 31, 52) %>
+            <%= display_progress_bar("Total des objets enregistrés", 31, 70) %>
             <%
               detailImplements = '
                 <ul class="list-group">
                   <li class="list-group-item"><span class="badge">4/4</span>Baguettes</li>
                   <li class="list-group-item"><span class="badge">3/3</span>Baton</li>
-                  <li class="list-group-item"><span class="badge">15/15</span>Symbole Sacrés</li>
                   <li class="list-group-item"><span class="badge">4/4</span>Sceptres</li>
+                  <li class="list-group-item"><span class="badge">15/15</span>Symbole Sacrés</li>
                   <li class="list-group-item"><span class="badge">5/5</span>Totems</li>
                 </ul>'
             %>
             <%= display_progress_bar("Focaliseurs", 31, 31, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
             <%= display_progress_bar("Composants de forgelier", 0, 11) %>
             <%= display_progress_bar("Dracolithes", 0, 10) %>
+            <%= display_progress_bar("Objets alchimiques", 0, 18) %>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Secret des arcannes -->
+    <!-- Secret des arcanes -->
     <div class="panel-group col-sm-6" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="h_sda">
           <h4 class="panel-title">
           <% collapse_id = 'sda' %>
           <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="sda">
-            Le secret des arcannes&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            Le secret des arcanes&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
           </a>
           </h4>
         </div>
