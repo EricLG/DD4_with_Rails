@@ -207,41 +207,45 @@
           <div class="panel-body">
             <%= display_progress_bar("Total des objets enregistrés", 652, 848) %>
             <%= display_progress_bar("Armes magiques", 51, 51) %>
-            <%= display_progress_bar("Armures magiques", 53, 64) %>
-            <%= display_progress_bar("Amulettes magiques", 30, 30) %>
+            <%= display_progress_bar("Armures magiques", 53, 53) %>
             <%
               detailImplements = '
                 <ul class="list-group">
-                 <li class="list-group-item"><span class="badge">0/21</span>baguettes</li>
-                  <li class="list-group-item"><span class="badge">0/25</span>Bâtons</li>
-                  <li class="list-group-item"><span class="badge">0/27</span>Orbes</li>
-                  <li class="list-group-item"><span class="badge">0/27</span>Sceptres</li>
-                  <li class="list-group-item"><span class="badge">0/36</span>Symboles sacrés</li>
-                  <li class="list-group-item"><span class="badge">1/36</span>Totems</li>
+                  <li class="list-group-item"><span class="badge">0/15</span>Baguettes</li>
+                  <li class="list-group-item"><span class="badge">0/14</span>Bâtons</li>
+                  <li class="list-group-item"><span class="badge">0/8</span>Orbes</li>
+                  <li class="list-group-item"><span class="badge">0/15</span>Sceptres</li>
+                  <li class="list-group-item"><span class="badge">0/21</span>Symboles sacrés</li>
+                  <li class="list-group-item"><span class="badge">0/10</span>Tomes</li>
+                  <li class="list-group-item"><span class="badge">0/29</span>Totems</li>
                 </ul>'
               detailGears = '
                 <ul class="list-group">
-                  <li class="list-group-item"><span class="badge">33/45</span>Anneaux</li>
-                  <li class="list-group-item"><span class="badge">11/53</span>Bottes et jambières</li>
-                  <li class="list-group-item"><span class="badge">13/58</span>Casques et bandeaux</li>
-                  <li class="list-group-item"><span class="badge">15/37</span>Ceintures</li>
-                  <li class="list-group-item"><span class="badge">14/39</span>Gants et gantelets</li>
-                 <li class="list-group-item"><span class="badge">22/60</span>Bouclier</li>
+                  <li class="list-group-item"><span class="badge">33/33</span>Anneaux</li>
+                  <li class="list-group-item"><span class="badge">11/11</span>Bottes et jambières</li>
+                  <li class="list-group-item"><span class="badge">22/22</span>Boucliers et bracelets</li>
+                  <li class="list-group-item"><span class="badge">30/30</span>Capes et amulettes</li>
+                  <li class="list-group-item"><span class="badge">13/13</span>Casques et bandeaux</li>
+                  <li class="list-group-item"><span class="badge">15/15</span>Ceintures</li>
+                  <li class="list-group-item"><span class="badge">14/14</span>Gants et gantelets</li>
+                </ul>'
+              detailWonderousItems = '
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="badge">0/12</span>Objets merveilleux</li>
+                  <li class="list-group-item"><span class="badge">0/33</span>Objets d\'antre merveilleux</li>
+                  <li class="list-group-item"><span class="badge">0/29</span>Tatouages</li>
+                </ul>'
+              detailOtherConsommable = '
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="badge">0/16</span>Munitions</li>
+                  <li class="list-group-item"><span class="badge">0/5</span>Réactifs</li>
+                  <li class="list-group-item"><span class="badge">0/9</span>Emmurements</li>
                 </ul>'
             %>
-            <%= display_progress_bar("Focaliseurs", 1, 172, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
-            <%= display_progress_bar("Équipements magiques", 108, 108, {:content => detailGears, :title => "Détail des équipements magiques"}) %>
-            <%= display_progress_bar("Objets merveilleux", 0, 33) %>
-            <%= display_progress_bar("Munitions", 0, 16) %>
-            <%= display_progress_bar("Consommable", 0, 23) %>
-            <%= display_progress_bar("Étendards", 0, 8) %>
-            <%= display_progress_bar("Statuettes merveilleuses", 0, 9) %>
-            <%= display_progress_bar("pierre à aiguiser", 0, 6) %>
-            <%= display_progress_bar("sac à malice", 0, 3) %>
-            <%= display_progress_bar("Autres consommables", 0, 11) %>
-            <%= display_progress_bar("Monture", 0, 12) %>
-            <%= display_progress_bar("Alchimie", 0, 25) %>
-            <%= display_progress_bar("Réactifs", 0, 12) %>
+            <%= display_progress_bar("Focaliseurs", 0, 112, {:content => detailImplements, :title => "Détail des focaliseurs"}) %>
+            <%= display_progress_bar("Équipements magiques", 138, 138, {:content => detailGears, :title => "Détail des équipements magiques"}) %>
+            <%= display_progress_bar("Objets merveilleux", 0, 33, {:content => detailWonderousItems, :title => "Détail des objets merveilleux"}) %>
+            <%= display_progress_bar("Consommable", 0, 23, {:content => detailOtherConsommable, :title => "Détail des objets consommables"}) %>
           </div>
         </div>
       </div>
