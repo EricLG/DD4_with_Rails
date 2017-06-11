@@ -1,0 +1,7 @@
+<h4><%=@feature.name  %></h4>
+<p id="notice"><%= notice %></p>
+<div>
+  <p><%=@feature.description  %></p>
+</div>
+<%= link_to 'Edit', edit_admin_feature_path(@feature) %> |
+<%= link_to 'Back', admin_features_path %>

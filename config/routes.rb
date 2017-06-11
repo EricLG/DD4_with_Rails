@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :weapon_properties
+    resources :weapon_properties, :features
     get "/index"      => 'admin#index'
     get "/import"     => 'admin#import'
     get "/export_items" => 'admin#export_items'

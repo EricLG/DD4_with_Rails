@@ -1,0 +1,22 @@
+<%= form_for([:admin, @feature]) do |f| %>
+  <% if @feature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feature.errors.count, "error") %> prohibited this feature from being saved:</h2>
+
+      <ul>
+      <% @feature.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <p><%= f.text_field :name %></p>
+    <p><%= f.text_area :description %></p>
+    <p><%= f.text_field :kind %></p>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
