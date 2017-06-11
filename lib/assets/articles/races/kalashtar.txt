@@ -1,1 +1,20 @@
-<p>Description à venir</p>
+<h4>Des réfugiés du royaume des rêves dont l'esprit est aussi affûté que leur épée.</h4>
+
+<p>Les kalashtars ressemblent aux humains, mais leur apparence extérieure masque une nature profonde à la fois sereine et sauvage, réfléchie et incontrôlable. Les kalashtars ont fui Dal Quor, le Pays des Rêves, et sont venus chercher refuge dans les temples fortiﬁés des montagnes de l'Adar pour échapper aux agents du Rêve Obscur.</p>
+<p>Jouez un kalashtar si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ incarner un personnage sage et contemplatif capable d'avoir des accès de folie.</li>
+  <li>♦ être un étranger en une contrée exotique, où chaque endroit que vous visitez suscite l'émerveillement.</li>
+  <li>♦ être un fugitif cherchant à échapper à des ennemis qui peuvent être n'importe qui et se trouver n'importe où</li>
+  <li>♦ être membre d'une race qui préfère les classes de barde, paladin, prêtre et sorcier.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Les kalashtars, un nom quorien qui signifie les « rêves errants », arrivèrent pour la première fois à Éberron il y a mille huit cents ans. C'était un groupe de renégats de Dal Quor qui fuyaient une persécution philosophique et religieuse. Les agents de Dal Quor, regroupés sous le nom du Rêve Obscur, les traquèrent jusqu'à ce que le chef du groupe, Tarataï, trouve un moyen audacieux de fuir Dal Quor. Elle convainquit des moines adariens d'accepter une fusion permanente de leurs âmes avec celles des renégats quoriens. De cette fusion naquirent les kalashtars, et c'est pourquoi les kalashtars d'aujourd'hui ressemblent aux moines qui furent les premiers hôtes volontaires de ces esprits.</p>
+<p>Le monastère où soixante-sept humains devinrent kalashtars était un lieu de refuge, et les humains qui vivaient là étaient donc d'origines diverses. Les kalashtars ont par conséquent conservé cette diversité d'apparence et possèdent la même variété de couleurs de peau, de cheveux et d'yeux que les humains. Ils sont généralement plus minces et plus grands que les humains, mais il existe aussi des kalashtars petits ou trapus.</p>
+<p>Le développement physique des kalashtars est similaire à celui des humains, tout comme leur espérance de vie. Un enfant kalashtar semble à première vue humain, mais quelques minutes d'observation révèlent une différence majeure. Les kalashtars ont une attitude empreinte de grâce, de sérénité et de sérieux qui est liée au fragment d'âme quorienne qu'ils portent en eux. Alors qu'un enfant humain court, joue et rit, un enfant kalashtar s'adonne aux mêmes activités qu'un adulte kalashtar : exercices de méditation, entraînement martial et conversations télépathiques. Pour un kalashtar, grandir est uniquement un processus physique ; ce n'est ni un processus mental, ni un processus émotionnel.</p>
+<p>Traits de caractère des kalashtars : compatissants, contemplatifs, disciplinés, équilibrés, gracieux, imposante, intellectuels, perspicaces, réfléchis, spirituels</p>
+<p>Noms masculins : Halkhad, Havrakhad, Kanatash, Lanamelk, Lanharath, Malharath, Minharath, Névitash, Parmelk, Thakakhad., Thinharath</p>
+<p>Noms féminins : Ganitari, Khashana, Lakashtari, Mévakri, Novakri, Panitari, Sorashana, Thalkashtaï, Thatari</p>

@@ -1,1 +1,19 @@
-<p>Description à venir</p>
+<h4>Nomades rapides et ingénieux, petits de taille, mais grand de courage.</h4>
+
+<p>Les halfelins appartiennent à une race de petite taille, réputée pour son ingéniosité. sa rapidité d'esprit et ses nerfs solides. Nomades. ils se déplacent par voie ﬂuviale ou par les terres marécageuses. Personne ne voyage aussi loin et n'observe autant ce qui se passe dans le monde que les halfelins.</p>
+<p>Jouez un halfelin si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être un héros avec du cran. qu'on aurait tord de sous-estimer.</li>
+  <li>♦ être agréable, chaleureux et amical.</li>
+  <li>♦ être membre d'une race qui préfère les classes de rôdeur. sorcier ou voleur.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Les halfelins ressemblent à de petits humains et ont les proportions d'un humain adulte. Ils ont des nuances de peau identiques à celles des humains. avec le plus souvent des cheveux et des yeux sombres. Les hommes n'ont pas de barbe, mais beaucoup portent des favoris longs et fournis. Les halfelins. quel que soit leur sexe, ont des coiffures très élaborées qui intègrent des nattes et tresses complexes.</p>
+<p>Ils portent le plus souvent des habits qui correspondent à leur environnement et préfèrent les couleurs terre ou des nuances de vert. Leurs costumes ainsi que leur équipement sont généralement tissés par leurs soins. Les oiseaux, cours d'eau, bateaux et poissons sont des motifs habituels dans leur art ou leurs décorations.</p>
+<p>Les halfelins ont une durée de vie comparable à celle des humains.</p>
+<p>Traits de caractère des halfelins : accommodants, agiles, amicaux, chaleureux, chanceux, courageux, curieux, déterminés, ingénieux, optimistes, pragmatiques, terre à terre</p>
+<p>Noms masculins : Ander, Corrin, Dannad, Errich, Finnan, Garret, Lazam, Lindal, Merric, Nebin, Ostran, Perrin, Reed, Shardon. Ultmo, Wenner</p>
+<p>Noms féminins : Andrey, Bree, Callie, Chenna, Eida, Kithri, Lidda, Nedda, Paela, Shaena, Tryn, Vani, Verna, Wella</p>

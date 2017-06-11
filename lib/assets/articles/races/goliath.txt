@@ -1,1 +1,17 @@
-<p>Description à venir</p>
+<h4>Nomades tribaux des montagnes, solides comme le roc et fiers comme un sommet.</h4>
+
+<p>Les goliaths sont des nomades vivant dans les montagnes et envisageant la vie comme une compétition de tous les jours. Éparpillées, leurs tribus n'ont jamais beaucoup pesé dans les affaires politiques des vallées, mais ils parcourent les chaînes de montagnes depuis que les originels ont forgé les montagnes et les prairies. Grands et trapus, les goliaths vénèrent le pouvoir primal de la nature et s'en servent pour augmenter leur force.</p>
+<p>Jouez un goliath si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être plus costaud et plus résistant que presque n'importe qui.</li>
+  <li>♦ régner sur les flancs escarpés des montagnes.</li>
+  <li>♦ être un membre d'une race qui préfère les classes de barbare, de gardien et de guerrier.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Les goliaths regardent tout le monde de haut, même les drakéides, car ils mesurent entre 2,1 et 2,5 mètres. Leur peau est grise ou marron, parsemée de taches plus sombres. Les goliaths sont convaincus que dans ces taches est caché le destin de chacun d'entre eux. Leur peau est mouchetée de lithodermes, des excroissances osseuses de la taille d'une pièce et qui apparaissent sur leurs bras, leurs épaules, leur torse ou leur tête. Un front osseux surplombe leur regard d'un bleu étincelant ou d'un vert profond. Les goliaths de sexe masculin sont chauves. Les femmes ont des cheveux noirs qu'elles portent long et tressés.</p>
+<p>Traits de caractère des goliaths : batailleurs, intrépides, motivés, curieux, puissants, fiables, dynamiques, confiants</p>
+<p>Noms masculins : Aukan, Eglath, Gauthak, Ilikan, Kavaki, Keothi, Lo-Kag, Maveith, Meavoi, Thotham, Vimak</p>
+<p>Noms féminins : Gae-Al, Kuori, Manneo, Nalla, Orilo, Paavu, Pethani, Thalai, Uthal, Vaunea</p>

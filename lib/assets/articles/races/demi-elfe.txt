@@ -1,4 +1,5 @@
 <h4>Des héros-nés et des guides qui allient le meilleur de l’elfe et de l’humain.</h4>
+
 <p>Descendants des elfes et des humains, les demi-elfes constituent un race essentielle, chez laquelle ressort le meilleur des deux races.</p>
 <p>Jouez un demi-elfe si vous voulez …</p>
 
@@ -7,9 +8,11 @@
   <li>♦ être un héros charismatique qui est à l'aise au sein de deux cultures différentes.</li>
   <li>♦ être membre d'une race qui préfère les classe de maître de guerre, paladin et sorcier.</li>
 </ul>
-<h5>Description</h5>
-<p>Les demi-elfes ont tendance à être plus robustes que les elfes, mais plus fluets que les humains. Ils ont les mêmes variation de couleur de peau que les elfes et les humains. Cependant, comme les elfes, ils ont souvent une couleur d'yeux et de cheveux qui n'existe pas chez les humains. Contrairement aux elfes mâles, rigoureusement glabres, les demi-elfes mâles peuvent se faire pousser une fine moustache, le bouc ou même une barbe courte. Leurs oreilles sont de la même taille que celles des humains, mais pointues, comme leurs ancêtre elfiques.<br>
-Les demi-elfe suivent généralement la mode (vêtements et coiffures) de la société dans laquelle ils ont passé le plus de temps. Par exemple, si un demi-elfe est élevé dans une tribu barbare, il s'habillera des peaux et fourrures de cette dernière, et arborera leurs tresses et peintures faciales traditionnelles. Et pourtant, il n'est pas inhabituel pour un demi-elfe de porter des vêtements ou des parures elfiques. Ainsi, il affiche fièrement les signe de son double héritage.</p>
+
+<h4>Description</h4>
+
+<p>Les demi-elfes ont tendance à être plus robustes que les elfes, mais plus fluets que les humains. Ils ont les mêmes variation de couleur de peau que les elfes et les humains. Cependant, comme les elfes, ils ont souvent une couleur d'yeux et de cheveux qui n'existe pas chez les humains. Contrairement aux elfes mâles, rigoureusement glabres, les demi-elfes mâles peuvent se faire pousser une fine moustache, le bouc ou même une barbe courte. Leurs oreilles sont de la même taille que celles des humains, mais pointues, comme leurs ancêtre elfiques.</p>
+<p>Les demi-elfe suivent généralement la mode (vêtements et coiffures) de la société dans laquelle ils ont passé le plus de temps. Par exemple, si un demi-elfe est élevé dans une tribu barbare, il s'habillera des peaux et fourrures de cette dernière, et arborera leurs tresses et peintures faciales traditionnelles. Et pourtant, il n'est pas inhabituel pour un demi-elfe de porter des vêtements ou des parures elfiques. Ainsi, il affiche fièrement les signe de son double héritage.</p>
 <p>Le durée de vie des demi-elfes est comparable à celle des humains. Cependant, comme les elfes, ils restent vigoureux jusqu'à un âge avancé.</p>
 <p>Traits de caractère des demi-elfes: charmeurs, confiants, obligeants, ouverts d'esprit, sociables, souples.<p>
 <p>Noms demi-elfes : généralement des noms humains ou elfiques. Cependant, certains demi-elfes ont aussi un nom caractéristique d’une autre race.</p>

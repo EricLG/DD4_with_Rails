@@ -1,1 +1,20 @@
-<p>Description à venir</p>
+<h4>Ascétiques et disciplinés, maîtres du corps et de l'esprit.</h4>
+
+<p>Les githzerais sont les descendants d'une vieille race autrefois asservie par les flagelleurs mentaux. Après un soulèvement sanglant qui leur valut de s'affranchir, des différends idéologiques scindèrent cette race en deux : les githzerais et les githyankis. Les githzerais rejetèrent le bellicisme cruel des githyankis, puis se retirèrent dans le Chaos Élémentaire et en divers lieux reculés du monde pour emprunter la voie de 'introspection, apprenant à maîtriser le pouvoir de l'esprit et de l'âme. Des siècles plus tard, ils occupent encore ces lieux, menant une existence soumise à une discipline rigoureuse, observant leur environnement pour trouver leur place dans l'univers.</p>
+<p>Jouez un githzerai si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être un personnage qui entretient des liens planaires très étroits.</li>
+  <li>♦ éviter les attaques et garder une longueur d'avance sur vos ennemis.</li>
+  <li>♦ être membre d'une race qui préfère les classes de limier, moine, rôdeur et vengeur.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Caractérisés par leur apparence très exotique, les githzerais sont plus grands que les humains et plus minces aussi, au point de paraître décharnés. Leur peau tend vers le jaune, fonçant parfois jusqu'au brun ou vert. Ils affichent des traits anguleux caractéristiques et des oreilles pointues, ainsi que des yeux enfoncés dans leurs orbites et un nez aplati, comme retroussé.</p>
+<p>En règle générale, les hommes se rasent quand ils ne portent pas une tonsure accompagnée de nattes. Par ailleurs, ils ont une courte barbe. Actuellement, la mode est au crâne rasé avec une longue tresse partant de l'arrière du crâne. Les femmes portent de longs cheveux raides coiffés en nattes ou en chignons. Le plus souvent, les githzerais ont les cheveux roussâtres, mais certains les ont noirs ou gris.</p>
+<p>L'ascétisme propre au githzerai explique tout naturellement que cette race évite généralement les démonstrations de richesse. Leurs vêtements sont pratiques et simples à la fois, mis en valeur par quelques bijoux. Ils donnent libre cours à leur fibre artistique en se :tatouant ou en se peignant le corps. Du reste, même ces formes d'expression jouent un rôle bien précis : les tatouages leur servent à s'identifier, chacun reconnaissant ainsi les traditions et l'origine de ses semblables.</p>
+<p>Les githzerais ont une espérance de vie comparable à celle des humains.</p>
+<p>Traits de caractère des githzerais : ascétiques, calculateurs, calmes, cyniques, disciplinés, discrets, introspectifs, laconiques, méﬁants, pragmatiques, prudents, secrets</p>
+<p>Noms masculins : Dak, Durth, Ferzth, Greth, Hurm, Kalla, Murg, Nurm, Shrakk</p>
+<p>Noms féminins : Adaka, Adeya, Ella, Ezhelya, Immilzin, Izera, Uweya</p>

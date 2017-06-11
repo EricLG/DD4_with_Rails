@@ -1,1 +1,19 @@
-<p>Description à venir</p>
+<h4>Futés ﬁlous des fées qui excellent à se fauﬁler.</h4>
+
+<p>En Féérie, la meilleure façon pour une petite créature de survivre consiste à ne pas se faire remarquer. Pendant qu'ils souffraient sous la domination des tyrans formorians de l'Outreféérie, les gnomes ont appris à se cacher, à mentir et à distraire ; à survivre par tous les moyens. Ces mêmes talents continuent de leur servir dans un monde rempli de créatures bien plus grandes et bien plus dangereuses qu'eux.</p>
+<p>Jouez un gnome si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être curieux, drôle et malin.</li>
+  <li>♦ recourir plus souvent à la discrétion et au mensonge qu'à la force brute et l'intimidation.</li>
+  <li>♦ être un membre d'une race qui préfère les classes de barde, d”ensorceleur, de magicien et de sorcier.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Les gnomes sont encore plus petits que les halfelins, mesurant rarement plus d`1,3 m. Hormis leur taille, ils ressemblent aux elfes ou aux éladrins, avec des oreilles pointues et des traits gracieux, tels leurs pommettes saillantes et leur menton effilé. Ils ont cependant l'air plus sauvage que les éladrins et leurs cheveux sont souvent hirsutes. Certains gnomes de sexe masculin portent le bouc, mais la plupart d'entre eux n'ont aucune pilosité.</p>
+<p>La pigmentation des gnomes va d'un bronzé foncé à un gris couleur de roche, en passant par un marron couleur du bois. Leurs cheveux peuvent être de n'importe quelle couleur : blancs, blonds, plusieurs teintes de brun et même des verts ou des oranges rappelant l'automne. Leurs yeux sont des globes noirs et scintillants.</p>
+<p>Les gnomes vivent aussi longtemps que les éladrins, avec une longévité de plus de 300 ans, mais ils montrent plus facilement des signes de vieillesse. Un gnome centenaire a des cheveux gris ou blancs et une peau ridée par un siècle de rires, mais même les plus vieux gnomes gardent la force et l'agilité de la jeunesse. </p>
+<p>Traits de caractère des gnomes : affable, malin, futé, curieux, drôle, sur ses gardes, discret, inventif, secret, rusé, filou</p>
+<p>Noms masculins : Alston, Alvyn, Brocc, Eldon, Frug, Kellen, Ku, Nim, Orryn, Pock, Sindri, Warryn, Wrenn</p>
+<p>Noms féminins : Breena, Carlin, Donella, Ella, Lilli, Lorilla, Nissa, Nyx, Oda, Orla, Rosvvyn, Tana, Zanna</p>

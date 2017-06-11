@@ -1,1 +1,19 @@
-<p>Description à venir</p>
+<h4>Maîtres de la pierre et de l'acier, intrépides et résistants face à l'adversité.</h4>
+
+<p>Sculptés dans la roche, les nains subirent pendant près d'un âge entier l'esclavagisme des géants avant de gagner leur liberté. Leurs mythiques cités fortifiées des montagnes témoignent de leur puissance passée. Et même ceux qui vivent dans les viles humaines sont considérés comme les plus vaillants défenseurs, face aux ténèbres qui menacent d'envahir le monde.</p>
+<p>Jouez un nain si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être dur, bourru et fort comme un roc.</li>
+  <li>♦ apporter la gloire à vos ancêtres ou être l’instrument de votre dieu.</li>
+  <li>♦ être capable d’encaisser autant de coups que vous en donnez</li>
+  <li>♦ être membre d'une race qui préfère les classes de guerrier. paladin et prêtre.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Les nains ont une taille moyenne d'environ 1.35 m. Dotés d'une forte carrure. ils pèsent autant qu'un humain adulte. Ils possèdent la même variété de peau, d'yeux et de couleur de cheveux que les humains. Cependant. leur peau est parfois grise ou ocre rouge. Et les chevelures rousses sont plus communes que chez les autres races. Les hommes nains sont souvent chauves et tressent leur longue barbe en créant des combinaisons très élaborées. Les femmes nattent leurs cheveux pour indiquer leur appartenance à un clan. La tenue des nains, leurs armes et leur bouclier sont incrustés de gemmes, et décorés de figures géométriques ou des visages de leurs ancêtres.</p>
+<p>Bien qu'ils atteignent leur maturité physique presque au même âge que les humains, les nains vieillissent plus lentement. Ils demeurent encore vigoureux bien après 150 ans, certains vivant assez vieux pour atteindre 200 ans.</p>
+<p>Traits de caractère des nains : avides, courageux, laborieux, loyaux, obstinés, organisés, sévères tenaces, vindicatifs</p>
+<p>Noms masculins : Adrik, Baern, Berend, Darrak, Eberk, Fargrim, Gardain, Harbek, Kildrak, Morgran, Orsik, Rangrim, Thoradin, Thorfin, Turdek, Travok, Vondal</p>
+<p>Noms féminins : Artin, Bardryn, Diesa, Eldeth, Falkrunn, Gurdis, Helja, Kathra, Kristryd, Mardred, Riswynn, Torbera, Vistra</p>

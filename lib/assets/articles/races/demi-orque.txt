@@ -1,4 +1,5 @@
 <h4>Féroces guerriers qui combinent la détermination des hommes et la sauvagerie des orques.</h4>
+
 <p>Selon une légende obscure, lorsque Corellon énucléa Gruumsh au cours d'une bataille légendaire, une partie de l’essence sauvage du dieu tomba sur terre où elle transforma un peuple humain en féroce demi-orques. Une autre histoire suggère qu'un ancien empire hobgobeblin créât des demi-orques pour mener les tribus orques qui le servaient. Cependant, une autre légende prétend qu'une tribu de barbare humains particulièrement brutaux décida de s'accoupler avec des orques pour renforcer leur lignée. Certains racontent que Kord créât les demi-orques en mélangeant les meilleurs élément des humains et des orques pour disposer d'un peuple féroce et fort, à son image. Si vous interrogez un demi-orque sur ses origine, vous pouvez obtenir une de ces réponses... ou un coup de poing en pleine tête pour oser poser une question aussi déplacée !</p>
 <p>Jouez un demi-orque si vous voulez...</p>
 
@@ -7,9 +8,11 @@
   <li>♦ faire de votre rage une force en combat.</li>
   <li>♦ être un membre d'une race qui préfère les classes de barbare, guerrier, rôdeur et voleur.</li>
 </ul>
-<h5>Description</h5>
-<p>En apparence, les demi-orques tiennent davantage de l'humain. Néanmoins, ils sont reconnaissables à leur peau dont la teinte tend vers le gris, leur mâchoire carrée et leurs canines inférieures hypertrophiées, bien que celles-ci soient très différentes des défenses des orques. La plupart sont plus grands et plus forts que les humains. Leurs cheveux  sont noirs mais grisent avec l'âge. La plupart des demi-orques, qui vivent parmi les humains adoptent leur style vestimentaire et leur coiffure, mais certains choisissent les traditions orques, accrochant des osselets et des perles dans leurs tresses.<br>
-Les demi-orques ne vivent pas aussi longtemps que les humains. Ils grandissent rapidement, atteignant l'âge adulte à 16 ans, et vivent rarement au-delà de 60 ans.</p>
+
+<h4>Description</h4>
+
+<p>En apparence, les demi-orques tiennent davantage de l'humain. Néanmoins, ils sont reconnaissables à leur peau dont la teinte tend vers le gris, leur mâchoire carrée et leurs canines inférieures hypertrophiées, bien que celles-ci soient très différentes des défenses des orques. La plupart sont plus grands et plus forts que les humains. Leurs cheveux  sont noirs mais grisent avec l'âge. La plupart des demi-orques, qui vivent parmi les humains adoptent leur style vestimentaire et leur coiffure, mais certains choisissent les traditions orques, accrochant des osselets et des perles dans leurs tresses.</p>
+<p>Les demi-orques ne vivent pas aussi longtemps que les humains. Ils grandissent rapidement, atteignant l'âge adulte à 16 ans, et vivent rarement au-delà de 60 ans.</p>
 <p>Traits de caractère des demi-orques : intrépide, féroce, bon vivant, impulsif, emporté, costaud, extraverti.</p>
 <p>Noms masculins : Brug, Dorn, Druuk, Gnarsh, Grumbar, Hogar, Karash, Korgul, Krusk, Lubash, Mord, Ohr, Rendar, Sark, Scrag, Tanglar, Tarak, Thar, Ugarth, Yurk</p>
 <p>Nom féminins : Augh, Bree, Ekk, Gaaki, Grai, Grigri, Gynk, Huru, Lagazi, Murook, Nogu, Ootah, Puyet, Tawar, Tomph, Ubadan, Vanchu</p>

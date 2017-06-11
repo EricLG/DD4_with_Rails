@@ -1,14 +1,18 @@
 <h4>N’importe qui, n’importe où, dissimulé sous vos yeux mêmes.</h4>
+
 <p>Les changelins sont des métamorphes capables de prendre l’apparence d’autres humanoïdes. Aussi connus sous le nom de doppelgangers, ils inspirent la méfiance et la peur à cause de leurs talents, ce qui les pousse souvent à cacher leur véritable nature y compris à leurs plus proches compagnons. La plupart des changelins aspirent simplement à ne pas se faire remarquer et à trouver une place dans ce monde.</p>
 <p>Jouez un changelin si vous voulez...</p>
+
 <ul style="list-style-type:none; padding-left: 20px">
-<li>♦ exceller dans le domaine de la supercherie et de la tromperie.</li>
-<li>♦ pouvoir vous fondre dans la foule partout où vous allez.</li>
-<li>♦ être un membre d'une race qui préfère les classes de barde, ensorceleur, sorcier et voleur.</li>
+  <li>♦ exceller dans le domaine de la supercherie et de la tromperie.</li>
+  <li>♦ pouvoir vous fondre dans la foule partout où vous allez.</li>
+  <li>♦ être un membre d'une race qui préfère les classes de barde, ensorceleur, sorcier et voleur.</li>
 </ul>
-<h5>Description</h5>
-<p>Les changelins portent de nombreux masques, dissimulant leur véritable nature derrière des apparences trompeuses. En tant que métamorphes, ils peuvent prendre l’apparence de n’importe quel humanoïde, se faisant passer pour un nain un jour et pour un drakéide le lendemain. Cette propension au déguisement explique que beaucoup de gens se méfient d’eux, ce qui les pousse sans cesse à dissimuler leur véritable nature.
-Même si les changelins peuvent prendre n’importe quelle apparence, la plupart se cantonnent à quelques déguisements choisis, chacun ayant son histoire et son réseau d’amis et de connaissances. Ces déguisements fournissent au changelin des identités de remplacement au cas où l’une d’entre elles serait compromise. Un changelin qui voyage fréquemment pourra modifier son identité d’une ville à l’autre, changeant de sexe, d’apparence et de voix afin de se fondre dans chaque nouvelle communauté.</p>
+
+<h4>Description</h4>
+
+<p>Les changelins portent de nombreux masques, dissimulant leur véritable nature derrière des apparences trompeuses. En tant que métamorphes, ils peuvent prendre l’apparence de n’importe quel humanoïde, se faisant passer pour un nain un jour et pour un drakéide le lendemain. Cette propension au déguisement explique que beaucoup de gens se méfient d’eux, ce qui les pousse sans cesse à dissimuler leur véritable nature.</p>
+<p>Même si les changelins peuvent prendre n’importe quelle apparence, la plupart se cantonnent à quelques déguisements choisis, chacun ayant son histoire et son réseau d’amis et de connaissances. Ces déguisements fournissent au changelin des identités de remplacement au cas où l’une d’entre elles serait compromise. Un changelin qui voyage fréquemment pourra modifier son identité d’une ville à l’autre, changeant de sexe, d’apparence et de voix afin de se fondre dans chaque nouvelle communauté.</p>
 <p>Sous sa forme véritable, un changelin a une apparence inquiétante et des traits assez vagues. Sa peau est uniformément pâle, avec des tons de blanc et de gris clair. Ses yeux surdimensionnés sont généralement entourés de cernes noirs et encadrent un nez discret. Les changelins sont sveltes, au point de paraître frêles. Leurs cheveux sont de couleur pâle, avec des nuances de bleu, de vert et même de rose : les couleurs de cheveux les plus courantes sont le gris argenté pâle, suivi par le platine et le blanc. En dehors des cheveux, ils n’ont pour ainsi dire aucune pilosité.</p>
 <p>Les changelins atteignent la maturité à 15 ans environ et ont une espérance de vie comparable à celle des humains.</p>
 <p>Traits de caractère des changelins : accommodants, astucieux, cachottiers, captivants, évasifs, mystérieux, perspicaces, prudents, rusés, subtils, tortueux.</p>

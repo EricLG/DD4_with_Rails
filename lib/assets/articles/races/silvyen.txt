@@ -1,1 +1,20 @@
-<p>Description à venir</p>
+<h4>Des gardiens de la nature ; chasseurs et destructeurs, garants de connaissances anciennes.</h4>
+
+<p>Les silvyens sont originaires des confins encore vierges, des vieux marécages et des forêts primitives de Féerie. Éveillés dans le but de combattre la corruption croissante qui empoisonne la terre, ils s'efforcent de rétablir l'ordre naturel et de débarrasser le monde des horreurs aberrantes.</p>
+<p>Jouez un silvyen si vous voulez...
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ incarner le pouvoir qu'a la nature de fixer son propre cap.</li>
+  <li>♦ vous adapter aux défis qui s'offrent à vous en modifiant l'essence même de votre nature.</li>
+  <li>♦ être membre d'une race qui préfère les classes de batailleur, druide, invocateur et shaman.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Les silvyens sont des créatures féeriques végétales. Leurs os sont constitués de bois dur et leur peau souple aux allures d'écorce est recouverte d'un manteau de feuilles et de brindilles.</p>
+<p>Dans chaque silvyen se cache un esprit de la nature, chacune de ces créatures pouvant se manifester sous différents aspect. Chaque aspect déclenche une transformation reflétant le but dans lequel le silvyen a été créé. Un silvyen qui adopte l'aspect des anciens a des yeux et des feuilles blanches. Sous l'aspect du destructeur, des aiguillons lui sortent de la peau et ses yeux virent au noir. Enfin, l'aspect camouflage du chasseur lui confère des teintes vert et brun, ses yeux prenant quant à eux une couleur émeraude.</p>
+<p>En vieillissant, le silvyen parcourt les saisons. Les plus jeunes sont tels des arbrisseaux au printemps. Dynamiques et vigoureux, leur teinte est verte. Au cours de l'été, le silvyen vire au brun plus ou moins foncé, mais son manteau de feuilles reste bien vert. A l'automne, la créature subit une profonde mutation. Sa peau fonce et les feuilles virent au rouge, au jaune et à l'orange. Enﬁn, l'hiver annonce la ﬁn de son existence, son corps se rabougrissant tandis que les feuilles se dessèchent et tombent.</p>
+<p>Un silvyen moyen a une espérance de vie de plus d'un siècle.</p>
+<p>Traits de caractère des silvyens : ambitieux, contradictoires, curieux, énigmatiques, intolérants, mesurés, obnubilés, ouverts, sauvages, violents</p>
+<p>Noms masculins : Banmarden, Fiddenmar, Durmindin, Kettenbar, Midnorten, Rodmennar, Vennerzad</p>
+<p>Noms féminins : Dannaniai, Ennimbel, Kalkennash, Nementah, Shallahai, Tellorda, Zazenna</p>

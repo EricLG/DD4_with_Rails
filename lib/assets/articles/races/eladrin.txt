@@ -1,4 +1,5 @@
 <h4>Combattants élégants et magiciens à leur aise au sein du crépuscule éthéré de Féerie.</h4>
+
 <p>Créatures magiques entretenant des liens forts avec la nature, les éladrins vivent dans des villes au cœur des terres crépusculaires de Féerie. Leurs cités sont suffisamment proches du monde pour que, parfois, elles s'y matérialisent. Ces apparitions sont toujours brèves, souvent dans des vallées montagneuses ou au cœur de clairières profondément enfouies dans les forêts. Puis elles disparaissent pour rejoindre la féerie.</p>
 <p>Jouez un éladrin si vous voulez …</p>
 
@@ -9,9 +10,10 @@
   <li>♦ être membre d'une race qui préfères les classe de maître de guerre, magicien et voleur.</li>
 </ul>
 
-<h5>Description</h5>
-<p>Les éladrins sont de taille humaine, avec un corps fin et athlétique. Ils possèdent des teints de peau similaires aux humains, même s'ils sont souvent plus pâles. Leurs cheveux fins et raides sont généralement blancs, argentés ou or pâle. Ils les laissent pousser, sans les attacher. Leur oreilles sont longues et effilées. Leurs yeux dénués de pupille, sont des orbes perlés, opalescents, d'un bleu, violet ou vert vibrants. Les éladrins n'ont pas de poils sur le visage et en ont très peu sur le reste du corps.<br>
-Les enfants éladrins grandissent aussi vite que les humains. Cependant, le vieillissement ralentit sensiblement lorsqu'ils atteignent la maturité. Ils profitent de la jeunesse et d'une bonne santé presque toute leur vie et ne commencent à sentir les effets de l'âge qu'au milieu de leur troisième siècle. La plupart vivent plus de 300 ans, et même à la fin de leur existence, ils ne souffrent que peu des infirmités dues à leur âge avancé.</p>
+<h4>Description</h4>
+
+<p>Les éladrins sont de taille humaine, avec un corps fin et athlétique. Ils possèdent des teints de peau similaires aux humains, même s'ils sont souvent plus pâles. Leurs cheveux fins et raides sont généralement blancs, argentés ou or pâle. Ils les laissent pousser, sans les attacher. Leur oreilles sont longues et effilées. Leurs yeux dénués de pupille, sont des orbes perlés, opalescents, d'un bleu, violet ou vert vibrants. Les éladrins n'ont pas de poils sur le visage et en ont très peu sur le reste du corps.</p>
+<p>Les enfants éladrins grandissent aussi vite que les humains. Cependant, le vieillissement ralentit sensiblement lorsqu'ils atteignent la maturité. Ils profitent de la jeunesse et d'une bonne santé presque toute leur vie et ne commencent à sentir les effets de l'âge qu'au milieu de leur troisième siècle. La plupart vivent plus de 300 ans, et même à la fin de leur existence, ils ne souffrent que peu des infirmités dues à leur âge avancé.</p>
 <p>Traits de caractère des éladrins : détachés, distants, élégants, esthétiques, libres, magiques, patients, perspicaces.</p>
 <p>Nom masculins : Aramil, Arannis, Berrian, Dayereth, Erevan, Galinndran, Hadarai, Immeral, Mindartis, Paelias, Quarion, Riardon, Soveliss.</p>
 <p>Nom féminins : Althaea, Anastrianna, Andraste, Bethrynna, Caelynna, Jelenneth, Leshanna, Meriele, Naivara, Quelenna, Sariel, Shanairra, Theirastra, Valenæ.</p>

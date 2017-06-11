@@ -1,4 +1,5 @@
 <h4>L’énergie incarnée, le chaos et l’ordre réunis... une race naturellement tournée vers l’adaptabilité, la passion et la diversité.</h4>
+
 <p>Les genasi sont pleins de contradictions. Chacun d’entre eux incarne le chaos potentiel de l’air et du feu, l’ordre de la terre et de l’eau, ou encore la férocité du tonnerre et de la foudre. Ainsi, ils manifestent en permanences l’une des facettes de leur âme élémentaire. Leur race est passionnée et aussi variée que peuvent l’être les humains et on en trouve à peu près partout.</p>
 <p>Jouer un genasi si vous voulez :</p>
 
@@ -7,7 +8,21 @@
   <li>♦ une certaine souplesse en matière de personnalité et d’apparence physique.</li>
   <li>♦ être un membre d'une race qui préfère les classes de mage d’armes et de maître de guerre.</li>
 </ul>
-<h5>Description</h5>
-<p>A venir...</p>
-<p>Traits de caractère des forgeliers : agressifs, courageux, curieux, francs, loyaux, méthodiques, naïfs, pragmatiques, réservés, simples, travailleurs, vigilants.</p>
-<p>Noms forgeliers: Azm, Chariot, Cimeterre, Clocher, Dévot, Inconnu, Livre, Marque, Marteau, Morg, Pavois, Perce, Personne, Relique, Rempart, Rune, Statue, Tailleur, Trois, Vainqueur, Veilleur, Zélote.</p>
+
+<h4>Description</h4>
+
+<p>Tous les genasi manifestent en permanence un élément (ils n'ont pas d'état neutre, ou « non élémentaire »). En effet, chacun d'entre eux; naît doté d'une manifestation élémentaire, un trait génétique que leur transmettent leurs parents. Certains apprennent une autre manifestation au cours de adolescence ou une fois adultes, et quelques-uns en développent plus encore.</p>
+<p>Les genasi ont la même taille et les mêmes proportions que les humains, mais sont peut-être un peu plus costauds, ce qui reflète leur force physique légèrement supérieure. Leur corps est parcouru de</p>
+<p>lignes d'énergie qui luisent d'une couleur associée à l'élément manifesté, lignes dont les motifs sont</p>
+<p>communs au sein d'une même famille et parfois entre les autochtones d'une même région. L'agencement précis des lignes qui recouvrent le visage et la tête de chaque spécimen est distinct et varie autant que celui des empreintes digitales chez les humains. D'ailleurs, quand un genasi change de manifestation élémentaire, il conserve ses lignes d'énergie faciales. Mais pour les montrer, les genasi portent souvent des vêtements qui exposent une partie de leur corps.</p>
+<p>La couleur de la peau et des « cheveux » des genasi varie selon l'élément manifesté. En fait, les genasi n'ont pas de cheveux ; la substance qui leur recouvre la tête sous leurs différentes manifestations n'est que l’expression magique de leur nature élémentaire.</p>
+<p>Voici maintenant un petit résumé des particularités physiques qu'arborent les genasi selon leurs différentes manifestations élémentaires :</p>
+<p>Âme d'eau : peau vert marin ; lignes d'énergie bleu vif; chauve avec lignes d'énergie bleues luisant sur la tête.</p>
+<p>Âme de feu : peau cuivrée ; yeux: et lignes d'énergie orangés ; flammes vacillantes sortant des lignes d'énergie de la tête.</p>
+<p>Âme d'orage : peau pourpre ; lignes d'énergie argentées ; pointes d'argent cristallines et luisantes sur la tête.</p>
+<p>Âme de terre : peau brune ;yeux  et lignes d'énergie dorés ; chauve avec lignes d'énergie dorées sur la tête.</p>
+<p>Âme de vent : peau argentée ; lignes d'énergie bleu clair ; pointes de glace luisantes gris et bleu sur la tête.</p>
+<p>L'espérance de vie des genasi est comparable à celle des humains, soit 75 ans environ. Toutefois, certains spécimens vivent jusqu'à 90, voire 100 ans.</p>
+<p>Traits de caractère des genasi : capricieux, emportés, exaltés, exotiques, hautains, impulsifs, indépendants, obstinés, passionnés</p>
+<p>Noms masculins : Emerc, Garel-kai,]ett, Kaddim-sul, Ki-amar, Maris, Sardis, Sha-karn, Yuriel, Zan-kyri</p>
+<p>Noms féminins : Ashar, Gwind, Len-jes, Jenda-shan, ]erra, Mai-sal., Mara-kai, Nari-lana, Sonliin, Valandra, Vanri</p>

@@ -1,4 +1,5 @@
 <h4>Féroces héritiers de la nature, parfaite combinaison de la civilisation et de la sauvagerie.</h4>
+
 <p>Les férals sont de féroces chasseurs à l'ascendant animal indéniable. Bien qu'ils ne puissent pas totalement changer de forme, comme leurs ancêtres lycanthropes, les férals deviennent plus sauvages dans le feu du combat, faisant appel à leur pouvoir primal et à la puissance de la bête qui sommeille en eux.</p>
 <p>Jouer un féral si vous voulez :</p>
 
@@ -7,11 +8,13 @@
   <li>♦ être un personnage en harmonie avec sa nature bestiale.</li>
   <li>♦ être un membre d'une race qui préfère les classes de druide, gardien, guerrier ou rôdeur.</li>
 </ul>
-<h5>Description</h5>
-<p>Les férals sont des humains avec des traits animaux.<br>
-Leurs corps sont graciles et puissants, et ils se déplacent souvent arc-boutés, bondissant en même temps qu'ils courent. Leurs visages ont une allure bestiale, avec un nez épaté, de grand yeux, d'épais sourcils, des oreilles pointues et des favoris. Leurs cheveux sont longs et épais. La pigmentation des férals est généralement d’une teinte marron.<br>
-Les férals longue-dent prétendent descendre des loup-garous et présentent des caractéristiques vaguement canines, qui deviennent plus prononcé lorsqu'ils recourent à leur sauvagerie longue-dent. Les férals griffe-effilée sont apparentés aux tigres-garous et ressemblent plutôt à des félins, surtout quand ils utilisent sauvagerie griffe-effilée.<br>
-Les férals vivent presque aussi longtemps que les humains.</p>
+
+<h4>Description</h4>
+
+<p>Les férals sont des humains avec des traits animaux.</p>
+<p>Leurs corps sont graciles et puissants, et ils se déplacent souvent arc-boutés, bondissant en même temps qu'ils courent. Leurs visages ont une allure bestiale, avec un nez épaté, de grand yeux, d'épais sourcils, des oreilles pointues et des favoris. Leurs cheveux sont longs et épais. La pigmentation des férals est généralement d’une teinte marron.</p>
+<p>Les férals longue-dent prétendent descendre des loup-garous et présentent des caractéristiques vaguement canines, qui deviennent plus prononcé lorsqu'ils recourent à leur sauvagerie longue-dent. Les férals griffe-effilée sont apparentés aux tigres-garous et ressemblent plutôt à des félins, surtout quand ils utilisent sauvagerie griffe-effilée.</p>
+<p>Les férals vivent presque aussi longtemps que les humains.</p>
 <p>Traits de caractère des férals : dynamiques, alertes, féroces, décomplexés, intuitifs, perceptifs, rapaces, débrouillards, déchaînés, sauvages.</p>
 <p>Noms masculins : Ash, Brook, Claw, Cliff, Flint, Frost, River, Rock, Storm, Thorn, Tor.</p>
 <p>Noms féminins : Aurora, Autumn, Dawn, Hazel, Iris, Lily, Rain, Rose, Summer.</p>

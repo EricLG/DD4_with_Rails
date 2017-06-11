@@ -1,1 +1,18 @@
-<p>Description à venir</p>
+<h4>Héritiers d'un empire en ruine qui vivent dans les ombres et ne craignent pas les ténèbres.</h4>
+
+<p>Héritiers maudits d'une lignée infernale. les tieffelins n'ont plus de terres à eux. Ils vivent à présent au cœur des royaumes et des grandes cités humaines. Ce sont les descendants de seigneurs humains qui ont passé des accords avec les forces du mal, il y a bien longtemps, alors que leur empire couvrait la moitié du monde connu. Mais ce dernier fut réduit à néant. Depuis, les tieffelins sont condamnés à survivre dans un univers qui, au mieux les craint, au pire les déteste.</p>
+<p>Jouez un tieffelin si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être un héros qui doit lutter contre son côté obscur.</li>
+  <li>♦ exceller dans la ruse. l'intimidation ou la persuasion pour qu'on obéisse à votre volonté.</li>
+  <li>♦ être membre d'une race qui préfère les classes de maître de guerre, sorcier ou voleur.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Le physique des tielfelins est une preuve évidente de leur lignage infernal. ils possèdent de grandes cornes, une queue large et non préhensile. mesurant entre 1,20 m et 1,50 m Leurs dents sont terriblement aiguisées et pointues. Leurs yeux sont des orbes ténébreux, sanguins, blancs, argentés ou dorés. Leur couleur de peau s'aligne sur l'éventail des humains. Cependant. elle peut également aller dans les rouges. du rougeâtre haie au rouge brique. Leurs cheveux tombent en cascade depuis l’arrière de leurs cornes. Ils peuvent être bleu profond, roux ou violets. mais aussi de couleurs plus communes. comme celles des humains.</p>
+<p>Les tieffelins préfèrent les nuances sombres ou rouges. Ils aiment le cuir et les fourrures lustrées, les petites pointes et les boucles. Les armures et armes de fabrication tieﬂeline adoptent souvent un style archaïque. Rappelant l'époque glorieuse et révolue de leur empire.</p>
+<p>Traits de caractère des tieffelins : fiers, impressionnants, indépendants, inquiétants, mystérieux, non-conformistes, rebelles, rusés, sinistres, sournois</p>
+<p>Noms masculins : Akmenos, Amnon, Barakas, Damakos, Ekemon, lados, Kairon, Leucis, Melech, Morthos, Pelaios, Skamos, Therai</p>
+<p>Noms féminins : Akta, Bryseis, Damaia, Ea, Kallista, Lerissa, Makaria, Nemeia, Orianua, Phelaia, Rieta</p>

@@ -1,4 +1,5 @@
 <h4>Une énergie psionique brute à peine contenue dans un corps d’éclats de cristaux miroitants.</h4>
+
 <p>Les cristalliens sont des fragments doués de conscience du Portail de Vie qui se tenait jadis au pinacle du complexe écheveau de la Mer Astrales. De l’autre côté de cet huis se trouve le très étrange Royaume Lointain, et c’est bien la destruction de la porte durant la Guerre de l’Aube qui a provoqué l’avènement de l’empire des flagelleurs mentaux. Si le pouvoir d’Ioun maintient cette porte fermée, les cristalliens tentent de la rebâtir et de couper à jamais le Royaume Lointain du monde.</p>
 <p>Jouez un cristallien si vous voulez...</p>
 
@@ -7,4 +8,11 @@
   <li>♦ incarner une histoire ancienne qui fait de vous l’ennemi du Royaume Lointain et de ses habitants.</li>
   <li>♦ être un membre d'une race qui préfère les classes d’invocateur, magicien et psion.</li>
 </ul>
-<h5>Description a venir...</h5>
+
+<h4>Description</h4>
+
+<p>Les cristalliens sont des créatures constituées de centaines d'éclats de cristaux verts, blancs, rouges ou ambre. Le tout a une forme humanoïde et est animé par une force de pure énergie psionique. Ils décident eux-mêmes de leur forme et reproduisent des silhouettes humanoïdes, certains ayant l'air plus masculins, et d'autres plus féminins. La force qui anime ces créatures luit très légèrement dans chacun de leurs cristaux. mais elle est plus vive au niveau des yeux. Cette lumière produit une lueur faible dans l'espace du cristallien, qui peut l'étouffer d'une simple pensée, pour se cacher dans le noir par exemple.</p>
+<p>Les fragments de cristal qui constituent le corps de la créature sont en mouvement permanent, un peu comme le sang d'un être vivant, mais ne produisent aucun bruit. Quand un cristallien est étourdi ou inconscient, il lui arrive de lâcher les rênes mentales assurant la cohésion de son corps humanoïde, quelques éclats se mettant alors à tourner tels des électrons libres autour de lui jusqu'à ce qu'il reprenne ses esprits.</p>
+<p>Les cristalliens sont des créatures vivantes d'un point de vue théorique seulement. Leur corps de cristal n'a besoin d'aucune nourriture terrestre et ils ne respirent pas. Le sommeil ne leur est d°aucune utilité, mais il leur faut tout de même se détendre six heures par jour pour profiter de tous les avantages d'un repos prolongé. Ils n'ont pas de sexe et ne se reproduisent pas. mais les spécimens d'aujourd'hui ne sont pas ceux qui sont venus à la vie durant la Guerre de l'Aube. Selon eux, le Portail de Vie s'est brisé en de multiples fragments et chaque fois qu'un cristallien est tué, un autre s'éveille quelque part dans le monde.</p>
+<p>Traits de caractère des cristalliens : détachés, étourdis, intellectuels, intuitifs, logiques, pensifs</p>
+<p>Noms : Amata, Arshaka, Arwia, Balashi, Bashanu, Belessunu, Dipana, Erishti, Eshunu, Hunzu, Iltani, Ishmea, Kuaya, Kubaba, Kuri, Manishtu, Naram, Nuraya, Seluku, Tabni, Ubashu, Utua, Zakiti</p>

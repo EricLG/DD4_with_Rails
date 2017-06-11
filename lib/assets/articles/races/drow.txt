@@ -1,1 +1,20 @@
-<p>Description à venir</p>
+<h4>Gracieux et mortels, et parfaitement à l'aise au plus fort de l’obscurité.</h4>
+
+<p>Les drows sont une race décadente d'elfes noirs dont la beauté et la sophistication ne parviennent pas à masquer leur cœur souvent souillé par le mal. En effet, l'immense majorité de ces humanoïdes vouent un véritable culte à la déesse chaotique mauvaise Lolth, également connue sous le nom de Reine Araignée.</p>
+<p>La société drow est organisée en maisons, les responsables des plus puissantes occupant également des positions de choix dans les diverses cités d'Outreterre, le royaume souterrain de Faerün où vivent les elfes noirs.</p>
+<p>Jouez un drow si vous voulez...</p>
+
+<ul style="list-style-type:none; padding-left: 20px">
+  <li>♦ être bon en matière d'embuscades, frapper vite et recourir à toute une variété de tactiques déloyales.</li>
+  <li>♦ jouer héros en quête de rédemption ou qui lutte pour s'extirper de la vilenie des siens.</li>
+  <li>♦ être membre d'une race qui préfère les classes de rôdeur, voleur et sorcier.</li>
+</ul>
+
+<h4>Description</h4>
+
+<p>Les drows sont à peine moins grands que les humains, mais ils sont plus secs et athlétiques. Physiquement, ils ressemblent a des éladrins tout en tendon, avec de beaux traits et une peau noire aux reflets bleutés. Quant à leurs yeus, ils sont rouges, lavande ou bleus, mais toujours d'une couleur très vive. Tous les drows ont les cheveux blancs, qu'ils se laissent généralement pousser et parent d'épingles et de rubans de métaux précieux. Hormis leurs cheveux et leurs sourcils, les drows n'ont guerre de pilosité faciale, mais il leur arrive de se laisser pousser de longs favoris et des touffes de poils sur les joues et le menton.</p>
+<p>Dès leur plus tendre enfance, les jeunes drows doivent faire montre d'ingéniosité. Ils ne doivent s'attendre à aucune gentillesse, aucune marque d'affection, aucune forme de compassion. Leurs parents restent froids et distants, leur apprenant ainsi l’indépendance et la confiance en soi, afin que leur rejeton devienne assez: fort pour survivre à une adolescence qui promet d’être sanglante. De plus, les mauvais traitements renforcent leurs penchants naturellement maléfiques. Mais en de rares cas, les épreuves de l'enfance ont l'effet inverse, leur inspirent une haine et un véritable rejet de la société drow et de tout ce qui l'entoure. Toutefois, un tel comportement leur vaut bien souvent une mort prématurée.</p>
+<p>En règle générale, les elfes noirs ont une espérance de vie un peu plus longue que celle de leurs cousins de la surface. Ainsi, les drows qui ne meurent pas de mort violente vivent facilement plus de 200 ans, les spécimens les plus âgés ayant jusqu'à plusieurs siècles.</p>
+<p>Traits de caractère des drows : arrogants, froids, impitoyables, obsédés, pragmatiques, rebelles, sceptiques, sophistiqués, urbains</p>
+<p>Noms masculins :Adinimjvs, Barídl, Belgos, Bhintel, Drisdhaun, Elkantar, Haelirin, Houndaer, Kelnoxz, Malaggar, Nalklyr, Orkallael, Pelloth, Phaeqel, Quarfein, Ryltar, Ulvein,Vorgvrn, Xulgos, Zebith</p>
+<p>Noms féminins :Akneth, Alauniira, Briesril, Chali, Charinida, Diviir, Drisiml, Faerernma, Fillith, Ilivarra, Myrymma, Pellanistra, Quewaun, Shivra,Viergar, Waeren, Xune, Yasesril, Zaketrin, Zarra</p>

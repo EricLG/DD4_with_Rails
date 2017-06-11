@@ -1,4 +1,5 @@
 <h4>Archers rapides et prudents qui parcourent librement les forêts et les étendues sauvages.</h4>
+
 <p>Sauvages et libres, les elfes surveillent leur domaines forestiers. Particulièrement discrets, ils utilisent des flèches mortelles, qu'ils tirent depuis les arbres. Ils bâtissent leurs maisons dans le respect de l'harmonie sylvestre. D'ailleurs, la symbiose est telle que, souvent, les voyageurs ne remarquent  qu'ils sont entrés dans un ville elfique que trop tard...</p>
 <p>Jouez un elfe si vous voulez …</p>
 
@@ -8,9 +9,11 @@
   <li>♦ être membre d'une race qui préfère les classe de prêtre, rôdeur et voleur.</li>
 </ul>
 
-<h5>Description</h5>
-<p>Les elfes sont sveltes, athlétiques, et à peu près de la même taille que les humains. Ils ont la même couleur de peau que ses derniers, penchant plutôt dans les teintes bronzées ou brunes. L'habituelle couleur de cheveux des elfes est le brun soutenu, l'orange automnal, le vert mousse ou l'or passé. Leurs oreilles sont longues, pointues, et leur yeux d'une couleur bleue, violette ou vert vif. Les elfes ont très peu de poils. Leurs cheveux sont toujours détachés comme manifestation de leur liberté.<br>
-Ils grandissent au même rythme que les humains. Le seul indice du vieillissement d'un elfe est la couleur de ses cheveux : ils grisonnent ou s'assombrissent à l’âge adulte, toujours dans des tonalités automnales. La majorité des elfes vivent aisément plus de 200 ans et restent en forme jusqu’à leurs derniers jours.</p>
+
+<h4>Description</h4>
+
+<p>Les elfes sont sveltes, athlétiques, et à peu près de la même taille que les humains. Ils ont la même couleur de peau que ses derniers, penchant plutôt dans les teintes bronzées ou brunes. L'habituelle couleur de cheveux des elfes est le brun soutenu, l'orange automnal, le vert mousse ou l'or passé. Leurs oreilles sont longues, pointues, et leur yeux d'une couleur bleue, violette ou vert vif. Les elfes ont très peu de poils. Leurs cheveux sont toujours détachés comme manifestation de leur liberté.</p>
+<p>Ils grandissent au même rythme que les humains. Le seul indice du vieillissement d'un elfe est la couleur de ses cheveux : ils grisonnent ou s'assombrissent à l’âge adulte, toujours dans des tonalités automnales. La majorité des elfes vivent aisément plus de 200 ans et restent en forme jusqu’à leurs derniers jours.</p>
 <p>Traits de caractère des elfes : agiles, amicaux, intuitifs, joyeux, observateurs, rapides, sauvages, tempétueux.</p>
 <p>Noms masculins : Adran, Aelar, Beiro, Carric, Erdan, Gennal, Heian, Lucan, Peren, Rolen, Theren, Varis.</p>
 <p>Noms féminins : Adrie, Birel, Chaedi, Dara, Enna, Faral, Irann, Keyleth, Lia, Mialee, Shava, Thia, Valna.</p>

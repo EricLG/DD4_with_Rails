@@ -1,4 +1,5 @@
 <h4>Guerriers fiers et honorables, nés du sang d’un ancien dieu dragon.</h4>
+
 <p>Nés pour combattre, les drakéides appartiennent à une race de mercenaires errants, de soldats et d'aventuriers. Il y a longtemps, leur empire combattait pour la domination absolue du monde. Mais à présent, il ne reste que quelques clans déracinés, composés de ses fiers guerriers, pour transmettre les légendes de leur glorieux passé.</p>
 <p>Jouez un drakéide si vous voulez …</p>
 
@@ -8,10 +9,12 @@
   <li>♦ cracher de l'acide, de l'électricité, du feu, du froid ou du poison.</li>
   <li>♦ être membre d'une race qui préfères les classes de guerrier, maître de guerre et paladin.</li>
 </ul>
-<h5>Description</h5>
-<p>Les drakéide ressemblent à des dragons humanoïdes. Couverts d'une peau écailleuse, ils ne possèdent pas de queue. Grand et bien bâtis, ils atteignent le plus souvent les deux mètres de haut pour 150 kg. Leurs pieds et leur mains comptent trois doigts et un pouce, pourvus de solides griffes, aiguisées comme des serres. La tête d'un drakéide est constituée d'une gueule arrondie, d'arcades sourcilières prononcées, ainsi que de collerettes caractéristiques, aux joues et aux oreilles. Derrière les sourcils, ils possèdent une crête d'écailles effilées, de différentes tailles, qui ressemblent à des cheveux épais et noueux. Leur yeux ont des nuances de rouge ou d'or .<br>
-Les écailles d'un drakéide sont généralement écarlates, dorées, rouilles, ocre, bronze ou brunes. Il est très rare que leur couleur corresponde à celle d'un dragon chromatique ou métallique. De plus, elle ne donne aucune indication sur le type de souffle de dragon utilisé. La plupart des drakéides ont de fines écailles qui couvrent la plus grande partie de leur corps, ce qui donne à leur peau l'apparence du cuir. Les avant-bras, les épaules, les cuisses, les chevilles et les pieds sont dotés de plus grandes écailles.<br>
-Les jeunes drakéides grandissent plus vite que les enfants humains. Ils savent marcher quelques heures après leur éclosion et, dès l'âge de 3 ans, ils sont déjà aussi grand qu'un humain de 10 ans. Ils atteignent l'âge adulte à 15 ans et vivent aussi longtemps que les humains.</p>
+
+<h4>Description</h4>
+
+<p>Les drakéide ressemblent à des dragons humanoïdes. Couverts d'une peau écailleuse, ils ne possèdent pas de queue. Grand et bien bâtis, ils atteignent le plus souvent les deux mètres de haut pour 150 kg. Leurs pieds et leur mains comptent trois doigts et un pouce, pourvus de solides griffes, aiguisées comme des serres. La tête d'un drakéide est constituée d'une gueule arrondie, d'arcades sourcilières prononcées, ainsi que de collerettes caractéristiques, aux joues et aux oreilles. Derrière les sourcils, ils possèdent une crête d'écailles effilées, de différentes tailles, qui ressemblent à des cheveux épais et noueux. Leur yeux ont des nuances de rouge ou d'or .</p>
+<p>Les écailles d'un drakéide sont généralement écarlates, dorées, rouilles, ocre, bronze ou brunes. Il est très rare que leur couleur corresponde à celle d'un dragon chromatique ou métallique. De plus, elle ne donne aucune indication sur le type de souffle de dragon utilisé. La plupart des drakéides ont de fines écailles qui couvrent la plus grande partie de leur corps, ce qui donne à leur peau l'apparence du cuir. Les avant-bras, les épaules, les cuisses, les chevilles et les pieds sont dotés de plus grandes écailles.</p>
+<p>Les jeunes drakéides grandissent plus vite que les enfants humains. Ils savent marcher quelques heures après leur éclosion et, dès l'âge de 3 ans, ils sont déjà aussi grand qu'un humain de 10 ans. Ils atteignent l'âge adulte à 15 ans et vivent aussi longtemps que les humains.</p>
 <p>Traits de caractère des drakéide : fiables, fidèles, fiers, nobles, obstinés, perfectionnistes, réservés, traditionalistes.</p>
 <p>Noms masculins : Arjhan, Balasar, Bharash, Donaar, Ghesh, Heskan, Kriv, Medrash, Nadarr, Patrin, Rhogar, Shamash, Shedinn, Torinn.</p>
 <p>Noms féminins : Akra, Biri, Daar, Harann, Kava, Korinn, Mishann, Nala, Perra, Raiann, Sora, Surina, Thava.</p>
