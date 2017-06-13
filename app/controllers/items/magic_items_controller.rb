@@ -30,7 +30,7 @@ class Items::MagicItemsController < ApplicationController
   def destroy
     @item = MagicItem.find_by_id(params[:id])
     @item.destroy
-    redirect_to items_magic_item_path
+    redirect_to items_index_path
   end
 
   def show
