@@ -15,8 +15,8 @@
     <% result.each do |r| %>
     <tr>
       <td><%= link_to r.name, items_magic_item_path(r.id)%></td>
-      <td><%= display_first_words r.property %> </td>
-      <td><%= display_first_words r.power %> </td>
+      <td><%= simple_format(display_first_words(r.property), {}, {wrapper_tag: 'span'}) %> </td>
+      <td><%= simple_format(display_first_words(r.power), {}, {wrapper_tag: 'span'}) %> </td>
       <td><%= r.source.name %> </td>
     </tr>
     <% end %>

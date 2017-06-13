@@ -37,8 +37,8 @@
         <td><%= i.location.name %> </td>
       <% end %>
       <td><%= i.level_min %> </td>
-      <td><%= display_first_words i.property %> </td>
-      <td><%= display_first_words i.power %> </td>
+      <td><%= simple_format(display_first_words(i.property), {}, {wrapper_tag: 'span'}) %> </td>
+      <td><%= simple_format(display_first_words(i.power), {}, {wrapper_tag: 'span'}) %> </td>
       <td><%= MagicItem.human_attribute_name(i.rarity) %> </td>
       <td><%= i.source.name %> </td>
     </tr>
