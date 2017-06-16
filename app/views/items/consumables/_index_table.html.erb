@@ -20,7 +20,7 @@
   <tbody>
     <% @consumables.each do |consumable| %>
       <tr>
-        <td><%= link_to consumable.name, object_consumable_path(consumable) %></td>
+        <td><%= link_to consumable.name, items_consumable_path(consumable) %></td>
         <td><%= t("consumables.kind.#{consumable.kind}") %></td>
         <td><%= display_first_words(consumable.property) %></td>
         <td><%= display_first_words(consumable.power) %></td>

@@ -20,6 +20,6 @@
 
 </dl>
 
-<%= link_to t('common.edit', name: @consumable.name), edit_object_consumable_path(@consumable) %>
+<%= link_to t('common.edit', name: @consumable.name), edit_items_consumable_path(@consumable) %>
 
-<br><%= link_to 'delete', object_consumable_path(@consumable), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }  %>
+<br><%= link_to 'delete', items_consumable_path(@consumable), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }  %>

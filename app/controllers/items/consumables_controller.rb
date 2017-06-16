@@ -23,9 +23,9 @@ class Items::ConsumablesController < ApplicationController
     respond_to do |format|
       if @consumable.save
         if params["add_another"]
-          format.html { redirect_to new_object_consumable_path, notice: t('.notice', name: @consumable.name) }
+          format.html { redirect_to new_items_consumable_path, notice: t('.notice', name: @consumable.name) }
         else
-          format.html { redirect_to object_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
+          format.html { redirect_to items_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
         end
 
       else
@@ -37,7 +37,7 @@ class Items::ConsumablesController < ApplicationController
   def update
     respond_to do |format|
       if @consumable.update(consumable_params)
-        format.html { redirect_to object_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
+        format.html { redirect_to items_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
       else
         format.html { render :edit }
       end
@@ -47,7 +47,7 @@ class Items::ConsumablesController < ApplicationController
   def destroy
     @consumable.destroy
     respond_to do |format|
-      format.html { redirect_to object_consumables_path, notice: t('.notice', name: @consumable.name) }
+      format.html { redirect_to items_consumables_path, notice: t('.notice', name: @consumable.name) }
     end
   end
 
