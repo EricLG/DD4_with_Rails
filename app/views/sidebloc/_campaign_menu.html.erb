@@ -2,7 +2,7 @@
 <% if @current_campaigns.blank? %>
   <p>Aucune campagne</p>
 <% else %>
-  <ul>
+  <ul class="list-group padding-left">
   <% @current_campaigns.each do |c| %>
     <li><%= link_to c.name, campaign_path(c.id)%></li>
   <% end %>
@@ -12,7 +12,7 @@
 <% if @finished_campaigns.blank? %>
   <p>Aucune campagne</p>
 <% else %>
-  <ul>
+  <ul class="list-group padding-left">
   <% @finished_campaigns.each do |c| %>
     <li><%= link_to c.name, campaign_path(c.id)%></li>
   <% end %>

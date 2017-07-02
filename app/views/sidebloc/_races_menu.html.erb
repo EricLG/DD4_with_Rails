@@ -1,5 +1,5 @@
 <h4>Races</h4>
-<ul>
+<ul class="list-group padding-left">
 <% @races.each do |r| %>
   <li><%= link_to r.name, race_path(r) %></li>
 <% end %>

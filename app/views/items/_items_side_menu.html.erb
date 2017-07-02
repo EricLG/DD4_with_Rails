@@ -1,11 +1,11 @@
 <h4>Objets communs</h4>
-<ul>
+<ul class="list-group padding-left">
   <li><%= link_to "Les armes communes", items_common_weapons_path %></li>
   <li><%= link_to "Les armures communes", items_common_armors_path %></li>
   <li><%= link_to "Les boucliers communs", shields_items_common_armors_path %></li>
 </ul>
 <h4>Objets magiques</h4>
-<ul>
+<ul class="list-group padding-left">
   <li><%= link_to "Les armes magiques", weapons_items_magic_items_path %></li>
   <li><%= link_to "Les armures magiques", armors_items_magic_items_path %></li>
   <li><%= link_to "Les focaliseurs magiques", implements_items_magic_items_path %></li>
@@ -13,7 +13,7 @@
   <li><%= link_to "Les équipements magiques", gears_items_magic_items_path %></li>
 </ul>
 <h4>Consommables</h4>
-<ul>
+<ul class="list-group padding-left">
   <li><%= link_to "Tous les Consommables", items_consumables_path %></li>
   <% Rails.application.config_for(:dungeons)["consumable_kind"].each do |k| %>
     <li><%= link_to t("consumables.kind.#{k}"), items_consumables_path %></li>
