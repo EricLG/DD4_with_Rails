@@ -323,6 +323,15 @@ fr:
         title:              "Export au format .csv de la base de donnée"
         magic_items:        "Télécharger les armes, focaliseurs, armures et équipements magiques"
 # Plugin will_paginate
+  dm_tools:
+    monsters:
+      index:
+        title_index:        "Liste des monstres"
+    encounters:
+      index:
+        title_index:        "Liste des rencontres"
+        no_encounters:      "Aucune rencontre n'est enregistré. Vous pouvez créer une nouvelle rencontre avec un des liens du menu de gauche."
+# Plugin will_paginate
   will_paginate:
     previous_label: "Précédent"
     next_label: "Suivant"
