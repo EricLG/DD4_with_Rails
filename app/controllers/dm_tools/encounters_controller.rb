@@ -15,7 +15,7 @@ class DmTools::EncountersController < ApplicationController
   def new
     @encounter = Encounter.new
     @budget_encounter = 500
-    @encounters_exemple = Encounter.select(:description).where(level: 1)
+    @encounters_exemple = []
     @search = MonsterSearch.new(params[:monster_search])
     @monsters = @search.build_search.order(level: :asc, name: :asc)
     @categories = Monster.pluck(:category).join(', ').split(', ').uniq.sort
@@ -66,12 +66,14 @@ class DmTools::EncountersController < ApplicationController
     end
   end
 
+  # Ajax request : calcul new budget and update encounters example list
   def calcul_budget
     party_size  = params[:party_size].to_i
     party_level = params[:party_level].to_i
-    @budget_encounter = Monster.level_to_xp(party_level) * party_size
+    budget_encounter = Monster.level_to_xp(party_level) * party_size
+    encounters_exemple = Encounter.select(:description).where(experience: budget_encounter)
     respond_to do |format|
-      format.json { render json: {budget: @budget_encounter}}
+      format.json { render json: {budget: budget_encounter, encounters: encounters_exemple}}
     end
   end
 

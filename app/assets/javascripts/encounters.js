@@ -27,7 +27,16 @@ $(document).on("page:change", function() {
 
   $('#budget_form').on('ajax:success', function(event, xhr, status, error) {
     $("#encounter_budget").text(xhr.budget);
+    updateEncountersExample(xhr.encounters);
   });
+
+  function updateEncountersExample(encounters) {
+    $("#encounter_example").empty();
+    $.each(encounters, function(key, value) {
+      var description = value.description.replace(/\r\n/g, "<br>");
+      $("#encounter_example").append("<li class=\"small\">" + (description) + "</li>");
+    });
+  };
 
   // Filter monster form
   $(".select_form").change(function() {
