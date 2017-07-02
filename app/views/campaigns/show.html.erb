@@ -1,25 +1,27 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-  <%= render "sidebloc/campaign_menu" %>
+  <%= render "campaign_menu" %>
 <% end %>
 
+<div class="row">
+  <h2><%= @campaign.name %><br><small>Meneur : <%= @campaign.game_master.name %></small></h2>
+  <div class="col-sm-8">
 
-<h2>Campagne: "<%= @campaign.name %>"</h2>
+  <p><%= simple_format @campaign.description %></p>
+  <% if @current_user == @campaign.game_master %>
+    <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+    <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
+  <% end %>
+  </div>
 
-<p><%= link_to "Edit", edit_campaign_path(@campaign) %></p>
-<p><%= link_to "Ajouter une partie", new_campaign_game_path(@campaign.id) %></p>
 
-<dl>
-  <dt><%= t("campaign.game_master",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.game_master.name %></dd>
-  <dt><%= t("campaign.name",          :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.name %></dd>
-  <dt><%= t("campaign.status",        :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @campaign.status %></dd>
-  <dt><%= t("campaign.description",   :class=>"col_sm-4")%></dt> <dd class="text-left"><%= simple_format @campaign.description %></dd>
-</dl>
+  <div class="col-sm-4">
 
-<p>Parties jouées : <%= @games.size %></p>
-
-<ul>
-<% @games.each do |g| %>
-  <li><%= link_to "Partie du #{g.played}", campaign_game_path(@campaign, g) %></li>
-<% end %>
-</ul>
+    <h4><%= t('.count_game', count: @games.size) %></h4>
+    <ul class="list-group padding-left">
+    <% @games.each do |g| %>
+      <li><%= link_to "Partie du #{g.played.strftime("%m/%d/%Y")}", campaign_game_path(@campaign, g) %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>

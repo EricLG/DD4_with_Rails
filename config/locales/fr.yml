@@ -49,6 +49,9 @@ fr:
       race:
         one:      "Race"
         other:    "Races"
+      campaign:
+        one:      "Campagne"
+        other:    "Campagnes"
     attributes:
       monster:
         main_role:    "Rôle 1"
@@ -130,6 +133,11 @@ fr:
         common:           "Fréquent"
         uncommon:         "Peu fréquent"
         rare:             "Rare"
+      campaign:
+        status: "État"
+        game_master_id: "Maître du jeu"
+      game:
+        played: "Date de la partie"
 
     errors:
       messages:
@@ -322,7 +330,7 @@ fr:
       export:
         title:              "Export au format .csv de la base de donnée"
         magic_items:        "Télécharger les armes, focaliseurs, armures et équipements magiques"
-# Plugin will_paginate
+# Termes liés aux outils d'un maitre de donjons
   dm_tools:
     monsters:
       index:
@@ -331,6 +339,25 @@ fr:
       index:
         title_index:        "Liste des rencontres"
         no_encounters:      "Aucune rencontre n'est enregistré. Vous pouvez créer une nouvelle rencontre avec un des liens du menu de gauche."
+# Termes pour les campagnes
+  campaigns:
+    index:
+      title_index:          "Campagnes"
+      new_campaign_link:    "Créer une nouvelle campagne"
+    new:
+      title_new:            "Créer une nouvelle campagne"
+    edit:
+      title_edit:           "Modifier la campagne"
+    show:
+      update_campaign_link: Mettre à jour la campagne
+      new_game_link:        "Ajouter une partie"
+      count_game:
+        zero:               "Aucune partie de jouée."
+        one:                "1 partie jouée :"
+        other:              "%{count} parties jouées :"
+  games:
+    new:
+      title_new: "Création d'une nouvelle partie"
 # Plugin will_paginate
   will_paginate:
     previous_label: "Précédent"

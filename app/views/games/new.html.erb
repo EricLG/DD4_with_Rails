@@ -1,10 +1,5 @@
-<%# Sidebloc content%>
-<% content_for :sidebloc do %>
-  <%= "A venir" %>
-<% end %>
-
 <div class="row">
-  <h3 class="col-sm-12"><%= t('.title_new')%></h3>
+  <h3 class="col-sm-12"><%= t('.title_new')%><br><small><%= Campaign.model_name.human(count: 1) %> : <%= @campaign.name %></small></h3>
 </div>
 
 <div class="row">
