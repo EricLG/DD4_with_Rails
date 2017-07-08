@@ -32,6 +32,7 @@ Rails.application.routes.draw do
         get 'gears'
         get 'amulets'
         post ':id/wishlist' => "magic_items#wishlist", as: 'wishlist'
+        get 'rem-wishlist/:item' => "magic_items#wishlist_remove", as: 'rem_wishlist'
       end
     end
     get '/random' => "magic_items#random"

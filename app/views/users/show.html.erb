@@ -3,18 +3,28 @@
   <%= render "sidebloc/user_menu" %>
 <% end %>
 
- <h3 class="col_sm-12"><%= @current_user.name %> </h3>
+<div class="row col-sm-12">
+  <h3><%= @current_user.name %> <small>(<%= @current_user.email %>)</small> </h3>
+  <p><%= link_to t('.new_character'), new_character_path %></p>
+</div>
 
- <ul>
-  <dt><%= t("user.name",  :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @current_user.name %></dd>
-  <dt><%= t("user.email", :class=>"col_sm-4")%></dt> <dd class="text-left"><%= @current_user.email %></dd>
-</ul>
-
-<%= link_to t('character.new_character'), new_character_path %>
-
-<p>Ma liste de souhait:</p>
-<ul>
-<% @current_user.magic_items.each do |item| %>
-  <li><%= link_to item.name, items_magic_item_path(item.id) %></li>
-<% end %>
-</ul>
+<div class="row col-sm-10">
+  <h3><%= t('.my_wishlist') %></h3>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-sm-11">Nom</th>
+        <th class="col-sm-1">Supprimer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @current_user.magic_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.name, items_magic_item_path(item.id) %></td>
+          <td><%= link_to 'x', rem_wishlist_items_magic_items_path(item: item.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </ul>
+</div>

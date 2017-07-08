@@ -35,6 +35,7 @@ class Items::MagicItemsController < ApplicationController
 
   def show
     @item = MagicItem.find_by_id(params[:id])
+    @inWishlists = @current_user.magic_items.include?(@item)
   end
 
   def edit
@@ -96,13 +97,23 @@ class Items::MagicItemsController < ApplicationController
 
   def wishlist
     @item = MagicItem.find_by_id(params[:id])
-    @current_user.magic_items << @item
-    if @current_user.save
+
+    if @current_user.magic_items << @item
       flash[:success] = "L'objet \"#{@item.name}\" fait maintenant partie de votre liste de souhait."
     else
       flash[:error] = "L'objet \"#{@item.name}\" n'a pas été ajouté à votre liste de souhait."
     end
     redirect_to items_magic_item_path(@item.id)
+  end
+
+  def wishlist_remove
+    @item = MagicItem.find_by_id(params[:item])
+    if @current_user.magic_items.delete @item
+      flash[:success] = "L'objet \"#{@item.name}\" est maintenant retiré de votre liste de souhait."
+    else
+      flash[:error] = "L'objet \"#{@item.name}\" n'a pas été retiré de votre liste de souhait."
+    end
+    redirect_to user_path(@current_user)
   end
 
   private

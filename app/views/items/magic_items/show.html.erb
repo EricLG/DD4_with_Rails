@@ -52,11 +52,6 @@
     <% unless @item.special.empty? %>
       <span><strong>(Special)</strong> <%= simple_format(@item.special, {}, {wrapper_tag: 'span'}) %></span>
     <% end %>
-
-    <%= form_for [:items, @item], {url: wishlist_items_magic_items_path, method: :post, :class => 'form-horizontal'} do |f| %>
-      <%#= f.hidden_field :id  %>
-      <%= f.submit(t(".add_wishlist"), name: "commit", :class => "btn btn-default", id: "submit-button") %>
-    <% end %>
   </div>
 
   <% if is_current_user_admin? %>
@@ -65,4 +60,16 @@
     </div>
   <% end %>
 
+</div>
+
+<div class="row">
+  <% if @inWishlists %>
+    <p class="col-sm-12">Cet objet fait déjà partie de votre liste de souhait.</p>
+  <% else %>
+    <div class="col-sm-12">
+      <%= form_for [:items, @item], {url: wishlist_items_magic_items_path, method: :post, :class => 'form-horizontal'} do |f| %>
+        <%= f.submit(t(".add_wishlist"), name: "commit", :class => "btn btn-default", id: "submit-button") %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
