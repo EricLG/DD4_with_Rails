@@ -138,7 +138,11 @@ fr:
         game_master_id: "Maître du jeu"
       game:
         played: "Date de la partie"
-
+      user:
+        email: "E-mail"
+        name: "Pseudo"
+        password: "Mot de passe"
+        password_confirmation: "Confirmer"
     errors:
       messages:
         blank:          "ne peut être vide"
@@ -265,15 +269,15 @@ fr:
         whetstone:      "Pierre à aiguiser"
         other_cons:     "Autre consommable"
 # Termes liés aux utilisateurs
-  user:
-    title_signup: "S'enregistrer"
-    title_login:  "Se connecter"
-    name: "Pseudo"
-    email: "E-mail"
-    password: "Mot de passe"
-    password_confirmation: "Confirmer"
+  users:
     sidebar_login: "Connectez-vous"
     sidebar_signup: "Créer un compte."
+    new:
+      title_signup: "Créer son compte"
+      title_login:  "Se connecter"
+    show:
+      new_character:  "Créer un nouveau personnage"
+      my_wishlist:    "Ma liste de souhait"
 # Termes liés aux talents
   feats:
     title_index:    "Les talents de DD4"

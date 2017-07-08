@@ -1,12 +1,12 @@
 <%= form_for :user, {url: '/login', :class => 'form-inline'} do |f| %>
 
   <div class="form-group">
-      <%= f.label :email, t("user.email") %>
+      <%= f.label :email, User.human_attribute_name('email')  %>
       <%= f.email_field :email, size: 60, :class=>"form-control" %>
   </div>
 
   <div class="form-group">
-      <%= f.label :password, t("user.password") %>
+      <%= f.label :password, User.human_attribute_name('password') %>
       <%= f.password_field :password, size: 60, :class=>"form-control" %>
   </div>
 
