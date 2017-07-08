@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         get 'implements'
         get 'gears'
         get 'amulets'
+        post ':id/wishlist' => "magic_items#wishlist", as: 'wishlist'
       end
     end
     get '/random' => "magic_items#random"

@@ -94,6 +94,17 @@ class Items::MagicItemsController < ApplicationController
     @randomObjects = MagicItem.all.sample(10)
   end
 
+  def wishlist
+    @item = MagicItem.find_by_id(params[:id])
+    @current_user.magic_items << @item
+    if @current_user.save
+      flash[:success] = "L'objet \"#{@item.name}\" fait maintenant partie de votre liste de souhait."
+    else
+      flash[:error] = "L'objet \"#{@item.name}\" n'a pas été ajouté à votre liste de souhait."
+    end
+    redirect_to items_magic_item_path(@item.id)
+  end
+
   private
 
   def magic_item_params

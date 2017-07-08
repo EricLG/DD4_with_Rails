@@ -52,6 +52,11 @@
     <% unless @item.special.empty? %>
       <span><strong>(Special)</strong> <%= simple_format(@item.special, {}, {wrapper_tag: 'span'}) %></span>
     <% end %>
+
+    <%= form_for [:items, @item], {url: wishlist_items_magic_items_path, method: :post, :class => 'form-horizontal'} do |f| %>
+      <%#= f.hidden_field :id  %>
+      <%= f.submit(t(".add_wishlist"), name: "commit", :class => "btn btn-default", id: "submit-button") %>
+    <% end %>
   </div>
 
   <% if is_current_user_admin? %>

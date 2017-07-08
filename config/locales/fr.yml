@@ -237,6 +237,7 @@ fr:
       show:
         level_min:        "Niveau %{lvl}+"
         edit:             "Modifier %{item}"
+        add_wishlist:    "Ajouter à ma liste de souhait"
       edit:
         title_edit:        "Modification %{item}"
       new:

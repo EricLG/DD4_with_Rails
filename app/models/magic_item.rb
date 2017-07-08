@@ -2,6 +2,9 @@ require 'import_data'
 require 'csv'
 class MagicItem < ActiveRecord::Base
 
+  has_many :wishlists
+  has_many :users, through: :wishlists
+
   belongs_to :source
   belongs_to :location
   has_and_belongs_to_many :weapon_groups
