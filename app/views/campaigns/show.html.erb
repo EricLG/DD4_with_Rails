@@ -4,24 +4,30 @@
 <% end %>
 
 <div class="row">
-  <h2><%= @campaign.name %><br><small>Meneur : <%= @campaign.game_master.name %></small></h2>
-  <div class="col-sm-8">
+  <h2 class="col-sm-12"><%= @campaign.name %></h2>
+</div>
 
-  <p><%= simple_format @campaign.description %></p>
-  <% if @current_user == @campaign.game_master %>
-    <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
-    <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
-  <% end %>
+<div class="row">
+  <div class="col-sm-8">
+      <h3>Meneur : <%= @campaign.game_master.name %></h3>
+      <p><%= simple_format @campaign.description %></p>
+      <% if @current_user == @campaign.game_master %>
+        <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+        <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
+      <% end %>
+
+      <h3>Joueurs : <%= @campaign.game_master.name %></h3>
+
+
   </div>
 
-
   <div class="col-sm-4">
-
-    <h4><%= t('.count_game', count: @games.size) %></h4>
+    <h3><small><%= t('.count_game', count: @games.size) %></small></h3>
     <ul class="list-group padding-left">
     <% @games.each do |g| %>
       <li><%= link_to "Partie du #{g.played.strftime("%m/%d/%Y")}", campaign_game_path(@campaign, g) %></li>
     <% end %>
     </ul>
   </div>
+
 </div>

@@ -4,7 +4,7 @@ class CharactersController < ApplicationController
 
   def index
     @hide_side_bloc =true
-    @characters = Character.all
+    @characters = @current_user.characters
   end
 
   def new
