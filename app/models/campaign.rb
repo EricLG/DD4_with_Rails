@@ -4,4 +4,5 @@ class Campaign < ActiveRecord::Base
   has_many :games
   has_many :players
   has_many :users, through: :players
+  has_many :magic_items, through: :users
 end
