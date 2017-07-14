@@ -26,6 +26,7 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.includes(:games).find_by_id(params[:id])
     @games = @campaign.games
+    @players = @campaign.users
   end
 
   def edit

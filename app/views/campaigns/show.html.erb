@@ -9,15 +9,41 @@
 
 <div class="row">
   <div class="col-sm-8">
-      <h3>Meneur : <%= @campaign.game_master.name %></h3>
+      <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
       <p><%= simple_format @campaign.description %></p>
+
       <% if @current_user == @campaign.game_master %>
+        <h3>Joueurs et leur liste de souhait:</h3>
+        <% if !@players.blank? %>
+          <% @players.each do |player| %>
+            <div class="panel-group col-sm-12" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <% panel_heading_id = "h#{player.name}" %>
+                <div class="panel-heading" role="tab" id="<%= panel_heading_id %>">
+                  <h4 class="panel-title">
+                  <% collapse_id = player.name %>
+                  <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="<%= collapse_id %>">
+                    <%= collapse_id %>&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+                  </a>
+                  </h4>
+                </div>
+                <div id="<%= collapse_id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="<%= panel_heading_id %>">
+                  <div class="panel-body">
+                    <ul class="">
+                    <% player.magic_items.each do |item| %>
+                        <li class=""><%= link_to item.name, items_magic_item_path(item.id) %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
         <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
         <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
       <% end %>
-
-      <h3>Joueurs : <%= @campaign.game_master.name %></h3>
-
 
   </div>
 
