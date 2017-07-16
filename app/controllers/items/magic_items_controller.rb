@@ -36,6 +36,7 @@ class Items::MagicItemsController < ApplicationController
   def show
     @item = MagicItem.find_by_id(params[:id])
     @inWishlists = @current_user.magic_items.include?(@item)
+    @wishlist = Wishlist.new
   end
 
   def edit
@@ -97,8 +98,8 @@ class Items::MagicItemsController < ApplicationController
 
   def wishlist
     @item = MagicItem.find_by_id(params[:id])
-
-    if @current_user.magic_items << @item
+    wishlist = Wishlist.new(wishlist_params)
+    if wishlist.save
       flash[:success] = "L'objet \"#{@item.name}\" fait maintenant partie de votre liste de souhait."
     else
       flash[:error] = "L'objet \"#{@item.name}\" n'a pas été ajouté à votre liste de souhait."
@@ -135,6 +136,14 @@ class Items::MagicItemsController < ApplicationController
       {weapon_group_ids:[]},
       {armor_category_ids:[]},
       {items_level_ids:[]}
+    )
+  end
+
+  def wishlist_params
+    params.require(:wishlist).permit(
+      :user_id,
+      :magic_item_id,
+      :character_id
     )
   end
 
