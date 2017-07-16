@@ -515,10 +515,12 @@ ActiveRecord::Schema.define(version: 20170709114000) do
   create_table "wishlists", id: false, force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "magic_item_id"
+    t.integer  "character_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "wishlists", ["character_id"], name: "index_wishlists_on_character_id", using: :btree
   add_index "wishlists", ["magic_item_id"], name: "index_wishlists_on_magic_item_id", using: :btree
   add_index "wishlists", ["user_id"], name: "index_wishlists_on_user_id", using: :btree
 
