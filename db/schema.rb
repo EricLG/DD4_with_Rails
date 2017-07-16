@@ -379,11 +379,13 @@ ActiveRecord::Schema.define(version: 20170709114000) do
   create_table "players", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "campaign_id"
+    t.integer  "character_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "players", ["campaign_id"], name: "index_players_on_campaign_id", using: :btree
+  add_index "players", ["character_id"], name: "index_players_on_character_id", using: :btree
   add_index "players", ["user_id"], name: "index_players_on_user_id", using: :btree
 
   create_table "pr_features_for_feat", id: false, force: :cascade do |t|
