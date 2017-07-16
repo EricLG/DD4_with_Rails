@@ -10,6 +10,7 @@ class CharactersController < ApplicationController
   def new
     @hide_side_bloc = true
     @character = Character.new
+    @campaigns = Campaign.all
   end
 
   def choose_race
@@ -68,6 +69,10 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     @character.status = 'draft'
+    @character.players.each do |player|
+      player.user_id = @current_user.id
+    end
+
     if @character.save
       redirect_to character_choose_race_path(@character.id)
     else
@@ -199,7 +204,8 @@ class CharactersController < ApplicationController
       :level_24_charisma,
       :level_28_charisma,
       {game_ids:[]},
-      {language_ids: []}
+      {language_ids: []},
+      {campaign_ids: []}
       )
   end
 

@@ -10,6 +10,8 @@ class Character < ActiveRecord::Base
   has_and_belongs_to_many :games
   has_many :wishlists
   has_many :magic_items , through: :wishlists
+  has_many :players
+  has_many :campaigns , through: :players
   has_many :choices, inverse_of: :character
   has_many :features, through: :choices
   has_many :languages, through: :choices

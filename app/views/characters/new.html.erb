@@ -4,13 +4,27 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <h3>Etape 1</h3>
-      <%= form_for @character, html: {:class => 'form-horizontal'} do |f| %>
-        <h4>Informations obligatoires</h4>
+    <h3>Informations obligatoires</h3>
+    <%= form_for @character, html: {:class => 'form-horizontal'} do |f| %>
         <div class="row">
           <%= input_text_form(f, :name,  Character.human_attribute_name(:name)) %>
           <%= input_text_form(f, :experience, Character.human_attribute_name(:experience)) %>
           <%= input_text_form(f, :level, Character.human_attribute_name(:level), {readonly: true}) %>
+
+          <% unless @campaigns.empty? %>
+            <div class="form-group">
+              <%= label_tag :campaign_ids, "Rejoindre une campagne",  :class=>"col-sm-4 control-label" %>
+              <div class="checkbox col-sm-8">
+                <% @campaigns.each_with_index do |campaign, i| %>
+                  <div class="row col-sm-offset-1">
+                    <%= f.check_box :campaign_ids, {id: "character_campaign_#{campaign.id}", multiple: true}, campaign.id, nil %>
+                    <%= f.label "campaign_#{campaign.id}", campaign.name %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
         </div>
         <%= f.hidden_field :user_id, value: @current_user.id %>
         <%= f.hidden_field :status, value: 1 %>
