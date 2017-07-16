@@ -14,14 +14,16 @@
     <thead>
       <tr>
         <th class="col-sm-11">Nom</th>
+        <th class="col-sm-11">Personnage</th>
         <th class="col-sm-1">Supprimer</th>
       </tr>
     </thead>
     <tbody>
-      <% @current_user.magic_items.each do |item| %>
+      <% @current_user.wishlists.each do |wishlist| %>
         <tr>
-          <td><%= link_to item.name, items_magic_item_path(item.id) %></td>
-          <td><%= link_to 'x', rem_wishlist_items_magic_items_path(item: item.id) %></td>
+          <td><%= link_to wishlist.magic_item.name, items_magic_item_path(wishlist.magic_item_id) %></td>
+          <td><%= wishlist.character.try(:name) %></td>
+          <td><%= link_to 'x', rem_wishlist_items_magic_items_path(item: wishlist.magic_item_id) %></td>
         </tr>
       <% end %>
     </tbody>
