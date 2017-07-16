@@ -8,6 +8,8 @@ class Character < ActiveRecord::Base
   belongs_to :klass
   belongs_to :god
   has_and_belongs_to_many :games
+  has_many :wishlists
+  has_many :magic_items , through: :wishlists
   has_many :choices, inverse_of: :character
   has_many :features, through: :choices
   has_many :languages, through: :choices

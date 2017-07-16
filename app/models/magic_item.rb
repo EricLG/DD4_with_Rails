@@ -4,6 +4,7 @@ class MagicItem < ActiveRecord::Base
 
   has_many :wishlists
   has_many :users, through: :wishlists
+  has_many :characters, through: :wishlists
 
   belongs_to :source
   belongs_to :location
