@@ -94,7 +94,6 @@ class CharactersController < ApplicationController
     @users = User.all
     @character = Character.find_by_id(params[:id])
     @campaigns = Campaign.all
-    @characters = @current_user.characters
   end
 
   def update
@@ -245,7 +244,7 @@ class CharactersController < ApplicationController
   end
 
   def find_dependancies
-    @characters = @current_user.characters.complete
+    @characters = @current_user.characters
     @gods = God.all.order(:name)
     @races = Race.all.order(:name)
     @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
