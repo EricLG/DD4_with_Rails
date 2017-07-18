@@ -22,7 +22,7 @@
         <tr>
           <td><%= campaign.name %></td>
           <td><%= campaign.game_master.name %></td>
-          <% if (@current_user.campaigns.include?(campaign)) %>
+          <% if (@character.campaigns.include?(campaign)) %>
             <td></td>
             <td><%= link_to "Quitter", remove_campaign_character_path(camp: campaign.id), method: :patch %></td>
           <% else %>
