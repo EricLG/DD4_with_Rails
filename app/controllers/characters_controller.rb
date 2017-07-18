@@ -93,6 +93,8 @@ class CharactersController < ApplicationController
   def edit
     @users = User.all
     @character = Character.find_by_id(params[:id])
+    @campaigns = Campaign.all
+    @characters = @current_user.characters
   end
 
   def update
@@ -102,6 +104,39 @@ class CharactersController < ApplicationController
     else
       find_dependancies
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :edit
+    end
+  end
+
+  def choose_campaign
+    @character = Character.find_by_id(params[:id])
+    player = Player.find_by(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
+    if player
+      flash[:error] = "Erreur, vous semblez avoir déjà rejoins la campagne"
+    else
+      player = Player.new(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
+    end
+
+    if player.save
+      flash[:success] = "Vous avez rejoint la campagne"
+      redirect_to edit_character_path(params[:id])
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{player.errors.full_messages}"
+      render :edit
+    end
+  end
+
+  def remove_campaign
+    @character = Character.find_by_id(params[:id])
+    player = Player.find_by(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
+
+    if player && player.delete
+      flash[:success] = "Vous avez quitter la campagne"
+      redirect_to edit_character_path(params[:id])
+    else
+      find_dependancies
+      flash[:error] = "Erreur, vous semblez avoir déjà quitter la campagne"
       render :edit
     end
   end

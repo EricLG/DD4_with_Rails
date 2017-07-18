@@ -86,6 +86,10 @@ Rails.application.routes.draw do
     patch 'choose_features'
     get 'choose_skills'
     patch 'choose_skills'
+    member do
+      patch 'choose_campaign/:camp' => "characters#choose_campaign", as: "choose_campaign"
+      patch 'remove_campaign/:camp' => "characters#remove_campaign", as: "remove_campaign"
+    end
   end
   get "/resume_race"  => 'characters#resume_race',  as: 'resume_race'
   get "/resume_klass" => 'characters#resume_klass', as: 'resume_klass'

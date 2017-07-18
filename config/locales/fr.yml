@@ -301,10 +301,11 @@ fr:
 # Termes liés aux personnages
   characters:
     title_new:      "Création d'un nouveau personnage"
-    title_edit:       "Modification d'un personnage"
     title_index:    "Liste de mes héros"
     title_show:       "Modifier %{character} "
     new_character:  "Créer un nouveau personnage"
+    edit:
+      title_edit:       "Modification de %{name}"
 # Termes liés aux classes
   klasses:
     index:
