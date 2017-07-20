@@ -29,7 +29,7 @@
         <dt><%= "APT Classe"%></dt>  <dd> <%= rc.feature.name %></dd>
   <% end %>
 </dl>
-<%= link_to t('character.title_edit', character: @character.name), edit_character_path(@character.id) %><br>
+<%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
 <%= link_to "Modifier race", character_choose_race_path(@character.id) %><br>
 <%= link_to "Modifier classe", character_choose_class_path(@character.id) %><br>
 <%= link_to "Modifier infos", character_choose_optional_fields_path(@character.id) %><br>

@@ -300,10 +300,11 @@ fr:
     req_feats:       "Talent prérequis"
 # Termes liés aux personnages
   characters:
+    index:
+      title_index:    "Liste de mes héros"
+      new_character:  "Créer un nouveau personnage"
     title_new:      "Création d'un nouveau personnage"
-    title_index:    "Liste de mes héros"
     title_show:       "Modifier %{character} "
-    new_character:  "Créer un nouveau personnage"
     edit:
       title_edit:       "Modification de %{name}"
 # Termes liés aux classes
