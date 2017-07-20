@@ -51,7 +51,7 @@
     <h3><small><%= t('.count_game', count: @games.size) %></small></h3>
     <ul class="list-group padding-left">
     <% @games.each do |g| %>
-      <li><%= link_to "Partie du #{g.played.strftime("%m/%d/%Y")}", campaign_game_path(@campaign, g) %></li>
+      <li><%= link_to "Partie du #{g.played.strftime("%d/%m/%Y")}", campaign_game_path(@campaign, g) %></li>
     <% end %>
     </ul>
   </div>
