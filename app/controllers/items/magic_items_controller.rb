@@ -35,7 +35,11 @@ class Items::MagicItemsController < ApplicationController
 
   def show
     @item = MagicItem.find_by_id(params[:id])
-    @inWishlists = @current_user.magic_items.include?(@item)
+    if @current_user
+      @inWishlists = @current_user.magic_items.include?(@item)
+    else
+      @inWishlists = nil
+    end
     @wishlist = Wishlist.new
   end
 
