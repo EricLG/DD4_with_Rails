@@ -3,18 +3,22 @@ class Character < ActiveRecord::Base
   enum status: { draft: 1, complete: 2}
 
   belongs_to :user
-  belongs_to :stat
   belongs_to :race
   belongs_to :klass
   belongs_to :god
+
   has_and_belongs_to_many :games
-  has_many :wishlists
+  before_destroy { games.clear }
+
+  has_many :wishlists, dependent: :delete_all
+  has_many :players, dependent: :delete_all
+  has_many :choices, inverse_of: :character, dependent: :delete_all
+
   has_many :magic_items , through: :wishlists
-  has_many :players
   has_many :campaigns , through: :players
-  has_many :choices, inverse_of: :character
   has_many :features, through: :choices
   has_many :languages, through: :choices
+
   has_one  :formation_skill, :class_name => "Skill", :foreign_key => "formation_skill_id"
   has_one  :racial_skill,    :class_name => "Skill", :foreign_key => "racial_skill_id"
 

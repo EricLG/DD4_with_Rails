@@ -36,3 +36,6 @@
 <%= link_to "Modifier caractéristiques", character_choose_carac_path(@character.id) %><br>
 <%= link_to "Modifier aptitudes", character_choose_features_path(@character.id) %><br>
 <%= link_to "Modifier compétences", character_choose_skills_path(@character.id) %><br>
+
+<br>
+<%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>

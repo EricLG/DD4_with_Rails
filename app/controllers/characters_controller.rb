@@ -83,7 +83,10 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    character = Character.find_by_id(params[:id])
+    character.destroy
 
+    redirect_to characters_path
   end
 
   def show
