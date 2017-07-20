@@ -25,7 +25,7 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.includes(:games).find_by_id(params[:id])
-    @games = @campaign.games
+    @games = @campaign.games.order(played: :asc)
     @characters = @campaign.characters
   end
 
