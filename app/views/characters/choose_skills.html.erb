@@ -39,7 +39,11 @@
                   <td class="center"></td>
                   <td class="center"><%= Stat.human_attribute_name(Skill.get_linked_carac(s)) %></td>
                   <td><button type="button" class="mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">+5</button></td>
-                  <td><%= button_tag @character.race.skill.send(s), id: "skill_racial", class: "racial-skill-bonus center max-width btn btn-default", disabled: true %></td>
+                  <% if @character.race.name != 'Humain' %>
+                    <td><%= button_tag @character.race.skill.send(s), id: "skill_racial", class: "racial-skill-bonus center max-width btn btn-default", disabled: true %></td>
+                  <% else %>
+                    <td></td>
+                  <% end %>
                   <td class="center"><%#= button_tag 0, id: "skill_formation", class: "racial-bonus center max-width btn btn-default", disabled: true %>
                     <% if @character.klass.available_skills.to_a.include?(s) %>
                       <button type="button" class="btn btn-default btn-skill-bonus-formation">
