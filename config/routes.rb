@@ -62,6 +62,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :weapon_properties, :features
+    resources :users, only: [:index, :edit, :update, :destroy]
     get "/index"      => 'admin#index'
     get "/import"     => 'admin#import'
     get "/export_items" => 'admin#export_items'

@@ -334,6 +334,7 @@ fr:
       models_source:
         title:              "Gestion des modèles nécessaires aux objets et talents"
         weapon_properties:  "Propriétés d'armes"
+        users:              "Gestion des utilisateurs"
       export:
         title:              "Export au format .csv de la base de donnée"
         magic_items:        "Télécharger les armes, focaliseurs, armures et équipements magiques"

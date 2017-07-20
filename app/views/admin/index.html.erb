@@ -1,5 +1,6 @@
+<h2>Contributeurs</h2>
 <div class="row">
-  <h2 class="col-sm-12"><%= t(".contribute.title") %> </h2>
+  <h3 class="col-sm-12"><%= t(".contribute.title") %> </h3>
   <ul>
     <li><%= link_to t('.contribute.new_magic_item'),     new_items_magic_item_path %></li>
     <li><%= link_to t('.contribute.new_consumable'),     new_items_consumable_path %></li>
@@ -10,15 +11,22 @@
 </div>
 
 <div class="row">
-  <h2 class="col-sm-12"><%= t(".models_source.title") %> </h2>
+  <h3 class="col-sm-12"><%= t(".models_source.title") %> </h3>
     <ul>
       <li><%= link_to t(".models_source.weapon_properties"), admin_weapon_properties_path %> </li>
       <li><%= link_to t(".models_source.features"), admin_features_path %> </li>
     </ul>
 </div>
 <% if is_current_user_admin? %>
+  <h3>Partie Admin</h3>
   <div class="row">
-    <h2 class="col-sm-12"><%= t(".import.title") %> </h2>
+    <h3 class="col-sm-12"><%= t(".models_source.users") %> </h3>
+      <ul>
+        <li><%= link_to t(".models_source.users"), admin_users_path %> </li>
+      </ul>
+  </div>
+  <div class="row">
+    <h3 class="col-sm-12"><%= t(".import.title") %> </h3>
       <ul>
         <li><%= link_to t(".import.items"),       admin_items_path %> </li>
         <li><%= link_to t(".import.feats"),       admin_feats_path %> </li>
@@ -28,7 +36,7 @@
   </div>
 
   <div class="row">
-    <h2 class="col-sm-12"><%= t(".export.title") %> </h2>
+    <h3 class="col-sm-12"><%= t(".export.title") %> </h3>
       <ul>
         <li><%= link_to t(".export.magic_items"), admin_export_items_path(format: "csv") %> </li>
       </ul>
