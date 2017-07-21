@@ -3,19 +3,19 @@
 <table class="table table-striped table-hovered">
   <thead>
     <tr>
-      <th>Pseudo</th>
-      <th>Date de création</th>
-      <th>Nombre de héros</th>
-      <th>Supprimer</th>
+      <th class="col-sm-4">Pseudo</th>
+      <th class="col-sm-2">Date de création</th>
+      <th class="col-sm-1 center">Nombre de héros</th>
+      <th class="col-sm-1 center">Supprimer</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |u| %>
       <tr>
-          <td><%= u.name %></td>
+          <td><%= link_to u.name, edit_admin_user_path(u.id) %></td>
           <td><%= u.created_at.strftime("%d/%m/%y %H:%M:%S") %></td>
-          <td><%= u.characters.count %></td>
-          <td><%= link_to 'X', admin_user_path(u.id), method: :delete %></td>
+          <td class="center"><%= u.characters.count %></td>
+          <td class="center"><%= link_to 'X', admin_user_path(u.id), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
