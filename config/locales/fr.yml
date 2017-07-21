@@ -158,6 +158,10 @@ fr:
           attributes:
             level:
               inclusion:  "doit être compris entre 1 et 30"
+        user:
+          attributes:
+            password_confirmation:
+              confirmation:     "Les mots de passe ne correspondent pas"
 # Layout, menu principal et tooltip du menu principal
   menu:
     main_title:   "La promenade de Waukeen"

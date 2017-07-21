@@ -20,6 +20,32 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    user = User.find(params[:id])
+
+    if user != @current_user
+      flash[:error] = "Vous n'êtes pas autorisé à consulter cette page"
+      redirect_to user_path(@current_user.id)
+    end
+  end
+
+  def update
+    user = User.find(params[:id])
+
+    if user != @current_user
+      flash[:error] = "Vous n'êtes pas autorisé à consulter cette page"
+      redirect_to user_path(@current_user.id)
+    end
+
+    if @current_user.update(user_params)
+      flash[:info] = "Vos modifications ont été prises en comptes"
+      redirect_to user_path(@current_user.id)
+    else
+      flash[:error] = "Erreur sur les champs suivants: #{@current_user.errors.full_messages}"
+      render :edit
+    end
+  end
+
   private
 
   def user_params

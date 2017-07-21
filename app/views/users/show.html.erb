@@ -5,6 +5,7 @@
 
 <div class="row col-sm-12">
   <h3><%= @current_user.name %> <small>(<%= @current_user.email %>)</small> </h3>
+  <p><%= link_to "Modifier mes informations", edit_user_path(@current_user.id) %></p>
   <p><%= link_to t('.new_character'), new_character_path %></p>
 </div>
 
