@@ -24,7 +24,7 @@
           <table class="table table-condensed">
             <thead>
               <tr>
-                <th class="medium-width center">Bonus</th>
+                <th class="medium-width center">Bonus total</th>
                 <th class="table-width center">Nom</th>
                 <th class="small-width"></th>
                 <th class="medium-width center">Carac</th>
@@ -36,14 +36,29 @@
             <tbody id="character-formation">
               <% @skills.each do |s, fr_skill| %>
                 <% if @character.klass.available_skills.to_a.include?(s) %>
+                    <%
+                      link_carac = Skill.get_linked_carac(s)
+                      racial_bonus = @character.race.skill.send(s)
+                      carac_half_level = count_comp_bonus_carac_level(s, link_carac)
+                      # TODO prendre en conmpte la formation
+                      total_bonus = count_total_bonus_comp(carac_half_level, racial_bonus)
+                    %>
                   <tr>
-                    <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= 10 %></button></td>
+                    <td>
+                      <button type="button" class="final-value btn btn-default max-width bold" disabled="disabled">
+                        <%= total_bonus %>
+                      </button>
+                    </td>
                     <td class="center"><%= fr_skill %></td>
                     <td class="center"></td>
-                    <td class="center"><%= Stat.human_attribute_name(Skill.get_linked_carac(s)) %></td>
-                    <td><button type="button" class="mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">TODO</button></td>
+                    <td class="center"><%= Stat.human_attribute_name(link_carac) %></td>
                     <td>
-                      <%= button_tag(@character.race.skill.send(s), class: "center max-width btn btn-default", disabled: true) if (@character.race.name != 'Humain') %></td>
+                      <button type="button" class="mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">
+                      <%= carac_half_level %>
+                      </button>
+                    </td>
+                    <td>
+                      <%= button_tag(racial_bonus, class: "center max-width btn btn-default", disabled: true) %></td>
                     </td>
                     <td class="center">
                       <% if @character.formations_choice && @character.formations_choice.send(s) == 5 %>
