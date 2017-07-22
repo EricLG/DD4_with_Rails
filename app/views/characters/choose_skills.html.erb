@@ -1,6 +1,6 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-  <%= render "sidebloc/character_creation" %>
+    <%= render "sidebloc/character_creation" %>
 <% end %>
 
 <div class="row">
@@ -10,12 +10,14 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, html: {class: 'form-horizontal'} do |f| %>
+    <%= form_for @character, url: character_choose_feats_path(@character.id), html: {class: 'form-horizontal'} do |f| %>
+    <%= f.fields_for :formations_choice, @character.formations_choice do |fc| %>
+      <%= fc.hidden_field :origin, value: 'formations_choice' %>
       <div class="row">
         <h4>Choix des formations de compétences de classes - <small>EN COURS DE DÉVELOPPEMENT</small></h4>
         <p>Une formation vous donne un bonus de +5 à un test de compétence.<br>Sélectionnez <%= @character.klass.skills_number %> formations de compétence dans la liste suivante :</p>
         <% if @character.klass.name == 'Rôdeur'  %>
-          <p>En tant que rôdeur, vous devez sélectionner soit Exploration, soit Nature.</p>
+          <p>En tant que rôdeur, vous bénéficiez au choix d'Exploration ou de Nature.</p>
         <% end %>
         <div class="col-sm-12">
 
@@ -32,36 +34,40 @@
               </tr>
             </thead>
             <tbody id="character-formation">
-              <% Skill::SKILL.each_with_index do |s, i| %>
-                <tr>
-                  <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= 10 %></button></td>
-                  <td class=""><%= Skill.human_attribute_name s %></td>
-                  <td class="center"></td>
-                  <td class="center"><%= Stat.human_attribute_name(Skill.get_linked_carac(s)) %></td>
-                  <td><button type="button" class="mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">+5</button></td>
-                  <% if @character.race.name != 'Humain' %>
-                    <td><%= button_tag @character.race.skill.send(s), id: "skill_racial", class: "racial-skill-bonus center max-width btn btn-default", disabled: true %></td>
-                  <% else %>
-                    <td></td>
-                  <% end %>
-                  <td class="center"><%#= button_tag 0, id: "skill_formation", class: "racial-bonus center max-width btn btn-default", disabled: true %>
-                    <% if @character.klass.available_skills.to_a.include?(s) %>
-                      <button type="button" class="btn btn-default btn-skill-bonus-formation">
-                        <%#= f.hidden_field "level_4_#{s}", value: @character.send("level_4_#{s}"), class: "level_4 bonus-carac" %>
-                        <span class="glyphicon glyphicon-plus"></span>
-                      </button>
-                    <% else %>
-                      <button type="button" disabled class="btn btn-default btn-skill-bonus-formation">
-                        <span class="glyphicon glyphicon-remove"></span>
-                      </button>
-                    <% end %>
-                  </td>
-                </tr>
+              <% @skills.each do |s, fr_skill| %>
+                <% if @character.klass.available_skills.to_a.include?(s) %>
+                  <tr>
+                    <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= 10 %></button></td>
+                    <td class="center"><%= fr_skill %></td>
+                    <td class="center"></td>
+                    <td class="center"><%= Stat.human_attribute_name(Skill.get_linked_carac(s)) %></td>
+                    <td><button type="button" class="mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">TODO</button></td>
+                    <td>
+                      <%= button_tag(@character.race.skill.send(s), class: "center max-width btn btn-default", disabled: true) if (@character.race.name != 'Humain') %></td>
+                    </td>
+                    <td class="center">
+                      <% if @character.formations_choice && @character.formations_choice.send(s) == 5 %>
+                        <button type="button" class="btn btn-default  btn-info btn-skill-bonus-formation">
+                          <%= fc.hidden_field "#{s}", value: 5, disabled: false %>
+                          <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                      <% else %>
+                        <button type="button" class="btn btn-default btn-skill-bonus-formation">
+                          <%= fc.hidden_field "#{s}", value: 5, disabled: true %>
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>
         </div>
       </div>
+     <% end %>
+      <%= link_to 'Précédent', character_choose_features_path(@character.id), class: "btn btn-default" %>
+      <%= submit_text_form(f) %>
      <% end %>
   </div>
 </div>

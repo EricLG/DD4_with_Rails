@@ -59,4 +59,17 @@ class Skill < ActiveRecord::Base
     end
   end
 
+  def self.get_skills
+    skills = {}
+    Skill::SKILL.each do |s|
+      skills[s] = Skill.human_attribute_name(s)
+    end
+    skills.sort_by{|skill, fr_skill| fr_skill}
+  end
+
+  def raz
+    Skill::SKILL.each do |s|
+      self.send("#{s}=", 0)
+    end
+  end
 end

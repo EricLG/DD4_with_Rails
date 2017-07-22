@@ -256,6 +256,16 @@ $(document).on("page:change", function() {
     $("#total_bonus_level_stat_" + caracType).text(totalBonusRow);
   }
 
+  $('.btn-skill-bonus-formation').click(function (e) {
+    e.preventDefault();
+    var btn = $(this);
+    var span = $(this).find($("span"));
+    var input = $(this).find($("input"));
+    input.prop( "disabled", function(i, v) { return !v; });
+    btn.toggleClass('btn-info');
+    span.toggleClass('glyphicon-plus glyphicon-ok');
+  });
+
   applyRacialBonus();
   resetBonusCarac();
   adjustFinalValueWithRacialAndlevelBonus();

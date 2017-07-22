@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
 
-  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_race, :choose_carac, :choose_class, :choose_skill, :choose_optional_fields]
+  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_race, :choose_carac, :choose_class, :choose_skills, :choose_feats, :choose_optional_fields]
 
   def index
     @hide_side_bloc =true
@@ -51,7 +51,7 @@ class CharactersController < ApplicationController
   def choose_skills
     @character = Character.find_by_id(params["character_id"])
     @klass = @character.klass
-
+    @skills = Skill.get_skills
     if params && params["character"]
       choices = params["character"]["character_choice_ids"].values.flatten
       @character.choices.features_choices.delete_all
@@ -64,6 +64,19 @@ class CharactersController < ApplicationController
         Choice.create(character: @character, feature_id: c)
       end
     end
+  end
+
+  def choose_feats
+    @character = Character.find_by_id(params["character_id"])
+    if @character.formations_choice
+      skill = Skill.find(@character.formations_choice.id)
+      skill.raz
+      skill.update(character_params["formations_choice"])
+    else
+      skill = Skill.create(character_params[:formations_choice])
+    end
+    @character.formations_choice = skill
+    @character.save
   end
 
   def create
@@ -240,6 +253,26 @@ class CharactersController < ApplicationController
       :level_21_charisma,
       :level_24_charisma,
       :level_28_charisma,
+      {formations_choice: [
+        :acrobatics,
+        :arcana,
+        :athletics,
+        :bluff,
+        :diplomacy,
+        :dungeoneering,
+        :endurance,
+        :heal,
+        :history,
+        :insight,
+        :intimidate,
+        :nature,
+        :perception,
+        :religion,
+        :stealth,
+        :streetwise,
+        :thievery,
+        :origin
+      ]},
       {game_ids:[]},
       {language_ids: []},
       {campaign_ids: []}
