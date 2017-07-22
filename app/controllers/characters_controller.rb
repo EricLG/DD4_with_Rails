@@ -68,6 +68,7 @@ class CharactersController < ApplicationController
 
   def choose_feats
     @character = Character.find_by_id(params["character_id"])
+    # TODO : controle sur les formations choisies (count et formations offerte)
     if @character.formations_choice
       skill = Skill.find(@character.formations_choice.id)
       skill.raz
