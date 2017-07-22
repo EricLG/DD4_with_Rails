@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
-  resources :users, only: [:new, :show, :create]
+  resources :users, only: [:new, :show, :create, :edit, :update]
 
   namespace :items do
     # Lien du menu principal
