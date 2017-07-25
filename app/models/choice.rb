@@ -3,6 +3,7 @@ class Choice < ActiveRecord::Base
   belongs_to :character,  inverse_of: :choices
   belongs_to :feature,    inverse_of: :choices
   belongs_to :language,   inverse_of: :choices
+  belongs_to :skill
 
   validates :character_id, uniqueness: {scope: [:feature_id, :language_id]}
 
