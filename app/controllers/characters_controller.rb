@@ -45,13 +45,9 @@ class CharactersController < ApplicationController
   def choose_features
     @character = Character.find_by_id(params["character_id"])
     @character.update(character_params) if params && params["character"]
-
   end
 
-  def choose_skills
-    @character = Character.find_by_id(params["character_id"])
-    @klass = @character.klass
-    @skills = Skill.get_skills
+  def save_features
     if params && params["character"]
       choices = params["character"]["character_choice_ids"].values.flatten
       @character.choices.features_choices.delete_all
@@ -66,18 +62,37 @@ class CharactersController < ApplicationController
     end
   end
 
+  def choose_skills
+    # Parametres du template
+    @character = Character.find_by_id(params["character_id"])
+    @klass = @character.klass
+    @skills = Skill.get_skills
+
+    # Sauvegarde des features de la page précédentes
+    save_features
+
+  def save_skills
+    # TODO : controle sur les formations choisies (count et formations offerte)
+    formations_choice_params = character_params[:skill_choices]
+
+    if @character.klass.name == 'Rôdeur' && !formations_choice_params.include?(:nature) && !formations_choice_params.include?(:dungeoneering)
+      flash[:error] = "En tant que rôdeur, vous devez choisir soit Exploration, soit Nature"
+      redirect_to character_choose_skills_path @character_id.id
+    end
+    if @character.klass.name == 'Voleur' && !formations_choice_params.include?(:stealth) && !formations_choice_params.include?(:thievery)
+      flash[:error] = "En tant que voleur, vous devez choisir soit Discrétion, soit Larcin"
+      redirect_to character_choose_skills_path @character_id.id
+    end
+    skill = @character.klass_formations_choices
+    skill.raz
+    skill.update(formations_choice_params)
+  end
+
   def choose_feats
     @character = Character.find_by_id(params["character_id"])
-    # TODO : controle sur les formations choisies (count et formations offerte)
-    if @character.formations_choice
-      skill = Skill.find(@character.formations_choice.id)
-      skill.raz
-      skill.update(character_params["formations_choice"])
-    else
-      skill = Skill.create(character_params[:formations_choice])
-    end
-    @character.formations_choice = skill
-    @character.save
+    save_skills
+
+    # Then load all needed for feats
   end
 
   def create
@@ -254,7 +269,7 @@ class CharactersController < ApplicationController
       :level_21_charisma,
       :level_24_charisma,
       :level_28_charisma,
-      {formations_choice: [
+      {skill_choices: [
         :acrobatics,
         :arcana,
         :athletics,
