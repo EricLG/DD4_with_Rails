@@ -76,6 +76,14 @@ class Character < ActiveRecord::Base
     level >= 21 if level
   end
 
+  def klass_formations_choices
+    skill = Skill.find_or_create_by(origin: 'klass_formations_choices')
+    unless self.skill_choices.include?(skill)
+      self.skill_choices << skill
+    end
+    skill
+  end
+
   def level_to_xp
     self.experience = case self.level
                       when 2

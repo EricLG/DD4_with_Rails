@@ -71,6 +71,11 @@ class CharactersController < ApplicationController
     # Sauvegarde des features de la page précédentes
     save_features
 
+    # Initialisation des choix de compétences de classes
+    @klass_formations_choices = @character.klass_formations_choices
+
+  end
+
   def save_skills
     # TODO : controle sur les formations choisies (count et formations offerte)
     formations_choice_params = character_params[:skill_choices]
