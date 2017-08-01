@@ -22,4 +22,8 @@ class Race < ActiveRecord::Base
     languages
   end
 
+  def grant_skill_bonus
+    self.name == 'Cristallien' || self.name == 'Kalashtar'
+  end
+
 end
