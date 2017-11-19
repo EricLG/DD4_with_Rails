@@ -16,8 +16,4 @@ module CharactersHelper
     comp_bonus = level_bonus + ((carac-10)/2)
     comp_bonus.floor
   end
-
-  def count_total_bonus_comp(carac, racial)
-    carac + racial
-  end
 end

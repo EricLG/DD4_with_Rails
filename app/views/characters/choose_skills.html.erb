@@ -35,7 +35,7 @@
         <p>Sélectionnez <%= @character.klass.skills_number %> formations dans votre liste de compétences de classe :</p>
         <div class="col-sm-12">
 
-          <table class="table table-condensed">
+          <table class="table table-condensed table-hover">
             <thead>
               <tr>
                 <th class="medium-width center">Bonus total</th>
@@ -57,7 +57,7 @@
                       racial_bonus = @character.race.skill.send(s) + @race_bonus_skill_choices.send(s)
                       carac_half_level = count_comp_bonus_carac_level(s, link_carac)
                       # TODO prendre en compte la formation avec Javascript
-                      total_bonus = count_total_bonus_comp(carac_half_level, racial_bonus)
+                      total_bonus = carac_half_level + racial_bonus + @klass_formations_choices.send(s)
                     %>
                   <tr>
                     <td>
