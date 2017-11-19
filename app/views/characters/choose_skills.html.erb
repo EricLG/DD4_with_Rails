@@ -26,10 +26,11 @@
         <% elsif @character.race.name == 'Humain' %>
           <p>En tant qu'humain, vous pouvez choisir une compétence supplémentaire (limité à votre liste de classe).</p>
         <% elsif @character.race.grant_skill_bonus %>
-          <p>En tant que <%= @character.race.name.downcase %>, vous bénéficiez d'un bonus racial de +2 dans une autre compétence.</p>
+          <p>En tant que <%= @character.race.name.downcase %>, vous bénéficiez d'un bonus racial de +2 dans une autre compétence :
             <%= f.fields_for :skill_choices, @race_bonus do |frb| %>
               <%= select_tag "racial_bonus_choice", options_for_select(@race_bonus_skill_available, @race_bonus_skill_choices.get_selected_skill) %>
             <% end %>
+          </p>
         <% end %>
 
         <p>Sélectionnez <%= @character.klass.skills_number %> formations dans votre liste de compétences de classe :</p>
