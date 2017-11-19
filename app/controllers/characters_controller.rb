@@ -82,11 +82,11 @@ class CharactersController < ApplicationController
 
     if @character.klass.name == 'Rôdeur' && !formations_choice_params.include?(:nature) && !formations_choice_params.include?(:dungeoneering)
       flash[:error] = "En tant que rôdeur, vous devez choisir soit Exploration, soit Nature"
-      redirect_to character_choose_skills_path @character_id.id
+      redirect_to character_choose_skills_path @character.id
     end
     if @character.klass.name == 'Voleur' && !formations_choice_params.include?(:stealth) && !formations_choice_params.include?(:thievery)
       flash[:error] = "En tant que voleur, vous devez choisir soit Discrétion, soit Larcin"
-      redirect_to character_choose_skills_path @character_id.id
+      redirect_to character_choose_skills_path @character.id
     end
     skill = @character.klass_formations_choices
     skill.raz
