@@ -79,7 +79,7 @@ class Character < ActiveRecord::Base
 
   # Initialise ou recherche les choix de compétences liés à la classe (les formations)
   def klass_formations_choices
-    skill = Skill.find_or_create_by(origin: 'klass_formations_choices')
+    skill = Skill.joins(:choice).where(choices: {character_id: self.id}).find_or_create_by(origin: "klass_formations_choices")
     unless self.skill_choices.include?(skill)
       self.skill_choices << skill
     end
@@ -88,7 +88,7 @@ class Character < ActiveRecord::Base
 
   # Initialise ou recherche les choix de compétences liés à la race (typiquement le cristallien et le kalashtar)
   def race_bonus_skill_choices
-    skill = Skill.find_or_create_by(origin: 'racial_bonus_choice')
+    skill = Skill.joins(:choice).where(choices: {character_id: self.id}).find_or_create_by(origin: "racial_bonus_choice")
     unless self.skill_choices.include?(skill)
       self.skill_choices << skill
     end

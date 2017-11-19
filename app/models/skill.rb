@@ -1,6 +1,7 @@
 class Skill < ActiveRecord::Base
 
   has_one :race
+  has_many :choice
 
   SKILL = %w(acrobatics arcana athletics bluff diplomacy dungeoneering endurance heal history insight intimidate nature perception religion stealth streetwise thievery)
 
