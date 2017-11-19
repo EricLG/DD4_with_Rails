@@ -67,12 +67,14 @@ class CharactersController < ApplicationController
     @character = Character.find_by_id(params["character_id"])
     @klass = @character.klass
     @skills = Skill.get_skills
-
+    @race_bonus_skill_available = @character.race_bonus_skill_available
+    @race_bonus = Skill.new(origin: 'racial_bonus_choice') if @character.race.grant_skill_bonus
     # Sauvegarde des features de la page précédentes
     save_features
 
     # Initialisation des choix de compétences de classes
     @klass_formations_choices = @character.klass_formations_choices
+    @race_bonus_skill_choices = @character.race_bonus_skill_choices
 
   end
 
@@ -88,9 +90,15 @@ class CharactersController < ApplicationController
       flash[:error] = "En tant que voleur, vous devez choisir soit Discrétion, soit Larcin"
       redirect_to character_choose_skills_path @character.id
     end
-    skill = @character.klass_formations_choices
-    skill.raz
-    skill.update(formations_choice_params)
+
+    # Sauvegarde des choix de formations, on écrase les choix précédants
+    skill_klass_formations = @character.klass_formations_choices
+    skill_klass_formations.raz
+    skill_klass_formations.update(formations_choice_params)
+
+    # Sauvegarde du choix de bonus racial si la race le permet
+    @character.race_bonus_skill_choices.update_racial_choice!(params['racial_bonus_choice']) if @character.race.grant_skill_bonus && params['racial_bonus_choice']
+
   end
 
   def choose_feats

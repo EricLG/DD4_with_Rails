@@ -67,9 +67,26 @@ class Skill < ActiveRecord::Base
     skills.sort_by{|skill, fr_skill| fr_skill}
   end
 
+  # Reset toutes les compétences à 0
   def raz
     Skill::SKILL.each do |s|
       self.send("#{s}=", 0)
     end
+  end
+
+  # Sauvegarde le choix de bonus de compétence racial en supprimant l'ancien
+  def update_racial_choice!(racial_choice)
+    self.raz
+    self.send("#{racial_choice}=", 2)
+    self.save
+  end
+
+  # Renvoie la compétence choisie avec le bonus racial de compétence (1 seule compétence normalement)
+  def get_selected_skill
+    selected_skill = nil
+    Skill::SKILL.each do |s|
+      selected_skill = s if self.send(s) == 2
+    end
+    selected_skill
   end
 end

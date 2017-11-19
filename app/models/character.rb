@@ -72,16 +72,38 @@ class Character < ActiveRecord::Base
   def is_paragon?
     level >= 11 if level
   end
+
   def is_epic?
     level >= 21 if level
   end
 
+  # Initialise ou recherche les choix de compétences liés à la classe (les formations)
   def klass_formations_choices
     skill = Skill.find_or_create_by(origin: 'klass_formations_choices')
     unless self.skill_choices.include?(skill)
       self.skill_choices << skill
     end
     skill
+  end
+
+  # Initialise ou recherche les choix de compétences liés à la race (typiquement le cristallien et le kalashtar)
+  def race_bonus_skill_choices
+    skill = Skill.find_or_create_by(origin: 'racial_bonus_choice')
+    unless self.skill_choices.include?(skill)
+      self.skill_choices << skill
+    end
+    skill
+  end
+
+  # Retourne un hash des compétences disponibles lors d'un bonus racial
+  def race_bonus_skill_available
+    skills = {}
+    Skill::SKILL.each do |s|
+      unless self.race.skill.send(s) == 2
+        skills[Skill.human_attribute_name(s)] = s
+      end
+    end
+    skills.sort_by{|fr_skill, skill| fr_skill}
   end
 
   def level_to_xp
