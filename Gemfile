@@ -1,16 +1,17 @@
 source 'https://rubygems.org'
-ruby "~> 2.1.3"
+ruby "~> 2.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.10'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18.2'
+gem 'pg', '~> 0.20'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 # gem 'coffee-rails', '~> 4.0.0'
+gem 'execjs'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  platforms: :ruby
 
@@ -27,7 +28,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -40,7 +41,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
-gem 'puma', '~> 2.16.0'
+gem 'puma', '~> 3.11'
 gem 'rails_12factor', :group => :production
 gem 'will_paginate', '~> 3.0.6'
 
