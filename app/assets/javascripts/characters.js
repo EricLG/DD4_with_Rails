@@ -269,4 +269,35 @@ $(document).on("page:change", function() {
   applyRacialBonus();
   resetBonusCarac();
   adjustFinalValueWithRacialAndlevelBonus();
+
+
+
+  function initCountSkillBonus() {
+    var racial_choice = $('#racial_bonus_choice').val();
+
+    if (racial_choice !== undefined) {
+      console.log(racial_choice);
+    }
+
+    $(".skill_row").each(function(){
+
+    });
+  }
+  initCountSkillBonus();
+
+  $('.btn-skill-bonus-formation').click(function(e){
+    e.preventDefault();
+    var skill = $(this).parents("tr").attr('id');
+    var carac = parseInt($("#carac_bonus_" + skill).text());
+    var race = parseInt($("#racial_bonus_choice_" + skill).text());
+    var formation = parseInt($("#char-choice-btn-" + skill).text());
+    console.log(this);
+    console.log(this);
+    console.log(carac);
+    console.log(race);
+    console.log(formation);
+
+  });
+
+
 });

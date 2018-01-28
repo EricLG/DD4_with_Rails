@@ -28,7 +28,7 @@
         <% elsif @character.race.grant_skill_bonus %>
           <p>En tant que <%= @character.race.name.downcase %>, vous bénéficiez d'un bonus racial de +2 dans une autre compétence :
             <%= f.fields_for :skill_choices, @race_bonus do |frb| %>
-              <%= select_tag "racial_bonus_choice", options_for_select(@race_bonus_skill_available, @race_bonus_skill_choices.get_selected_skill) %>
+              <%= select_tag "racial_bonus_choice", options_for_select(@race_bonus_skill_available, @race_bonus_skill_choices.get_selected_skill), include_blank: true %>
             <% end %>
           </p>
         <% end %>
@@ -60,9 +60,9 @@
                       # TODO prendre en compte la formation avec Javascript
                       total_bonus = carac_half_level + racial_bonus + @klass_formations_choices.send(s)
                     %>
-                  <tr>
+                  <tr id="<%= s %>" class="skill_row">
                     <td>
-                      <button type="button" class="btn btn-default btn-sm final-value btn btn-default max-width bold" disabled="disabled">
+                      <button type="button" id="total_bonus_<%= s %>" class="btn btn-default btn-sm final-value btn btn-default max-width bold" disabled="disabled">
                         <%= total_bonus %>
                       </button>
                     </td>
@@ -70,12 +70,12 @@
                     <td class="center"></td>
                     <td class="center"><%= Stat.human_attribute_name(link_carac) %></td>
                     <td>
-                      <button type="button" class="btn btn-sm mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">
+                      <button type="button" id="carac_bonus_<%= s %>" class="btn btn-sm mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">
                       <%= carac_half_level %>
                       </button>
                     </td>
                     <td>
-                      <%= button_tag(racial_bonus, class: "center max-width btn btn-default", disabled: true) %></td>
+                      <%= button_tag(racial_bonus, id: "racial_bonus_choice_#{s}", class: "center max-width btn btn-default", disabled: true) %></td>
                     </td>
                     <td class="center">
                       <% if @character.klass.available_skills.to_a.include?(s) %>
@@ -86,7 +86,7 @@
                           </button>
                         <% else %>
                           <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm btn-skill-bonus-formation">
-                            <%= fc.hidden_field "#{s}", value: 5, disabled: true %>
+                            <%= fc.hidden_field "#{s}", value: 0, disabled: true %>
                             <span class="glyphicon glyphicon-plus"></span>
                           </button>
                         <% end %>
