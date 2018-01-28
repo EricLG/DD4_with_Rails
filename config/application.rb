@@ -22,5 +22,9 @@ module Dd4
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :fr
+    config.action_dispatch.default_headers = {
+        'Access-Control-Allow-Origin' => 'http://localhost:4200',
+        'Access-Control-Request-Method' => %w{GET POST PUT DELETE OPTIONS}.join(",")
+    }
   end
 end

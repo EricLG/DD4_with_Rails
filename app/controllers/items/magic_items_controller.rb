@@ -36,6 +36,14 @@ class Items::MagicItemsController < ApplicationController
     @item = MagicItem.find_by_id(params[:id])
     @in_wishlists = @current_user.magic_items.include?(@item) if @current_user
     @wishlist = Wishlist.new
+
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: {
+        item: @item.to_json(include: [:source, :object_levels, :weapon_groups, :implement_group, :armor_categories, :location]),
+        wishlist: @wishlist
+      }}
+    end
   end
 
   def edit
@@ -57,7 +65,10 @@ class Items::MagicItemsController < ApplicationController
     @kind = 'weapons'
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
     @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
-    render :index
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @items.to_json(include: [:source, :object_levels, :weapon_groups, :implement_group, :armor_categories, :location]) }
+    end
   end
 
   def armors

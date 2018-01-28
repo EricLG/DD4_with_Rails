@@ -13,6 +13,14 @@ class CharactersController < ApplicationController
   def new
     @character = Character.new
     @campaigns = Campaign.all
+
+    respond_to do |format|
+      format.html {render :new}
+      format.json {render json: {
+        item: @character,
+        campaigns: @campaigns
+      }}
+    end
   end
 
   def create
