@@ -1,8 +1,10 @@
 default: &default
   consumable_kind: ["potion", "reactive", "elixir", "ammo", "immurement", "whetstone", "other_cons"]
+  monsters_dir: 'monstres'
 development:
   <<: *default
 test:
   <<: *default
 production:
   <<: *default
+  monsters_dir: <%= ENV['monsters_dir'] %>

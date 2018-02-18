@@ -5,48 +5,19 @@
 
 <div class="col-sm-4">
   <figure>
-    <% im_name = @monster.name.mb_chars.downcase.to_s.gsub(/[Ééê]/, 'e').gsub(/[\s]/, '_').gsub(/[\î]/, 'i').gsub(/[\ô]/, 'o').gsub(/[']/, '_') %>
-    <% cat = @monster.category.mb_chars.downcase.to_s.gsub(/[Ééê]/, 'e').gsub(/[\s]/, '_').gsub(/[\î]/, 'i').gsub(/[\ô]/, 'o').gsub(/[']/, '_') %>
-    <% image = File.join('monstres', cat, im_name + '.jpg') %>
-    <%= (image_tag(image, size: "400x70", id: "image_#{@monster.id}", class: ' img-responsive img-rounded center-block')) %>
+    <% image = File.join(
+        Rails.application.config_for(:dungeons)["monsters_dir"],
+        custom_transliterate(@monster.source.name),
+        custom_transliterate(@monster.category),
+        custom_transliterate(@monster.name) + '.jpg'
+    ) %>
+    <%= (image_tag(image, size: "400x70", alt: image, id: "image_#{@monster.id}", class: ' img-responsive img-rounded center-block')) %>
     <figcaption class="text-center"><small><%= @monster.name %></small></figcaption>
   </figure>
 </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @monster.name %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @monster.category %>
-</p>
-
-<p>
-  <strong>Px:</strong>
-  <%= @monster.px %>
-</p>
-
-<p>
-  <strong>Race:</strong>
-  <%= @monster.race %>
-</p>
-
-<p>
-  <strong>Origin:</strong>
-  <%= @monster.origin %>
-</p>
-
-<p>
-  <strong>Keywords:</strong>
-  <%= @monster.keywords %>
-</p>
-
-<p>
-  <strong>Source:</strong>
-  <%= @monster.source.name %>
-</p>
-
+<div class="row col-sm-12">
+<br>
 <%= link_to 'Edit', edit_dm_tools_monster_path(@monster) %> |
 <%= link_to 'Back', dm_tools_monsters_path %>
+</div>
