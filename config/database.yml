@@ -84,5 +84,5 @@ test:
 production:
   <<: *default
   database: dd4_production
-  username: dd4
+  username: <%= ENV['DD4_DATABASE_USERNAME'] %>
   password: <%= ENV['DD4_DATABASE_PASSWORD'] %>

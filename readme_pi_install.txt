@@ -26,14 +26,29 @@ Créer une clé ssh (cf github)
 git clone DD4
 
 POSTGRES:
-sudo apt-get install postgresql_9.6
+Les paquets server-dev et libpq-dev sont pour éviter une erreur lors du bundle install sur la gem pg
+sudo apt-get install postgresql_9.6 postgresql-server-dev-9.6 libpq-dev
 sudo apt-get install pgadmin3
 
 cd dossier DD4
 bundle install
-Erreur pg
-=> you need to install postgresql-server-dev-9.6 for server and libpq-dev for client
+rbenv rehash
+rails -v
 
-Créer le superuser illisae dans postgres
+Créer le superuser illisae et le superuser de prod dans postgres.
 sudo su postgres
 createuser illisae -P --interactive
+createuser <prod_user> -P --interactive
+
+Rajouter dans le bashRC les variables d'environnements suivantes : 
+SECRET_KEY_BASE avec la valeur de rake secret
+DD4_DATABASE_USERNAME
+DD4_DATABASE_PASSWORD
+
+Modifier un fichier pg :
+vim /etc/postgresql/9.6/main/pg_hba.conf
+(un local en md5)
+sudo service postgresql restart
+
+Créer la base de prod
+RAILS_ENV=production rake db:create db:migrate db:seed
