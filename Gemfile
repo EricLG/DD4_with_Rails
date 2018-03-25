@@ -42,7 +42,6 @@ gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'b
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 gem 'puma', '~> 3.11'
-gem 'rails_12factor', :group => :production
 gem 'will_paginate', '~> 3.0.6'
 
 group :development do
