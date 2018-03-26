@@ -9,9 +9,7 @@
   </div>
   <div class="col-sm-4">
     <figure>
-      <% name = @race.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
-      <% image = File.join('images_races', 'race_' + name + '.png') %>
-      <%= (image_tag(image, id: "image_#{@race.id}", class: ' img-responsive img-rounded center-block')) %>
+      <%= (image_tag(File.join('images_races', "race_#{@name}.png"), id: "image_#{@race.id}", class: 'img-responsive img-rounded center-block')) %>
       <figcaption class="text-center"><small><%= @race.name %></small></figcaption>
     </figure>
   </div>
@@ -19,10 +17,6 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%
-      path = "lib/assets/articles/races/#{@race.name.mb_chars.gsub(/[Éé]/, 'e').downcase.to_s}.txt"
-      data = File.read(path)
-    %>
-    <%= data.html_safe() %>
+    <%= File.read(Rails.root.join('lib', 'assets', 'articles', 'races', "#{@name}.txt")).html_safe() %>
   </div>
 </div>
