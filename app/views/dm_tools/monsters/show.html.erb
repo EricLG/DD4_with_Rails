@@ -11,7 +11,7 @@
         custom_transliterate(@monster.category),
         custom_transliterate(@monster.name) + '.jpg'
     ) %>
-    <%= (image_tag(image, size: "400x70", alt: image, id: "image_#{@monster.id}", class: ' img-responsive img-rounded center-block')) %>
+    <%= (image_tag(image, size: "400x70", alt: image, id: "image_#{@monster.id}", class: 'zoom img-responsive img-rounded center-block')) %>
     <figcaption class="text-center"><small><%= @monster.name %></small></figcaption>
   </figure>
 </div>
