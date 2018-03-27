@@ -7,4 +7,4 @@ test:
   <<: *default
 production:
   <<: *default
-  monsters_dir: <%= ENV['monsters_dir'] %>
+  monsters_dir: "<%= ENV['monsters_dir'] %>"
