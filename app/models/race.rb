@@ -22,7 +22,8 @@ class Race < ActiveRecord::Base
     languages
   end
 
-  def grant_skill_bonus
+  # Seules 2 races donnent un bonus au choix
+  def grant_dynamic_racial_skill_bonus
     self.name == 'Cristallien' || self.name == 'Kalashtar'
   end
 

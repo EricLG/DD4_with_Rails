@@ -68,7 +68,7 @@ class CharactersController < ApplicationController
     @klass = @character.klass
     @skills = Skill.get_skills
     @race_bonus_skill_available = @character.race_bonus_skill_available
-    @race_bonus = Skill.new(origin: 'racial_bonus_choice') if @character.race.grant_skill_bonus
+    @race_bonus = Skill.new(origin: 'racial_bonus_choice') if @character.race.grant_dynamic_racial_skill_bonus
     # Sauvegarde des features de la page précédentes
     save_features
 
@@ -97,7 +97,7 @@ class CharactersController < ApplicationController
     skill_klass_formations.update(formations_choice_params)
 
     # Sauvegarde du choix de bonus racial si la race le permet
-    @character.race_bonus_skill_choices.update_racial_choice!(params['racial_bonus_choice']) if @character.race.grant_skill_bonus && params['racial_bonus_choice']
+    @character.race_bonus_skill_choices.update_racial_choice!(params['racial_bonus_choice']) if @character.race.grant_dynamic_racial_skill_bonus && params['racial_bonus_choice']
 
   end
 
@@ -282,6 +282,7 @@ class CharactersController < ApplicationController
       :level_21_charisma,
       :level_24_charisma,
       :level_28_charisma,
+      :racial_bonus_choice,
       {skill_choices: [
         :acrobatics,
         :arcana,

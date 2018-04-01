@@ -95,15 +95,13 @@ class Character < ActiveRecord::Base
     skill
   end
 
-  # Retourne un hash des compétences disponibles lors d'un bonus racial
+  # Retourne un tableau des compétences disponibles lors d'un bonus racial (+2 au choix)
   def race_bonus_skill_available
-    skills = {}
+    skills = []
     Skill::SKILL.each do |s|
-      unless self.race.skill.send(s) == 2
-        skills[Skill.human_attribute_name(s)] = s
-      end
+      skills << s unless self.race.skill.send(s) == 2
     end
-    skills.sort_by{|fr_skill, skill| fr_skill}
+    skills
   end
 
   def level_to_xp

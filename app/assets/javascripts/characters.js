@@ -271,19 +271,32 @@ $(document).on("page:change", function() {
   adjustFinalValueWithRacialAndlevelBonus();
 
 
+  // Etape 6 : gestion des compétences (skills)
 
-  function initCountSkillBonus() {
-    var racial_choice = $('#racial_bonus_choice').val();
+  // Gestion des bonus raciaux  dynamiques (cristallien / kalashtar)
+  $(".js-btn-skill-bonus-racial").click(function (e) {
+    e.preventDefault();
+    var btn = $(this);
+    var span = $(this).find($("span"));
+    var input = $(this).find($("input"));
+    var total_skill = $("#total_bonus_" + btn.parents("tr").attr("id"))
+    var total_skill_value = parseInt(total_skill.text())
 
-    if (racial_choice !== undefined) {
-      console.log(racial_choice);
+    if (span.hasClass("glyphicon-plus")) {
+      total_skill.text(total_skill_value + 2)
+      $(".js-btn-skill-bonus-racial").attr("disabled", true)
+      btn.attr("disabled", false)
+      input.attr("disabled", false)
+    } else {
+      total_skill.text(total_skill_value - 2)
+      $(".js-btn-skill-bonus-racial").attr("disabled", false)
+      input.attr("disabled", true)
     }
 
-    $(".skill_row").each(function(){
+    btn.toggleClass('btn-info btn-default');
+    span.toggleClass('glyphicon-plus glyphicon-ok');
+  });
 
-    });
-  }
-  initCountSkillBonus();
 
   $('.btn-skill-bonus-formation').click(function(e){
     e.preventDefault();

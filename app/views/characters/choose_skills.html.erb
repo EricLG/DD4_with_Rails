@@ -18,19 +18,15 @@
         <% if @character.klass.name == 'Rôdeur'  %>
           <p>En tant que rôdeur, vous bénéficiez gratuitement soit d'Exploration, soit de Nature.</p>
         <% elsif @character.klass.name == 'Voleur' %>
-          <p>En tant que voleur, vous bénéficiez gratuitement soit de Discrétion , soit de Larcin.</p>
+          <p>En tant que voleur, vous bénéficiez gratuitement soit de Discrétion, soit de Larcin.</p>
         <% end %>
 
         <% if @character.race.name == 'Éladrin' %>
           <p>En tant qu'éladrin, vous pouvez choisir une compétence supplémentaire (non limité à votre liste de classe).</p>
         <% elsif @character.race.name == 'Humain' %>
-          <p>En tant qu'humain, vous pouvez choisir une compétence supplémentaire (limité à votre liste de classe).</p>
-        <% elsif @character.race.grant_skill_bonus %>
-          <p>En tant que <%= @character.race.name.downcase %>, vous bénéficiez d'un bonus racial de +2 dans une autre compétence :
-            <%= f.fields_for :skill_choices, @race_bonus do |frb| %>
-              <%= select_tag "racial_bonus_choice", options_for_select(@race_bonus_skill_available, @race_bonus_skill_choices.get_selected_skill), include_blank: true %>
-            <% end %>
-          </p>
+          <p>En tant qu'humain, vous pouvez choisir une formation supplémentaire (limité à votre liste de classe).</p>
+        <% elsif @character.race.grant_dynamic_racial_skill_bonus %>
+          <p>En tant que <%= @character.race.name.downcase %>, vous bénéficiez d'un bonus racial de +2 dans une autre compétence.</p>
         <% end %>
 
         <p>Sélectionnez <%= @character.klass.skills_number %> formations dans votre liste de compétences de classe :</p>
@@ -58,12 +54,11 @@
                       racial_bonus = @character.race.skill.send(s) + @race_bonus_skill_choices.send(s)
                       carac_half_level = count_comp_bonus_carac_level(s, link_carac)
                       # TODO prendre en compte la formation avec Javascript
-                      total_bonus = carac_half_level + racial_bonus + @klass_formations_choices.send(s)
                     %>
                   <tr id="<%= s %>" class="skill_row">
                     <td>
                       <button type="button" id="total_bonus_<%= s %>" class="btn btn-default btn-sm final-value btn btn-default max-width bold" disabled="disabled">
-                        <%= total_bonus %>
+                        <%= carac_half_level + racial_bonus + @klass_formations_choices.send(s) %>
                       </button>
                     </td>
                     <td class="center"><%= fr_skill %></td>
@@ -74,8 +69,24 @@
                       <%= carac_half_level %>
                       </button>
                     </td>
-                    <td>
-                      <%= button_tag(racial_bonus, id: "racial_bonus_choice_#{s}", class: "center max-width btn btn-default", disabled: true) %></td>
+                    <td class="center">
+                      <%# Cas des bonus raciaux dynamiques (+2 dans une compétence au choix) mais non choisie %>
+                      <% if (@character.race.grant_dynamic_racial_skill_bonus && @race_bonus_skill_available.include?(s) && racial_bonus == 0) %>
+                        <button id="char-racial-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm js-btn-skill-bonus-racial" disabled="<%= !@race_bonus_skill_choices.to_s.blank? %>">
+                          <%= hidden_field_tag "racial_bonus_choice", s, disabled: true %>
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                      <%# Cas d'un bonus racial dynamique déjà choisi %>
+                      <% elsif (@character.race.grant_dynamic_racial_skill_bonus && @race_bonus_skill_available.include?(s) && racial_bonus == 2) %>
+                        <button id="char-racial-choice-btn-<%= s %>" type="button" class="btn btn-info btn-sm js-btn-skill-bonus-racial" >
+                          <%= hidden_field_tag "racial_bonus_choice", value: s, disabled: true %>
+                          <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                      <%# Cas des bonus raciaux statiques (+2 Diplomatie, etc.) %>
+                      <% else %>
+                        <%= button_tag(racial_bonus, id: "racial_bonus_choice_#{s}", class: "btn btn-default", disabled: true) %>
+                      <% end %>
+
                     </td>
                     <td class="center">
                       <% if @character.klass.available_skills.to_a.include?(s) %>
