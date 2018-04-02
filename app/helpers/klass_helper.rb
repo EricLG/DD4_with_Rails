@@ -17,4 +17,9 @@ module KlassHelper
     return result.join(', ')
     #return text
   end
+
+  # Renvoie true si la compétence s est obligatoire.
+  def free_required_skill(s)
+    @character.klass.have_only_one_required_skill? && @character.klass.required_skills.map(&:to_a).flatten.include?(s)
+  end
 end

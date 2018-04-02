@@ -296,24 +296,28 @@ $(document).on("page:change", function() {
     var total_skill = $("#total_bonus_" + skill)
     var total_skill_value = parseInt(total_skill.text())
 
-    // Update total skill
+    // Update total skill et activation de l'input
     if (span.hasClass("glyphicon-plus")) {
       total_skill.text(total_skill_value + 5)
+      input.attr("disabled", false)
     } else {
       total_skill.text(total_skill_value - 5)
+      input.attr("disabled", true)
+    }
+
+    // Gestion du cas Eladrin : desactivation des autres boutons pour respecter l'aptitude Education éladrine
+    if (btn.hasClass("js-eladrin-skill-bonus")) {
+      if (span.hasClass("glyphicon-plus")) {
+        $(".js-eladrin-skill-bonus").attr("disabled", true)
+        btn.attr("disabled", false)
+      } else {
+        $(".js-eladrin-skill-bonus").attr("disabled", false)
+      }
     }
 
     // Update btn display
     btn.toggleClass('btn-info');
     span.toggleClass('glyphicon-plus glyphicon-ok');
-
-    // Value inutile
-    var carac = parseInt($("#carac_bonus_" + skill).text());
-    var race = parseInt($("#racial_bonus_choice_" + skill).text());
-    var formation = parseInt($("#char-choice-btn-" + skill).text());
-
-    // Inutile ?
-    input.prop( "disabled", function(i, v) { return !v; });
   });
 
 });

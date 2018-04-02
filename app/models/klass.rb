@@ -13,6 +13,7 @@ class Klass < ActiveRecord::Base
   has_and_belongs_to_many :required_skills, :class_name => "Skill", :join_table => :required_skills_for_klass
 
   GRANT_FORMATION_SKILL = ["Barde", "Druide", "Ensorceleur", "Façonneur", "Gardien", "Invocateur", "Limier", "Mage lames", "Magicien", "Paladin", "Prêtre", "Prêtre des runes", "Rôdeur", "Shaman", "Vengeur", "Voleur"]
+  GRANT_ONLY_ONE_FORMATION_SKILL = ["Barde", "Druide", "Ensorceleur", "Façonneur", "Gardien", "Invocateur", "Limier", "Mage lames", "Magicien", "Paladin", "Prêtre", "Prêtre des runes", "Shaman", "Vengeur"]
   def is_divine?
     self.power_source == 'divine'
   end
@@ -20,5 +21,13 @@ class Klass < ActiveRecord::Base
   # Retourne true si la classe offre gratuitement 1 formation
   def grant_formation_skill?
     GRANT_FORMATION_SKILL.include?(self.name)
+  end
+
+  def have_choice_in_required_skill?
+    self.name == 'Rôdeur' || self.name == 'Voleur'
+  end
+
+  def have_only_one_required_skill?
+    GRANT_ONLY_ONE_FORMATION_SKILL.include?(self.name)
   end
 end
