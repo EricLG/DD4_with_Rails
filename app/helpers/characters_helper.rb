@@ -11,11 +11,11 @@ module CharactersHelper
     end
   end
 
-  def count_comp_bonus_carac_level(competence, link_carac)
-    level_bonus = (@character.level / 2)
-    carac = @character.total_stat(link_carac)
-    comp_bonus = level_bonus + ((carac-10)/2)
-    comp_bonus.floor
+  # Compte le bonus de caractérisque + le 1/2 niveau en fonction du personnage et de la compétence
+  def count_carac_bonus_plus_half_level(character, skill)
+    carac = character.total_stat(Skill.get_linked_carac(skill))
+    bonus = (character.level / 2) + ((carac-10)/2)
+    bonus.floor
   end
 
   def show_formation_bonus_rule(character)

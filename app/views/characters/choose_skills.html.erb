@@ -49,22 +49,22 @@
                     <%
                       link_carac = Skill.get_linked_carac(s)
                       racial_bonus = @character.race.race_skill(s) + @race_bonus_skill_choices.send(s)
-                      carac_half_level = count_comp_bonus_carac_level(s, link_carac)
+                      carac_bonus_plus_half_level = count_carac_bonus_plus_half_level(@character, s)
                       # TODO prendre en compte la formation avec Javascript
                       bg = @character.klass.available_skills.to_a.include?(s) ? "bg" : ""
                     %>
                   <tr id="<%= s %>" class="<%= bg %> skill_row">
                     <td>
                       <button type="button" id="total_bonus_<%= s %>" class="btn btn-default btn-sm final-value max-width bold" disabled="disabled">
-                        <%= count_total_skill_value(carac_half_level, racial_bonus, s, @klass_formations_choices) %>
+                        <%= count_total_skill_value(carac_bonus_plus_half_level, racial_bonus, s, @klass_formations_choices) %>
                       </button>
                     </td>
                     <td class="center"><%= fr_skill %></td>
                     <td class="center"></td>
                     <td class="center"><%= Stat.human_attribute_name(link_carac) %></td>
                     <td>
-                      <button type="button" id="carac_bonus_<%= s %>" class="btn btn-sm mod-skill-half_lvl btn btn-default max-width bold" disabled="disabled">
-                      <%= carac_half_level %>
+                      <button type="button" id="carac_bonus_<%= s %>" class="btn btn-default btn-sm mod-skill-half_lvl max-width bold" disabled="disabled">
+                      <%= carac_bonus_plus_half_level %>
                       </button>
                     </td>
                     <td class="center">
