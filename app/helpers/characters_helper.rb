@@ -21,8 +21,8 @@ module CharactersHelper
   def show_formation_bonus_rule(character)
     feature = nil
     if character.race.grant_dynamic_formation_skill?
-      feature = character.race.features.main_ft.find do |feature|
-        feature.name == "Compétence supplémentaire" || feature.name == "Éducation éladrine"
+      feature = character.race.features.main_ft.find do |f|
+        f.name == "Compétence supplémentaire" || f.name == "Éducation éladrine"
       end
     end
     feature
