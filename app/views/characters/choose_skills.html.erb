@@ -89,38 +89,47 @@
                     <td class="center">
                       <%# Classe dont la compétence s est obligatoire %>
                       <% if free_required_skill(s) %>
-                        <%#= button_tag(5, id: "char-choice-btn-%#{s}", class: "btn btn-info prevent-default") %>
-                        <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-info prevent-default">
-                          <%= fc.hidden_field "#{s}", value: 5, disabled: false %>
-                          <span class="glyphicon glyphicon-ok"></span>
-                        </button>
+                        <% css_btn = "btn-info prevent-default" %>
+                        <% input_disabled = false %>
+                        <% span_class = "glyphicon-ok" %>
                       <%# Classe dont la compétence s fait partie de la liste de compétences de classe %>
                       <% elsif @character.klass.available_skills.to_a.include?(s) %>
                         <%# La compétence a été choisie %>
                         <% if @klass_formations_choices && @klass_formations_choices.send(s) == 5 %>
-                          <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm btn-info js-btn-skill-bonus-formation">
-                            <%= fc.hidden_field "#{s}", value: 5, disabled: false %>
-                            <span class="glyphicon glyphicon-ok"></span>
-                          </button>
-                          <%# La compétence n'a pas été choisie %>
+                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation" %>
+                          <% span_class = "glyphicon-ok" %>
+                          <% input_disabled = true %>
+                        <%# La compétence n'a pas été choisie %>
                         <% else %>
-                          <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm js-btn-skill-bonus-formation">
-                            <%= fc.hidden_field "#{s}", value: 5, disabled: true %>
-                            <span class="glyphicon glyphicon-plus"></span>
-                          </button>
+                          <% css_btn = "btn-sm btn-default js-btn-skill-bonus-formation" %>
+                          <% span_class = "glyphicon-plus" %>
+                          <% input_disabled = false %>
                         <% end %>
                       <%# La compétence ne fait pas partie de la liste des compétence de classe mais le personnage est un éladrin %>
                       <% elsif @character.race.name == 'Éladrin' %>
-                        <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm js-btn-skill-bonus-formation js-eladrin-skill-bonus">
-                          <%= fc.hidden_field "#{s}", value: 5, disabled: true %>
-                          <span class="glyphicon glyphicon-plus"></span>
-                        </button>
+                        <%# La compétence a été choisie %>
+                        <% if @klass_formations_choices && @klass_formations_choices.send(s) == 5 %>
+                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation js-eladrin-skill-bonus" %>
+                          <% span_class = "glyphicon-ok" %>
+                          <% input_disabled = false %>
+                        <%# La compétence n'a pas été choisie %>
+                        <% else %>
+                          <% css_btn = "btn-sm btn-default js-btn-skill-bonus-formation js-eladrin-skill-bonus" %>
+                          <% span_class = "glyphicon-plus" %>
+                          <% input_disabled = true %>
+                          <% btn_disabled = "disabled" %>
+                        <% end %>
                       <%# La compétence ne fait pas partie de la liste des compétence de classe %>
                       <% else %>
-                        <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm js-btn-skill-bonus-formation" disabled>
-                          <span class="glyphicon glyphicon-ban-circle"></span>
-                        </button>
+                        <% css_btn = "btn-default btn-sm js-btn-skill-bonus-formation" %>
+                        <% span_class = "glyphicon-ban-circle" %>
+                        <% input_disabled = true %>
+                        <% btn_disabled = "disabled" %>
                       <% end %>
+                      <button id="char-choice-btn-<%= s %>" type="button" class="btn <%= css_btn %>" <%= btn_disabled %> >
+                        <%= fc.hidden_field "#{s}", value: 5, disabled: input_disabled %>
+                        <span class="glyphicon <%= span_class %>"></span>
+                      </button>
                     </td>
                   </tr>
               <% end %>
