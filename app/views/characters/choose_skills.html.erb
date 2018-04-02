@@ -55,8 +55,8 @@
                     %>
                   <tr id="<%= s %>" class="<%= bg %> skill_row">
                     <td>
-                      <button type="button" id="total_bonus_<%= s %>" class="btn btn-default btn-sm final-value btn btn-default max-width bold" disabled="disabled">
-                        <%= count_total_skill_value(carac_half_level, racial_bonus, s) %>
+                      <button type="button" id="total_bonus_<%= s %>" class="btn btn-default btn-sm final-value max-width bold" disabled="disabled">
+                        <%= count_total_skill_value(carac_half_level, racial_bonus, s, @klass_formations_choices) %>
                       </button>
                     </td>
                     <td class="center"><%= fr_skill %></td>
