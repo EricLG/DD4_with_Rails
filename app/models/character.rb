@@ -99,9 +99,17 @@ class Character < ActiveRecord::Base
   def race_bonus_skill_available
     skills = []
     Skill::SKILL.each do |s|
-      skills << s unless self.race.skill.send(s) == 2
+      skills << s unless self.race.race_skill(s) == 2
     end
     skills
+  end
+
+  # Return the total formation for a character from his race or class
+  def total_formation_skills_number
+    total = self.klass.skills_number
+    total +=1 if self.race.grant_dynamic_formation_skill?
+    total +=1 if self.klass.grant_formation_skill?
+    total
   end
 
   def level_to_xp

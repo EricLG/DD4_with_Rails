@@ -256,16 +256,6 @@ $(document).on("page:change", function() {
     $("#total_bonus_level_stat_" + caracType).text(totalBonusRow);
   }
 
-  $('.btn-skill-bonus-formation').click(function (e) {
-    e.preventDefault();
-    var btn = $(this);
-    var span = $(this).find($("span"));
-    var input = $(this).find($("input"));
-    input.prop( "disabled", function(i, v) { return !v; });
-    btn.toggleClass('btn-info');
-    span.toggleClass('glyphicon-plus glyphicon-ok');
-  });
-
   applyRacialBonus();
   resetBonusCarac();
   adjustFinalValueWithRacialAndlevelBonus();
@@ -297,20 +287,33 @@ $(document).on("page:change", function() {
     span.toggleClass('glyphicon-plus glyphicon-ok');
   });
 
-
-  $('.btn-skill-bonus-formation').click(function(e){
+  $('.js-btn-skill-bonus-formation').click(function(e){
     e.preventDefault();
+    var btn = $(this);
+    var span = $(this).find($("span"));
+    var input = $(this).find($("input"));
     var skill = $(this).parents("tr").attr('id');
+    var total_skill = $("#total_bonus_" + skill)
+    var total_skill_value = parseInt(total_skill.text())
+
+    // Update total skill
+    if (span.hasClass("glyphicon-plus")) {
+      total_skill.text(total_skill_value + 5)
+    } else {
+      total_skill.text(total_skill_value - 5)
+    }
+
+    // Update btn display
+    btn.toggleClass('btn-info');
+    span.toggleClass('glyphicon-plus glyphicon-ok');
+
+    // Value inutile
     var carac = parseInt($("#carac_bonus_" + skill).text());
     var race = parseInt($("#racial_bonus_choice_" + skill).text());
     var formation = parseInt($("#char-choice-btn-" + skill).text());
-    console.log(this);
-    console.log(this);
-    console.log(carac);
-    console.log(race);
-    console.log(formation);
 
+    // Inutile ?
+    input.prop( "disabled", function(i, v) { return !v; });
   });
-
 
 });

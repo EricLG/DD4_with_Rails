@@ -27,4 +27,13 @@ class Race < ActiveRecord::Base
     self.name == 'Cristallien' || self.name == 'Kalashtar'
   end
 
+  def grant_dynamic_formation_skill?
+    self.name == 'Éladrin' || self.name == 'Humain'
+  end
+
+  # Wrapper pour récupérer la compétence s de la race
+  def race_skill(s)
+    skill = self.skill.try(:send, "#{s}")
+    return skill ? skill : (Skill.new.send(s))
+  end
 end

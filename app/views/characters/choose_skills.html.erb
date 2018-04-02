@@ -15,21 +15,18 @@
         <h4>Choix des formations de compétences de classes - <small>EN COURS DE DÉVELOPPEMENT</small></h4>
         <p>Une formation vous donne un bonus de +5 à un test de compétence.</p>
 
-        <% if @character.klass.name == 'Rôdeur'  %>
-          <p>En tant que rôdeur, vous bénéficiez gratuitement soit d'Exploration, soit de Nature.</p>
-        <% elsif @character.klass.name == 'Voleur' %>
-          <p>En tant que voleur, vous bénéficiez gratuitement soit de Discrétion, soit de Larcin.</p>
-        <% end %>
+        <p><%= @character.total_formation_skills_number %></p>
 
-        <% if @character.race.name == 'Éladrin' %>
-          <p>En tant qu'éladrin, vous pouvez choisir une compétence supplémentaire (non limité à votre liste de classe).</p>
-        <% elsif @character.race.name == 'Humain' %>
-          <p>En tant qu'humain, vous pouvez choisir une formation supplémentaire (limité à votre liste de classe).</p>
-        <% elsif @character.race.grant_dynamic_racial_skill_bonus %>
-          <p>En tant que <%= @character.race.name.downcase %>, vous bénéficiez d'un bonus racial de +2 dans une autre compétence.</p>
-        <% end %>
-
-        <p>Sélectionnez <%= @character.klass.skills_number %> formations dans votre liste de compétences de classe :</p>
+        <ul class="list-group ">
+          <% if @character.race.skill %>
+            <% skill_bonus = @character.race.grant_dynamic_racial_skill_bonus ? ", +2 dans une autre compétence au choix" : "" %>
+            <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("skill")%></strong> : <%= @character.race.skill.to_s + skill_bonus %> </li>
+          <% end %>
+          <% if feature = show_formation_bonus_rule(@character) %>
+            <li class="list-group-item no-border-line bg"><strong><%= feature.name %></strong> : <%= feature.description.html_safe %> </li>
+          <% end %>
+          <li class="list-group-item no-border-line bg"><strong>Formations de compétences</strong> : <%= display_formations(@character.klass).html_safe %> </li>
+        </ul>
         <div class="col-sm-12">
 
           <table class="table table-condensed table-hover">
@@ -51,11 +48,12 @@
               <% @skills.each do |s, fr_skill| %>
                     <%
                       link_carac = Skill.get_linked_carac(s)
-                      racial_bonus = @character.race.skill.send(s) + @race_bonus_skill_choices.send(s)
+                      racial_bonus = @character.race.race_skill(s) + @race_bonus_skill_choices.send(s)
                       carac_half_level = count_comp_bonus_carac_level(s, link_carac)
                       # TODO prendre en compte la formation avec Javascript
+                      bg = @character.klass.available_skills.to_a.include?(s) ? "bg" : ""
                     %>
-                  <tr id="<%= s %>" class="skill_row">
+                  <tr id="<%= s %>" class="<%= bg %> skill_row">
                     <td>
                       <button type="button" id="total_bonus_<%= s %>" class="btn btn-default btn-sm final-value btn btn-default max-width bold" disabled="disabled">
                         <%= carac_half_level + racial_bonus + @klass_formations_choices.send(s) %>
@@ -91,18 +89,18 @@
                     <td class="center">
                       <% if @character.klass.available_skills.to_a.include?(s) %>
                         <% if @klass_formations_choices && @klass_formations_choices.send(s) == 5 %>
-                          <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm btn-info btn-skill-bonus-formation">
+                          <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm btn-info js-btn-skill-bonus-formation">
                             <%= fc.hidden_field "#{s}", value: 5, disabled: false %>
                             <span class="glyphicon glyphicon-ok"></span>
                           </button>
                         <% else %>
-                          <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm btn-skill-bonus-formation">
+                          <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm js-btn-skill-bonus-formation">
                             <%= fc.hidden_field "#{s}", value: 0, disabled: true %>
                             <span class="glyphicon glyphicon-plus"></span>
                           </button>
                         <% end %>
                       <% else %>
-                        <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm btn-skill-bonus-formation" disabled>
+                        <button id="char-choice-btn-<%= s %>" type="button" class="btn btn-default btn-sm js-btn-skill-bonus-formation" disabled>
                           <%#= fc.hidden_field "#{s}", value: 5, disabled: true %>
                           <span class="glyphicon glyphicon-ban-circle"></span>
                         </button>
