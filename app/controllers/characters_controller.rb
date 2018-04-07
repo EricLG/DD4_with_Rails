@@ -68,15 +68,18 @@ class CharactersController < ApplicationController
     save_features
 
     # Parametres du template
-    @klass = @character.klass
     @skills = Skill.get_skills
     @race_bonus_skill_available = @character.race_bonus_skill_available
     @race_bonus = Skill.new(origin: 'racial_bonus_choice') if @character.race.grant_dynamic_racial_skill_bonus
-
+    @racial_features = @character.race.features.main_ft
     # Initialisation des choix de compétences de classes
     @klass_formations_required = @character.klass.required_skills.map(&:to_a).flatten
     @klass_formations_choices = @character.klass_formations_choices
     @race_bonus_skill_choices = @character.race_bonus_skill_choices
+    @bonus_from_feature = @character.show_formation_bonus_rule(@racial_features)
+
+    # Determination des différents bonus
+    @skill_bonus = @character.skill_bonus
 
   end
 

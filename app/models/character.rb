@@ -112,6 +112,37 @@ class Character < ActiveRecord::Base
     total
   end
 
+  # Retourne un hash avec les différents bonus (racial, demi-niveau, etc.) par compétence
+  def skill_bonus
+    skill_bonus = {}
+    Skill.get_skills.each do |s, fr_skill|
+      skill_bonus[s] = {
+        :link_carac => Skill.get_linked_carac(s),
+        :racial_bonus => self.race.race_skill(s) + self.race_bonus_skill_choices.send(s),
+        :carac_bonus_plus_half_level => count_carac_bonus_plus_half_level(self, s),
+        :bg => self.klass.available_skills.to_a.include?(s) ? "bg" : ""
+      }
+    end
+    skill_bonus
+  end
+
+  # Compte le bonus de caractérisque + le 1/2 niveau en fonction du personnage et de la compétence
+  def count_carac_bonus_plus_half_level(character, skill)
+    carac = character.total_stat(Skill.get_linked_carac(skill))
+    bonus = (character.level / 2) + ((carac-10)/2)
+    bonus.floor
+  end
+
+  def show_formation_bonus_rule(features)
+    feature = nil
+    if self.race.grant_dynamic_formation_skill?
+      feature = features.main_ft.find do |f|
+        f.name == "Compétence supplémentaire" || f.name == "Éducation éladrine"
+      end
+    end
+    feature
+  end
+
   def level_to_xp
     self.experience = case self.level
                       when 2
