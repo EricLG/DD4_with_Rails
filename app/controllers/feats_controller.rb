@@ -77,7 +77,7 @@ class FeatsController < ApplicationController
   end
 
   def find_dependancies
-    @sources = Source.all
+    @sources = Source.feats
     @races = Race.all
     @klasses = Klass.all
     @features = Feature.all

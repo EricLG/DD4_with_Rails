@@ -157,6 +157,6 @@ class Items::MagicItemsController < ApplicationController
     @implement_groups = ImplementGroup.all
     @locations        = Location.all
     @levels           = ObjectLevel.all
-    @sources          = Source.all
+    @sources          = Source.magic_items
   end
 end

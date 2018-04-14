@@ -4,7 +4,7 @@ class DmTools::MonstersController < ApplicationController
   # GET /monsters
   # GET /monsters.json
   def index
-    @sources = Source.all
+    @sources = Source.monsters
     @search = MonsterSearch.new(params[:monster_search])
     @monsters = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(level: :asc, name: :asc)
     @categories = Monster.pluck(:category).join(', ').split(', ').uniq.sort
