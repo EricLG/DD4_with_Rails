@@ -7,20 +7,20 @@ class FeatsController < ApplicationController
   end
 
   def heroics
-    @search = FeatSearch.new(params["feat_search"], "heroic")
-    @feats = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @search = FeatSearch.new(params[:feat_search], "heroic")
+    @feats = @search.build_search.distinct.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     render :sorted_feats
   end
 
   def parangonics
     @search = FeatSearch.new(params[:feat_search], "parangonic")
-    @feats = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @feats = @search.build_search.distinct.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     render :sorted_feats
   end
 
   def epics
     @search = FeatSearch.new(params[:feat_search], "epic")
-    @feats = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @feats = @search.build_search.distinct.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
     render :sorted_feats
   end
 
