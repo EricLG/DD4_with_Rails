@@ -284,9 +284,11 @@ fr:
       my_wishlist:    "Ma liste de souhait"
 # Termes liés aux talents
   feats:
+    title_list:     "Liste des talents"
     title_index:    "Les talents de DD4"
     title_new:      "Ajout d'un nouveau talent"
     name:           "Nom"
+    prerequisites:  "Prérequis"
     klass:          "Classe"
     klasses:        "Classes"
     race:           "Race"
