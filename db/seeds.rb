@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+puts "Start to seed DB ..."
+
 Source.create([
   { name: 'Art de la Guerre 1' },
   { name: 'Art de la Guerre 2' },
@@ -1284,3 +1286,15 @@ Language.create([
 ])
 # password: plop
 User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')
+
+# Création des abilities
+Ability.create([
+  {name: "strength"},
+  {name: "constitution"},
+  {name: "dexterity"},
+  {name: "intelligence"},
+  {name: "wisdom"},
+  {name: "charisma"}
+])
+
+puts "Seeding done"
