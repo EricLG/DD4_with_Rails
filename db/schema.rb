@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801213000) do
+ActiveRecord::Schema.define(version: 20180408090000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,9 +217,40 @@ ActiveRecord::Schema.define(version: 20170801213000) do
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "prerequisites"
+    t.boolean  "only_eberron",        default: false
+    t.boolean  "only_ro",             default: false
+    t.boolean  "divine_channel",      default: false
   end
 
+  add_index "feats", ["divine_channel"], name: "index_feats_on_divine_channel", using: :btree
+  add_index "feats", ["only_eberron"], name: "index_feats_on_only_eberron", using: :btree
+  add_index "feats", ["only_ro"], name: "index_feats_on_only_ro", using: :btree
   add_index "feats", ["source_id"], name: "index_feats_on_source_id", using: :btree
+
+  create_table "feats_pr_features", id: false, force: :cascade do |t|
+    t.integer "feat_id"
+    t.integer "feature_id"
+  end
+
+  add_index "feats_pr_features", ["feat_id"], name: "index_feats_pr_features_on_feat_id", using: :btree
+  add_index "feats_pr_features", ["feature_id"], name: "index_feats_pr_features_on_feature_id", using: :btree
+
+  create_table "feats_pr_klasses", id: false, force: :cascade do |t|
+    t.integer "feat_id"
+    t.integer "klass_id"
+  end
+
+  add_index "feats_pr_klasses", ["feat_id"], name: "index_feats_pr_klasses_on_feat_id", using: :btree
+  add_index "feats_pr_klasses", ["klass_id"], name: "index_feats_pr_klasses_on_klass_id", using: :btree
+
+  create_table "feats_pr_races", id: false, force: :cascade do |t|
+    t.integer "feat_id"
+    t.integer "race_id"
+  end
+
+  add_index "feats_pr_races", ["feat_id"], name: "index_feats_pr_races_on_feat_id", using: :btree
+  add_index "feats_pr_races", ["race_id"], name: "index_feats_pr_races_on_race_id", using: :btree
 
   create_table "features", force: :cascade do |t|
     t.string   "name"
@@ -390,30 +421,6 @@ ActiveRecord::Schema.define(version: 20170801213000) do
   add_index "players", ["campaign_id"], name: "index_players_on_campaign_id", using: :btree
   add_index "players", ["character_id"], name: "index_players_on_character_id", using: :btree
   add_index "players", ["user_id"], name: "index_players_on_user_id", using: :btree
-
-  create_table "pr_features_for_feat", id: false, force: :cascade do |t|
-    t.integer "feat_id"
-    t.integer "feature_id"
-  end
-
-  add_index "pr_features_for_feat", ["feat_id"], name: "index_pr_features_for_feat_on_feat_id", using: :btree
-  add_index "pr_features_for_feat", ["feature_id"], name: "index_pr_features_for_feat_on_feature_id", using: :btree
-
-  create_table "pr_klasses_for_feat", id: false, force: :cascade do |t|
-    t.integer "feat_id"
-    t.integer "klass_id"
-  end
-
-  add_index "pr_klasses_for_feat", ["feat_id"], name: "index_pr_klasses_for_feat_on_feat_id", using: :btree
-  add_index "pr_klasses_for_feat", ["klass_id"], name: "index_pr_klasses_for_feat_on_klass_id", using: :btree
-
-  create_table "pr_races_for_feat", id: false, force: :cascade do |t|
-    t.integer "feat_id"
-    t.integer "race_id"
-  end
-
-  add_index "pr_races_for_feat", ["feat_id"], name: "index_pr_races_for_feat_on_feat_id", using: :btree
-  add_index "pr_races_for_feat", ["race_id"], name: "index_pr_races_for_feat_on_race_id", using: :btree
 
   create_table "races", force: :cascade do |t|
     t.string   "name"
