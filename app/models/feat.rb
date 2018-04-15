@@ -6,15 +6,33 @@ class Feat < ActiveRecord::Base
   has_many    :prerequisited_stats, class_name: "Stat", foreign_key: "pr_for_feat_id", dependent: :destroy
   has_many    :needed_feats, class_name: "Feat", foreign_key: "top_feat_id"
   #belongs_to  :prerequisite_for_feat,  class_name: "Feat"
-  has_and_belongs_to_many :prerequisited_races,           :class_name => "Race",          :join_table => :pr_races_for_feat, dependent: :destroy
-  has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :pr_klasses_for_feat, dependent: :destroy
-  has_and_belongs_to_many :prerequisited_features,        :class_name => "Feature",       :join_table => :pr_features_for_feat, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_races,           :class_name => "Race",          :join_table => :feats_pr_races, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :feats_pr_klasses, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_features,        :class_name => "Feature",       :join_table => :feats_pr_features, dependent: :destroy
 
-  scope :feats_for_klass_and_every_klasses, -> (klasses_params) {joins("LEFT OUTER JOIN pr_klasses_for_feat as p ON p.feat_id = feats.id").where("p.klass_id IS NULL OR p.klass_id = ?", klasses_params)}
-  scope :feats_for_race_and_every_races,    -> (races_params)   {joins("LEFT OUTER JOIN pr_races_for_feat   as r ON r.feat_id = feats.id").where("r.race_id IS NULL OR r.race_id = ?", races_params)}
-  scope :no_divine_channel, -> (id = 157) {joins("LEFT OUTER JOIN pr_features_for_feat as pr_fff ON pr_fff.feat_id = feats.id").where("pr_fff.feature_id IS NULL OR pr_fff.feature_id != ?", id)}
+  scope :feats_for_klass_and_every_klasses, -> (klasses_params) {joins("LEFT OUTER JOIN feats_pr_klasses as p ON p.feat_id = feats.id").where("p.klass_id IS NULL OR p.klass_id = ?", klasses_params)}
+  scope :feats_for_race_and_every_races,    -> (races_params)   {joins("LEFT OUTER JOIN feats_pr_races as r ON r.feat_id = feats.id").where("r.race_id IS NULL OR r.race_id = ?", races_params)}
+  scope :no_divine_channel, -> {where(divine_channel: false)}
+  scope :no_ro, -> {where(only_ro: false)}
+  scope :no_eberron, -> {where(only_eberron: false)}
 
   CATEGORY = %w(heroic parangonic epic)
+
+  # Ordre affichage:
+  # Carac, race, classe, pouvoir, aptitude de classe, formation de compénce, talent
+  # Utilisé lors de l'import des talents
+  def prerequis
+    prerequis = []
+    prerequis << self.stats unless self.stats.blank?
+    prerequis << self.races unless self.races.blank?
+    prerequis << self.klasses unless self.klasses.blank?
+    prerequis << "Pouvoir " + self.prerequisited_power unless self.prerequisited_power.blank?
+    prerequis << self.features unless self.features.blank?
+    prerequis << self.prerequisited_skill unless self.prerequisited_skill.blank?
+    prerequis << self.required_feats unless self.required_feats.blank?
+    prerequis << self.prerequisited_other unless self.prerequisited_other.blank?
+    return prerequis.join(', ')
+  end
 
   def self.import_feats
     sources   = Source.all
@@ -26,7 +44,7 @@ class Feat < ActiveRecord::Base
       ActiveRecord::Base.transaction do
         File.open(File.join('lib/import_files', filename), 'r') do |f|
           f.readline
-          f.each_line do |l|  # "Titre";"Catégorie de talents";"Aptitude";"Aptitude raciale";"Talent";"5: Pouvoir";"Autre prérequis";"Compétences";"8:Classe";"Race";"Avantage";"11Stats";"Source";"Errata"
+          f.each_line do |l|  # "Titre";"Catégorie de talents";"Aptitude";"Aptitude raciale";"Talent";"5: Pouvoir";"Autre prérequis";"Compétences";"8:Classe";"Race";"Avantage";"11Stats";"Source";"Errata";"specifiqueEberron";"specifiqueRO";"divineChannel"
             array_line  = ImportData.clear_array_line(l.split(";", -1))
             categorie   = ImportData.find_category(array_line[1])
             klass_feat  = ImportData.find_features(array_line[2], features)
@@ -50,8 +68,12 @@ class Feat < ActiveRecord::Base
               avantage:                     array_line[10].gsub("\\r\\n", "\r\n"),
               prerequisited_stats:          stats,
               source:                       source,
-              errata:                       array_line[13]
+              errata:                       array_line[13],
+              only_eberron:                 array_line[14] == 'O',
+              only_ro:                      array_line[15] == 'O',
+              divine_channel:               array_line[16] == 'O'
               )
+            f.prerequisites = f.prerequis
             if f.valid?
                 f.save!
             else
@@ -76,11 +98,11 @@ class Feat < ActiveRecord::Base
   end
 
   def klasses
+    klasses = ""
     if !prerequisited_klasses.empty?
-      return prerequisited_klasses.map(&:name).join(', ')
-    else
-      return ""
+      klasses = Klass::grouped_klass(prerequisited_klasses.map(&:name))
     end
+    klasses
   end
 
   def races
@@ -92,11 +114,11 @@ class Feat < ActiveRecord::Base
   end
 
   def features
+    features = ""
     if !prerequisited_features.empty?
-      return prerequisited_features.map(&:name).join(', ')
-    else
-      return ""
+      features = prerequisited_features.map(&:feature_class_to_s).join(', ')
     end
+    return features
   end
 
   def required_feats
