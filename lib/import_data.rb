@@ -112,20 +112,6 @@ module ImportData
     array_line
   end
 
-  def self.create_stats(data)
-    result = []
-    unless data.empty?
-      if data.match(/ou/)
-        data.split(' ou ', -1).each do |stat|
-          result << Stat.valorize_stat(stat)
-        end
-      else
-        result << Stat.valorize_stat(data)
-      end
-    end
-    result
-  end
-
   def self.find_klass_or_race(data, all_collec)
     result = []
     unless data.empty?

@@ -7,6 +7,7 @@ class RefonteFeat < ActiveRecord::Migration
     add_column :feats, :only_eberron, :boolean, default: false
     add_column :feats, :only_ro, :boolean, default: false
     add_column :feats, :divine_channel, :boolean, default: false
+    add_column :feats, :required_abilities, :string
     add_index :feats, :only_eberron
     add_index :feats, :only_ro
     add_index :feats, :divine_channel

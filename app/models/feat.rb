@@ -3,12 +3,11 @@ require 'import_data'
 class Feat < ActiveRecord::Base
 
   belongs_to  :source
-  has_many    :prerequisited_stats, class_name: "Stat", foreign_key: "pr_for_feat_id", dependent: :destroy
   has_many    :needed_feats, class_name: "Feat", foreign_key: "top_feat_id"
-  #belongs_to  :prerequisite_for_feat,  class_name: "Feat"
-  has_and_belongs_to_many :prerequisited_races,           :class_name => "Race",          :join_table => :feats_pr_races, dependent: :destroy
-  has_and_belongs_to_many :prerequisited_klasses,         :class_name => "Klass",         :join_table => :feats_pr_klasses, dependent: :destroy
-  has_and_belongs_to_many :prerequisited_features,        :class_name => "Feature",       :join_table => :feats_pr_features, dependent: :destroy
+
+  has_and_belongs_to_many :prerequisited_races,     :class_name => "Race",    :join_table => :feats_pr_races, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_klasses,   :class_name => "Klass",   :join_table => :feats_pr_klasses, dependent: :destroy
+  has_and_belongs_to_many :prerequisited_features,  :class_name => "Feature", :join_table => :feats_pr_features, dependent: :destroy
 
   scope :feats_for_klass_and_every_klasses, -> (klasses_params) {joins("LEFT OUTER JOIN feats_pr_klasses as p ON p.feat_id = feats.id").where("p.klass_id IS NULL OR p.klass_id = ?", klasses_params)}
   scope :feats_for_race_and_every_races,    -> (races_params)   {joins("LEFT OUTER JOIN feats_pr_races as r ON r.feat_id = feats.id").where("r.race_id IS NULL OR r.race_id = ?", races_params)}
@@ -23,7 +22,7 @@ class Feat < ActiveRecord::Base
   # Utilisé lors de l'import des talents
   def prerequis
     prerequis = []
-    prerequis << self.stats unless self.stats.blank?
+    prerequis << self.required_abilities unless self.required_abilities.blank?
     prerequis << self.races unless self.races.blank?
     prerequis << self.klasses unless self.klasses.blank?
     prerequis << "Pouvoir " + self.prerequisited_power unless self.prerequisited_power.blank?
@@ -49,7 +48,6 @@ class Feat < ActiveRecord::Base
             categorie   = ImportData.find_category(array_line[1])
             klass_feat  = ImportData.find_features(array_line[2], features)
             race_feat   = ImportData.find_features(array_line[3], features)
-            stats       = ImportData.create_stats(array_line[11])
             feat_pr     = Feat.where(name: array_line[4].split(',', -1).map(&:strip)) unless array_line[4].blank?
             sel_klasses = ImportData.find_klass_or_race(array_line[8], klasses)
             sel_races   = ImportData.find_klass_or_race(array_line[9], races)
@@ -66,7 +64,7 @@ class Feat < ActiveRecord::Base
               prerequisited_klasses:        sel_klasses,
               prerequisited_races:          sel_races,
               avantage:                     array_line[10].gsub("\\r\\n", "\r\n"),
-              prerequisited_stats:          stats,
+              required_abilities:           array_line[11],
               source:                       source,
               errata:                       array_line[13],
               only_eberron:                 array_line[14] == 'O',
@@ -87,14 +85,6 @@ class Feat < ActiveRecord::Base
     end
     c = Feat.count
     logger.debug "#{c} talents ont été crées"
-  end
-
-  def stats
-    if !prerequisited_stats.empty?
-      return prerequisited_stats.map(&:to_s).join('  ou ')
-    else
-      return ""
-    end
   end
 
   def klasses

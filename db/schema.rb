@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408090000) do
+ActiveRecord::Schema.define(version: 20180415122400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20180408090000) do
     t.boolean  "only_eberron",        default: false
     t.boolean  "only_ro",             default: false
     t.boolean  "divine_channel",      default: false
+    t.string   "required_abilities"
   end
 
   add_index "feats", ["divine_channel"], name: "index_feats_on_divine_channel", using: :btree
@@ -436,6 +437,7 @@ ActiveRecord::Schema.define(version: 20180408090000) do
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ability_bonuses"
   end
 
   add_index "races", ["source_id"], name: "index_races_on_source_id", using: :btree
@@ -476,22 +478,6 @@ ActiveRecord::Schema.define(version: 20180408090000) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "stats", force: :cascade do |t|
-    t.integer  "strength"
-    t.integer  "constitution"
-    t.integer  "dexterity"
-    t.integer  "intelligence"
-    t.integer  "wisdom"
-    t.integer  "charisma"
-    t.string   "kind"
-    t.integer  "race_id"
-    t.integer  "pr_for_feat_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "stats", ["pr_for_feat_id"], name: "index_stats_on_pr_for_feat_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

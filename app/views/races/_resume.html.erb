@@ -7,7 +7,7 @@
     <ul class="list-group ">
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("average_height")%></strong> : <%= race.average_height %></li>
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("average_weight")%></strong> : <%= race.average_weight %></li>
-      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("stats")%></strong> : <br><%= race.stats.map(&:to_s).join(' ou ') %></li>
+      <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("stats")%></strong> : <br><%= race.ability_bonuses %></li>
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("cat_size")%></strong> : <%= race.cat_size %></li>
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("speed")%></strong> : <%= race.speed %></li>
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("vision")%></strong> : <%= race.vision %></li>
