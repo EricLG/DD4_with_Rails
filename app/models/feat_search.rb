@@ -20,7 +20,7 @@ class FeatSearch
     end
 
     if params.empty?
-      Feat.where(category: category)
+      search = Feat.where(category: category)
     else
       name_params     = params.delete(:name)
       source_params   = params.delete(:source)
@@ -46,7 +46,9 @@ class FeatSearch
         search = search.feats_for_race_and_every_races(races_params)
       end
 
-      search = search.no_divine_channel
     end
+
+    # On n'affiche pas les talents de conduit divins ou spécifique à un univers (RO, Eberron)
+    search = search.no_divine_channel.no_ro.no_eberron
   end
 end
