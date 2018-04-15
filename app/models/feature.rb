@@ -23,4 +23,20 @@ class Feature < ActiveRecord::Base
       "#{self.parent_feature.name} : #{self.name}"
     end
   end
+
+  def is_racial?
+    self.kind == 'race'
+  end
+
+  def feature_class_to_s
+    particule =  %w(a e i o u).include?(self.name.mb_chars.downcase[0]) ? "d'" : 'de '
+
+    if self.is_racial?
+      temp = "Aptitude de race de #{self.name}"
+      # TODO
+    else
+      temp = "Aptitude de classe #{particule}#{self.name}"
+    end
+    temp
+  end
 end
