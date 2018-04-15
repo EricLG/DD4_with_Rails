@@ -142,12 +142,13 @@ $(document).on("page:change", function() {
     }
   }
 
-  // Calcul du bonus racial
+  // Calcul du bonus racial pour les caractéristiques
   $("#character_racial_stat_id").on("change", function() {
     applyRacialBonus();
     adjustFinalValueWithRacialAndlevelBonus();
   });
 
+  // Récupère les caractéristiques choisies en tant que bonus racial et les appliquent au tableau des carac
   function applyRacialBonus() {
     $(".racial-bonus").text(0);
     var racial_bonus = $("#character_racial_stat_id").find('option:selected').text();
