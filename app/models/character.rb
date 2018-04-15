@@ -19,6 +19,9 @@ class Character < ActiveRecord::Base
   has_many :features, through: :choices
   has_many :languages, through: :choices
 
+  has_many :abilities, through: :ability_bonuses, source: :ability
+  has_many :ability_bonuses, inverse_of: :character
+
   has_many :klass_choices,  -> {klass_features_choices},  class_name: "Choice"
   has_many :race_choices,   -> {race_features_choices},   class_name: "Choice"
   has_many :skill_choices, through: :choices, source: :skill

@@ -17,6 +17,34 @@ ActiveRecord::Schema.define(version: 20180415122400) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
+  create_table "abilities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ability_bonuses", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "ability_id"
+    t.integer "total_value"
+    t.integer "initial_value"
+    t.integer "bonus_racial"
+    t.integer "bonus_klass"
+    t.integer "formation"
+    t.integer "level_4"
+    t.integer "level_8"
+    t.integer "bonus_parangon"
+    t.integer "level_14"
+    t.integer "level_18"
+    t.integer "bonus_epic"
+    t.integer "level_28"
+    t.integer "level_24"
+  end
+
+  add_index "ability_bonuses", ["ability_id"], name: "index_ability_bonuses_on_ability_id", using: :btree
+  add_index "ability_bonuses", ["character_id"], name: "index_ability_bonuses_on_character_id", using: :btree
+
   create_table "armor_categories", force: :cascade do |t|
     t.string   "code"
     t.string   "name"
