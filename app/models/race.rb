@@ -36,4 +36,8 @@ class Race < ActiveRecord::Base
     skill = self.skill.try(:send, "#{s}")
     return skill ? skill : (Skill.new.send(s))
   end
+
+  def ability_to_a
+    self.ability_bonuses.split(' ou ')
+  end
 end

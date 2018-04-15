@@ -40,7 +40,7 @@
             <div class="form-group">
               <%= f.label :racial_stat_id, "Bonus racial", class: "col-sm-8 control-label" %>
               <div class="col-sm-4 ">
-                <%= f.select :racial_stat_id, options_from_collection_for_select(@character.race.stats, :id, :to_s, @character.racial_stat_id), {},{class: "form-control"}  %>
+                <%= f.select :racial_stat_id, options_for_select(@character.race.ability_to_a), {}, {class: "form-control"}  %>
               </div>
             </div>
           </div>
@@ -63,20 +63,28 @@
               </tr>
             </thead>
             <tbody id="character-stats">
-              <% Character::STATS.each_with_index do |s, i| %>
+              <% @char_abilities.each_with_index do |ability_bonus, i| %>
+                <%= f.fields_for :ability_bonuses, ability_bonus do |ff| %>
                 <tr>
-                  <% default_char_value = @character.send("level_1_#{s}") || Character::DEFAULT_STATS[i] %>
-                  <td class="black-bg white-text"><%= Stat.human_attribute_name s %></td>
+                  <td class="black-bg white-text"><%= Stat.human_attribute_name ability_bonus.ability.name %></td>
+
                   <td class="black-bg center"><button class="btn-minus btn btn-default rounded"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td>
-                  <td class="black-bg"><%= f.text_field "level_1_#{s}", value: default_char_value, class: "center stat max-width text-right", size: 1 %></td>
+                  <td class="black-bg"><%= ff.text_field :initial_value, class: "center stat max-width text-right", size: 1 %></td>
                   <td class="black-bg center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
-                  <td><%= button_tag 0, id: "racial_stat_#{s}", class: "racial-bonus center max-width btn btn-default", disabled: true %></td>
-                  <td><%= button_tag default_bonus_level, id: "total_bonus_level_stat_#{s}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %></td>
+
+                  <td>
+                    <%#= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "racial-bonus center max-width btn btn-default", disabled: true %>
+                    <%= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "racial-bonus center max-width btn btn-default", disabled: true %>
+                    <%= ff.hidden_field :bonus_racial, value: ability_bonus.bonus_racial %>
+                  </td>
+                  <td><%= button_tag default_bonus_level, id: "total_bonus_level_stat_#{ability_bonus.ability.name}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %></td>
+
                   <td class="center">=</td>
                   <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= Character::DEFAULT_STATS[i] %></button></td>
                   <td><button type="button" class="mod-carac btn btn-default max-width bold" disabled="disabled">+0</button></td>
                   <td><button type="button" class="mod-carac-half_lvl btn btn-default max-width bold" disabled="disabled">+0</button></td>
                 </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>

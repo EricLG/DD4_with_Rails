@@ -38,13 +38,20 @@ class CharactersController < ApplicationController
       @character.language_ids.clear
       @character.update(character_params)
     end
+
+    # Initialize abilities for new character
+    @char_abilities = @character.initialize_ability_bonuses
+
     @random_stats = [random_stat, random_stat, random_stat, random_stat, random_stat, random_stat].sort {|x,y| y <=> x }
-    @random_stats
+  end
+
+  def save_abilities
+    @character.update(character_params)
   end
 
   def choose_features
     @character = Character.find_by_id(params["character_id"])
-    @character.update(character_params) if params && params["character"]
+    save_abilities
   end
 
   def save_features
@@ -233,60 +240,6 @@ class CharactersController < ApplicationController
       :god_id,
       :stats,
       :racial_stat_id,
-      :level_1_strength,
-      :level_4_strength,
-      :level_8_strength,
-      :level_11_strength,
-      :level_14_strength,
-      :level_18_strength,
-      :level_21_strength,
-      :level_24_strength,
-      :level_28_strength,
-      :level_1_constitution,
-      :level_4_constitution,
-      :level_8_constitution,
-      :level_11_constitution,
-      :level_14_constitution,
-      :level_18_constitution,
-      :level_21_constitution,
-      :level_24_constitution,
-      :level_28_constitution,
-      :level_1_dexterity,
-      :level_4_dexterity,
-      :level_8_dexterity,
-      :level_11_dexterity,
-      :level_14_dexterity,
-      :level_18_dexterity,
-      :level_21_dexterity,
-      :level_24_dexterity,
-      :level_28_dexterity,
-      :level_1_intelligence,
-      :level_4_intelligence,
-      :level_8_intelligence,
-      :level_11_intelligence,
-      :level_14_intelligence,
-      :level_18_intelligence,
-      :level_21_intelligence,
-      :level_24_intelligence,
-      :level_28_intelligence,
-      :level_1_wisdom,
-      :level_4_wisdom,
-      :level_8_wisdom,
-      :level_11_wisdom,
-      :level_14_wisdom,
-      :level_18_wisdom,
-      :level_21_wisdom,
-      :level_24_wisdom,
-      :level_28_wisdom,
-      :level_1_charisma,
-      :level_4_charisma,
-      :level_8_charisma,
-      :level_11_charisma,
-      :level_14_charisma,
-      :level_18_charisma,
-      :level_21_charisma,
-      :level_24_charisma,
-      :level_28_charisma,
       :racial_bonus_choice,
       {skill_choices: [
         :acrobatics,
@@ -310,7 +263,8 @@ class CharactersController < ApplicationController
       ]},
       {game_ids:[]},
       {language_ids: []},
-      {campaign_ids: []}
+      {campaign_ids: []},
+      :ability_bonuses_attributes => [:id, :initial_value, :bonus_racial]
       )
   end
 

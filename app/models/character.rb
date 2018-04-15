@@ -21,28 +21,18 @@ class Character < ActiveRecord::Base
 
   has_many :abilities, through: :ability_bonuses, source: :ability
   has_many :ability_bonuses, inverse_of: :character
+  accepts_nested_attributes_for :ability_bonuses
 
   has_many :klass_choices,  -> {klass_features_choices},  class_name: "Choice"
   has_many :race_choices,   -> {race_features_choices},   class_name: "Choice"
   has_many :skill_choices, through: :choices, source: :skill
 
-  STATS = %w(strength constitution dexterity intelligence wisdom charisma)
   LEVEL_STATS = %w(4 8 11 14 18 21 24 28)
   DEFAULT_STATS = [10, 10, 10, 10, 10, 8]
   ALIGNMENT = [["Bon", "Bon"], ["Loyal bon", "Loyal bon"], ["Mauvais", "Mauvais"], ["Chaotique mauvais", "Chaotique mauvais"], ["Non aligné", "Non aligné"]]
-  #before_save :level_to_xp
-  #validates :user_id, :race_id, :klass_id, :name,  presence: true
-  #validates :level, presence: true, numericality: { only_integer: true }, inclusion: { :in => 1..30}
-  #validates :age, :weight, :height, numericality: { only_integer: true }, allow_blank: true
 
   def self.meta_store_accessor
-    methods = []
-    [1, 4, 8, 11, 14, 18, 21, 24, 28].each do |l|
-      STATS.each do |s|
-        methods << ":level_#{l}_#{s}"
-      end
-    end
-    eval "store_accessor :stats, #{methods.join(', ')}, :racial_stat_id"
+    eval "store_accessor :stats, :racial_stat_id"
   end
 
   meta_store_accessor
@@ -70,6 +60,18 @@ class Character < ActiveRecord::Base
 
   def racial_stats
     Stat.find(racial_stat_id)
+  end
+
+  # On ne peut avoir que 6 caractéristiques : Force, Constitution, etc.
+  def initialize_ability_bonuses
+    if self.ability_bonuses.map(&:ability).map(&:name).sort != Ability::ABILITIES.sort
+      self.ability_bonuses.destroy_all
+      abilities = Ability.all
+      abilities.each do |a|
+        AbilityBonus.create(character: self, ability: a, initial_value: (a == abilities.last ? 8 : 10))
+      end
+    end
+    return self.ability_bonuses
   end
 
   def is_paragon?
