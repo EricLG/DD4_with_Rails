@@ -40,4 +40,14 @@ class Race < ActiveRecord::Base
   def ability_to_a
     self.ability_bonuses.split(' ou ')
   end
+
+  # Retourne le premier choix de caracteristique possible en tableau de string
+  # ['strength', etc.]
+  def default_ability_racial_bonus
+    default_bonus = []
+    self.ability_to_a[0].split(', ').each do |a|
+      default_bonus << Ability.convert(a)
+    end
+    default_bonus
+  end
 end

@@ -63,15 +63,22 @@ class Character < ActiveRecord::Base
   end
 
   # On ne peut avoir que 6 caractéristiques : Force, Constitution, etc.
+  # Renvoie les 6 ability_bonuses triées
   def initialize_ability_bonuses
     if self.ability_bonuses.map(&:ability).map(&:name).sort != Ability::ABILITIES.sort
       self.ability_bonuses.destroy_all
       abilities = Ability.all
       abilities.each do |a|
-        AbilityBonus.create(character: self, ability: a, initial_value: (a == abilities.last ? 8 : 10))
+        br = self.race.default_ability_racial_bonus.include?(a.name) ? 2 : 0
+        AbilityBonus.create(
+          character: self,
+          ability: a,
+          initial_value: (a == abilities.last ? 8 : 10),
+          bonus_racial: br
+        )
       end
     end
-    return self.ability_bonuses
+    return self.ability_bonuses.joins(:ability)
   end
 
   def is_paragon?
