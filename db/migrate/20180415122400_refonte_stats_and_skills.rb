@@ -16,7 +16,7 @@ class RefonteStatsAndSkills < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :ability_bonus do |t|
+    create_table :ability_bonuses do |t|
       # HABTM Through
       t.belongs_to :character, index: true
       t.belongs_to :ability, index: true
@@ -25,15 +25,16 @@ class RefonteStatsAndSkills < ActiveRecord::Migration
       t.integer :initial_value
       t.integer :bonus_racial
       t.integer :bonus_klass
-      t.integer :formation
       t.integer :level_4
       t.integer :level_8
-      t.integer :bonus_parangon
+      t.integer :level_11
       t.integer :level_14
       t.integer :level_18
-      t.integer :bonus_epic
-      t.integer :level_28
+      t.integer :level_21
       t.integer :level_24
+      t.integer :level_28
+      t.integer :bonus_parangon
+      t.integer :bonus_epic
     end
   end
 

@@ -31,15 +31,16 @@ ActiveRecord::Schema.define(version: 20180415122400) do
     t.integer "initial_value"
     t.integer "bonus_racial"
     t.integer "bonus_klass"
-    t.integer "formation"
     t.integer "level_4"
     t.integer "level_8"
-    t.integer "bonus_parangon"
+    t.integer "level_11"
     t.integer "level_14"
     t.integer "level_18"
-    t.integer "bonus_epic"
-    t.integer "level_28"
+    t.integer "level_21"
     t.integer "level_24"
+    t.integer "level_28"
+    t.integer "bonus_parangon"
+    t.integer "bonus_epic"
   end
 
   add_index "ability_bonuses", ["ability_id"], name: "index_ability_bonuses_on_ability_id", using: :btree
