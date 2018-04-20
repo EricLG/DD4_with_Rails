@@ -150,22 +150,29 @@ $(document).on("page:change", function() {
 
   // Récupère les caractéristiques choisies en tant que bonus racial et les appliquent au tableau des carac
   function applyRacialBonus() {
-    $(".racial-bonus").text(0);
+    $(".js-racial-bonus").text(0);
+    $(".js-racial-bonus-field").val(0);
     var racial_bonus = $("#character_racial_stat_id").find('option:selected').text();
     racial_bonus = racial_bonus.split(", ");
     racial_bonus.forEach(function (item) {
       if (item == "For 2") {
         $("#racial_stat_strength").text(2);
+        $("#racial_stat_strength").parent().children("input").val(2)
       } else if (item == "Con 2") {
         $("#racial_stat_constitution").text(2);
+        $("#racial_stat_constitution").parent().children("input").val(2)
       } else if (item == "Dex 2") {
         $("#racial_stat_dexterity").text(2);
+        $("#racial_stat_dexterity").parent().children("input").val(2)
       } else if (item == "Int 2") {
         $("#racial_stat_intelligence").text(2);
+        $("#racial_stat_intelligence").parent().children("input").val(2)
       } else if (item == "Sag 2") {
         $("#racial_stat_wisdom").text(2);
+        $("#racial_stat_wisdom").parent().children("input").val(2)
       } else if (item == "Cha 2") {
         $("#racial_stat_charisma").text(2);
+        $("#racial_stat_charisma").parent().children("input").val(2)
       }
     });
   }
@@ -175,7 +182,7 @@ $(document).on("page:change", function() {
     adjustTotalBonusCarac()
     $("#character-stats tr").each(function() {
       var baseValue   = $(this).find($(".stat")).val()
-      var racialBonus = $(this).find($(".racial-bonus")).text();
+      var racialBonus = $(this).find($(".js-racial-bonus")).text();
       var levelBonus  = $(this).find($(".total-bonus-level-stat")).text();
       var finalValue  = parseInt(baseValue) + parseInt(racialBonus) + parseInt(levelBonus);
       var halfLevel   = Math.floor(parseInt($("#level").val())/2);

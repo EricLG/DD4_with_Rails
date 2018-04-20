@@ -22,4 +22,22 @@ class Ability < ActiveRecord::Base
       end
     ability
   end
+
+  def self.unconvert(long_ability)
+    ability = case long_ability
+      when 'strength'
+        'For 2'
+      when 'constitution'
+        'Con 2'
+      when 'dexterity'
+        'Dex 2'
+      when 'intelligence'
+        'Int 2'
+      when 'wisdom'
+        'Sag 2'
+      when 'charisma'
+        'Cha 2'
+      end
+    ability
+  end
 end

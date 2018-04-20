@@ -41,12 +41,15 @@ class CharactersController < ApplicationController
 
     # Initialize abilities for new character
     @char_abilities = @character.initialize_ability_bonuses
+    @racial_bonus_chosen = @character.racial_bonus_chosen(@char_abilities)
 
     @random_stats = [random_stat, random_stat, random_stat, random_stat, random_stat, random_stat].sort {|x,y| y <=> x }
   end
 
   def save_abilities
-    @character.update(character_params)
+    @character.assign_attributes(character_params)
+    @character.calcul_abilities
+    @character.save
   end
 
   def choose_features

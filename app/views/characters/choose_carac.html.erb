@@ -40,7 +40,7 @@
             <div class="form-group">
               <%= f.label :racial_stat_id, "Bonus racial", class: "col-sm-8 control-label" %>
               <div class="col-sm-4 ">
-                <%= f.select :racial_stat_id, options_for_select(@character.race.ability_to_a), {}, {class: "form-control"}  %>
+                <%= f.select :racial_stat_id, options_for_select(@character.race.ability_to_a, @racial_bonus_chosen), {}, {class: "form-control"}  %>
               </div>
             </div>
           </div>
@@ -74,8 +74,8 @@
 
                   <td>
                     <%#= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "racial-bonus center max-width btn btn-default", disabled: true %>
-                    <%= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "racial-bonus center max-width btn btn-default", disabled: true %>
-                    <%= ff.hidden_field :bonus_racial, value: ability_bonus.bonus_racial %>
+                    <%= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "js-racial-bonus center max-width btn btn-default", disabled: true %>
+                    <%= ff.hidden_field :bonus_racial, value: ability_bonus.bonus_racial, class: "js-racial-bonus-field" %>
                   </td>
                   <td><%= button_tag default_bonus_level, id: "total_bonus_level_stat_#{ability_bonus.ability.name}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %></td>
 

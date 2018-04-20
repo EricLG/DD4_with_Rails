@@ -81,6 +81,21 @@ class Character < ActiveRecord::Base
     return self.ability_bonuses.joins(:ability)
   end
 
+  # Retourne le bonus racial choisi selon un tableau de ability_bonuses
+  def racial_bonus_chosen(char_abilities)
+    chosen = []
+    char_abilities.each do |ab|
+      chosen << ab.to_s if (ab.bonus_racial > 0)
+    end
+    chosen.join(', ')
+  end
+
+  def calcul_abilities
+    self.ability_bonuses.each do |ab|
+      ab.total_value = ab.initial_value + ab.bonus_racial + ab.bonus_klass + ab.level_4 + ab.level_8 + ab.level_11 + ab.level_14 + ab.level_18 + ab.level_21 + ab.level_28 + ab.level_24 + ab.bonus_parangon + ab.bonus_epic
+    end
+  end
+
   def is_paragon?
     level >= 11 if level
   end
