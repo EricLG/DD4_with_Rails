@@ -264,11 +264,6 @@ $(document).on("page:change", function() {
     $("#total_bonus_level_stat_" + caracType).text(totalBonusRow);
   }
 
-  applyRacialBonus();
-  resetBonusCarac();
-  adjustFinalValueWithRacialAndlevelBonus();
-
-
   // Etape 6 : gestion des compétences (skills)
 
   // Gestion des bonus raciaux  dynamiques (cristallien / kalashtar)

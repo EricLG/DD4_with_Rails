@@ -74,15 +74,16 @@
 
                   <td>
                     <%#= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "racial-bonus center max-width btn btn-default", disabled: true %>
-                    <%= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "js-racial-bonus center max-width btn btn-default", disabled: true %>
+                    <%= button_tag ability_bonus.bonus_racial, id: "racial_stat_#{ability_bonus.ability.name}", class: "js-racial-bonus center max-width btn btn-default", disabled: true %>
                     <%= ff.hidden_field :bonus_racial, value: ability_bonus.bonus_racial, class: "js-racial-bonus-field" %>
                   </td>
-                  <td><%= button_tag default_bonus_level, id: "total_bonus_level_stat_#{ability_bonus.ability.name}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %></td>
+                  <td><%= button_tag ability_bonus.total_bonus_level, id: "total_bonus_level_stat_#{ability_bonus.ability.name}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %></td>
 
+                  <% temp_total_value = ability_bonus.initial_value + ability_bonus.bonus_racial + ability_bonus.total_bonus_level %>
                   <td class="center">=</td>
-                  <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= Character::DEFAULT_STATS[i] %></button></td>
-                  <td><button type="button" class="mod-carac btn btn-default max-width bold" disabled="disabled">+0</button></td>
-                  <td><button type="button" class="mod-carac-half_lvl btn btn-default max-width bold" disabled="disabled">+0</button></td>
+                  <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= temp_total_value %></button></td>
+                  <td><button type="button" class="mod-carac btn btn-default max-width bold" disabled="disabled"><%= ability_bonus.modifier(temp_total_value) %></button></td>
+                  <td><button type="button" class="mod-carac-half_lvl btn btn-default max-width bold" disabled="disabled"><%= ability_bonus.modifier(temp_total_value) + (@character.level / 2).floor %></button></td>
                 </tr>
                 <% end %>
               <% end %>
