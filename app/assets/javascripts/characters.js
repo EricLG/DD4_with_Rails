@@ -141,7 +141,7 @@ $(document).on("page:change", function() {
   }
 
   // Calcul du bonus racial pour les caractéristiques
-  $("#character_racial_stat_id").on("change", function() {
+  $("#racial_stat").on("change", function() {
     applyRacialBonus();
     adjustFinalValueWithRacialAndlevelBonus();
   });
@@ -150,7 +150,7 @@ $(document).on("page:change", function() {
   function applyRacialBonus() {
     $(".js-racial-bonus").text(0);
     $(".js-racial-bonus-field").val(0);
-    var racial_bonus = $("#character_racial_stat_id").find('option:selected').text();
+    var racial_bonus = $("#racial_stat").find('option:selected').text();
     racial_bonus = racial_bonus.split(", ");
     racial_bonus.forEach(function (item) {
       if (item == "For 2") {

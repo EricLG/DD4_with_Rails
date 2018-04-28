@@ -31,12 +31,6 @@ class Character < ActiveRecord::Base
   DEFAULT_STATS = [10, 10, 10, 10, 10, 8]
   ALIGNMENT = [["Bon", "Bon"], ["Loyal bon", "Loyal bon"], ["Mauvais", "Mauvais"], ["Chaotique mauvais", "Chaotique mauvais"], ["Non aligné", "Non aligné"]]
 
-  def self.meta_store_accessor
-    eval "store_accessor :stats, :racial_stat_id"
-  end
-
-  meta_store_accessor
-
   def show_languages
     if self.languages.empty?
       "Vous ne parlez aucune langue. C'est dommage."

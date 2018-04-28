@@ -38,9 +38,9 @@
         <div class="row">
           <div class="col-sm-8">
             <div class="form-group">
-              <%= f.label :racial_stat_id, "Bonus racial", class: "col-sm-8 control-label" %>
+              <%= label_tag :racial_stat, "Bonus racial", class: "col-sm-8 control-label" %>
               <div class="col-sm-4 ">
-                <%= f.select :racial_stat_id, options_for_select(@character.race.ability_to_a, @racial_bonus_chosen), {}, {class: "form-control"}  %>
+                <%= select_tag :racial_stat, options_for_select(@character.race.ability_to_a, @racial_bonus_chosen), {class: "form-control"}  %>
               </div>
             </div>
           </div>
