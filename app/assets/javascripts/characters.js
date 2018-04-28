@@ -197,19 +197,6 @@ $(document).on("page:change", function() {
     adjustBonusCarac($(this));
   });
 
-  function resetBonusCarac() {
-    $('.btn-bonus-carac').each(function() {
-      var clickBtn = $(this);
-      var bonusCaracInput = $(this).find($(".bonus-carac"));
-      var bonusCaracSpan = $(this).find($("span"));
-      if (bonusCaracInput.val() == '1') {
-        selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
-      } else {
-        unSelectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
-      }
-    });
-  }
-
   function adjustBonusCarac(clickBtn) {
     var bonusCaracInput = clickBtn.find($(".bonus-carac"));
     var bonusCaracSpan = clickBtn.find($("span"));
