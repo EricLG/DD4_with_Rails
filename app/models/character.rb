@@ -51,7 +51,9 @@ class Character < ActiveRecord::Base
           character: self,
           ability: a,
           initial_value: (a == abilities.last ? 8 : 10),
-          bonus_racial: br
+          bonus_racial: br,
+          level_11: self.is_paragon? ? 1 : 0,
+          level_21: self.is_epic? ? 1 : 0
         )
       end
     end
