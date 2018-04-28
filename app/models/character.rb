@@ -27,7 +27,7 @@ class Character < ActiveRecord::Base
   has_many :race_choices,   -> {race_features_choices},   class_name: "Choice"
   has_many :skill_choices, through: :choices, source: :skill
 
-  LEVEL_STATS = %w(4 8 11 14 18 21 24 28)
+  NEW_ABILITIES_LEVEL = [4, 8, 11, 14, 18, 21, 24, 28]
   DEFAULT_ABILITIES = [10, 10, 10, 10, 10, 8]
   ALIGNMENT = [["Bon", "Bon"], ["Loyal bon", "Loyal bon"], ["Mauvais", "Mauvais"], ["Chaotique mauvais", "Chaotique mauvais"], ["Non aligné", "Non aligné"]]
 

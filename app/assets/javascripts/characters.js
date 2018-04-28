@@ -192,20 +192,27 @@ $(document).on("page:change", function() {
   }
 
   // Calcul des bonus de carac par niveau
-  $('.btn-bonus-carac').click(function (e) {
+  $('.js-btn-bonus-carac').click(function (e) {
     e.preventDefault();
     adjustBonusCarac($(this));
   });
 
+  // Sélectionne ou désélectionne le bouton cliqué et met à jour le total final des caractéristiques
   function adjustBonusCarac(clickBtn) {
-    var bonusCaracInput = clickBtn.find($(".bonus-carac"));
+    var bonusCaracInput = $("#input-"+ clickBtn.attr('id'))
     var bonusCaracSpan = clickBtn.find($("span"));
-    if ((countBonusCaracByLevel(bonusCaracInput) < 2) && bonusCaracInput.val().toString() == '0') {
+    if ((countBonusCaracByLevel(bonusCaracInput) < 2) && bonusCaracInput.val().toString() !== '1') {
       selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
     } else {
       unSelectCarac(bonusCaracInput, clickBtn, bonusCaracSpan);
     }
     adjustFinalValueWithRacialAndlevelBonus();
+  }
+
+  // Compte le nombre de caractéristique bonus choisi pour un niveau
+  function countBonusCaracByLevel(input) {
+    var level = input.attr("id").match(/level-\d{1,2}/)[0];
+    return $("."+level).filter(".btn-info").size();
   }
 
   function selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan) {
@@ -223,30 +230,16 @@ $(document).on("page:change", function() {
     bonusCaracSpan.removeClass("glyphicon-ok");
   }
 
-  function countBonusCaracByLevel(input) {
-    var level = input.attr("id").match(/level_\d{1,2}/)[0];
-    var colClass = "." + level + "[value='1']";
-    return $(colClass).size();
-  }
-
-  $('.prevent-default').click(function (e) {
-    e.preventDefault();
-  });
-
+  // Calcule le bonus de caractéristiques liés aux niveaux 4+
   function adjustTotalBonusCarac() {
-    $("#level-bonus-stats tr").each(function() {
-      adjustTotalBonusCaracPerRow($(this));
+    $(".level-bonus-stats").each(function() {
+      var totalBonusRow = 0;
+      var row = $(this);
+      row.children("input").each(function() {
+        totalBonusRow += parseInt($(this).val());
+      })
+      row.children("button").text(totalBonusRow)
     });
-  }
-
-  function adjustTotalBonusCaracPerRow(row) {
-    var totalBonusRow = 0;
-    var caracType = row.attr("class")
-    row.find($(".bonus-carac")).each(function() {
-      var caracInput = $(this);
-      totalBonusRow += parseInt(caracInput.val());
-    });
-    $("#total_bonus_level_stat_" + caracType).text(totalBonusRow);
   }
 
   // Etape 6 : gestion des compétences (skills)
