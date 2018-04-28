@@ -267,7 +267,19 @@ class CharactersController < ApplicationController
       {game_ids:[]},
       {language_ids: []},
       {campaign_ids: []},
-      :ability_bonuses_attributes => [:id, :initial_value, :bonus_racial]
+      :ability_bonuses_attributes => [
+        :id,
+        :initial_value,
+        :bonus_racial,
+        :level_4,
+        :level_8,
+        :level_11,
+        :level_14,
+        :level_18,
+        :level_21,
+        :level_24,
+        :level_28
+      ]
       )
   end
 
