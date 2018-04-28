@@ -39,23 +39,6 @@ class Character < ActiveRecord::Base
     end
   end
 
-  def stats_defined?
-    !self.level_1_strength.nil?
-  end
-
-  def total_stat(carac)
-    total_carac = self.send("level_1_#{carac}").to_i
-    LEVEL_STATS.each do |l|
-      total_carac += self.send("level_#{l}_#{carac}").to_i if level >= l.to_i
-    end
-    total_carac += self.racial_stats.send(carac).to_i if racial_stat_id
-    return total_carac
-  end
-
-  def racial_stats
-    Stat.find(racial_stat_id)
-  end
-
   # On ne peut avoir que 6 caractéristiques : Force, Constitution, etc.
   # Renvoie les 6 ability_bonuses triées
   def initialize_ability_bonuses
