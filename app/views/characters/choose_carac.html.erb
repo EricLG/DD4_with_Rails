@@ -19,7 +19,7 @@
           <%= radio_button_tag :"method-choice", 1, false, {class: "method-choice"} %>
           <label for="method-choice_1" class="simple-text">Utiliser les valeurs standards suivantes: [16, 14 , 13, 12, 11, 10], à répartir dans vos caractéristiques.</label><br>
           <%= radio_button_tag :"method-choice", 2, true, {class: "method-choice"} %>
-          <label for="method-choice_2" class="simple-text">Utiliser des valeurs personnalisées, en partant de [<%= Character::DEFAULT_STATS.join(', ') %>] selon le tableau ci-contre.</label><br>
+          <label for="method-choice_2" class="simple-text">Utiliser des valeurs personnalisées, en partant de [<%= Character::DEFAULT_ABILITIES.join(', ') %>] selon le tableau ci-contre.</label><br>
           <%= radio_button_tag :"method-choice", 3, false, {class: "method-choice"} %>
           <label for="method-choice_3" class="simple-text">Utiliser des valeurs déterminés alétoirement. Votre jet donne le résultat suivant: <%= @random_stats %>.</label>
         </ul>
