@@ -1,6 +1,4 @@
 $(document).on("page:change", function() {
-  var method = 2;
-  var stats = $('.stat');
 
   // Etape 1 - détermination du niveau selon l'expérience
   $("#character_experience").change(function(){
@@ -80,7 +78,7 @@ $(document).on("page:change", function() {
     e.preventDefault();
     countStat($(this), -1);
   });
-  $(stats).change(function() {
+  $('.stat').change(function() {
     countStat($(this), 0);
   });
 
@@ -101,7 +99,7 @@ $(document).on("page:change", function() {
    // Compte le cout en point des caractéristiques (pour la méthode 2)
   function countCost() {
     var totalPoints = 2;
-    $.each(stats, function() {
+    $.each($('.stat'), function() {
       var stat = $(this).val()
       totalPoints += convertValueToCost(stat);
     })
