@@ -7,10 +7,46 @@ class CharactersController < ApplicationController
     @characters = @current_user.characters
   end
 
+  def show
+    @characters = @current_user.characters
+  end
+
   def new
     @hide_side_bloc = true
     @character = Character.new
     @campaigns = Campaign.all
+  end
+
+  def create
+    @character = Character.new(character_params)
+    @character.status = 'draft'
+    @character.players.each do |player|
+      player.user_id = @current_user.id
+    end
+
+    if @character.save
+      redirect_to choose_race_character_path(@character.id)
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :new
+    end
+  end
+
+  def edit
+    @characters = @current_user.characters
+    @users = User.all
+    @campaigns = Campaign.all
+  end
+
+  def update
+    if @character.update(character_params)
+      redirect_to characters_path
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :edit
+    end
   end
 
   def choose_race
@@ -120,21 +156,6 @@ class CharactersController < ApplicationController
     # Then load all needed for feats
   end
 
-  def create
-    @character = Character.new(character_params)
-    @character.status = 'draft'
-    @character.players.each do |player|
-      player.user_id = @current_user.id
-    end
-
-    if @character.save
-      redirect_to choose_race_character_path(@character.id)
-    else
-      find_dependancies
-      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
-      render :new
-    end
-  end
 
   def destroy
     character = Character.find_by_id(params[:id])
@@ -143,25 +164,7 @@ class CharactersController < ApplicationController
     redirect_to characters_path
   end
 
-  def show
-    @characters = @current_user.characters
-  end
 
-  def edit
-    @characters = @current_user.characters
-    #@users = User.all
-    @campaigns = Campaign.all
-  end
-
-  def update
-    if @character.update(character_params)
-      redirect_to characters_path
-    else
-      find_dependancies
-      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
-      render :edit
-    end
-  end
 
   def choose_campaign
     player = Player.find_by(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
