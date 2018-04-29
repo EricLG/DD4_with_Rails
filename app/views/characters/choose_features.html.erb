@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-sm-8">
 
-    <%= form_for @character, url: choose_skills_character_path(@character.id), html: {class: 'form-horizontal'} do |form| %>
+    <%= form_for @character, url: save_features_character_path(@character.id), html: {class: 'form-horizontal'} do |form| %>
       <div class="row">
         <%= render "choose_race_features", form: form %>
       </div>
@@ -19,7 +19,7 @@
         <%= render "choose_klass_features", form: form %>
       </div>
 
-      <%= link_to 'Précédent', choose_carac_character_path(@character.id), class: "btn btn-default" %>
+      <%= link_to 'Précédent', choose_abilities_character_path(@character.id), class: "btn btn-default" %>
       <%= submit_text_form(form) %>
     <% end %>
   </div>

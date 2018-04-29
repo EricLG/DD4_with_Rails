@@ -78,18 +78,19 @@ Rails.application.routes.draw do
   resources :characters do
     member do
       get 'choose_race'
+      patch 'save_race'
       get 'choose_class'
-      patch 'choose_class'
+      patch 'save_class'
       get 'choose_optional_fields'
-      patch 'choose_optional_fields'
-      get 'choose_carac'
-      patch 'choose_carac'
+      patch 'save_optional_fields'
+      get 'choose_abilities'
+      patch 'save_abilities'
       get 'choose_features'
-      patch 'choose_features'
+      patch 'save_features'
       get 'choose_skills'
-      patch 'choose_skills'
+      patch 'save_skills'
       get 'choose_feats'
-      patch 'choose_feats'
+      patch 'save_feats'
       patch 'choose_campaign/:camp' => "characters#choose_campaign", as: "choose_campaign"
       patch 'remove_campaign/:camp' => "characters#remove_campaign", as: "remove_campaign"
     end

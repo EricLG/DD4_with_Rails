@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
 
-  before_filter :find_dependancies, only: [:edit, :show, :choose_race, :choose_carac, :choose_class, :choose_features, :choose_skills, :choose_feats, :choose_optional_fields]
+  before_filter :find_dependancies, except: [:index, :new, :create, :resume_race, :resume_klass]
+  #[:edit, :show, :choose_race, :choose_carac, :choose_class, :choose_features, :save_features, :choose_skills, :choose_feats, :choose_optional_fields]
 
   def index
     @hide_side_bloc =true
@@ -50,10 +51,31 @@ class CharactersController < ApplicationController
   end
 
   def choose_race
+    @races = Race.all.order(:name)
+  end
+
+  def save_race
+    if @character.update(character_params)
+      redirect_to choose_class_character_path(@character.id)
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :choose_race
+    end
   end
 
   def choose_class
-    @character.update(character_params) if params && params["character"]
+    @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
+  end
+
+  def save_class
+    if @character.update(character_params)
+      redirect_to choose_optional_fields_character_path (@character.id)
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :choose_class
+    end
   end
 
   def choose_optional_fields
@@ -62,21 +84,24 @@ class CharactersController < ApplicationController
     @known_languages = @character.race.known_level_1_languages
     @languages = @character.race.available_level_1_languages
     @alignment = Character::ALIGNMENT
-    @character.update(character_params) if params && params["character"]
   end
 
-  def choose_carac
-    if params && params["character"]
-      params["character"]["language_ids"].delete("")
-      @character.language_ids.clear
-      @character.update(character_params)
+  def save_optional_fields
+    params["character"]["language_ids"].delete("")
+    @character.language_ids.clear
+    if @character.update(character_params)
+      redirect_to choose_abilities_character_path (@character.id)
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :choose_optional_fields
     end
+  end
 
-    # Initialize abilities for new character
+  def choose_abilities
     @char_abilities = @character.initialize_ability_bonuses
     @racial_bonus_chosen = @character.racial_bonus_chosen(@char_abilities)
-
-    @random_stats = [random_stat, random_stat, random_stat, random_stat, random_stat, random_stat].sort {|x,y| y <=> x }
+    @random_abilities = Character.random_abilities
   end
 
   def save_abilities
@@ -84,10 +109,16 @@ class CharactersController < ApplicationController
     @character.calcul_abilities
     @character.status = "ability_done"
     @character.save
+    if @character.update(character_params)
+      redirect_to choose_features_character_path (@character.id)
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :choose_abilities
+    end
   end
 
   def choose_features
-    save_abilities if params[:character]
   end
 
   def save_features
@@ -103,13 +134,17 @@ class CharactersController < ApplicationController
         Choice.create(character: @character, feature_id: c)
       end
     end
+    # Etape suivante : choix des compétences
+    if @character.save
+      redirect_to choose_skills_character_path(@character.id)
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :choose_features
+    end
   end
 
   def choose_skills
-    @character = Character.find_by_id(params["character_id"])
-    # Sauvegarde des features de la page précédentes
-    save_features
-
     # Parametres du template
     @skills = Skill.get_skills
     @race_bonus_skill_available = @character.race_bonus_skill_available
@@ -120,10 +155,8 @@ class CharactersController < ApplicationController
     @klass_formations_choices = @character.klass_formations_choices
     @race_bonus_skill_choices = @character.race_bonus_skill_choices
     @bonus_from_feature = @character.show_formation_bonus_rule(@racial_features)
-
     # Determination des différents bonus
     @skill_bonus = @character.skill_bonus
-
   end
 
   def save_skills
@@ -146,25 +179,19 @@ class CharactersController < ApplicationController
 
     # Sauvegarde du choix de bonus racial si la race le permet
     @character.race_bonus_skill_choices.update_racial_choice!(params['racial_bonus_choice']) if @character.race.grant_dynamic_racial_skill_bonus && params['racial_bonus_choice']
-
   end
 
   def choose_feats
     @character = Character.find_by_id(params["character_id"])
-    save_skills
-
-    # Then load all needed for feats
   end
 
+  def save_feats
+  end
 
   def destroy
-    character = Character.find_by_id(params[:id])
     character.destroy
-
     redirect_to characters_path
   end
-
-
 
   def choose_campaign
     player = Player.find_by(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
@@ -212,14 +239,6 @@ class CharactersController < ApplicationController
   end
 
   private
-
-  def random_stat
-    [dice, dice, dice, dice].sort.last(3).inject{|acc, i| acc+=i}
-  end
-
-  def dice
-    rand(1..6)
-  end
 
   def character_params
     params.require(:character).permit(
@@ -283,9 +302,6 @@ class CharactersController < ApplicationController
   def find_dependancies
     @character = Character.find_by_id(params["id"])
     @abilities = @character.ability_bonuses.joins(:ability)
-    @races = Race.all.order(:name)
-    @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
-    @languages = Language.all.order(:language)
   end
 
 end

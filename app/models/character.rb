@@ -149,6 +149,18 @@ class Character < ActiveRecord::Base
     feature
   end
 
+  def self.random_abilities
+    Array.new(6) {Character.random_ability}.sort {|x,y| y <=> x }
+  end
+
+  def self.random_ability
+    Array.new(4) {Character.dice}.sort.last(3).inject{|acc, i| acc+=i}
+  end
+
+  def self.dice
+    rand(1..6)
+  end
+
   def level_to_xp
     self.experience = case self.level
                       when 2

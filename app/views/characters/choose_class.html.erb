@@ -10,7 +10,7 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, url: choose_optional_fields_character_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
+    <%= form_for @character, url: save_class_character_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
       <div class="row">
         <% @klasses.each do |role, klasses| %>
           <div class="col-sm-3">
