@@ -1,6 +1,6 @@
 class Character < ActiveRecord::Base
 
-  enum status: { draft: 1, complete: 2}
+  enum status: { draft: 1, ability_done: 2, complete: 3}
 
   belongs_to :user
   belongs_to :race
