@@ -134,7 +134,7 @@ class Character < ActiveRecord::Base
 
   # Compte le bonus de caractérisque + le 1/2 niveau en fonction du personnage et de la compétence
   def count_carac_bonus_plus_half_level(character, skill)
-    carac = character.total_stat(Skill.get_linked_carac(skill))
+    carac = character.ability_bonuses.joins(:ability).where(abilities: {name: Skill.get_linked_carac(skill)}).first.total_value
     bonus = (character.level / 2) + ((carac-10)/2)
     bonus.floor
   end
