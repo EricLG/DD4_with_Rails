@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
 
-  before_filter :find_dependancies, only: [:index, :new, :edit, :show, :choose_race, :choose_carac, :choose_class, :choose_skills, :choose_feats, :choose_optional_fields]
+  before_filter :find_dependancies, only: [:edit, :show, :choose_race, :choose_carac, :choose_class, :choose_features, :choose_skills, :choose_feats, :choose_optional_fields]
 
   def index
     @hide_side_bloc =true
@@ -14,17 +14,15 @@ class CharactersController < ApplicationController
   end
 
   def choose_race
-    @character = Character.find_by_id(params["character_id"])
   end
 
   def choose_class
-    @character = Character.find_by_id(params["character_id"])
     @character.update(character_params) if params && params["character"]
   end
 
   def choose_optional_fields
     # TODO : FAIRE UN CONTROLE SUR LE NOMBRE DE LANGUES CHOISIES
-    @character  = Character.find_by_id(params["character_id"])
+    @gods = God.all.order(:name)
     @known_languages = @character.race.known_level_1_languages
     @languages = @character.race.available_level_1_languages
     @alignment = Character::ALIGNMENT
@@ -32,7 +30,6 @@ class CharactersController < ApplicationController
   end
 
   def choose_carac
-    @character = Character.find_by_id(params["character_id"])
     if params && params["character"]
       params["character"]["language_ids"].delete("")
       @character.language_ids.clear
@@ -49,12 +46,12 @@ class CharactersController < ApplicationController
   def save_abilities
     @character.assign_attributes(character_params)
     @character.calcul_abilities
+    @character.status = "ability_done"
     @character.save
   end
 
   def choose_features
-    @character = Character.find_by_id(params["character_id"])
-    save_abilities
+    save_abilities if params[:character]
   end
 
   def save_features
@@ -131,7 +128,7 @@ class CharactersController < ApplicationController
     end
 
     if @character.save
-      redirect_to character_choose_race_path(@character.id)
+      redirect_to choose_race_character_path(@character.id)
     else
       find_dependancies
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
@@ -147,17 +144,16 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @character = Character.find_by_id(params[:id])
+    @characters = @current_user.characters
   end
 
   def edit
-    @users = User.all
-    @character = Character.find_by_id(params[:id])
+    @characters = @current_user.characters
+    #@users = User.all
     @campaigns = Campaign.all
   end
 
   def update
-    @character = Character.find_by_id(params[:id])
     if @character.update(character_params)
       redirect_to characters_path
     else
@@ -168,7 +164,6 @@ class CharactersController < ApplicationController
   end
 
   def choose_campaign
-    @character = Character.find_by_id(params[:id])
     player = Player.find_by(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
     if player
       flash[:error] = "Erreur, vous semblez avoir déjà rejoins la campagne"
@@ -187,7 +182,6 @@ class CharactersController < ApplicationController
   end
 
   def remove_campaign
-    @character = Character.find_by_id(params[:id])
     player = Player.find_by(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
 
     if player && player.delete
@@ -284,8 +278,8 @@ class CharactersController < ApplicationController
   end
 
   def find_dependancies
-    @characters = @current_user.characters
-    @gods = God.all.order(:name)
+    @character = Character.find_by_id(params["id"])
+    @abilities = @character.ability_bonuses.joins(:ability)
     @races = Race.all.order(:name)
     @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
     @languages = Language.all.order(:language)

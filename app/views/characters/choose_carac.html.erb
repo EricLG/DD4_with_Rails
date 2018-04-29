@@ -10,7 +10,7 @@
 
 <div class="row">
   <div class="col-sm-9">
-    <%= form_for @character, url: character_choose_features_path(@character.id), html: {class: 'form-horizontal'} do |f| %>
+    <%= form_for @character, url: choose_features_character_path(@character.id), html: {class: 'form-horizontal'} do |f| %>
       <h4>Caractérisitiques initiales <small>(comprises entre 3 et 18)</small></h4>
       <div class="row">
         <p class="col-sm-12">Choisissez la méthode que vous souhaitez pour déterminer vos caractéristiques: </p>
@@ -143,8 +143,7 @@
         <% end %>
       </div>
       <%= f.hidden_field :user_id, value: @current_user.id %>
-      <%#= f.hidden_field :state, value: '' %>
-      <%= link_to 'Précédent', character_choose_optional_fields_path(@character.id), class: "btn btn-default" %>
+      <%= link_to 'Précédent', choose_optional_fields_character_path(@character.id), class: "btn btn-default" %>
       <%= submit_text_form(f) %>
     <% end %>
   </div>

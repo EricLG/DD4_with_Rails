@@ -27,12 +27,12 @@
   <% end %>
 </dl>
 <%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
-<%= link_to "Modifier race", character_choose_race_path(@character.id) %><br>
-<%= link_to "Modifier classe", character_choose_class_path(@character.id) %><br>
-<%= link_to "Modifier infos", character_choose_optional_fields_path(@character.id) %><br>
-<%= link_to "Modifier caractéristiques", character_choose_carac_path(@character.id) %><br>
-<%= link_to "Modifier aptitudes", character_choose_features_path(@character.id) %><br>
-<%= link_to "Modifier compétences", character_choose_skills_path(@character.id) %><br>
+<%= link_to "Modifier race", choose_race_character_path(@character.id) %><br>
+<%= link_to "Modifier classe", choose_class_character_path(@character.id) %><br>
+<%= link_to "Modifier infos", choose_optional_fields_character_path(@character.id) %><br>
+<%= link_to "Modifier caractéristiques", choose_carac_character_path(@character.id) %><br>
+<%= link_to "Modifier aptitudes", choose_features_character_path(@character.id) %><br>
+<%= link_to "Modifier compétences", choose_skills_character_path(@character.id) %><br>
 
 <br>
 <%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>
