@@ -15,7 +15,7 @@
   <h5>Caractéristiques :</h5>
   <ul class="list-group padding-left">
   <% @abilities.each do |ability| %>
-      <li><%= Stat.human_attribute_name(ability.ability.name) %> <%= ability.total_value %></li>
+      <li><%= Stat.human_attribute_name(ability.ability.name) %> <%= ability.total_value %> <small>(<%= pretty_modifier(ability.modifier) %>)</small></li>
   <% end %>
   </ul>
 <% end %>

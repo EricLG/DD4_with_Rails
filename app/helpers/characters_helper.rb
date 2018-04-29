@@ -7,4 +7,12 @@ module CharactersHelper
     total += klass_formations_choices.send(s) unless free_required_skill(s)
     total
   end
+
+  def pretty_modifier(modifier)
+    if modifier > 0
+      modifier = "+#{modifier}"
+    end
+    modifier
+  end
+
 end
