@@ -1,0 +1,6 @@
+  <h4>Mes héros</h4>
+  <ul class="list-group padding-left">
+    <% @characters.each do |c| %>
+      <li><%= link_to c.name, character_path(c.id) %></li>
+    <% end %>
+  </ul>
