@@ -1,8 +1,7 @@
 class Race < ActiveRecord::Base
 
   belongs_to :source
-  #has_many :stats, autosave: true
-  #belongs_to :skill
+
   has_and_belongs_to_many :features, join_table: :available_features
   has_and_belongs_to_many :prerequisite_for_feats, :class_name => "Feat", :join_table => :pr_races_for_feat
 
@@ -60,12 +59,6 @@ class Race < ActiveRecord::Base
 
   def grant_dynamic_formation_skill?
     self.name == 'Éladrin' || self.name == 'Humain'
-  end
-
-  # Wrapper pour récupérer la compétence s de la race
-  def race_skill(s)
-    skill = self.skill.try(:send, "#{s}")
-    return skill ? skill : (Skill.new.send(s))
   end
 
   def ability_to_a

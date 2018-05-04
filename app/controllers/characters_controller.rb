@@ -178,14 +178,6 @@ class CharactersController < ApplicationController
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
       render :choose_skills
     end
-
-    # Sauvegarde des choix de formations, on écrase les choix précédants
-    #skill_klass_formations = @character.klass_formations_choices
-    #skill_klass_formations.raz
-    #skill_klass_formations.update(formations_choice_params)
-
-    # Sauvegarde du choix de bonus racial si la race le permet
-    #@character.race_bonus_skill_choices.update_racial_choice!(params['racial_bonus_choice']) if @character.race.grant_dynamic_racial_skill_bonus? && params['racial_bonus_choice']
   end
 
   def choose_feats

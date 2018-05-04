@@ -257,12 +257,10 @@ $(document).on("page:change", function() {
       total_skill.text(total_skill_value + 2)
       $(".js-btn-skill-bonus-racial").attr("disabled", true)
       btn.attr("disabled", false)
-      //input.attr("disabled", false)
       input.val(2)
     } else {
       total_skill.text(total_skill_value - 2)
       $(".js-btn-skill-bonus-racial").attr("disabled", false)
-      //input.attr("disabled", true)
       input.val(0)
     }
 
@@ -283,11 +281,9 @@ $(document).on("page:change", function() {
     if (span.hasClass("glyphicon-plus")) {
       input.val(5)
       total_skill.text(total_skill_value + 5)
-      //input.attr("disabled", false)
     } else {
       input.val(0)
       total_skill.text(total_skill_value - 5)
-      //input.attr("disabled", true)
     }
 
     // Gestion du cas Eladrin : desactivation des autres boutons pour respecter l'aptitude Education éladrine

@@ -62,10 +62,6 @@ class Klass < ActiveRecord::Base
     GRANT_FORMATION_SKILL.include?(self.name)
   end
 
-  def have_choice_in_required_skill?
-    self.name == 'Rôdeur' || self.name == 'Voleur'
-  end
-
   def have_only_one_required_skill?
     GRANT_ONLY_ONE_FORMATION_SKILL.include?(self.name)
   end
