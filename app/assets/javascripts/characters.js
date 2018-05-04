@@ -242,9 +242,9 @@ $(document).on("page:change", function() {
     });
   }
 
-  // Etape 6 : gestion des compétences (skills)
+  /* Etape 6 : gestion des compétences (skills) */
 
-  // Gestion des bonus raciaux  dynamiques (cristallien / kalashtar)
+  // Gestion des bonus raciaux dynamiques (cristallien / kalashtar)
   $(".js-btn-skill-bonus-racial").click(function (e) {
     e.preventDefault();
     var btn = $(this);
@@ -257,11 +257,13 @@ $(document).on("page:change", function() {
       total_skill.text(total_skill_value + 2)
       $(".js-btn-skill-bonus-racial").attr("disabled", true)
       btn.attr("disabled", false)
-      input.attr("disabled", false)
+      //input.attr("disabled", false)
+      input.val(2)
     } else {
       total_skill.text(total_skill_value - 2)
       $(".js-btn-skill-bonus-racial").attr("disabled", false)
-      input.attr("disabled", true)
+      //input.attr("disabled", true)
+      input.val(0)
     }
 
     btn.toggleClass('btn-info btn-default');
@@ -279,11 +281,13 @@ $(document).on("page:change", function() {
 
     // Update total skill et activation de l'input
     if (span.hasClass("glyphicon-plus")) {
+      input.val(5)
       total_skill.text(total_skill_value + 5)
-      input.attr("disabled", false)
+      //input.attr("disabled", false)
     } else {
+      input.val(0)
       total_skill.text(total_skill_value - 5)
-      input.attr("disabled", true)
+      //input.attr("disabled", true)
     }
 
     // Gestion du cas Eladrin : desactivation des autres boutons pour respecter l'aptitude Education éladrine

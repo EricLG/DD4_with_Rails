@@ -2,7 +2,7 @@ class Race < ActiveRecord::Base
 
   belongs_to :source
   #has_many :stats, autosave: true
-  belongs_to :skill
+  #belongs_to :skill
   has_and_belongs_to_many :features, join_table: :available_features
   has_and_belongs_to_many :prerequisite_for_feats, :class_name => "Feat", :join_table => :pr_races_for_feat
 
@@ -23,8 +23,39 @@ class Race < ActiveRecord::Base
   end
 
   # Seules 2 races donnent un bonus au choix
-  def grant_dynamic_racial_skill_bonus
+  def grant_dynamic_racial_skill_bonus?
     self.name == 'Cristallien' || self.name == 'Kalashtar'
+  end
+
+  # Affiche les bonus de compétences en francais avec le montant du bonus
+  def resume_skill_bonuses
+    skills = []
+    skill_bonuses.split(', ').each do |s|
+      if Skill::SKILLS_EN.include?(s)
+        skills << Skill::SKILLS_CONVERSION_FR[s] + " +2"
+      elsif s == 'bonus'
+        skills << "+2 dans une autre compétence au choix"
+      end
+    end
+    skills.join(', ')
+  end
+
+  # Retourne les bonus de compétences sous la forme d'un tableau. Les bonus au choix ne sont pas retournés
+  def skill_bonuses_to_a
+    skills = []
+    self.skill_bonuses.split(', ').each do |sb|
+      skills << sb if Skill::SKILLS_EN.include?(sb)
+    end
+    skills
+  end
+
+  # Retourne un tableau des compétences choisissables lors d'un bonus racial au choix (+2 dans une autre compétence)
+  def choosable_skill_bonus_to_a
+    race_bonus_skill_list = []
+    race_bonus_skill_list = %w(arcana endurance) if self.name == 'Cristallien'
+    race_bonus_skill_list = %w(insight) if self.name == 'Kalashtar'
+    skills = Skill::SKILLS_EN - race_bonus_skill_list
+    skills
   end
 
   def grant_dynamic_formation_skill?

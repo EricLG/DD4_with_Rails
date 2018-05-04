@@ -296,29 +296,29 @@ Location.create([
 r = "race"
 kalashtar_language = 'commun, télépathie 5 (vous êtes capable de communiquer mentalement avec toute créature douée de langage située dans votre ligne de mire et dans un rayon de 5 cases, sachant que la communication se fait dans les deux sens)'
 
-changelin            = Race.create(name: "Changelin",            skill: Skill.new(origin: r, bluff: 2, insight: 2),            average_height: '1,65 m à 1,80 m',  average_weight: '60 à 80 kg',   vision: 'normale',  language: 'commun',                                       nb_language_sup: 0, ability_bonuses: "Int 2, Cha 2 ou Dex 2, Int 2", source_id: eber.id, cat_size: "M", speed: 6)
-cristallien          = Race.create(name: "Cristallien",          skill: Skill.new(origin: r, arcana: 2, endurance: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '90 à 115 kg',  vision: 'normale',  language: 'commun, profond, une supplémentaire au choix', nb_language_sup: 1, ability_bonuses: "Int 2, Sag 2 ou Int 2, Cha 2", source_id: mdj3.id, cat_size: "M", speed: 6)
-demi_elfe            = Race.create(name: "Demi-elfe",            skill: Skill.new(origin: r, diplomacy:  2, insight:     2),   average_height: '1,65 m à 1,85 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique, une supplémentaire au choix', nb_language_sup: 1, ability_bonuses: "Con 2, Sag 2 ou Con 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
-demi_orque           = Race.create(name: "Demi-orque",           skill: Skill.new(origin: r, endurance: 2, intimidate: 2),     average_height: '1,90 m à 2,10 m',  average_weight: '77 à 112 kg',  vision: 'nocturne', language: 'commun, géant',                                nb_language_sup: 0, ability_bonuses: "For 2, Dex 2 ou Con 2, Dex 2", source_id: mdj2.id, cat_size: "M", speed: 6)
-deva                 = Race.create(name: "Déva",                 skill: Skill.new(origin: r, history: 2, religion: 2),         average_height: '2 m à 2,15 m',     average_weight: '87 à 140 kg',  vision: 'normale',  language: 'commun, deux supplémentaires au choix',        nb_language_sup: 2, ability_bonuses: "Int 2, Sag 2 ou Int 2, Cha 2", source_id: mdj2.id, cat_size: "M", speed: 6)
-drakeide             = Race.create(name: "Drakéide",             skill: Skill.new(origin: r, history:    2, intimidate:  2),   average_height: '1,85 m à 2 m',     average_weight: '110 à 160 kg', vision: 'normale',  language: 'commun, draconique',                           nb_language_sup: 0, ability_bonuses: "For 2, Cha 2 ou Con 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
-drow                 = Race.create(name: "Drow",                 skill: Skill.new(origin: r, stealth: 2, intimidate: 2),       average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Cha 2 ou Dex 2, Sag 2", source_id: roou.id, cat_size: "M", speed: 6)
-eladrin              = Race.create(name: "Éladrin",              skill: Skill.new(origin: r, arcana: 2, history: 2),           average_height: '1,65 m à 1,85 m',  average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Int 2 ou Int 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
-elfe                 = Race.create(name: "Elfe",                 skill: Skill.new(origin: r, nature: 2, perception: 2),        average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Sag 2 ou Dex 2, Int 2", source_id: mdj1.id, cat_size: "M", speed: 6)
-feral_griffe_effilee = Race.create(name: "Féral griffe-effilée", skill: Skill.new(origin: r, acrobatics: 2, stealth: 2),       average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "Dex 2, Sag 2" ,                source_id: mdj2.id, cat_size: "M", speed: 6)
-feral_longue_dent    = Race.create(name: "Féral longue-dent",    skill: Skill.new(origin: r, athletics: 2, endurance: 2),      average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "For 2, Sag 2" ,                source_id: mdj2.id, cat_size: "M", speed: 6)
-forgelier            = Race.create(name: "Forgelier",            skill: Skill.new(origin: r, endurance: 2, intimidate: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '135 à 150 kg', vision: 'normale',  language: 'commun',                                       nb_language_sup: 0, ability_bonuses: "For 2, Con 2 ou Con 2, Int 2", source_id: eber.id, cat_size: "M", speed: 6)
-genasi               = Race.create(name: "Genasi",               skill: Skill.new(origin: r, endurance: 2, nature: 2),         average_height: '1,70 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, originel',                             nb_language_sup: 0, ability_bonuses: "For 2, Int 2 ou For 2, Con 2", source_id: roou.id, cat_size: "M", speed: 6)
-githzerai            = Race.create(name: "Githzerai",            skill: Skill.new(origin: r, acrobatics: 2, athletics: 2),     average_height: '1,80 m à 1,95 m',  average_weight: '80 à 95 kg',   vision: 'normale',  language: 'commun, profond',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Sag 2 ou Dex 2, Int 2", source_id: mdj3.id, cat_size: "M", speed: 6)
-gnome                = Race.create(name: "Gnome",                skill: Skill.new(origin: r, arcana: 2, stealth: 2),           average_height: '1,10 m à 1,20 m',  average_weight: '25 à 37 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Int 2, Cha 2 ou Dex 2, Int 2", source_id: mdj2.id, cat_size: "P", speed: 5)
-goliath              = Race.create(name: "Goliath",              skill: Skill.new(origin: r, athletics: 2, nature: 2),         average_height: '2,40 m à 2,50 m',  average_weight: '140 à 170 kg', vision: 'normale',  language: 'commun, et nain ou géant',                     nb_language_sup: 1, ability_bonuses: "For 2, Con 2 ou For 2, Sag 2", source_id: mdj2.id, cat_size: "M", speed: 6)
-halfelin             = Race.create(name: "Halfelin",             skill: Skill.new(origin: r, acrobatics: 2, thievery: 2),      average_height: '1,15 m à 1,25 m',  average_weight: '37 à 42 kg',   vision: 'normale',  language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "Con 2, Dex 2 ou Dex 2, Cha 2", source_id: mdj1.id, cat_size: "P", speed: 6)
-humain               = Race.create(name: "Humain",               skill: nil,                                                   average_height: '1,65 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "For 2 ou Con 2 ou Dex 2 ou Int 2 ou Sag 2 ou Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
-kalashtar            = Race.create(name: "Kalashtar",            skill: Skill.new(origin: r, insight: 2),                      average_height: '1,70 m à 1,90 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: kalashtar_language,                             nb_language_sup: 0, ability_bonuses: "Sag 2, Cha 2 ou Int 2, Sag 2", source_id: eber.id, cat_size: "M", speed: 6)
-minotaure            = Race.create(name: "Minotaure",            skill: Skill.new(origin: r, nature: 2, perception: 2),        average_height: '2,15 m à 2,30 m',  average_weight: '160 à 175 kg', vision: 'normale',  language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "For 2, Con 2 ou For 2, Sag 2", source_id: mdj3.id, cat_size: "M", speed: 6)
-nain                 = Race.create(name: "Nain",                 skill: Skill.new(origin: r, endurance: 2, dungeoneering: 2),  average_height: '1,25 m à 1,45 m',  average_weight: '80 à 110 kg',  vision: 'nocturne', language: 'commun, nain',                                 nb_language_sup: 0, ability_bonuses: "For 2, Con 2 ou Con 2, Sag 2", source_id: mdj1.id, cat_size: "M", speed: 5)
-silvyen              = Race.create(name: "Silvyen",              skill: Skill.new(origin: r, stealth: 2, nature: 2),           average_height: '1,80 m à 1,95 m',  average_weight: '70 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Con 2, Sag 2 ou Con 2, Dex 2", source_id: mdj3.id, cat_size: "M", speed: 6)
-tieffelin            = Race.create(name: "Tieffelin",            skill: Skill.new(origin: r, bluff: 2, stealth: 2),            average_height: '1,65 m à 1,85 m',  average_weight: '70 à 115 kg',  vision: 'nocturne', language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "Con 2, Cha 2 ou Int 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
+changelin            = Race.create(name: "Changelin",            skill_bonuses: "bluff, insight",         average_height: '1,65 m à 1,80 m',  average_weight: '60 à 80 kg',   vision: 'normale',  language: 'commun',                                       nb_language_sup: 0, ability_bonuses: "Int 2, Cha 2 ou Dex 2, Int 2", source_id: eber.id, cat_size: "M", speed: 6)
+cristallien          = Race.create(name: "Cristallien",          skill_bonuses: "arcana, endurance, bonus", average_height: '1,70 m à 1,85 m',  average_weight: '90 à 115 kg',  vision: 'normale',  language: 'commun, profond, une supplémentaire au choix', nb_language_sup: 1, ability_bonuses: "Int 2, Sag 2 ou Int 2, Cha 2", source_id: mdj3.id, cat_size: "M", speed: 6)
+demi_elfe            = Race.create(name: "Demi-elfe",            skill_bonuses: "diplomacy, insight",    average_height: '1,65 m à 1,85 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique, une supplémentaire au choix', nb_language_sup: 1, ability_bonuses: "Con 2, Sag 2 ou Con 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
+demi_orque           = Race.create(name: "Demi-orque",           skill_bonuses: "endurance, intimidate",  average_height: '1,90 m à 2,10 m',  average_weight: '77 à 112 kg',  vision: 'nocturne', language: 'commun, géant',                                nb_language_sup: 0, ability_bonuses: "For 2, Dex 2 ou Con 2, Dex 2", source_id: mdj2.id, cat_size: "M", speed: 6)
+deva                 = Race.create(name: "Déva",                 skill_bonuses: "history, religion",       average_height: '2 m à 2,15 m',     average_weight: '87 à 140 kg',  vision: 'normale',  language: 'commun, deux supplémentaires au choix',        nb_language_sup: 2, ability_bonuses: "Int 2, Sag 2 ou Int 2, Cha 2", source_id: mdj2.id, cat_size: "M", speed: 6)
+drakeide             = Race.create(name: "Drakéide",             skill_bonuses: "history, intimidate",   average_height: '1,85 m à 2 m',     average_weight: '110 à 160 kg', vision: 'normale',  language: 'commun, draconique',                           nb_language_sup: 0, ability_bonuses: "For 2, Cha 2 ou Con 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
+drow                 = Race.create(name: "Drow",                 skill_bonuses: "stealth, intimidate", average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Cha 2 ou Dex 2, Sag 2", source_id: roou.id, cat_size: "M", speed: 6)
+eladrin              = Race.create(name: "Éladrin",              skill_bonuses: "arcana, history",         average_height: '1,65 m à 1,85 m',  average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Int 2 ou Int 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
+elfe                 = Race.create(name: "Elfe",                 skill_bonuses: "nature, perception",       average_height: '1,60 m à 1,80 m',  average_weight: '65 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Sag 2 ou Dex 2, Int 2", source_id: mdj1.id, cat_size: "M", speed: 6)
+feral_griffe_effilee = Race.create(name: "Féral griffe-effilée", skill_bonuses: "acrobatics, stealth",   average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "Dex 2, Sag 2" ,                source_id: mdj2.id, cat_size: "M", speed: 6)
+feral_longue_dent    = Race.create(name: "Féral longue-dent",    skill_bonuses: "athletics, endurance",    average_height: '1,80 m à 2 m',     average_weight: '65 à 90 kg',   vision: 'nocturne', language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "For 2, Sag 2" ,                source_id: mdj2.id, cat_size: "M", speed: 6)
+forgelier            = Race.create(name: "Forgelier",            skill_bonuses: "endurance, intimidate",  average_height: '1,80 m à 1,95 m',  average_weight: '135 à 150 kg', vision: 'normale',  language: 'commun',                                       nb_language_sup: 0, ability_bonuses: "For 2, Con 2 ou Con 2, Int 2", source_id: eber.id, cat_size: "M", speed: 6)
+genasi               = Race.create(name: "Genasi",               skill_bonuses: "endurance, nature",        average_height: '1,70 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, originel',                             nb_language_sup: 0, ability_bonuses: "For 2, Int 2 ou For 2, Con 2", source_id: roou.id, cat_size: "M", speed: 6)
+githzerai            = Race.create(name: "Githzerai",            skill_bonuses: "acrobatics, athletics",   average_height: '1,80 m à 1,95 m',  average_weight: '80 à 95 kg',   vision: 'normale',  language: 'commun, profond',                              nb_language_sup: 0, ability_bonuses: "Dex 2, Sag 2 ou Dex 2, Int 2", source_id: mdj3.id, cat_size: "M", speed: 6)
+gnome                = Race.create(name: "Gnome",                skill_bonuses: "arcana, stealth",       average_height: '1,10 m à 1,20 m',  average_weight: '25 à 37 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Int 2, Cha 2 ou Dex 2, Int 2", source_id: mdj2.id, cat_size: "P", speed: 5)
+goliath              = Race.create(name: "Goliath",              skill_bonuses: "athletics, nature",       average_height: '2,40 m à 2,50 m',  average_weight: '140 à 170 kg', vision: 'normale',  language: 'commun, et nain ou géant',                     nb_language_sup: 1, ability_bonuses: "For 2, Con 2 ou For 2, Sag 2", source_id: mdj2.id, cat_size: "M", speed: 6)
+halfelin             = Race.create(name: "Halfelin",             skill_bonuses: "acrobatics, thievery",       average_height: '1,15 m à 1,25 m',  average_weight: '37 à 42 kg',   vision: 'normale',  language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "Con 2, Dex 2 ou Dex 2, Cha 2", source_id: mdj1.id, cat_size: "P", speed: 6)
+humain               = Race.create(name: "Humain",               skill_bonuses: "",                               average_height: '1,65 m à 1,85 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "For 2 ou Con 2 ou Dex 2 ou Int 2 ou Sag 2 ou Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
+kalashtar            = Race.create(name: "Kalashtar",            skill_bonuses: "insight, bonus", average_height: '1,70 m à 1,90 m',  average_weight: '65 à 110 kg',  vision: 'normale',  language: kalashtar_language,           nb_language_sup: 0, ability_bonuses: "Sag 2, Cha 2 ou Int 2, Sag 2", source_id: eber.id, cat_size: "M", speed: 6)
+minotaure            = Race.create(name: "Minotaure",            skill_bonuses: "nature, perception",       average_height: '2,15 m à 2,30 m',  average_weight: '160 à 175 kg', vision: 'normale',  language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "For 2, Con 2 ou For 2, Sag 2", source_id: mdj3.id, cat_size: "M", speed: 6)
+nain                 = Race.create(name: "Nain",                 skill_bonuses: "endurance, dungeoneering",   average_height: '1,25 m à 1,45 m',  average_weight: '80 à 110 kg',  vision: 'nocturne', language: 'commun, nain',                                 nb_language_sup: 0, ability_bonuses: "For 2, Con 2 ou Con 2, Sag 2", source_id: mdj1.id, cat_size: "M", speed: 5)
+silvyen              = Race.create(name: "Silvyen",              skill_bonuses: "stealth, nature",       average_height: '1,80 m à 1,95 m',  average_weight: '70 à 85 kg',   vision: 'nocturne', language: 'commun, elfique',                              nb_language_sup: 0, ability_bonuses: "Con 2, Sag 2 ou Con 2, Dex 2", source_id: mdj3.id, cat_size: "M", speed: 6)
+tieffelin            = Race.create(name: "Tieffelin",            skill_bonuses: "bluff, stealth",        average_height: '1,65 m à 1,85 m',  average_weight: '70 à 115 kg',  vision: 'nocturne', language: 'commun, une supplémentaire au choix',          nb_language_sup: 1, ability_bonuses: "Con 2, Cha 2 ou Int 2, Cha 2", source_id: mdj1.id, cat_size: "M", speed: 6)
 
 forme_endurcie  = Feature.create(races: [silvyen],  kind: "race", name: "Forme endurcie",             description: "choisissez les Réflexes, la Vigueur ou la Volonté. Vous bénéficiez d'un bonus racial de +1 dans cette défense.")
 manif_elem      = Feature.create(races: [genasi],   kind: "race", name: "Manifestation élémentaire",  description: "choisissez une manifestation élémentaire: âme d'eau, âme de feu, âme d'orage, âme de terre ou âme de vent. Cette manifestation fait partie intégrante de votre nature(le talent <em>Manifestation élémentaire</em>, p.136, vous permet cependant de prendre des manifestations en plus et d'en changer). Chaque manifestation élémentaire propose des avantages particuliers et un pouvoir de rencontre. Enfin votre apparence change selon l’élément que vous manifestez.<br>
@@ -418,27 +418,6 @@ Feature.create([
   {races: [genasi],                   kind: "race", name: "Âme de vent",                      description: "vos choisissez la manifestation élémentaire de l'âme de vent",  required: "choice_1", parent_feature: manif_elem},
 ])
 
-
-acrobatics    = Skill.create(origin: 'required_skill_for_class', acrobatics:     5)
-arcana        = Skill.create(origin: 'required_skill_for_class', arcana:         5)
-athletics     = Skill.create(origin: 'required_skill_for_class', athletics:      5)
-bluff         = Skill.create(origin: 'required_skill_for_class', bluff:          5)
-diplomacy     = Skill.create(origin: 'required_skill_for_class', diplomacy:      5)
-dungeoneering = Skill.create(origin: 'required_skill_for_class', dungeoneering:  5)
-endurance     = Skill.create(origin: 'required_skill_for_class', endurance:      5)
-heal          = Skill.create(origin: 'required_skill_for_class', heal:           5)
-history       = Skill.create(origin: 'required_skill_for_class', history:        5)
-insight       = Skill.create(origin: 'required_skill_for_class', insight:        5)
-intimidate    = Skill.create(origin: 'required_skill_for_class', intimidate:     5)
-nature        = Skill.create(origin: 'required_skill_for_class', nature:         5)
-perception    = Skill.create(origin: 'required_skill_for_class', perception:     5)
-religion      = Skill.create(origin: 'required_skill_for_class', religion:       5)
-stealth       = Skill.create(origin: 'required_skill_for_class', stealth:        5)
-streetwise    = Skill.create(origin: 'required_skill_for_class', streetwise:     5)
-thievery      = Skill.create(origin: 'required_skill_for_class', thievery:       5)
-
-
-
 barbare       = Klass.create(
   name:               "Barbare",
   role:               "cogneur",
@@ -453,15 +432,8 @@ barbare       = Klass.create(
   base_hp:            15,
   hp_per_level:       6,
   healing_surge:      8,
-  required_skills:    [],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              acrobatics: 5,
-                              athletics: 5,
-                              endurance: 5,
-                              heal: 5,
-                              intimidate: 5,
-                              nature: 5,
-                              perception: 5),
+  required_skills:    "",
+  trained_skills:     "acrobatics, athletics, endurance, intimidate, nature, perception, heal",
   options_creation:   "barbare sanguinaire, barbare champion tribal, barbare fils du tonnerre, barbare tournoyant",
   skills_number:      3)
 barde         = Klass.create(
@@ -478,22 +450,8 @@ barde         = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [arcana],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              acrobatics: 5,
-                              arcana: 5,
-                              athletics: 5,
-                              bluff: 5,
-                              diplomacy: 5,
-                              dungeoneering: 5,
-                              heal: 5,
-                              history: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              nature: 5,
-                              perception: 5,
-                              religion: 5,
-                              streetwise: 5),
+  required_skills:    "arcana",
+  trained_skills:     "acrobatics, arcana, athletics, bluff, streetwise, diplomacy, dungeoneering, history, intimidate, insight, nature, perception, religion, heal",
   options_creation:   "barde rusé, barde valeureux, barde prescient",
   skills_number:      4)
 batailleur    = Klass.create(
@@ -510,16 +468,8 @@ batailleur    = Klass.create(
   base_hp:            15,
   hp_per_level:       6,
   healing_surge:      9,
-  required_skills:    [],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              athletics: 5,
-                              bluff: 5,
-                              diplomacy: 5,
-                              endurance: 5,
-                              heal: 5,
-                              insight: 5,
-                              intimidate: 5),
+  required_skills:    "",
+  trained_skills:     "arcana, athletics, bluff, diplomacy, endurance, intimidate, insight, heal",
   options_creation:   "batailleur rapide, batailleur robuste",
   skills_number:      3)
 druide        = Klass.create(
@@ -536,17 +486,8 @@ druide        = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [nature],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              athletics: 5,
-                              diplomacy: 5,
-                              endurance: 5,
-                              heal: 5,
-                              history: 5,
-                              insight: 5,
-                              nature: 5,
-                              perception: 5),
+  required_skills:    "nature",
+  trained_skills:     "arcana, athletics, diplomacy, endurance, history, insight, nature, perception, heal",
   options_creation:   "druide gardien, druide prédateur, druide des nuées, druide convocateur",
   skills_number:      3)
 ensorceleur   = Klass.create(
@@ -563,18 +504,8 @@ ensorceleur   = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      6,
-  required_skills:    [arcana],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              athletics: 5,
-                              bluff: 5,
-                              diplomacy: 5,
-                              dungeoneering: 5,
-                              endurance: 5,
-                              history: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              nature: 5),
+  required_skills:    "arcana",
+  trained_skills:     "arcana, athletics, bluff, diplomacy, endurance, dungeoneering, history, intimidate, insight, nature",
   options_creation:   "ensorceleur du chaos, ensorceleur dragon, ensorceleur des tempêtes, ensorceleur cosmique",
   skills_number:      3)
 faconneur     = Klass.create(
@@ -591,15 +522,8 @@ faconneur     = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      6,
-  required_skills:    [arcana],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              diplomacy: 5,
-                              dungeoneering: 5,
-                              heal: 5,
-                              history: 5,
-                              perception: 5,
-                              thievery: 5),
+  required_skills:    "arcana",
+  trained_skills:     "arcana, diplomacy, dungeoneering, history, thievery, perception, heal",
   options_creation:   "façonneur bricoleur, façonneur forgeron de guerre",
   skills_number:      3)
 flamboyant    = Klass.create(
@@ -616,17 +540,8 @@ flamboyant    = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              athletics: 5,
-                              bluff: 5,
-                              diplomacy: 5,
-                              endurance: 5,
-                              heal: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              streetwise: 5),
+  required_skills:    "",
+  trained_skills:     "arcana, athletics, bluff, streetwise, diplomacy, endurance, intimidate, insight, heal",
   options_creation:   "flamboyant euphorique, flamboyant illuminé",
   skills_number:      4)
 gardien       = Klass.create(
@@ -643,15 +558,8 @@ gardien       = Klass.create(
   base_hp:            17,
   hp_per_level:       7,
   healing_surge:      9,
-  required_skills:    [nature],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              athletics: 5,
-                              dungeoneering: 5,
-                              endurance: 5,
-                              heal: 5,
-                              intimidate: 5,
-                              nature: 5,
-                              perception: 5),
+  required_skills:    "nature",
+  trained_skills:     "athletics, endurance, dungeoneering, intimidate, nature, perception, heal",
   options_creation:   "gardien de la terre, gardien indompté, gardien de la tempête, gardien de la vie",
   skills_number:      3)
 guerrier      = Klass.create(
@@ -668,13 +576,8 @@ guerrier      = Klass.create(
   base_hp:            15,
   hp_per_level:       6,
   healing_surge:      9,
-  required_skills:    [],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              athletics: 5,
-                              streetwise: 5,
-                              endurance: 5,
-                              intimidate: 5,
-                              heal: 5),
+  required_skills:    "",
+  trained_skills:     "athletics, streetwise, endurance, intimidate, heal",
   options_creation:   "guerrier offensif, guerrier défensif",
   skills_number:      3)
 invocateur    = Klass.create(
@@ -691,15 +594,8 @@ invocateur    = Klass.create(
   base_hp:            10,
   hp_per_level:       4,
   healing_surge:      6,
-  required_skills:    [religion],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              diplomacy: 5,
-                              endurance: 5,
-                              history: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              religion: 5),
+  required_skills:    "religion",
+  trained_skills:     "arcana, diplomacy, endurance, history, intimidate, insight, religion",
   options_creation:   "invocateur protecteur, invocateur courroucé, invocateur des malédictions",
   skills_number:      3)
 limier        = Klass.create(
@@ -716,17 +612,8 @@ limier        = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [nature],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              acrobatics: 5,
-                              athletics: 5,
-                              endurance: 5,
-                              heal: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              nature: 5,
-                              perception: 5,
-                              stealth: 5),
+  required_skills:    "nature",
+  trained_skills:     "acrobatics, athletics, stealth, endurance, intimidate, insight, nature, perception, heal",
   options_creation:   "limier protecteur, limier vengeur",
   skills_number:      3)
 mage_lames    = Klass.create(
@@ -743,15 +630,8 @@ mage_lames    = Klass.create(
   base_hp:            15,
   hp_per_level:       6,
   healing_surge:      8,
-  required_skills:    [arcana],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              athletics: 5,
-                              diplomacy: 5,
-                              endurance: 5,
-                              history: 5,
-                              insight: 5,
-                              intimidate: 5),
+  required_skills:    "arcana",
+  trained_skills:     "arcana, athletics, diplomacy, endurance, history, intimidate, insight",
   options_creation:   "mage lame défensif, mage lame offensif, mage lame prédateur",
   skills_number:      3)
 magicien      = Klass.create(
@@ -768,15 +648,8 @@ magicien      = Klass.create(
   base_hp:            10,
   hp_per_level:       4,
   healing_surge:      6,
-  required_skills:    [arcana],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              diplomacy: 5,
-                              dungeoneering: 5,
-                              history: 5,
-                              insight: 5,
-                              nature: 5,
-                              religion: 5),
+  required_skills:    "arcana",
+  trained_skills:     "arcana, diplomacy, dungeoneering, history, insight, nature, religion",
  options_creation:    "magicien de guerre, magicien manipulateur",
  skills_number:       3)
 maitre_guerre = Klass.create(
@@ -793,14 +666,8 @@ maitre_guerre = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              athletics: 5,
-                              diplomacy: 5,
-                              endurance: 5,
-                              heal: 5,
-                              history: 5,
-                              intimidate: 5),
+  required_skills:    "",
+  trained_skills:     "athletics, diplomacy, endurance, history, intimidate, heal",
   options_creation:   "maître de guerre charismatique, maître de guerre tacticien, maître de guerre ingénieux, maître de guerre perspicace, maître de guerre intrépide, maître de guerre tirailleur",
   skills_number:      4)
 moine         = Klass.create(
@@ -817,18 +684,8 @@ moine         = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              acrobatics: 5,
-                              athletics: 5,
-                              diplomacy: 5,
-                              endurance: 5,
-                              heal: 5,
-                              insight: 5,
-                              perception: 5,
-                              religion: 5,
-                              stealth: 5,
-                              thievery: 5),
+  required_skills:    "",
+  trained_skills:     "acrobatics, athletics, diplomacy, stealth, endurance, insight, thievery, perception, religion, heal",
   options_creation:   "moine du poing de pierre, moine du souffle centré",
   skills_number:      4)
 paladin       = Klass.create(
@@ -845,15 +702,8 @@ paladin       = Klass.create(
   base_hp:            15,
   hp_per_level:       6,
   healing_surge:      10,
-  required_skills:    [religion],
-  available_skills: Skill.new(origin: 'available_skills',
-                              diplomacy: 5,
-                              endurance: 5,
-                              heal: 5,
-                              history: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              religion: 5),
+  required_skills:    "religion",
+  trained_skills:     "diplomacy, endurance, history, intimidate, insight, religion, heal",
   options_creation:   "paladin défenseur, paladin vengeur, paladin fougueux, paladin vertueux",
   skills_number:      3)
 pretre        = Klass.create(
@@ -870,14 +720,8 @@ pretre        = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [religion],
-  available_skills: Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              diplomacy: 5,
-                              heal: 5,
-                              history: 5,
-                              insight: 5,
-                              religion: 5),
+  required_skills:    "religion",
+  trained_skills:     "arcana, diplomacy, history, insight, religion, heal",
   options_creation:   "prêtre de combat, prêtre dévoué, prêtre protecteur",
   skills_number:      3)
 pretre_runes  = Klass.create(
@@ -894,16 +738,8 @@ pretre_runes  = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [religion],
-  available_skills: Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              athletics: 5,
-                              endurance: 5,
-                              heal: 5,
-                              history: 5,
-                              insight: 5,
-                              religion: 5,
-                              thievery: 5),
+  required_skills:    "religion",
+  trained_skills:     "arcana, athletics, endurance, history, insight, thievery, religion, heal",
   options_creation:   "prêtre des runes de l'ire, prêtre des runes du défi",
   skills_number:      3)
 psion         = Klass.create(
@@ -920,16 +756,8 @@ psion         = Klass.create(
   base_hp:            12,
   hp_per_level:       4,
   healing_surge:      6,
-  required_skills:    [],
-  available_skills: Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              bluff: 5,
-                              diplomacy: 5,
-                              dungeoneering: 5,
-                              history: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              perception: 5),
+  required_skills:    "",
+  trained_skills:     "arcana, bluff, diplomacy, dungeoneering, history, intimidate, insight, perception",
   options_creation:   "psion télékinétique, psion télépathe",
   skills_number:      4)
 rodeur        = Klass.create(
@@ -946,16 +774,8 @@ rodeur        = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      6,
-  required_skills:    [dungeoneering, nature],
-  available_skills:   Skill.new(origin: 'available_skills',
-                              acrobatics: 5,
-                              athletics: 5,
-                              stealth: 5,
-                              endurance: 5,
-                              dungeoneering: 5,
-                              nature: 5,
-                              perception: 5,
-                              heal: 5),
+  required_skills:    "dungeoneering, nature",
+  trained_skills:     "acrobatics, athletics, stealth, endurance, dungeoneering, nature, perception, heal",
   options_creation:   "rôdeur archer, rôdeur double-lame, rôdeur maître des bêtes, rôdeur chasseur, rôdeur maraudeur",
   skills_number:      4)
 shaman        = Klass.create(
@@ -972,17 +792,8 @@ shaman        = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      7,
-  required_skills:    [nature],
-  available_skills: Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              athletics: 5,
-                              endurance: 5,
-                              heal: 5,
-                              history: 5,
-                              insight: 5,
-                              nature: 5,
-                              perception: 5,
-                              religion: 5),
+  required_skills:    "nature",
+  trained_skills:     "arcana, athletics, endurance, history, insight, nature, perception, religion, heal",
   options_creation:   "shaman de l'ours, shaman de la panthère, shaman de l'aigle, shaman messager des mondes",
   skills_number:      3)
 sorcier       = Klass.create(
@@ -999,16 +810,8 @@ sorcier       = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      6,
-  required_skills:    [],
-  available_skills: Skill.new(origin: 'available_skills',
-                              arcana: 5,
-                              bluff: 5,
-                              history: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              religion: 5,
-                              streetwise: 5,
-                              thievery: 5),
+  required_skills:    "",
+  trained_skills:     "arcana, bluff, streetwise, history, intimidate, insight, thievery, religion",
   options_creation:   "sorcier dévastateur, sorcier perfide",
   skills_number:      4)
 vengeur       = Klass.create(
@@ -1025,16 +828,8 @@ vengeur       = Klass.create(
   base_hp:            14,
   hp_per_level:       6,
   healing_surge:      7,
-  required_skills:    [religion],
-  available_skills: Skill.new(origin: 'available_skills',
-                              acrobatics: 5,
-                              athletics: 5,
-                              endurance: 5,
-                              intimidate: 5,
-                              perception: 5,
-                              religion: 5,
-                              stealth: 5,
-                              streetwise: 5),
+  required_skills:    "religion",
+  trained_skills:     "acrobatics, athletics, streetwise, stealth, endurance, intimidate, perception, religion",
   options_creation:   "vengeur solitaire, vengeur acharné, vengeur commandeur",
   skills_number:      3)
 voleur        = Klass.create(
@@ -1051,18 +846,8 @@ voleur        = Klass.create(
   base_hp:            12,
   hp_per_level:       5,
   healing_surge:      6,
-  required_skills:    [stealth, thievery],
-  available_skills: Skill.new(origin: 'available_skills',
-                              acrobatics: 5,
-                              athletics: 5,
-                              bluff: 5,
-                              dungeoneering: 5,
-                              insight: 5,
-                              intimidate: 5,
-                              perception: 5,
-                              stealth: 5,
-                              streetwise: 5,
-                              thievery: 5),
+  required_skills:    "stealth, thievery",
+  trained_skills:     "acrobatics, athletics, bluff, streetwise, stealth, dungeoneering, intimidate, insight, thievery, perception",
   options_creation:   "voleur brutale, voleur fourbe, voleur coupe-jarret, voleur voltigeur, voleur des ombres",
   skills_number:      4)
 
@@ -1271,7 +1056,6 @@ God.create([
   {name: "Zéhir"               , rank: "Mineurs",   alignment: "Mauvais"            , influence: "Poison"}
 ])
 
-
 Language.create([
   {language: "Abyssal",     writing: "Barazhad",    level_1: false, spoken_by: "Démons, gnolls, sahuagins"},
   {language: "Commun",      writing: "Commune",     level_1: true,  spoken_by: "Halfelins, humains, tieffelins"},
@@ -1284,6 +1068,7 @@ Language.create([
   {language: "Profond",     writing: "Rellanique",  level_1: true,  spoken_by: "Flagelleurs mentaux, githyanki, kuo-toas"},
   {language: "Universel",   writing: "Universelle", level_1: true,  spoken_by: "Anges, diables, dieux"}
 ])
+
 # password: plop
 User.create(name: 'illisae', email: 'eric.le.guellaut@hotmail.fr',  password_digest: '$2a$10$mW18Uf2qvZPfVQW.oQwnEO5pkYX.uQQ2qrQ3mSwetQ8wf8E/Y2gJK')
 
@@ -1295,6 +1080,27 @@ Ability.create([
   {name: "intelligence"},
   {name: "wisdom"},
   {name: "charisma"}
+])
+
+# Création des skills
+Skill.create([
+  {name: "acrobatics"},
+  {name: "arcana"},
+  {name: "athletics"},
+  {name: "bluff"},
+  {name: "diplomacy"},
+  {name: "dungeoneering"},
+  {name: "endurance"},
+  {name: "heal"},
+  {name: "history"},
+  {name: "insight"},
+  {name: "intimidate"},
+  {name: "nature"},
+  {name: "perception"},
+  {name: "religion"},
+  {name: "stealth"},
+  {name: "streetwise"},
+  {name: "thievery"}
 ])
 
 puts "Seeding done"

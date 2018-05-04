@@ -23,9 +23,13 @@ class Character < ActiveRecord::Base
   has_many :ability_bonuses, inverse_of: :character
   accepts_nested_attributes_for :ability_bonuses
 
+  has_many :skills, through: :skill_bonuses, source: :skill
+  has_many :skill_bonuses, inverse_of: :character
+  accepts_nested_attributes_for :skill_bonuses
+
   has_many :klass_choices,  -> {klass_features_choices},  class_name: "Choice"
   has_many :race_choices,   -> {race_features_choices},   class_name: "Choice"
-  has_many :skill_choices, through: :choices, source: :skill
+  #has_many :skill_choices, through: :choices, source: :skill
 
   NEW_ABILITIES_LEVEL = [4, 8, 11, 14, 18, 21, 24, 28]
   DEFAULT_ABILITIES = [10, 10, 10, 10, 10, 8]
@@ -60,6 +64,39 @@ class Character < ActiveRecord::Base
     return self.ability_bonuses.joins(:ability)
   end
 
+  def half_level
+    (self.level/2).floor
+  end
+
+  # Initialise les skill_bonuses en assignant les bonus de compétences raciaux et les formations
+  def initialize_skill_bonuses(race_bonus_skill_static, class_bonus_skill_static, ability_bonuses)
+    if self.skill_bonuses.map(&:skill).map(&:name).sort != Skill::SKILLS_EN.sort
+      self.skill_bonuses.destroy_all
+      skills = Skill.all
+      skills.each do |skill|
+        ab = ability_bonuses.joins(:ability).where(abilities: {name: Skill.get_linked_carac(skill.name)}).first
+        SkillBonus.create(
+          character: self,
+          skill: skill,
+          ability_bonus: ab,
+          racial: race_bonus_skill_static.include?(skill.name) ? 2 : 0,
+          training: self.check_training_for_skill(skill, class_bonus_skill_static)
+        )
+      end
+    end
+    return self.skill_bonuses.joins(:skill).sort_by(&:fr_name)
+  end
+
+  # retourne la valeur de la formation : 5 si la compétence est obligatoire (Druide / nature), 0 sinon
+  def check_training_for_skill(s, class_bonus_skill_static)
+    if (Klass::GRANT_ONLY_ONE_FORMATION_SKILL.include?(self.klass.name) && class_bonus_skill_static.first == s.name)
+      trained = 5
+    else
+      trained = 0
+    end
+    trained
+  end
+
   # Retourne le bonus racial choisi selon un tableau de ability_bonuses
   def racial_bonus_chosen(char_abilities)
     chosen = []
@@ -67,6 +104,17 @@ class Character < ActiveRecord::Base
       chosen << ab.to_s if (ab.bonus_racial > 0)
     end
     chosen.join(', ')
+  end
+
+  # Retourne vrai si le bonus racial dynamique (cristallien, kalashtar) a déjà été choisi
+  def racial_skill_bonus_chosen?(skill_abilities, skill_bonus_list)
+    chosen = false
+    skill_abilities.each do |sb|
+      if (sb.racial == 2 && skill_bonus_list.include?(sb.skill.name))
+        chosen = true
+      end
+    end
+    chosen
   end
 
   def calcul_abilities
@@ -83,31 +131,14 @@ class Character < ActiveRecord::Base
     level >= 21 if level
   end
 
-  # Initialise ou recherche les choix de compétences liés à la classe (les formations)
-  def klass_formations_choices
-    skill = Skill.joins(:choice).where(choices: {character_id: self.id}).find_or_create_by(origin: "klass_formations_choices")
-    unless self.skill_choices.include?(skill)
-      self.skill_choices << skill
-    end
-    skill
-  end
-
   # Initialise ou recherche les choix de compétences liés à la race (typiquement le cristallien et le kalashtar)
+  #DELETE
   def race_bonus_skill_choices
     skill = Skill.joins(:choice).where(choices: {character_id: self.id}).find_or_create_by(origin: "racial_bonus_choice")
     unless self.skill_choices.include?(skill)
       self.skill_choices << skill
     end
     skill
-  end
-
-  # Retourne un tableau des compétences disponibles lors d'un bonus racial (+2 au choix)
-  def race_bonus_skill_available
-    skills = []
-    Skill::SKILL.each do |s|
-      skills << s unless self.race.race_skill(s) == 2
-    end
-    skills
   end
 
   # Return the total formation for a character from his race or class
@@ -118,20 +149,6 @@ class Character < ActiveRecord::Base
     total
   end
 
-  # Retourne un hash avec les différents bonus (racial, demi-niveau, etc.) par compétence
-  def skill_bonus
-    skill_bonus = {}
-    Skill.get_skills.each do |s, fr_skill|
-      skill_bonus[s] = {
-        :link_carac => Skill.get_linked_carac(s),
-        :racial_bonus => self.race.race_skill(s) + self.race_bonus_skill_choices.send(s),
-        :carac_bonus_plus_half_level => count_carac_bonus_plus_half_level(self, s),
-        :bg => self.klass.available_skills.to_a.include?(s) ? "bg" : ""
-      }
-    end
-    skill_bonus
-  end
-
   # Compte le bonus de caractérisque + le 1/2 niveau en fonction du personnage et de la compétence
   def count_carac_bonus_plus_half_level(character, skill)
     carac = character.ability_bonuses.joins(:ability).where(abilities: {name: Skill.get_linked_carac(skill)}).first.total_value
@@ -139,6 +156,7 @@ class Character < ActiveRecord::Base
     bonus.floor
   end
 
+  # Actuellement seules 2 aptitudes raciales donnent un bonus de compétence
   def show_formation_bonus_rule(features)
     feature = nil
     if self.race.grant_dynamic_formation_skill?

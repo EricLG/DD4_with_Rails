@@ -82,14 +82,6 @@ ActiveRecord::Schema.define(version: 20180415122400) do
   add_index "available_features", ["klass_id"], name: "index_available_features_on_klass_id", using: :btree
   add_index "available_features", ["race_id"], name: "index_available_features_on_race_id", using: :btree
 
-  create_table "available_skills_for_klass", id: false, force: :cascade do |t|
-    t.integer "skill_id"
-    t.integer "klass_id"
-  end
-
-  add_index "available_skills_for_klass", ["klass_id"], name: "index_available_skills_for_klass_on_klass_id", using: :btree
-  add_index "available_skills_for_klass", ["skill_id"], name: "index_available_skills_for_klass_on_skill_id", using: :btree
-
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -345,6 +337,8 @@ ActiveRecord::Schema.define(version: 20180415122400) do
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "required_skills"
+    t.string   "trained_skills"
   end
 
   add_index "klasses", ["source_id"], name: "index_klasses_on_source_id", using: :btree
@@ -462,42 +456,40 @@ ActiveRecord::Schema.define(version: 20180415122400) do
     t.string   "language"
     t.integer  "nb_language_sup", default: 0
     t.text     "information"
-    t.integer  "skill_id"
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ability_bonuses"
+    t.string   "skill_bonuses"
   end
 
   add_index "races", ["source_id"], name: "index_races_on_source_id", using: :btree
 
-  create_table "required_skills_for_klass", id: false, force: :cascade do |t|
-    t.integer "skill_id"
-    t.integer "klass_id"
+  create_table "skill_bonuses", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "skill_id"
+    t.integer  "ability_bonus_id"
+    t.integer  "armor",            default: 0
+    t.integer  "alteration",       default: 0
+    t.integer  "feat",             default: 0
+    t.integer  "item",             default: 0
+    t.integer  "klasse",           default: 0
+    t.integer  "power",            default: 0
+    t.integer  "handling",         default: 0
+    t.integer  "shield",           default: 0
+    t.integer  "racial",           default: 0
+    t.integer  "training",         default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "required_skills_for_klass", ["klass_id"], name: "index_required_skills_for_klass_on_klass_id", using: :btree
-  add_index "required_skills_for_klass", ["skill_id"], name: "index_required_skills_for_klass_on_skill_id", using: :btree
+  add_index "skill_bonuses", ["ability_bonus_id"], name: "index_skill_bonuses_on_ability_bonus_id", using: :btree
+  add_index "skill_bonuses", ["character_id"], name: "index_skill_bonuses_on_character_id", using: :btree
+  add_index "skill_bonuses", ["skill_id"], name: "index_skill_bonuses_on_skill_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.integer  "acrobatics",    default: 0
-    t.integer  "arcana",        default: 0
-    t.integer  "athletics",     default: 0
-    t.integer  "bluff",         default: 0
-    t.integer  "diplomacy",     default: 0
-    t.integer  "dungeoneering", default: 0
-    t.integer  "endurance",     default: 0
-    t.integer  "heal",          default: 0
-    t.integer  "history",       default: 0
-    t.integer  "insight",       default: 0
-    t.integer  "intimidate",    default: 0
-    t.integer  "nature",        default: 0
-    t.integer  "perception",    default: 0
-    t.integer  "religion",      default: 0
-    t.integer  "stealth",       default: 0
-    t.integer  "streetwise",    default: 0
-    t.integer  "thievery",      default: 0
-    t.string   "origin"
+    t.string   "name"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

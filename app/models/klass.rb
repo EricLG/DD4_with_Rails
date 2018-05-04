@@ -1,8 +1,8 @@
 class Klass < ActiveRecord::Base
 
   belongs_to :source
-  belongs_to :available_skills, :class_name => 'Skill'
-  has_many :skills
+  #belongs_to :available_skills, :class_name => 'Skill'
+  #has_many :skills
   has_and_belongs_to_many :armor_categories
   has_and_belongs_to_many :weapon_categories
   has_and_belongs_to_many :common_weapons
@@ -10,7 +10,7 @@ class Klass < ActiveRecord::Base
   has_and_belongs_to_many :features, join_table: :available_features
   has_and_belongs_to_many :prerequisite_for_feats, :class_name => "Feat", :join_table => :pr_klasses_for_feat
   #has_and_belongs_to_many :available_skills, :class_name => "Skill", :join_table => :available_skills_for_klass
-  has_and_belongs_to_many :required_skills, :class_name => "Skill", :join_table => :required_skills_for_klass
+  #has_and_belongs_to_many :required_skills, :class_name => "Skill", :join_table => :required_skills_for_klass
 
   ARCANIC_KLASS = ["Barde", "Ensorceleur", "Façonneur", "Mage lames", "Magicien", "Sorcier"]
   DIVINE_KLASS = ["Invocateur", "Paladin", "Prêtre", "Prêtre des runes", "Vengeur"]
@@ -41,6 +41,20 @@ class Klass < ActiveRecord::Base
 
   def is_divine?
     self.power_source == 'divine'
+  end
+
+  def resume_skill_bonus_list(list)
+    Skill.convert_list(list)
+  end
+
+  # Retourne un tableau de compétences de classes obligatoires
+  def required_skills_to_a
+    self.required_skills.split(', ')
+  end
+
+  # Retourne un tableau contenant la liste des compétences de classes
+  def choosable_skills_to_a
+    self.trained_skills.split(', ')
   end
 
   # Retourne true si la classe offre gratuitement 1 formation

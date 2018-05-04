@@ -145,44 +145,50 @@ class CharactersController < ApplicationController
   end
 
   def choose_skills
-    # Parametres du template
-    @skills = Skill.get_skills
-    @race_bonus_skill_available = @character.race_bonus_skill_available
-    @race_bonus = Skill.new(origin: 'racial_bonus_choice') if @character.race.grant_dynamic_racial_skill_bonus
-    @racial_features = @character.race.features.main_ft
+    # Récupération des bonus dynamiques apportés par les races et classes
+    @race_choosable_skill_bonus = @character.race.choosable_skill_bonus_to_a
+    @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
+
+    # Gestion des bonus apportés par des aptitudes raciales
+    @bonus_from_feature = @character.show_formation_bonus_rule(@character.race.features.main_ft )
+
     # Initialisation des choix de compétences de classes
-    @klass_formations_required = @character.klass.required_skills.map(&:to_a).flatten
-    @klass_formations_choices = @character.klass_formations_choices
-    @race_bonus_skill_choices = @character.race_bonus_skill_choices
-    @bonus_from_feature = @character.show_formation_bonus_rule(@racial_features)
-    # Determination des différents bonus
-    @skill_bonus = @character.skill_bonus
+    @char_skills = @character.initialize_skill_bonuses(@character.race.skill_bonuses_to_a, @character.klass.required_skills_to_a, @character.ability_bonuses.joins(:ability))
+    # Si le personnage existe déjà, on vérifie si les différents bonus dynamiques ont déjà été choisi
+    @racial_bonus_already_chosen = @character.racial_skill_bonus_chosen?(@char_skills, @race_choosable_skill_bonus)
   end
 
   def save_skills
     # TODO : controle sur les formations choisies (count et formations offerte)
-    formations_choice_params = character_params[:skill_choices]
+    #formations_choice_params = character_params[:skill_choices]
+    #if @character.klass.name == 'Rôdeur' && !formations_choice_params.include?(:nature) && !formations_choice_params.include?(:dungeoneering)
+    #  flash[:error] = "En tant que rôdeur, vous devez choisir soit Exploration, soit Nature"
+    #  redirect_to choose_feats_character_path @character.id
+    #end
+    #if @character.klass.name == 'Voleur' && !formations_choice_params.include?(:stealth) && !formations_choice_params.include?(:thievery)
+    #  flash[:error] = "En tant que voleur, vous devez choisir soit Discrétion, soit Larcin"
+    #  redirect_to choose_feats_character_path @character.id
+    #end
 
-    if @character.klass.name == 'Rôdeur' && !formations_choice_params.include?(:nature) && !formations_choice_params.include?(:dungeoneering)
-      flash[:error] = "En tant que rôdeur, vous devez choisir soit Exploration, soit Nature"
-      redirect_to character_choose_skills_path @character.id
-    end
-    if @character.klass.name == 'Voleur' && !formations_choice_params.include?(:stealth) && !formations_choice_params.include?(:thievery)
-      flash[:error] = "En tant que voleur, vous devez choisir soit Discrétion, soit Larcin"
-      redirect_to character_choose_skills_path @character.id
+    @character.assign_attributes(character_params)
+    if @character.save
+      redirect_to choose_feats_character_path (@character.id)
+    else
+      find_dependancies
+      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      render :choose_skills
     end
 
     # Sauvegarde des choix de formations, on écrase les choix précédants
-    skill_klass_formations = @character.klass_formations_choices
-    skill_klass_formations.raz
-    skill_klass_formations.update(formations_choice_params)
+    #skill_klass_formations = @character.klass_formations_choices
+    #skill_klass_formations.raz
+    #skill_klass_formations.update(formations_choice_params)
 
     # Sauvegarde du choix de bonus racial si la race le permet
-    @character.race_bonus_skill_choices.update_racial_choice!(params['racial_bonus_choice']) if @character.race.grant_dynamic_racial_skill_bonus && params['racial_bonus_choice']
+    #@character.race_bonus_skill_choices.update_racial_choice!(params['racial_bonus_choice']) if @character.race.grant_dynamic_racial_skill_bonus? && params['racial_bonus_choice']
   end
 
   def choose_feats
-    @character = Character.find_by_id(params["character_id"])
   end
 
   def save_feats
@@ -295,6 +301,11 @@ class CharactersController < ApplicationController
         :level_21,
         :level_24,
         :level_28
+      ],
+      :skill_bonuses_attributes => [
+        :id,
+        :racial,
+        :training
       ]
       )
   end

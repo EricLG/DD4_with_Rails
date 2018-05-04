@@ -12,9 +12,8 @@
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("speed")%></strong> : <%= race.speed %></li>
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("vision")%></strong> : <%= race.vision %></li>
       <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("language")%></strong> : <%= race.language %></li>
-      <% if race.skill %>
-        <% skill_bonus = race.grant_dynamic_racial_skill_bonus ? ", +2 dans une autre compétence au choix" : "" %>
-        <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("skill")%></strong> : <%= race.skill.to_s + skill_bonus %> </li>
+      <% unless race.skill_bonuses.blank? %>
+        <li class="list-group-item no-border-line bg"><strong><%= Race.human_attribute_name("skill")%></strong> : <%= race.resume_skill_bonuses %></li>
       <% end %>
       <% race.features.main_ft.each do |f| %>
         <li class="list-group-item no-border-line bg"><strong><%= f.name %></strong> : <%= f.description.html_safe %></li>

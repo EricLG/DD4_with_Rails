@@ -5,9 +5,8 @@ class RefonteStatsAndSkills < ActiveRecord::Migration
     # Remplacement de la relation race/stat par une colonne ability_bonuses
     add_column :races, :ability_bonuses, :string
 
-    # Drop Stats et Skills
+    # Drop Stats
     drop_table :stats
-    #drop_table :skills
 
     # Recréation des tables. Stat devient Ability
     create_table :abilities do |t|
@@ -35,6 +34,43 @@ class RefonteStatsAndSkills < ActiveRecord::Migration
       t.integer :level_28, default: 0
       t.integer :bonus_parangon, default: 0
       t.integer :bonus_epic, default: 0
+    end
+
+    # Drop des tables obsolètes
+    drop_table :skills
+    drop_table :available_skills_for_klass
+    drop_table :required_skills_for_klass
+
+    # Remplacement des colonnes liées aux Skills
+    remove_column :races, :skill_id
+    add_column :races, :skill_bonuses, :string
+    add_column :klasses, :required_skills, :string
+    add_column :klasses, :trained_skills, :string
+
+    # Recréation des tables
+    create_table :skills do |t|
+      t.string  :name # acrobatics, arcana, athletics, etc.
+      t.string  :description
+      t.timestamps
+    end
+
+    create_table :skill_bonuses do |t|
+      # HABTM Through
+      t.belongs_to :character, index: true
+      t.belongs_to :skill, index: true
+      t.belongs_to :ability_bonus, index: true
+      # Columns
+      t.integer :armor, default: 0
+      t.integer :alteration, default: 0
+      t.integer :feat, default: 0
+      t.integer :item, default: 0
+      t.integer :klasse, default: 0
+      t.integer :power, default: 0
+      t.integer :handling, default: 0
+      t.integer :shield, default: 0
+      t.integer :racial, default: 0
+      t.integer :training, default: 0
+      t.timestamps
     end
   end
 
