@@ -1,6 +1,6 @@
 class Character < ActiveRecord::Base
 
-  enum status: { draft: 1, ability_done: 2, complete: 3}
+  enum status: { draft: 1, ability_done: 2, skill_done: 3, complete: 10}
 
   belongs_to :user
   belongs_to :race
@@ -43,6 +43,12 @@ class Character < ActiveRecord::Base
     else
       self.languages.map(&:language).join(", ")
     end
+  end
+
+  # Vérifie si le statut du héros est dans l'état voulue ou s'il a passé cette étape. Pseudo machine à état
+  # wanted_status : string représentant des états
+  def compare_status_to(wanted_status)
+    Character.statuses[self.status] >= Character.statuses[wanted_status]
   end
 
   def is_paragon?

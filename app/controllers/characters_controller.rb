@@ -171,6 +171,7 @@ class CharactersController < ApplicationController
     #end
 
     @character.assign_attributes(character_params)
+    @character.status = "skill_done"
     if @character.save
       redirect_to choose_feats_character_path (@character.id)
     else
@@ -305,6 +306,7 @@ class CharactersController < ApplicationController
   def find_dependancies
     @character = Character.find_by_id(params["id"])
     @abilities = @character.ability_bonuses.joins(:ability)
+    @skills = @character.skill_bonuses.joins(:skill)
   end
 
 end

@@ -10,12 +10,20 @@
   <h5>Langues connues :<br><%= @character.languages.map(&:language).join(', ') %></h5>
 <% end %>
 
-
-<% unless @character.draft? %>
+<% if @character.compare_status_to('ability_done') %>
   <h5>Caractéristiques :</h5>
   <ul class="list-group padding-left">
   <% @abilities.each do |ability| %>
       <li><%= Stat.human_attribute_name(ability.ability.name) %> <%= ability.total_value %> <small>(<%= pretty_modifier(ability.modifier) %>)</small></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<% if @character.compare_status_to('skill_done') %>
+  <h5>Compétences :</h5>
+  <ul class="list-group padding-left">
+  <% @skills.each do |skill_bonus| %>
+      <li><%= Skill::SKILLS_CONVERSION_FR[skill_bonus.skill.name] %> : <%= pretty_modifier(skill_bonus.ability_bonus.modifier + @character.half_level + skill_bonus.racial + skill_bonus.training) %></li>
   <% end %>
   </ul>
 <% end %>
