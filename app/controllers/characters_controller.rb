@@ -148,6 +148,7 @@ class CharactersController < ApplicationController
     # Récupération des bonus dynamiques apportés par les races et classes
     @race_choosable_skill_bonus = @character.race.choosable_skill_bonus_to_a
     @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
+    @character_chosen_skill = @character.chosen_skill_formation
 
     # Gestion des bonus apportés par des aptitudes raciales
     @bonus_from_feature = @character.show_formation_bonus_rule(@character.race.features.main_ft )
@@ -159,19 +160,37 @@ class CharactersController < ApplicationController
   end
 
   def save_skills
-    # TODO : controle sur les formations choisies (count et formations offerte)
-    #formations_choice_params = character_params[:skill_choices]
-    #if @character.klass.name == 'Rôdeur' && !formations_choice_params.include?(:nature) && !formations_choice_params.include?(:dungeoneering)
-    #  flash[:error] = "En tant que rôdeur, vous devez choisir soit Exploration, soit Nature"
-    #  redirect_to choose_feats_character_path @character.id
-    #end
-    #if @character.klass.name == 'Voleur' && !formations_choice_params.include?(:stealth) && !formations_choice_params.include?(:thievery)
-    #  flash[:error] = "En tant que voleur, vous devez choisir soit Discrétion, soit Larcin"
-    #  redirect_to choose_feats_character_path @character.id
-    #end
+    if (@character.klass.name == 'Rôdeur')
+      required_skill_chosen = false
+      nature, dungeoneering = @character.skill_bonuses.joins(:skill).where(skills: {name: [:nature, :dungeoneering]}) 
+      character_params[:skill_bonuses_attributes].each do |param|
+        if ((nature.id.to_s == param.last["id"] || dungeoneering.id.to_s == param.last["id"]) && param.last["training"] == "5")
+          required_skill_chosen = true
+        end
+      end
+      if !required_skill_chosen
+        flash[:error] = "En tant que rôdeur, vous devez choisir Exploration ou Nature"
+        redirect_to choose_skills_character_path @character.id and return
+      end
+    end
+
+    if (@character.klass.name == 'Voleur')
+      required_skill_chosen = false
+      stealth, thievery = @character.skill_bonuses.joins(:skill).where(skills: {name: [:stealth, :thievery]}) 
+      character_params[:skill_bonuses_attributes].each do |param|
+        if ((stealth.id.to_s == param.last["id"] || thievery.id.to_s == param.last["id"]) && param.last["training"] == "5")
+          required_skill_chosen = true
+        end
+      end
+      if !required_skill_chosen
+        flash[:error] = "En tant que voleur, vous devez choisir Discrétion ou Larcin"
+        redirect_to choose_skills_character_path @character.id and return
+      end
+    end
 
     @character.assign_attributes(character_params)
     @character.status = "skill_done"
+    
     if @character.save
       redirect_to choose_feats_character_path (@character.id)
     else

@@ -35,7 +35,7 @@
                 <th class="medium-width center">Carac</th>
                 <th class="medium-width center">Carac + 1/2 niv.</th>
                 <th class="medium-width center">Race</th>
-                <th class="medium-width center">Formation : <span id="total-formation-allowed"><%= @character.total_formation_skills_number %><span></th>
+                <th class="medium-width center">Formation : <span id="total-formation-allowed"><%= @character.total_formation_skills_number %></span></th>
               </tr>
             </thead>
             <tbody id="character-formation">
@@ -82,14 +82,14 @@
                     <td class="center">
                       <%# Classe dont la compétence s est obligatoire %>
                       <% if free_required_skill(skill_name) %>
-                        <% css_btn = "btn-info prevent-default" %>
+                        <% css_btn = "btn-info prevent-default js-chosen-skill" %>
                         <% input_disabled = false %>
                         <% span_class = "glyphicon-ok" %>
                       <%# Classe dont la compétence s fait partie de la liste de compétences de classe %>
                       <% elsif @klass_choosable_skill_bonus.include?(skill_name) %>
                         <%# La compétence a été choisie %>
                         <% if skill_bonus.training == 5 %>
-                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation" %>
+                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation js-chosen-skill" %>
                           <% span_class = "glyphicon-ok" %>
                           <% input_disabled = false %>
                         <%# La compétence n'a pas été choisie %>
@@ -101,8 +101,8 @@
                       <%# La compétence ne fait pas partie de la liste des compétences de classe mais le personnage est un éladrin %>
                       <% elsif @character.race.name == 'Éladrin' %>
                         <%# La compétence a été choisie %>
-                        <% if @klass_choosable_skill_bonus && @klass_choosable_skill_bonus.send(skill_name) == 5 %>
-                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation js-eladrin-skill-bonus" %>
+                        <% if @character_choosen_skill[skill_name] == 5 %>
+                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation js-eladrin-skill-bonus js-chosen-skill" %>
                           <% span_class = "glyphicon-ok" %>
                           <% input_disabled = false %>
                         <%# La compétence n'a pas été choisie %>
@@ -110,7 +110,7 @@
                           <% css_btn = "btn-sm btn-default js-btn-skill-bonus-formation js-eladrin-skill-bonus" %>
                           <% span_class = "glyphicon-plus" %>
                           <% input_disabled = false %>
-                          <% btn_disabled = "disabled" %>
+                          <% btn_disabled = "" %>
                         <% end %>
                       <%# La compétence ne fait pas partie de la liste des compétence de classe %>
                       <% else %>

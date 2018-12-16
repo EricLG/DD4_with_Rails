@@ -270,10 +270,24 @@ $(document).on("page:change", function() {
 
   $('.js-btn-skill-bonus-formation').click(function(e){
     e.preventDefault();
-    var btn = $(this);
-    var span = $(this).find($("span"));
-    var input = $(this).find($("input"));
-    var skill = $(this).parents("tr").attr('id');
+
+    // Compte total de formation avant action
+    var total_formation = $('.js-chosen-skill').length;
+    var total_formation_allowed = parseInt($('#total-formation-allowed').text());
+    if (total_formation >= total_formation_allowed) {
+      // Allow only unselect
+      if (!$(this).find($("span")).hasClass("glyphicon-plus")) {
+        updateSkill($(this));
+      }
+    } else {
+      updateSkill($(this));
+    }
+  });
+
+  function updateSkill(clickedFormation) {
+    var span =  clickedFormation.find($("span"));
+    var input = clickedFormation.find($("input"));
+    var skill = clickedFormation.parents("tr").attr('id');
     var total_skill = $("#total_bonus_" + skill)
     var total_skill_value = parseInt(total_skill.text())
 
@@ -287,18 +301,18 @@ $(document).on("page:change", function() {
     }
 
     // Gestion du cas Eladrin : desactivation des autres boutons pour respecter l'aptitude Education éladrine
-    if (btn.hasClass("js-eladrin-skill-bonus")) {
+    if (clickedFormation.hasClass("js-eladrin-skill-bonus")) {
       if (span.hasClass("glyphicon-plus")) {
         $(".js-eladrin-skill-bonus").attr("disabled", true)
-        btn.attr("disabled", false)
+        clickedFormation.attr("disabled", false)
       } else {
         $(".js-eladrin-skill-bonus").attr("disabled", false)
       }
     }
 
     // Update btn display
-    btn.toggleClass('btn-info');
+    clickedFormation.toggleClass('btn-info js-chosen-skill');
     span.toggleClass('glyphicon-plus glyphicon-ok');
-  });
+  };
 
 });

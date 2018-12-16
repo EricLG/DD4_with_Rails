@@ -160,6 +160,12 @@ class Character < ActiveRecord::Base
     feature
   end
 
+  def chosen_skill_formation
+    chosen_skill = {}
+    self.skill_bonuses.joins(:skill).map{|s| chosen_skill[s.skill.name] = s.training }
+    chosen_skill
+  end
+
   # Array - Génère des caractéristiques aléatoires pour un personnage
   def self.random_abilities
     Array.new(6) {Character.random_ability}.sort {|x,y| y <=> x }
