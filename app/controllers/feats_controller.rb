@@ -1,26 +1,23 @@
 class FeatsController < ApplicationController
+  before_action :find_dependancies, only: %i[heroics parangonics epics new edit]
 
-  #before_filter :authorize
-  before_action :find_dependancies, only: [:heroics, :parangonics, :epics, :new, :edit]
-
-  def index
-  end
+  def index; end
 
   def heroics
-    @search = FeatSearch.new(params[:feat_search], "heroic")
-    @feats = @search.build_search.distinct.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @search = FeatSearch.new(params[:feat_search], 'heroic')
+    @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :sorted_feats
   end
 
   def parangonics
-    @search = FeatSearch.new(params[:feat_search], "parangonic")
-    @feats = @search.build_search.distinct.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @search = FeatSearch.new(params[:feat_search], 'parangonic')
+    @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :sorted_feats
   end
 
   def epics
-    @search = FeatSearch.new(params[:feat_search], "epic")
-    @feats = @search.build_search.distinct.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @search = FeatSearch.new(params[:feat_search], 'epic')
+    @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :sorted_feats
   end
 
@@ -61,7 +58,6 @@ class FeatsController < ApplicationController
     end
   end
 
-
   private
 
   def feat_params
@@ -71,8 +67,8 @@ class FeatsController < ApplicationController
       :category,
       :errata,
       :source_id,
-      {race_ids:[]},
-      {klass_ids:[]}
+      race_ids: [],
+      klass_ids: []
     )
   end
 

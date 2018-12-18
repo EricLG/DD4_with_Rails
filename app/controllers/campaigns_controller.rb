@@ -1,9 +1,7 @@
 class CampaignsController < ApplicationController
+  before_filter :find_dependancies, only: %i[index new edit show]
 
-  before_filter :find_dependancies, only: [:index, :new, :edit, :show]
-
-  def index
-  end
+  def index; end
 
   def new
     @users = User.all
@@ -19,9 +17,7 @@ class CampaignsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
+  def destroy; end
 
   def show
     @campaign = Campaign.includes(:games).find_by_id(params[:id])
@@ -56,9 +52,8 @@ class CampaignsController < ApplicationController
   end
 
   def find_dependancies
-    @status_array = [["En cours", :in_progress], ["Interrompu", :interrupted], ["Terminé", :finished]]
+    @status_array = [['En cours', :in_progress], ['Interrompu', :interrupted], ['Terminé', :finished]]
     @current_campaigns = Campaign.where(status: :in_progress).order(created_at: :desc)
     @finished_campaigns = Campaign.where(status: :finished).order(created_at: :desc)
   end
-
 end

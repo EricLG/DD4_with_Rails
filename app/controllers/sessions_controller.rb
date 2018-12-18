@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
-
   skip_before_filter :check_current_logged_user, only: [:new]
 
-  def new
-  end
+  def new; end
 
   def create
     email = params[:user][:email].try(:downcase)
@@ -15,8 +13,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
-    # If user's login doesn't work, send them back to the login form.
-      flash[:error] = "Email ou mot de passe incorrecte"
+      # If user's login doesn't work, send them back to the login form.
+      flash[:error] = 'Email ou mot de passe incorrecte'
       redirect_to '/login'
     end
   end
@@ -25,5 +23,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path
   end
-
 end

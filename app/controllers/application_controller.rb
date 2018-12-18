@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
     begin
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue ActiveRecord::RecordNotFound => error
-      flash["error"] = error.message
+      flash['error'] = error.message
       session[:user_id] = nil
-      redirect_to "/login"
+      redirect_to '/login'
     end
   end
 
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin
-    redirect_to '/login' unless ['illisae', 'ashera', 'chomb'].include? @current_user.try(:name).try(:downcase)
+    redirect_to '/login' unless %w[illisae ashera].include? @current_user.try(:name).try(:downcase)
   end
 
 end

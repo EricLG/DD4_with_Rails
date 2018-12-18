@@ -166,6 +166,17 @@ class Character < ActiveRecord::Base
     chosen_skill
   end
 
+  # For rogue and thief
+  def validate_skill_training(skill_bonuses_attributes, skills)
+    required_skill_chosen = false
+    training_choices = @character.skill_bonuses.joins(:skill).where(skills: { name: skills })
+    skill_bonuses_attributes.each do |param|
+      appropriate_skill = training_choices[0].id.to_s == param.last['id'] || training_choices[1].id.to_s == param.last['id']
+      required_skill_chosen = true if appropriate_skill && param.last['training'] == '5'
+    end
+    required_skill_chosen
+  end
+
   # Array - Génère des caractéristiques aléatoires pour un personnage
   def self.random_abilities
     Array.new(6) {Character.random_ability}.sort {|x,y| y <=> x }

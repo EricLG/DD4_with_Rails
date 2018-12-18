@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-
   skip_before_filter :check_current_logged_user, only: [:new]
 
-  def new
-  end
+  def new; end
 
   def show
     @characters = @current_user.characters
@@ -22,23 +20,20 @@ class UsersController < ApplicationController
 
   def edit
     user = User.find(params[:id])
+    return unless user != @current_user
 
-    if user != @current_user
-      flash[:error] = "Vous n'êtes pas autorisé à consulter cette page"
-      redirect_to user_path(@current_user.id)
-    end
+    flash[:error] = "Vous n'êtes pas autorisé à consulter cette page"
+    redirect_to user_path(@current_user.id)
   end
 
   def update
     user = User.find(params[:id])
-
     if user != @current_user
       flash[:error] = "Vous n'êtes pas autorisé à consulter cette page"
       redirect_to user_path(@current_user.id)
     end
-
     if @current_user.update(user_params)
-      flash[:info] = "Vos modifications ont été prises en comptes"
+      flash[:info] = 'Vos modifications ont été prises en comptes'
       redirect_to user_path(@current_user.id)
     else
       flash[:error] = "Erreur sur les champs suivants: #{@current_user.errors.full_messages}"

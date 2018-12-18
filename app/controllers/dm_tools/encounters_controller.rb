@@ -1,15 +1,15 @@
 class DmTools::EncountersController < ApplicationController
-  before_action :set_encounter, only: [:show, :edit, :update, :destroy]
+  before_action :set_encounter, only: %i[show edit update destroy]
+
   # GET /encounters
   # GET /encounters.json
   def index
-    @encounters = Encounter.all.paginate(:page => params[:page], :per_page => 20).order(level: :asc, source_id: :asc, experience: :asc)
+    @encounters = Encounter.all.paginate(page: params[:page], per_page: 20).order(level: :asc, source_id: :asc, experience: :asc)
   end
 
   # GET /encounters/1
   # GET /encounters/1.json
-  def show
-  end
+  def show; end
 
   # GET /encounters/new
   def new
@@ -23,8 +23,7 @@ class DmTools::EncountersController < ApplicationController
   end
 
   # GET /encounters/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /encounters
   # POST /encounters.json
@@ -73,18 +72,19 @@ class DmTools::EncountersController < ApplicationController
     budget_encounter = Monster.level_to_xp(party_level) * party_size
     encounters_exemple = Encounter.select(:description).where(experience: budget_encounter)
     respond_to do |format|
-      format.json { render json: {budget: budget_encounter, encounters: encounters_exemple}}
+      format.json { render json: { budget: budget_encounter, encounters: encounters_exemple } }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_encounter
-      @encounter = Encounter.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def encounter_params
-      params.require(:encounter).permit(:level, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_encounter
+    @encounter = Encounter.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def encounter_params
+    params.require(:encounter).permit(:level, :description)
+  end
 end

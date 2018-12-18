@@ -16,7 +16,7 @@
       <th class="col-sm-1">Pouvoir</th>
       <th class="col-sm-1">Source</th>
     </tr>
-  <% @randomObjects.each do |w| %>
+  <% @random_objects.each do |w| %>
     <tr>
       <td><%= link_to w.name, items_magic_item_path(w.id)  %></td>
       <td><%= w.level_min %> </td>

@@ -1,5 +1,5 @@
 class Admin::WeaponPropertiesController < ApplicationController
-  before_action :set_weapon_property, only: [:show, :edit, :update, :destroy]
+  before_action :set_weapon_property, only: %i[show edit update destroy]
 
   # GET /weapon_properties
   # GET /weapon_properties.json
@@ -9,8 +9,7 @@ class Admin::WeaponPropertiesController < ApplicationController
 
   # GET /weapon_properties/1
   # GET /weapon_properties/1.json
-  def show
-  end
+  def show; end
 
   # GET /weapon_properties/new
   def new
@@ -18,8 +17,7 @@ class Admin::WeaponPropertiesController < ApplicationController
   end
 
   # GET /weapon_properties/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /weapon_properties
   # POST /weapon_properties.json
@@ -28,7 +26,9 @@ class Admin::WeaponPropertiesController < ApplicationController
 
     respond_to do |format|
       if @weapon_property.save
-        format.html { redirect_to admin_weapon_property_path @weapon_property, notice: 'Weapon property was successfully created.' }
+        format.html do
+          redirect_to admin_weapon_property_path @weapon_property, notice: 'Weapon property was successfully created.'
+        end
         format.json { render :show, status: :created, location: @weapon_property }
       else
         format.html { render :new }
@@ -42,7 +42,12 @@ class Admin::WeaponPropertiesController < ApplicationController
   def update
     respond_to do |format|
       if @weapon_property.update(weapon_property_params)
-        format.html { redirect_to admin_weapon_property_path(@weapon_property), notice: 'Weapon property was successfully updated.' }
+        format.html do
+          redirect_to(
+            admin_weapon_property_path(@weapon_property),
+            notice: 'Weapon property was successfully updated.'
+          )
+        end
         format.json { render :show, status: :ok, location: @weapon_property }
       else
         format.html { render :edit }
@@ -62,17 +67,17 @@ class Admin::WeaponPropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_weapon_property
-      @weapon_property = WeaponProperty.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def weapon_property_params
+  # Use callbacks to share common setup or constraints between actions.
+  def set_weapon_property
+    @weapon_property = WeaponProperty.find(params[:id])
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def weapon_property_params
     params.require(:weapon_property).permit(
       :name,
       :description
     )
-    end
+  end
 end

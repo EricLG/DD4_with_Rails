@@ -1,8 +1,5 @@
 class GamesController < ApplicationController
-
-  def index
-
-  end
+  def index; end
 
   def new
     @campaign = Campaign.find_by_id(params[:campaign_id])
@@ -19,22 +16,16 @@ class GamesController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
+  def destroy; end
 
   def show
     @campaign = Campaign.find_by_id(params[:campaign_id])
     @game = Game.find_by_id(params[:id])
   end
 
-  def edit
+  def edit; end
 
-  end
-
-  def update
-
-  end
+  def update; end
 
   private
 

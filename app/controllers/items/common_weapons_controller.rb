@@ -1,12 +1,10 @@
 class Items::CommonWeaponsController < ApplicationController
-
   def index
     @sorted_weapons = {}
     CommonWeapon.includes(:weapon_category, :weapon_properties, :weapon_groups, :source).group_by(&:category).each do |category, weapons|
       @sorted_weapons[category] = weapons.group_by(&:two_handed)
     end
     @cat = WeaponCategory.all
-
   end
 
   def new
@@ -27,9 +25,9 @@ class Items::CommonWeaponsController < ApplicationController
   end
 
   def destroy
-     @weapon = CommonWeapon.find_by_id(params[:id])
-     @weapon.destroy
-     redirect_to items_common_weapons_path
+    @weapon = CommonWeapon.find_by_id(params[:id])
+    @weapon.destroy
+    redirect_to items_common_weapons_path
   end
 
   def show
@@ -41,7 +39,7 @@ class Items::CommonWeaponsController < ApplicationController
     @weapon_properties  = WeaponProperty.all
     @weapon_groups      = WeaponGroup.all
     @sources            = Source.all
-   @weapon = CommonWeapon.find_by_id(params[:id])
+    @weapon = CommonWeapon.find_by_id(params[:id])
   end
 
   def update
@@ -55,6 +53,7 @@ class Items::CommonWeaponsController < ApplicationController
   end
 
   private
+
   def common_weapon_params
     params.require(:common_weapon).permit(
       :name,
@@ -67,8 +66,8 @@ class Items::CommonWeaponsController < ApplicationController
       :two_handed,
       :source_id,
       :weapon_category_id,
-      {weapon_group_ids:[]},
-      {weapon_property_ids:[]}
+      weapon_group_ids: [],
+      weapon_property_ids: []
     )
   end
 end

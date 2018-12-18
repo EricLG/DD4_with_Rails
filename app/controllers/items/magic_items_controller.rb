@@ -1,9 +1,8 @@
 class Items::MagicItemsController < ApplicationController
-
-  before_action :find_dependancies, only: [:index, :new, :edit, :weapons, :armors, :implements, :gears, :amulets]
+  before_action :find_dependancies, only: %i[index new edit weapons armors implements gears amulets]
 
   def index
-    render "items/index"
+    render 'items/index'
   end
 
   def new
@@ -13,11 +12,10 @@ class Items::MagicItemsController < ApplicationController
   def create
     @item = MagicItem.new(magic_item_params)
     if @item.save
-      if params["add_another"]
-        flash[:success] = "L'objet \"#{@item.name}\" a bien été créé."
+      flash[:success] = "L'objet \"#{@item.name}\" a bien été créé."
+      if params['add_another']
         redirect_to new_items_magic_item_path
       else
-        flash[:success] = "L'objet \"#{@item.name}\" a bien été créé."
         redirect_to items_magic_item_path(@item.id)
       end
     else
@@ -35,11 +33,7 @@ class Items::MagicItemsController < ApplicationController
 
   def show
     @item = MagicItem.find_by_id(params[:id])
-    if @current_user
-      @inWishlists = @current_user.magic_items.include?(@item)
-    else
-      @inWishlists = nil
-    end
+    @in_wishlists = @current_user.magic_items.include?(@item) if @current_user
     @wishlist = Wishlist.new
   end
 
@@ -61,29 +55,29 @@ class Items::MagicItemsController < ApplicationController
   def weapons
     @kind = 'weapons'
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
-    @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
   end
 
   def armors
     @kind = 'armors'
-    @armor_categories = @armor_categories.reject{|ac| ac.is_shield?}
+    @armor_categories = @armor_categories.reject(&:is_shield?)
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
-    @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
   end
 
   def implements
     @kind = 'implements'
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
-    @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
   end
 
   def gears
     @kind = 'gears'
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
-    @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     @locations = @locations.gears
     render :index
   end
@@ -91,13 +85,13 @@ class Items::MagicItemsController < ApplicationController
   def amulets
     @kind = 'amulets'
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
-    @items = @search.build_search.paginate(:page => params[:page], :per_page => 20).order(name: :asc)
+    @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
   end
 
   def random
     @hide_side_bloc = true
-    @randomObjects = MagicItem.all.sample(10)
+    @random_objects = MagicItem.all.sample(10)
   end
 
   def wishlist
@@ -136,10 +130,10 @@ class Items::MagicItemsController < ApplicationController
       :rarity,
       :implement_group_id,
       :source_id,
-      {object_level_ids:[]},
-      {weapon_group_ids:[]},
-      {armor_category_ids:[]},
-      {items_level_ids:[]}
+      object_level_ids: [],
+      weapon_group_ids: [],
+      armor_category_ids: [],
+      items_level_ids: []
     )
   end
 

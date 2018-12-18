@@ -1,33 +1,29 @@
 class Items::ConsumablesController < ApplicationController
-
-  before_action :find_dependancies, only: [:index, :new, :edit]
-  before_filter :set_consumable, only: [:show, :edit, :update, :destroy]
+  before_action :find_dependancies, only: %i[index new edit]
+  before_filter :set_consumable, only: %i[show edit update destroy]
 
   def index
-    @consumables = Consumable.all.paginate(:page => params[:page], :per_page => 2).order(name: :asc)
+    @consumables = Consumable.all.paginate(page: params[:page], per_page: 2).order(name: :asc)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @consumable = Consumable.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @consumable = Consumable.new(consumable_params)
 
     respond_to do |format|
       if @consumable.save
-        if params["add_another"]
+        if params['add_another']
           format.html { redirect_to new_items_consumable_path, notice: t('.notice', name: @consumable.name) }
         else
           format.html { redirect_to items_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
         end
-
       else
         format.html { render :new }
       end
@@ -52,26 +48,27 @@ class Items::ConsumablesController < ApplicationController
   end
 
   private
-    def set_consumable
-      @consumable = Consumable.find(params[:id])
-    end
 
-    def consumable_params
-      params.require(:consumable).permit(
-        :name,
-        :description,
-        :kind,
-        :alteration,
-        :property,
-        :power,
-        :special,
-        :source_id,
-        {object_level_ids:[]}
-      )
-    end
+  def set_consumable
+    @consumable = Consumable.find(params[:id])
+  end
 
-    def find_dependancies
-      @levels = ObjectLevel.all
-      @sources = Source.all
-    end
+  def consumable_params
+    params.require(:consumable).permit(
+      :name,
+      :description,
+      :kind,
+      :alteration,
+      :property,
+      :power,
+      :special,
+      :source_id,
+      object_level_ids: []
+    )
+  end
+
+  def find_dependancies
+    @levels = ObjectLevel.all
+    @sources = Source.all
+  end
 end

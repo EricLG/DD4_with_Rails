@@ -1,13 +1,12 @@
 class Items::CommonArmorsController < ApplicationController
-
   def index
     @communs = CommonArmor.includes(:armor_category, :source).armors.order(:armor_bonus, :min_alteration_bonus).group_by(&:category)
-    @cat  = ArmorCategory.armors
+    @cat = ArmorCategory.armors
   end
 
   def shields
     @communs = CommonArmor.includes(:armor_category, :source).shields.order(:armor_bonus, :min_alteration_bonus).group_by(&:category)
-    @cat  = ArmorCategory.shields
+    @cat = ArmorCategory.shields
     render :index
   end
 
@@ -27,9 +26,9 @@ class Items::CommonArmorsController < ApplicationController
   end
 
   def destroy
-     @armor = CommonArmor.find_by_id(params[:id])
-     @armor.destroy
-     redirect_to items_common_armors_path
+    @armor = CommonArmor.find_by_id(params[:id])
+    @armor.destroy
+    redirect_to items_common_armors_path
   end
 
   def show
@@ -38,9 +37,9 @@ class Items::CommonArmorsController < ApplicationController
 
   def edit
     @armor = CommonArmor.find_by_id(params[:id])
-    @armor_categories  = ArmorCategory.armors   if !@armor.is_shield?
-    @armor_categories  = ArmorCategory.shields  if @armor.is_shield?
-    @sources           = Source.all
+    @armor_categories = ArmorCategory.armors unless @armor.is_shield?
+    @armor_categories = ArmorCategory.shields if @armor.is_shield?
+    @sources = Source.all
   end
 
   def update
@@ -54,6 +53,7 @@ class Items::CommonArmorsController < ApplicationController
   end
 
   private
+
   def common_armor_params
     params.require(:common_armor).permit(
       :name,
