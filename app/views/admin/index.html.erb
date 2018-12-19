@@ -17,7 +17,7 @@
       <li><%= link_to t(".models_source.features"), admin_features_path %> </li>
     </ul>
 </div>
-<% if is_current_user_admin? %>
+<% if current_user_admin? %>
   <h3>Partie Admin</h3>
   <div class="row">
     <h3 class="col-sm-12"><%= t(".models_source.users") %> </h3>

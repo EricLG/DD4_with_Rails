@@ -54,7 +54,7 @@
     <% end %>
   </div>
 
-  <% if is_current_user_admin? %>
+  <% if current_user_admin? %>
     <div>
       <p class="pull-right"><%= link_to 'Supprimer', items_magic_item_path(@item.id), method: :delete, data: { confirm: "Supprimer l'objet #{@item.id} #{@item.name} ?" }, class: "btn btn-danger" %></p>
     </div>
