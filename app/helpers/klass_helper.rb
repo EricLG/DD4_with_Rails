@@ -15,6 +15,6 @@ module KlassHelper
 
   # Renvoie true si la compétence skill_name est obligatoire.
   def free_required_skill(skill_name)
-    @character.klass.have_only_one_required_skill? && @character.klass.required_skills_to_a.include?(skill_name)
+    @character.klass.only_one_required_skill? && @character.klass.required_skills_to_a.include?(skill_name)
   end
 end

@@ -1,5 +1,4 @@
 class Character < ActiveRecord::Base
-
   enum status: { draft: 1, ability_done: 2, skill_done: 3, complete: 10}
 
   belongs_to :user
@@ -14,8 +13,8 @@ class Character < ActiveRecord::Base
   has_many :players, dependent: :delete_all
   has_many :choices, inverse_of: :character, dependent: :delete_all
 
-  has_many :magic_items , through: :wishlists
-  has_many :campaigns , through: :players
+  has_many :magic_items, through: :wishlists
+  has_many :campaigns, through: :players
   has_many :features, through: :choices
   has_many :languages, through: :choices
 
@@ -29,19 +28,25 @@ class Character < ActiveRecord::Base
   has_many :skill_bonuses, inverse_of: :character
   accepts_nested_attributes_for :skill_bonuses
 
-  has_many :klass_choices,  -> {klass_features_choices},  class_name: "Choice"
-  has_many :race_choices,   -> {race_features_choices},   class_name: "Choice"
+  has_many :klass_choices,  -> { klass_features_choices },  class_name: 'Choice'
+  has_many :race_choices,   -> { race_features_choices },   class_name: 'Choice'
 
-  NEW_ABILITIES_LEVEL = [4, 8, 11, 14, 18, 21, 24, 28]
-  DEFAULT_ABILITIES = [10, 10, 10, 10, 10, 8]
-  ALIGNMENT = [["Bon", "Bon"], ["Loyal bon", "Loyal bon"], ["Mauvais", "Mauvais"], ["Chaotique mauvais", "Chaotique mauvais"], ["Non aligné", "Non aligné"]]
+  NEW_ABILITIES_LEVEL = [4, 8, 11, 14, 18, 21, 24, 28].freeze
+  DEFAULT_ABILITIES = [10, 10, 10, 10, 10, 8].freeze
+  ALIGNMENT = [
+    %w[Bon Bon],
+    %w[Loyal\ bon Loyal\ bon],
+    %w[Mauvais Mauvais],
+    %w[Chaotique\ mauvais Chaotique\ mauvais],
+    %w[Non\ aligné Non\ aligné]
+  ].freeze
 
   # Retourne une string des langages parlés
   def show_languages
     if self.languages.empty?
       "Vous ne parlez aucune langue. C'est dommage."
     else
-      self.languages.map(&:language).join(", ")
+      self.languages.map(&:language).join(', ')
     end
   end
 
@@ -51,17 +56,17 @@ class Character < ActiveRecord::Base
     Character.statuses[self.status] >= Character.statuses[wanted_status]
   end
 
-  def is_paragon?
+  def paragon?
     level >= 11 if level
   end
 
-  def is_epic?
+  def epic?
     level >= 21 if level
   end
 
   # Renvoie le bonus de 1/2 niveau
   def half_level
-    (self.level/2).floor
+    (self.level / 2).floor
   end
 
   # On ne peut avoir que 6 caractéristiques : Force, Constitution, etc.
@@ -77,19 +82,19 @@ class Character < ActiveRecord::Base
           ability: a,
           initial_value: (a == abilities.last ? 8 : 10),
           bonus_racial: br,
-          level_11: self.is_paragon? ? 1 : 0,
-          level_21: self.is_epic? ? 1 : 0
+          level_11: self.paragon? ? 1 : 0,
+          level_21: self.epic? ? 1 : 0
         )
       end
     end
-    return self.ability_bonuses.joins(:ability)
+    self.ability_bonuses.joins(:ability)
   end
 
   # Retourne le bonus racial choisi selon un tableau de ability_bonuses
   def racial_bonus_chosen(char_abilities)
     chosen = []
     char_abilities.each do |ab|
-      chosen << ab.to_s if (ab.bonus_racial > 0)
+      chosen << ab.to_s if ab.bonus_racial > 0
     end
     chosen.join(', ')
   end
@@ -107,7 +112,7 @@ class Character < ActiveRecord::Base
       self.skill_bonuses.destroy_all
       skills = Skill.all
       skills.each do |skill|
-        ab = ability_bonuses.joins(:ability).where(abilities: {name: Skill.get_linked_carac(skill.name)}).first
+        ab = ability_bonuses.joins(:ability).where(abilities: { name: Skill.get_linked_carac(skill.name) }).first
         SkillBonus.create(
           character: self,
           skill: skill,
@@ -117,16 +122,16 @@ class Character < ActiveRecord::Base
         )
       end
     end
-    return self.skill_bonuses.joins(:skill).sort_by(&:fr_name)
+    self.skill_bonuses.joins(:skill).sort_by(&:fr_name)
   end
 
   # retourne la valeur de la formation : 5 si la compétence est obligatoire (Druide / nature), 0 sinon
-  def check_training_for_skill(s, class_bonus_skill_static)
-    if (Klass::GRANT_ONLY_ONE_FORMATION_SKILL.include?(self.klass.name) && class_bonus_skill_static.first == s.name)
-      trained = 5
-    else
-      trained = 0
-    end
+  def check_training_for_skill(skill, class_bonus_skill_static)
+    trained = if Klass::GRANT_ONLY_ONE_FORMATION_SKILL.include?(self.klass.name) && class_bonus_skill_static.first == skill.name
+                5
+              else
+                0
+              end
     trained
   end
 
@@ -134,9 +139,7 @@ class Character < ActiveRecord::Base
   def racial_skill_bonus_chosen?(skill_abilities, skill_bonus_list)
     chosen = false
     skill_abilities.each do |sb|
-      if (sb.racial == 2 && skill_bonus_list.include?(sb.skill.name))
-        chosen = true
-      end
+      chosen = true if sb.racial == 2 && skill_bonus_list.include?(sb.skill.name)
     end
     chosen
   end
@@ -144,8 +147,8 @@ class Character < ActiveRecord::Base
   # Return the total formation for a character from his race or class
   def total_formation_skills_number
     total = self.klass.skills_number
-    total +=1 if self.race.grant_dynamic_formation_skill?
-    total +=1 if self.klass.grant_formation_skill?
+    total += 1 if self.race.grant_dynamic_formation_skill?
+    total += 1 if self.klass.grant_formation_skill?
     total
   end
 
@@ -154,7 +157,7 @@ class Character < ActiveRecord::Base
     feature = nil
     if self.race.grant_dynamic_formation_skill?
       feature = features.main_ft.find do |f|
-        f.name == "Compétence supplémentaire" || f.name == "Éducation éladrine"
+        f.name == 'Compétence supplémentaire' || f.name == 'Éducation éladrine'
       end
     end
     feature
@@ -179,12 +182,12 @@ class Character < ActiveRecord::Base
 
   # Array - Génère des caractéristiques aléatoires pour un personnage
   def self.random_abilities
-    Array.new(6) {Character.random_ability}.sort {|x,y| y <=> x }
+    Array.new(6) { Character.random_ability }.sort { |x, y| y <=> x }
   end
 
   # Int - Retourne une valeur de caractéristique entre 3 et 18
   def self.random_ability
-    Array.new(4) {Character.dice}.sort.last(3).inject{|acc, i| acc+=i}
+    Array.new(4) { Character.dice }.sort.last(3).inject { |acc, i| acc += i }
   end
 
   # Int - Lance 1d6
@@ -258,67 +261,70 @@ class Character < ActiveRecord::Base
   end
 
   def xp_to_level
-    self.level = case (self.experience/1000).to_f
-    when 0 ... 1
-      1
-    when 1 ... 2.25
-      2
-    when 2.25 ... 3.75
-      3
-    when 3.75 ... 5.5
-      4
-    when 5.5 ... 7.5
-      5
-    when 7.5 ... 10
-      6
-    when 10 ... 13
-      7
-    when 13 ... 16.5
-      8
-    when 16.5 ... 20.5
-      9
-    when 20.5 ... 26
-      10
-    when 26 ... 32
-      11
-    when 32 ... 39
-      12
-    when 39 ... 47
-      13
-    when 47 ... 57
-      14
-    when 57 ... 69
-      15
-    when 69 ... 83
-      16
-    when 83 ... 99
-      17
-    when 99 ... 119
-      18
-    when 119 ... 143
-      19
-    when 143 ... 175
-      20
-    when 175 ... 210
-      21
-    when 210 ... 255
-      22
-    when 255 ... 310
-      23
-    when 310 ... 375
-      24
-    when 375 ... 450
-      25
-    when 450 ... 550
-      26
-    when 550 ... 675
-      27
-    when 675 ... 825
-      28
-    when 825 ... 1000
-      29
-    else
-      30
-    end if self.experience
+    return unless self.experience
+
+    self.level = case (self.experience / 1000).to_f
+                 when 0...1
+                   1
+                 when 1...2.25
+                   2
+                 when 2.25...3.75
+                   3
+                 when 3.75...5.5
+                   4
+                 when 5.5...7.5
+                   5
+                 when 7.5...10
+                   6
+                 when 10...13
+                   7
+                 when 13...16.5
+                   8
+                 when 16.5...20.5
+                   9
+                 when 20.5...26
+                   10
+                 when 26...32
+                   11
+                 when 32...39
+                   12
+                 when 39...47
+                   13
+                 when 47...57
+                   14
+                 when 57...69
+                   15
+                 when 69...83
+                   16
+                 when 83...99
+                   17
+                 when 99...119
+                   18
+                 when 119...143
+                   19
+                 when 143...175
+                   20
+                 when 175...210
+                   21
+                 when 210...255
+                   22
+                 when 255...310
+                   23
+                 when 310...375
+                   24
+                 when 375...450
+                   25
+                 when 450...550
+                   26
+                 when 550...675
+                   27
+                 when 675...825
+                   28
+                 when 825...1000
+                   29
+                 else
+                   30
+                 end
+
   end
 end

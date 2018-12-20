@@ -1,32 +1,28 @@
 class Skill < ActiveRecord::Base
-
   has_many :skill_bonuses, inverse_of: :skills
   has_many :characters, through: :ability_bonuses
 
-  # has_one :race
-  # has_many :choice
-
-  SKILLS_EN = %w(acrobatics arcana athletics bluff diplomacy dungeoneering endurance heal history insight intimidate nature perception religion stealth streetwise thievery)
+  SKILLS_EN = %w[acrobatics arcana athletics bluff diplomacy dungeoneering endurance heal history insight intimidate nature perception religion stealth streetwise thievery].freeze
 
   SKILLS_CONVERSION_FR = {
-    "acrobatics" => "Acrobaties",
-    "arcana" => "Arcanes",
-    "athletics" => "Athlétisme",
-    "bluff" => "Bluff",
-    "diplomacy" => "Diplomatie",
-    "dungeoneering" => "Exploration",
-    "endurance" => "Endurance",
-    "heal" => "Soins",
-    "history" => "Histoire",
-    "insight" => "Intuition",
-    "intimidate" => "Intimidation",
-    "nature" => "Nature",
-    "perception" => "Perception",
-    "religion" => "Religion",
-    "stealth" => "Discrétion",
-    "streetwise" => "Connaissance de la rue",
-    "thievery" => "Larcin"
-  }
+    'acrobatics' => 'Acrobaties',
+    'arcana' => 'Arcanes',
+    'athletics' => 'Athlétisme',
+    'bluff' => 'Bluff',
+    'diplomacy' => 'Diplomatie',
+    'dungeoneering' => 'Exploration',
+    'endurance' => 'Endurance',
+    'heal' => 'Soins',
+    'history' => 'Histoire',
+    'insight' => 'Intuition',
+    'intimidate' => 'Intimidation',
+    'nature' => 'Nature',
+    'perception' => 'Perception',
+    'religion' => 'Religion',
+    'stealth' => 'Discrétion',
+    'streetwise' => 'Connaissance de la rue',
+    'thievery' => 'Larcin'
+  }.freeze
 
   # Array - Convertie une string de compétence en tableau de compétence fr
   def self.convert_list(list, separator = ', ')
@@ -49,5 +45,4 @@ class Skill < ActiveRecord::Base
       'charisma'
     end
   end
-
 end

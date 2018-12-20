@@ -1,23 +1,21 @@
 class Race < ActiveRecord::Base
-
   belongs_to :source
-
   has_and_belongs_to_many :features, join_table: :available_features
-  has_and_belongs_to_many :prerequisite_for_feats, :class_name => "Feat", :join_table => :pr_races_for_feat
+  has_and_belongs_to_many :prerequisite_for_feats, class_name: 'Feat', join_table: :pr_races_for_feat
 
   # Utiliser pour déterminer les langues connnus à la création d'un personnage
   def known_level_1_languages
-    str_language = self.language.split(", ").map(&:capitalize)
-    return Language.where(language: str_language)
+    str_language = self.language.split(', ').map(&:capitalize)
+    Language.where(language: str_language)
   end
 
   # Utiliser pour déterminer les langues à choisir à la création d'un personnage
   def available_level_1_languages
-    if self.name == 'Goliath'
-      languages = Language.where(language: ['Nain', 'Géant'])
-    else
-      languages = Language.where(level_1: true).where.not(language: self.known_level_1_languages.map(&:language))
-    end
+    languages = if self.name == 'Goliath'
+                  Language.where(language: %w[Nain Géant])
+                else
+                  Language.where(level_1: true).where.not(language: self.known_level_1_languages.map(&:language))
+                end
     languages
   end
 
@@ -31,9 +29,9 @@ class Race < ActiveRecord::Base
     skills = []
     skill_bonuses.split(', ').each do |s|
       if Skill::SKILLS_EN.include?(s)
-        skills << Skill::SKILLS_CONVERSION_FR[s] + " +2"
+        skills << Skill::SKILLS_CONVERSION_FR[s] + ' +2'
       elsif s == 'bonus'
-        skills << "+2 dans une autre compétence au choix"
+        skills << '+2 dans une autre compétence au choix'
       end
     end
     skills.join(', ')
@@ -51,8 +49,8 @@ class Race < ActiveRecord::Base
   # Retourne un tableau des compétences choisissables lors d'un bonus racial au choix (+2 dans une autre compétence)
   def choosable_skill_bonus_to_a
     race_bonus_skill_list = []
-    race_bonus_skill_list = %w(arcana endurance) if self.name == 'Cristallien'
-    race_bonus_skill_list = %w(insight) if self.name == 'Kalashtar'
+    race_bonus_skill_list = %w[arcana endurance] if self.name == 'Cristallien'
+    race_bonus_skill_list = %w[insight] if self.name == 'Kalashtar'
     skills = Skill::SKILLS_EN - race_bonus_skill_list
     skills
   end

@@ -8,16 +8,42 @@ class Source < ActiveRecord::Base
   has_many :races
   has_many :klasses
 
-  scope :feats, -> {where(name: FEATS) }
-  scope :magic_items, -> {where(name: MAGIC_ITEMS) }
-  scope :monsters, -> {where(name: MONSTERS) }
+  scope :feats, -> { where(name: FEATS) }
+  scope :magic_items, -> { where(name: MAGIC_ITEMS) }
+  scope :monsters, -> { where(name: MONSTERS) }
 
-  FEATS = ['Art de la Guerre 1', 'Art de la Guerre 2', 'Eberron', 'Force de la Nature', 'Intervention Divine', 'Manuel des Joueurs 1', 'Manuel des Joueurs 2', 'Manuel des Joueurs 3', 'Royaumes Oubliés', 'Secrets des Arcanes']
-  MAGIC_ITEMS = ['Le Comptoir de l\'Aventure 1', 'Le Comptoir de l\'Aventure 2', 'Manuel des Joueurs 1', 'Manuel des Joueurs 2', 'Manuel des Joueurs 3', 'Secrets des Arcanes']
-  MONSTERS = ['Bestiaire Fantastique 1', 'Bestiaire Fantastique 2', 'Bestiaire Fantastique 3', 'Chaos Élémentaire', 'Encyclopédie des Royaumes Oubliés', 'Manuel des Plans', 'Mer Astrale', 'Outreterre' ]
+  FEATS = [
+    'Art de la Guerre 1',
+    'Art de la Guerre 2',
+    'Eberron',
+    'Force de la Nature',
+    'Intervention Divine',
+    'Manuel des Joueurs 1',
+    'Manuel des Joueurs 2',
+    'Manuel des Joueurs 3',
+    'Royaumes Oubliés',
+    'Secrets des Arcanes'
+  ].freeze
+  MAGIC_ITEMS = [
+    'Le Comptoir de l\'Aventure 1',
+    'Le Comptoir de l\'Aventure 2',
+    'Manuel des Joueurs 1',
+    'Manuel des Joueurs 2',
+    'Manuel des Joueurs 3',
+    'Secrets des Arcanes'
+  ].freeze
+  MONSTERS = [
+    'Bestiaire Fantastique 1',
+    'Bestiaire Fantastique 2',
+    'Bestiaire Fantastique 3',
+    'Chaos Élémentaire',
+    'Encyclopédie des Royaumes Oubliés',
+    'Manuel des Plans',
+    'Mer Astrale',
+    'Outreterre'
+  ].freeze
 
   def to_s
-    self.try(:name) || ""
+    self.try(:name) || ''
   end
-
 end

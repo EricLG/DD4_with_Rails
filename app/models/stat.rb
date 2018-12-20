@@ -1,32 +1,27 @@
 class Stat < ActiveRecord::Base
-
   after_initialize :init
   belongs_to :feat
   belongs_to :race
 
-  validates_numericality_of  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, only_integer: true, allow_nil: true    if Proc.new { |s| s.kind != 'initial' }
-  validates_numericality_of  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, only_integer: true, allow_blank: false if Proc.new { |s| s.kind == 'initial' }
-  validate  :level_choice, if: Proc.new {|s|  /level_(4|8)|(14|18)|(24|28)/ =~ s.kind }
+  validates_numericality_of  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, only_integer: true, allow_nil: true if proc { |s| s.kind != 'initial' }
+  validates_numericality_of  :strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma, only_integer: true, allow_blank: false if proc { |s| s.kind == 'initial' }
+  validate :level_choice, if: proc { |s| /level_(4|8)|(14|18)|(24|28)/ =~ s.kind }
 
   def init
-    if self.new_record?
-      self.strength      ||= 0
-      self.constitution  ||= 0
-      self.dexterity     ||= 0
-      self.intelligence  ||= 0
-      self.wisdom        ||= 0
-      self.charisma      ||= 0
-    end
+    return unless self.new_record?
+
+    self.strength      ||= 0
+    self.constitution  ||= 0
+    self.dexterity     ||= 0
+    self.intelligence  ||= 0
+    self.wisdom        ||= 0
+    self.charisma      ||= 0
   end
 
   def level_choice
-    if (strength + constitution + dexterity + intelligence + wisdom + charisma) > 2
-      errors.add(:kind, "trop de valeur sélectionné")
-    end
-  end
+    return unless (strength + constitution + dexterity + intelligence + wisdom + charisma) > 2
 
-  def is_initial?
-    kind == 'initial'
+    errors.add(:kind, 'trop de valeur sélectionné')
   end
 
   def to_s
@@ -43,21 +38,21 @@ class Stat < ActiveRecord::Base
 
   # data = "For xx, Con xx, ..."
   def self.valorize_stat(data, type = 'feat')
-    stat = Stat.new()
+    stat = Stat.new
     data.split(', ', -1).each do |s|
-      value = s.split(' ',-1)
+      value = s.split(' ', -1)
       case value.first
-      when "For"
+      when 'For'
         stat.strength     = value.last
-      when "Con"
+      when 'Con'
         stat.constitution = value.last
-      when "Dex"
+      when 'Dex'
         stat.dexterity    = value.last
-      when "Int"
+      when 'Int'
         stat.intelligence = value.last
-      when "Sag"
+      when 'Sag'
         stat.wisdom       = value.last
-      when "Cha"
+      when 'Cha'
         stat.charisma     = value.last
       end
     end
@@ -65,5 +60,4 @@ class Stat < ActiveRecord::Base
     stat.save
     stat
   end
-
 end

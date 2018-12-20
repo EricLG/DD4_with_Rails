@@ -25,7 +25,7 @@
         <li class="list-group-item no-border-line"><strong><%= MagicItem.human_attribute_name("implement_group_id") %> (<%= @item.implement_group.name %>)</strong></li>
       <% end %>
 
-      <% if @item.is_gear? %>
+      <% if @item.gear? %>
         <li class="list-group-item no-border-line"><strong><%= MagicItem.human_attribute_name("location_id")%></strong> : <%= @item.location.name %></li>
       <% end %>
 

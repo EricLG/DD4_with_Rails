@@ -4,17 +4,20 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
 
-Metrics/LineLength:
-  Max: 120
 
 MethodLength:
   Max: 35
 
+# Metrics
+Metrics/LineLength:
+  Max: 120
+
+# Style
+Style/AsciiComments:
+  Enabled: false
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
-
 Style/Documentation:
   Enabled: false
-
-Style/AsciiComments:
+Style/RedundantSelf:
   Enabled: false

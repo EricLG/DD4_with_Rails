@@ -1,21 +1,14 @@
 module ImportData
-
   def self.clear_field(field)
     field = field.strip
-    if field.first == '"'
-      field = field[1..-1]
-    end
-    if (field.last(2) == "\";")
-      field = field[0...-2]
-    end
-    if (field.last == '"')
-      field = field[0...-1]
-    end
+    field = field[1..-1] if field.first == '"'
+    field = field[0...-2] if field.last(2) == '";'
+    field = field[0...-1] if field.last == '"'
     field
   end
 
   def self.find_level_array(item, min, array_to_parse, levels)
-    if item.is_gear?
+    if item.gear?
       ImportData.find_each_level(array_to_parse, levels)
     else
       ImportData.calcul_level_array(min, levels)
@@ -25,7 +18,7 @@ module ImportData
   def self.calcul_level_array(min, levels)
     array = []
     while min < 31 && min > 0
-      level = levels.find{|l| l.level == min}
+      level = levels.find { |l| l.level == min }
       array << level
       min += 5
     end
@@ -38,7 +31,7 @@ module ImportData
     array_str = str.split(',')
     array_str.each do |s|
       current_level = s.strip.match(/Niv.\s*(\d{1,2}).*/).captures.first
-      result << levels.find{|l| l.level == current_level.to_i}
+      result << levels.find { |l| l.level == current_level.to_i }
     end
     result
   end
@@ -47,7 +40,7 @@ module ImportData
     array = []
     datas = data.split(',', -1)
     datas.each do |d|
-      array << groups.find{|g| g.name == d.strip}
+      array << groups.find { |g| g.name == d.strip }
     end
     array
   end
@@ -56,23 +49,23 @@ module ImportData
     array = []
     datas = data.split(',', -1)
     datas.each do |d|
-      cat = categories.find {|c| c.name == d.strip}
+      cat = categories.find { |c| c.name == d.strip }
       if !cat.nil?
         array << cat
-      elsif d.match(/étoffe/)
-        array << categories.find{|c| c.code == 'clothe'}
-      elsif d.match(/cuir/)
-        array << categories.find{|c| c.code == 'leather'}
-      elsif d.match(/peau/)
-        array << categories.find{|c| c.code == 'skin'}
-      elsif d.match(/écailles/)
-        array << categories.find{|c| c.code == 'scales'}
-      elsif d.match(/Léger/)
-        array << categories.find{|c| c.code == 'lightsh'}
-      elsif d.match(/Lourd/)
-        array << categories.find{|c| c.code == 'heavysh'}
+      elsif d =~ /étoffe/
+        array << categories.find { |c| c.code == 'clothe' }
+      elsif d =~ /cuir/
+        array << categories.find { |c| c.code == 'leather' }
+      elsif d =~ /peau/
+        array << categories.find { |c| c.code == 'skin' }
+      elsif d =~ /écailles/
+        array << categories.find { |c| c.code == 'scales' }
+      elsif d =~ /Léger/
+        array << categories.find { |c| c.code == 'lightsh' }
+      elsif d =~ /Lourd/
+        array << categories.find { |c| c.code == 'heavysh' }
       end
-     end
+    end
     array
   end
 
@@ -80,13 +73,13 @@ module ImportData
     array = []
     datas = data.split(',', -1)
     datas.each do |d|
-      array << groups.find{|g| g.name == d.strip}
+      array << groups.find { |g| g.name == d.strip }
     end
     array
   end
 
   def self.find_category(data)
-    category = data == "Parangonique" ? "parangonic" : "heroic"
+    category = data == 'Parangonique' ? 'parangonic' : 'heroic'
     category
   end
 
@@ -94,11 +87,11 @@ module ImportData
     finded_features = []
     array_data = data.split(', ')
     array_data.each do |d|
-      if d == "Dieux"
-        finded_features << features.find{|f| f.name == "Conduit divin"}
+      if d == 'Dieux'
+        finded_features << features.find { |f| f.name == 'Conduit divin' }
       elsif !d.blank?
-        founded_feat = features.find{|f| f.name == d}
-        finded_features << founded_feat if !founded_feat.nil?
+        founded_feat = features.find { |f| f.name == d }
+        finded_features << founded_feat unless founded_feat.nil?
       end
     end
     finded_features
@@ -123,16 +116,15 @@ module ImportData
 
   def self.find_rarities(integer)
     rarity = case integer.to_i
-    when 1
-      "common"
-    when 2
-      "uncommon"
-    when 3
-      "rare"
-    else
-      "common"
-    end
+             when 1
+               'common'
+             when 2
+               'uncommon'
+             when 3
+               'rare'
+             else
+               'common'
+             end
     rarity
   end
-
 end

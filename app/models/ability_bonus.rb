@@ -1,5 +1,4 @@
 class AbilityBonus < ActiveRecord::Base
-
   belongs_to :ability,    inverse_of: :ability_bonuses
   belongs_to :character,  inverse_of: :ability_bonuses
 
@@ -12,21 +11,15 @@ class AbilityBonus < ActiveRecord::Base
   # Permet de calculer le total d'une caractéristique lors de la création d'un personnage pour la case bonus level
   def total_bonus_level
     total = 0
-    total += self.level_4
-    total += self.level_8
-    total += self.level_11
-    total += self.level_14
-    total += self.level_18
-    total += self.level_21
-    total += self.level_24
-    total += self.level_28
+    [level_4, level_8, level_11, level_14, level_18, level_21, level_24, level_28].each do |l|
+      total += l
+    end
     total
   end
 
   # Modificateur de la caractéristique
   def modifier(current_value = nil)
-    value = current_value ? current_value : self.total_value
-    (value/2 - 5).floor
+    value = self.total_value || current_value
+    (value / 2 - 5).floor
   end
-
 end

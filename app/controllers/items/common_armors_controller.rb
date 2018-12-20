@@ -37,8 +37,8 @@ class Items::CommonArmorsController < ApplicationController
 
   def edit
     @armor = CommonArmor.find_by_id(params[:id])
-    @armor_categories = ArmorCategory.armors unless @armor.is_shield?
-    @armor_categories = ArmorCategory.shields if @armor.is_shield?
+    @armor_categories = ArmorCategory.armors unless @armor.shield?
+    @armor_categories = ArmorCategory.shields if @armor.shield?
     @sources = Source.all
   end
 

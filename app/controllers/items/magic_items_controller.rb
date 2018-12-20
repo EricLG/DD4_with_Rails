@@ -61,7 +61,7 @@ class Items::MagicItemsController < ApplicationController
 
   def armors
     @kind = 'armors'
-    @armor_categories = @armor_categories.reject(&:is_shield?)
+    @armor_categories = @armor_categories.reject(&:shield?)
     @search = MagicItemSearch.new(params[:magic_item_search], @kind)
     @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
