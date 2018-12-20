@@ -5,22 +5,17 @@ module ApplicationHelper
 
   def display_levels(levels, show_alteration = true, kind = nil)
     x = "\u00A0"
+    left, right = levels.in_groups(2)
     table = content_tag('table') do
       concat(content_tag('tbody') do
-        left = if (levels.size % 2).zero?
-                 levels.first(levels.size / 2)
-               else
-                 levels.first((levels.size / 2) + 1)
-               end
-        right = levels - left
         left.each_with_index do |l, i|
           concat(content_tag('tr') do
             # Left columns
-            write_line(l, show_alteration, kind = nil)
+            write_line(l, show_alteration, kind)
             # Right columns
             unless right[i].nil?
               concat(content_tag('td', x, style: 'padding-right:40px'))
-              write_line(right[i], show_alteration, kind = nil)
+              write_line(right[i], show_alteration, kind)
             end
           end)
         end
@@ -91,7 +86,7 @@ module ApplicationHelper
               attribute,
               options_from_collection_for_select(sources, :id, method, default_source),
               { include_blank: options[:blank] },
-              { multiple: options[:multiple], size: default_size, class: 'form-control' }
+              multiple: options[:multiple], size: default_size, class: 'form-control'
             )
           )
         end
@@ -104,15 +99,18 @@ module ApplicationHelper
     default_size = options[:size] || 5
     input = content_tag('div', class: 'form-group') do
       concat form.label(attribute, local, class: 'col-sm-4 control-label')
-      concat(content_tag('div', class: 'col-sm-8') do
-        options_hash = { include_blank: options[:blank] }, {
-          multiple: options[:multiple],
-          size: default_size,
-          class: 'form-control',
-          disabled: options[:disabled]
-        }
-        concat form.select(attribute, options_for_select(array, attribute), options_hash)
-      end)
+      concat(
+        content_tag('div', class: 'col-sm-8') do
+          concat(
+            form.select(
+              attribute,
+              options_for_select(array, attribute),
+              { include_blank: options[:blank] },
+              multiple: options[:multiple], size: default_size, class: 'form-control', disabled: options[:disabled]
+            )
+          )
+        end
+      )
     end
     input
   end

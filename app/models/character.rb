@@ -172,9 +172,9 @@ class Character < ActiveRecord::Base
   # For rogue and thief
   def validate_skill_training(skill_bonuses_attributes, skills)
     required_skill_chosen = false
-    training_choices = @character.skill_bonuses.joins(:skill).where(skills: { name: skills })
+    skill_choices = self.skill_bonuses.joins(:skill).where(skills: { name: skills })
     skill_bonuses_attributes.each do |param|
-      appropriate_skill = training_choices[0].id.to_s == param.last['id'] || training_choices[1].id.to_s == param.last['id']
+      appropriate_skill = skill_choices[0].id.to_s == param.last['id'] || skill_choices[1].id.to_s == param.last['id']
       required_skill_chosen = true if appropriate_skill && param.last['training'] == '5'
     end
     required_skill_chosen
