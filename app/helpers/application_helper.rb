@@ -83,19 +83,18 @@ module ApplicationHelper
     default_size = options[:size] || 5
     input = content_tag('div', class: 'form-group') do
       concat form.label(attribute, local, class: 'col-sm-4 control-label')
-      concat(content_tag('div', class: 'col-sm-8') do
-        opt_hash = { include_blank: options[:blank] }, {
-          multiple: options[:multiple],
-          size: default_size,
-          class: 'form-control'
-        }
-        concat(form.select(attribute, options_from_collection_for_select(
-                                        sources,
-                                        :id,
-                                        method,
-                                        default_source
-                                      ), opt_hash))
-      end)
+      concat(
+        content_tag('div', class: 'col-sm-8') do
+          concat(
+            form.select(
+              attribute,
+              options_from_collection_for_select(sources, :id, method, default_source),
+              { include_blank: options[:blank] },
+              { multiple: options[:multiple], size: default_size, class: 'form-control' }
+            )
+          )
+        end
+      )
     end
     input
   end
