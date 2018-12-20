@@ -4,10 +4,10 @@ module ApplicationHelper
   end
 
   def display_levels(levels, show_alteration = true, kind = nil)
-    x = '\u00A0'
+    x = "\u00A0"
     table = content_tag('table') do
       concat(content_tag('tbody') do
-        left = if 'levels.size%2'.zero?
+        left = if (levels.size % 2).zero?
                  levels.first(levels.size / 2)
                else
                  levels.first((levels.size / 2) + 1)
@@ -16,24 +16,25 @@ module ApplicationHelper
         left.each_with_index do |l, i|
           concat(content_tag('tr') do
             # Left columns
-            concat(content_tag('td', "Niv. #{l.level.to_s.ljust(2, x)}", style: 'padding-right:20px'))
-            concat(content_tag('td', "+#{l.alteration}", style: 'padding-right:20px')) if show_alteration
-            left_price = kind == 'consumable' ? "#{l.cons_price} PO" : "#{l.price} PO"
-            concat(content_tag('td', left_price, style: 'text-align: right'))
-
+            write_line(l, show_alteration, kind = nil)
             # Right columns
             unless right[i].nil?
               concat(content_tag('td', x, style: 'padding-right:40px'))
-              concat(content_tag('td', "Niv. #{right[i].level.to_s.ljust(2, x)}", style: 'padding-right:20px'))
-              concat(content_tag('td', "+#{right[i].alteration}", style: 'padding-right:20px')) if show_alteration
-              right_price = kind == 'consumable' ? "#{l.cons_price} PO" : "#{l.price} PO"
-              concat(content_tag('td', right_price, style: 'text-align: right'))
+              write_line(right[i], show_alteration, kind = nil)
             end
           end)
         end
       end)
     end
     table
+  end
+
+  def write_line(item_level, show_alteration = true, kind = nil)
+    x = "\u00A0"
+    concat(content_tag('td', "Niv. #{item_level.level.to_s.ljust(2, x)}", style: 'padding-right:20px'))
+    concat(content_tag('td', "+#{item_level.alteration}", style: 'padding-right:20px')) if show_alteration
+    price = kind == 'consumable' ? item_level.cons_price : item_level.price
+    concat(content_tag('td', price + ' PO', style: 'text-align: right'))
   end
 
   def find_flash_class(flash)
