@@ -14,7 +14,6 @@ class DmTools::EncountersController < ApplicationController
   # GET /encounters/new
   def new
     @encounter = Encounter.new
-    @encounters_exemple = []
     @search = MonsterSearch.new(params[:monster_search])
     @monsters = @search.build_search.order(level: :asc, name: :asc)
     @categories = Monster.categories
