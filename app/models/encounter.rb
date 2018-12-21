@@ -2,6 +2,7 @@ require 'import_data'
 
 class Encounter < ActiveRecord::Base
   belongs_to :source
+  DEFAULT_BUDGET = 500
 
   def self.import_encounters
     sources = Source.all
