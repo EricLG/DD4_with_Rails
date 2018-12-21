@@ -7,8 +7,8 @@ class DmTools::MonstersController < ApplicationController
     @sources = Source.monsters
     @search = MonsterSearch.new(params[:monster_search])
     @monsters = @search.build_search.paginate(page: params[:page], per_page: 20).order(level: :asc, name: :asc)
-    @categories = Monster.pluck(:category).join(', ').split(', ').uniq.sort
-    @keywords = Monster.pluck(:keywords).join(', ').split(', ').uniq.sort
+    @categories = Monster.categories
+    @keywords = Monster.keywords
     respond_to do |format|
       format.html { render :index }
       format.js { render json: { monsters: @monsters } }

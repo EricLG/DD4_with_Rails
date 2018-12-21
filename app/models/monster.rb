@@ -3,6 +3,9 @@ require 'import_data'
 class Monster < ActiveRecord::Base
   belongs_to :source
 
+  scope :categories, -> { pluck(:category).join(', ').split(', ').uniq.sort }
+  scope :keywords, -> { pluck(:keywords).join(', ').split(', ').uniq.sort }
+
   RACE = %w[Animé Bête Créature\ magique Humanoïde].freeze # Type dans le fichier excel
   MAIN_ROLE = %w[Artilleur Brute Chasseur Contrôleur Franc-tireur Soldat].freeze
   SECOND_ROLE = %w[Élite Solo Sbire Normal].freeze
