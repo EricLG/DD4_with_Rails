@@ -6,11 +6,12 @@ class Encounter < ActiveRecord::Base
 
   def self.import_encounters
     sources = Source.all
-    filename = Dir.entries('lib/import_files').find{|f| f.match(/rencontres.csv/)}
+    filename = Dir.entries('lib/import_files').find { |f| f.match(/rencontres.csv/) }
     unless filename.nil?
       ActiveRecord::Base.transaction do
         File.open(File.join('lib/import_files', filename), 'r') do |f|
-          f.each_line do |l| # "Niveau de la rencontre";"Description avec monstres et px";"Source"
+          # "Niveau de la rencontre";"Description avec monstres et px";"Source"
+          f.each_line do |l|
             array_line = l.split(/;/, -1)
             e = Encounter.new
             e.level         = array_line[0].to_i
