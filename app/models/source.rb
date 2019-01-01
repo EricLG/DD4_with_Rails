@@ -43,6 +43,10 @@ class Source < ActiveRecord::Base
     'Outreterre'
   ].freeze
 
+  def self.find_source(sources, source)
+    sources.find { |s| s.name == source }
+  end
+
   def to_s
     self.try(:name) || ''
   end

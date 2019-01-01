@@ -27,7 +27,7 @@ class Admin::AdminController < ApplicationController
       flash[:error] = 'Il existe déjà des items magiques, import annulé.'
     else
       MagicItem.import_items
-      flash[:success] = "L'import des items magiques à terminé (1146 objets en théorie)"
+      flash[:success] = "L'import des items magiques à terminé (#{MagicItem.count}/1146)"
     end
     redirect_to admin_index_path
   end

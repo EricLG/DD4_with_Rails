@@ -9,6 +9,8 @@ MethodLength:
   Max: 35
 
 # Metrics
+Metrics/AbcSize:
+  Max: 20
 Metrics/LineLength:
   Max: 120
 

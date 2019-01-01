@@ -56,32 +56,24 @@ class MagicItem < ActiveRecord::Base
   end
 
   def self.import_items
-    sources = Source.all
-    levels  = ObjectLevel.all
-    weapon_groups = WeaponGroup.all
-    armor_categories = ArmorCategory.all
-    implement_groups = ImplementGroup.all
-    locations = Location.all
-    filename = Dir.entries('lib/import_files').find { |f| f.match(/items\.csv/) }
-    unless filename.nil?
-      ActiveRecord::Base.transaction do
-        options = { headers: true, col_sep: ';', quote_char: '"' }
-        file = File.join('lib/import_files', filename)
-        csv = CSV.parse(File.read(file), options)
-        csv.each do |row|
-          params = row.to_hash
-          params['source']            = sources.find { |s| s.name == params['source'] }
-          params['object_levels']     = params['object_levels'].split(', ').collect { |pol| levels.find { |l| l.level == pol.to_i } }
-          params['implement_group']   = implement_groups.find { |imp| imp.name == params['implement_group'] }
-          params['location']          = locations.find { |location| location.name == params['location'] }
-          params['weapon_groups']     = params['weapon_groups'].split(', ').collect { |weapons| weapon_groups.find { |wg| wg.name == weapons } }
-          params['armor_categories']  = params['armor_categories'].split(', ').collect { |armors| armor_categories.find { |wg| wg.name == armors } }
-          MagicItem.create(params)
-        end
-      end
+    all_infos = ImportData.import_all_informations
+    csv = CSV.parse(File.read('lib/import_files/items.csv'), headers: true, col_sep: ';', quote_char: '"')
+    csv.each do |row|
+      params = row.to_hash
+      params = MagicItem.collect_row_data(all_infos, params)
+      MagicItem.create(params)
     end
-    c = MagicItem.count
-    logger.debug "#{c} armes magiques ont été crées"
+    logger.debug "#{MagicItem.count} armes magiques ont été crées"
+  end
+
+  def self.collect_row_data(all_infos, params)
+    params['source'] = Source.find_source(all_infos[:sources], params['source'])
+    params['object_levels'] = ObjectLevel.find_object_levels(all_infos[:levels], params['object_levels'])
+    params['implement_group'] = ImplementGroup.find_implement_group(all_infos[:implements], params['implement_group'])
+    params['location'] = Location.find_location(all_infos[:locations], params['location'])
+    params['weapon_groups'] = WeaponGroup.find_weapon_groups(all_infos[:groups], params['weapon_groups'])
+    params['armor_categories'] = ArmorCategory.find_armor_categories(all_infos[:categories], params['armor_categories'])
+    params
   end
 
   def gear?

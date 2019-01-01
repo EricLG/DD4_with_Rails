@@ -1,4 +1,15 @@
 module ImportData
+  def self.import_all_informations
+    {
+      sources: Source.all,
+      levels: ObjectLevel.all,
+      groups: WeaponGroup.all,
+      categories: ArmorCategory.all,
+      implements: ImplementGroup.all,
+      locations: Location.all
+    }
+  end
+
   def self.clear_field(field)
     field = field.strip
     field = field[1..-1] if field.first == '"'
