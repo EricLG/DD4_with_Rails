@@ -110,10 +110,7 @@ ActiveRecord::Schema.define(version: 20180415122400) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "god_id"
-    t.hstore   "formations_choice_id"
   end
-
-  add_index "characters", ["formations_choice_id"], name: "index_characters_on_formations_choice_id", using: :btree
 
   create_table "characters_games", id: false, force: :cascade do |t|
     t.integer "character_id"
