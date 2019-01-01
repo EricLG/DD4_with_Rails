@@ -268,13 +268,13 @@ $(document).on("page:change", function() {
     span.toggleClass('glyphicon-plus glyphicon-ok');
   });
 
-  $('.js-btn-skill-bonus-formation').click(function(e){
+  $('.js-btn-training-skill-bonus').click(function(e){
     e.preventDefault();
 
     // Compte total de formation avant action
-    var total_formation = $('.js-chosen-skill').length;
-    var total_formation_allowed = parseInt($('#total-formation-allowed').text());
-    if (total_formation >= total_formation_allowed) {
+    var total_training = $('.js-chosen-skill').length;
+    var total_training_allowed = parseInt($('#total-training-allowed').text());
+    if (total_training >= total_training_allowed) {
       // Allow only unselect
       if (!$(this).find($("span")).hasClass("glyphicon-plus")) {
         updateSkill($(this));
@@ -284,10 +284,10 @@ $(document).on("page:change", function() {
     }
   });
 
-  function updateSkill(clickedFormation) {
-    var span =  clickedFormation.find($("span"));
-    var input = clickedFormation.find($("input"));
-    var skill = clickedFormation.parents("tr").attr('id');
+  function updateSkill(clicked_training_skill) {
+    var span =  clicked_training_skill.find($("span"));
+    var input = clicked_training_skill.find($("input"));
+    var skill = clicked_training_skill.parents("tr").attr('id');
     var total_skill = $("#total_bonus_" + skill)
     var total_skill_value = parseInt(total_skill.text())
 
@@ -301,17 +301,17 @@ $(document).on("page:change", function() {
     }
 
     // Gestion du cas Eladrin : desactivation des autres boutons pour respecter l'aptitude Education éladrine
-    if (clickedFormation.hasClass("js-eladrin-skill-bonus")) {
+    if (clicked_training_skill.hasClass("js-eladrin-skill-bonus")) {
       if (span.hasClass("glyphicon-plus")) {
         $(".js-eladrin-skill-bonus").attr("disabled", true)
-        clickedFormation.attr("disabled", false)
+        clicked_training_skill.attr("disabled", false)
       } else {
         $(".js-eladrin-skill-bonus").attr("disabled", false)
       }
     }
 
     // Update btn display
-    clickedFormation.toggleClass('btn-info js-chosen-skill');
+    clicked_training_skill.toggleClass('btn-info js-chosen-skill');
     span.toggleClass('glyphicon-plus glyphicon-ok');
   };
 

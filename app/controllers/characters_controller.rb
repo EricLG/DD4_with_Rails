@@ -145,10 +145,10 @@ class CharactersController < ApplicationController
     # Récupération des bonus dynamiques apportés par les races et classes
     @race_choosable_skill_bonus = @character.race.choosable_skill_bonus_to_a
     @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
-    @character_chosen_skill = @character.chosen_skill_formation
+    @character_chosen_training_skill = @character.chosen_training_skill
 
     # Gestion des bonus apportés par des aptitudes raciales
-    @bonus_from_feature = @character.show_formation_bonus_rule(@character.race.features.main_ft)
+    @bonus_from_feature = @character.show_training_bonus_rule(@character.race.features.main_ft)
 
     # Initialisation des choix de compétences de classes
     @char_skills = @character.initialize_skill_bonuses(

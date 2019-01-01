@@ -17,7 +17,7 @@
       <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("base_hp")%></strong> : <%= klass.base_hp %> + valeur de Constitution</li>
       <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("hp_per_level")%></strong> : <%= klass.hp_per_level %></li>
       <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("healing_surge")%></strong> :  <%= klass.healing_surge %> + modificateur de Constitution</li>
-      <li class="list-group-item no-border-line bg"><strong>Formations de compétences</strong> : <%= display_formations(klass).html_safe %> </li>
+      <li class="list-group-item no-border-line bg"><strong>Formations de compétences</strong> : <%= display_training(klass).html_safe %> </li>
       <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("options_creation") %></strong> : <%= klass.options_creation %> </li>
       <li class="list-group-item no-border-line bg"><strong><%= Klass.human_attribute_name("klass_features") %></strong> : <%= klass.features.main_ft.map(&:name).join(', ') %> </li>
     </ul>

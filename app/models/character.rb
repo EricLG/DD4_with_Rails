@@ -127,7 +127,7 @@ class Character < ActiveRecord::Base
 
   # retourne la valeur de la formation : 5 si la compétence est obligatoire (Druide / nature), 0 sinon
   def check_training_for_skill(skill, class_bonus_skill_static)
-    trained = if Klass::GRANT_ONLY_ONE_FORMATION_SKILL.include?(self.klass.name) && class_bonus_skill_static.first == skill.name
+    trained = if Klass::GRANT_ONLY_ONE_TRAINING_SKILL.include?(self.klass.name) && class_bonus_skill_static.first == skill.name
                 5
               else
                 0
@@ -144,18 +144,18 @@ class Character < ActiveRecord::Base
     chosen
   end
 
-  # Return the total formation for a character from his race or class
-  def total_formation_skills_number
+  # Return the total training for a character from his race or class
+  def total_training_skills_number
     total = self.klass.skills_number
-    total += 1 if self.race.grant_dynamic_formation_skill?
-    total += 1 if self.klass.grant_formation_skill?
+    total += 1 if self.race.grant_dynamic_training_skill?
+    total += 1 if self.klass.grant_training_skill?
     total
   end
 
   # Feature - Renvoie une aptitude donnant un bonus de compétence. Actuellement seules 2 aptitudes raciales donnent un tel bonus
-  def show_formation_bonus_rule(features)
+  def show_training_bonus_rule(features)
     feature = nil
-    if self.race.grant_dynamic_formation_skill?
+    if self.race.grant_dynamic_training_skill?
       feature = features.main_ft.find do |f|
         f.name == 'Compétence supplémentaire' || f.name == 'Éducation éladrine'
       end
@@ -163,9 +163,9 @@ class Character < ActiveRecord::Base
     feature
   end
 
-  def chosen_skill_formation
+  def chosen_training_skill
     chosen_skill = {}
-    self.skill_bonuses.joins(:skill).map{|s| chosen_skill[s.skill.name] = s.training }
+    self.skill_bonuses.joins(:skill).map { |s| chosen_skill[s.skill.name] = s.training }
     chosen_skill
   end
 

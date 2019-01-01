@@ -13,8 +13,8 @@ class Klass < ActiveRecord::Base
   PRIMAL_KLASS = ['Barbare', 'Druide', 'Gardien', 'Limier', 'Shaman'].freeze
   PSIONIC_KLASS = ['Batailleur', 'Flamboyant', 'Moine', 'Psion'].freeze
 
-  GRANT_FORMATION_SKILL = ['Barde', 'Druide', 'Ensorceleur', 'Façonneur', 'Gardien', 'Invocateur', 'Limier', 'Mage lames', 'Magicien', 'Paladin', 'Prêtre', 'Prêtre des runes', 'Rôdeur', 'Shaman', 'Vengeur', 'Voleur'].freeze
-  GRANT_ONLY_ONE_FORMATION_SKILL = ['Barde', 'Druide', 'Ensorceleur', 'Façonneur', 'Gardien', 'Invocateur', 'Limier', 'Mage lames', 'Magicien', 'Paladin', 'Prêtre', 'Prêtre des runes', 'Shaman', 'Vengeur'].freeze
+  GRANT_TRAINING_SKILL = ['Barde', 'Druide', 'Ensorceleur', 'Façonneur', 'Gardien', 'Invocateur', 'Limier', 'Mage lames', 'Magicien', 'Paladin', 'Prêtre', 'Prêtre des runes', 'Rôdeur', 'Shaman', 'Vengeur', 'Voleur'].freeze
+  GRANT_ONLY_ONE_TRAINING_SKILL = ['Barde', 'Druide', 'Ensorceleur', 'Façonneur', 'Gardien', 'Invocateur', 'Limier', 'Mage lames', 'Magicien', 'Paladin', 'Prêtre', 'Prêtre des runes', 'Shaman', 'Vengeur'].freeze
 
   def self.grouped_klass(klasses)
     klasses_to_s = if ARCANIC_KLASS.all? { |i| klasses.include?(i) }
@@ -52,11 +52,11 @@ class Klass < ActiveRecord::Base
   end
 
   # Retourne true si la classe offre gratuitement 1 formation
-  def grant_formation_skill?
-    GRANT_FORMATION_SKILL.include?(self.name)
+  def grant_training_skill?
+    GRANT_TRAINING_SKILL.include?(self.name)
   end
 
   def only_one_required_skill?
-    GRANT_ONLY_ONE_FORMATION_SKILL.include?(self.name)
+    GRANT_ONLY_ONE_TRAINING_SKILL.include?(self.name)
   end
 end

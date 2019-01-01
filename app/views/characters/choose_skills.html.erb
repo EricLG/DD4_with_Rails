@@ -22,7 +22,7 @@
           <% if @bonus_from_feature %>
             <li class="list-group-item no-border-line bg"><strong><%= @bonus_from_feature.name %></strong> : <%= @bonus_from_feature.description.html_safe %> </li>
           <% end %>
-          <li class="list-group-item no-border-line bg"><strong>Formations de compétences</strong> : <%= display_formations(@character.klass).html_safe %> </li>
+          <li class="list-group-item no-border-line bg"><strong>Formations de compétences</strong> : <%= display_training(@character.klass).html_safe %> </li>
         </ul>
         <div class="col-sm-12">
 
@@ -35,10 +35,10 @@
                 <th class="medium-width center">Carac</th>
                 <th class="medium-width center">Carac + 1/2 niv.</th>
                 <th class="medium-width center">Race</th>
-                <th class="medium-width center">Formation : <span id="total-formation-allowed"><%= @character.total_formation_skills_number %></span></th>
+                <th class="medium-width center">Formation : <span id="total-training-allowed"><%= @character.total_training_skills_number %></span></th>
               </tr>
             </thead>
-            <tbody id="character-formation">
+            <tbody id="character-training">
               <% @char_skills.each do |skill_bonus| %>
                 <%= f.fields_for :skill_bonuses, skill_bonus do |fc| %>
                     <% skill_name = skill_bonus.skill.name %>
@@ -89,32 +89,32 @@
                       <% elsif @klass_choosable_skill_bonus.include?(skill_name) %>
                         <%# La compétence a été choisie %>
                         <% if skill_bonus.training == 5 %>
-                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation js-chosen-skill" %>
+                          <% css_btn = "btn-sm btn-default btn-info js-btn-training-skill-bonus js-chosen-skill" %>
                           <% span_class = "glyphicon-ok" %>
                           <% input_disabled = false %>
                         <%# La compétence n'a pas été choisie %>
                         <% else %>
-                          <% css_btn = "btn-sm btn-default js-btn-skill-bonus-formation" %>
+                          <% css_btn = "btn-sm btn-default js-btn-training-skill-bonus" %>
                           <% span_class = "glyphicon-plus" %>
                           <% input_disabled = false %>
                         <% end %>
                       <%# La compétence ne fait pas partie de la liste des compétences de classe mais le personnage est un éladrin %>
                       <% elsif @character.race.name == 'Éladrin' %>
                         <%# La compétence a été choisie %>
-                        <% if @character_choosen_skill[skill_name] == 5 %>
-                          <% css_btn = "btn-sm btn-default btn-info js-btn-skill-bonus-formation js-eladrin-skill-bonus js-chosen-skill" %>
+                        <% if @character_chosen_training_skill[skill_name] == 5 %>
+                          <% css_btn = "btn-sm btn-default btn-info js-btn-training-skill-bonus js-eladrin-skill-bonus js-chosen-skill" %>
                           <% span_class = "glyphicon-ok" %>
                           <% input_disabled = false %>
                         <%# La compétence n'a pas été choisie %>
                         <% else %>
-                          <% css_btn = "btn-sm btn-default js-btn-skill-bonus-formation js-eladrin-skill-bonus" %>
+                          <% css_btn = "btn-sm btn-default js-btn-training-skill-bonus js-eladrin-skill-bonus" %>
                           <% span_class = "glyphicon-plus" %>
                           <% input_disabled = false %>
                           <% btn_disabled = "" %>
                         <% end %>
                       <%# La compétence ne fait pas partie de la liste des compétence de classe %>
                       <% else %>
-                        <% css_btn = "btn-default btn-sm js-btn-skill-bonus-formation" %>
+                        <% css_btn = "btn-default btn-sm js-btn-training-skill-bonus" %>
                         <% span_class = "glyphicon-ban-circle" %>
                         <% input_disabled = true %>
                         <% btn_disabled = "disabled" %>

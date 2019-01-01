@@ -1,5 +1,5 @@
 module KlassHelper
-  def display_formations(klass)
+  def display_training(klass)
     text = ''
     text += klass.resume_skill_bonus_list(klass.required_skills).join(' ou ') + '<br>' unless klass.required_skills.empty?
     text += "Au niveau 1, choisissez #{klass.skills_number} formations de compétences supplémentaires dans la liste ci-dessous.<br>"

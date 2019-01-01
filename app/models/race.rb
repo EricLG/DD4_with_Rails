@@ -55,7 +55,7 @@ class Race < ActiveRecord::Base
     skills
   end
 
-  def grant_dynamic_formation_skill?
+  def grant_dynamic_training_skill?
     self.name == 'Éladrin' || self.name == 'Humain'
   end
 
