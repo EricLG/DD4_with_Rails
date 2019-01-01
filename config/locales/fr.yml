@@ -10,7 +10,7 @@ fr:
     damage:             "Dégâts"
     description:        "Description"
     dexterity:          "Dexterité"
-    handling:           "Maniement"
+    proficiency:        "Maniement"
     implement_group_id: "Focaliseur"
     intelligence:       "Intelligence"
     levels:             "Niveaux"

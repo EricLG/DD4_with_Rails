@@ -61,7 +61,7 @@ class Items::CommonWeaponsController < ApplicationController
       :weight,
       :price,
       :damage,
-      :handling,
+      :proficiency,
       :range,
       :two_handed,
       :source_id,

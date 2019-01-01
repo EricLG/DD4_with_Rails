@@ -1,12 +1,12 @@
 
 <%= form_for [:items, @weapon], {:class => 'form-horizontal'} do |f| %>
 
-  <%= input_text_form f, :name,     CommonWeapon.human_attribute_name(:name) %>
-  <%= input_text_form f, :weight,   CommonWeapon.human_attribute_name(:weight) %>
-  <%= input_text_form f, :price,    CommonWeapon.human_attribute_name(:price) %>
-  <%= input_text_form f, :damage,   CommonWeapon.human_attribute_name(:damage) %>
-  <%= input_text_form f, :handling, CommonWeapon.human_attribute_name(:handling) %>
-  <%= input_text_form f, :range,    CommonWeapon.human_attribute_name(:range) %>
+  <%= input_text_form f, :name,         CommonWeapon.human_attribute_name(:name) %>
+  <%= input_text_form f, :weight,       CommonWeapon.human_attribute_name(:weight) %>
+  <%= input_text_form f, :price,        CommonWeapon.human_attribute_name(:price) %>
+  <%= input_text_form f, :damage,       CommonWeapon.human_attribute_name(:damage) %>
+  <%= input_text_form f, :proficiency,  CommonWeapon.human_attribute_name(:proficiency) %>
+  <%= input_text_form f, :range,        CommonWeapon.human_attribute_name(:range) %>
   <div class="form-group">
     <%= label_tag :two_handed, CommonWeapon.human_attribute_name("two_handeds"),  :class=>"col-sm-4 control-label" %>
     <div class="checkbox col-sm-8">

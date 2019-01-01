@@ -10,7 +10,7 @@
 <div class="row">
   <dl class="dl-horizontal">
     <dt><%= CommonWeapon.human_attribute_name("name",         :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.name %></dd>
-    <dt><%= CommonWeapon.human_attribute_name("handling",     :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.handling %></dd>
+    <dt><%= CommonWeapon.human_attribute_name("proficiency",  :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.proficiency %></dd>
     <dt><%= CommonWeapon.human_attribute_name("damage",       :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.damage %></dd>
     <dt><%= CommonWeapon.human_attribute_name("range",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.range %></dd>
     <dt><%= CommonWeapon.human_attribute_name("price",        :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.price %></dd>
@@ -37,4 +37,3 @@
     <dt><%= t("common.source", :class=>"col-md-4")%></dt> <dd class="text-left"><%= @weapon.source.name %></dd>
   </dl>
 </div>
-

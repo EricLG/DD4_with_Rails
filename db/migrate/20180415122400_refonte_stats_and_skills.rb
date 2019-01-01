@@ -66,7 +66,7 @@ class RefonteStatsAndSkills < ActiveRecord::Migration
       t.integer :item, default: 0
       t.integer :klasse, default: 0
       t.integer :power, default: 0
-      t.integer :handling, default: 0
+      t.integer :proficiency, default: 0
       t.integer :shield, default: 0
       t.integer :racial, default: 0
       t.integer :training, default: 0

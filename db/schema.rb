@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20180415122400) do
     t.string   "weight"
     t.string   "price"
     t.string   "damage"
-    t.string   "handling"
+    t.string   "proficiency"
     t.string   "range"
     t.integer  "two_handed"
     t.integer  "source_id"
@@ -475,7 +475,7 @@ ActiveRecord::Schema.define(version: 20180415122400) do
     t.integer  "item",             default: 0
     t.integer  "klasse",           default: 0
     t.integer  "power",            default: 0
-    t.integer  "handling",         default: 0
+    t.integer  "proficiency",      default: 0
     t.integer  "shield",           default: 0
     t.integer  "racial",           default: 0
     t.integer  "training",         default: 0
