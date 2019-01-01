@@ -168,7 +168,7 @@ class CharactersController < ApplicationController
       )
       unless required_skill_chosen
         flash[:error] = 'En tant que rôdeur, vous devez choisir Exploration ou Nature'
-        redirect_to choose_skills_character_path @character.id && return
+        redirect_to choose_skills_character_path @character.id and return
       end
     end
 
@@ -179,7 +179,7 @@ class CharactersController < ApplicationController
       )
       unless required_skill_chosen
         flash[:error] = 'En tant que voleur, vous devez choisir Discrétion ou Larcin'
-        redirect_to choose_skills_character_path @character.id && return
+        redirect_to choose_skills_character_path @character.id and return
       end
     end
 
