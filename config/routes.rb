@@ -99,7 +99,9 @@ Rails.application.routes.draw do
   get "/resume_klass" => 'characters#resume_klass', as: 'resume_klass'
 
   resources :campaigns do
-    resources :games
+    resources :games do
+      resources :comments
+    end
   end
 
   resources :welcomes, only: [:index]

@@ -5,4 +5,5 @@ class Campaign < ActiveRecord::Base
   has_many :users, through: :players
   has_many :magic_items, through: :users
   has_many :characters, through: :players
+  has_many :comments, dependent: :destroy
 end

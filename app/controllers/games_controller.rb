@@ -21,11 +21,24 @@ class GamesController < ApplicationController
   def show
     @campaign = Campaign.find_by_id(params[:campaign_id])
     @game = Game.find_by_id(params[:id])
+    @comment = Comment.new(user: @current_user, game: @game)
   end
 
-  def edit; end
+  def edit
+    @campaign = Campaign.find_by_id(params[:campaign_id])
+    @game = Game.find_by_id(params[:id])
+  end
 
-  def update; end
+  def update
+    @campaign = Campaign.find_by_id(params[:campaign_id])
+    @game = Game.find_by_id(params[:id])
+    @game.update!(game_params)
+    if @game.persisted?
+      redirect_to campaign_path(@campaign)
+    else
+      render :edit
+    end
+  end
 
   private
 
@@ -33,7 +46,8 @@ class GamesController < ApplicationController
     params.require(:game).permit(
       :played,
       :description,
-      :campaign_id
+      :campaign_id,
+      comment_ids: []
     )
   end
 end

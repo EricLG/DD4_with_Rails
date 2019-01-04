@@ -1,5 +1,28 @@
-<h2>Partie du <%= @game.played.strftime("%m/%d/%Y") %></h2>
+<div class="jumbotron">
+    <h2>Partie du <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></h2>
+    <br>
+    <p><%= simple_format @game.description %></p>
+</div>
 
-<p><%= simple_format @game.description %></p>
+<div class="comment">
+    <% if @game.comments.nil? %>
+        <p>Il n'y a actuellement aucun commentaires</p>
+    <% else %>
+        <p>Commentaires :</p>
+        <br>
+        <%= render @game.comments %>
+    <% end %>
+</div>
+
+<div class="row">
+    <% if @current_user %>
+        <hr />
+        <%= render 'comments/form' %>
+    <% else %>
+        <p>Connectez-vous pour écrire un commentaire.</p>
+    <% end %>
+</div>
+
+<hr>
 
 <%= link_to "Retourner vers la campagne", campaign_path(@campaign) %>

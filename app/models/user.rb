@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
   has_many :magic_items, through: :wishlists
   has_many :campaigns, through: :players
   has_many :games, through: :campaigns
+  has_many :comments, dependent: :destroy
   has_secure_password
 end

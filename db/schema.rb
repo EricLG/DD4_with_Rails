@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415122400) do
+ActiveRecord::Schema.define(version: 20190103140956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,17 @@ ActiveRecord::Schema.define(version: 20180415122400) do
   add_index "choices", ["feature_id"], name: "index_choices_on_feature_id", using: :btree
   add_index "choices", ["language_id"], name: "index_choices_on_language_id", using: :btree
   add_index "choices", ["skill_id"], name: "index_choices_on_skill_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["game_id"], name: "index_comments_on_game_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "common_armors", force: :cascade do |t|
     t.string   "name"
@@ -540,6 +551,8 @@ ActiveRecord::Schema.define(version: 20180415122400) do
   add_index "wishlists", ["magic_item_id"], name: "index_wishlists_on_magic_item_id", using: :btree
   add_index "wishlists", ["user_id"], name: "index_wishlists_on_user_id", using: :btree
 
+  add_foreign_key "comments", "games"
+  add_foreign_key "comments", "users"
   add_foreign_key "encounters", "sources"
   add_foreign_key "monsters", "sources"
 end
