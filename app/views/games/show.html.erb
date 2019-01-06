@@ -17,7 +17,7 @@
 <div class="row">
     <% if @current_user %>
         <hr />
-        <%= render 'comments/form' %>
+        <%= render 'comments/form', comment_url: [@campaign, @game, @comment] %>
     <% else %>
         <p>Connectez-vous pour écrire un commentaire.</p>
     <% end %>

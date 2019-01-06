@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(
       :comment,
+      :roleplay,
       :campaign_id,
       :game_id,
       :user_id

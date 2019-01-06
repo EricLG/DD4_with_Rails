@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20190106112033) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "comment"
-    t.boolean  "roleplay"
+    t.integer  "roleplay"
     t.integer  "campaign_id"
     t.integer  "game_id"
     t.integer  "user_id"

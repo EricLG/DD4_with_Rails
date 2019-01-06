@@ -23,6 +23,11 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.includes(:games).find_by_id(params[:id])
     @games = @campaign.games.order(played: :asc)
     @characters = @campaign.characters
+    @comment = Comment.new
+    @wishlist_to_show = !@characters.empty? && !@characters.map(&:magic_items).flatten.empty?
+    @rp_comments = @campaign.comments.rp
+    @debrief_comments = @campaign.comments.debrief
+    @note_comments = @campaign.comments.note
   end
 
   def edit
@@ -47,7 +52,8 @@ class CampaignsController < ApplicationController
       :name,
       :description,
       :status,
-      :game_master_id
+      :game_master_id,
+      comment_ids: []
     )
   end
 

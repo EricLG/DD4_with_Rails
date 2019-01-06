@@ -12,7 +12,7 @@
       <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
       <p><%= simple_format @campaign.description %></p>
 
-      <% if @current_user == @campaign.game_master %>
+      <% if @current_user == @campaign.game_master && @wishlist_to_show %>
         <h3>Héros et leur liste de souhait:</h3>
         <% if !@characters.blank? %>
           <% @characters.each do |character| %>
@@ -40,11 +40,7 @@
             </div>
           <% end %>
         <% end %>
-
-        <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
-        <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
       <% end %>
-
   </div>
 
   <div class="col-sm-4">
@@ -54,6 +50,59 @@
       <li><%= link_to "Partie du #{g.played.strftime("%d/%m/%Y")}", campaign_game_path(@campaign, g) %></li>
     <% end %>
     </ul>
+    <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
   </div>
+</div>
 
+<div class="row">
+  <div class=col-sm-8>
+    <% if @rp_comments.empty? %>
+        <p>Il n'y a actuellement aucun commentaires roleplay</p>
+    <% else %>
+        <p>Commentaires roleplay :</p>
+        <br>
+        <%= render @rp_comments %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class=col-sm-8>
+    <% if @debrief_comments.empty? %>
+        <p>Il n'y a actuellement aucun commentaires roleplay</p>
+    <% else %>
+        <p>Debriefing :</p>
+        <br>
+        <%= render @debrief_comments %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class=col-sm-8>
+    <% if @note_comments.empty? %>
+        <p>Il n'y a actuellement aucun commentaires roleplay</p>
+    <% else %>
+        <p>Note personnelles :</p>
+        <br>
+        <%= render @note_comments %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class=col-sm-8>
+      <% if @current_user %>
+          <hr />
+          <%= render 'comments/form', comment_url: [@campaign, @comment] %>
+      <% else %>
+          <p>Connectez-vous pour écrire un commentaire.</p>
+      <% end %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class=col-sm-8>
+    <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+  </div>
 </div>
