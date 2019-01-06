@@ -1,7 +1,14 @@
-<div class="box">
-  <h4><%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small><span class="pull-right">X</span></h4>
-        <p>
-          <%= comment.comment %>
-        </p>
+<div class="">
+  <h4>
+    <%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small>
+    <% if comment.own?(@current_user) %>
+      <span class="pull-right">
+        <%= link_to 'X', campaign_game_comment_path(@campaign.id, @game.id, comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger" %>
+      </span>
+    <% end %>
+  </h4>
+    <p>
+      <%= comment.comment %>
+    </p>
 </div>
 <hr>

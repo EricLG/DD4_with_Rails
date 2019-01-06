@@ -1,21 +1,25 @@
 class CommentsController < ApplicationController
   def create
-    @campaign = Campaign.find(params[:campaign_id])
-    @game = Game.find(params[:game_id])
     comment = Comment.new(comment_params)
     if comment.save
-      redirect_to campaign_path(@campaign)
+      if params[:game_id]
+        redirect_to campaign_game_path(params[:campaign_id], params[:game_id])
+      else
+        redirect_to campaign_path(params[:campaign_id])
+      end
     else
       render :edit
     end
-    # redirect_to campaign_games_path(@campaign, @game)
   end
 
   def destroy
-    @game = Game.find(params[:game_id])
-    @comment = @game.comments.find(params[:id])
-    @comment.destroy
-    redirect_to game_path(@game)
+    comment = Comment.find(params[:id])
+    comment.destroy
+    if params[:game_id]
+      redirect_to campaign_game_path(params[:campaign_id], params[:game_id])
+    else
+      redirect_to campaign_path(params[:campaign_id])
+    end
   end
 
   private
@@ -23,7 +27,7 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(
       :comment,
-      # :campaign_id, pour plus tard
+      :campaign_id,
       :game_id,
       :user_id
     )
