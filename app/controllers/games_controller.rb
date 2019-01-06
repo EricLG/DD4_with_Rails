@@ -45,6 +45,7 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(
       :played,
+      :name,
       :description,
       :campaign_id,
       comment_ids: []

@@ -1,5 +1,5 @@
 <div class="jumbotron">
-    <h2>Partie du <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></h2>
+    <h2><%= @game.name %> <br><small>le <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></small></h2>
     <br>
     <p><%= simple_format @game.description %></p>
 </div>
