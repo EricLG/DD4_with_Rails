@@ -66,7 +66,8 @@
   <div class="row">
     <% if @in_wishlists %>
       <p class="col-sm-12">Cet objet fait déjà partie de votre liste de souhait.</p>
-    <% else  %>
+      <p class="col-sm-12"><em><%= link_to 'Supprimer de la liste de souhait', rem_wishlist_items_magic_items_path(item: @item) %></em></p>
+    <% else %>
       <div class="col-sm-12">
         <%= form_for @wishlist, {url: wishlist_items_magic_items_path, method: :post, html: {class: 'form-horizontal'}} do |f| %>
           <%= f.hidden_field :user_id, value: @current_user.id %>
