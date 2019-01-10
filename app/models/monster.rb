@@ -17,11 +17,11 @@ class Monster < ActiveRecord::Base
 
   def self.import_monsters
     sources = Source.all
-    filename = Dir.entries('lib/import_files').find { |f| f.match(/monstres.csv/) }
+    filename = Dir.entries(Rails.root + 'lib/import_files').find { |f| f.match(/monstres.csv/) }
     return if filename.nil?
 
     ActiveRecord::Base.transaction do
-      File.open(File.join('lib/import_files', filename), 'r') do |f|
+      File.open(File.join(Rails.root, 'lib', 'import_files', filename), 'r') do |f|
         f.readline
         # "Nom";"Role";"Role secondaire";"Meneur";"Niveau";"Source";"Race/category";"XP";"Type/race";"Origine";"Mot cles";"Lieux de predilection"
         f.each_line do |l|

@@ -57,7 +57,8 @@ class MagicItem < ActiveRecord::Base
 
   def self.import_items
     all_infos = ImportData.import_all_informations
-    csv = CSV.parse(File.read('lib/import_files/items.csv'), headers: true, col_sep: ';', quote_char: '"')
+    file = File.read(File.join(Rails.root, 'lib', 'import_files', 'items.csv'))
+    csv = CSV.parse(file, headers: true, col_sep: ';', quote_char: '"')
     csv.each do |row|
       params = row.to_hash
       params = MagicItem.collect_row_data(all_infos, params)
