@@ -27,6 +27,6 @@
 
 <p><%= link_to "Retourner vers la campagne", campaign_path(@campaign) %></p>
 
-<% if current_user_admin? || @game.owned?(@current_user) %>
+<% if current_user_admin? || @game.game_master?(@current_user) %>
     <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
 <% end %>

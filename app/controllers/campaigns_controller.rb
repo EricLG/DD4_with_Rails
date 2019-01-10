@@ -28,7 +28,7 @@ class CampaignsController < ApplicationController
     campaign_comments = @campaign.comments.where(game_id: nil)
     @rp_comments = campaign_comments.rp
     @debrief_comments = campaign_comments.debrief
-    @note_comments = campaign_comments.note
+    @note_comments = campaign_comments.where(user: @current_user).note
   end
 
   def edit

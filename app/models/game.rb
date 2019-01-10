@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
   has_one :game_master, through: :campaign
   has_many :comments, dependent: :destroy
 
-  def owned?(current_user)
-    self.user == current_user
+  def game_master?(current_user)
+    self.game_master == current_user
   end
 end
