@@ -1,19 +1,22 @@
 <div class="col-sm-12">
-  <p>Participer au debriefing</p>
-  <%#= form_for [@campaign, @game, @comment], {:class => 'form-horizontal'} do |f| %>
+  <p>Rédiger un commentaire.</p>
   <%= form_for comment_url, {:class => 'form-horizontal'} do |f| %>
     <%= f.hidden_field :campaign_id, value: @campaign.id if @campaign %>
     <%= f.hidden_field :game_id, value: @game.id if @game %>
     <%= f.hidden_field :user_id, value: @current_user.id%>
 
+  <% unless @game %>
   <div class="form-group">
-    <%= label_tag :roleplay, "Type de commentaire",  :class=>"col-sm-4 control-label" %>
     <div class="checkbox col-sm-12">
-      <%= f.label :roleplay_rp,       "Mode RP",          class: "radio-inline"  %> <%= f.radio_button :roleplay, "rp" %>
-      <%= f.label :roleplay_debrief,  "Mode debrief",     class: "radio-inline"  %> <%= f.radio_button :roleplay, "debrief" %>
-      <%= f.label :roleplay_note,     "Note personnelle", class: "radio-inline"  %> <%= f.radio_button :roleplay, "note" %>
+      <% [:rp, :debrief, :note].each do |r| %>
+        <%= f.label "roleplay_#{r.to_s}", class: "radio-inline " do %>
+          <%= f.radio_button :roleplay, r.to_s, class:"" %>
+          <span class=""><%= t(".roleplay_" + r.to_s) %></span>
+        <% end %>
+      <% end %>
     </div>
   </div>
+  <% end %>
 
     <div class="form-group">
       <div class="col-sm-12">

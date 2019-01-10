@@ -25,9 +25,10 @@ class CampaignsController < ApplicationController
     @characters = @campaign.characters
     @comment = Comment.new
     @wishlist_to_show = !@characters.empty? && !@characters.map(&:magic_items).flatten.empty?
-    @rp_comments = @campaign.comments.rp
-    @debrief_comments = @campaign.comments.debrief
-    @note_comments = @campaign.comments.note
+    campaign_comments = @campaign.comments.where(game_id: nil)
+    @rp_comments = campaign_comments.rp
+    @debrief_comments = campaign_comments.debrief
+    @note_comments = campaign_comments.note
   end
 
   def edit

@@ -372,6 +372,11 @@ fr:
   games:
     new:
       title_new: "Création d'une nouvelle partie"
+  comments:
+    form:
+      roleplay_rp: "Roleplay"
+      roleplay_debrief: "Debrief"
+      roleplay_note: "Note personnelle"
 # Plugin will_paginate
   will_paginate:
     previous_label: "Précédent"

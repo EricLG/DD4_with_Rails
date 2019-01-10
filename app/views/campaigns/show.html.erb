@@ -10,13 +10,13 @@
 <div class="row">
   <div class="col-sm-8">
       <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
-      <p><%= simple_format @campaign.description %></p>
+      <%= simple_format @campaign.description %>
 
       <% if @current_user == @campaign.game_master && @wishlist_to_show %>
         <h3>Héros et leur liste de souhait:</h3>
         <% if !@characters.blank? %>
-          <% @characters.each do |character| %>
-            <div class="panel-group col-sm-12" role="tablist" aria-multiselectable="true">
+          <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <% @characters.each do |character| %>
               <div class="panel panel-default">
                 <% panel_heading_id = "h#{character.name}" %>
                 <div class="panel-heading" role="tab" id="<%= panel_heading_id %>">
@@ -37,10 +37,47 @@
                   </div>
                 </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
+
+      <h4>Commentaires</h4>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <ul class="nav nav-tabs">
+            <li role="presentation" id="roleplay" class="comment-nav active"><a href="#">Roleplay</a></li>
+            <li role="presentation" id="debrief" class="comment-nav"><a href="#">Debriefing</a></li>
+            <li role="presentation" id="note-perso" class="comment-nav"><a href="#">Notes personnelles</a></li>
+          </ul>
+        </div>
+        <div class="panel-body">
+          <div id="content-roleplay" class="comment-content">
+            <% if @rp_comments.empty? %>
+              <p><small>Il n'y a actuellement aucun commentaires roleplay</small></p>
+            <% else %>
+              <br>
+              <%= render @rp_comments %>
+            <% end %>
+          </div>
+          <div id="content-debrief" class="comment-content hidden">
+            <% if @debrief_comments.empty? %>
+                <p><small>Il n'y a actuellement aucun debriefing</small></p>
+            <% else %>
+                <br>
+                <%= render @debrief_comments %>
+            <% end %>
+          </div>
+          <div id="content-note-perso" class="comment-content hidden">
+            <% if @note_comments.empty? %>
+                <p><small>Vous n'avez écrits aucune notes personnelles</small></p>
+            <% else %>
+                <br>
+                <%= render @note_comments %>
+            <% end %>
+          </div>
+        </div>
+      </div>
   </div>
 
   <div class="col-sm-4">
@@ -56,48 +93,12 @@
 
 <div class="row">
   <div class=col-sm-8>
-    <% if @rp_comments.empty? %>
-        <p>Il n'y a actuellement aucun commentaires roleplay</p>
+    <% if @current_user %>
+        <hr />
+        <%= render 'comments/form', comment_url: [@campaign, @comment] %>
     <% else %>
-        <p>Commentaires roleplay :</p>
-        <br>
-        <%= render @rp_comments %>
+        <p>Connectez-vous pour écrire un commentaire.</p>
     <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class=col-sm-8>
-    <% if @debrief_comments.empty? %>
-        <p>Il n'y a actuellement aucun commentaires roleplay</p>
-    <% else %>
-        <p>Debriefing :</p>
-        <br>
-        <%= render @debrief_comments %>
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class=col-sm-8>
-    <% if @note_comments.empty? %>
-        <p>Il n'y a actuellement aucun commentaires roleplay</p>
-    <% else %>
-        <p>Note personnelles :</p>
-        <br>
-        <%= render @note_comments %>
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class=col-sm-8>
-      <% if @current_user %>
-          <hr />
-          <%= render 'comments/form', comment_url: [@campaign, @comment] %>
-      <% else %>
-          <p>Connectez-vous pour écrire un commentaire.</p>
-      <% end %>
   </div>
 </div>
 <hr>
