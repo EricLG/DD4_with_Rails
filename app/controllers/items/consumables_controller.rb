@@ -25,6 +25,7 @@ class Items::ConsumablesController < ApplicationController
           format.html { redirect_to items_consumable_path(@consumable), notice: t('.notice', name: @consumable.name) }
         end
       else
+        find_dependancies
         format.html { render :new }
       end
     end
