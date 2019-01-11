@@ -1,4 +1,3 @@
-<div class="col-sm-12">
   <p>Rédiger un commentaire.</p>
   <%= form_for comment_url, {:class => 'form-horizontal'} do |f| %>
     <%= f.hidden_field :campaign_id, value: @campaign.id if @campaign %>
@@ -30,4 +29,3 @@
       </div>
     </div>
   <% end %>
-</div>

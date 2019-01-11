@@ -1,11 +1,7 @@
-<%# Sidebloc content%>
-<% content_for :sidebloc do %>
-  <%= render "campaign_menu" %>
-<% end %>
-
 <div class="row">
   <div class="col-sm-12">
     <h3><%= t('.title_index')%></h3>
-    <p><%= link_to t('.new_campaign_link'), new_campaign_path %></p>
+    <br>
+    <%= render "campaign_menu" %>
   </div>
 </div>

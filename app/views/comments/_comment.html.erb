@@ -1,4 +1,4 @@
-<div class="">
+
   <h4>
     <%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small>
     <% if comment.owned?(@current_user) %>
@@ -14,5 +14,4 @@
     <p>
       <%= comment.comment %>
     </p>
-</div>
 <hr>

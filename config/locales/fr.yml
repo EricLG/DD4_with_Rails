@@ -357,13 +357,15 @@ fr:
   campaigns:
     index:
       title_index:          "Campagnes"
-      new_campaign_link:    "Créer une nouvelle campagne"
     new:
       title_new:            "Créer une nouvelle campagne"
     edit:
       title_edit:           "Modifier la campagne"
     show:
       update_campaign_link: Mettre à jour la campagne
+    campaign_menu:
+      new_campaign_link:    "Créer une nouvelle campagne"
+    games_list:
       new_game_link:        "Ajouter une partie"
       count_game:
         zero:               "Aucune partie de jouée."

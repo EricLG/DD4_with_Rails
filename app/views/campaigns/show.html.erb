@@ -4,11 +4,8 @@
 <% end %>
 
 <div class="row">
-  <h2 class="col-sm-12"><%= @campaign.name %></h2>
-</div>
-
-<div class="row">
   <div class="col-sm-8">
+      <h2><%= @campaign.name %></h2>
       <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
       <%= simple_format @campaign.description %>
 
@@ -78,32 +75,15 @@
           </div>
         </div>
       </div>
+
+      <% if @current_user %>
+          <hr />
+          <%= render 'comments/form', comment_url: [@campaign, @comment] %>
+      <% else %>
+          <p>Connectez-vous pour écrire un commentaire.</p>
+      <% end %>
+      <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
   </div>
 
-  <div class="col-sm-4">
-    <h3><small><%= t('.count_game', count: @games.size) %></small></h3>
-    <ul class="list-group padding-left">
-    <% @games.each do |g| %>
-      <li><%= link_to "Partie du #{g.played.strftime("%d/%m/%Y")}", campaign_game_path(@campaign, g) %></li>
-    <% end %>
-    </ul>
-    <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
-  </div>
-</div>
+<%= render "games_list" %>
 
-<div class="row">
-  <div class=col-sm-8>
-    <% if @current_user %>
-        <hr />
-        <%= render 'comments/form', comment_url: [@campaign, @comment] %>
-    <% else %>
-        <p>Connectez-vous pour écrire un commentaire.</p>
-    <% end %>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class=col-sm-8>
-    <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
-  </div>
-</div>

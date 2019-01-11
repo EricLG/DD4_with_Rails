@@ -19,7 +19,10 @@ class GamesController < ApplicationController
   def destroy; end
 
   def show
+    @current_campaigns = Campaign.where(status: :in_progress).order(created_at: :desc)
+    @finished_campaigns = Campaign.where(status: :finished).order(created_at: :desc)
     @campaign = Campaign.find_by_id(params[:campaign_id])
+    @games = @campaign.games.order(played: :asc)
     @game = Game.find_by_id(params[:id])
     @comment = Comment.new(user: @current_user, game: @game)
   end

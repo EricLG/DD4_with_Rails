@@ -1,32 +1,37 @@
-<div class="jumbotron">
-    <h2><%= @game.name %> <br><small>le <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></small></h2>
-    <br>
-    <p><%= simple_format @game.description %></p>
-</div>
-
-<div class="comment">
-    <% if @game.comments.empty? %>
-        <p>Il n'y a actuellement aucun commentaires</p>
-    <% else %>
-        <p>Commentaires :</p>
-        <br>
-        <%= render @game.comments %>
-    <% end %>
-</div>
+<%# Sidebloc content%>
+<% content_for :sidebloc do %>
+  <%= render "campaigns/campaign_menu" %>
+<% end %>
 
 <div class="row">
-    <% if @current_user %>
-        <hr />
-        <%= render 'comments/form', comment_url: [@campaign, @game, @comment] %>
-    <% else %>
-        <p>Connectez-vous pour écrire un commentaire.</p>
-    <% end %>
+    <div class="col-sm-8">
+        <div class="jumbotron">
+            <h2><%= @game.name %> <br><small>le <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></small></h2>
+            <br>
+            <p><%= simple_format @game.description %></p>
+        </div>
+        <div class="comment">
+            <% if @game.comments.empty? %>
+                <p>Il n'y a actuellement aucun commentaires</p>
+            <% else %>
+                <p>Commentaires :</p>
+                <br>
+                <%= render @game.comments %>
+            <% end %>
+        </div>
+        <div class="row">
+            <% if @current_user %>
+                <hr />
+                <%= render 'comments/form', comment_url: [@campaign, @game, @comment] %>
+            <% else %>
+                <p>Connectez-vous pour écrire un commentaire.</p>
+            <% end %>
+        </div>
+        <hr>
+        <p><%= link_to "Retourner vers la campagne", campaign_path(@campaign) %></p>
+        <% if current_user_admin? || @game.game_master?(@current_user) %>
+            <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
+        <% end %>
+    </div>
+    <%= render "campaigns/games_list" %>
 </div>
-
-<hr>
-
-<p><%= link_to "Retourner vers la campagne", campaign_path(@campaign) %></p>
-
-<% if current_user_admin? || @game.game_master?(@current_user) %>
-    <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
-<% end %>

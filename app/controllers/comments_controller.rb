@@ -2,11 +2,7 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
     if comment.save
-      if params[:game_id]
-        redirect_to campaign_game_path(params[:campaign_id], params[:game_id])
-      else
-        redirect_to campaign_path(params[:campaign_id])
-      end
+      redirect_to :back
     else
       render :edit
     end
@@ -15,11 +11,7 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
-    if params[:game_id]
-      redirect_to campaign_game_path(params[:campaign_id], params[:game_id])
-    else
-      redirect_to campaign_path(params[:campaign_id])
-    end
+    redirect_to :back
   end
 
   private
