@@ -1,31 +1,31 @@
-  <p>Rédiger un commentaire.</p>
-  <%= form_for comment_url, {:class => 'form-horizontal'} do |f| %>
+<p>Rédiger un commentaire.</p>
+<%= form_for comment_url, {:class => 'form-horizontal'} do |f| %>
     <%= f.hidden_field :campaign_id, value: @campaign.id if @campaign %>
     <%= f.hidden_field :game_id, value: @game.id if @game %>
     <%= f.hidden_field :user_id, value: @current_user.id%>
 
-  <% unless @game %>
-  <div class="form-group">
-    <div class="checkbox col-sm-12">
-      <% [:rp, :debrief, :note].each do |r| %>
-        <%= f.label "roleplay_#{r.to_s}", class: "radio-inline " do %>
-          <%= f.radio_button :roleplay, r.to_s, class:"" %>
-          <span class=""><%= t(".roleplay_" + r.to_s) %></span>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
+    <% unless @game %>
+        <div class="form-group">
+            <div class="checkbox col-sm-12">
+                <% [:rp, :debrief, :note].each do |r| %>
+                    <%= f.label "roleplay_#{r.to_s}", class: "radio-inline " do %>
+                        <%= f.radio_button :roleplay, r.to_s, class:"" %>
+                        <span class=""><%= t(".roleplay_" + r.to_s) %></span>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
 
     <div class="form-group">
-      <div class="col-sm-12">
-        <%= f.text_area :comment, size: 60, :class=>"form-control" %>
-      </div>
+        <div class="col-sm-12">
+            <%= f.text_area :comment, size: 60, :class=>"form-control" %>
+        </div>
     </div>
 
     <div class="form-group">
-      <div class="col-sm-8">
-        <%= f.submit t("common.validate"), :class => "btn btn-info" %>
-      </div>
+        <div class="col-sm-8">
+            <%= f.submit t("common.validate"), :class => "btn btn-info" %>
+        </div>
     </div>
-  <% end %>
+<% end %>

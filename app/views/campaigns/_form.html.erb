@@ -1,9 +1,8 @@
 <%= form_for @campaign, {:class => 'form-horizontal'}  do |f| %>
-
-  <%= input_text_form f, :name, Campaign.human_attribute_name(:name) %>
-  <%= input_text_field_form f, :description, Campaign.human_attribute_name(:description) %>
-  <% status_array = [['En cours', :in_progress], ['Interrompu', :interrupted], ['Terminé', :finished]] %>
-  <%= input_select_form_without_collection f , :status, status_array, Campaign.human_attribute_name(:status), {size: 1} %>
-  <%= input_select_form f , :game_master_id, @users, :name, @game_master_id, Campaign.human_attribute_name(:game_master_id), {size: 1} %>
-  <%= submit_text_form f %>
+    <%= input_text_form f, :name, Campaign.human_attribute_name(:name) %>
+    <%= input_text_field_form f, :description, Campaign.human_attribute_name(:description) %>
+    <% status_array = [['En cours', :in_progress], ['Interrompu', :interrupted], ['Terminé', :finished]] %>
+    <%= input_select_form_without_collection f , :status, status_array, Campaign.human_attribute_name(:status), {size: 1} %>
+    <%= input_select_form f , :game_master_id, @users, :name, @game_master_id, Campaign.human_attribute_name(:game_master_id), {size: 1} %>
+    <%= submit_text_form f %>
 <% end %>

@@ -1,89 +1,23 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-  <%= render "campaign_menu" %>
+    <%= render "campaign_menu" %>
 <% end %>
 
 <div class="row">
-  <div class="col-sm-8">
-      <h2><%= @campaign.name %></h2>
-      <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
-      <%= simple_format @campaign.description %>
+    <div class="col-sm-8">
+        <h2><%= @campaign.name %></h2>
+        <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
+        <%= simple_format @campaign.description %>
 
-      <% if @current_user == @campaign.game_master && @wishlist_to_show %>
-        <h3>Héros et leur liste de souhait:</h3>
-        <% if !@characters.blank? %>
-          <div class="panel-group" role="tablist" aria-multiselectable="true">
-            <% @characters.each do |character| %>
-              <div class="panel panel-default">
-                <% panel_heading_id = "h#{character.name}" %>
-                <div class="panel-heading" role="tab" id="<%= panel_heading_id %>">
-                  <h4 class="panel-title">
-                  <% collapse_id = character.name %>
-                  <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="<%= collapse_id %>">
-                    <%= collapse_id %> joué par <%= character.user.name %>&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
-                  </a>
-                  </h4>
-                </div>
-                <div id="<%= collapse_id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="<%= panel_heading_id %>">
-                  <div class="panel-body">
-                    <ul class="">
-                    <% character.magic_items.each do |item| %>
-                        <li class=""><%= link_to item.name, items_magic_item_path(item.id) %></li>
-                    <% end %>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
+        <% if @current_user == @campaign.game_master && @wishlist_to_show %>
+            <%= render "wishlist" %>
         <% end %>
-      <% end %>
+        <%= render "comments" %>
 
-      <h4>Commentaires</h4>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <ul class="nav nav-tabs">
-            <li role="presentation" id="roleplay" class="comment-nav active"><a href="#">Roleplay</a></li>
-            <li role="presentation" id="debrief" class="comment-nav"><a href="#">Debriefing</a></li>
-            <li role="presentation" id="note-perso" class="comment-nav"><a href="#">Notes personnelles</a></li>
-          </ul>
-        </div>
-        <div class="panel-body">
-          <div id="content-roleplay" class="comment-content">
-            <% if @rp_comments.empty? %>
-              <p><small>Il n'y a actuellement aucun commentaires roleplay</small></p>
-            <% else %>
-              <br>
-              <%= render @rp_comments %>
-            <% end %>
-          </div>
-          <div id="content-debrief" class="comment-content hidden">
-            <% if @debrief_comments.empty? %>
-                <p><small>Il n'y a actuellement aucun debriefing</small></p>
-            <% else %>
-                <br>
-                <%= render @debrief_comments %>
-            <% end %>
-          </div>
-          <div id="content-note-perso" class="comment-content hidden">
-            <% if @note_comments.empty? %>
-                <p><small>Vous n'avez écrits aucune notes personnelles</small></p>
-            <% else %>
-                <br>
-                <%= render @note_comments %>
-            <% end %>
-          </div>
-        </div>
-      </div>
+        <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+    </div>
 
-      <% if @current_user %>
-          <hr />
-          <%= render 'comments/form', comment_url: [@campaign, @comment] %>
-      <% else %>
-          <p>Connectez-vous pour écrire un commentaire.</p>
-      <% end %>
-      <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
-  </div>
-
-<%= render "games_list" %>
-
+    <div class="col-sm-4">
+        <%= render "games_list" %>
+    </div>
+</div>

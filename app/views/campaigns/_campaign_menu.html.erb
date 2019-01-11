@@ -1,22 +1,23 @@
 <h4>En cours</h4>
 <% if @current_campaigns.blank? %>
-  <p>Aucune campagne</p>
+    <p>Aucune campagne</p>
 <% else %>
-  <ul class="list-group padding-left">
-  <% @current_campaigns.each do |c| %>
-    <li><%= link_to c.name, campaign_path(c.id)%></li>
-  <% end %>
-  </ul>
+    <ul class="list-group padding-left">
+        <% @current_campaigns.each do |c| %>
+            <li><%= link_to c.name, campaign_path(c.id)%></li>
+        <% end %>
+    </ul>
 <% end %>
+
 <h4>Terminés</h4>
 <% if @finished_campaigns.blank? %>
-  <p>Aucune campagne</p>
+    <p>Aucune campagne</p>
 <% else %>
-  <ul class="list-group padding-left">
-  <% @finished_campaigns.each do |c| %>
-    <li><%= link_to c.name, campaign_path(c.id)%></li>
-  <% end %>
-  </ul>
+    <ul class="list-group padding-left">
+        <% @finished_campaigns.each do |c| %>
+            <li><%= link_to c.name, campaign_path(c.id)%></li>
+        <% end %>
+    </ul>
 <% end %>
 
 <p><%= link_to t('.new_campaign_link'), new_campaign_path %></p>

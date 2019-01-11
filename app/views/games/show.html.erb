@@ -33,5 +33,7 @@
             <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
         <% end %>
     </div>
-    <%= render "campaigns/games_list" %>
+    <div class="col-sm-4">
+        <%= render "campaigns/games_list" %>
+    </div>
 </div>
