@@ -8,13 +8,15 @@
         <h2><%= @campaign.name %></h2>
         <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
         <%= simple_format @campaign.description %>
+        <% if @campaign.game_master?(@current_user) %>
+            <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+        <% end %>
 
         <% if @current_user == @campaign.game_master && @wishlist_to_show %>
             <%= render "wishlist" %>
         <% end %>
-        <%= render "comments" %>
 
-        <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+        <%= render "comments" %>
     </div>
 
     <div class="col-sm-4">

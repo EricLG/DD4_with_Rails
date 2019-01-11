@@ -6,4 +6,8 @@ class Campaign < ActiveRecord::Base
   has_many :magic_items, through: :users
   has_many :characters, through: :players
   has_many :comments, dependent: :destroy
+
+  def game_master?(user)
+    game_master == user
+  end
 end
