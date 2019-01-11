@@ -7,7 +7,7 @@
     <div class="col-sm-8">
         <h2><%= @game.name %> <small>le <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></small></h2>
         <br>
-        <%= simple_format @game.description, class: "jumbotron" %>
+        <%= simple_format @game.description, class: "well" %>
         <% if current_user_admin? || @game.game_master?(@current_user) %>
             <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
         <% end %>
