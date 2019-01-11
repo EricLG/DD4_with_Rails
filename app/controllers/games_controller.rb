@@ -37,7 +37,7 @@ class GamesController < ApplicationController
     @game = Game.find_by_id(params[:id])
     @game.update!(game_params)
     if @game.persisted?
-      redirect_to campaign_path(@campaign)
+      redirect_to campaign_game_path(@campaign, @game)
     else
       render :edit
     end
