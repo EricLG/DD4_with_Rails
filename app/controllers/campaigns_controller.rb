@@ -59,7 +59,6 @@ class CampaignsController < ApplicationController
   end
 
   def find_dependancies
-    @status_array = [['En cours', :in_progress], ['Interrompu', :interrupted], ['Terminé', :finished]]
     @current_campaigns = Campaign.where(status: :in_progress).order(created_at: :desc)
     @finished_campaigns = Campaign.where(status: :finished).order(created_at: :desc)
   end
