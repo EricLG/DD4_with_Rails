@@ -12,8 +12,18 @@
             <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
         <% end %>
 
-        <% if @current_user == @campaign.game_master && @wishlist_to_show %>
-            <%= render "wishlist" %>
+        <h3>Héros</h3>
+        <% if @characters.blank? %>
+            <p>Aucun héros n'a rejoint la campagne.</p>
+        <% else %>
+            <ul>
+                <% @characters.each do |character| %>
+                    <li>
+                        <%= link_to character.name, character_path(character.id) %>
+                        <small>joué par <%= character.user.name %></small>
+                    </li>
+                <% end %>
+            </ul>
         <% end %>
 
         <%= render "comments" %>
