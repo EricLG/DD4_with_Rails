@@ -3,36 +3,54 @@
  <%= render "characters_list" %>
 <% end %>
 
-<h3 class="col_sm-12"> <%= @character.name %></h3>
+<div class="row">
+    <div class="col-sm-8">
+        <h3><%= @character.name %></h3>
 
-<dl class="dl-horizontal">
-  <dt><%= Character.human_attribute_name(:level)      %></dt>  <dd class="text-left"><%= @character.level %></dd>
-  <dt><%= Character.human_attribute_name(:experience) %></dt>  <dd class="text-left"><%= @character.experience %></dd>
-  <dt><%= Character.human_attribute_name(:race_id)    %></dt>  <dd class="text-left"><%= @character.race.try(:name) %></dd>
-  <dt><%= Character.human_attribute_name(:klass_id)   %></dt>  <dd class="text-left"><%= @character.klass.try(:name) %></dd>
-  <dt><%= Character.human_attribute_name(:parangon)   %></dt>  <dd class="text-left"><%= @character.parangon %></dd>
-  <dt><%= Character.human_attribute_name(:epic)       %></dt>  <dd class="text-left"><%= @character.epic %></dd>
-  <dt><%= Character.human_attribute_name(:age)        %></dt>  <dd class="text-left"><%= @character.age %></dd>
-  <dt><%= Character.human_attribute_name(:height)     %></dt>  <dd class="text-left"><%= @character.height %></dd>
-  <dt><%= Character.human_attribute_name(:weight)     %></dt>  <dd class="text-left"><%= @character.weight %></dd>
-  <dt><%= Character.human_attribute_name(:alignment)  %></dt>  <dd class="text-left"><%= @character.alignment %></dd>
-  <dt><%= Character.human_attribute_name(:party)      %></dt>  <dd class="text-left"><%= @character.party %> </dd>
-  <dt><%= Character.human_attribute_name(:user_id)    %></dt>  <dd class="text-left"><%= @character.user.name %> </dd>
-  <dt><%= Character.human_attribute_name(:language)   %></dt>  <dd class="text-left"><%= @character.show_languages %> </dd>
-  <% @character.race_choices.each do |rc| %>
-        <dt><%= "APT RACE"%></dt>  <dd> <%= rc.feature.name %></dd>
-  <% end %>
-  <% @character.klass_choices.each do |rc| %>
-        <dt><%= "APT Classe"%></dt>  <dd> <%= rc.feature.name %></dd>
-  <% end %>
-</dl>
-<%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
-<%= link_to "Modifier race", choose_race_character_path(@character.id) %><br>
-<%= link_to "Modifier classe", choose_class_character_path(@character.id) %><br>
-<%= link_to "Modifier infos", choose_optional_fields_character_path(@character.id) %><br>
-<%= link_to "Modifier caractéristiques", choose_abilities_character_path(@character.id) %><br>
-<%= link_to "Modifier aptitudes", choose_features_character_path(@character.id) %><br>
-<%= link_to "Modifier compétences", choose_skills_character_path(@character.id) %><br>
+        <dl class="dl-horizontal">
+        <dt><%= Character.human_attribute_name(:level)      %></dt>  <dd class="text-left"><%= @character.level %></dd>
+        <dt><%= Character.human_attribute_name(:experience) %></dt>  <dd class="text-left"><%= @character.experience %></dd>
+        <dt><%= Character.human_attribute_name(:race_id)    %></dt>  <dd class="text-left"><%= @character.race.try(:name) %></dd>
+        <dt><%= Character.human_attribute_name(:klass_id)   %></dt>  <dd class="text-left"><%= @character.klass.try(:name) %></dd>
+        <dt><%= Character.human_attribute_name(:parangon)   %></dt>  <dd class="text-left"><%= @character.parangon %></dd>
+        <dt><%= Character.human_attribute_name(:epic)       %></dt>  <dd class="text-left"><%= @character.epic %></dd>
+        <dt><%= Character.human_attribute_name(:age)        %></dt>  <dd class="text-left"><%= @character.age %></dd>
+        <dt><%= Character.human_attribute_name(:height)     %></dt>  <dd class="text-left"><%= @character.height %></dd>
+        <dt><%= Character.human_attribute_name(:weight)     %></dt>  <dd class="text-left"><%= @character.weight %></dd>
+        <dt><%= Character.human_attribute_name(:alignment)  %></dt>  <dd class="text-left"><%= @character.alignment %></dd>
+        <dt><%= Character.human_attribute_name(:party)      %></dt>  <dd class="text-left"><%= @character.party %> </dd>
+        <dt><%= Character.human_attribute_name(:user_id)    %></dt>  <dd class="text-left"><%= @character.user.name %> </dd>
+        <dt><%= Character.human_attribute_name(:language)   %></dt>  <dd class="text-left"><%= @character.show_languages %> </dd>
+        <% @character.race_choices.each do |rc| %>
+            <dt><%= "APT RACE"%></dt>  <dd> <%= rc.feature.name %></dd>
+        <% end %>
+        <% @character.klass_choices.each do |rc| %>
+            <dt><%= "APT Classe"%></dt>  <dd> <%= rc.feature.name %></dd>
+        <% end %>
+        </dl>
 
-<br>
-<%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>
+        <% if @character.user == @current_user %>
+            <%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
+            <%= link_to "Modifier race", choose_race_character_path(@character.id) %><br>
+            <%= link_to "Modifier classe", choose_class_character_path(@character.id) %><br>
+            <%= link_to "Modifier infos", choose_optional_fields_character_path(@character.id) %><br>
+            <%= link_to "Modifier caractéristiques", choose_abilities_character_path(@character.id) %><br>
+            <%= link_to "Modifier aptitudes", choose_features_character_path(@character.id) %><br>
+            <%= link_to "Modifier compétences", choose_skills_character_path(@character.id) %><br>
+            <br>
+            <%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>
+        <% end %>
+    </div>
+    <div class="col-sm-4">
+        <h3>Liste de souhaits </h3>
+        <% if @character.magic_items.empty? %>
+            <p><small> <em>Aucun souhait de renseigné.</em></small><p>
+        <% else %>
+            <ul class="">
+                <% @character.magic_items.each do |item| %>
+                    <li class=""><%= link_to item.name, items_magic_item_path(item.id) %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+</div>
