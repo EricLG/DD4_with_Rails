@@ -24,7 +24,6 @@ class CampaignsController < ApplicationController
     @games = @campaign.games.order(played: :asc)
     @characters = @campaign.characters
     @comment = Comment.new
-    @wishlist_to_show = !@characters.empty? && !@characters.map(&:magic_items).flatten.empty?
     campaign_comments = @campaign.comments.where(game_id: nil)
     @rp_comments = campaign_comments.rp
     @debrief_comments = campaign_comments.debrief
