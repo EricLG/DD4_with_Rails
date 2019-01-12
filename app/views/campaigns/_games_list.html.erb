@@ -4,4 +4,6 @@
         <li><%= link_to "Partie du #{g.played.strftime("%d/%m/%Y")}", campaign_game_path(@campaign, g) %></li>
     <% end %>
 </ul>
-<p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
+<% if @campaign.game_master?(@current_user) %>
+    <p><%= link_to t('.new_game_link'), new_campaign_game_path(@campaign.id) %></p>
+<% end %>
