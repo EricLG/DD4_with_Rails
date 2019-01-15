@@ -1,6 +1,11 @@
-<p><%= comment.comment %></p>
+<p>
+<% if comment.character %>
+    <%= comment.character.name %> :
+<% end %>
+<%= comment.comment %></p>
 <h5>
-<em><%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small></em>
+<em>
+<%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small></em>
 <% if comment.owned?(@current_user) %>
     <span class="pull-right">
         <% if @game %>
