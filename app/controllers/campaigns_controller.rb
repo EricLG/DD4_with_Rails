@@ -23,6 +23,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.includes(:games).find_by_id(params[:id])
     @games = @campaign.games.order(played: :asc)
     @characters = @campaign.characters
+    @user_campaign_characters = @characters.where(user_id: @current_user.id)
     @comment = Comment.new
     campaign_comments = @campaign.comments.where(game_id: nil)
     @rp_comments = campaign_comments.rp

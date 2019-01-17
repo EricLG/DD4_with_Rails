@@ -18,7 +18,7 @@
 
         <div class="form-group">
             <div class="col-sm-12">
-                <%= f.select(:character_id, options_from_collection_for_select(@characters, :id, :name), {}, class: "form-control hidden", disabled: true) %>
+                <%= f.select(:character_id, options_from_collection_for_select(@user_campaign_characters, :id, :name), {}, class: "form-control hidden", disabled: true) %>
             </div>
         </div>
     <% end %>
