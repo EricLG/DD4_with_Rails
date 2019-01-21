@@ -3,7 +3,7 @@ class Items::ConsumablesController < ApplicationController
   before_filter :set_consumable, only: %i[show edit update destroy]
 
   def index
-    @consumables = Consumable.all.paginate(page: params[:page], per_page: 2).order(name: :asc)
+    @consumables = Consumable.all.paginate(page: params[:page], per_page: 20).order(name: :asc)
   end
 
   def show; end
