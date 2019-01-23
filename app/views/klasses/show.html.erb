@@ -9,9 +9,8 @@
   </div>
   <div class="col-sm-4">
     <figure>
-      <% name = @klass.name.downcase.gsub(/[Ééê]/, 'e').gsub(/[\s]/, '_').gsub(/[\î]/, 'i').gsub(/[\ô]/, 'o').gsub(/[\ç]/, 'c') %>
-      <% image = File.join('images_classes', 'image_' + name + '.png') %>
-      <%= (image_tag(image, id: "image_#{@klass.id}", class: ' img-responsive img-rounded center-block')) %>
+      <% image = File.join('images_classes', 'image_' + normalize_str(@klass.name) + '.png') %>
+      <%= image_tag(image, id: "image_#{@klass.id}", class: ' img-responsive img-rounded center-block') %>
       <figcaption class="text-center"><small><%= @klass.name %></small></figcaption>
     </figure>
   </div>

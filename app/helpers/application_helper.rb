@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def normalize_str(string)
+    string.mb_chars.downcase.tr(' ', '_').parameterize
+  end
+
   def display_first_words(text, count = 15)
     text.truncate_words(count, omission: '...') unless text.blank?
   end

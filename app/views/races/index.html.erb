@@ -5,8 +5,7 @@
 <% @races.each_slice(6) do |slices| %>
   <div class="row">
     <% slices.each do |r| %>
-      <% name = r.name.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_') %>
-      <% image = File.join('mini_icones', name + '.jpg') %>
+      <% image = File.join('mini_icones', normalize_str(r.name) + '.jpg') %>
       <div class="col-sm-2 space">
         <figure>
           <%= link_to(image_tag(image, id: "image_#{r.id}", class: 'box img-responsive img-rounded center-block'), race_path(r), title: r.name) %>

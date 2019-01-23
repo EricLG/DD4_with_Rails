@@ -7,6 +7,5 @@ class RacesController < ApplicationController
   def show
     @races = Race.select(:id, :name).all
     @race = Race.includes(:features, :source).find_by_id(params[:id])
-    @name = @race.name.mb_chars.downcase.gsub(/[Éé]/, 'e').gsub(/[\s]/, '_')
   end
 end

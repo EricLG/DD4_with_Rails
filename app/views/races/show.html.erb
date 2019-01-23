@@ -9,7 +9,7 @@
   </div>
   <div class="col-sm-4">
     <figure>
-      <%= (image_tag(File.join('images_races', "race_#{@name}.png"), id: "image_#{@race.id}", class: 'img-responsive img-rounded center-block')) %>
+      <%= image_tag(File.join('images_races', "race_#{normalize_str(@race.name)}.png"), id: "image_#{@race.id}", class: 'img-responsive img-rounded center-block') %>
       <figcaption class="text-center"><small><%= @race.name %></small></figcaption>
     </figure>
   </div>
@@ -17,6 +17,6 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <%= File.read(Rails.root.join('lib', 'assets', 'articles', 'races', "#{@name}.txt")).html_safe() %>
+    <%= File.read(Rails.root.join('lib', 'assets', 'articles', 'races', "#{normalize_str(@race.name)}.txt")).html_safe() %>
   </div>
 </div>
