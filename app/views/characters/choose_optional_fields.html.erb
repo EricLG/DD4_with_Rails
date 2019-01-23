@@ -13,11 +13,11 @@
         <div class="row">
           <% if @character.klass.divine? %>
             <p id="is-divine"> NB : En tant que classe divine, vous devez obligatoirement choisir un dieu, et celui-ci définira votre alignement.</p>
-            <%= input_select_form f , :god_id, @gods, :display_name_and_alignemnt, nil, Character.human_attribute_name(:divinity), {size: 1} %>
+            <%= input_select_form f , :god_id, @gods, :display_name_and_alignemnt, @character.god_id, Character.human_attribute_name(:divinity), {size: 1} %>
             <%= input_select_form_without_collection f , :alignment, @alignment, Character.human_attribute_name(:alignment), {size: 1, disabled: true} %>
             <%= hidden_field f , :alignment, value: nil %>
           <% else %>
-            <%= input_select_form f , :god_id, @gods, :display_name_and_alignemnt, nil, Character.human_attribute_name(:divinity), {size: 1, blank: true} %>
+            <%= input_select_form f , :god_id, @gods, :display_name_and_alignemnt, @character.god_id, Character.human_attribute_name(:divinity), {size: 1, blank: true} %>
             <%= input_select_form_without_collection f , :alignment, @alignment, Character.human_attribute_name(:alignment), {size: 1} %>
           <% end %>
             <p>Grâce à votre race, vous connaissez les langues suivantes: <%= @character.race.language %></p>
@@ -25,9 +25,9 @@
               <%= f.hidden_field :language_ids, value: l.id, multiple: true %>
             <% end %>
             <% if @character.race.nb_language_sup == 1 %>
-              <%= input_select_form f, :language_ids, @languages, :language, nil, Character.human_attribute_name(:languages), {size: @languages.size, multiple: true}   %>
+              <%= input_select_form f, :language_ids, @languages, :language, @character.languages.map(&:id), Character.human_attribute_name(:languages), {size: @languages.size, multiple: true}   %>
             <% elsif @character.race.nb_language_sup == 2 %>
-              <%= input_select_form f, :language_ids, @languages, :language, nil, Character.human_attribute_name(:languages), {size: @languages.size, multiple: true}   %>
+              <%= input_select_form f, :language_ids, @languages, :language, @character.languages.map(&:id), Character.human_attribute_name(:languages), {size: @languages.size, multiple: true}   %>
               <p class="small col-sm-8 col-sm-offset-4">Pour sélectionner plusieurs langues, cliquer dessus en appuyant sur Ctrl.</p>
             <% end %>
         </div>
