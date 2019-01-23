@@ -1,14 +1,18 @@
-<p><strong><%= comment.character.name %></strong> : <%= comment.comment %></p>
-<h5>
-    <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small>
-    <% if comment.owned?(@current_user) %>
-        <span class="pull-right">
+<div class="media">
+    <div class="pull-left media-middle">
+        <%= image_tag(character_logo(comment.character), size:"65x65", class: "media-object img-responsive ", alt: comment.character.name) %>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">
+            <%= comment.character.name %>
             <% if @game %>
-                <%= link_to 'X', campaign_game_comment_path(@campaign.id, @game.id, comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs" %>
+                <%= link_to 'X', campaign_game_comment_path(@campaign.id, @game.id, comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs pull-right" %>
             <% else %>
-                <%= link_to 'X', campaign_comment_path(@campaign.id, comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs" %>
+                <%= link_to 'X', campaign_comment_path(@campaign.id, comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs pull-right" %>
             <% end %>
-        </span>
-    <% end %>
-    </h5>
+        </h4>
+        <%= simple_format comment.comment %>
+
+    </div>
+</div>
 <hr>
