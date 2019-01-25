@@ -9,8 +9,8 @@
   <%= input_text_form f, :ms_malus,             CommonArmor.human_attribute_name(:ms_malus) %>
   <%= input_text_form f, :special,              CommonArmor.human_attribute_name(:special) %>
 
-  <%= input_select_form(f, :armor_category_id,  @armor_categories,  :name,  @armor.armor_category_id, CommonArmor.human_attribute_name(:armor_category_id), {blank: false, size: 1}) %>
-  <%= input_select_form(f, :source_id,          @sources,           :name,  @armor.source_id,         CommonArmor.human_attribute_name(:source_id),         {blank: false, size: 1}) %>
+  <%= input_select_form(f, :armor_category_id, options_from_collection_for_select(@armor_categories, :id, :name, @armor.armor_category_id), CommonArmor.human_attribute_name(:armor_category_id), {blank: false, size: 1}) %>
+  <%= input_select_form(f, :source_id, options_from_collection_for_select(@sources, :id, :name, @armor.source_id), CommonArmor.human_attribute_name(:source_id), {blank: false, size: 1}) %>
 
   <%= submit_text_form(f, {add_another: true}) %>
 

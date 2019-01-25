@@ -79,7 +79,7 @@ module ApplicationHelper
   end
 
   # Options hash: {:blank => false, :multiple => false}
-  def input_select_form(form, attribute, sources, method, default_source, local, options = {})
+  def input_select_form(form, attribute, select_options, local, options = {})
     default_size = options[:size] || 5
     input = content_tag('div', class: 'form-group') do
       concat form.label(attribute, local, class: 'col-sm-4 control-label')
@@ -88,27 +88,7 @@ module ApplicationHelper
           concat(
             form.select(
               attribute,
-              options_from_collection_for_select(sources, :id, method, default_source),
-              { include_blank: options[:blank] },
-              multiple: options[:multiple], size: default_size, class: 'form-control'
-            )
-          )
-        end
-      )
-    end
-    input
-  end
-
-  def input_select_form_without_collection(form, attribute, array, local, options = {})
-    default_size = options[:size] || 5
-    input = content_tag('div', class: 'form-group') do
-      concat form.label(attribute, local, class: 'col-sm-4 control-label')
-      concat(
-        content_tag('div', class: 'col-sm-8') do
-          concat(
-            form.select(
-              attribute,
-              options_for_select(array, attribute),
+              select_options,
               { include_blank: options[:blank] },
               multiple: options[:multiple], size: default_size, class: 'form-control', disabled: options[:disabled]
             )
