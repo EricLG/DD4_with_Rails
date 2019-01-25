@@ -36,16 +36,12 @@ module ApplicationHelper
     concat(content_tag('td', price + ' PO', style: 'text-align: right'))
   end
 
-  def find_flash_class(flash)
-    case flash
-    when 'notice'
-      'bg-info'
-    when 'success'
-      'bg-success'
-    when 'error'
-      'bg-danger'
-    else
-      'bg-primary'
+  def flash_class(level)
+    case level.to_sym
+    when :notice then 'alert-info'
+    when :success then 'alert-success'
+    when :error then 'alert-danger'
+    when :alert then 'alert-warning'
     end
   end
 

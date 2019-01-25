@@ -24,15 +24,6 @@
       <% end %>
     </header>
 
-    <% flash.each do |name, msg| %>
-      <% flash_class =  %>
-      <div class="<%= "flash #{find_flash_class(name)}" %>">
-        <% msg.split(':').last.split(',').each do |m| %>
-          <%= m %></br>
-        <% end %>
-      </div>
-    <% end %>
-
     <nav class="navbar black-bg">
       <ul class="nav navbar-nav nav-pills navbar-left">
         <li role="presentation"><%= link_to t("menu.link.object"),   items_index_path,    title: t("menu.tooltip.object"),    class: "white-text" %></li>
@@ -48,7 +39,6 @@
         <% end %>
       </ul>
 
-
       <%= form_tag search_index_path, method: 'get', :class => 'navbar-form navbar-right', role: 'search' do |f| %>
         <div class="form-group">
           <%= text_field_tag :search, params[:search],  {class: "form-control", placeholder: "Search"}  %>
@@ -57,6 +47,13 @@
       <% end %>
 
     </nav>
+
+    <% flash.each do |key, value| %>
+        <div class="flash alert alert-dismissible <%= flash_class(key) %>">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= value %>
+        </div>
+    <% end %>
 
     <div class="row no-margin">
     <% if @hide_side_bloc  %>
