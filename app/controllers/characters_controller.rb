@@ -87,6 +87,13 @@ class CharactersController < ApplicationController
   def save_optional_fields
     params['character']['language_ids'].delete('')
     @character.language_ids.clear
+    avatar = params[:character][:avatar]
+    if !avatar.nil? && avatar.content_type == 'image/jpeg'
+      File.open(Rails.root.join('app', 'assets', 'images', 'avatar_heros', @character.path_name + '.jpg'), 'wb') do |file|
+        file.write(avatar.read)
+      end
+    end
+
     if @character.update(character_params)
       redirect_to choose_abilities_character_path @character.id
     else

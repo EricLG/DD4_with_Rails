@@ -8,7 +8,7 @@
 </div>
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, url: save_optional_fields_character_path(@character.id), html: {:class => 'form-horizontal'} do |f| %>
+    <%= form_for @character, url: save_optional_fields_character_path(@character.id), html: {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f| %>
         <h4>Informations importantes</h4>
         <div class="row">
           <% if @character.klass.divine? %>
@@ -31,6 +31,16 @@
               <p class="small col-sm-8 col-sm-offset-4">Pour sélectionner plusieurs langues, cliquer dessus en appuyant sur Ctrl.</p>
             <% end %>
         </div>
+        <h4>Importer un avatar</h4>
+        <div class="row">
+            <div class="form-group">
+                <label for="avatar" class="col-sm-4 control-label">Avatar pour <%= @character.name %></label>
+                <div class="col-sm-8 input-file" name="character[avatar]">
+                    <input type="text" class="form-control" placeholder='Choisissez un avatar.' />
+                </div>
+            </div>
+        </div>
+
         <h4>Informations optionnelles</h4>
         <div class="row">
           <%= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>

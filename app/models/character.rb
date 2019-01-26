@@ -64,6 +64,11 @@ class Character < ActiveRecord::Base
     level >= 21 if level
   end
 
+  # Renvoie le nom du personnage sous forme de chemin correct
+  def path_name
+    name.mb_chars.downcase.tr(' ', '_').parameterize
+  end
+
   # Renvoie le bonus de 1/2 niveau
   def half_level
     (self.level / 2).floor
