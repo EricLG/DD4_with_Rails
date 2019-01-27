@@ -1,4 +1,5 @@
 class Klass < ActiveRecord::Base
+  include ImagePath
   belongs_to :source
   has_and_belongs_to_many :armor_categories
   has_and_belongs_to_many :weapon_categories

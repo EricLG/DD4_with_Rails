@@ -9,7 +9,7 @@
   </div>
   <div class="col-sm-4">
     <figure>
-      <% image = File.join('images_classes', 'image_' + normalize_str(@klass.name) + '.png') %>
+      <% image = File.join('images_classes', 'image_' + @klass.normalize_str + '.png') %>
       <%= image_tag(image, id: "image_#{@klass.id}", class: ' img-responsive img-rounded center-block') %>
       <figcaption class="text-center"><small><%= @klass.name %></small></figcaption>
     </figure>
