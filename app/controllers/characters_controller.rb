@@ -77,21 +77,22 @@ class CharactersController < ApplicationController
   end
 
   def choose_optional_fields
-    # TODO : FAIRE UN CONTROLE SUR LE NOMBRE DE LANGUES CHOISIES
-    @gods = God.all.order(:name)
-    @known_languages = @character.race.known_level_1_languages
-    @languages = @character.race.available_level_1_languages
-    @alignment = Character::ALIGNMENT
+    optional_fields_dependancies
   end
 
   def save_optional_fields
+    # TODO : FAIRE UN CONTROLE SUR LE NOMBRE DE LANGUES CHOISIES
     params['character']['language_ids'].delete('')
     @character.language_ids.clear
     if @character.update(character_params)
       redirect_to choose_abilities_character_path @character.id
     else
-      find_dependancies
-      flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"
+      optional_fields_dependancies
+      msg = ''
+      @character.errors.messages.each do |k, v|
+        msg += k.to_s.capitalize + ' : ' + v.first + "\r\n"
+      end
+      flash[:error] = "Erreur sur les champs suivants :\r\n #{msg}"
       render :choose_optional_fields
     end
   end
@@ -316,6 +317,13 @@ class CharactersController < ApplicationController
         :training
       ]
     )
+  end
+
+  def optional_fields_dependancies
+    @gods = God.all.order(:name)
+    @known_languages = @character.race.known_level_1_languages
+    @languages = @character.race.available_level_1_languages
+    @alignment = Character::ALIGNMENT
   end
 
   def find_dependancies
