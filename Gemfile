@@ -43,6 +43,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 gem 'puma', '~> 3.11'
 gem 'will_paginate', '~> 3.0.6'
+gem 'carrierwave', '~> 1.3'
 
 group :development do
   gem 'web-console', '~> 2.0'
