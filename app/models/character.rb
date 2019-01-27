@@ -42,6 +42,10 @@ class Character < ActiveRecord::Base
     %w[Non\ aligné Non\ aligné]
   ].freeze
 
+  def default_image
+    File.join('mini_icones', self.race.normalize_str + '.jpg')
+  end
+
   # Retourne une string des langages parlés
   def show_languages
     if self.languages.empty?
