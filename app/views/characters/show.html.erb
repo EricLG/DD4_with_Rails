@@ -6,6 +6,7 @@
 <div class="row">
     <div class="col-sm-8">
         <h3><%= @character.name %></h3>
+        <%= image_tag(@character.avatar_url, size:"65x65", class: "media-object img-responsive ", alt: 'aucun avatar') %>
 
         <dl class="dl-horizontal">
         <dt><%= Character.human_attribute_name(:level)      %></dt>  <dd class="text-left"><%= @character.level %></dd>
