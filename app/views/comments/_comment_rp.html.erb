@@ -5,11 +5,7 @@
     <div class="media-body">
         <h4 class="media-heading">
             <%= comment.character.name %>
-            <% if @game %>
-                <%= link_to 'X', campaign_game_comment_path(@campaign.id, @game.id, comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs pull-right" %>
-            <% else %>
-                <%= link_to 'X', campaign_comment_path(@campaign.id, comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs pull-right" %>
-            <% end %>
+            <%= link_to 'X', comment_path(comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs pull-right" %>
         </h4>
         <%= simple_format comment.comment %>
     </div>

@@ -36,7 +36,7 @@
 </div>
 <% if @current_user %>
     <hr />
-    <%= render 'comments/form', comment_url: [@campaign, @comment] %>
+    <%= render 'comments/form' %>
 <% else %>
     <p>Connectez-vous pour écrire un commentaire.</p>
 <% end %>

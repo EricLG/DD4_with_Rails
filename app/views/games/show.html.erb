@@ -18,7 +18,7 @@
             <%= render @game.comments %>
         <% end %>
         <% if @current_user %>
-            <%= render 'comments/form', comment_url: [@campaign, @game, @comment] %>
+            <%= render 'comments/form' %>
         <% else %>
             <p>Connectez-vous pour écrire un commentaire.</p>
         <% end %>
