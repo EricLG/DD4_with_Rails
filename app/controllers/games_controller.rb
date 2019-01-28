@@ -24,7 +24,11 @@ class GamesController < ApplicationController
     @campaign = Campaign.find_by_id(params[:campaign_id])
     @games = @campaign.games.order(played: :asc)
     @game = Game.find_by_id(params[:id])
-    @comment = Comment.new(user: @current_user, game: @game)
+    if params[:edit].nil?
+      @comment = Comment.new(user: @current_user, game: @game)
+    else
+      @comment = Comment.where(id: params[:edit]).first
+    end
   end
 
   def edit

@@ -102,7 +102,8 @@ Rails.application.routes.draw do
     resources :games do
     end
   end
-  resources :comments, only: [:create, :destroy]
+
+  resources :comments, only: [:create, :update, :destroy]
 
   resources :welcomes, only: [:index]
 

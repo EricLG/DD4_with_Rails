@@ -6,7 +6,13 @@
         <%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small>
         <% if comment.owned?(@current_user) %>
             <span class="pull-right">
-                <%= link_to 'X', comment_path(comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs" %>
+                <%= link_to params.merge(edit: comment.id), class: "btn btn-primary btn-xs" do %>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                <% end %>
+                <%= link_to comment_path(comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{comment.id} ?" }, class: "btn btn-danger btn-xs" do %>
+                    <span class="glyphicon glyphicon-trash"></span>
+                <% end %>
+
             </span>
         <% end %>
     </h5>
