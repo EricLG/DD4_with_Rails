@@ -18,6 +18,7 @@ $(document).on("page:change", function() {
   // Budget form
   $(".budget").change(function() {
     $("#budget_form").submit();
+    updateDifficultyEncounter();
   });
 
   $("#party_level").change(function() {
@@ -162,6 +163,7 @@ $(document).on("page:change", function() {
   function difficultyEncounter(addXp, removeXp) {
     var spanBudget = $("#currentBudget");
     spanBudget.text(parseInt(spanBudget.text()) + parseInt(addXp) - parseInt(removeXp));
+    updateDifficultyEncounter();
   }
 
   function formatRole(main_role, second_role, leader) {
@@ -175,6 +177,23 @@ $(document).on("page:change", function() {
     return text
   }
 
+  // Calcul de la difficulté de la rencontre
+  function updateDifficultyEncounter() {
+    var party_size = parseInt($("#party_size").val());
+    var party_level = parseInt($("#party_level").val());
+    var totalMonsterXp = parseInt($("#currentBudget").text());
+    $.ajax({
+      url: "/dm_tools/encounters/update_difficulty_encounter?",
+      data: {party_size: party_size, party_level: party_level, totalMonsterXp: totalMonsterXp},
+      success: function(data, textStatus, jqHhr) {
+        $("#difficulty").text(data.difficulty)
+      },
+      dataType: "json"
+    });
+  }
+
   // Initialisation
-  initNewEncounterPage();
+  $(function() {
+    initNewEncounterPage();
+  });
 });

@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :encounters do
       collection do
         get 'calcul_budget'
+        get 'update_difficulty_encounter'
       end
     end
   end

@@ -74,6 +74,38 @@ class DmTools::EncountersController < ApplicationController
     end
   end
 
+  # Ajax request : update difficulty encounter from budget and party
+  def update_difficulty_encounter
+    party_size  = params[:party_size].to_i
+    party_level = params[:party_level].to_i
+    total_monster_xp = params[:totalMonsterXp].to_i
+
+    very_easy_encounter = Monster.level_to_xp(party_level) * (party_size - 3)
+    easy_encounter = Monster.level_to_xp(party_level) * (party_size - 1)
+    normal_encounter = Monster.level_to_xp(party_level) * party_size
+    hard_encounter = Monster.level_to_xp(party_level) * (party_size + 2)
+    very_hard_encounter = Monster.level_to_xp(party_level) * (party_size + 5)
+
+    diff = case total_monster_xp
+           when 0..very_easy_encounter
+             "trivial (niveau < #{party_level - 3})"
+           when very_easy_encounter..easy_encounter
+             "très facile (niveau #{party_level - 3} à #{party_level - 2})"
+           when easy_encounter..normal_encounter
+             "facile (niveau #{party_level - 2} à #{party_level - 1})"
+           when normal_encounter..hard_encounter
+             "normale (niveau #{party_level} à #{party_level + 1})"
+           when hard_encounter..very_hard_encounter
+             "difficile (niveau #{party_level + 1} à #{party_level + 5})"
+           else
+             "très difficile (niveau > #{party_level + 5})"
+           end
+
+    respond_to do |format|
+      format.json { render json: { difficulty: diff } }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
