@@ -5,7 +5,14 @@
     <div class="media-body">
         <h4 class="media-heading">
             <%= comment.character.name %>
-            <%= link_to 'X', comment_path(comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{@comment.id} ?" }, class: "btn btn-danger btn-xs pull-right" %>
+            <span class="pull-right">
+                <%= link_to params.merge(edit: comment.id), class: "btn btn-primary btn-xs" do %>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                <% end %>
+                <%= link_to comment_path(comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{comment.id} ?" }, class: "btn btn-danger btn-xs" do %>
+                    <span class="glyphicon glyphicon-trash"></span>
+                <% end %>
+            </span>
         </h4>
         <%= simple_format comment.comment %>
     </div>

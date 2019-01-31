@@ -11,7 +11,7 @@
         <% if current_user_admin? || @game.game_master?(@current_user) %>
             <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
         <% end %>
-        <h3>Débriefing</h3>
+        <h3>Debriefing</h3>
         <% if @game.comments.empty? %>
             <p>Il n'y a actuellement aucun commentaires</p>
         <% else %>

@@ -9,7 +9,7 @@
             <div class="checkbox col-sm-12">
                 <% [:rp, :debrief, :note].each do |r| %>
                     <%= f.label "roleplay_#{r.to_s}", class: "radio-inline " do %>
-                        <%= f.radio_button :roleplay, r.to_s, class:"" %>
+                        <%= f.radio_button :roleplay, r.to_s, class:"", required: true %>
                         <span class=""><%= t(".roleplay_" + r.to_s) %></span>
                     <% end %>
                 <% end %>
