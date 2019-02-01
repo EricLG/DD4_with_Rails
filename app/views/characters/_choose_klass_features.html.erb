@@ -4,7 +4,11 @@
   <div class="form-group">
   <ul>
     <% klass_features[:required].each do |feature| %>
-      <li><%= feature.name %></li>
+      <li>
+        <%= tooltip(feature.name, feature.description) do %>
+          <%= feature.name %>
+        <% end %>
+      </li>
       <%= form.hidden_field("character_choice_ids[required]", value: feature.id, :multiple => true) %>
     <% end %>
   </ul>
@@ -24,7 +28,7 @@
 <% end %>
 <% if !klass_features[:second_choice].empty? && klass_features[:second_choice].first.parent_feature_id.nil? %>
   <div id="second-choice" class="">
-    <p>Choisissez votre style de combat :</p>
+    <p>Choisissez une aptitude parmi les propositions suivantes :</p>
     <div class="form-group">
       <div class="radio col-sm-offset-1">
         <% klass_features[:second_choice].each do |feature| %>
@@ -42,10 +46,13 @@
         <div class="checkbox col-sm-offset-1">
           <label>
             <% klass_feature = klass_features[:third_choice].first %>
-            <% choice = klass_feature.parent_feature.try(&:required) ||klass_feature.required %>
-            <%= check_box_tag "character[character_choice_ids][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
-            <%= klass_feature.complete_name %>
-          </label><br>
+            <%= tooltip(klass_feature.name, klass_feature.description) do %>
+              <% choice = klass_feature.parent_feature.try(&:required) || klass_feature.required %>
+              <%= check_box_tag "character[character_choice_ids][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
+              <%= klass_feature.complete_name %>
+            <% end %>
+          </label>
+          <br>
         </div>
       <% else %>
         <div class="radio col-sm-offset-1">
