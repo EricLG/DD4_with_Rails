@@ -9,7 +9,7 @@
 <br>
 
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-12">
 
     <%= form_for @character, url: save_features_character_path(@character.id), html: {class: 'form-horizontal'} do |form| %>
       <div class="row">
@@ -21,15 +21,6 @@
 
       <%= link_to 'Précédent', choose_abilities_character_path(@character.id), class: "btn btn-default" %>
       <%= submit_text_form(form) %>
-    <% end %>
-  </div>
-
-  <div class="col-sm-4">
-    <% @character.klass.features.each do |feature| %>
-    <div class="row">
-    <h4><%= feature.name %> :</h4>
-    <p><%= !feature.description.blank? ? simple_format(feature.description) : "Pas de description disponible." %></p>
-    </div>
     <% end %>
   </div>
 
