@@ -15,7 +15,7 @@ class Feature < ActiveRecord::Base
   scope :third_choice,  -> { where(required: 'choice_3') }
 
   def complete_name
-    if self.parent_feature.nil?
+    if self.parent_feature_id.nil?
       self.name
     else
       "#{self.parent_feature.name} : #{self.name}"

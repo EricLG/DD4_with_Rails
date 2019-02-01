@@ -119,7 +119,20 @@ class CharactersController < ApplicationController
     end
   end
 
-  def choose_features; end
+  def choose_features
+    race_features = @character.race.features
+    @race_features = {
+      required: race_features.required,
+      first_choice: race_features.first_choice
+    }
+    klass_features = @character.klass.features.order(:name)
+    @klass_features = {
+      required: klass_features.required.to_a,
+      first_choice: klass_features.first_choice.to_a,
+      second_choice: klass_features.second_choice.to_a,
+      third_choice: klass_features.third_choice.to_a
+    }
+  end
 
   def save_features
     if params && params['character']

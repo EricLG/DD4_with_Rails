@@ -13,10 +13,10 @@
 
     <%= form_for @character, url: save_features_character_path(@character.id), html: {class: 'form-horizontal'} do |form| %>
       <div class="row">
-        <%= render "choose_race_features", form: form %>
+        <%#= render "choose_race_features", form: form, race_features: @race_features %>
       </div>
       <div class="row">
-        <%= render "choose_klass_features", form: form %>
+        <%= render "choose_klass_features", form: form, klass_features: @klass_features %>
       </div>
 
       <%= link_to 'Précédent', choose_abilities_character_path(@character.id), class: "btn btn-default" %>
