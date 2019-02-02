@@ -9,10 +9,15 @@ class Feature < ActiveRecord::Base
   has_many :characters, through: :choices
 
   scope :main_ft,       -> { where(parent_feature_id: nil).order(:name) }
+  scope :all_children,  -> { where.not(parent_feature: nil) }
   scope :required,      -> { where(required: 'required') }
   scope :first_choice,  -> { where(required: 'choice_1') }
   scope :second_choice, -> { where(required: 'choice_2') }
   scope :third_choice,  -> { where(required: 'choice_3') }
+
+  def self.required_with_no_children
+    required.where.not(id: all_children.pluck(:parent_feature_id))
+  end
 
   def complete_name
     if self.parent_feature_id.nil?

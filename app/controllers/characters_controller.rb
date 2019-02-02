@@ -127,7 +127,7 @@ class CharactersController < ApplicationController
     }
     klass_features = @character.klass.features.order(:name)
     @klass_features = {
-      required: klass_features.required.to_a,
+      required: klass_features.required_with_no_children.to_a,
       first_choice: klass_features.first_choice.to_a,
       second_choice: klass_features.second_choice.to_a,
       third_choice: klass_features.third_choice.to_a
