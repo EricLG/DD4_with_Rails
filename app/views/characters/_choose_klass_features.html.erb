@@ -1,4 +1,5 @@
 <h4>Aptitudes de classes</h4>
+<% if !klass_features[:required].empty? %>
 <div class="">
   <p>Vous disposez des aptitudes de classes obligatoires suivantes :</p>
   <div class="form-group">
@@ -14,42 +15,60 @@
   </ul>
   </div>
 </div>
-<% unless klass_features[:first_choice].empty? %>
+<% end %>
+
+<% if first_choice_parent %>
+  <% first_choice_text = " Votre aptitude " + tooltip(first_choice_parent.name, first_choice_parent.description) {first_choice_parent.name } + " vous permet de choisir parmi les aptitudes suivantes :" %>
+<% else %>
+  <% first_choice_text = "Choissisez une des aptitudes suivantes :" %>
+<% end %>
   <div id="first-choice" class="">
-    <p>Vous devez ensuite choisir parmi les aptitudes suivantes : </p>
+    <p><%= first_choice_text.html_safe %></p>
     <div class="form-group">
       <div class="radio col-sm-offset-1">
         <% klass_features[:first_choice].each do |feature| %>
-          <%= (render(feature.children_features) || render(feature)) if (feature.parent_feature_id.nil? || feature.parent_feature.required == 'required') %>
+          <%= render(feature, parent_text: first_choice_parent.try(&:name) || '') %>
         <% end %>
       </div>
     </div>
   </div>
-<% end %>
-<% if !klass_features[:second_choice].empty? && klass_features[:second_choice].first.parent_feature_id.nil? %>
+
+
+<% if !klass_features[:second_choice].empty? %>
   <div id="second-choice" class="">
-    <p>Choisissez une aptitude parmi les propositions suivantes :</p>
+    <% if second_choice_parent %>
+      <% second_choice_text = " Votre aptitude " + tooltip(second_choice_parent.name, second_choice_parent.description) {second_choice_parent.name } + " vous permet de choisir parmi les aptitudes suivantes :" %>
+    <% else %>
+      <% second_choice_text = "Choissisez une des aptitudes suivantes :" %>
+    <% end %>
+    <p><%= second_choice_text.html_safe %></p>
     <div class="form-group">
       <div class="radio col-sm-offset-1">
         <% klass_features[:second_choice].each do |feature| %>
-            <%= (render(feature.children_features) || render(feature)) if feature.parent_feature_id.nil? %>
+            <%= render(feature, parent_text: second_choice_parent.try(&:name) || '') %>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
-<% if !klass_features[:third_choice].empty? && klass_features[:third_choice].first.parent_feature_id.nil? %>
+
+<% if !klass_features[:third_choice].empty? %>
   <div id="third-choice" class="">
-    <p>Enfin, choisissez votre dernière aptitude de classe : </p>
+    <% if third_choice_parent %>
+      <% third_choice_text = " Votre aptitude " + tooltip(third_choice_parent.name, third_choice_parent.description) {third_choice_parent.name } + " vous permet de choisir parmi les aptitudes suivantes :" %>
+    <% else %>
+      <% third_choice_text = "Choissisez une des aptitudes suivantes :" %>
+    <% end %>
+    <p><%= third_choice_text.html_safe %></p>
     <div class="form-group">
       <% if klass_features[:third_choice].size == 1 %>
         <div class="checkbox col-sm-offset-1">
           <label>
             <% klass_feature = klass_features[:third_choice].first %>
             <%= tooltip(klass_feature.name, klass_feature.description) do %>
-              <% choice = klass_feature.parent_feature.try(&:required) || klass_feature.required %>
-              <%= check_box_tag "character[character_choice_ids][#{choice}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
-              <%= klass_feature.complete_name %>
+              <% klass_feature.required %>
+              <%= check_box_tag "character[character_choice_ids][#{klass_feature.required}][]", "#{klass_feature.id}", false, {class: "choice-1"} %>
+              <%= klass_feature.name %>
             <% end %>
           </label>
           <br>
@@ -57,7 +76,7 @@
       <% else %>
         <div class="radio col-sm-offset-1">
           <% klass_features[:third_choice].each do |feature| %>
-            <%= (render(feature.children_features) || render(feature)) if feature.parent_feature_id.nil? %>
+            <%= render(feature, parent_text: '') %>
           <% end %>
         </div>
       <% end %>

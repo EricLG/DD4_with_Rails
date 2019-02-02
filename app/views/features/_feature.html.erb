@@ -1,7 +1,11 @@
 <label>
   <%= tooltip(feature.name, feature.description) do %>
-    <% choice = feature.parent_feature.try(&:required) || feature.required %>
-    <%= radio_button_tag "character[character_choice_ids][#{choice}][]", "#{feature.id}", false, {class: "choice-1"} %>
-    <%= feature.complete_name %>
+    <% full_name = feature.name %>
+    <% if !parent_text.blank? %>
+      <% full_name = parent_text + ' : ' + feature.name%>
+    <% end %>
+      <%= radio_button_tag "character[character_choice_ids][#{feature.required}][]", "#{feature.id}", false, {class: "choice-1"} %>
+      <%= full_name %>
   <% end %>
-</label><br>
+</label>
+<br>

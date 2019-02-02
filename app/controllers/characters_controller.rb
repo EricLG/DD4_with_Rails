@@ -132,6 +132,9 @@ class CharactersController < ApplicationController
       second_choice: klass_features.second_choice.to_a,
       third_choice: klass_features.third_choice.to_a
     }
+    @first_choice_parent = @klass_features[:first_choice].first.parent_feature unless @klass_features[:first_choice].empty?
+    @second_choice_parent = @klass_features[:second_choice].first.parent_feature unless @klass_features[:second_choice].empty?
+    @third_choice_parent = @klass_features[:third_choice].first.parent_feature unless @klass_features[:third_choice].empty?
   end
 
   def save_features

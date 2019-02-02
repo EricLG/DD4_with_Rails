@@ -19,14 +19,6 @@ class Feature < ActiveRecord::Base
     required.where.not(id: all_children.pluck(:parent_feature_id))
   end
 
-  def complete_name
-    if self.parent_feature_id.nil?
-      self.name
-    else
-      "#{self.parent_feature.name} : #{self.name}"
-    end
-  end
-
   def feature_class_to_s
     particule = %w[a e i o u].include?(self.name.mb_chars.downcase[0]) ? "d'" : 'de '
 

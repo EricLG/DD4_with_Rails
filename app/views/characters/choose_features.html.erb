@@ -16,7 +16,13 @@
         <%= render "choose_race_features", form: form, race_features: @race_features %>
       </div>
       <div class="row">
-        <%= render "choose_klass_features", form: form, klass_features: @klass_features %>
+        <%= render "choose_klass_features",
+          form: form,
+          klass_features: @klass_features,
+          first_choice_parent: @first_choice_parent,
+          second_choice_parent: @second_choice_parent,
+          third_choice_parent: @third_choice_parent
+        %>
       </div>
 
       <%= link_to 'Précédent', choose_abilities_character_path(@character.id), class: "btn btn-default" %>
