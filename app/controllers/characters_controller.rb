@@ -3,7 +3,7 @@ class CharactersController < ApplicationController
 
   def index
     @hide_side_bloc = true
-    @characters = @current_user.characters
+    @characters = @current_user.characters.order(:name)
   end
 
   def show
