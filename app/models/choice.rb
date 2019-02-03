@@ -2,9 +2,8 @@ class Choice < ActiveRecord::Base
   belongs_to :character,  inverse_of: :choices
   belongs_to :feature,    inverse_of: :choices
   belongs_to :language,   inverse_of: :choices
-  belongs_to :skill
 
-  validates :character_id, uniqueness: { scope: %i[feature_id language_id skill_id] }
+  validates :character_id, uniqueness: { scope: %i[feature_id language_id] }
 
   scope :klass_features_choices,  -> { joins(:feature).where(features: { kind: 'klass' }).where.not(feature_id: nil) }
   scope :race_features_choices,   -> { joins(:feature).where(features: { kind: 'race' }).where.not(feature_id: nil) }

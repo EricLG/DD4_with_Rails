@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190127114202) do
+ActiveRecord::Schema.define(version: 20190203104455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,13 +125,11 @@ ActiveRecord::Schema.define(version: 20190127114202) do
     t.integer "character_id"
     t.integer "feature_id"
     t.integer "language_id"
-    t.integer "skill_id"
   end
 
   add_index "choices", ["character_id"], name: "index_choices_on_character_id", using: :btree
   add_index "choices", ["feature_id"], name: "index_choices_on_feature_id", using: :btree
   add_index "choices", ["language_id"], name: "index_choices_on_language_id", using: :btree
-  add_index "choices", ["skill_id"], name: "index_choices_on_skill_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "comment"
