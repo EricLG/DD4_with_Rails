@@ -55,7 +55,8 @@ class GamesController < ApplicationController
       :name,
       :description,
       :campaign_id,
-      comment_ids: []
+      comment_ids: [],
+      illustrations: []
     )
   end
 end

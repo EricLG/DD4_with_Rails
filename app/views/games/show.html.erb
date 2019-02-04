@@ -11,6 +11,27 @@
         <% if current_user_admin? || @game.game_master?(@current_user) %>
             <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
         <% end %>
+
+        <h3>Illustrations</h3>
+        <% if @game.illustrations.empty? %>
+            <div>
+                <p>Aucune illustrations.</p>
+            </div>
+        <% else %>
+            <div class="my-gallery" >
+            <% @game.illustrations.each do |image| %>
+               <figure>
+                    <%= link_to(
+                            image_tag(image.url, class: "media-object img-responsive ", alt: 'aucune image'),
+                            image.url,
+                            { title: image.identifier , "data-size": "224x480" })
+                    %>
+                    <figcaption class="text-center"><small><%= image.identifier %></small></figcaption>
+                </figure>
+            <% end %>
+            </div>
+        <% end %>
+
         <h3>Debriefing</h3>
         <% if @game.comments.empty? %>
             <p>Il n'y a actuellement aucun commentaires</p>
