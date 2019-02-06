@@ -87,6 +87,7 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
+    mini_magick (4.9.2)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.1)
@@ -211,6 +212,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails (~> 4.1.1)
   jquery-ui-rails (~> 5.0.5)
+  mini_magick (~> 4.9)
   pg (~> 0.20)
   photoswipe-rails (~> 4.1)
   pry

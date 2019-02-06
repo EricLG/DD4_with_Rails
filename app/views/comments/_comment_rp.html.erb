@@ -1,6 +1,6 @@
 <div class="media">
-    <div class="pull-left media-middle">
-        <%= image_tag(comment.character.avatar_url, size:"65x65", class: "media-object img-responsive ", alt: comment.character.name) %>
+    <div class="pull-left media-middle size-comment">
+        <%= image_tag(comment.character.avatar.comment.url, class: "media-object img-responsive center-block", alt: comment.character.name) %>
     </div>
     <div class="media-body">
         <h4 class="media-heading">
