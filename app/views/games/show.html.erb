@@ -19,14 +19,15 @@
             </div>
         <% else %>
             <div class="my-gallery" >
-            <% @game.illustrations.each do |image| %>
+            <% @game.illustrations.each_with_index do |image, i| %>
                <figure>
                     <%= link_to(
-                            image_tag(image.url, class: "media-object img-responsive ", alt: 'aucune image'),
+                            image_tag(image.thumb.url, class: "media-object img-responsive ", alt: @game.illustrations_identifiers[i]),
                             image.url,
-                            { title: image.identifier , "data-size": "224x480" })
+                            { title:
+                            @game.illustrations_identifiers[i] , "data-size": image.dimensions })
                     %>
-                    <figcaption class="text-center"><small><%= image.identifier %></small></figcaption>
+                    <figcaption class="text-center"><small><%= @game.illustrations_identifiers[i] %></small></figcaption>
                 </figure>
             <% end %>
             </div>
