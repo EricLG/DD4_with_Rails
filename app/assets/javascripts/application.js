@@ -31,6 +31,7 @@ $(document).on("page:change", function() {
   })
 
   var initPhotoSwipeFromDOM = function(gallerySelector) {
+
     // parse slide data (url, title, size ...) from DOM elements
     // (children of gallerySelector)
     var parseThumbnailElements = function(el) {
@@ -68,10 +69,12 @@ $(document).on("page:change", function() {
         }
         return items;
     };
+
     // find nearest parent element
     var closest = function closest(el, fn) {
         return el && ( fn(el) ? el : closest(el.parentNode, fn) );
     };
+
     // triggers when user clicks on thumbnail
     var onThumbnailsClick = function(e) {
         e = e || window.event;
@@ -107,6 +110,7 @@ $(document).on("page:change", function() {
         }
         return false;
     };
+
     // parse picture index and gallery index from URL (#&pid=1&gid=2)
     var photoswipeParseHash = function() {
         var hash = window.location.hash.substring(1),
@@ -130,6 +134,7 @@ $(document).on("page:change", function() {
         }
         return params;
     };
+
     var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
         var pswpElement = document.querySelectorAll('.pswp')[0],
             gallery,
@@ -177,6 +182,7 @@ $(document).on("page:change", function() {
         gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
     };
+
     // loop through all gallery elements and bind events
     var galleryElements = document.querySelectorAll( gallerySelector );
     for(var i = 0, l = galleryElements.length; i < l; i++) {
@@ -188,7 +194,7 @@ $(document).on("page:change", function() {
     if(hashData.pid && hashData.gid) {
         openPhotoSwipe( hashData.pid ,  galleryElements[ hashData.gid - 1 ], true, true );
     }
-};
+  };
 
   // execute above function
   initPhotoSwipeFromDOM('.my-gallery');
