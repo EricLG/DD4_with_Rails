@@ -5,7 +5,7 @@
     <div class="form-group">
         <%= f.label :name, Game.human_attribute_name(:name), class: "col-sm-4 control-label" %>
         <div class="col-sm-8">
-            <%= f.text_field :name, size: 60, :class=>"form-control" %>
+            <%= f.text_field :name, size: 60, :class=>"form-control", required: true %>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
     <div class="form-group">
         <%= f.label :played, Game.human_attribute_name(:played), :class=>"col-sm-4 control-label" %>
         <div class="col-sm-8">
-            <%= f.text_field :played, size: 60, placeholder: "jj/mm/aaaa", :class=>"form-control datepicker" %>
+            <%= f.text_field :played, size: 60, placeholder: "jj/mm/aaaa", :class=>"form-control datepicker", required: true %>
         </div>
     </div>
 
