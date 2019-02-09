@@ -58,7 +58,7 @@ $(document).on("page:change", function() {
             };
             if(figureEl.children.length > 1) {
                 // <figcaption> content
-                item.title = figureEl.children[1].innerHTML;
+                item.title = figureEl.children[1].innerText;
             }
             if(linkEl.children.length > 0) {
                 // <img> thumbnail element, retrieving thumbnail url
