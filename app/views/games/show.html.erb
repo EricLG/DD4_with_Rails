@@ -25,12 +25,12 @@
             <% @game.illustrations.each do |image| %>
                <figure class="inline-block">
                     <%= link_to(
-                            image_tag(image.thumb.url, class: "media-object img-responsive ", alt: image.file.basename),
+                            image_tag(image.thumb.url, class: "img-responsive", alt: image.file.basename),
                             image.url,
                             { title:
                             image.file.basename , "data-size": image.dimensions })
                     %>
-                    <figcaption class="text-center"><small><%= image.file.basename %></small></figcaption>
+                    <figcaption class="text-center center-block"><small><%= image.file.basename %></small></figcaption>
                 </figure>
             <% end %>
             </div>
