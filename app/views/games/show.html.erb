@@ -23,7 +23,7 @@
         <% else %>
             <div class="my-gallery" >
             <% @game.illustrations.each_with_index do |image, i| %>
-               <figure>
+               <figure class="inline-block">
                     <%= link_to(
                             image_tag(image.thumb.url, class: "media-object img-responsive ", alt: @game.illustrations_identifiers[i]),
                             image.url,
