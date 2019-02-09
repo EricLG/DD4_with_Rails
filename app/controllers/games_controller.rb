@@ -22,13 +22,13 @@ class GamesController < ApplicationController
     @current_campaigns = Campaign.where(status: :in_progress).order(created_at: :desc)
     @finished_campaigns = Campaign.where(status: :finished).order(created_at: :desc)
     @campaign = Campaign.find_by_id(params[:campaign_id])
-    @games = @campaign.games.order(played: :asc)
+    @games = @campaign.games.order(played: :asc).to_a
     @game = Game.find_by_id(params[:id])
-    if params[:edit].nil?
-      @comment = Comment.new(user: @current_user, game: @game)
-    else
-      @comment = Comment.where(id: params[:edit]).first
-    end
+    @comment = if params[:edit].nil?
+                 Comment.new(user: @current_user, game: @game)
+               else
+                 Comment.where(id: params[:edit]).first
+               end
   end
 
   def edit
