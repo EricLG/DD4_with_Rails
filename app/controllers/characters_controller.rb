@@ -8,6 +8,8 @@ class CharactersController < ApplicationController
 
   def show
     @characters = @current_user.characters
+    @skill_bonuses = @character.skill_bonuses.joins(:skill).sort_by(&:fr_name)
+    @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
   end
 
   def new
