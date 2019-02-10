@@ -25,7 +25,7 @@ class CampaignsController < ApplicationController
     @characters = @campaign.characters
     @user_campaign_characters = @characters.where(user_id: @current_user.id)
     @comment = Comment.new
-    campaign_comments = @campaign.comments.where(game_id: nil)
+    campaign_comments = @campaign.comments.where(game_id: nil).order(:id)
     @rp_comments = campaign_comments.rp
     @debrief_comments = campaign_comments.debrief
     @note_comments = campaign_comments.where(user: @current_user).note
