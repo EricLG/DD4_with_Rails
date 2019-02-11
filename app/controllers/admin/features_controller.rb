@@ -1,4 +1,5 @@
 class Admin::FeaturesController < ApplicationController
+  layout 'no_sidebloc'
   before_action :set_feature_property, only: %i[show edit update destroy]
 
   def index

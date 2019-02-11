@@ -1,0 +1,15 @@
+
+<header  class="header">
+    <h1 class= "no-margin" style="display: inline-block;">
+    <%= link_to root_path, class: "active white-text" do %>
+        <%= image_tag("header/dnd_logo.png") %>
+        <%= t("menu.main_title") %>
+    <% end %>
+    </h1>
+    <% if @current_user.kind_of? User %>
+    <div class="account box pull-right">
+        <p>Bonjour <%= link_to @current_user.name, user_path(@current_user) %> | <%= link_to "Logout", '/logout' %></p>
+        <p><%= link_to "Voir mes héros", characters_path %></p>
+    </div>
+    <% end %>
+</header>

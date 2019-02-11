@@ -1,4 +1,5 @@
 class Items::MagicItemsController < ApplicationController
+  layout 'no_sidebloc', only: :random
   before_action :find_dependancies, only: %i[index new edit weapons armors implements gears amulets]
 
   def index
@@ -90,7 +91,6 @@ class Items::MagicItemsController < ApplicationController
   end
 
   def random
-    @hide_side_bloc = true
     @random_objects = MagicItem.all.sample(10)
   end
 

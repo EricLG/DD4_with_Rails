@@ -1,8 +1,8 @@
 class CharactersController < ApplicationController
+  layout 'no_sidebloc', only: %i[index new]
   before_filter :find_dependancies, except: %i[index new create resume_race resume_klass]
 
   def index
-    @hide_side_bloc = true
     @characters = @current_user.characters.order(:name)
   end
 
@@ -11,7 +11,6 @@ class CharactersController < ApplicationController
   end
 
   def new
-    @hide_side_bloc = true
     @character = Character.new
     @campaigns = Campaign.all
   end

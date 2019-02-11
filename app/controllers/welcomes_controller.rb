@@ -1,5 +1,9 @@
 class WelcomesController < ApplicationController
-  def index
-    @hide_side_bloc = true if @current_user
+  layout :no_sidebloc
+
+  def index; end
+
+  def no_sidebloc
+    'no_sidebloc' if @current_user
   end
 end

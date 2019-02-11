@@ -22,5 +22,4 @@ class ApplicationController < ActionController::Base
   def authorize_admin
     redirect_to '/login' unless %w[illisae ashera].include? @current_user.try(:name).try(:downcase)
   end
-
 end

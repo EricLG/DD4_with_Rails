@@ -1,6 +1,7 @@
 class KlassesController < ApplicationController
+  layout 'no_sidebloc', only: :index
+
   def index
-    @hide_side_bloc = true
     @klasses = Klass.select(:id, :name, :role).all.group_by(&:role)
   end
 

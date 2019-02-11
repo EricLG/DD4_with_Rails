@@ -1,0 +1,25 @@
+<nav class="navbar black-bg">
+    <ul class="nav navbar-nav nav-pills navbar-left">
+    <li role="presentation"><%= link_to t("menu.link.object"),   items_index_path,    title: t("menu.tooltip.object"),    class: "white-text" %></li>
+    <li role="presentation"><%= link_to t("menu.link.feat"),     feats_path,          title: t("menu.tooltip.feat"),      class: "white-text" %></li>
+    <li role="presentation"><%= link_to t("menu.link.race"),     races_path,          title: t("menu.tooltip.race"),      class: "white-text" %></li>
+    <li role="presentation"><%= link_to t("menu.link.klass"),    klasses_path,        title: t("menu.tooltip.klass"),     class: "white-text" %></li>
+    <!-- <li role="presentation"><%= link_to t("menu.link.help"),     aides_path,          title: t("menu.tooltip.help"),      class: "white-text" %></li>-->
+    <% unless @current_user.nil? %>
+        <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,      title: t("menu.tooltip.campaign"),  class: "white-text" %></li>
+    <% end %>
+    <% if current_user_contributor? %>
+        <li role="presentation"><%= link_to t("menu.link.random"),   items_random_path,   title: t("menu.tooltip.random"),    class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.dmtools"),  dm_tools_path,       title: t("menu.tooltip.dmtools"),   class: "white-text" %></li>
+        <li role="presentation"><%= link_to t("menu.link.admin"), admin_index_path, title: t("menu.tooltip.admin"), class: "white-text" %></li>
+    <% end %>
+    </ul>
+
+    <%= form_tag search_index_path, method: 'get', :class => 'navbar-form navbar-right', role: 'search' do |f| %>
+    <div class="form-group">
+        <%= text_field_tag :search, params[:search],  {class: "form-control", placeholder: "Search"}  %>
+    </div>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+    <% end %>
+
+</nav>

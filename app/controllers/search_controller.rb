@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
+  layout 'no_sidebloc'
+
   def index
-    @hide_side_bloc = true
     @request = params[:search]
     @result = {}
     %i[magic_weapon magic_armor magic_implement magic_gear magic_gear magic_amulet].each do |item|

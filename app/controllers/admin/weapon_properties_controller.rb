@@ -1,4 +1,5 @@
 class Admin::WeaponPropertiesController < ApplicationController
+  layout 'no_sidebloc'
   before_action :set_weapon_property, only: %i[show edit update destroy]
 
   # GET /weapon_properties

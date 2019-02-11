@@ -1,6 +1,7 @@
 class RacesController < ApplicationController
+  layout 'no_sidebloc', only: :index
+
   def index
-    @hide_side_bloc = true
     @races = Race.select(:id, :name).all
   end
 

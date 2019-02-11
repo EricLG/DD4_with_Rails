@@ -65,14 +65,11 @@ Rails.application.routes.draw do
     resources :weapon_properties, :features
     resources :users, only: [:index, :edit, :update, :destroy]
     get "/index"      => 'admin#index'
-    get "/import"     => 'admin#import'
     get "/export_items" => 'admin#export_items'
     get "/items"      => 'admin#items'
     get "/feats"      => 'admin#feats'
-    get "/contribute" => 'admin#contribute'
     get "/monsters"   => 'admin#monsters'
     get "/encounters" => 'admin#encounters'
-    get "/stats"      => 'admin#stats'
   end
 
   resources :races, :klasses, :aides

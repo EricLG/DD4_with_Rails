@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
+  layout 'no_sidebloc'
+
   def index
-    @hide_side_bloc = true
     @users = User.all.order(:created_at)
   end
 
