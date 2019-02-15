@@ -3,6 +3,13 @@ class AbilityBonus < ActiveRecord::Base
   belongs_to :character,  inverse_of: :ability_bonuses
 
   has_many :skill_bonuses
+  FORT_ABILITIES = %i[strength constitution].freeze
+  REF_ABILITIES = %i[dexterity intelligence].freeze
+  WILL_ABILITIES = %i[wisdom charisma].freeze
+
+  scope :fortitude, -> { joins(:ability).where(abilities: {name: FORT_ABILITIES }).order(total_value: :desc).first }
+  scope :reflexes, -> { joins(:ability).where(abilities: {name: REF_ABILITIES }).order(total_value: :desc).first }
+  scope :will, -> { joins(:ability).where(abilities: {name: WILL_ABILITIES }).order(total_value: :desc).first }
 
   def to_s
     Ability.unconvert(self.ability.name)
