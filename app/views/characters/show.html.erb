@@ -58,7 +58,7 @@
     </div>
     <div class="col-sm-5">
         <div class="row">
-            <h4 class="col-sm-12 black-bg white-text">Défenses (en cours)</h4>
+            <h4 class="col-sm-12 black-bg white-text">Défenses</h4>
             <table class="table table-condensed">
                 <thead>
                     <tr>
@@ -74,13 +74,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% %i[CA Vig Ref Vol].each do |defense| %>
+                    <% @defenses.each do |defense, bonus| %>
                         <tr>
-                            <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= 10 %></button></td>
+                            <% total_defense = 10 + half_level + bonus.modifier + bonus.bonus_racial + bonus.bonus_klass %>
+                            <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= total_defense %></button></td>
                             <td class="black-bg white-text center"><%= defense %></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">10</button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= half_level %></button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= half_level + bonus.modifier %></button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= bonus.bonus_racial + bonus.bonus_klass %></button></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>

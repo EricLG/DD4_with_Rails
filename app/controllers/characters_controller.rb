@@ -34,6 +34,15 @@ class CharactersController < ApplicationController
     @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
     @character_magic_items = @character.magic_items
     @show_languages = @character.show_languages
+    @fortitude_bonus = @abilities.fortitude
+    @reflexes_bonus = @abilities.reflexes
+    @will_bonus = @abilities.will
+    @defenses = {
+      CA: @reflexes_bonus,
+      Vig: @fortitude_bonus,
+      Ref: @reflexes_bonus,
+      Vol: @will_bonus
+    }
   end
 
   def edit
