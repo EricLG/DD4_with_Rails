@@ -1,17 +1,7 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
     <%= render "characters_list" %>
-
-    <h4>Liste de souhaits </h4>
-    <% if @character.magic_items.empty? %>
-        <p><small> <em>Aucun souhait de renseigné.</em></small><p>
-    <% else %>
-        <ul class="list-group padding-left">
-            <% @character.magic_items.each do |item| %>
-                <li><%= link_to item.name, items_magic_item_path(item.id) %></li>
-            <% end %>
-        </ul>
-    <% end %>
+    <%= render "wish_list" %>
 <% end %>
 
 <% half_level = @character.half_level %>
