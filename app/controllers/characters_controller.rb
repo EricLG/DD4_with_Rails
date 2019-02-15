@@ -33,6 +33,7 @@ class CharactersController < ApplicationController
     @skill_bonuses = @character.skill_bonuses.joins(:skill).sort_by(&:fr_name)
     @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
     @character_magic_items = @character.magic_items
+    @show_languages = @character.show_languages
   end
 
   def edit
@@ -169,7 +170,7 @@ class CharactersController < ApplicationController
   end
 
   def find_dependancies
-    @character = Character.find_by_id(params['id'])
+    @character = Character.joins(:languages).find_by_id(params['id'])
     @abilities = @character.ability_bonuses.joins(:ability)
     @skills = @character.skill_bonuses.joins(:skill)
   end
