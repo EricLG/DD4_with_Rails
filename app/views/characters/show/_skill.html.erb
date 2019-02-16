@@ -1,0 +1,44 @@
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="row">
+            <h4 class="col-sm-12 black-bg white-text">Compétences</h4>
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="center thin-text">Bonus</th>
+                        <th class="center thin-text">Nom</th>
+                        <th class="center thin-text"></th>
+                        <th class="center thin-text">Mod carac<br> + 1/2 niv.</th>
+                        <th class="center thin-text">Race</th>
+                        <th class="center thin-text">Form</th>
+                        <th class="center thin-text">Malus</th>
+                        <th class="center thin-text">Divers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @skill_bonuses.each do |skill| %>
+                        <tr class="<%= @klass_choosable_skill_bonus.include?(skill.skill.name) ? 'bg' : '' %>">
+                            <% total_skill_bonus = pretty_modifier(skill.ability_bonus.modifier + @character.half_level + skill.racial + skill.training) %>
+                            <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= total_skill_bonus %></button></td>
+                            <td class="thin-text text-left vertical-centered"><%= Skill::SKILLS_CONVERSION_FR[skill.skill.name] %></td>
+                            <td class="thin-text text-left vertical-centered"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill.skill.name)).first(3) %></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.ability_bonus.modifier + @character.half_level) %></button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.racial) %></button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.training) %></button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-5">
+        <div class="row">
+            <h4 class="col-sm-12 black-bg white-text">Compétences passives</h4>
+        </div>
+    </div>
+</div>
