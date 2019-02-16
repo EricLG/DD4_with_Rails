@@ -43,6 +43,8 @@ class CharactersController < ApplicationController
       Ref: @reflexes_bonus,
       Vol: @will_bonus
     }
+    @race_features = @character.race_choices.map(&:feature)
+    @classe_features = @character.klass_choices.map(&:feature)
   end
 
   def edit

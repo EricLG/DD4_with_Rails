@@ -30,7 +30,8 @@
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#combat"role="tab" data-toggle="tab">Combat</a></li>
         <li role="presentation" class=""><a href="#skill"role="tab" data-toggle="tab">Compétences</a></li>
-        <li role="presentation" class=""><a href="#feat"role="tab" data-toggle="tab">Talents et aptitudes</a></li>
+        <li role="presentation" class=""><a href="#feat"role="tab" data-toggle="tab">Talents</a></li>
+        <li role="presentation" class=""><a href="#feature"role="tab" data-toggle="tab">Aptitudes</a></li>
         <li role="presentation" class=""><a href="#stuff"role="tab" data-toggle="tab">Équipement</a></li>
         <li role="presentation" class=""><a href="#rituel"role="tab" data-toggle="tab">Rituels</a></li>
         <li role="presentation" class=""><a href="#roleplay"role="tab" data-toggle="tab">Roleplay</a></li>
@@ -46,6 +47,9 @@
     </div>
     <div class="tab-pane" id="feat" role="tabpanel">
         <%= render "characters/show/feat" %>
+    </div>
+    <div class="tab-pane" id="feature" role="tabpanel">
+        <%= render "characters/show/feature" %>
     </div>
     <%= render "characters/show/stuff" %>
 </div>
