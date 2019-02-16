@@ -55,21 +55,9 @@
 </div>
 
 <br>
-<br>
-<br>
-<br>
+
 <div class="row">
     <div class="col-sm-8">
-
-        <dl class="dl-horizontal">
-        <% @character.race_choices.each do |rc| %>
-            <dt><%= "APT RACE"%></dt>  <dd> <%= rc.feature.name %></dd>
-        <% end %>
-        <% @character.klass_choices.each do |rc| %>
-            <dt><%= "APT Classe"%></dt>  <dd> <%= rc.feature.name %></dd>
-        <% end %>
-        </dl>
-
         <% if @character.user == @current_user %>
             <%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
             <%= link_to "Modifier race", choose_race_character_path(@character.id) %><br>
