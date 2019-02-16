@@ -2,13 +2,13 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <ul class="nav nav-tabs">
-        <li role="presentation" id="roleplay" class="comment-nav active"><a href="#">Roleplay</a></li>
-        <li role="presentation" id="debrief" class="comment-nav"><a href="#">Debriefing</a></li>
-        <li role="presentation" id="note-perso" class="comment-nav"><a href="#">Notes personnelles</a></li>
+            <li role="presentation" class="active"><a href="#roleplay" data-toggle="tab">Roleplay</a></li>
+            <li role="presentation" class=""><a href="#debrief" data-toggle="tab">Debriefing</a></li>
+            <li role="presentation" class=""><a href="#note-perso" data-toggle="tab">Notes personnelles</a></li>
         </ul>
     </div>
-    <div class="panel-body">
-        <div id="content-roleplay" class="comment-content">
+    <div class="panel-body tab-content">
+        <div id="roleplay" class="tab-pane active">
         <% if @rp_comments.empty? %>
             <p><small>Il n'y a actuellement aucun commentaires roleplay</small></p>
         <% else %>
@@ -16,7 +16,7 @@
             <%= render @rp_comments %>
         <% end %>
         </div>
-        <div id="content-debrief" class="comment-content hidden">
+        <div id="debrief" class="tab-pane">
         <% if @debrief_comments.empty? %>
             <p><small>Il n'y a actuellement aucun debriefing</small></p>
         <% else %>
@@ -24,7 +24,7 @@
             <%= render @debrief_comments %>
         <% end %>
         </div>
-        <div id="content-note-perso" class="comment-content hidden">
+        <div id="note-perso" class="tab-pane">
         <% if @note_comments.empty? %>
             <p><small>Vous n'avez écrits aucune notes personnelles</small></p>
         <% else %>
