@@ -17,12 +17,12 @@
             Age : <%= @character.age %>,
             catégorie de taille : <%= @character.race.cat_size %>,
             taille : <%= @character.height %>,
-            poids : <%= @character.weight %> Kg,
-            groupe : <%= @character.party %>.<br>
+            poids : <%= @character.weight %> Kg.<br>
             Dieu : <%= @character.god.try(&:name) %>,
             alignement : <%= @character.alignment %>,
-            langues connus : <%= @show_languages %>,
-            vision : <%= @character.race.vision %>.
+            vision : <%= @character.race.vision %>.<br>
+            Langues connus : <%= @show_languages %>.
+            Groupe : <%= @character.party %>
         </small>
     </p>
     <%= image_tag(@character.avatar.character_sheet.url, class: "media-object img-responsive", alt: @character.name) %>
