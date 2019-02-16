@@ -20,7 +20,7 @@
                     <% @skill_bonuses.each do |skill| %>
                         <tr class="<%= @klass_choosable_skill_bonus.include?(skill.skill.name) ? 'bg' : '' %>">
                             <% total_skill_bonus = pretty_modifier(skill.ability_bonus.modifier + @character.half_level + skill.racial + skill.training) %>
-                            <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= total_skill_bonus %></button></td>
+                            <td><button type="button" class="large-text max-width btn btn-default btn-sm bold" disabled="disabled"><%= total_skill_bonus %></button></td>
                             <td class="thin-text text-left vertical-centered"><%= Skill::SKILLS_CONVERSION_FR[skill.skill.name] %></td>
                             <td class="thin-text text-left vertical-centered"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill.skill.name)).first(3) %></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.ability_bonus.modifier + @character.half_level) %></button></td>
