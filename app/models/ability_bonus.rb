@@ -7,9 +7,18 @@ class AbilityBonus < ActiveRecord::Base
   REF_ABILITIES = %i[dexterity intelligence].freeze
   WILL_ABILITIES = %i[wisdom charisma].freeze
 
-  scope :fortitude, -> { joins(:ability).where(abilities: {name: FORT_ABILITIES }).order(total_value: :desc).first }
-  scope :reflexes, -> { joins(:ability).where(abilities: {name: REF_ABILITIES }).order(total_value: :desc).first }
-  scope :will, -> { joins(:ability).where(abilities: {name: WILL_ABILITIES }).order(total_value: :desc).first }
+  scope :select_ability_name, -> { select('ability_bonuses.*, abilities.name AS ability_name') }
+
+  scope :strength,      -> { joins(:ability).where(abilities: { name: :strength }).order(total_value: :desc).first }
+  scope :constitution,  -> { joins(:ability).where(abilities: { name: :constitution }).order(total_value: :desc).first }
+  scope :dexterity,     -> { joins(:ability).where(abilities: { name: :dexterity }).order(total_value: :desc).first }
+  scope :intelligence,  -> { joins(:ability).where(abilities: { name: :intelligence }).order(total_value: :desc).first }
+  scope :wisdom,        -> { joins(:ability).where(abilities: { name: :wisdom }).order(total_value: :desc).first }
+  scope :charisma,      -> { joins(:ability).where(abilities: { name: :charisma }).order(total_value: :desc).first }
+
+  scope :fortitude, -> { joins(:ability).where(abilities: { name: FORT_ABILITIES }).order(total_value: :desc).first }
+  scope :reflexes,  -> { joins(:ability).where(abilities: { name: REF_ABILITIES }).order(total_value: :desc).first }
+  scope :will,      -> { joins(:ability).where(abilities: { name: WILL_ABILITIES }).order(total_value: :desc).first }
 
   def to_s
     Ability.unconvert(self.ability.name)
