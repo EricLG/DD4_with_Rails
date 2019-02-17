@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def new; end
 
   def show
-    @characters = @current_user.characters
+    @characters = @current_user.characters.order(:name)
   end
 
   def create

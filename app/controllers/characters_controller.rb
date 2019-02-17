@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @characters = @current_user.characters
+    @characters = @current_user.characters.order(:name)
     skills_tab
     @show_languages = @character.show_languages
     @defenses = {
@@ -44,7 +44,7 @@ class CharactersController < ApplicationController
   end
 
   def edit
-    @characters = @current_user.characters
+    @characters = @current_user.characters.order(:name)
     @users = User.all
     @campaigns = Campaign.all
   end
