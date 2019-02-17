@@ -30,21 +30,17 @@ class CharactersController < ApplicationController
 
   def show
     @characters = @current_user.characters
-    @skill_bonuses = @character.skill_bonuses.joins(:skill).sort_by(&:fr_name)
-    @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
-    @character_magic_items = @character.magic_items
+    skills_tab
     @show_languages = @character.show_languages
-    @fortitude_bonus = @abilities.fortitude
-    @reflexes_bonus = @abilities.reflexes
-    @will_bonus = @abilities.will
     @defenses = {
-      CA: @reflexes_bonus,
-      Vig: @fortitude_bonus,
-      Ref: @reflexes_bonus,
-      Vol: @will_bonus
+      CA: @abilities.reflexes,
+      Vig: @abilities.fortitude,
+      Ref: @abilities.reflexes,
+      Vol: @abilities.will
     }
     @race_features = @character.race_choices.map(&:feature)
     @classe_features = @character.klass_choices.map(&:feature)
+    @character_magic_items = @character.magic_items
   end
 
   def edit
@@ -182,7 +178,16 @@ class CharactersController < ApplicationController
 
   def find_dependancies
     @character = Character.joins(:languages).find_by_id(params['id'])
-    @abilities = @character.ability_bonuses.joins(:ability)
-    @skills = @character.skill_bonuses.joins(:skill)
+    @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
+    #@skills = @character.skill_bonuses.joins(:skill)
+  end
+
+  # Information to display in show character, skills tab
+  def skills_tab
+    skill_bonuses = @character.skill_bonuses.select_ability_total_bonus.select_skill_name.joins(:skill).joins(:ability_bonus)
+    @insight = skill_bonuses.insight
+    @perception = skill_bonuses.perception
+    @skill_bonuses = skill_bonuses.sort_by(&:fr_name)
+    @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
   end
 end

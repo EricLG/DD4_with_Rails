@@ -46,8 +46,7 @@
                 <tbody>
                     <% @defenses.each do |defense, bonus| %>
                         <tr>
-                            <% total_defense = 10 + @character.half_level + bonus.modifier + bonus.bonus_racial + bonus.bonus_klass %>
-                            <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= total_defense %></button></td>
+                            <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= total_defense(bonus, @character.half_level) %></button></td>
                             <td class="black-bg white-text center"><%= defense %></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">10</button></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= @character.half_level + bonus.modifier %></button></td>

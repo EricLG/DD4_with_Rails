@@ -26,7 +26,7 @@ class Skill < ActiveRecord::Base
 
   # Array - Convertie une string de compétence en tableau de compétence fr
   def self.convert_list(list, separator = ', ')
-    list.split(separator).collect{|s| Skill::SKILLS_CONVERSION_FR[s]}
+    list.split(separator).collect{ |s| Skill::SKILLS_CONVERSION_FR[s] }
   end
 
   def self.get_linked_carac(skill)
