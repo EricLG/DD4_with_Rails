@@ -43,7 +43,7 @@ class Character < ActiveRecord::Base
   ].freeze
 
   def default_image
-    File.join('mini_icones', self.race.normalize_str + '.jpg')
+    File.join('mini_icones', "#{self.race.try(&:normalize_str)}.jpg")
   end
 
   # Retourne une string des langages parlés

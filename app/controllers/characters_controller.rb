@@ -33,7 +33,7 @@ class CharactersController < ApplicationController
     skills_tab
     @show_languages = @character.show_languages
     @dexterity = @abilities.dexterity
-    @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
+    # @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
     @defenses = {
       CA: @abilities.reflexes,
       Vig: @abilities.fortitude,
@@ -179,9 +179,9 @@ class CharactersController < ApplicationController
   end
 
   def find_dependancies
-    @character = Character.joins(:languages).find_by_id(params['id'])
+    @character = Character.find_by_id(params['id'])
     @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
-    #@skills = @character.skill_bonuses.joins(:skill)
+    @skills = @character.skill_bonuses.select_skill_name.joins(:skill).joins(:ability_bonus)
   end
 
   # Information to display in show character, skills tab
@@ -190,6 +190,6 @@ class CharactersController < ApplicationController
     @insight = skill_bonuses.insight
     @perception = skill_bonuses.perception
     @skill_bonuses = skill_bonuses.sort_by(&:fr_name)
-    @klass_choosable_skill_bonus = @character.klass.choosable_skills_to_a
+    @klass_choosable_skill_bonus = @character.klass.try(&:choosable_skills_to_a)
   end
 end

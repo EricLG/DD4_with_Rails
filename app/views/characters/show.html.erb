@@ -12,15 +12,15 @@
     <p class="col-sm-8">
         <small>
             Voie parangonique : <%= @character.parangon || 'aucune' %>, destinée épique : <%= @character.epic || 'aucune' %>.<br>
-            Age : <%= @character.age %>,
-            catégorie de taille : <%= @character.race.cat_size %>,
-            taille : <%= @character.height %>,
-            poids : <%= @character.weight %> Kg.<br>
-            Dieu : <%= @character.god.try(&:name) %>,
+            Age : <%= @character.age || 'n/a' %>,
+            catégorie de taille : <%= @character.race.try(&:cat_size) || 'n/a' %>,
+            taille : <%= @character.height.nil? ? @character.height : 'n/a' %>,
+            poids : <%= @character.weight.nil? ? @character.weight : 'n/a' %>.<br>
+            Dieu : <%= @character.god.try(&:name) || 'n/a' %>,
             alignement : <%= @character.alignment %>,
-            vision : <%= @character.race.vision %>.<br>
+            vision : <%= @character.race.try(:vision) %>.<br>
             Langues connus : <%= @show_languages %>.
-            Groupe : <%= @character.party %>
+            Groupe : <%= @character.party.nil? ? @character.party : 'n/a' %>
         </small>
     </p>
     <%= image_tag(@character.avatar.character_sheet.url, class: "media-object img-responsive", alt: @character.name) %>
@@ -39,16 +39,28 @@
 
 <div class="tab-content">
     <div class="tab-pane active" id="combat" role="tabpanel">
-        <%= render "characters/show/combat" %>
+        <% if @character.ability_bonus_ids.empty? %>
+            <p>Vous devez définir vos caractéristiques.</p>
+        <% else %>
+            <%= render "characters/show/combat" %>
+        <% end %>
     </div>
     <div class="tab-pane" id="skill" role="tabpanel">
-        <%= render "characters/show/skill" %>
+        <% if @character.ability_bonus_ids.empty? || @character.skill_bonus_ids.empty? %>
+            <p>Vous devez définir vos caractéristiques et choisir vos formations de compétences.</p>
+        <% else %>
+            <%= render "characters/show/skill" %>
+        <% end %>
     </div>
     <div class="tab-pane" id="feat" role="tabpanel">
         <%= render "characters/show/feat" %>
     </div>
     <div class="tab-pane" id="feature" role="tabpanel">
-        <%= render "characters/show/feature" %>
+        <% if @character.race_choice_ids.empty? || @character.klass_choice_ids.empty? %>
+            <p>Vous devez définir vos aptitudes de race et de classe.</p>
+        <% else %>
+            <%= render "characters/show/feature" %>
+        <% end %>
     </div>
     <%= render "characters/show/stuff" %>
 </div>
