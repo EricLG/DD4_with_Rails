@@ -29,13 +29,12 @@
           <table class="table table-condensed table-hover">
             <thead>
               <tr>
-                <th class="medium-width center">Bonus total</th>
-                <th class="table-width center">Nom</th>
-                <th class="small-width"></th>
-                <th class="medium-width center">Carac</th>
-                <th class="medium-width center">Carac + 1/2 niv.</th>
-                <th class="medium-width center">Race</th>
-                <th class="medium-width center">Formation : <span id="total-training-allowed"><%= @character.total_training_skills_number %></span></th>
+                <th class="width-8 text-center">Bonus total</th>
+                <th class="width-15 text-center">Nom</th>
+                <th class="width-8 text-center">Carac</th>
+                <th class="width-8 text-center">Carac + 1/2 niv.</th>
+                <th class="width-8 text-center">Race</th>
+                <th class="width-8 text-center">Formation : <span id="total-training-allowed"><%= @character.total_training_skills_number %></span></th>
               </tr>
             </thead>
             <tbody id="character-training">
@@ -44,20 +43,19 @@
                     <% skill_name = skill_bonus.skill.name %>
                   <tr id="<%= skill_name %>" class="<%= @klass_choosable_skill_bonus.include?(skill_name) ? 'bg' : '' %> skill_row">
                     <td>
-                      <button type="button" id="total_bonus_<%= skill_name %>" class="btn btn-default btn-sm final-value max-width bold" disabled="disabled">
+                      <button type="button" id="total_bonus_<%= skill_name %>" class="btn btn-default btn-sm final-value width-max bold" disabled="disabled">
                         <%= skill_bonus.ability_bonus.modifier + @character.half_level + skill_bonus.racial + skill_bonus.training %>
                       </button>
                     </td>
-                    <td class="center"><%= Skill::SKILLS_CONVERSION_FR[skill_name] %></td>
-                    <td class="center"></td>
-                    <td class="center"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill_name)) %></td>
+                    <td class="text-center"><%= Skill::SKILLS_CONVERSION_FR[skill_name] %></td>
+                    <td class="text-center"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill_name)) %></td>
                     <td>
-                      <button type="button" id="carac_bonus_<%= skill_name %>" class="btn btn-default btn-sm mod-skill-half_lvl max-width bold" disabled="disabled">
+                      <button type="button" id="carac_bonus_<%= skill_name %>" class="btn btn-default btn-sm mod-skill-half_lvl width-max bold" disabled="disabled">
                       <%= skill_bonus.ability_bonus.modifier + @character.half_level %>
                       </button>
                     </td>
                     <!-- Case race -->
-                    <td class="center">
+                    <td class="text-center">
                       <%# Cas des bonus raciaux dynamiques (+2 dans une compétence au choix) non sélectionné %>
                       <% if (@character.race.grant_dynamic_racial_skill_bonus? && @race_choosable_skill_bonus.include?(skill_name) && skill_bonus.racial == 0) %>
                         <% disabled_racial_btn = @racial_bonus_already_chosen ? "disabled" : "" %>
@@ -79,7 +77,7 @@
                       <% end %>
                     </td>
                     <!-- Case formation -->
-                    <td class="center">
+                    <td class="text-center">
                       <%# Classe dont la compétence s est obligatoire %>
                       <% if free_required_skill(skill_name) %>
                         <% css_btn = "btn-info prevent-default js-chosen-skill" %>

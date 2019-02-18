@@ -9,19 +9,19 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th class="center thin-text">Valeur</th>
-                            <th class="center thin-text">Caractéristique</th>
-                            <th class="center thin-text">Mod carac</th>
-                            <th class="center thin-text">Mod carac<br> + 1/2 niv.</th>
+                            <th class="text-center thin-text">Valeur</th>
+                            <th class="text-center thin-text">Caractéristique</th>
+                            <th class="text-center thin-text">Mod carac</th>
+                            <th class="text-center thin-text">Mod carac<br> + 1/2 niv.</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @abilities.each do |ability| %>
                             <tr>
-                                <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= ability.total_value %></button></td>
-                                <td class="black-bg white-text center"><%= Stat.human_attribute_name ability.ability.name %></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(ability.modifier) %></button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(ability.modifier + @character.half_level) %></button></td>
+                                <td><button type="button" class="large-text rounded width-max btn btn-default btn-sm bold" disabled="disabled"><%= ability.total_value %></button></td>
+                                <td class="black-bg white-text v-center"><%= Stat.human_attribute_name ability.ability.name %></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(ability.modifier) %></button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(ability.modifier + @character.half_level) %></button></td>
                             </tr>
                         <% end %>
                     </tbody>
@@ -31,29 +31,29 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th class="center thin-text"><small>Valeur</small></th>
-                            <th class="center thin-text"><small>Défense</small></th>
-                            <th class="center thin-text"><small>10</small></th>
-                            <th class="center thin-text"><small>Armure / Carac.<br> + 1/2 niv.</small></th>
-                            <th class="center thin-text"><small>Race /<br>Classe</small></th>
-                            <th class="center thin-text"><small>Talent</small></th>
-                            <th class="center thin-text"><small>Alté.</small></th>
-                            <th class="center thin-text"><small>Bouclier</small></th>
-                            <th class="center thin-text"><small>Divers</small></th>
+                            <th class="text-center thin-text"><small>Valeur</small></th>
+                            <th class="text-center thin-text"><small>Défense</small></th>
+                            <th class="text-center thin-text"><small>10</small></th>
+                            <th class="text-center thin-text"><small>Armure / Carac.<br> + 1/2 niv.</small></th>
+                            <th class="text-center thin-text"><small>Race /<br>Classe</small></th>
+                            <th class="text-center thin-text"><small>Talent</small></th>
+                            <th class="text-center thin-text"><small>Alté.</small></th>
+                            <th class="text-center thin-text"><small>Bouclier</small></th>
+                            <th class="text-center thin-text"><small>Divers</small></th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @defenses.each do |defense, bonus| %>
                             <tr>
-                                <td><button type="button" class="large-text rounded max-width btn btn-default btn-sm bold" disabled="disabled"><%= total_defense(bonus, @character.half_level) %></button></td>
-                                <td class="black-bg white-text center"><%= defense %></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">10</button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= @character.half_level + bonus.modifier %></button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= bonus.bonus_racial + bonus.bonus_klass %></button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="large-text rounded width-max btn btn-default btn-sm bold" disabled="disabled"><%= total_defense(bonus, @character.half_level) %></button></td>
+                                <td class="black-bg white-text text-center v-center"><%= defense %></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">10</button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @character.half_level + bonus.modifier %></button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= bonus.bonus_racial + bonus.bonus_klass %></button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                             </tr>
                             <tr>
                                 <td colspan=9 class="thin-text">Bonus conditionnels : N/A</td>
@@ -77,23 +77,23 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th class="center thin-text"><small>Valeur</small></th>
-                            <th class="center thin-text"><small></small></th>
-                            <th class="center thin-text"><small>Dex</small></th>
-                            <th class="center thin-text"><small>1/2 niv.</small></th>
-                            <th class="center thin-text"><small>Race</small></th>
-                            <th class="center thin-text"><small>Divers</small></th>
+                            <th class="text-center thin-text"><small>Valeur</small></th>
+                            <th class="text-center thin-text"><small></small></th>
+                            <th class="text-center thin-text"><small>Dex</small></th>
+                            <th class="text-center thin-text"><small>1/2 niv.</small></th>
+                            <th class="text-center thin-text"><small>Race</small></th>
+                            <th class="text-center thin-text"><small>Divers</small></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <% init_bonus_racial = @character.race.name == 'Githzerai' ? 2 : 0 %>
-                            <td><button type="button" class="large-text max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(@character.half_level + init_bonus_racial + @dexterity.modifier) %></button></td>
-                            <td class="black-bg white-text center">Initiative</td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= @dexterity.modifier %></button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= @character.half_level %></button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= init_bonus_racial %></button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                            <td><button type="button" class="large-text width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(@character.half_level + init_bonus_racial + @dexterity.modifier) %></button></td>
+                            <td class="black-bg white-text text-center v-center">Initiative</td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @dexterity.modifier %></button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @character.half_level %></button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= init_bonus_racial %></button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -102,22 +102,22 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th class="center thin-text"><small>Valeur</small></th>
-                            <th class="center thin-text"><small></small></th>
-                            <th class="center thin-text"><small>Base</small></th>
-                            <th class="center thin-text"><small>Armure</small></th>
-                            <th class="center thin-text"><small>Objet</small></th>
-                            <th class="center thin-text"><small>Divers</small></th>
+                            <th class="text-center thin-text"><small>Valeur</small></th>
+                            <th class="text-center thin-text"><small></small></th>
+                            <th class="text-center thin-text"><small>Base</small></th>
+                            <th class="text-center thin-text"><small>Armure</small></th>
+                            <th class="text-center thin-text"><small>Objet</small></th>
+                            <th class="text-center thin-text"><small>Divers</small></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><button type="button" class="large-text max-width btn btn-default btn-sm bold" disabled="disabled"><%= @character.race.speed %></button></td>
-                            <td class="black-bg white-text center">VD</td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= @character.race.speed %></button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                            <td><button type="button" class="large-text width-max btn btn-default btn-sm bold" disabled="disabled"><%= @character.race.speed %></button></td>
+                            <td class="black-bg white-text text-center v-center">VD</td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @character.race.speed %></button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                         </tr>
                     </tbody>
                 </table>

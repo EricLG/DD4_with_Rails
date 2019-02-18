@@ -8,34 +8,34 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th class="center thin-text">Valeur</th>
-                            <th class="center thin-text">Sens passif</th>
-                            <th class="center thin-text">Base</th>
-                            <th class="center thin-text">Bonus comp</th>
+                            <th class="text-center thin-text">Valeur</th>
+                            <th class="text-center thin-text">Sens passif</th>
+                            <th class="text-center thin-text">Base</th>
+                            <th class="text-center thin-text">Bonus comp</th>
                             <th class="col-sm-1">
-                            <th class="center thin-text">Valeur</th>
-                            <th class="center thin-text">Sens passif</th>
-                            <th class="center thin-text">Base</th>
-                            <th class="center thin-text">Bonus comp</th>
+                            <th class="text-center thin-text">Valeur</th>
+                            <th class="text-center thin-text">Sens passif</th>
+                            <th class="text-center thin-text">Base</th>
+                            <th class="text-center thin-text">Bonus comp</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= 10 + total_skill_value(@insight, @character.half_level) %>
                             </button></td>
-                            <td class="black-bg white-text center">Intuition passive</td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">10</button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">
+                            <td class="black-bg white-text text-center">Intuition passive</td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">10</button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= total_skill_value(@insight, @character.half_level) %>
                             </button></td>
                             <td></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= 10 + total_skill_value(@perception, @character.half_level) %>
                             </button></td>
-                            <td class="black-bg white-text center">Perception passive</td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">10</button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">
+                            <td class="black-bg white-text text-center">Perception passive</td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">10</button></td>
+                            <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= total_skill_value(@perception, @character.half_level) %>
                             </button></td>
                         </tr>
@@ -51,27 +51,27 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th class="col-sm-1 center thin-text">Bonus</th>
-                            <th class="col-sm-3 center thin-text">Nom</th>
-                            <th class="col-sm-3 center thin-text">Caractéristique</th>
-                            <th class="col-sm-1 center thin-text">Mod carac<br> + 1/2 niv.</th>
-                            <th class="col-sm-1 center thin-text">Race</th>
-                            <th class="col-sm-1 center thin-text">Form</th>
-                            <th class="col-sm-1 center thin-text">Malus</th>
-                            <th class="col-sm-1 center thin-text">Divers</th>
+                            <th class="col-sm-1 text-center thin-text">Bonus</th>
+                            <th class="col-sm-3 text-center thin-text">Nom</th>
+                            <th class="col-sm-3 text-center thin-text">Caractéristique</th>
+                            <th class="col-sm-1 text-center thin-text">Mod carac<br> + 1/2 niv.</th>
+                            <th class="col-sm-1 text-center thin-text">Race</th>
+                            <th class="col-sm-1 text-center thin-text">Form</th>
+                            <th class="col-sm-1 text-center thin-text">Malus</th>
+                            <th class="col-sm-1 text-center thin-text">Divers</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @skill_bonuses.each do |skill| %>
                             <tr class="<%= @klass_choosable_skill_bonus.include?(skill.skill_name) ? 'bg' : '' %>">
-                                <td><button type="button" class="large-text max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(total_skill_value(skill, @character.half_level)) %></button></td>
-                                <td class="text-center vertical-centered"><%= Skill::SKILLS_CONVERSION_FR[skill.skill_name] %></td>
-                                <td class="text-center vertical-centered"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill.skill_name)) %></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(modifier(skill.ability_bonus_value) + @character.half_level) %></button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.racial) %></button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.training) %></button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-                                <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="large-text width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(total_skill_value(skill, @character.half_level)) %></button></td>
+                                <td class="text-center v-center"><%= Skill::SKILLS_CONVERSION_FR[skill.skill_name] %></td>
+                                <td class="text-center v-center"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill.skill_name)) %></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(modifier(skill.ability_bonus_value) + @character.half_level) %></button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.racial) %></button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.training) %></button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                             </tr>
                         <% end %>
                     </tbody>

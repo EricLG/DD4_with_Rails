@@ -50,16 +50,16 @@
           <table class="table table-condensed">
             <thead>
               <tr>
-                <th class="table-width"></th>
-                <th class="small-width"></th>
-                <th class="medium-width center">Valeur brute</th>
-                <th class="small-width"></th>
-                <th class="medium-width center">Bonus racial</th>
-                <th class="medium-width center">Bonus niv.</th>
-                <th class="small-width"></th>
-                <th class="medium-width center">Valeur finale</th>
-                <th class="medium-width center">Mod carac</th>
-                <th class="medium-width center">Mod carac + 1/2 niv.</th>
+                <th class="width-15"></th>
+                <th class="width-5"></th>
+                <th class="width-8 text-center">Valeur brute</th>
+                <th class="width-5"></th>
+                <th class="width-8 text-center">Bonus racial</th>
+                <th class="width-8 text-center">Bonus niv.</th>
+                <th class="width-5"></th>
+                <th class="width-8 text-center">Valeur finale</th>
+                <th class="width-8 text-center">Mod carac</th>
+                <th class="width-8 text-center">Mod carac + 1/2 niv.</th>
               </tr>
             </thead>
             <tbody id="character-stats">
@@ -68,17 +68,16 @@
                 <tr>
                   <td class="black-bg white-text"><%= Stat.human_attribute_name ability_bonus.ability.name %></td>
 
-                  <td class="black-bg center"><button class="btn-minus btn btn-default rounded"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td>
-                  <td class="black-bg"><%= ff.text_field :initial_value, class: "center stat max-width text-right", size: 1 %></td>
-                  <td class="black-bg center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
+                  <td class="black-bg text-center"><button class="btn-minus btn btn-default rounded"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></td>
+                  <td class="black-bg"><%= ff.text_field :initial_value, class: "text-center stat width-max text-right", size: 1 %></td>
+                  <td class="black-bg text-center"><button class="btn-plus btn btn-default rounded"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
 
                   <td>
-                    <%#= button_tag 0, id: "racial_stat_#{ability_bonus.ability.name}", class: "racial-bonus center max-width btn btn-default", disabled: true %>
-                    <%= button_tag ability_bonus.bonus_racial, id: "racial_stat_#{ability_bonus.ability.name}", class: "js-racial-bonus center max-width btn btn-default", disabled: true %>
+                    <%= button_tag ability_bonus.bonus_racial, id: "racial_stat_#{ability_bonus.ability.name}", class: "js-racial-bonus width-max btn btn-default", disabled: true %>
                     <%= ff.hidden_field :bonus_racial, value: ability_bonus.bonus_racial, class: "js-racial-bonus-field" %>
                   </td>
                   <td class="level-bonus-stats">
-                    <%= button_tag ability_bonus.total_bonus_level, id: "total_bonus_level_stat_#{ability_bonus.ability.name}", class: "total-bonus-level-stat center max-width btn btn-default", disabled: true %>
+                    <%= button_tag ability_bonus.total_bonus_level, id: "total_bonus_level_stat_#{ability_bonus.ability.name}", class: "total-bonus-level-stat width-max btn btn-default", disabled: true %>
                     <% Character::NEW_ABILITIES_LEVEL.each do |l| %>
                       <% level = "level_#{l}" %>
                       <%= ff.hidden_field level.to_sym, value: ability_bonus.send(level), class: "js-bonus-carac-field", id: "input-#{ability_bonus.ability.name}-level-#{l}"  %>
@@ -87,9 +86,9 @@
 
                   <% temp_total_value = ability_bonus.initial_value + ability_bonus.bonus_racial + ability_bonus.total_bonus_level %>
                   <td class="center">=</td>
-                  <td><button type="button" class="final-value btn btn-default max-width bold" disabled="disabled"><%= temp_total_value %></button></td>
-                  <td><button type="button" class="mod-carac btn btn-default max-width bold" disabled="disabled"><%= ability_bonus.modifier(temp_total_value) %></button></td>
-                  <td><button type="button" class="mod-carac-half_lvl btn btn-default max-width bold" disabled="disabled"><%= ability_bonus.modifier(temp_total_value) + (@character.level / 2).floor %></button></td>
+                  <td><button type="button" class="final-value btn btn-default width-max bold" disabled="disabled"><%= temp_total_value %></button></td>
+                  <td><button type="button" class="mod-carac btn btn-default width-max bold" disabled="disabled"><%= ability_bonus.modifier(temp_total_value) %></button></td>
+                  <td><button type="button" class="mod-carac-half_lvl btn btn-default width-max bold" disabled="disabled"><%= ability_bonus.modifier(temp_total_value) + (@character.level / 2).floor %></button></td>
                 </tr>
                 <% end %>
               <% end %>
