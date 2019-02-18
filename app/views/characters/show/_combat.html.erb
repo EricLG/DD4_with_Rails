@@ -87,11 +87,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><button type="button" class="large-text max-width btn btn-default btn-sm bold" disabled="disabled"><%= @character.half_level %></button></td>
+                            <% init_bonus_racial = @character.race.name == 'Githzerai' ? 2 : 0 %>
+                            <td><button type="button" class="large-text max-width btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(@character.half_level + init_bonus_racial + @dexterity.modifier) %></button></td>
                             <td class="black-bg white-text center">Initiative</td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">-1</button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= @dexterity.modifier %></button></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= @character.half_level %></button></td>
-                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                            <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled"><%= init_bonus_racial %></button></td>
                             <td><button type="button" class="max-width btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                         </tr>
                     </tbody>

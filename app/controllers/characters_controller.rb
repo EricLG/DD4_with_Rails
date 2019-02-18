@@ -32,6 +32,8 @@ class CharactersController < ApplicationController
     @characters = @current_user.characters.order(:name)
     skills_tab
     @show_languages = @character.show_languages
+    @dexterity = @abilities.dexterity
+    @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
     @defenses = {
       CA: @abilities.reflexes,
       Vig: @abilities.fortitude,

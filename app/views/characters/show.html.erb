@@ -57,7 +57,7 @@
 
 <div class="row">
     <div class="col-sm-8">
-        <% if @character.user == @current_user %>
+        <% if @character.user_id == @current_user.id %>
             <%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
             <%= link_to "Modifier race", choose_race_character_path(@character.id) %><br>
             <%= link_to "Modifier classe", choose_class_character_path(@character.id) %><br>
