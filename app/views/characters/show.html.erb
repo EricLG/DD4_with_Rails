@@ -9,19 +9,18 @@
         <span class="underline"><%= @character.name %>
         <small><%= @character.race.try(:name) %> <%= @character.klass.try(:name) %> de niveau <%= @character.level %> (<%= @character.experience %> exp.)</small></span>
     </h2>
-    <p class="col-sm-8">
-        <small>
-            Voie parangonique : <%= @character.parangon || 'aucune' %>, destinée épique : <%= @character.epic || 'aucune' %>.<br>
-            Age : <%= @character.age || 'n/a' %>,
-            catégorie de taille : <%= @character.race.try(&:cat_size) || 'n/a' %>,
-            taille : <%= @character.height.nil? ? @character.height : 'n/a' %>,
-            poids : <%= @character.weight.nil? ? @character.weight : 'n/a' %>.<br>
-            Dieu : <%= @character.god.try(&:name) || 'n/a' %>,
-            alignement : <%= @character.alignment %>,
-            vision : <%= @character.race.try(:vision) %>.<br>
-            Langues connus : <%= @show_languages %>.
-            Groupe : <%= @character.party.nil? ? @character.party : 'n/a' %>
-        </small>
+    <p class="col-sm-8 small">
+        <% not_available = 'N/A' %>
+        Voie parangonique : <%= @character.parangon || 'aucune' %>, destinée épique : <%= @character.epic || 'aucune' %>.<br>
+        Age : <%= @character.age || not_available %>,
+        catégorie de taille : <%= @character.race.try(&:cat_size).blank? ? not_available : @character.race.cat_size %>,
+        taille : <%= @character.height.blank? ? not_available : @character.height %>,
+        poids : <%= @character.weight.blank? ? not_available : @character.weight %>.<br>
+        Dieu : <%= @character.god.try(&:name).blank? ? not_available : @character.god.name%>,
+        alignement : <%= @character.alignment.blank? ? not_available : @character.alignment %>,
+        vision : <%= @character.race.try(:vision).blank? ? not_available : @character.race.vision %>.<br>
+        Langues connus : <%= @show_languages %>.
+        Groupe : <%= @character.party.blank? ? not_available : @character.party %>
     </p>
     <%= image_tag(@character.avatar.character_sheet.url, class: "media-object img-responsive", alt: @character.name) %>
 </div>

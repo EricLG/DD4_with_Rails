@@ -48,11 +48,7 @@ class Character < ActiveRecord::Base
 
   # Retourne une string des langages parlés
   def show_languages
-    if self.languages.empty?
-      "Vous ne parlez aucune langue. C'est dommage."
-    else
-      self.languages.map(&:language).join(', ')
-    end
+    self.languages.empty? ? 'Commun' : self.languages.map(&:language).join(', ')
   end
 
   # Vérifie si le statut du héros est dans l'état voulue ou s'il a passé cette étape. Pseudo machine à état
