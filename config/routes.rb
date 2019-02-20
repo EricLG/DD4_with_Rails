@@ -74,32 +74,33 @@ Rails.application.routes.draw do
 
   resources :races, :klasses, :aides
 
-  concern :character_creation do |options|
-    get 'choose_race'
-    patch 'save_race'
-    get 'choose_class'
-    patch 'save_class'
-    get 'choose_optional_fields'
-    patch 'save_optional_fields'
-    get 'choose_abilities'
-    patch 'save_abilities'
-    get 'choose_features'
-    patch 'save_features'
-    get 'choose_skills'
-    patch 'save_skills'
-    get 'choose_feats'
-    patch 'save_feats'
+  resources :character_creation do
+    member do
+      get 'choose_race'
+      patch 'save_race'
+      get 'choose_class'
+      patch 'save_class'
+      get 'choose_optional_fields'
+      patch 'save_optional_fields'
+      get 'choose_abilities'
+      patch 'save_abilities'
+      get 'choose_features'
+      patch 'save_features'
+      get 'choose_skills'
+      patch 'save_skills'
+      get 'choose_feats'
+      patch 'save_feats'
+    end
   end
+  get "/resume_race"  => 'character_creation#resume_race',  as: 'resume_race'
+  get "/resume_klass" => 'character_creation#resume_klass', as: 'resume_klass'
 
   resources :characters do
     member do
-      concerns :character_creation
       patch 'choose_campaign/:camp' => "characters#choose_campaign", as: "choose_campaign"
       patch 'remove_campaign/:camp' => "characters#remove_campaign", as: "remove_campaign"
     end
   end
-  get "/resume_race"  => 'characters#resume_race',  as: 'resume_race'
-  get "/resume_klass" => 'characters#resume_klass', as: 'resume_klass'
 
   resources :campaigns do
     resources :games do

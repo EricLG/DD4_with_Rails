@@ -10,7 +10,7 @@
 
 <div class="row">
   <div class="col-sm-10">
-    <%= form_for @character, url: save_skills_character_path(@character.id), html: {class: 'form-horizontal'} do |f| %>
+    <%= form_for @character, url: save_skills_character_creation_path(@character.id), html: {class: 'form-horizontal'} do |f| %>
       <div class="row">
         <h4>Choix des formations de compétences de classes</h4>
         <p>Une formation vous donne un bonus de +5 à un test de compétence.</p>
@@ -129,7 +129,7 @@
           </table>
         </div>
       </div>
-      <%= link_to 'Précédent', choose_features_character_path(@character.id), class: "btn btn-default" %>
+      <%= link_to 'Précédent', choose_features_character_creation_path(@character.id), class: "btn btn-default" %>
       <%= submit_text_form(f) %>
      <% end %>
   </div>

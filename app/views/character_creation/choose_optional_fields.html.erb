@@ -8,7 +8,7 @@
 </div>
 <div class="row">
   <div class="col-sm-8">
-    <%= form_for @character, url: save_optional_fields_character_path(@character.id), html: {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f| %>
+    <%= form_for @character, url: save_optional_fields_character_creation_path(@character.id), html: {class: 'form-horizontal', enctype: 'multipart/form-data'} do |f| %>
         <h4>Informations importantes</h4>
         <div class="row">
           <% if @character.klass.divine? %>
@@ -49,7 +49,7 @@
           <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
           <%= f.hidden_field :user_id, value: @current_user.id %>
           <%= f.hidden_field :status, value: 1 %>
-          <%= link_to 'Précédent', choose_class_character_path(@character.id), class: "btn btn-default" %>
+          <%= link_to 'Précédent', choose_class_character_creation_path(@character.id), class: "btn btn-default" %>
           <%= submit_text_form(f) %>
         </div>
      <% end %>
