@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190204113651) do
+ActiveRecord::Schema.define(version: 20190219183718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,34 @@ ActiveRecord::Schema.define(version: 20190204113651) do
   add_index "choices", ["character_id"], name: "index_choices_on_character_id", using: :btree
   add_index "choices", ["feature_id"], name: "index_choices_on_feature_id", using: :btree
   add_index "choices", ["language_id"], name: "index_choices_on_language_id", using: :btree
+
+  create_table "chosen_feats", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "feat_id"
+    t.string  "information"
+    t.boolean "free",               default: false
+    t.integer "weapon_group_id"
+    t.integer "proficiency_id"
+    t.integer "implement_group_id"
+    t.integer "ability_id"
+    t.integer "skill_id"
+  end
+
+  add_index "chosen_feats", ["ability_id"], name: "index_chosen_feats_on_ability_id", using: :btree
+  add_index "chosen_feats", ["character_id"], name: "index_chosen_feats_on_character_id", using: :btree
+  add_index "chosen_feats", ["feat_id"], name: "index_chosen_feats_on_feat_id", using: :btree
+  add_index "chosen_feats", ["implement_group_id"], name: "index_chosen_feats_on_implement_group_id", using: :btree
+  add_index "chosen_feats", ["proficiency_id"], name: "index_chosen_feats_on_proficiency_id", using: :btree
+  add_index "chosen_feats", ["skill_id"], name: "index_chosen_feats_on_skill_id", using: :btree
+  add_index "chosen_feats", ["weapon_group_id"], name: "index_chosen_feats_on_weapon_group_id", using: :btree
+
+  create_table "chosen_feats_languages", id: false, force: :cascade do |t|
+    t.integer "chosen_feat_id"
+    t.integer "language_id"
+  end
+
+  add_index "chosen_feats_languages", ["chosen_feat_id"], name: "index_chosen_feats_languages_on_chosen_feat_id", using: :btree
+  add_index "chosen_feats_languages", ["language_id"], name: "index_chosen_feats_languages_on_language_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "comment"
