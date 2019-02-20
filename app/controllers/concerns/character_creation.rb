@@ -22,47 +22,14 @@ module CharacterCreation
       :avatar,
       :racial_stat_id,
       :racial_bonus_choice,
-      skill_choices: [
-        :acrobatics,
-        :arcana,
-        :athletics,
-        :bluff,
-        :diplomacy,
-        :dungeoneering,
-        :endurance,
-        :heal,
-        :history,
-        :insight,
-        :intimidate,
-        :nature,
-        :perception,
-        :religion,
-        :stealth,
-        :streetwise,
-        :thievery,
-        :origin
-      ],
       game_ids: [],
       language_ids: [],
       campaign_ids: [],
-      ability_bonuses_attributes: [
-        :id,
-        :initial_value,
-        :bonus_racial,
-        :level_4,
-        :level_8,
-        :level_11,
-        :level_14,
-        :level_18,
-        :level_21,
-        :level_24,
-        :level_28
+      ability_bonuses_attributes: %i[
+        id initial_value bonus_racial
+        level_4 level_8 level_11 level_14 level_18 level_21 level_24 level_28
       ],
-      skill_bonuses_attributes: [
-        :id,
-        :racial,
-        :training
-      ]
+      skill_bonuses_attributes: %i[id racial training]
     )
   end
 end
