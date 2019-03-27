@@ -75,6 +75,10 @@ fr:
         user_id:      "Joueur"
         alignment:    "Alignement"
         divinity:     "Divinité"
+      feat/category:
+        heroic:     "Héroique"
+        parangonic: "Parangonique"
+        epic:       "Épique"
       race:
         average_height: "Taille moyenne"
         average_weight: "Poids moyen"

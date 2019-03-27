@@ -4,10 +4,107 @@
 <% end %>
 
 <div class="row">
-  <h3 class="col-sm-12"><%= t('characters.title_new')%></h3>
-  <h4>Choix des talents</h4>
-  TODO
+    <div class="col-sm-12">
+        <div class="row">
+            <h3 class="col-sm-12"><%= t('characters.title_new')%></h3><br>
+        </div>
+        <div class="row">
+            <h4 class="col-sm-12">Choix des talents</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Au niveau <%= @character.level %>, vous pouvez choisir <%= @max_feats %> talents. Vous en avez choisi <%= @acquired_feats %>.</p>
+            </div>
+        </div>
+        <% unless @character.chosen_feats.empty? %>
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Vous disposez déja des talents suivants :</p>
+                <ul>
+                    <% @character.feats.each do |f| %>
+                        <li><%= f.name %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+        <% end %>
+        <%= form_for @character, url: save_feats_character_creation_path(@character.id), html: { class: 'form-horizontal' } do |f| %>
+            <%= f.fields_for :chosen_feats, @new do |ff| %>
+        <% if @new %>
+                <%= ff.hidden_field(:character_id, value: @character.id) %>
+                <% options =  options_groups_from_collection_for_select(@feats, @categories, :id, :name) %>
+                <%= input_select_form(ff, :feat_id, options, "Choix d'un nouveau talent", { size: 1, class: "select-feat" } )%>
 
-  <%= debug params %>
+                <div id="apprentissage" class="form-group hidden">
+                    <%= ff.label(:skill_id, "Choix d'une formation", class: 'col-sm-4 control-label') %>
+                    <div class="col-sm-8">
+                        <%= ff.select(:skill_id, options_for_select(@not_trained_skills), {}, multiple: false, size: 5, class: "form-control select-apprentissage") %>
+                    </div>
+                </div>
+
+                <div id="predilection-skill" class="form-group hidden">
+                    <%= ff.label(:skill_id, "Choix d'une compétence", class: 'col-sm-4 control-label') %>
+                    <div class="col-sm-8">
+                        <%= ff.select(:skill_id, options_for_select(@already_trained_skills), {}, multiple: false, size: 5, class: "form-control select-predilection-skill") %>
+                    </div>
+                </div>
+
+                <% weapon_groups =  options_from_collection_for_select(@weapon_groups, :id, :name) %>
+                <div id="weapon-group" class="form-group hidden">
+                    <%= ff.label(:weapon_group_id, "Choix d'un groupe d'arme", class: 'col-sm-4 control-label') %>
+                    <div class="col-sm-8">
+                        <%= ff.select(:weapon_group_id, weapon_groups, {}, multiple: false, size: 5, class: "form-control select-weapon-group") %>
+                    </div>
+                </div>
+
+                <% implements =  options_from_collection_for_select(@implements, :id, :name) %>
+                <div id="implement" class="form-group hidden">
+                    <%= ff.label(:implement_group_id, "Choix d'un type de focaliseur", class: 'col-sm-4 control-label') %>
+                    <div class="col-sm-8">
+                        <%= ff.select(:implement_group_id, implements, {}, multiple: false, size: 5, class: "form-control select-implement") %>
+                    </div>
+                </div>
+
+                <% languages =  options_from_collection_for_select(@languages, :id, :language) %>
+                <div id="languages" class="form-group hidden">
+                    <%= ff.label(:language_id, "Choix des 3 langues (ctrl pour multi-selection)", class: 'col-sm-4 control-label') %>
+                    <div class="col-sm-8">
+                        <%= ff.select(:language_ids, languages, {}, multiple: true, size: 5, class: "form-control select-language") %>
+                    </div>
+                </div>
+
+                <% weapons =  options_from_collection_for_select(@weapons, :id, :name) %>
+                <div id="proficiency" class="form-group hidden">
+                    <%= ff.label(:language_id, "Choix d'une arme", class: 'col-sm-4 control-label') %>
+                    <div class="col-sm-8">
+                        <%= ff.select(:proficiency_id, weapons, {}, multiple: false, size: 5, class: "form-control select-proficiency") %>
+                    </div>
+                </div>
+        <% end %>
+            <% end %>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <%= link_to 'Précédent', choose_skills_character_creation_path(@character.id), class: "btn btn-default" %>
+                </div>
+                <div class="col-sm-4">
+                    <%= link_to 'Voir mon personnage', character_path(@character.id), class: "btn btn-default" %>
+                </div>
+                <div class="col-sm-4">
+                    <%= f.submit(t('common.validate'), name: 'commit', class: 'btn btn-default pull-right', id: 'submit-button') %>
+                </div>
+            </div>
+        <% end %>
+        <div id="resume" class="hidden">
+            <div class="row">
+                <h4 class="col-sm-12">Talent sélectionné : <span id="feat_name"></span></h4>
+            </div>
+            <div class="row">
+                <dl class="col-sm-8 dl-horizontal">
+                    <dt>Catégorie : </dt><dd id="feat_cat"></dd>
+                    <dt>Prérequis : </dt><dd id="feat_pr"></dd>
+                    <dt>Avantage : </dt><dd id="feat_avantage"></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
 </div>
-<br>

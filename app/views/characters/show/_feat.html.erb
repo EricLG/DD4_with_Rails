@@ -9,14 +9,37 @@
                     <thead>
                         <tr>
                             <th class="col-sm-4 text-center thin-text">Talent</th>
-                            <th class="col-sm-8 text-center thin-text">Description</th>
+                            <th class="col-sm-8 text-center thin-text">Avantage</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <% @chosen_feats.each do |chosen_feat| %>
+                            <% feat = chosen_feat.feat %>
                         <tr>
-                            <td class="">Todo</td>
-                            <td class="">Todo</td>
+                            <td class=""><%= feat.name %></td>
+                            <td class="">
+                                <%= feat.avantage %>
+                                <% if feat.name == 'Apprentissage' %>
+                                    <br> Compétence choisie : <%= Skill::SKILLS_CONVERSION_FR[chosen_feat.skill.name] %>
+                                <% end %>
+                                <% if feat.name == 'Arme de prédilection' || feat.name == 'Expertise aux armes' %>
+                                    <br> Groupe d'arme choisie : <%= chosen_feat.weapon_group.name %>
+                                <% end %>
+                                <% if feat.name == 'Expertise des focaliseurs' %>
+                                    <br> Focaliseur choisie : <%= chosen_feat.implement_group.name %>
+                                <% end %>
+                                <% if feat.name == 'Compétence de prédilection' %>
+                                    <br> Compétence choisie : <%= Skill::SKILLS_CONVERSION_FR[chosen_feat.skill.name] %>
+                                <% end %>
+                                <% if feat.name == 'Linguiste' %>
+                                    <br> Langues choisies : <%= @feats_languages.map(&:language).join(', ') %>
+                                <% end %>
+                                <% if feat.name == 'Maniement d\'arme' %>
+                                    <br> Arme choisie : <%= chosen_feat.proficiency.name %>
+                                <% end %>
+                            </td>
                         </tr>
+                        <% end %>
                     </tbody>
                 </table>
             </div>

@@ -82,7 +82,7 @@ module ApplicationHelper
               attribute,
               select_options,
               { include_blank: options[:blank] },
-              multiple: options[:multiple], size: default_size, class: 'form-control', disabled: options[:disabled]
+              multiple: options[:multiple], size: default_size, class: "form-control #{options[:class]}", disabled: options[:disabled]
             )
           )
         end

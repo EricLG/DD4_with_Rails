@@ -29,6 +29,16 @@ class Character < ActiveRecord::Base
   has_many :skill_bonuses, inverse_of: :character
   accepts_nested_attributes_for :skill_bonuses
 
+  # Relation des talents
+  has_many :chosen_feats
+  has_many :feats, through: :chosen_feats
+  has_many :f_languages, through: :chosen_feats, source: :language
+  has_many :f_skills, through: :chosen_feats, source: :skill
+  has_many :f_abilities, through: :chosen_feats, source: :ability
+  has_many :f_weapon_groups, through: :chosen_feats, source: :weapon_group
+  has_many :f_implement_groups, through: :chosen_feats, source: :implement_group
+  accepts_nested_attributes_for :chosen_feats
+
   has_many :klass_choices,  -> { klass_features_choices },  class_name: 'Choice'
   has_many :race_choices,   -> { race_features_choices },   class_name: 'Choice'
 
@@ -42,13 +52,17 @@ class Character < ActiveRecord::Base
     %w[Non\ aligné Non\ aligné]
   ].freeze
 
+  RITUAL_CASTER = %w[Barde Druide Invocateur Magicien Prêtre Psion].freeze
+
   def default_image
     File.join('mini_icones', "#{self.race.try(&:normalize_str)}.jpg")
   end
 
-  # Retourne une string des langages parlés
+  # Retourne une string des langues parlés
   def show_languages
-    self.languages.empty? ? 'Commun' : self.languages.map(&:language).join(', ')
+    racial_languages = self.languages.empty? ? 'Commun' : self.languages
+    feat_languages = self.chosen_feats.languages
+    (racial_languages + feat_languages).flatten.map(&:language).sort.join(', ')
   end
 
   # Vérifie si le statut du héros est dans l'état voulue ou s'il a passé cette étape. Pseudo machine à état
@@ -63,6 +77,14 @@ class Character < ActiveRecord::Base
 
   def epic?
     level >= 21 if level
+  end
+
+  def max_feats
+    max_feat = self.level / 2 + 1
+    max_feat += 1 if self.race.name == 'Humain'
+    max_feat += 1 if self.paragon?
+    max_feat += 1 if self.epic?
+    max_feat
   end
 
   # Renvoie le nom du personnage sous forme de chemin correct

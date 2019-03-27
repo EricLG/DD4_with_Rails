@@ -58,6 +58,15 @@ class FeatsController < ApplicationController
     end
   end
 
+  def feat_avantage
+    feat = Feat.select(:id, :name, :avantage, :prerequisites, :category).find(params[:id])
+    feat.prerequisites = feat.prerequisites.blank? ? 'Aucun prérequis' : feat.prerequisites
+    feat.category = Feat.human_attribute_name("category.#{feat.category}")
+    respond_to do |format|
+      format.js { render json: feat }
+    end
+  end
+
   private
 
   def feat_params

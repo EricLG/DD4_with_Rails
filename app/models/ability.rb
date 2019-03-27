@@ -2,6 +2,9 @@ class Ability < ActiveRecord::Base
   has_many :ability_bonuses, inverse_of: :abilities
   has_many :characters, through: :ability_bonuses
 
+  # Relation pour le choix des talents d'un personnage
+  has_many :chosen_feats, inverse_of: :abilities
+  has_many :characters, through: :chosen_feats
   ABILITIES = %w[strength constitution dexterity intelligence wisdom charisma].freeze
 
   def self.convert(short_ability)

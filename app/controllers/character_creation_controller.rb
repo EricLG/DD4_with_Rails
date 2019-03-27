@@ -168,10 +168,40 @@ class CharacterCreationController < ApplicationController
     end
   end
 
+  # TODO : Gerer les talents selectionnable plusieurs fois
   def choose_feats
+    check_for_free_feats
+    @acquired_feats = @character.chosen_feats.where(free: false).count
+    @max_feats = @character.max_feats
+    @categories = Feat.check_categories(@character.level)
+    @feats = Feat.select(:id, :name, :avantage, :category).where(category: @categories).where.not(id: @character.feats.reload.map(&:id)).group_by(&:category)
+    @new = @character.chosen_feats.build if @acquired_feats < @max_feats
+    load_additionnals_models
   end
 
   def save_feats
+    languages_params = params['character']['chosen_feats_attributes']['0'].delete('language_ids').reject(&:empty?)
+    if @character.update(character_params)
+      save_feats_additional_info(languages_params) if languages_params
+      if @character.chosen_feats.where(free: false).count >= @character.max_feats
+        redirect_to character_path @character.id
+      else
+        redirect_to choose_feats_character_creation_path @character.id
+      end
+    else
+      msg = ''
+      @character.errors.messages.each do |k, v|
+        msg += k.to_s.capitalize + ' : ' + v.first + "\r\n"
+      end
+      flash[:error] = "Erreur sur les champs suivants :\r\n #{msg}"
+      redirect_to choose_feats_character_creation_path @character.id
+    end
+  end
+
+  def save_feats_additional_info(languages_params)
+    cf = @character.chosen_feats.last
+    cf.language_ids = languages_params
+    cf.save
   end
 
   # Ajax request
@@ -191,9 +221,42 @@ class CharacterCreationController < ApplicationController
 
   private
 
+  # TODO :  prendre en compte les talents pour charger les models additionelles
+  def load_additionnals_models
+    @languages = Language.where.not(id: @character.language_ids)
+    @weapons = CommonWeapon.where.not(id: @character.klass.mastered_weapon_proficiencies).order(:name)
+    @not_trained_skills = Skill.where.not(name: @character.chosen_training_skill.keep_if { |_k, v| v == 5 }.keys).pluck(:name, :id).map do |skill|
+      [Skill::SKILLS_CONVERSION_FR[skill.first], skill.last]
+    end
+    @already_trained_skills = Skill.where.not(name: @character.chosen_training_skill.keep_if { |_k, v| v.zero? }.keys).pluck(:name, :id).map do |skill|
+      [Skill::SKILLS_CONVERSION_FR[skill.first], skill.last]
+    end
+    @weapon_groups = WeaponGroup.select(:id, :name)
+    @implements = ImplementGroup.select(:id, :name)
+  end
+
   def find_dependancies
     @character = Character.find_by_id(params['id'])
     @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
     @skills = @character.skill_bonuses.select_skill_name.joins(:skill).joins(:ability_bonus)
+  end
+
+  def check_for_free_feats
+    owned_feats_ids = @character.feats.map(&:id)
+    chosen_features_names = @character.features.map(&:name)
+    character_id = @character.id
+    if Character::RITUAL_CASTER.include?(@character.klass.name == 'Prêtre')
+      ChosenFeat.add_free_feat('Lanceur de rituels', owned_feats_ids, character_id)
+    elsif chosen_features_names.include?('Style de combat à deux armes')
+      ChosenFeat.add_free_feat('Robustesse', owned_feats_ids, character_id)
+    elsif chosen_features_names.include?('Style de combat à distance')
+      ChosenFeat.add_free_feat('Agilité défensive', owned_feats_ids, character_id)
+    elsif chosen_features_names.include?('Style de combat du chasseur')
+      ChosenFeat.add_free_feat('Arme en main', owned_feats_ids, character_id)
+    elsif chosen_features_names.include?('Style de combat du maraudeur') || chosen_features_names.include?('Technique de la tempête')
+      ChosenFeat.add_free_feat('Défense à deux armes', owned_feats_ids, character_id)
+    elsif chosen_features_names.include?('Tireur d\'élite')
+      ChosenFeat.add_free_feat('Tir lointain', owned_feats_ids, character_id)
+    end
   end
 end

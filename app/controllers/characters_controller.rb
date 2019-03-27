@@ -43,6 +43,8 @@ class CharactersController < ApplicationController
     @race_features = @character.race_choices.map(&:feature)
     @classe_features = @character.klass_choices.map(&:feature)
     @character_magic_items = @character.magic_items
+    @chosen_feats = @character.chosen_feats
+    @feats_languages = @character.chosen_feats.languages
   end
 
   def edit

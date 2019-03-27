@@ -2,6 +2,10 @@ class Skill < ActiveRecord::Base
   has_many :skill_bonuses, inverse_of: :skills
   has_many :characters, through: :ability_bonuses
 
+  # Relation pour le choix des talents d'un personnage
+  has_many :chosen_feats, inverse_of: :skills
+  has_many :characters, through: :chosen_feats
+
   SKILLS_EN = %w[acrobatics arcana athletics bluff diplomacy dungeoneering endurance heal history insight intimidate nature perception religion stealth streetwise thievery].freeze
 
   SKILLS_CONVERSION_FR = {

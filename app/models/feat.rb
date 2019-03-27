@@ -8,6 +8,10 @@ class Feat < ActiveRecord::Base
   has_and_belongs_to_many :prerequisited_klasses, class_name: 'Klass', join_table: :feats_pr_klasses, dependent: :destroy
   has_and_belongs_to_many :prerequisited_features, class_name: 'Feature', join_table: :feats_pr_features, dependent: :destroy
 
+  # Relation pour le choix des talents d'un personnage
+  has_many :chosen_feats, inverse_of: :feat
+  has_many :characters, through: :chosen_feats
+
   scope :feats_for_klass_and_every_klasses, ->(klasses_params) { joins('LEFT OUTER JOIN feats_pr_klasses as p ON p.feat_id = feats.id').where('p.klass_id IS NULL OR p.klass_id = ?', klasses_params) }
   scope :feats_for_race_and_every_races, ->(races_params) { joins('LEFT OUTER JOIN feats_pr_races as r ON r.feat_id = feats.id').where('r.race_id IS NULL OR r.race_id = ?', races_params) }
   scope :no_divine_channel, -> { where(divine_channel: false) }
@@ -107,5 +111,12 @@ class Feat < ActiveRecord::Base
     return '' if needed_feats.empty?
 
     needed_feats.map(&:name).join(', ')
+  end
+
+  def self.check_categories(level)
+    cat = ['heroic']
+    cat << 'parangonic' if level > 10
+    cat << 'epic' if level > 20
+    cat
   end
 end

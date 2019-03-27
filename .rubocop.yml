@@ -12,7 +12,7 @@ MethodLength:
 Metrics/AbcSize:
   Max: 20
 Metrics/LineLength:
-  Max: 120
+  Max: 160
 
 # Style
 Style/AsciiComments:

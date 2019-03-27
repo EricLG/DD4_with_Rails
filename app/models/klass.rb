@@ -60,4 +60,9 @@ class Klass < ActiveRecord::Base
   def only_one_required_skill?
     GRANT_ONLY_ONE_TRAINING_SKILL.include?(self.name)
   end
+
+  # int[] - Retourne un tableau d'id d'armes avec maniement
+  def mastered_weapon_proficiencies
+    self.weapon_categories.map(&:common_weapons).flatten.map(&:id) + self.common_weapons.map(&:id)
+  end
 end

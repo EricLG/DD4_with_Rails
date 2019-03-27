@@ -59,6 +59,9 @@ Rails.application.routes.draw do
       get 'parangonics'
       get 'epics'
     end
+    member do
+      get "feat_avantage"
+    end
   end
 
   namespace :admin do
@@ -90,6 +93,8 @@ Rails.application.routes.draw do
       patch 'save_skills'
       get 'choose_feats'
       patch 'save_feats'
+      get 'choose_feats_additional_info'
+      patch 'save_feats_additional_info'
     end
   end
   get "/resume_race"  => 'character_creation#resume_race',  as: 'resume_race'
