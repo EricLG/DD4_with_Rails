@@ -5,10 +5,10 @@
 <% end %>
 
 <div class="row">
-    <h2 class="col-sm-8">
-        <span class="underline"><%= @character.name %>
+    <h3 class="col-sm-8">
+        <span class="underline"><strong class="firebrick"><%= @character.name %></strong>
         <small><%= @character.race.try(:name) %> <%= @character.klass.try(:name) %> de niveau <%= @character.level %> (<%= @character.experience %> exp.)</small></span>
-    </h2>
+    </h3>
     <p class="col-sm-8 small">
         <% not_available = 'N/A' %>
         Voie parangonique : <%= @character.parangon || 'aucune' %>, destinée épique : <%= @character.epic || 'aucune' %>.<br>
