@@ -24,7 +24,7 @@
                             <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= 10 + total_skill_value(@insight, @character.half_level) %>
                             </button></td>
-                            <td class="black-bg white-text text-center">Intuition passive</td>
+                            <td class="black-bg white-text v-center text-center thin-text">Intuition passive</td>
                             <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">10</button></td>
                             <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= total_skill_value(@insight, @character.half_level) %>
@@ -33,7 +33,7 @@
                             <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= 10 + total_skill_value(@perception, @character.half_level) %>
                             </button></td>
-                            <td class="black-bg white-text text-center">Perception passive</td>
+                            <td class="black-bg white-text v-center text-center thin-text">Perception passive</td>
                             <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">10</button></td>
                             <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">
                                 <%= total_skill_value(@perception, @character.half_level) %>
@@ -48,30 +48,40 @@
         </div>
         <div class="row">
             <div class=col-sm-11>
-                <table class="table table-condensed">
+                <table class="table table-condensed table-auto">
                     <thead>
                         <tr>
-                            <th class="col-sm-1 text-center thin-text">Bonus</th>
-                            <th class="col-sm-3 text-center thin-text">Nom</th>
-                            <th class="col-sm-3 text-center thin-text">Caractéristique</th>
-                            <th class="col-sm-1 text-center thin-text">Mod carac<br> + 1/2 niv.</th>
-                            <th class="col-sm-1 text-center thin-text">Race</th>
-                            <th class="col-sm-1 text-center thin-text">Form</th>
-                            <th class="col-sm-1 text-center thin-text">Malus</th>
-                            <th class="col-sm-1 text-center thin-text">Divers</th>
+                            <th class="width-fix-50 text-center thin-text">Bonus</th>
+                            <th class="width-fix-100 text-center thin-text">Nom</th>
+                            <th class="width-fix-100 text-center thin-text">Caractéristique</th>
+                            <th class="width-fix-50 text-center thin-text">Mod carac<br> + 1/2 niv.</th>
+                            <th class="width-fix-50 text-center thin-text">Race</th>
+                            <th class="width-fix-50 text-center thin-text">Form</th>
+                            <th class="width-fix-50 text-center thin-text">Malus</th>
+                            <th class="width-fix-50 text-center thin-text">Divers</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @skill_bonuses.each do |skill| %>
                             <tr class="<%= @klass_choosable_skill_bonus.include?(skill.skill_name) ? 'bg' : '' %>">
-                                <td><button type="button" class="large-text width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(total_skill_value(skill, @character.half_level)) %></button></td>
-                                <td class="text-center v-center"><%= Skill::SKILLS_CONVERSION_FR[skill.skill_name] %></td>
-                                <td class="text-center v-center"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill.skill_name)) %></td>
-                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(modifier(skill.ability_bonus_value) + @character.half_level) %></button></td>
-                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.racial) %></button></td>
-                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.training) %></button></td>
-                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-                                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="center-block no-padding large-text width-80 btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(total_skill_value(skill, @character.half_level)) %></button></td>
+                                <td class="text-center v-center thin-text"><%= Skill::SKILLS_CONVERSION_FR[skill.skill_name] %></td>
+                                <td class="text-center v-center thin-text"><%= Stat.human_attribute_name(Skill.get_linked_carac(skill.skill_name)) %></td>
+                                <td><button type="button" class="center-block no-padding width-80 btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(modifier(skill.ability_bonus_value) + @character.half_level) %></button></td>
+                                <td><button type="button" class="center-block no-padding width-80 btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(skill.racial) %></button></td>
+                                <td>
+                                    <% if skill.training.zero? %>
+                                        <button type="button" class="center-block no-padding width-80 btn btn-default btn-sm bold" disabled="disabled">
+                                            <%= pretty_modifier(skill.training) %>
+                                        </button>
+                                    <% else %>
+                                        <button type="button" class="center-block no-padding width-80 btn btn-primary btn-sm bold" disabled="disabled">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                        </button>
+                                <% end %>
+                                </td>
+                                <td><button type="button" class="center-block no-padding width-80 btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                                <td><button type="button" class="center-block no-padding width-80 btn btn-default btn-sm bold" disabled="disabled">0</button></td>
                             </tr>
                         <% end %>
                     </tbody>
