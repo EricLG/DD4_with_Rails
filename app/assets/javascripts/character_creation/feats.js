@@ -1,6 +1,8 @@
 $(document).on("page:change", function() {
   $("#character_chosen_feats_attributes_0_feat_id").on("change", function(e) {
-    var feats_with_add_choice = ['Apprentissage', 'Arme de prédilection', 'Compétence de prédilection', 'Expertise des focaliseurs', 'Expertise aux armes', 'Linguiste', "Maniement d'arme"]
+    var feats_with_add_choice = ['Apprentissage', 'Arme de prédilection', 'Compétence de prédilection',
+    'Expertise des focaliseurs', 'Expertise aux armes', 'Linguiste',
+    'Maîtrise polyvalente', "Maniement d'arme"]
     $.ajax({
       url: "/feats//" + $(this).val() + "/feat_avantage",
       success: function(data, textStatus, jqHhr) {
@@ -40,7 +42,7 @@ $(document).on("page:change", function() {
         allowClear: true,
       });
     }
-    if (feat.name === "Arme de prédilection" || feat.name === "Expertise aux armes") {
+    if (feat.name === "Arme de prédilection" || feat.name === "Expertise aux armes" || feat.name === "Maîtrise polyvalente") {
       $("#weapon-group").removeClass("hidden");
       $( ".select-weapon-group" ).select2({
         theme: "bootstrap",
@@ -48,7 +50,7 @@ $(document).on("page:change", function() {
         allowClear: true
       });
     }
-    if (feat.name === "Expertise des focaliseurs") {
+    if (feat.name === "Expertise des focaliseurs" || feat.name === "Maîtrise polyvalente") {
       $("#implement").removeClass("hidden");
       $( ".select-implement" ).select2({
         theme: "bootstrap",

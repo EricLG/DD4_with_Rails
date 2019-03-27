@@ -22,10 +22,10 @@
                                 <% if feat.name == 'Apprentissage' %>
                                     <br> Compétence choisie : <%= Skill::SKILLS_CONVERSION_FR[chosen_feat.skill.name] %>
                                 <% end %>
-                                <% if feat.name == 'Arme de prédilection' || feat.name == 'Expertise aux armes' %>
+                                <% if feat.name == 'Arme de prédilection' || feat.name == 'Expertise aux armes' || feat.name == "Maîtrise polyvalente" %>
                                     <br> Groupe d'arme choisie : <%= chosen_feat.weapon_group.name %>
                                 <% end %>
-                                <% if feat.name == 'Expertise des focaliseurs' %>
+                                <% if feat.name == 'Expertise des focaliseurs' || feat.name == "Maîtrise polyvalente" %>
                                     <br> Focaliseur choisie : <%= chosen_feat.implement_group.name %>
                                 <% end %>
                                 <% if feat.name == 'Compétence de prédilection' %>
