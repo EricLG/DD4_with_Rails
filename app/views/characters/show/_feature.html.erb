@@ -8,15 +8,15 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            <th class="col-sm-4 v-center thin-text">Aptitude</th>
-                            <th class="col-sm-8 v-center thin-text">Description</th>
+                            <th class="col-sm-4 thin-text">Aptitude</th>
+                            <th class="col-sm-8 thin-text">Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @race_features.each do |feature| %>
                             <tr>
-                                <td class="v-center"><%= feature.name %></td>
-                                <td class="v-center"><%= simple_format feature.description %></td>
+                                <td><%= feature.name %></td>
+                                <%= simple_format(capitalize_first(feature.description), { class: "" }, wrapper_tag: 'td') %>
                             </tr>
                         <% end %>
                     </tbody>
@@ -31,15 +31,15 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            <th class="col-sm-4 v-center thin-text">Aptitude</th>
-                            <th class="col-sm-8 v-center thin-text">Description</th>
+                            <th class="col-sm-4 thin-text">Aptitude</th>
+                            <th class="col-sm-8 thin-text">Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @classe_features.each do |feature| %>
                             <tr>
-                                <td class="v-center"><%= feature.name %></td>
-                                <td class="v-center"><%= simple_format feature.description %></td>
+                                <td><%= feature.name %></td>
+                                <%= simple_format(capitalize_first(feature.description), { class: "" }, wrapper_tag: 'td') %>
                             </tr>
                         <% end %>
                     </tbody>

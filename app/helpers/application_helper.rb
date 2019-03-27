@@ -101,4 +101,9 @@ module ApplicationHelper
     end
     submit
   end
+
+  def capitalize_first(str)
+    str[0] = str[0].mb_chars.capitalize unless str.blank?
+    str
+  end
 end
