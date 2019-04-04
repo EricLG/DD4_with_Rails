@@ -1,0 +1,14 @@
+<%= javascript_include_tag Ckeditor.cdn_url %>
+
+<%= form_for @article, html: {class: 'form-horizontal'} do |f| %>
+
+  <%= input_text_form(f, :title, Article.human_attribute_name(:title)) %>
+  <div class="form-group">
+    <%= f.label(:texte, Article.human_attribute_name(:texte), class: "col-sm-4 control-label") %>
+    <div class="col-sm-8">
+      <%= f.cktext_area :texte, class: 'form-control', ckeditor: { language: 'fr'} %>
+    </div>
+  </div>
+  <%= submit_text_form(f) %>
+
+<% end %>

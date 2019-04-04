@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Aides de jeux, rappel de règles, ...</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <ul>
+            <% @articles.each do |a| %>
+                <li><%= link_to a.title, article_path(a) %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <%= link_to "Rédiger un article", new_article_path, class: 'btn btn-default' %>
+    </div>
+</div>

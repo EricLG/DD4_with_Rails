@@ -1,0 +1,22 @@
+<div class="row">
+    <h4 class="col-sm-12">
+        <%= @article.title %><br>
+        <small>Publié le <%= show_time_zone_datetime(@article.created_at) %></small>
+    </h4>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <%= @article.texte.html_safe %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <%= link_to "Retourner à la liste des articles", articles_path, class: 'btn btn-default' %>
+        <% if current_user_admin? %>
+            <%= link_to "Modifier l'article", edit_article_path(@article), class: 'btn btn-primary' %>
+            <%= link_to "Supprimer l'article", article_path(@article), method: :delete, class: 'btn btn-danger', data: { confirm: 'Confirmer la suppression ?' } %>
+        <% end %>
+    </div>
+</div>

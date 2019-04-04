@@ -34,6 +34,9 @@ fr:
     weight:             "Poids"
   activerecord:
     models:
+      article:
+        one:      "Article"
+        other:      "Articles"
       monster:
         one:      "Monstre"
         other:    "Monstres"
@@ -53,6 +56,9 @@ fr:
         one:      "Campagne"
         other:    "Campagnes"
     attributes:
+      article:
+        title:      "Titre"
+        texte:      "Texte"
       monster:
         main_role:    "Rôle 1"
         second_role:  "Rôle 2"
@@ -174,7 +180,7 @@ fr:
       feat:       "Talents"
       race:       "Races"
       klass:      "Classes"
-      help:       "Aides de jeux"
+      articles:   "Aides de jeux"
       campaign:   "Campagnes"
       dmtools:    "Boite à outils du MJ"
       random:     "Random"
@@ -276,6 +282,14 @@ fr:
         immurement:     "Emmurement"
         whetstone:      "Pierre à aiguiser"
         other_cons:     "Autre consommable"
+
+# Termes liés aux pages Articles
+  articles:
+    index:
+    new:
+      title:    "Nouvel article"
+    edit:
+      title:    "Édition de %{title}"
 # Termes liés aux utilisateurs
   users:
     sidebar_login: "Connectez-vous"

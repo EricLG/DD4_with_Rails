@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_183718) do
+ActiveRecord::Schema.define(version: 2019_03_30_074300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -66,6 +66,19 @@ ActiveRecord::Schema.define(version: 2019_02_19_183718) do
     t.index ["armor_category_id"], name: "index_armor_categories_magic_items_on_armor_category_id"
     t.index ["magic_item_id"], name: "index_armor_categories_magic_items_on_magic_item_id"
   end
+
+  add_index "armor_categories_magic_items", ["armor_category_id"], name: "index_armor_categories_magic_items_on_armor_category_id", using: :btree
+  add_index "armor_categories_magic_items", ["magic_item_id"], name: "index_armor_categories_magic_items_on_magic_item_id", using: :btree
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "texte"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "available_features", id: false, force: :cascade do |t|
     t.integer "feature_id"

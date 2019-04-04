@@ -101,4 +101,8 @@ module ApplicationHelper
     end
     submit
   end
+
+  def show_time_zone_datetime(date_time, default_strftime = '%d/%m/%Y à %H:%M:%S')
+    date_time.in_time_zone('Europe/Paris').strftime(default_strftime)
+  end
 end

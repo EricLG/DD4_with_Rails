@@ -4,7 +4,7 @@
     <li role="presentation"><%= link_to t("menu.link.feat"),     feats_path,          title: t("menu.tooltip.feat"),      class: "white-text" %></li>
     <li role="presentation"><%= link_to t("menu.link.race"),     races_path,          title: t("menu.tooltip.race"),      class: "white-text" %></li>
     <li role="presentation"><%= link_to t("menu.link.klass"),    klasses_path,        title: t("menu.tooltip.klass"),     class: "white-text" %></li>
-    <!-- <li role="presentation"><%= link_to t("menu.link.help"),     aides_path,          title: t("menu.tooltip.help"),      class: "white-text" %></li>-->
+    <li role="presentation"><%= link_to t("menu.link.articles"),     articles_path,       title: t("menu.tooltip.help"),      class: "white-text" %></li>
     <% unless @current_user.nil? %>
         <li role="presentation"><%= link_to t("menu.link.campaign"), campaigns_path,      title: t("menu.tooltip.campaign"),  class: "white-text" %></li>
     <% end %>
