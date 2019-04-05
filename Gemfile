@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'execjs'
 gem 'duktape'
-# User duktape instead of execjs and therubyracer ?
+# User duktape instead of therubyracer ? See in prod !
 # gem 'therubyracer',  platforms: :ruby
 
 gem 'turbolinks', '~> 5'
@@ -50,11 +50,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'coffee-rails', '~> 4.2'
 
 # Additional gems
-gem 'jquery-rails', '~> 4.1.1'
+gem 'jquery-rails', '~> 4.3.3'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
-gem 'select2-rails'
-gem 'will_paginate', '~> 3.0.6'
+gem 'select2-rails', '~> 4.0.3'
+gem 'will_paginate', '~> 3.1.7'
 gem 'carrierwave', '~> 1.3'
 gem 'photoswipe-rails', '~> 4.1'
 gem 'mini_magick', '~> 4.9'
