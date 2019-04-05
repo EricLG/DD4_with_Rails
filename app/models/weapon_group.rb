@@ -1,4 +1,4 @@
-class WeaponGroup < ActiveRecord::Base
+class WeaponGroup < ApplicationRecord
   has_and_belongs_to_many :common_weapons
   has_and_belongs_to_many :magic_items
 

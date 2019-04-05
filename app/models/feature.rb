@@ -1,4 +1,4 @@
-class Feature < ActiveRecord::Base
+class Feature < ApplicationRecord
   has_many :children_features, class_name: 'Feature', foreign_key: 'parent_feature_id', inverse_of: 'parent_feature'
   belongs_to :parent_feature, class_name: 'Feature', inverse_of: 'children_features'
   has_and_belongs_to_many :klasses, join_table: :available_features

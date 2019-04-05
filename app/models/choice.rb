@@ -1,4 +1,4 @@
-class Choice < ActiveRecord::Base
+class Choice < ApplicationRecord
   belongs_to :character,  inverse_of: :choices
   belongs_to :feature,    inverse_of: :choices
   belongs_to :language,   inverse_of: :choices

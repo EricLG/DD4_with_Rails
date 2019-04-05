@@ -1,4 +1,4 @@
-class ImplementGroup < ActiveRecord::Base
+class ImplementGroup < ApplicationRecord
   # Relation pour le choix des talents d'un personnage
   has_many :chosen_feats, inverse_of: :implement_groups
   has_many :characters, through: :chosen_feats

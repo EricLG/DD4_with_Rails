@@ -1,4 +1,4 @@
-class CommonArmor < ActiveRecord::Base
+class CommonArmor < ApplicationRecord
   belongs_to :source
   belongs_to :armor_category
 

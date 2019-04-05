@@ -1,6 +1,6 @@
 require 'import_data'
 
-class Feat < ActiveRecord::Base
+class Feat < ApplicationRecord
   belongs_to  :source
   has_many    :needed_feats, class_name: 'Feat', foreign_key: 'top_feat_id'
 

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :characters, dependent: :destroy
   has_many :wishlists, dependent: :delete_all
   has_many :players, dependent: :delete_all

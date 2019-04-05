@@ -1,4 +1,4 @@
-class ArmorCategory < ActiveRecord::Base
+class ArmorCategory < ApplicationRecord
   has_many :common_armors
   has_and_belongs_to_many :magic_items
 

@@ -1,4 +1,4 @@
-class Skill < ActiveRecord::Base
+class Skill < ApplicationRecord
   has_many :skill_bonuses, inverse_of: :skills
   has_many :characters, through: :ability_bonuses
 

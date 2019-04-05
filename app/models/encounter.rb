@@ -1,6 +1,6 @@
 require 'import_data'
 
-class Encounter < ActiveRecord::Base
+class Encounter < ApplicationRecord
   belongs_to :source
   DEFAULT_BUDGET = 500
 

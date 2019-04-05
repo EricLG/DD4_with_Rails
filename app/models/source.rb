@@ -1,4 +1,4 @@
-class Source < ActiveRecord::Base
+class Source < ApplicationRecord
   has_many :common_weapons
   has_many :common_armors
   has_many :magic_weapons

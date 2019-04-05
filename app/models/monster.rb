@@ -1,6 +1,6 @@
 require 'import_data'
 
-class Monster < ActiveRecord::Base
+class Monster < ApplicationRecord
   belongs_to :source
 
   scope :categories, -> { pluck(:category).join(', ').split(', ').uniq.sort }

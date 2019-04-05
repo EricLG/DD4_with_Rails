@@ -1,4 +1,4 @@
-class ChosenFeat < ActiveRecord::Base
+class ChosenFeat < ApplicationRecord
   belongs_to :character
   belongs_to :feat
   has_and_belongs_to_many :languages

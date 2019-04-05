@@ -1,4 +1,4 @@
-class Race < ActiveRecord::Base
+class Race < ApplicationRecord
   include ImagePath
   belongs_to :source
   has_and_belongs_to_many :features, join_table: :available_features

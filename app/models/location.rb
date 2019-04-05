@@ -1,4 +1,4 @@
-class Location < ActiveRecord::Base
+class Location < ApplicationRecord
   has_one :magic_item
 
   WEAPON_CODE = 'weapon'.freeze

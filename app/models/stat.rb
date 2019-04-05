@@ -1,4 +1,4 @@
-class Stat < ActiveRecord::Base
+class Stat < ApplicationRecord
   after_initialize :init
   belongs_to :feat
   belongs_to :race

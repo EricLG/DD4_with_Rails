@@ -1,4 +1,4 @@
-class SkillBonus < ActiveRecord::Base
+class SkillBonus < ApplicationRecord
   belongs_to :skill, inverse_of: :skill_bonuses
   belongs_to :character, inverse_of: :skill_bonuses
   belongs_to :ability_bonus

@@ -1,4 +1,4 @@
-class Klass < ActiveRecord::Base
+class Klass < ApplicationRecord
   include ImagePath
   belongs_to :source
   has_and_belongs_to_many :armor_categories

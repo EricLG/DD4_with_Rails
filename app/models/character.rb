@@ -1,4 +1,4 @@
-class Character < ActiveRecord::Base
+class Character < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   enum status: { draft: 1, ability_done: 2, skill_done: 3, complete: 10}
 

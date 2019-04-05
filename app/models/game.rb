@@ -1,4 +1,4 @@
-class Game < ActiveRecord::Base
+class Game < ApplicationRecord
   mount_uploaders :illustrations, IllustrationUploader
   belongs_to :campaign
   has_and_belongs_to_many :characters

@@ -1,4 +1,4 @@
-class Consumable < ActiveRecord::Base
+class Consumable < ApplicationRecord
   belongs_to :source
   has_and_belongs_to_many :object_levels
 

@@ -1,6 +1,6 @@
 require 'import_data'
 require 'csv'
-class MagicItem < ActiveRecord::Base
+class MagicItem < ApplicationRecord
   has_many :wishlists
   has_many :users, through: :wishlists
   has_many :characters, through: :wishlists
