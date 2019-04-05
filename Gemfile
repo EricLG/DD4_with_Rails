@@ -1,58 +1,60 @@
 source 'https://rubygems.org'
-ruby "~> 2.1"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rake', '12.3.0'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.10'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 0.20'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
-# Use Uglifier as compressor for JavaScript assets
+ruby '2.5.3'
+
+gem 'rails', '~> 5.2.3'
+gem 'pg', '~> 1.1', '>= 1.1.4'
+gem 'puma', '~> 3.11'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-# gem 'coffee-rails', '~> 4.0.0'
+
+# See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'execjs'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer',  platforms: :ruby
+gem 'duktape'
+# User duktape instead of execjs and therubyracer ?
+# gem 'therubyracer',  platforms: :ruby
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.1.1'
-gem 'jquery-ui-rails', '~> 5.0.5'
-gem 'select2-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks' , '~> 2.4.0'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
-
-gem 'twitter-bootstrap-rails', '~> 3.2.0'
-# Use ActiveModel has_secure_password
+gem 'turbolinks', '~> 5'
+gem 'jbuilder', '~> 2.5'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
-# Use unicorn as the app server
-# gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
+
+group :development do
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'chromedriver-helper'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'puma', '~> 3.11'
+# useless gem :
+# gem 'rake', '12.3.0'
+# gem 'coffee-rails', '~> 4.2'
+
+# Additional gems
+gem 'jquery-rails', '~> 4.1.1'
+gem 'jquery-ui-rails', '~> 5.0.5'
+gem 'twitter-bootstrap-rails', '~> 3.2.0'
+gem 'select2-rails'
 gem 'will_paginate', '~> 3.0.6'
 gem 'carrierwave', '~> 1.3'
 gem 'photoswipe-rails', '~> 4.1'
 gem 'mini_magick', '~> 4.9'
-
-group :development do
-  gem 'web-console', '~> 2.0'
-end
-
-group :test, :development do
-  gem 'pry'
-  gem 'pry-rails'
-end
