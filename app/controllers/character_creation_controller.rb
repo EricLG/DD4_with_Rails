@@ -1,6 +1,6 @@
 class CharacterCreationController < ApplicationController
   include CharacterCreation
-  before_filter :find_dependancies, except: %i[resume_race resume_klass]
+  before_action :find_dependancies, except: %i[resume_race resume_klass]
 
   def choose_race
     @races = Race.all.order(:name)

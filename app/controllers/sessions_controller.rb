@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :check_current_logged_user, only: [:new]
+  skip_before_action :check_current_logged_user, only: [:new]
 
   def new; end
 

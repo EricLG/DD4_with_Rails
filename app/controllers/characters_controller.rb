@@ -1,7 +1,7 @@
 class CharactersController < ApplicationController
   include CharacterCreation
   layout 'no_sidebloc', only: %i[index new]
-  before_filter :find_dependancies, except: %i[index new create resume_race resume_klass]
+  before_action :find_dependancies, except: %i[index new create resume_race resume_klass]
 
   def index
     @characters = @current_user.characters.order(:name)

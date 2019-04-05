@@ -1,6 +1,6 @@
 class Items::ConsumablesController < ApplicationController
   before_action :find_dependancies, only: %i[index new edit]
-  before_filter :set_consumable, only: %i[show edit update destroy]
+  before_action :set_consumable, only: %i[show edit update destroy]
 
   def index
     @consumables = Consumable.all.paginate(page: params[:page], per_page: 20).order(name: :asc)

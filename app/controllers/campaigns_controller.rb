@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_filter :find_dependancies, only: %i[index new edit show]
+  before_action :find_dependancies, only: %i[index new edit show]
 
   def index; end
 

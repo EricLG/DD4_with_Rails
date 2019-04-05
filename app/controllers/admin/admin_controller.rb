@@ -1,6 +1,6 @@
 class Admin::AdminController < ApplicationController
   layout 'no_sidebloc'
-  before_filter :authorize_admin
+  before_action :authorize_admin
 
   def index
     render 'admin/index'
