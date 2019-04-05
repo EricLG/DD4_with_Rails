@@ -1,4 +1,4 @@
-class CreateMagicItems < ActiveRecord::Migration
+class CreateMagicItems < ActiveRecord::Migration[4.2]
   def change
     create_table :magic_items do |t|
 

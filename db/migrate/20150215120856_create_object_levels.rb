@@ -1,4 +1,4 @@
-class CreateObjectLevels < ActiveRecord::Migration
+class CreateObjectLevels < ActiveRecord::Migration[4.2]
   def change
     create_table :object_levels do |t|
 

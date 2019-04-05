@@ -1,4 +1,4 @@
-class AddCharacterToComments < ActiveRecord::Migration
+class AddCharacterToComments < ActiveRecord::Migration[4.2]
   def change
     add_reference :comments, :character, foreign_key: true
   end

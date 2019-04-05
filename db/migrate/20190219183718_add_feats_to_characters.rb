@@ -1,4 +1,4 @@
-class AddFeatsToCharacters < ActiveRecord::Migration
+class AddFeatsToCharacters < ActiveRecord::Migration[4.2]
   def change
     create_table :chosen_feats do |t|
       # HABTM Through

@@ -1,4 +1,4 @@
-class CreateWeaponCategories <ActiveRecord::Migration
+class CreateWeaponCategories <ActiveRecord::Migration[4.2]
   def change
     create_table :weapon_categories do |t|
       t.string :code, index: true

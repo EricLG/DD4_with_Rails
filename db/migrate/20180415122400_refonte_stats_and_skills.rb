@@ -1,4 +1,4 @@
-class RefonteStatsAndSkills < ActiveRecord::Migration
+class RefonteStatsAndSkills < ActiveRecord::Migration[4.2]
 
   def change
 

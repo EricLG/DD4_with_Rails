@@ -1,4 +1,4 @@
-class RefonteFeat < ActiveRecord::Migration
+class RefonteFeat < ActiveRecord::Migration[4.2]
 
   def change
 

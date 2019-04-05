@@ -1,4 +1,4 @@
-class CreateConsumables < ActiveRecord::Migration
+class CreateConsumables < ActiveRecord::Migration[4.2]
   def change
     add_column :object_levels, :cons_price, :string
 

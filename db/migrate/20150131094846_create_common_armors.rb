@@ -1,4 +1,4 @@
-class CreateCommonArmors < ActiveRecord::Migration
+class CreateCommonArmors < ActiveRecord::Migration[4.2]
   def change
     create_table :common_armors do |t|
 
