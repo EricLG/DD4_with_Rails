@@ -11,6 +11,8 @@ MethodLength:
 # Metrics
 Metrics/AbcSize:
   Max: 20
+Metrics/ClassLength:
+  Max: 150
 Metrics/LineLength:
   Max: 160
 
@@ -21,5 +23,7 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Style/Documentation:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
 Style/RedundantSelf:
   Enabled: false
