@@ -4,19 +4,19 @@ class FeatsController < ApplicationController
   def index; end
 
   def heroics
-    @search = FeatSearch.new(params[:feat_search], 'heroic')
+    @search = FeatSearch.new(search_feat_params, 'heroic')
     @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :sorted_feats
   end
 
   def parangonics
-    @search = FeatSearch.new(params[:feat_search], 'parangonic')
+    @search = FeatSearch.new(search_feat_params, 'parangonic')
     @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :sorted_feats
   end
 
   def epics
-    @search = FeatSearch.new(params[:feat_search], 'epic')
+    @search = FeatSearch.new(search_feat_params, 'epic')
     @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :sorted_feats
   end
@@ -78,6 +78,17 @@ class FeatsController < ApplicationController
       :source_id,
       race_ids: [],
       klass_ids: []
+    )
+  end
+
+  def search_feat_params
+    return unless params && params[:feat_search]
+
+    params.require(:feat_search).permit(
+      :name,
+      :prerequisited_klasses,
+      :prerequisited_races,
+      :source
     )
   end
 
