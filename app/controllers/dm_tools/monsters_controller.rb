@@ -5,7 +5,7 @@ class DmTools::MonstersController < ApplicationController
   # GET /monsters.json
   def index
     @sources = Source.monsters
-    @search = MonsterSearch.new(params[:monster_search])
+    @search = MonsterSearch.new(search_monster_params)
     @monsters = @search.build_search.paginate(page: params[:page], per_page: 20).order(level: :asc, name: :asc)
     @categories = Monster.categories
     @keywords = Monster.keywords
@@ -103,5 +103,22 @@ class DmTools::MonstersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def monster_params
     params.require(:monster).permit(:name, :main_role, :second_role, :leader, :level, :category, :px, :race, :origin, :keywords, :source_id)
+  end
+
+  def search_monster_params
+    return unless params && params[:monster_search]
+
+    params.require(:monster_search).permit(
+      :name,
+      :main_role,
+      :second_role,
+      :level,
+      :category,
+      :race,
+      :origin,
+      :keywords,
+      :source,
+      :leader
+    )
   end
 end
