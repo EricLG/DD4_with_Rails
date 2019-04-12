@@ -55,29 +55,30 @@ class Items::MagicItemsController < ApplicationController
 
   def weapons
     @kind = 'weapons'
-    @search = MagicItemSearch.new(params[:magic_item_search], @kind)
-    @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
+    @search = MagicItemSearch.new(search_magic_item_params, @kind)
+    @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc).to_a
+    @items_count = @items.count
     render :index
   end
 
   def armors
     @kind = 'armors'
     @armor_categories = @armor_categories.reject(&:shield?)
-    @search = MagicItemSearch.new(params[:magic_item_search], @kind)
+    @search = MagicItemSearch.new(search_magic_item_params, @kind)
     @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
   end
 
   def implements
     @kind = 'implements'
-    @search = MagicItemSearch.new(params[:magic_item_search], @kind)
+    @search = MagicItemSearch.new(search_magic_item_params, @kind)
     @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
   end
 
   def gears
     @kind = 'gears'
-    @search = MagicItemSearch.new(params[:magic_item_search], @kind)
+    @search = MagicItemSearch.new(search_magic_item_params, @kind)
     @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     @locations = @locations.gears
     render :index
@@ -85,7 +86,7 @@ class Items::MagicItemsController < ApplicationController
 
   def amulets
     @kind = 'amulets'
-    @search = MagicItemSearch.new(params[:magic_item_search], @kind)
+    @search = MagicItemSearch.new(search_magic_item_params, @kind)
     @items = @search.build_search.paginate(page: params[:page], per_page: 20).order(name: :asc)
     render :index
   end
@@ -134,6 +135,22 @@ class Items::MagicItemsController < ApplicationController
       weapon_group_ids: [],
       armor_category_ids: [],
       items_level_ids: []
+    )
+  end
+
+  def search_magic_item_params
+    return unless params && params[:magic_item_search]
+
+    params.require(:magic_item_search).permit(
+      :name,
+      :location,
+      :rarity,
+      :implement_group,
+      :source,
+      :object_levels,
+      weapon_groups: [],
+      armor_categories: [],
+      items_levels: []
     )
   end
 

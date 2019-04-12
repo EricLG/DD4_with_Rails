@@ -1,6 +1,6 @@
 <div class="digg_pagination">
     <div class="page_info">
-      <%= page_entries_info items, {model: MagicItem.model_name.human(count: items.count)} %>
+      <%= page_entries_info items, {model: MagicItem.model_name.human(count: count)} %>
     </div>
     <%= will_paginate items, :container => false %>
 </div>
@@ -48,7 +48,7 @@
 
 <div class="digg_pagination">
     <div class="page_info">
-      <%= page_entries_info items, {model: MagicItem.model_name.human(count: items.count)} %>
+      <%= page_entries_info items, {model: MagicItem.model_name.human(count: count)} %>
     </div>
     <%= will_paginate items, :container => false %>
 </div>
