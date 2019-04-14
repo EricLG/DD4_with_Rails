@@ -113,7 +113,7 @@ class Items::MagicItemsController < ApplicationController
     else
       flash[:error] = "L'objet \"#{@item.name}\" n'a pas été retiré de votre liste de souhait."
     end
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private

@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
     if comment.save
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
     else
       render :edit
     end
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private
