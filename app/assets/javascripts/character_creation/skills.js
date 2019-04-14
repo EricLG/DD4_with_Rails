@@ -1,4 +1,4 @@
-$(document).on("page:change", function() {
+$(document).on("turbolinks:load", function() {
 
   /* Etape 6 : gestion des compétences (skills) */
 

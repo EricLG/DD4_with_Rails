@@ -1,4 +1,4 @@
-$(document).on("page:change", function() {
+$(document).on("turbolinks:load", function() {
   // Etape 4 - choix du dieu et de l'alignement et de l'avatar
   $("#character_god_id").on("change", function() {
     if ($("#is-divine")) {

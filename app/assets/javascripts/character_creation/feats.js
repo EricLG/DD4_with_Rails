@@ -1,4 +1,4 @@
-$(document).on("page:change", function() {
+$(document).on("turbolinks:load", function() {
   $("#character_chosen_feats_attributes_0_feat_id").on("change", function(e) {
     var feats_with_add_choice = ['Apprentissage', 'Arme de prédilection', 'Compétence de prédilection',
     'Expertise des focaliseurs', 'Expertise aux armes', 'Linguiste',

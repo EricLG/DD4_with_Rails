@@ -1,4 +1,4 @@
-$(document).on("page:change", function() {
+$(document).on("turbolinks:load", function() {
 
   // Etape 1 - détermination du niveau selon l'expérience
   $("#character_experience").change(function(){

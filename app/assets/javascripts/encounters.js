@@ -1,6 +1,4 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-$(document).on("page:change", function() {
+$(document).on("turbolinks:load", function() {
 
   function initNewEncounterPage() {
     if ($("#budget_form").length !== 0 && $("#new_monster_search").length !== 0) {
