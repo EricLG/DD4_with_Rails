@@ -40,10 +40,11 @@ sudo su postgres
 createuser illisae -P --interactive
 createuser <prod_user> -P --interactive
 
-Rajouter dans le bashRC les variables d'environnements suivantes : 
+Rajouter dans le bashRC les variables d'environnements suivantes :
 SECRET_KEY_BASE avec la valeur de rake secret
 DD4_DATABASE_USERNAME
 DD4_DATABASE_PASSWORD
+RAILS_SERVE_STATIC_FILES = true
 
 Modifier un fichier pg :
 vim /etc/postgresql/9.6/main/pg_hba.conf
