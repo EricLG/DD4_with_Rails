@@ -413,6 +413,15 @@ fr:
         other: "Affichage de <b>%{count}</b> %{model}"
       multi_page: "Affichage %{from} - %{to} sur %{count}"
       multi_page_html: "Affichage de <b>%{from}&nbsp;-&nbsp;%{to}</b> sur <b>%{count}</b>"
+# Plugin ckeditor
+  ckeditor:
+    page_title: 'CKEditor Files Manager'
+    confirm_delete: 'Supprimer le fichier?'
+    buttons:
+      cancel: 'Annuler'
+      upload: 'Télécharger'
+      delete: 'Supprimer'
+      next: 'Suivant'
 # Image management
   errors:
     messages:

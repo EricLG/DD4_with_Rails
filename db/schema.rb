@@ -162,18 +162,29 @@ ActiveRecord::Schema.define(version: 2019_03_30_074300) do
     t.index ["language_id"], name: "index_chosen_feats_languages_on_language_id"
   end
 
-  create_table "comments", id: :serial, force: :cascade do |t|
-    t.text "comment"
-    t.integer "roleplay"
-    t.integer "campaign_id"
-    t.integer "game_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "character_id"
-    t.index ["campaign_id"], name: "index_comments_on_campaign_id"
-    t.index ["game_id"], name: "index_comments_on_game_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+  add_index "chosen_feats_languages", ["chosen_feat_id"], name: "index_chosen_feats_languages_on_chosen_feat_id", using: :btree
+  add_index "chosen_feats_languages", ["language_id"], name: "index_chosen_feats_languages_on_language_id", using: :btree
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.string   "type",              limit: 30
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "ckeditor_assets", ["type"], name: "index_ckeditor_assets_on_type", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "roleplay"
+    t.integer  "campaign_id"
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "character_id"
   end
 
   create_table "common_armors", id: :serial, force: :cascade do |t|
