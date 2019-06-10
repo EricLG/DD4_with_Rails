@@ -10,13 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require jquery-ui/datepicker
- *= require select2
- *= require select2-bootstrap
- *= require photoswipe
- *= require_tree .
- *= require_self
  */
+//@import "require_tree .";
+//@import "require_self";
+@import "jquery-ui/datepicker";
+@import "select2";
+@import "select2-bootstrap";
+@import "photoswipe/photoswipe";
+@import "bootstrap";
 
 .background {
   background: linear-gradient(to bottom, lightgrey 2%, white) no-repeat;

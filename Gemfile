@@ -50,9 +50,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Additional gems
 gem 'jquery-rails', '~> 4.3.3'
 gem 'jquery-ui-rails', '~> 5.0.5'
-gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'select2-rails', '~> 4.0.3'
 gem 'will_paginate', '~> 3.1.7'
 gem 'carrierwave', '~> 1.3'
 gem 'photoswipe-rails', '~> 4.1'
 gem 'mini_magick', '~> 4.9'
+gem 'bootstrap', '~> 4.2.1'
