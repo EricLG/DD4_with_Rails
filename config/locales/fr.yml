@@ -178,7 +178,7 @@ fr:
       help:       "Aides de jeux"
       campaign:   "Campagnes"
       dmtools:    "Boite à outils du MJ"
-      random:     "Random"
+      random:     "Objets aléatoires"
       admin:      "Administration"
     tooltip:
       object:     "Pages des objets magiques et commun."
@@ -203,6 +203,15 @@ fr:
     validate:           "Valider"
     w_false:            "Faux"
     w_true:             "Vrai"
+  consumables:
+    kind:
+      potion: 'Potions'
+      reactive: 'Réactifs'
+      elixir: 'Élixirs'
+      ammo: 'Munitions'
+      immurement: 'Emmurements'
+      whetstone: 'Pierres à aiguiser'
+      other_cons: 'Autres'
 # Termes liés aux objets magiques et communs (namespace items)
   items:
     common:
