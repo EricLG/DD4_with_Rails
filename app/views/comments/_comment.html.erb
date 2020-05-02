@@ -1,19 +1,19 @@
 <% if comment.rp? %>
-    <%= render "comments/comment_rp", comment: comment %>
+  <%= render "comments/comment_rp", comment: comment %>
 <% else %>
-    <%= simple_format comment.comment %>
-    <h5>
-        <%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small>
-        <% if comment.owned?(@current_user) %>
-            <span class="pull-right">
-                <%= link_to params.permit([:edit]).merge(edit: comment.id), class: "btn btn-primary btn-xs" do %>
-                    <span class="glyphicon glyphicon-pencil"></span>
-                <% end %>
-                <%= link_to comment_path(comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{comment.id} ?" }, class: "btn btn-danger btn-xs" do %>
-                    <span class="glyphicon glyphicon-trash"></span>
-                <% end %>
-            </span>
+  <%= simple_format comment.comment %>
+  <h5>
+    <%= comment.user.name %> <small>le <%= comment.updated_at.in_time_zone("Europe/Paris").strftime("%d/%m/%Y à %H:%M:%S") %></small>
+    <% if comment.owned?(@current_user) %>
+      <span class="pull-right">
+        <%= link_to params.permit([:edit]).merge(edit: comment.id), class: "btn btn-primary btn-xs" do %>
+          <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-    </h5>
-    <hr>
+        <%= link_to comment_path(comment.id), method: :delete, data: { confirm: "Supprimer le commentaire #{comment.id} ?" }, class: "btn btn-danger btn-xs" do %>
+          <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+      </span>
+    <% end %>
+  </h5>
+  <hr>
 <% end %>

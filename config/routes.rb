@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'search/index'
 
   # page d'accueil
@@ -13,8 +12,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
-  resources :users, only: [:new, :show, :create, :edit, :update]
-
+  resources :users, only: %i[new show create edit update]
   namespace :items do
     # Lien du menu principal
     get '/index' => 'magic_items#index'
@@ -31,13 +29,12 @@ Rails.application.routes.draw do
         get 'implements'
         get 'gears'
         get 'amulets'
-        post ':id/wishlist' => "magic_items#wishlist", as: 'wishlist'
+        post ':id/wishlist' => 'magic_items#wishlist', as: 'wishlist'
         get 'rem-wishlist/:item/:character' => 'magic_items#wishlist_remove', as: 'rem_wishlist'
       end
     end
-    get '/random' => "magic_items#random"
+    get '/random' => 'magic_items#random'
   end
-
   namespace :dm_tools do
     get '/' => 'dm_tools#index'
     resources :monsters do
@@ -52,7 +49,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
   resources :feats do
     collection do
       get 'heroics'
@@ -60,23 +56,20 @@ Rails.application.routes.draw do
       get 'epics'
     end
     member do
-      get "feat_avantage"
+      get 'feat_avantage'
     end
   end
-
   namespace :admin do
     resources :weapon_properties, :features
-    resources :users, only: [:index, :edit, :update, :destroy]
-    get "/index"      => 'admin#index'
-    get "/export_items" => 'admin#export_items'
-    get "/items"      => 'admin#items'
-    get "/feats"      => 'admin#feats'
-    get "/monsters"   => 'admin#monsters'
-    get "/encounters" => 'admin#encounters'
+    resources :users, only: %i[index edit update destroy]
+    get '/index' => 'admin#index'
+    get '/export_items' => 'admin#export_items'
+    get '/items' => 'admin#items'
+    get '/feats' => 'admin#feats'
+    get '/monsters' => 'admin#monsters'
+    get '/encounters' => 'admin#encounters'
   end
-
   resources :races, :klasses, :aides
-
   resources :character_creation do
     member do
       get 'choose_race'
@@ -97,30 +90,25 @@ Rails.application.routes.draw do
       patch 'save_feats_additional_info'
     end
   end
-  get "/resume_race"  => 'character_creation#resume_race',  as: 'resume_race'
-  get "/resume_klass" => 'character_creation#resume_klass', as: 'resume_klass'
-
+  get '/resume_race'  => 'character_creation#resume_race',  as: 'resume_race'
+  get '/resume_klass' => 'character_creation#resume_klass', as: 'resume_klass'
   resources :characters do
     member do
-      patch 'choose_campaign/:camp' => "characters#choose_campaign", as: "choose_campaign"
-      patch 'remove_campaign/:camp' => "characters#remove_campaign", as: "remove_campaign"
+      patch 'choose_campaign/:camp' => 'characters#choose_campaign', as: 'choose_campaign'
+      patch 'remove_campaign/:camp' => 'characters#remove_campaign', as: 'remove_campaign'
     end
   end
-
   resources :campaigns do
     resources :games do
     end
   end
-
-  resources :comments, only: [:create, :update, :destroy]
-
+  resources :comments, only: %i[create update destroy]
   resources :welcomes, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

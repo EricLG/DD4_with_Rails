@@ -4,53 +4,53 @@
 <% end %>
 
 <div class="row">
-    <div class="col-sm-8">
-        <% previous_index, next_index = game_index(@games, @game) %>
-        <%= link_to "<< Partie précédante", campaign_game_path(@campaign, previous_index) unless previous_index.nil?%>
-        <%= link_to("Partie suivante >>", campaign_game_path(@campaign, next_index), class: "pull-right" )unless next_index.nil?%>
-        <h2><%= @game.name %> <small>le <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></small></h2>
-        <br>
-        <%= simple_format @game.description, class: "well" %>
-        <% if current_user_admin? || @game.game_master?(@current_user) %>
-            <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
-        <% end %>
+  <div class="col-sm-8">
+    <% previous_index, next_index = game_index(@games, @game) %>
+    <%= link_to "<< Partie précédante", campaign_game_path(@campaign, previous_index) unless previous_index.nil?%>
+    <%= link_to("Partie suivante >>", campaign_game_path(@campaign, next_index), class: "pull-right" )unless next_index.nil?%>
+    <h2><%= @game.name %> <small>le <%= @game.played.in_time_zone("Europe/Paris").strftime("%d/%m/%Y") %></small></h2>
+    <br>
+    <%= simple_format @game.description, class: "well" %>
+    <% if current_user_admin? || @game.game_master?(@current_user) %>
+      <p><%= link_to "Modifier la partie", edit_campaign_game_path(@campaign, @game.id) %></p>
+    <% end %>
 
-        <h3>Illustrations</h3>
-        <% if @game.illustrations.empty? %>
-            <div>
-                <p>Aucune illustrations.</p>
-            </div>
-        <% else %>
-            <div class="my-gallery" >
-            <% @game.illustrations.each do |image| %>
-               <figure class="inline-block">
-                    <%= link_to(
-                            image_tag(image.thumb.url, class: "img-responsive", alt: image.file.basename),
-                            image.url,
-                            { title:
-                            image.file.basename , "data-size": image.dimensions })
-                    %>
-                    <figcaption class="text-center center-block"><small><%= image.file.basename %></small></figcaption>
-                </figure>
-            <% end %>
-            </div>
-        <% end %>
+    <h3>Illustrations</h3>
+    <% if @game.illustrations.empty? %>
+      <div>
+        <p>Aucune illustrations.</p>
+      </div>
+    <% else %>
+      <div class="my-gallery" >
+      <% @game.illustrations.each do |image| %>
+         <figure class="inline-block">
+          <%= link_to(
+              image_tag(image.thumb.url, class: "img-responsive", alt: image.file.basename),
+              image.url,
+              { title:
+              image.file.basename , "data-size": image.dimensions })
+          %>
+          <figcaption class="text-center center-block"><small><%= image.file.basename %></small></figcaption>
+        </figure>
+      <% end %>
+      </div>
+    <% end %>
 
-        <h3>Debriefing</h3>
-        <% if @game.comments.empty? %>
-            <p>Il n'y a actuellement aucun commentaires</p>
-        <% else %>
-            <%= render @game.comments %>
-        <% end %>
-        <% if @current_user %>
-            <%= render 'comments/form' %>
-        <% else %>
-            <p>Connectez-vous pour écrire un commentaire.</p>
-        <% end %>
-    </div>
-    <div class="col-sm-4">
-        <%= render "campaigns/games_list" %>
-    </div>
+    <h3>Debriefing</h3>
+    <% if @game.comments.empty? %>
+      <p>Il n'y a actuellement aucun commentaires</p>
+    <% else %>
+      <%= render @game.comments %>
+    <% end %>
+    <% if @current_user %>
+      <%= render 'comments/form' %>
+    <% else %>
+      <p>Connectez-vous pour écrire un commentaire.</p>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <%= render "campaigns/games_list" %>
+  </div>
 </div>
 
 <%= render "layouts/photoswipe" %>

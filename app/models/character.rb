@@ -353,6 +353,5 @@ class Character < ApplicationRecord
                  else
                    30
                  end
-
   end
 end

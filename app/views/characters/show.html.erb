@@ -1,84 +1,84 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-    <%= render "characters_list" %>
-    <%= render "wish_list" %>
+  <%= render "characters_list" %>
+  <%= render "wish_list" %>
 <% end %>
 
 <div class="row">
-    <h3 class="col-sm-8">
-        <span class="underline"><strong class="firebrick"><%= @character.name %></strong>
-        <small><%= @character.race.try(:name) %> <%= @character.klass.try(:name) %> de niveau <%= @character.level %> (<%= @character.experience %> exp.)</small></span>
-    </h3>
-    <p class="col-sm-8 small">
-        <% not_available = 'N/A' %>
-        Voie parangonique : <%= @character.parangon || 'aucune' %>, destinée épique : <%= @character.epic || 'aucune' %>.<br>
-        Age : <%= @character.age || not_available %>,
-        catégorie de taille : <%= @character.race.try(&:cat_size).blank? ? not_available : @character.race.cat_size %>,
-        taille : <%= @character.height.blank? ? not_available : @character.height %>,
-        poids : <%= @character.weight.blank? ? not_available : @character.weight %>.<br>
-        Dieu : <%= @character.god.try(&:name).blank? ? not_available : @character.god.name%>,
-        alignement : <%= @character.alignment.blank? ? not_available : @character.alignment %>,
-        vision : <%= @character.race.try(:vision).blank? ? not_available : @character.race.vision %>.<br>
-        Langues connus : <%= @show_languages %>.
-        Groupe : <%= @character.party.blank? ? not_available : @character.party %>
-    </p>
-    <%= image_tag(@character.avatar.character_sheet.url, class: "media-object img-responsive", alt: @character.name) %>
+  <h3 class="col-sm-8">
+    <span class="underline"><strong class="firebrick"><%= @character.name %></strong>
+    <small><%= @character.race.try(:name) %> <%= @character.klass.try(:name) %> de niveau <%= @character.level %> (<%= @character.experience %> exp.)</small></span>
+  </h3>
+  <p class="col-sm-8 small">
+    <% not_available = 'N/A' %>
+    Voie parangonique : <%= @character.parangon || 'aucune' %>, destinée épique : <%= @character.epic || 'aucune' %>.<br>
+    Age : <%= @character.age || not_available %>,
+    catégorie de taille : <%= @character.race.try(&:cat_size).blank? ? not_available : @character.race.cat_size %>,
+    taille : <%= @character.height.blank? ? not_available : @character.height %>,
+    poids : <%= @character.weight.blank? ? not_available : @character.weight %>.<br>
+    Dieu : <%= @character.god.try(&:name).blank? ? not_available : @character.god.name%>,
+    alignement : <%= @character.alignment.blank? ? not_available : @character.alignment %>,
+    vision : <%= @character.race.try(:vision).blank? ? not_available : @character.race.vision %>.<br>
+    Langues connus : <%= @show_languages %>.
+    Groupe : <%= @character.party.blank? ? not_available : @character.party %>
+  </p>
+  <%= image_tag(@character.avatar.character_sheet.url, class: "media-object img-responsive", alt: @character.name) %>
 </div>
 
 <div class="row">
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#combat"role="tab" data-toggle="tab">Combat</a></li>
-        <li role="presentation" class=""><a href="#skill"role="tab" data-toggle="tab">Compétences</a></li>
-        <li role="presentation" class=""><a href="#feat"role="tab" data-toggle="tab">Talents</a></li>
-        <li role="presentation" class=""><a href="#feature"role="tab" data-toggle="tab">Aptitudes</a></li>
-        <li role="presentation" class=""><a href="#stuff"role="tab" data-toggle="tab">Équipement</a></li>
-        <li role="presentation" class=""><a href="#roleplay"role="tab" data-toggle="tab">Roleplay</a></li>
-    </ul>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#combat"role="tab" data-toggle="tab">Combat</a></li>
+    <li role="presentation" class=""><a href="#skill"role="tab" data-toggle="tab">Compétences</a></li>
+    <li role="presentation" class=""><a href="#feat"role="tab" data-toggle="tab">Talents</a></li>
+    <li role="presentation" class=""><a href="#feature"role="tab" data-toggle="tab">Aptitudes</a></li>
+    <li role="presentation" class=""><a href="#stuff"role="tab" data-toggle="tab">Équipement</a></li>
+    <li role="presentation" class=""><a href="#roleplay"role="tab" data-toggle="tab">Roleplay</a></li>
+  </ul>
 </div>
 
 <div class="tab-content">
-    <div class="tab-pane active" id="combat" role="tabpanel">
-        <% if @character.ability_bonus_ids.empty? %>
-            <p>Vous devez définir vos caractéristiques.</p>
-        <% else %>
-            <%= render "characters/show/combat" %>
-        <% end %>
-    </div>
-    <div class="tab-pane" id="skill" role="tabpanel">
-        <% if @character.ability_bonus_ids.empty? || @character.skill_bonus_ids.empty? %>
-            <p>Vous devez définir vos caractéristiques et choisir vos formations de compétences.</p>
-        <% else %>
-            <%= render "characters/show/skill" %>
-        <% end %>
-    </div>
-    <div class="tab-pane" id="feat" role="tabpanel">
-        <%= render "characters/show/feat" %>
-    </div>
-    <div class="tab-pane" id="feature" role="tabpanel">
-        <% if @character.race_choice_ids.empty? || @character.klass_choice_ids.empty? %>
-            <p>Vous devez définir vos aptitudes de race et de classe.</p>
-        <% else %>
-            <%= render "characters/show/feature" %>
-        <% end %>
-    </div>
-    <%= render "characters/show/stuff" %>
+  <div class="tab-pane active" id="combat" role="tabpanel">
+    <% if @character.ability_bonus_ids.empty? %>
+      <p>Vous devez définir vos caractéristiques.</p>
+    <% else %>
+      <%= render "characters/show/combat" %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="skill" role="tabpanel">
+    <% if @character.ability_bonus_ids.empty? || @character.skill_bonus_ids.empty? %>
+      <p>Vous devez définir vos caractéristiques et choisir vos formations de compétences.</p>
+    <% else %>
+      <%= render "characters/show/skill" %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="feat" role="tabpanel">
+    <%= render "characters/show/feat" %>
+  </div>
+  <div class="tab-pane" id="feature" role="tabpanel">
+    <% if @character.race_choice_ids.empty? || @character.klass_choice_ids.empty? %>
+      <p>Vous devez définir vos aptitudes de race et de classe.</p>
+    <% else %>
+      <%= render "characters/show/feature" %>
+    <% end %>
+  </div>
+  <%= render "characters/show/stuff" %>
 </div>
 
 <br>
 
 <div class="row">
-    <div class="col-sm-8">
-        <% if @character.user_id == @current_user.id %>
-            <%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
-            <%= link_to "Modifier race", choose_race_character_creation_path(@character.id) %><br>
-            <%= link_to "Modifier classe", choose_class_character_creation_path(@character.id) %><br>
-            <%= link_to "Modifier infos", choose_optional_fields_character_creation_path(@character.id) %><br>
-            <%= link_to "Modifier caractéristiques", choose_abilities_character_creation_path(@character.id) %><br>
-            <%= link_to "Modifier aptitudes", choose_features_character_creation_path(@character.id) %><br>
-            <%= link_to "Modifier compétences", choose_skills_character_creation_path(@character.id) %><br>
-            <%= link_to "Modifier talents", choose_feats_character_creation_path(@character.id) %><br>
-            <br>
-            <%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>
-        <% end %>
-    </div>
+  <div class="col-sm-8">
+    <% if @character.user_id == @current_user.id %>
+      <%= link_to "Modifier mes campagnes", edit_character_path(@character.id) %><br>
+      <%= link_to "Modifier race", choose_race_character_creation_path(@character.id) %><br>
+      <%= link_to "Modifier classe", choose_class_character_creation_path(@character.id) %><br>
+      <%= link_to "Modifier infos", choose_optional_fields_character_creation_path(@character.id) %><br>
+      <%= link_to "Modifier caractéristiques", choose_abilities_character_creation_path(@character.id) %><br>
+      <%= link_to "Modifier aptitudes", choose_features_character_creation_path(@character.id) %><br>
+      <%= link_to "Modifier compétences", choose_skills_character_creation_path(@character.id) %><br>
+      <%= link_to "Modifier talents", choose_feats_character_creation_path(@character.id) %><br>
+      <br>
+      <%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>
+    <% end %>
+  </div>
 </div>

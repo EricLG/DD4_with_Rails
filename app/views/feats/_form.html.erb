@@ -4,10 +4,10 @@
   <%= input_select_form(f, :category, options_for_select(Feat::CATEGORY, @feat.category), Feat.human_attribute_name(:category), {size: 1}) %>
   <%= input_text_field_form(f, :avantage, Feat.human_attribute_name(:avantage)) %>
   <%= input_text_field_form(f, :errata,   Feat.human_attribute_name(:errata)) %>
-  <%= input_select_form(f, :prerequisited_race_ids,    options_from_collection_for_select(@races, :id, :name, @feat.prerequisited_race_ids),          Feat.human_attribute_name(:prerequisited_race_ids),           {blank: true, multiple: true}) %>
-  <%= input_select_form(f, :prerequisited_klass_ids,   options_from_collection_for_select(@klasses, :id, :name, @feat.prerequisited_klass_ids),         Feat.human_attribute_name(:prerequisited_klass_ids),          {blank: true, multiple: true, size: 3}) %>
-  <%= input_select_form(f, :prerequisited_feature_ids, options_from_collection_for_select(@features, :id, :name, @feat.prerequisited_feature_ids),       Feat.human_attribute_name(:prerequisited_feature_ids),        {blank: true, multiple: true, size: 3}) %>
-  <%= input_select_form(f, :source_id,                 options_from_collection_for_select(@sources, :id, :name, @feat.source_id),                       Feat.human_attribute_name(:source_id),                        {blank: true}) %>
+  <%= input_select_form(f, :prerequisited_race_ids,    options_from_collection_for_select(@races, :id, :name, @feat.prerequisited_race_ids),        Feat.human_attribute_name(:prerequisited_race_ids),     {blank: true, multiple: true}) %>
+  <%= input_select_form(f, :prerequisited_klass_ids,   options_from_collection_for_select(@klasses, :id, :name, @feat.prerequisited_klass_ids),     Feat.human_attribute_name(:prerequisited_klass_ids),    {blank: true, multiple: true, size: 3}) %>
+  <%= input_select_form(f, :prerequisited_feature_ids, options_from_collection_for_select(@features, :id, :name, @feat.prerequisited_feature_ids),  Feat.human_attribute_name(:prerequisited_feature_ids),  {blank: true, multiple: true, size: 3}) %>
+  <%= input_select_form(f, :source_id,                 options_from_collection_for_select(@sources, :id, :name, @feat.source_id),                   Feat.human_attribute_name(:source_id),                  {blank: true}) %>
   <%= submit_text_form(f, {add_another: true}) %>
 
 <% end %>

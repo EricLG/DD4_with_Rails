@@ -91,7 +91,7 @@ class CharactersController < ApplicationController
   def remove_campaign
     player = Player.find_by(user_id: @current_user.id, character_id: params[:id], campaign_id: params[:camp])
 
-    if player && player.delete
+    if player&.delete
       flash[:success] = 'Vous avez quitter la campagne'
       redirect_to edit_character_path(params[:id])
     else

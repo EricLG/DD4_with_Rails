@@ -1,35 +1,35 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
-    <%= render "campaign_menu" %>
+  <%= render "campaign_menu" %>
 <% end %>
 
 <div class="row">
-    <div class="col-sm-8">
-        <h2><%= @campaign.name %></h2>
-        <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
-        <%= simple_format @campaign.description %>
-        <% if @campaign.game_master?(@current_user) %>
-            <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+  <div class="col-sm-8">
+    <h2><%= @campaign.name %></h2>
+    <h3>Maître du jeu : <%= @campaign.game_master.name %></h3>
+    <%= simple_format @campaign.description %>
+    <% if @campaign.game_master?(@current_user) %>
+      <p><%= link_to t('.update_campaign_link'), edit_campaign_path(@campaign) %></p>
+    <% end %>
+
+    <h3>Héros</h3>
+    <% if @characters.blank? %>
+      <p>Aucun héros n'a rejoint la campagne.</p>
+    <% else %>
+      <ul>
+        <% @characters.each do |character| %>
+          <li>
+            <%= link_to character.name, character_path(character.id) %>
+            <small>joué par <%= character.user.name %></small>
+          </li>
         <% end %>
+      </ul>
+    <% end %>
 
-        <h3>Héros</h3>
-        <% if @characters.blank? %>
-            <p>Aucun héros n'a rejoint la campagne.</p>
-        <% else %>
-            <ul>
-                <% @characters.each do |character| %>
-                    <li>
-                        <%= link_to character.name, character_path(character.id) %>
-                        <small>joué par <%= character.user.name %></small>
-                    </li>
-                <% end %>
-            </ul>
-        <% end %>
+    <%= render "comments" %>
+  </div>
 
-        <%= render "comments" %>
-    </div>
-
-    <div class="col-sm-4">
-        <%= render "games_list" %>
-    </div>
+  <div class="col-sm-4">
+    <%= render "games_list" %>
+  </div>
 </div>

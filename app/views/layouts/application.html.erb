@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Aide au jeu de rôle Donjons & Dragons 4</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
+  <title>Aide au jeu de rôle Donjons & Dragons 4</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
 
 <body class="container background">
-    <div class="page">
-        <%= render 'layouts/header' %>
-        <%= render 'layouts/main_menu' %>
-        <%= render 'layouts/flash' %>
-        <div class="row no-margin">
-            <div class="col-sm-2">
-                <%= yield :sidebloc %>
-            </div>
-            <div class="col-sm-10">
-                <%= yield %>
-            </div>
-        </div>
-        <footer class="row col-sm-12 no-margin">
-        </footer>
+  <div class="page">
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/main_menu' %>
+    <%= render 'layouts/flash' %>
+    <div class="row no-margin">
+      <div class="col-sm-2">
+        <%= yield :sidebloc %>
+      </div>
+      <div class="col-sm-10">
+        <%= yield %>
+      </div>
     </div>
+    <footer class="row col-sm-12 no-margin">
+    </footer>
+  </div>
 </body>
 </html>

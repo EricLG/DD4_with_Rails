@@ -1,50 +1,50 @@
 <div class="row">
-    <div class="col-sm-12">
-        <div class="row">
-            <h4 class="col-sm-11 black-bg white-text">Aptitude raciale</h4>
-        </div>
-        <div class="row">
-            <div class="col-sm-11">
-                <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th class="col-sm-4 thin-text">Aptitude</th>
-                            <th class="col-sm-8 thin-text">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @race_features.each do |feature| %>
-                            <tr>
-                                <td><%= feature.name %></td>
-                                <%= simple_format(capitalize_first(feature.description), { class: "" }, wrapper_tag: 'td') %>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <h4 class="col-sm-11 black-bg white-text">Aptitude de classe</h4>
-        </div>
-        <div class="row">
-            <div class="col-sm-11">
-                <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th class="col-sm-4 thin-text">Aptitude</th>
-                            <th class="col-sm-8 thin-text">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @classe_features.each do |feature| %>
-                            <tr>
-                                <td><%= feature.name %></td>
-                                <%= simple_format(capitalize_first(feature.description), { class: "" }, wrapper_tag: 'td') %>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <h4 class="col-sm-11 black-bg white-text">Aptitude raciale</h4>
     </div>
+    <div class="row">
+      <div class="col-sm-11">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th class="col-sm-4 thin-text">Aptitude</th>
+              <th class="col-sm-8 thin-text">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @race_features.each do |feature| %>
+              <tr>
+                <td><%= feature.name %></td>
+                <%= simple_format(capitalize_first(feature.description), { class: "" }, wrapper_tag: 'td') %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <h4 class="col-sm-11 black-bg white-text">Aptitude de classe</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-11">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th class="col-sm-4 thin-text">Aptitude</th>
+              <th class="col-sm-8 thin-text">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @classe_features.each do |feature| %>
+              <tr>
+                <td><%= feature.name %></td>
+                <%= simple_format(capitalize_first(feature.description), { class: "" }, wrapper_tag: 'td') %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

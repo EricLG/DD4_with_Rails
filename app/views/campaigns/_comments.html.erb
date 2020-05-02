@@ -1,42 +1,42 @@
 <h3>Commentaires</h3>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#roleplay" data-toggle="tab">Roleplay</a></li>
-            <li role="presentation" class=""><a href="#debrief" data-toggle="tab">Debriefing</a></li>
-            <li role="presentation" class=""><a href="#note-perso" data-toggle="tab">Notes personnelles</a></li>
-        </ul>
+  <div class="panel-heading">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#roleplay" data-toggle="tab">Roleplay</a></li>
+      <li role="presentation" class=""><a href="#debrief" data-toggle="tab">Debriefing</a></li>
+      <li role="presentation" class=""><a href="#note-perso" data-toggle="tab">Notes personnelles</a></li>
+    </ul>
+  </div>
+  <div class="panel-body tab-content">
+    <div id="roleplay" class="tab-pane active">
+    <% if @rp_comments.empty? %>
+      <p><small>Il n'y a actuellement aucun commentaires roleplay</small></p>
+    <% else %>
+      <br>
+      <%= render @rp_comments %>
+    <% end %>
     </div>
-    <div class="panel-body tab-content">
-        <div id="roleplay" class="tab-pane active">
-        <% if @rp_comments.empty? %>
-            <p><small>Il n'y a actuellement aucun commentaires roleplay</small></p>
-        <% else %>
-            <br>
-            <%= render @rp_comments %>
-        <% end %>
-        </div>
-        <div id="debrief" class="tab-pane">
-        <% if @debrief_comments.empty? %>
-            <p><small>Il n'y a actuellement aucun debriefing</small></p>
-        <% else %>
-            <br>
-            <%= render @debrief_comments %>
-        <% end %>
-        </div>
-        <div id="note-perso" class="tab-pane">
-        <% if @note_comments.empty? %>
-            <p><small>Vous n'avez écrits aucune notes personnelles</small></p>
-        <% else %>
-            <br>
-            <%= render @note_comments %>
-        <% end %>
-        </div>
+    <div id="debrief" class="tab-pane">
+    <% if @debrief_comments.empty? %>
+      <p><small>Il n'y a actuellement aucun debriefing</small></p>
+    <% else %>
+      <br>
+      <%= render @debrief_comments %>
+    <% end %>
     </div>
+    <div id="note-perso" class="tab-pane">
+    <% if @note_comments.empty? %>
+      <p><small>Vous n'avez écrits aucune notes personnelles</small></p>
+    <% else %>
+      <br>
+      <%= render @note_comments %>
+    <% end %>
+    </div>
+  </div>
 </div>
 <% if @current_user %>
-    <hr />
-    <%= render 'comments/form' %>
+  <hr />
+  <%= render 'comments/form' %>
 <% else %>
-    <p>Connectez-vous pour écrire un commentaire.</p>
+  <p>Connectez-vous pour écrire un commentaire.</p>
 <% end %>
