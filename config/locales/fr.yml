@@ -137,6 +137,7 @@ fr:
         common:           "Fréquent"
         uncommon:         "Peu fréquent"
         rare:             "Rare"
+        characters: 'Héros'
       campaign:
         status: "État"
         game_master_id: "Maître du jeu"

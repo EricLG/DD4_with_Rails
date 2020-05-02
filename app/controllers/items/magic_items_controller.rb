@@ -34,7 +34,15 @@ class Items::MagicItemsController < ApplicationController
 
   def show
     @item = MagicItem.find_by_id(params[:id])
-    @in_wishlists = @current_user.magic_items.include?(@item) if @current_user
+    @characters_with_item_in_wishlist = []
+    @characters_without_item_in_wishlist = []
+    @current_user.characters.each do |character|
+      if character.magic_item_ids.include?(@item.id)
+        @characters_with_item_in_wishlist << character
+      else
+        @characters_without_item_in_wishlist << character
+      end
+    end
     @wishlist = Wishlist.new
   end
 
@@ -107,11 +115,12 @@ class Items::MagicItemsController < ApplicationController
   end
 
   def wishlist_remove
-    @item = MagicItem.find_by_id(params[:item])
-    if @current_user.magic_items.delete @item
-      flash[:success] = "L'objet \"#{@item.name}\" est maintenant retiré de votre liste de souhait."
+    wished_item = MagicItem.find_by_id(params[:item])
+    character = Character.find_by_id(params[:character])
+    if character.magic_items.delete wished_item
+      flash[:success] = "L'objet \"#{wished_item&.name}\" est maintenant retiré de la liste de souhait de #{character.name}."
     else
-      flash[:error] = "L'objet \"#{@item.name}\" n'a pas été retiré de votre liste de souhait."
+      flash[:error] = "L'objet \"#{wished_item&.name}\" n'a pas été retiré de votre liste de souhait."
     end
     redirect_back(fallback_location: root_path)
   end
