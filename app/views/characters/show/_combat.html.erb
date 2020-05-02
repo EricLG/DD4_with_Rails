@@ -1,6 +1,23 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="row">
+      <h4 class="col-sm-4 black-bg white-text">Jets d'attaque</h4>
+      <h4 class="col-sm-6 col-sm-offset-1 black-bg white-text">Jets de dégâts</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <p>WIP Jets d'attaque</p>
+      </div>
+      <div class="col-sm-6 col-sm-offset-1">
+        <p>WIP Jets de dégâts</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
       <h4 class="col-sm-4 black-bg white-text">Caractéristiques</h4>
       <h4 class="col-sm-6 col-sm-offset-1 black-bg white-text">Défenses</h4>
     </div>
@@ -119,6 +136,37 @@
               <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
               <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <h4 class="col-sm-4 black-bg white-text">Points de vie</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th class="text-center thin-text">Total</th>
+              <th class="text-center thin-text">Péril</th>
+              <th class="text-center thin-text">Val. de récup</th>
+              <th class="text-center thin-text">Récup/jour</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center thin-text"><%= @hp[:total] %></td>
+              <td class="text-center thin-text"><%= @hp[:half_blooded] %></td>
+              <td class="text-center thin-text"><%= @hp[:healing_surge] %></td>
+              <td class="text-center thin-text"><%= @hp[:healing_surge_by_day] %></td>
+            </tr>
+
           </tbody>
         </table>
       </div>

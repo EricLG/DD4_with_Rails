@@ -54,6 +54,10 @@ class Character < ApplicationRecord
 
   RITUAL_CASTER = %w[Barde Druide Invocateur Magicien Prêtre Psion].freeze
 
+  def constitution
+    self.ability_bonuses.constitution
+  end
+
   def default_image
     File.join('mini_icones', "#{self.race.try(&:normalize_str)}.jpg")
   end
@@ -221,6 +225,17 @@ class Character < ApplicationRecord
   # Int - Lance 1d6
   def self.dice
     rand(1..6)
+  end
+
+  # Hash - return a hash with all info about hit points
+  def hit_points
+    full_hp = self.klass.base_hp + self.constitution.total_value + (self.klass.hp_per_level * (self.level - 1))
+    {
+      total: full_hp,
+      half_blooded: (full_hp / 2).floor,
+      healing_surge: (full_hp / 4).floor,
+      healing_surge_by_day: self.klass.healing_surge + self.constitution.modifier
+    }
   end
 
   def level_to_xp
