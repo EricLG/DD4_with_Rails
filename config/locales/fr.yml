@@ -133,6 +133,7 @@ fr:
         skill_malus:        "Malus de compétences"
         shield_bonus:       "Bonus de bouclier"
       magic_item:
+        level_min:          "Niveau min"
         rarities: "Rareté"
         common:           "Fréquent"
         uncommon:         "Peu fréquent"
@@ -257,8 +258,7 @@ fr:
       form_search:
         item_level_max: "Niveau maximum"
       show:
-        level_min:        "Niveau %{lvl}+"
-        edit:             "Modifier %{item}"
+        level_min:       "Niveau %{lvl}+"
         add_wishlist:    "Ajouter à ma liste de souhait"
       edit:
         title_edit:        "Modification %{item}"
