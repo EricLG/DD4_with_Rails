@@ -1,13 +1,12 @@
 class FeatSearch
   include ActiveModel::Model
 
-  FIELDS = %i[name prerequisited_klasses prerequisited_races source].freeze
+  FIELDS = %i[category name prerequisited_klasses prerequisited_races source].freeze
   attr_accessor(*FIELDS)
-  attr_accessor :params, :category
+  attr_accessor :params
 
-  def initialize(params = nil, category = 'heroic')
+  def initialize(params = nil)
     super(params)
-    @category = category
   end
 
   def build_search
@@ -17,14 +16,16 @@ class FeatSearch
       params[p] = v if v && !v.blank?
     end
 
-    search = Feat.where(category: category)
+    search = Feat.all.includes(:source)
     return search if params.empty?
 
+    category_params = params.delete(:category)
     name_params     = params.delete(:name)
     source_params   = params.delete(:source)
     klasses_params  = params.delete(:prerequisited_klasses)
     races_params    = params.delete(:prerequisited_races)
 
+    search = search.where(category: category_params) if category_params
     search = search.where('feats.name ILIKE ? or avantage ILIKE ?', "%#{name_params}%", "%#{name_params}%") if name_params
     search = search.joins(:source).where(source: source_params) if source_params
     # search = search.joins(:prerequisited_klasses).where(klasses: {id: klasses_params}) if klasses_params

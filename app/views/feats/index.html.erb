@@ -1,101 +1,20 @@
 <%# Sidebloc content%>
 <% content_for :sidebloc do %>
- <%= render "feats_menu" %>
+  <%= render "feats_menu" %>
 <% end %>
 
 <div class="row">
   <h3 class="col-sm-12"><%= t('feats.title_index') %></h3>
 </div>
 
+    <%= render"form_search" %>
+
 <div class="row">
-
-  <div class="panel-group col-sm-4" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-
-      <div class="panel-heading" role="tab" id="h_heroic">
-        <h4 class="panel-title">
-        <% collapse_id = 'heroic' %>
-        <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="heroic">
-          Talents héroiques&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
-        </a>
-        </h4>
-      </div>
-      <div id="heroic" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_heroic">
-        <div class="panel-body">
-          <%= display_progress_bar("Total (avec tous les conduits divins)", 706, 706) %>
-          <%= display_progress_bar("Manuel du Joueur 1 (+3 talents suite errata)", 84, 84) %>
-          <%= display_progress_bar("Manuel du Joueur 2", 62, 62) %>
-          <%= display_progress_bar("Manuel du Joueur 3", 80, 80) %>
-          <%= display_progress_bar("Art de la Guerre 1", 89, 89) %>
-          <%= display_progress_bar("Art de la Guerre 2", 91, 91) %>
-          <%= display_progress_bar("Force de la Nature", 73, 73) %>
-          <%= display_progress_bar("Intervention divine", 76, 76) %>
-          <%= display_progress_bar("Secret des Arcanes (les familiers ne sont pas comptés)", 58, 58) %>
-          <%= display_progress_bar("Guide des Joueurs d'Eberron (avec Dracogramme)", 52, 52) %>
-          <%= display_progress_bar("Guide des Joueurs des Royaumes Oubliés", 41, 41) %>
-        </div>
-      </div>
-
-    </div>
+<% if @feats.empty? %>
+  <p class="col-sm-5"><%= t('common.no_result') %></p>
+<% else %>
+  <div class="col-sm-12">
+    <%= render "index_table", feats: @feats %>
   </div>
-
-  <div class="panel-group col-sm-4" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-
-      <div class="panel-heading" role="tab" id="h_parangonic">
-        <h4 class="panel-title">
-        <% collapse_id = 'parangonic' %>
-        <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="parangonic">
-          Talents parangonique&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
-        </a>
-        </h4>
-      </div>
-      <div id="parangonic" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_parangonic">
-        <div class="panel-body">
-          <%= display_progress_bar("Total", 205, 332) %>
-          <%= display_progress_bar("Manuel du Joueur 1 (3 talents parangoniques sont passés héroiques)", 49, 49) %>
-          <%= display_progress_bar("Manuel du Joueur 2", 39, 39) %>
-          <%= display_progress_bar("Manuel du Joueur 3", 52, 52) %>
-          <%= display_progress_bar("Art de la Guerre 1", 23, 51) %>
-          <%= display_progress_bar("Art de la Guerre 2", 42, 42) %>
-          <%= display_progress_bar("Force de la Nature", 0, 31) %>
-          <%= display_progress_bar("Intervention divine", 0, 29) %>
-          <%= display_progress_bar("Secret des Arcanes", 0, 23) %>
-          <%= display_progress_bar("Guide des Joueurs d'Eberron (avec Dracogramme)", 0, 4) %>
-          <%= display_progress_bar("Guide des Joueurs des Royaumes Oubliés", 0, 12) %>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="panel-group col-sm-4" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-
-      <div class="panel-heading" role="tab" id="h_epic">
-        <h4 class="panel-title">
-        <% collapse_id = 'epic' %>
-        <a role="button" data-toggle="collapse" href=<%="\##{collapse_id}"%> aria-expanded="true" aria-controls="epic">
-          Talents épiques&nbsp;<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
-        </a>
-        </h4>
-      </div>
-      <div id="epic" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="h_epic">
-        <div class="panel-body">
-          <%= display_progress_bar("Total", 0, 0) %>
-          <%= display_progress_bar("Manuel du Joueur 1", 0, 0) %>
-          <%= display_progress_bar("Manuel du Joueur 2", 0, 0) %>
-          <%= display_progress_bar("Manuel du Joueur 3", 0, 0) %>
-          <%= display_progress_bar("Art de la Guerre 1", 0, 0) %>
-          <%= display_progress_bar("Art de la Guerre 2", 0, 0) %>
-          <%= display_progress_bar("Force de la Nature", 0, 0) %>
-          <%= display_progress_bar("Intervention divine", 0, 0) %>
-          <%= display_progress_bar("Secret des Arcanes", 0, 0) %>
-          <%= display_progress_bar("Guide des Joueurs d'Eberron (avec Dracogramme)", 0, 0) %>
-          <%= display_progress_bar("Guide des Joueurs des Royaumes Oubliés", 0, 0) %>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<% end %> <!-- Fin if -->
 </div>

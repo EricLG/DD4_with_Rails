@@ -1,24 +1,14 @@
 class FeatsController < ApplicationController
-  before_action :find_dependancies, only: %i[heroics parangonics epics new edit]
+  before_action :find_dependancies, only: %i[index new edit]
 
-  def index; end
-
-  def heroics
-    @search = FeatSearch.new(search_feat_params, 'heroic')
+  def index
+    @search = FeatSearch.new(search_feat_params)
+    @categories = [
+      %w[Héroique heroic],
+      %w[Parangonique parangonic],
+      %w[Épique epic]
+    ]
     @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
-    render :sorted_feats
-  end
-
-  def parangonics
-    @search = FeatSearch.new(search_feat_params, 'parangonic')
-    @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
-    render :sorted_feats
-  end
-
-  def epics
-    @search = FeatSearch.new(search_feat_params, 'epic')
-    @feats = @search.build_search.distinct.paginate(page: params[:page], per_page: 20).order(name: :asc)
-    render :sorted_feats
   end
 
   def new
@@ -86,6 +76,7 @@ class FeatsController < ApplicationController
 
     params.require(:feat_search).permit(
       :name,
+      :category,
       :prerequisited_klasses,
       :prerequisited_races,
       :source

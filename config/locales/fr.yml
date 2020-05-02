@@ -203,6 +203,7 @@ fr:
     validate:           "Valider"
     w_false:            "Faux"
     w_true:             "Vrai"
+    category: 'Catégorie'
   consumables:
     kind:
       potion: 'Potions'
@@ -299,7 +300,7 @@ fr:
 # Termes liés aux talents
   feats:
     title_list:     "Liste des talents"
-    title_index:    "Les talents de DD4"
+    title_index:    "Talents de D&D4"
     title_new:      "Ajout d'un nouveau talent"
     name:           "Nom"
     prerequisites:  "Prérequis"

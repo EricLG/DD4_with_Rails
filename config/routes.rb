@@ -50,11 +50,6 @@ Rails.application.routes.draw do
     end
   end
   resources :feats do
-    collection do
-      get 'heroics'
-      get 'parangonics'
-      get 'epics'
-    end
     member do
       get 'feat_avantage'
     end

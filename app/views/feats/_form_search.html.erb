@@ -1,41 +1,42 @@
-<%= form_for @search, {url: build_feats_link(params["action"]), method: :get, class: 'form-inline'} do |form| %>
+<%= form_for @search, {url: feats_path, method: :get, html: {class: 'form-inline'}} do |form| %>
 
-  <div class="form-group col-xs-4">
-    <%= form.label(:name, t('feats.name'), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.text_field(:name, :class=>"form-control") %>
+  <div class="row">
+    <div class="form-group margin-right">
+      <%= form.label(:name, t('feats.name'), class: 'sr-only') %>
+      <%= form.text_field(:name, class: 'form-control', placeholder: t('feats.name')) %>
+    </div>
+
+    <div class="form-group margin-right">
+      <% default_category = params["feat_search"]["category"] if params["feat_search"] %>
+      <%= form.label(:category, t('common.category'), class: 'sr-only') %>
+      <%= form.select :category, build_select_options_with_optgroup(@categories, default_category, t('common.category'), 'Toutes catégories'), {}, {:multiple => false, class: 'form-control' } %>
+    </div>
+
+    <div class="form-group margin-right">
+      <% default_race = params["feat_search"]["prerequisited_races"] if params["feat_search"] %>
+      <%= form.label(:prerequisited_races, t('feats.race'), class: 'sr-only') %>
+      <%= form.select :prerequisited_races, build_select_options_with_optgroup(@races, default_race.to_i, t('feats.race'), 'Toutes races'), {}, {class: 'form-control'} %>
+    </div>
+
+    <div class="form-group margin-right">
+      <% default_klass = params["feat_search"]["prerequisited_klasses"] if params["feat_search"] %>
+      <%= form.label(:prerequisited_klasses, t('feats.klass'), class: 'sr-only') %>
+      <%= form.select :prerequisited_klasses, build_select_options_with_optgroup(@klasses, default_klass.to_i, t('feats.klass'), 'Toutes classes'), {}, {class: 'form-control'} %>
+    </div>
+
+    <div class="form-group">
+      <% default_source = params["feat_search"]["source"] if params["feat_search"] %>
+      <%= form.label(:source, t('common.source'), class: 'sr-only') %>
+      <%= form.select :source, build_select_options_with_optgroup(@sources, default_source, t('common.source'), 'Toutes sources'), {}, {:multiple => false, class: 'form-control'} %>
     </div>
   </div>
 
+<br>
 
-  <div class="form-group col-xs-4">
-    <% default_klass =  params["feat_search"]["prerequisited_klasses"] if params["feat_search"]%>
-    <%= form.label(:prerequisited_klasses, t("feats.klass"), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.select :prerequisited_klasses, options_from_collection_for_select(@klasses, :id, :name, default_klass.to_i ),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
+  <div class="row">
+    <div class="form-group">
+      <%= link_to t('common.reset'), feats_path, class: 'btn btn-default' %>
+      <%= form.submit t('common.validate'), class: 'btn btn-default' %>
     </div>
-  </div>
-
-  <div class="form-group col-xs-4">
-    <% default_race =  params["feat_search"]["prerequisited_races"] if params["feat_search"]%>
-    <%= form.label(:prerequisited_races, t("feats.race"), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.select :prerequisited_races, options_from_collection_for_select(@races, :id, :name, default_race.to_i),{:include_blank => 'Tous'}, {:class=>"form-control"}  %>
-    </div>
-  </div>
-
-  <div class="form-group col-xs-4">
-    <% default_source =  params["feat_search"]["source"] if params["feat_search"]%>
-    <%= form.label(:source, t('common.source'), :class=>"col-sm-4") %>
-    <div class="col-sm-8">
-      <%= form.select :source, options_from_collection_for_select(@sources, :id, :name, default_source), {:include_blank => 'Tous'}, {:multiple => false, :class=>"form-control"}  %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-8">
-      <%= form.submit t("common.validate"), :class => "btn btn-default" %>
-      <%= link_to t("common.reset"), heroics_feats_path, :class => "btn btn-default" %>
-      </div>
   </div>
 <% end %>
