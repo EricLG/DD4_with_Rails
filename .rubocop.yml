@@ -4,17 +4,16 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
 
-
 MethodLength:
-  Max: 35
+  Max: 40 # Default: 10
 
 # Metrics
 Metrics/AbcSize:
-  Max: 20
+  Max: 25 # Default: 15
 Metrics/ClassLength:
-  Max: 150
+  Max: 150 # Default: 100
 Metrics/LineLength:
-  Max: 160
+  Max: 160 # Default: 80
 
 # Style
 Style/AsciiComments:
