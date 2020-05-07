@@ -9,7 +9,7 @@
 <div class="row">
     <% @random_items.each do |item| %>
       <div class="col-sm-6">
-        <%= render "/items/magic_items/show_item", item: item %>
+        <%= render "/items/magic_items/_show/show_item", item: item %>
       </div>
     <% end %>
 </div>

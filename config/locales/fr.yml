@@ -258,8 +258,10 @@ fr:
       form_search:
         item_level_max: "Niveau maximum"
       show:
-        level_min:       "Niveau %{lvl}+"
-        add_wishlist:    "Ajouter à ma liste de souhait"
+        show_item:
+          level_min:       "Niveau %{lvl}+"
+        wishlist_form:
+          add_wishlist:    "Ajouter à ma liste de souhait"
       edit:
         title_edit:        "Modification %{item}"
       new:

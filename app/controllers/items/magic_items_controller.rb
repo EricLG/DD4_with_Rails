@@ -34,13 +34,13 @@ class Items::MagicItemsController < ApplicationController
 
   def show
     @item = MagicItem.find_by_id(params[:id])
-    @characters_with_item_in_wishlist = []
-    @characters_without_item_in_wishlist = []
+    @heroes_with_item_in_wishlist = []
+    @heroes_without_item_in_wishlist = []
     @current_user.characters.each do |character|
       if character.magic_item_ids.include?(@item.id)
-        @characters_with_item_in_wishlist << character
+        @heroes_with_item_in_wishlist << character
       else
-        @characters_without_item_in_wishlist << character
+        @heroes_without_item_in_wishlist << character
       end
     end
     @wishlist = Wishlist.new

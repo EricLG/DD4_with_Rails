@@ -1,0 +1,30 @@
+<%# call with render 'show_item, item: variable, heroes_with_item_in_wishlist: variable2, heroes_without_item_in_wishlist: variable 3, wishlist: variable 4 %>
+<% unless heroes_without_item_in_wishlist.empty? %>
+<div class="row">
+    <div class="col-sm-12">
+      <%= form_for wishlist, {url: wishlist_items_magic_items_path, method: :post, html: {class: 'form-horizontal'}} do |f| %>
+        <%= f.hidden_field :user_id, value: @current_user.id %>
+        <%= f.hidden_field :magic_item_id, value: item.id %>
+        <div class="col-sm-3 form-group">
+          <%= f.label(:character_id, MagicItem.human_attribute_name('characters'), class: 'col-sm-4 control-label') %>
+          <div class="col-sm-8">
+            <%= f.select :character_id, options_from_collection_for_select(heroes_without_item_in_wishlist, :id, :name), {}, {class: 'form-control'} %>
+          </div>
+        </div>
+        <div class="col-sm-6 form-group">
+          <%= f.submit(t('.add_wishlist'), name: 'commit', class: 'btn btn-default', id: 'submit-button') %>
+        </div>
+      <% end %>
+    </div>
+</div>
+<% end %>
+
+<% unless heroes_with_item_in_wishlist.empty? %>
+<div class="row">
+  <div class="col-sm-12">
+    <% heroes_with_item_in_wishlist.each do |character| %>
+      <p><em><%= link_to "Supprimer de la liste de souhait de #{character.name}", rem_wishlist_items_magic_items_path(item: item, character: character.id) %></em></p>
+    <% end %>
+  </div>
+</div>
+<% end %>
