@@ -24,7 +24,7 @@ class MagicItem < ApplicationRecord
   scope :weapons,     -> { joins(:location).where(locations: { code: 'weapon' }) }
   scope :armors,      -> { joins(:location).where(locations: { code: 'chest' }) }
   scope :implements,  -> { joins(:location).where(locations: { code: 'implement' }) }
-  scope :gears,       -> { joins(:location).where(locations: { code: Location::GEAR_CODES }) }
+  scope :gears,       -> { joins(:location).where(locations: { code: Location::GEARS }) }
   scope :amulets,     -> { joins(:location).where(locations: { code: 'neck' }) }
 
   def self.to_csv(options = {})
@@ -78,7 +78,7 @@ class MagicItem < ApplicationRecord
   end
 
   def gear?
-    Location::GEAR_CODES.include?(self.location.code)
+    Location::GEARS.include?(self.location.code)
   end
 
   def level_min
