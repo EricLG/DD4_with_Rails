@@ -52,11 +52,18 @@ class CharactersController < ApplicationController
     @characters = @current_user.characters.order(:name)
     @users = User.all
     @campaigns = Campaign.all
+    @common_weapons = CommonWeapon.all
+    @common_armors = CommonArmor.armors
+    @common_shields = CommonArmor.shields
+    @second_hand_type_options = [
+      ['Arme', 'CommonWeapon'],
+      ['Bouclier', 'CommonArmor']
+    ]
   end
 
   def update
     if @character.update(character_params)
-      redirect_to characters_path
+      redirect_to character_path(@character)
     else
       find_dependancies
       flash[:error] = "Erreur sur les champs suivants: #{@character.errors.full_messages}"

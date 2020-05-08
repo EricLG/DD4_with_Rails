@@ -6,12 +6,37 @@
       </div>
       <div class="row">
         <div class="col-sm-11">
-          <p>WIP : Afficher les équipements</p>
+
+
+          <table class="table table-condensed table-striped">
+            <thead>
+              <tr>
+                <th class="col-sm-4 thin-text">Objets communs</th>
+                <th class="col-sm-8 thin-text">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+          <% mw = @character.main_weapon %>
+          <% ar = @character.armor %>
+          <% sh = @character.second_hand %>
+              <% [mw, ar, sh].each do |item| %>
+              <tr>
+                <td class=""><%= item&.name %></td>
+                  <% if item.is_a?(CommonArmor) %>
+                    <td class="">Bonus d'armure : +<%= item&.armor_bonus %> à la CA, malus de compétence : <%= + item&.skill_malus%> | malus de VD : <%= item&.ms_malus %></td>
+                  <% elsif item.is_a?(CommonWeapon) %>
+                    <td class="">Dégâts : <%= item&.damage %> | maniement : <%= item&.proficiency %></td>
+                  <% else %>
+                    <td class=""></td>
+                  <% end %>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 <div class="tab-pane" id="roleplay" role="tabpanel">
   <div class="row">
