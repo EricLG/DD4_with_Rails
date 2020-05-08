@@ -31,6 +31,7 @@
               <p class="small col-sm-8 col-sm-offset-4">Pour sélectionner plusieurs langues, cliquer dessus en appuyant sur Ctrl.</p>
             <% end %>
         </div>
+
         <h4>Importer un avatar</h4>
         <div class="row">
             <div class="form-group">
@@ -43,14 +44,27 @@
 
         <h4>Informations optionnelles</h4>
         <div class="row">
-          <%= input_text_form(f, :age,        Character.human_attribute_name(:age)) %>
-          <%= input_text_form(f, :height,     Character.human_attribute_name(:height)) %>
-          <%= input_text_form(f, :weight,     Character.human_attribute_name(:weight)) %>
-          <%= input_text_form(f, :party,      Character.human_attribute_name(:party)) %>
+          <%= input_text_form(f, :age,          Character.human_attribute_name(:age)) %>
+          <%= input_text_form(f, :height,       Character.human_attribute_name(:height)) %>
+          <%= input_text_form(f, :weight,       Character.human_attribute_name(:weight)) %>
+          <%= input_text_form(f, :party,        Character.human_attribute_name(:party)) %>
+          <%= input_text_field_form(f, :roleplay,  Character.human_attribute_name(:roleplay)) %>
           <%= f.hidden_field :user_id, value: @current_user.id %>
           <%= f.hidden_field :status, value: 1 %>
-          <%= link_to 'Précédent', choose_class_character_creation_path(@character.id), class: "btn btn-default" %>
-          <%= submit_text_form(f) %>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <%= link_to 'Précédent', choose_class_character_creation_path(@character.id), class: "btn btn-default" %>
+            </div>
+            <div class="col-sm-4">
+              <%= link_to 'Voir mon personnage', character_path(@character.id), class: "btn btn-default" %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.submit(t('common.validate'), name: 'commit', class: 'btn btn-default pull-right', id: 'submit-button') %>
+            </div>
+          </div>
         </div>
      <% end %>
    </div>

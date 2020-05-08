@@ -22,6 +22,7 @@ module CharacterCreation
       :avatar,
       :racial_stat_id,
       :racial_bonus_choice,
+      :roleplay,
       game_ids: [],
       language_ids: [],
       campaign_ids: [],
