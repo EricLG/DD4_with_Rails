@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_183718) do
+ActiveRecord::Schema.define(version: 2020_05_03_092700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -105,6 +105,12 @@ ActiveRecord::Schema.define(version: 2019_02_19_183718) do
     t.datetime "updated_at"
     t.integer "god_id"
     t.string "avatar"
+    t.integer "main_weapon_id"
+    t.string "second_hand_type"
+    t.bigint "second_hand_id"
+    t.integer "armor_id"
+    t.text "roleplay"
+    t.index ["second_hand_type", "second_hand_id"], name: "index_characters_on_second_hand_type_and_second_hand_id"
   end
 
   create_table "characters_games", id: false, force: :cascade do |t|
@@ -245,6 +251,16 @@ ActiveRecord::Schema.define(version: 2019_02_19_183718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["source_id"], name: "index_encounters_on_source_id"
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.bigint "character_id"
+    t.bigint "magic_item_id"
+    t.bigint "location_id"
+    t.integer "level"
+    t.index ["character_id"], name: "index_equipment_on_character_id"
+    t.index ["location_id"], name: "index_equipment_on_location_id"
+    t.index ["magic_item_id"], name: "index_equipment_on_magic_item_id"
   end
 
   create_table "feats", id: :serial, force: :cascade do |t|

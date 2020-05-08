@@ -1,6 +1,6 @@
 class Character < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  enum status: { draft: 1, ability_done: 2, skill_done: 3, complete: 10}
+  enum status: { draft: 1, ability_done: 2, skill_done: 3, complete: 10 }
 
   belongs_to :user
   belongs_to :race
@@ -41,6 +41,14 @@ class Character < ApplicationRecord
 
   has_many :klass_choices,  -> { klass_features_choices },  class_name: 'Choice'
   has_many :race_choices,   -> { race_features_choices },   class_name: 'Choice'
+
+  # Relation de l'équipement possédés
+  belongs_to :main_weapon, class_name: 'CommonWeapon'
+  belongs_to :second_hand, polymorphic: true # CommonWeapon or CommonArmor
+  belongs_to :armor, class_name: 'CommonArmor'
+
+  has_many :equipment
+  has_many :equipped_magic_items, through: :equipment
 
   NEW_ABILITIES_LEVEL = [4, 8, 11, 14, 18, 21, 24, 28].freeze
   DEFAULT_ABILITIES = [10, 10, 10, 10, 10, 8].freeze
