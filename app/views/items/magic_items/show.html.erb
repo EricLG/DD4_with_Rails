@@ -5,6 +5,15 @@
 
 <%= render "/items/magic_items/_show/show_item", item: @item %>
 
+<div class="row">
+  <div class="col-sm-12">
+    <% if current_user_admin? %>
+      <%= link_to 'Supprimer', items_magic_item_path(@item.id), method: :delete, data: { confirm: "Supprimer l'objet #{@item.id} #{@item.name} ?" }, class: 'btn btn-danger pull-right' %>
+    <% end %>
+    <%= link_to t('common.edit', name: @item.name), edit_items_magic_item_path(@item.id), class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+
 <%= render "/items/magic_items/_show/wishlist_form", item: @item, heroes_with_item_in_wishlist: @heroes_with_item_in_wishlist, heroes_without_item_in_wishlist: @heroes_without_item_in_wishlist, wishlist: @wishlist %>
 
 <%= render "/items/magic_items/_show/equipment_form", @equipment_form_variables %>

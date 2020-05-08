@@ -44,19 +44,10 @@
   </div>
 
   <div class="panel-footer">
-    <p>
-      <strong><%= MagicItem.human_attribute_name('source')%></strong> : <%= item.source.name %>
-      <span class="pull-right"><%= link_to t('common.edit', name: item.name), edit_items_magic_item_path(item.id) %></span>
-    </p>
+    <p><strong><%= MagicItem.human_attribute_name('source')%></strong> : <%= item.source_name %></p>
     <% unless item.special.blank? %>
       <span><strong>(Special)</strong> <%= simple_format(item.special, {}, {wrapper_tag: 'span'}) %></span>
     <% end %>
   </div>
-
-  <% if current_user_admin? %>
-    <div>
-      <p class="pull-right"><%= link_to 'Supprimer', items_magic_item_path(item.id), method: :delete, data: { confirm: "Supprimer l'objet #{item.id} #{item.name} ?" }, class: "btn btn-danger" %></p>
-    </div>
-  <% end %>
 
 </div>
