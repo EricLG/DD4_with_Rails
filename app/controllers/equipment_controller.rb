@@ -28,7 +28,7 @@ class EquipmentController < ApplicationController
   def destroy
     @equipment = Equipment.find_by_id(params[:id])
     @equipment.destroy
-    redirect_to items_index_path
+    redirect_back(fallback_location: root_path)
   end
 
   private

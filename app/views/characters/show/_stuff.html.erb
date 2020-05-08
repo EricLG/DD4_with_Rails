@@ -38,6 +38,20 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+        <h4 class="col-sm-11 black-bg white-text">Équipements magiques</h4>
+      </div>
+        <% @magic_stuff.each do |item| %>
+          <div class="col-sm-4">
+            <%= render "/items/magic_items/_show/show_item", item: item %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
 <div class="tab-pane" id="roleplay" role="tabpanel">
   <div class="row">
     <div class="col-sm-12">

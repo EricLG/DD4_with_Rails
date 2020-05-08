@@ -34,16 +34,29 @@ class Items::MagicItemsController < ApplicationController
 
   def show
     @item = MagicItem.find_by_id(params[:id])
+    @wishlist = Wishlist.new
     @heroes_with_item_in_wishlist = []
     @heroes_without_item_in_wishlist = []
+    heroes_without_equipped_item = []
+    heroes_with_equipped_item = []
     @current_user.characters.each do |character|
+      # Wishlist
       if character.magic_item_ids.include?(@item.id)
         @heroes_with_item_in_wishlist << character
       else
         @heroes_without_item_in_wishlist << character
       end
+      # Equipment form
+      hero_have_item = false
+      character.equipment.each do |e|
+        if e.magic_item_id == @item.id
+          hero_have_item = true
+          heroes_with_equipped_item << e
+        end
+      end
+      heroes_without_equipped_item << character unless hero_have_item
     end
-    @wishlist = Wishlist.new
+    @equipment_form_variables = { item: @item, heroes_without_equipped_item: heroes_without_equipped_item, heroes_with_equipped_item: heroes_with_equipped_item, equipment: Equipment.new }
   end
 
   def edit

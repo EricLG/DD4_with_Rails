@@ -1,0 +1,39 @@
+<%# call with render 'show_item, item: variable, heroes_with_equipped_item: variable2, heroes_without_equipped_item: variable 3, equipment: variable 4 %>
+<% unless heroes_without_equipped_item.empty? %>
+  <div class="row">
+      <div class="col-sm-12">
+        <%= form_for equipment, { html: {class: 'form-horizontal'}} do |f| %>
+          <%= f.hidden_field :magic_item_id, value: item.id %>
+          <%= f.hidden_field :location_id, value: item.location_id %>
+
+          <div class="col-sm-3 form-group">
+            <%= f.label(:character_id, MagicItem.human_attribute_name('characters'), class: 'col-sm-4 control-label') %>
+            <div class="col-sm-8">
+              <%= f.select :character_id, options_from_collection_for_select(heroes_without_equipped_item, :id, :name), {}, {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="col-sm-3 form-group">
+            <%= f.label(:level, MagicItem.human_attribute_name('level'), class: 'col-sm-4 control-label') %>
+            <div class="col-sm-8">
+              <%= f.number_field :level, { min: item.level_min, max: 30, step: 5, class: 'form-control' } %>
+            </div>
+          </div>
+
+          <div class="col-sm-6 form-group">
+            <%= f.submit('Equipper l\'item', name: 'commit', class: 'btn btn-default', id: 'submit-button') %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+<% end %>
+
+<% unless heroes_with_equipped_item.empty? %>
+  <div class="row">
+    <div class="col-sm-12">
+      <% heroes_with_equipped_item.each do |equipment| %>
+        <p><em><%= link_to "Supprimer cet équipement de #{equipment.character.name}", equipment_path(equipment.id), method: :delete, data: { confirm: "Supprimer l'equipement ?" }, class: "btn btn-danger" %></em></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

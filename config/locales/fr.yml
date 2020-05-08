@@ -75,6 +75,10 @@ fr:
         user_id:      "Joueur"
         alignment:    "Alignement"
         divinity:     "Divinité"
+        main_weapon:  "Arme principale"
+        armor:        "Armure"
+        second_hand_id:  "Main gauche"
+        second_hand_type:  "Type de Main gauche"
       feat/category:
         heroic:     "Héroique"
         parangonic: "Parangonique"
@@ -201,7 +205,7 @@ fr:
     reset:              "Effacer les filtres"
     show:               "Voir"
     source:             "Source"
-    validate:           "Valider"
+    validate:           "Enregistrer"
     w_false:            "Faux"
     w_true:             "Vrai"
   consumables:

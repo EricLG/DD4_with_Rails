@@ -91,10 +91,10 @@ module ApplicationHelper
     input
   end
 
-  # options_hash : {add_another: true}
-  def submit_text_form(form, options = {})
+  # options_hash : {add_another: true, offset: ''}
+  def submit_text_form(form, options = { add_another: false, offset: '' })
     submit = content_tag('div', class: 'form-group') do
-      concat(content_tag('div', class: 'col-sm-8') do
+      concat(content_tag('div', class: "col-sm-8 #{options[:offset]}") do
         concat form.submit(t('common.validate'), name: 'commit', class: 'btn btn-default', id: 'submit-button')
         concat form.submit(t('common.add_another'), name: 'add_another', class: 'btn btn-default') if options[:add_another]
       end)

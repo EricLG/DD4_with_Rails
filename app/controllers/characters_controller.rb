@@ -46,6 +46,7 @@ class CharactersController < ApplicationController
     @chosen_feats = @character.chosen_feats
     @feats_languages = @character.chosen_feats.languages
     @hp = @character.hit_points
+    @magic_stuff = @character.equipped_magic_items.select('magic_items.*, equipment.level as level')
   end
 
   def edit
