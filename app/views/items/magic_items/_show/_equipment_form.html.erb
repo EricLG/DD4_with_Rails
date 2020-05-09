@@ -16,7 +16,7 @@
           <div class="col-sm-3 form-group">
             <%= f.label(:level, MagicItem.human_attribute_name('level'), class: 'col-sm-4 control-label') %>
             <div class="col-sm-8">
-              <%= f.number_field :level, { min: item.level_min, max: 30, step: 5, class: 'form-control' } %>
+              <%= f.number_field :level, { min: @item_level_min, max: 30, step: 5, class: 'form-control' } %>
             </div>
           </div>
 

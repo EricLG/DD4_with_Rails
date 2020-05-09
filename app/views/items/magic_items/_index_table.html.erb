@@ -28,7 +28,7 @@
     <tr>
       <td><%= link_to i.name, items_magic_item_path(i.id)  %></td>
       <% if @kind == 'weapons' %>
-        <td><%= display_weapon_group(i.weapon_groups) %></td>
+        <td><%= display_weapon_group(i.weapon_groups.map(&:name).sort) %></td>
       <% elsif @kind == 'armors' %>
         <td><%= simple_format i.armor_categories.map(&:name).join("\n") %></td>
       <% elsif @kind == 'implements' %>

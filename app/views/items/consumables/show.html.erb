@@ -11,7 +11,7 @@
 
 <dt><%= Consumable.human_attribute_name("description")%></dt>  <dd class="text-left"><%= @consumable.description %></dd>
 <dt><%= Consumable.human_attribute_name("kind")       %></dt>  <dd class="text-left"><%= t("consumables.kind.#{@consumable.kind}") %></dd>
-<dt><%= Consumable.human_attribute_name("levels")     %></dt>  <dd class="text-left"><%= display_levels(@consumable.object_levels, true, "consumable") %></dd>
+<dt><%= Consumable.human_attribute_name("levels")     %></dt>  <dd class="text-left"><%= display_levels(@left_level_group, @right_level_group, true, "consumable") %></dd>
 <dt><%= Consumable.human_attribute_name("alteration") %></dt>  <dd class="text-left"><%= @consumable.alteration %></dd>
 <dt><%= Consumable.human_attribute_name("property")   %></dt>  <dd class="text-left"><%= @consumable.property %></dd>
 <dt><%= Consumable.human_attribute_name("power")      %></dt>  <dd class="text-left"><%= @consumable.power %></dd>

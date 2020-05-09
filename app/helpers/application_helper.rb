@@ -3,9 +3,8 @@ module ApplicationHelper
     text.truncate_words(count, omission: '...') unless text.blank?
   end
 
-  def display_levels(levels, show_alteration = true, kind = nil)
+  def display_levels(left, right, show_alteration = true, kind = nil)
     x = "\u00A0"
-    left, right = levels.in_groups(2)
     table = content_tag('table') do
       concat(content_tag('tbody') do
         left.each_with_index do |l, i|

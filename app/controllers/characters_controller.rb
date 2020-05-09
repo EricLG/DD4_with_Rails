@@ -1,5 +1,7 @@
 class CharactersController < ApplicationController
   include CharacterCreation
+  include MagicItemModule
+
   layout 'no_sidebloc', only: %i[index new]
   before_action :find_dependancies, except: %i[index new create resume_race resume_klass]
 
@@ -46,7 +48,11 @@ class CharactersController < ApplicationController
     @chosen_feats = @character.chosen_feats
     @feats_languages = @character.chosen_feats.languages
     @hp = @character.hit_points
-    @magic_stuff = @character.equipped_magic_items.select('magic_items.*, equipment.level as level')
+    @equipped_magic_items_partial_variables = []
+    magic_stuff = @character.equipped_magic_items.joins(:source, :location).select('magic_items.*, equipment.level as level, sources.name as source_name, locations.name as location_name, locations.code as location_code')
+    magic_stuff.each do |ms|
+      @equipped_magic_items_partial_variables << search_show_relation(ms)
+    end
   end
 
   def edit

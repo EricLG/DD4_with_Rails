@@ -78,7 +78,7 @@ class MagicItem < ApplicationRecord
   end
 
   def gear?
-    Location::GEARS.include?(self.location.code)
+    Location::GEARS.include?(self.location_code)
   end
 
   def level_min

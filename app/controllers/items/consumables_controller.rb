@@ -6,7 +6,9 @@ class Items::ConsumablesController < ApplicationController
     @consumables = Consumable.all.paginate(page: params[:page], per_page: 20).order(name: :asc)
   end
 
-  def show; end
+  def show
+    @left_level_group, @right_level_group = @consumable.object_levels.order(:level).in_groups(2)
+  end
 
   def new
     @consumable = Consumable.new

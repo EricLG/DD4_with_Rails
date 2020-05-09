@@ -43,9 +43,9 @@
       <div class="row">
         <h4 class="col-sm-11 black-bg white-text">Équipements magiques</h4>
       </div>
-        <% @magic_stuff.each do |item| %>
+        <% @equipped_magic_items_partial_variables.each do |item| %>
           <div class="col-sm-4">
-            <%= render "/items/magic_items/_show/show_item", item: item %>
+            <%= render "/items/magic_items/_show/show_item", item %>
           </div>
         <% end %>
     </div>

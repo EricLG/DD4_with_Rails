@@ -1,15 +1,17 @@
 module MagicItemsHelper
   def display_weapon_group(groups)
+    hand_to_hand = ["Armes d'hast", 'Bâtons', 'Fléaux', 'Haches', 'Lames légères', 'Lames lourdes', 'Lances', 'Mains nues', 'Marteaux', 'Masses', 'Pics']
+    ranged = ['Arbalètes', 'Arcs', 'Frondes', 'Lames légères', 'Lances', 'Marteaux']
     if groups.empty?
       ''
     elsif groups.size == 14
       'Toutes'
-    elsif groups.map(&:name).sort == ['Arbalètes', 'Arcs', 'Frondes', 'Haches', 'Lames légères', 'Lances', 'Marteaux']
+    elsif groups - ranged == ranged - groups
       'Distances'
-    elsif groups.map(&:name).sort == ["Armes d'hast", 'Bâtons', 'Fléaux', 'Haches', 'Lames lourdes', 'Lames légères', 'Lances', 'Mains nues', 'Marteaux', 'Masses', 'Pics']
+    elsif groups - hand_to_hand == hand_to_hand - groups
       'Corps à corps'
     else
-      simple_format(groups.map(&:name).sort.join("\n"), {}, wrapper_tag: 'span')
+      simple_format(groups.join("\n"), {}, wrapper_tag: 'span')
     end
   end
 

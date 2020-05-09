@@ -1,4 +1,5 @@
 class Items::MagicItemsController < ApplicationController
+  include MagicItemModule
   layout 'no_sidebloc', only: :random
   before_action :find_dependancies, only: %i[index new edit weapons armors implements gears amulets]
 
@@ -33,7 +34,9 @@ class Items::MagicItemsController < ApplicationController
   end
 
   def show
-    @item = MagicItem.find_by_id(params[:id])
+    @item = MagicItem.joins(:source, :location).select('magic_items.*, sources.name as source_name, locations.name as location_name, locations.code as location_code').find_by_id(params[:id])
+    @show_partial_variables = search_show_relation(@item)
+
     @wishlist = Wishlist.new
     @heroes_with_item_in_wishlist = []
     @heroes_without_item_in_wishlist = []
