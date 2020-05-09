@@ -32,7 +32,7 @@
   <div class="row">
     <div class="col-sm-12">
       <% heroes_with_equipped_item.each do |equipment| %>
-        <p><em><%= link_to "Supprimer cet équipement de #{equipment.character.name}", equipment_path(equipment.id), method: :delete, data: { confirm: "Supprimer l'equipement ?" }, class: "btn btn-danger" %></em></p>
+        <p><em><%= link_to "Supprimer cet équipement de #{equipment.character.name}", equipment_path(equipment.id), method: :delete, data: { confirm: "Supprimer l'equipement ?" } %></em></p>
       <% end %>
     </div>
   </div>

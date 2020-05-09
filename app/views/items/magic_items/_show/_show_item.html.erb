@@ -7,8 +7,45 @@
   <div class="panel-body no-padding">
     <ul class="list-group">
       <li class="list-group-item no-border-line bg"><em><%= item.description %></em></li>
-      <li class="list-group-item no-border-line"><%= display_levels(left_level_group, right_level_group, !item.alteration.blank?)%></li>
-
+      <li class="list-group-item no-border-line">
+        <div class="row">
+          <% row_col_size = right_level_group.empty? ? 'col-sm-12' : 'col-sm-6' %>
+          <div class=<%= row_col_size %>>
+            <% left_level_group.each do |level| %>
+              <% if level %>
+                <div class="row">
+                  <div class="col-m-12">
+                    <span class="col-sm-1">Niv.</span>
+                    <span class="col-sm-2 text-right"><%= level.level.to_s %></span>
+                    <% unless item.alteration.blank? %>
+                      <span class="col-sm-1">+<%= level.alteration %></span>
+                    <% end %>
+                    <span class="col-sm-6 text-right"><%= level.price %> PO</span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <% unless right_level_group.empty? %>
+            <div class="col-sm-6">
+              <% right_level_group.each do |level| %>
+                <% if level %>
+                  <div class="row">
+                    <div class="col-m-12">
+                      <span class="col-sm-1">Niv.</span>
+                      <span class="col-sm-2 text-right"><%= level.level.to_s %></span>
+                      <% unless item.alteration.blank? %>
+                        <span class="col-sm-1">+<%= level.alteration %></span>
+                      <% end %>
+                      <span class="col-sm-6 text-right"><%= level.price %> PO</span>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </li>
       <% unless  item_weapon_groups.empty? %>
         <li class="list-group-item no-border-line"><strong><%= MagicItem.human_attribute_name('weapon_group_ids')%></strong> : <%= display_weapon_group(item_weapon_groups) %></li>
       <% end %>

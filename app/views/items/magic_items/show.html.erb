@@ -3,16 +3,22 @@
   <%= render "items/items_side_menu" %>
 <% end %>
 
-<%= render "/items/magic_items/_show/show_item", @show_partial_variables %>
+<div class="row">
+  <div class="col-sm-8">
+    <%= render "/items/magic_items/_show/show_item", @show_partial_variables %>
+  </div>
+</div>
 
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-8">
     <% if current_user_admin? %>
       <%= link_to 'Supprimer', items_magic_item_path(@item.id), method: :delete, data: { confirm: "Supprimer l'objet #{@item.id} #{@item.name} ?" }, class: 'btn btn-danger pull-right' %>
     <% end %>
     <%= link_to t('common.edit', name: @item.name), edit_items_magic_item_path(@item.id), class: 'btn btn-default pull-right' %>
   </div>
 </div>
+
+<br>
 
 <%= render "/items/magic_items/_show/wishlist_form", item: @item, heroes_with_item_in_wishlist: @heroes_with_item_in_wishlist, heroes_without_item_in_wishlist: @heroes_without_item_in_wishlist, wishlist: @wishlist %>
 

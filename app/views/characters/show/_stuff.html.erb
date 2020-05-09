@@ -43,9 +43,17 @@
       <div class="row">
         <h4 class="col-sm-11 black-bg white-text">Équipements magiques</h4>
       </div>
-        <% @equipped_magic_items_partial_variables.each do |item| %>
-          <div class="col-sm-4">
-            <%= render "/items/magic_items/_show/show_item", item %>
+        <% @equipped_magic_items_partial_variables.each_slice(3) do |slice| %>
+          <div class="row">
+            <div class="col-sm-11">
+                <div class="row">
+              <% slice.each do |item| %>
+                <div class="col-sm-4">
+                  <%= render "/items/magic_items/_show/show_item", item %>
+                </div>
+              <% end %>
+                </div>
+            </div>
           </div>
         <% end %>
     </div>
