@@ -1,6 +1,6 @@
 <%# call with render 'show_item, item: variable %>
 <div class="panel panel-default">
-  <div class="panel-heading bg-title">
+  <div class="panel-heading bg-title white-text">
     <h3 class="panel-title"><strong><%= item.name %></strong><span class="pull-right"> <%= t('items.magic_items.show.show_item.level_min', lvl: item_level_min) %> <%= MagicItem.human_attribute_name(item.rarity) %></span></h3>
   </div>
 
@@ -13,6 +13,7 @@
           <div class=<%= row_col_size %>>
             <% left_level_group.each do |level| %>
               <% if level %>
+                  <% equipped_item = equipped_item_level&.to_s === level.level.to_s %>
                 <div class="row">
                   <div class="col-m-12">
                     <span class="col-sm-1">Niv.</span>
@@ -21,6 +22,9 @@
                       <span class="col-sm-1">+<%= level.alteration %></span>
                     <% end %>
                     <span class="col-sm-6 text-right"><%= level.price %> PO</span>
+                    <% if equipped_item %>
+                      <span class="glyphicon glyphicon-star yellow-star-color" aria-hidden="true"></span>
+                    <% end %>
                   </div>
                 </div>
               <% end %>

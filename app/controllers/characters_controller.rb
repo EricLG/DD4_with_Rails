@@ -51,7 +51,7 @@ class CharactersController < ApplicationController
     @equipped_magic_items_partial_variables = []
     magic_stuff = @character.equipped_magic_items.joins(:source, :location).select('magic_items.*, equipment.level as level, sources.name as source_name, locations.name as location_name, locations.code as location_code')
     magic_stuff.each do |ms|
-      @equipped_magic_items_partial_variables << search_show_relation(ms, true)
+      @equipped_magic_items_partial_variables << search_show_relation(ms, true, ms.level)
     end
   end
 
