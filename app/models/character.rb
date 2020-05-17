@@ -20,8 +20,8 @@ class Character < ApplicationRecord
   has_many :languages, through: :choices
 
   # Relation des caractéristiques
-  has_many :abilities, through: :ability_bonuses, source: :ability
   has_many :ability_bonuses, inverse_of: :character
+  has_many :abilities, through: :ability_bonuses, source: :ability
   accepts_nested_attributes_for :ability_bonuses
 
   # Relation des compétences
@@ -72,7 +72,7 @@ class Character < ApplicationRecord
 
   # Retourne une string des langues parlés
   def show_languages
-    racial_languages = self.languages.empty? ? 'Commun' : self.languages
+    racial_languages = self.languages.empty? ? [Struct.new(:language).new('Commun')] : self.languages
     feat_languages = self.chosen_feats.languages
     (racial_languages + feat_languages).flatten.map(&:language).sort.join(', ')
   end
