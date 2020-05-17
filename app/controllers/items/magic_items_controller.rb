@@ -35,6 +35,8 @@ class Items::MagicItemsController < ApplicationController
 
   def show
     @item = MagicItem.joins(:source, :location).select('magic_items.*, sources.name as source_name, locations.name as location_name, locations.code as location_code').find_by_id(params[:id])
+    @item_levels = @item.object_levels.pluck(:level)
+    @step = @item_levels.count == 1 ? 0 : (@item_levels.max - @item_levels.min) / (@item_levels.count - 1)
     @show_partial_variables = search_show_relation(@item)
 
     @wishlist = Wishlist.new
@@ -59,7 +61,14 @@ class Items::MagicItemsController < ApplicationController
       end
       heroes_without_equipped_item << character unless hero_have_item
     end
-    @equipment_form_variables = { item: @item, heroes_without_equipped_item: heroes_without_equipped_item, heroes_with_equipped_item: heroes_with_equipped_item, equipment: Equipment.new }
+    @equipment_form_variables = {
+      item: @item,
+      heroes_without_equipped_item: heroes_without_equipped_item,
+      heroes_with_equipped_item: heroes_with_equipped_item,
+      equipment: Equipment.new,
+      item_levels: @item_levels,
+      step: @step
+    }
   end
 
   def edit
