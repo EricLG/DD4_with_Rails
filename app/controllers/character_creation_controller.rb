@@ -62,7 +62,6 @@ class CharacterCreationController < ApplicationController
   def save_abilities
     @character.assign_attributes(character_params)
     @character.calcul_abilities
-    @character.status = 'ability_done'
     @character.save
     if @character.update(character_params)
       redirect_to choose_features_character_creation_path @character.id
@@ -157,8 +156,7 @@ class CharacterCreationController < ApplicationController
     end
 
     @character.assign_attributes(character_params)
-    @character.status = 'skill_done'
-
+    @character.complete!
     if @character.save
       redirect_to choose_feats_character_creation_path @character.id
     else

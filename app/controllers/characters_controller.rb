@@ -32,6 +32,7 @@ class CharactersController < ApplicationController
 
   def show
     @characters = @current_user.characters.order(:name)
+    redirect_to check_todo_character and return if @character.draft?
     skills_tab
     @show_languages = @character.show_languages
     @dexterity = @abilities.dexterity
@@ -131,5 +132,15 @@ class CharactersController < ApplicationController
     @perception = skill_bonuses.perception
     @skill_bonuses = skill_bonuses.sort_by(&:fr_name)
     @klass_choosable_skill_bonus = @character.klass.try(&:choosable_skills_to_a)
+  end
+
+  def check_todo_character
+    return choose_race_character_creation_path(@character) if @character.race.nil?
+    return choose_class_character_creation_path(@character) if @character.klass.nil?
+    return choose_optional_fields_character_creation_path(@character) if @character.alignment.nil?
+    return choose_abilities_character_creation_path(@character) if @character.ability_bonus_ids.empty? || @character.ability_bonuses.map(&:total_value).uniq.first.zero?
+    return choose_features_character_creation_path(@character) if @character.feature_ids.empty?
+    return choose_skills_character_creation_path(@character) if @character.skill_bonus_ids.empty? || @character.skill_bonuses.map(&:training).uniq == [0]
+    return choose_feats_character_creation_path(@character) if @character.feat_ids.empty?
   end
 end
