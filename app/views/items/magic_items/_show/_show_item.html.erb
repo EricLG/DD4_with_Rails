@@ -1,7 +1,14 @@
 <%# call with render 'show_item, item: variable %>
 <div class="panel panel-default">
   <div class="panel-heading bg-title white-text">
-    <h3 class="panel-title"><strong><%= item.name %></strong><span class="pull-right"> <%= t('items.magic_items.show.show_item.level_min', lvl: item_level_min) %> <%= MagicItem.human_attribute_name(item.rarity) %></span></h3>
+    <h3 class="panel-title">
+      <% if equipped_item_level %>
+        <strong><%= link_to item.name, items_magic_item_path(item.id), class: 'white-text' %></strong>
+      <% else %>
+        <strong><%= item.name %></strong>
+        <span class="pull-right"> <%= t('items.magic_items.show.show_item.level_min', lvl: item_level_min) %> <%= MagicItem.human_attribute_name(item.rarity) %></span>
+      <% end %>
+    </h3>
   </div>
 
   <div class="panel-body no-padding">
