@@ -60,9 +60,9 @@ class CharactersController < ApplicationController
     @characters = @current_user.characters.order(:name)
     @users = User.all
     @campaigns = Campaign.all
-    @common_weapons = CommonWeapon.all
-    @common_armors = CommonArmor.armors
-    @common_shields = CommonArmor.shields
+    @common_weapons = CommonWeapon.all.order(:name)
+    @common_armors = CommonArmor.armors.order(:name)
+    @common_shields = CommonArmor.shields.order(:name)
     @second_hand_type_options = [
       ['Arme', 'CommonWeapon'],
       ['Bouclier', 'CommonArmor']
