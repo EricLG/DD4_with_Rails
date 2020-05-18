@@ -49,11 +49,7 @@ class CharactersController < ApplicationController
     @chosen_feats = @character.chosen_feats
     @feats_languages = @character.chosen_feats.languages
     @hp = @character.hit_points
-    @equipped_magic_items_partial_variables = []
-    magic_stuff = @character.equipped_magic_items.joins(:source, :location).select('magic_items.*, equipment.level as level, sources.name as source_name, locations.name as location_name, locations.code as location_code')
-    magic_stuff.each do |ms|
-      @equipped_magic_items_partial_variables << search_show_relation(ms, true, ms.level)
-    end
+    search_equipped_items_tab_variables
   end
 
   def edit
@@ -142,5 +138,14 @@ class CharactersController < ApplicationController
     return choose_features_character_creation_path(@character) if @character.feature_ids.empty?
     return choose_skills_character_creation_path(@character) if @character.skill_bonus_ids.empty? || @character.skill_bonuses.map(&:training).uniq == [0]
     return choose_feats_character_creation_path(@character) if @character.feat_ids.empty?
+  end
+
+  def search_equipped_items_tab_variables
+    @character_common_equipped_items = [@character.main_weapon, @character.armor, @character.second_hand]
+    @equipped_magic_items_partial_variables = []
+    magic_stuff = @character.equipped_magic_items.joins(:source, :location).select('magic_items.*, equipment.level as level, sources.name as source_name, locations.name as location_name, locations.code as location_code')
+    magic_stuff.each do |ms|
+      @equipped_magic_items_partial_variables << search_show_relation(ms, true, ms.level)
+    end
   end
 end

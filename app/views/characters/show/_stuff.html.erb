@@ -16,10 +16,7 @@
               </tr>
             </thead>
             <tbody>
-          <% mw = @character.main_weapon %>
-          <% ar = @character.armor %>
-          <% sh = @character.second_hand %>
-              <% [mw, ar, sh].each do |item| %>
+              <% @character_common_equipped_items.each do |item| %>
               <tr>
                 <td class=""><%= item&.name %></td>
                   <% if item.is_a?(CommonArmor) %>
