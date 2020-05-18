@@ -36,7 +36,7 @@
             <% @abilities.each do |ability| %>
               <tr>
                 <td><button type="button" class="large-text rounded width-max btn btn-default btn-sm bold" disabled="disabled"><%= ability.total_value %></button></td>
-                <td class="black-bg white-text v-center"><%= Stat.human_attribute_name ability.ability.name %></td>
+                <td class="black-bg white-text v-center"><%= Stat.human_attribute_name ability.ability_name %></td>
                 <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(ability.modifier) %></button></td>
                 <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= pretty_modifier(ability.modifier + @character.half_level) %></button></td>
               </tr>
