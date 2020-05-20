@@ -68,8 +68,9 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <% if @character.user_id == @current_user.id %>
-      <%= link_to "Mettre à jour #{@character.name}", edit_character_path(@character.id) %><br>
+    <%= link_to "Mettre à jour mon équipement de base et mes campagnes", edit_character_path(@character.id) %><br>
+    <%= link_to "Gérer mes objets magiques.", equipment_index_path(@character.id) %><br>
+    <% if @character.user_id == @current_user.id && current_user_admin? %>
       <%= link_to "Modifier race", choose_race_character_creation_path(@character.id) %><br>
       <%= link_to "Modifier classe", choose_class_character_creation_path(@character.id) %><br>
       <%= link_to "Modifier infos", choose_optional_fields_character_creation_path(@character.id) %><br>
@@ -78,7 +79,7 @@
       <%= link_to "Modifier compétences", choose_skills_character_creation_path(@character.id) %><br>
       <%= link_to "Modifier talents", choose_feats_character_creation_path(@character.id) %><br>
       <br>
-      <%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>
     <% end %>
+      <%= link_to "SUPPRIMER PERSONNAGE", character_path(@character.id), method: :delete %><br>
   </div>
 </div>

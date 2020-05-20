@@ -8,18 +8,21 @@
       <th>Character ID</th>
       <th>Location Id</th>
       <th>Level</th>
-      <th>Delete</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @equipments.each do |e| %>
     <tr>
       <td><%= e.id %></td>
-      <td><%= e.magic_item_id %></td>
-      <td><%= e.character_id %></td>
-      <td><%= e.location_id %></td>
+      <td><%= e.item_name %></td>
+      <td><%= e.hero_name %></td>
+      <td><%= e.location_name %></td>
       <td><%= e.level %></td>
-      <td><%= link_to 'Supprimer', equipment_path(e.id), method: :delete, data: { confirm: "Supprimer l'equipement ?" }, class: "btn btn-danger" %></td>
+      <td>
+        <%= link_to 'Modifier', edit_equipment_path(e.id), class: "btn btn-warning" %>
+        <%= link_to 'Vendre', equipment_path(e.id), method: :delete, data: { confirm: "Vendre l'equipement ?" }, class: "btn btn-danger" %>
+      </td>
     </tr>
     <% end %>
 

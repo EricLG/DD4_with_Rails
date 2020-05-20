@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   resources :users, only: %i[new show create edit update]
-  resources :equipment, only: %i[index create update destroy]
   namespace :items do
     # Lien du menu principal
     get '/index' => 'magic_items#index'
@@ -97,6 +96,7 @@ Rails.application.routes.draw do
     member do
       patch 'choose_campaign/:camp' => 'characters#choose_campaign', as: 'choose_campaign'
       patch 'remove_campaign/:camp' => 'characters#remove_campaign', as: 'remove_campaign'
+      resources :equipment, only: %i[index edit create update destroy]
     end
   end
   resources :campaigns do

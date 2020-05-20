@@ -1,6 +1,6 @@
 class EquipmentController < ApplicationController
   def index
-    @equipments = Equipment.all
+    @equipments = Equipment.select_names.where(character_id: params['id'])
   end
 
   def create
@@ -13,6 +13,12 @@ class EquipmentController < ApplicationController
     end
     redirect_to items_magic_item_path(@equipment.magic_item_id)
   end
+
+  def edit
+    @equipment = Equipment.select_names.find(params['id'])
+    @locations = Location.all
+  end
+
 
   def update
     @equipment = Equipment.find_by_id(params[:id])

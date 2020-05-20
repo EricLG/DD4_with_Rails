@@ -1,0 +1,15 @@
+<h3>Modifier <%= @equipment.item_name %></h3>
+
+<%= form_for @equipment, html: {:class => 'form-horizontal'}  do |f| %>
+
+  <%= input_select_form(f, :location_id, options_from_collection_for_select(@locations, :id, :name, @equipment.location_id), 'Emplacement', { blank: true, size: 1}) %>
+  <div class="form-group">
+    <%= f.label(:level, MagicItem.human_attribute_name('level'), class: 'col-sm-4 control-label') %>
+    <div class="col-sm-8">
+      <%= f.number_field :level, { min: @equipment.level, max: 30, step: 5, class: 'form-control', required: true } %>
+    </div>
+  </div>
+
+  <%= submit_text_form(f) %>
+
+<% end %>
