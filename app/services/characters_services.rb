@@ -19,6 +19,7 @@ module CharactersServices
     @will_bonus = [@wisdom.modifier, @charisma.modifier].max
 
     @chosen_feats = @character.chosen_feats
+    @feats_name = @chosen_feats.map(&:feat).map(&:name)
 
     combat_tab
     skills_tab
@@ -47,10 +48,10 @@ module CharactersServices
     @attack_rolls = attack_rolls
 
     @defenses = {
-      CA: detail_ca,
-      Vig: detail_other_defenses(:Vig, @fortitude_bonus),
-      Ref: detail_other_defenses(:Ref, @reflexes_bonus),
-      Vol: detail_other_defenses(:Vol, @will_bonus)
+      CA: detail_defenses(:CA, @reflexes_bonus),
+      Vig: detail_defenses(:Vig, @fortitude_bonus),
+      Ref: detail_defenses(:Ref, @reflexes_bonus),
+      Vol: detail_defenses(:Vol, @will_bonus)
     }
     @hp = @character.hit_points
   end
@@ -86,30 +87,15 @@ module CharactersServices
     attack_rolls
   end
 
-  def detail_ca
+  def detail_defenses(defense, carac_bonus)
     detail = {}
     detail[:half_level] = @character.half_level
-    detail[:armor_bonus] = @armor&.armor_bonus || 0
-    detail[:shield_bonus] = @second_hand.try(:armor_bonus) || 0
-    detail[:carac_bonus] = @armor&.heavy? ? 0 : @reflexes_bonus
-    detail[:klass_bonus] = 0 # search klass features
-    detail[:alteration_bonus] = calcul_alteration_bonus(@armor_magic_item)
-    detail[:feat_bonus] = 0 # search chosen feats
-    p detail
-    detail[:total] = detail.values.reduce(:+) + 10
-    detail
-  end
-
-  def detail_other_defenses(defense, carac_bonus)
-    detail = {}
-    detail[:half_level] = @character.half_level
-    detail[:armor_bonus] = 0
-    detail[:shield_bonus] = defense == :Ref && @second_hand.try(:armor_bonus) || 0
-    detail[:carac_bonus] = carac_bonus
+    detail[:armor_bonus] = defense == :CA ? (@armor&.armor_bonus || 0) : 0
+    detail[:shield_bonus] = check_shield_bonus(defense)
+    detail[:carac_bonus] = defense == :CA && @armor&.heavy? ? 0 : carac_bonus
     detail[:klass_bonus] = 0 # search klass features
     detail[:alteration_bonus] = calcul_alteration_bonus(@neck_magic_item)
-    detail[:feat_bonus] = 0 # search chosen feats
-    p detail
+    detail[:feat_bonus] = check_feats_for_defenses_bonus(defense)
     detail[:total] = detail.values.reduce(:+) + 10
     detail
   end
@@ -134,5 +120,37 @@ module CharactersServices
 
   def calcul_alteration_bonus(equipment)
     equipment.class == Equipment ? (((equipment.level - 1) / 5) + 1).floor : 0
+  end
+
+  def check_shield_bonus(defense)
+    wrestler_guard_feat = @feats_name.include?('Garde du bagarreur') ? 1 : 0
+    shield_bonus = @second_hand.try(:armor_bonus) || 0
+    max_shield_bonus = [shield_bonus, wrestler_guard_feat].max
+    feats_bonus = case defense
+                  when :CA
+                    max_shield_bonus
+                  when :Vig
+                    0
+                  when :Ref
+                    max_shield_bonus
+                  when :Vol
+                    0
+                  end
+    feats_bonus
+  end
+
+  def check_feats_for_defenses_bonus(defense)
+    bonus_per_tier = @character.bonus_per_tier
+    feats_bonus = case defense
+                  when :CA
+                    0
+                  when :Vig
+                    @feats_name.include?('Vigueur renforcée') ? bonus_per_tier : 0
+                  when :Ref
+                    @feats_name.include?('Réflexes éclair') ? bonus_per_tier : 0
+                  when :Vol
+                    @feats_name.include?('Volonté de fer') ? bonus_per_tier : 0
+                  end
+    feats_bonus
   end
 end

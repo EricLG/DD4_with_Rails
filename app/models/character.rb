@@ -93,7 +93,7 @@ class Character < ApplicationRecord
   end
 
   def paragon?
-    level >= 11 if level
+    level >= 11 && level <21 if level
   end
 
   def epic?
@@ -108,6 +108,15 @@ class Character < ApplicationRecord
     max_feat
   end
 
+  def bonus_per_tier
+    if self.epic?
+      4
+    elsif self.paragon?
+      3
+    else
+      2
+    end
+  end
   # Renvoie le nom du personnage sous forme de chemin correct
   def path_name
     name.mb_chars.downcase.tr(' ', '_').parameterize
