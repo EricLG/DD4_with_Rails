@@ -19,11 +19,10 @@ class EquipmentController < ApplicationController
     @locations = Location.all
   end
 
-
   def update
     @equipment = Equipment.find_by_id(params[:id])
-    if @equipment.update(magic_item_params)
-      redirect_to items_magic_item_path(@equipment.id)
+    if @equipment.update(equipment_params)
+      redirect_back(fallback_location: root_path)
     else
       find_dependancies
       flash[:error] = "Erreur sur les champs suivants: #{@equipment.errors.full_messages}"

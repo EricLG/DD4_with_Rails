@@ -1,9 +1,10 @@
 class CharactersController < ApplicationController
+  include CharactersServices
   include CharacterCreation
   include MagicItemModule
 
   layout 'no_sidebloc', only: %i[index new]
-  before_action :find_dependancies, except: %i[index new create resume_race resume_klass]
+  before_action :find_dependancies, only: %i[show edit update destroy]
 
   def index
     @characters = @current_user.characters.order(:name)
@@ -33,23 +34,7 @@ class CharactersController < ApplicationController
   def show
     @characters = @current_user.characters.order(:name)
     redirect_to check_todo_character and return if @character.draft?
-    skills_tab
-    @show_languages = @character.show_languages
-    @dexterity = @abilities.dexterity
-    # @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
-    @defenses = {
-      CA: @abilities.reflexes,
-      Vig: @abilities.fortitude,
-      Ref: @abilities.reflexes,
-      Vol: @abilities.will
-    }
-    @race_features = @character.race_choices.map(&:feature)
-    @classe_features = @character.klass_choices.map(&:feature)
-    @character_magic_items = @character.magic_items
-    @chosen_feats = @character.chosen_feats
-    @feats_languages = @character.chosen_feats.languages
-    @hp = @character.hit_points
-    search_equipped_items_tab_variables
+    show_character
   end
 
   def edit
@@ -116,18 +101,9 @@ class CharactersController < ApplicationController
   private
 
   def find_dependancies
-    @character = Character.find_by_id(params['id'])
+    @character = Character.show(params['id'])
     @abilities = @character.ability_bonuses.select_ability_name.joins(:ability)
     @skills = @character.skill_bonuses.select_skill_name.joins(:skill).joins(:ability_bonus)
-  end
-
-  # Information to display in show character, skills tab
-  def skills_tab
-    skill_bonuses = @character.skill_bonuses.select_ability_total_bonus.select_skill_name.joins(:skill).joins(:ability_bonus)
-    @insight = skill_bonuses.insight
-    @perception = skill_bonuses.perception
-    @skill_bonuses = skill_bonuses.sort_by(&:fr_name)
-    @klass_choosable_skill_bonus = @character.klass.try(&:choosable_skills_to_a)
   end
 
   def check_todo_character
@@ -138,14 +114,5 @@ class CharactersController < ApplicationController
     return choose_features_character_creation_path(@character) if @character.feature_ids.empty?
     return choose_skills_character_creation_path(@character) if @character.skill_bonus_ids.empty? || @character.skill_bonuses.map(&:training).uniq == [0]
     return choose_feats_character_creation_path(@character) if @character.feat_ids.empty?
-  end
-
-  def search_equipped_items_tab_variables
-    @character_common_equipped_items = [@character.main_weapon, @character.armor, @character.second_hand]
-    @equipped_magic_items_partial_variables = []
-    magic_stuff = @character.equipped_magic_items.joins(:source, :location).select('magic_items.*, equipment.level as level, sources.name as source_name, locations.name as location_name, locations.code as location_code')
-    magic_stuff.each do |ms|
-      @equipped_magic_items_partial_variables << search_show_relation(ms, true, ms.level)
-    end
   end
 end

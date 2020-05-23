@@ -65,4 +65,18 @@ class Klass < ApplicationRecord
   def mastered_weapon_proficiencies
     self.weapon_categories.map(&:common_weapons).flatten.map(&:id) + self.common_weapons.map(&:id)
   end
+
+  # CommonWeapons[]
+  def weapons_proficiencies
+    self.weapon_categories.map(&:common_weapons).flatten. + self.common_weapons
+  end
+
+  # { string_fr: string_en }
+  def main_abilities
+    abilities_h = {}
+    self.main_stats.split(', ').first(2).each do |a|
+      abilities_h[a] = Ability.abilities_fr_to_en(a.downcase)
+    end
+    abilities_h
+  end
 end

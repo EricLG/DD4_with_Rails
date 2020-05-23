@@ -5,6 +5,12 @@ class CommonWeapon < ApplicationRecord
   has_and_belongs_to_many :weapon_properties
 
   enum two_handed: { one: 1, two: 2, double: 3 }
+
+  # Scopes
+  scope :eladrinWeapon, -> { where(name: 'Épée longue') }
+  scope :elfeWeapon, -> { where(name: ['Arc court', 'Arc long']) }
+  scope :dwarfWeapon, -> { where(name: ['Marteau de lancer', 'Marteau de guerre']) }
+
   def category
     self.weapon_category.name
   end

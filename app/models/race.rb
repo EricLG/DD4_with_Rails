@@ -73,4 +73,18 @@ class Race < ApplicationRecord
     end
     default_bonus
   end
+
+  def self.weapons_proficiencies(race_name)
+    weapons = case race_name
+              when 'Éladrin'
+                CommonWeapon.eladrinWeapon
+              when 'Elfe'
+                CommonWeapon.elfeWeapon
+              when 'Nain'
+                CommonWeapon.dwarfWeapon
+              else
+                []
+              end
+    weapons
+  end
 end

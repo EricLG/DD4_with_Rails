@@ -1,14 +1,56 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="row">
-      <h4 class="col-sm-4 black-bg white-text">Jets d'attaque</h4>
-      <h4 class="col-sm-6 col-sm-offset-1 black-bg white-text">Jets de dégâts</h4>
+      <h4 class="col-sm-11 black-bg white-text">Jets d'attaque</h4>
     </div>
     <div class="row">
-      <div class="col-sm-4">
-        <p>WIP Jets d'attaque</p>
+      <div class="col-sm-11">
+        <table class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center thin-text">Arme</th>
+              <th class="text-center thin-text">Carac</th>
+              <th class="text-center thin-text">Total</th>
+              <th class="text-center thin-text">1/2 niv.</th>
+              <th class="text-center thin-text">Bonus de carac</th>
+              <th class="text-center thin-text">Bonus de maniement</th>
+              <th class="text-center thin-text">Bonus d'altération</th>
+              <th class="text-center thin-text">Bonus de talent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @attack_rolls.each_with_index do |mar, index| %>
+            <tr>
+              <% if index.even? %>
+                <td class="text-center thin-text v-center" rowspan="2"><%= mar[:weapon] %></td>
+              <% end %>
+              <td class="text-center thin-text"><%= mar[:carac] %></td>
+              <td class="text-center thin-text">+<%= mar[:total] %></td>
+              <% if index.even? %>
+              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:half_level] %></td>
+              <% end %>
+              <td class="text-center thin-text">+<%= mar[:ability_bonus] %></td>
+              <% if index.even? %>
+              <td class="text-center thin-text v-center" rowspan="2"><%= mar[:proficiency] %></td>
+              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:alteration] %></td>
+              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:feats] %></td>
+              <% end %>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
       </div>
-      <div class="col-sm-6 col-sm-offset-1">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <h4 class="col-sm-11 black-bg white-text">Jets de dégâts</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-11">
         <p>WIP Jets de dégâts</p>
       </div>
     </div>

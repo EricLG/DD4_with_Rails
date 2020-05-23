@@ -50,6 +50,11 @@ class Character < ApplicationRecord
   has_many :equipment
   has_many :equipped_magic_items, through: :equipment
 
+  # Scope
+  scope :select_race_name, -> { joins(:race).select('races.id as race_id, races.name as race_name') }
+  scope :select_klass_name, -> { joins(:klass).select('klasses.id as klass_id, klasses.name as klass_name') }
+  scope :show, ->(id) { select('characters.*').select_race_name.select_klass_name.find_by_id(id) }
+
   NEW_ABILITIES_LEVEL = [4, 8, 11, 14, 18, 21, 24, 28].freeze
   DEFAULT_ABILITIES = [10, 10, 10, 10, 10, 8].freeze
   ALIGNMENT = [
@@ -244,6 +249,15 @@ class Character < ApplicationRecord
       healing_surge: (full_hp / 4).floor,
       healing_surge_by_day: self.klass.healing_surge + self.constitution.modifier
     }
+  end
+
+  # CommonWeapons[] - Return an array of commonweapon whom the character is proficient with
+  def proficiencies(chosen_feats)
+    racial_proficiencies = Race.weapons_proficiencies(self.race_name)
+    klass_proficiencies = self.klass.weapons_proficiencies
+    feats_proficiencies = [chosen_feats.select { |cf| cf.feat.name == 'Maniement d\'arme'}.first&.proficiency] || []
+    weapons = racial_proficiencies + klass_proficiencies + feats_proficiencies
+    weapons.flatten.uniq.compact
   end
 
   def level_to_xp

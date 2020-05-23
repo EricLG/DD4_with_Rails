@@ -6,6 +6,7 @@ class Ability < ApplicationRecord
   has_many :chosen_feats, inverse_of: :abilities
   has_many :characters, through: :chosen_feats
   ABILITIES = %w[strength constitution dexterity intelligence wisdom charisma].freeze
+  ABILITIES_FR = %w[force constitution dextérité intelligence sagesse charisme].freeze
 
   def self.convert(short_ability)
     ability = case short_ability
@@ -41,5 +42,9 @@ class Ability < ApplicationRecord
                 'Cha 2'
               end
     ability
+  end
+
+  def self.abilities_fr_to_en(ability)
+    ABILITIES[ABILITIES_FR.index(ability)]
   end
 end
