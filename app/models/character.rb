@@ -67,6 +67,10 @@ class Character < ApplicationRecord
 
   RITUAL_CASTER = %w[Barde Druide Invocateur Magicien Prêtre Psion].freeze
 
+  def armor_with_heavy_info
+    CommonArmor.select_category.where(id: self.armor_id).first
+  end
+
   def constitution
     self.ability_bonuses.constitution
   end

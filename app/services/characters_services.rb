@@ -1,16 +1,22 @@
 module CharactersServices
   # Find all informations needed from @character to display show template
   def show_character
-
+    # Load race, classe and features
     @klass = @character.klass
     @race = @character.race
+    @race_features = @character.race_choices.map(&:feature)
+    @classe_features = @character.klass_choices.map(&:feature)
 
+    # Load abilities
     @strength = @abilities.strength
     @constitution = @abilities.constitution
     @dexterity = @abilities.dexterity
     @intelligence = @abilities.intelligence
     @wisdom = @abilities.wisdom
     @charisma = @abilities.charisma
+    @fortitude_bonus = [@strength.modifier, @constitution.modifier].max
+    @reflexes_bonus = [@dexterity.modifier, @intelligence.modifier].max
+    @will_bonus = [@wisdom.modifier, @charisma.modifier].max
 
     @chosen_feats = @character.chosen_feats
 
@@ -18,32 +24,33 @@ module CharactersServices
     skills_tab
     @show_languages = @character.show_languages
 
-    @race_features = @character.race_choices.map(&:feature)
-    @classe_features = @character.klass_choices.map(&:feature)
     @character_magic_items = @character.magic_items
     @feats_languages = @character.chosen_feats.languages
     search_equipped_items_tab_variables
   end
 
   def combat_tab
-    @proficiencies = @character.proficiencies(@chosen_feats)
+    # Load CommonItem
     @main_common_weapon = @character.main_weapon
-    @main_weapon_magic_item = @character.equipment.main_weapon
     @second_hand = @character.second_hand
+    @armor = @character.armor_with_heavy_info
+    # Load proficiencies
+    @proficiencies = @character.proficiencies(@chosen_feats)
+    # Load MagicItem for commonItem
+    @main_weapon_magic_item = @character.equipment.main_weapon
     @second_hand_magic_item = @character.equipment.second_hand
+    @armor_magic_item = @character.equipment.armor
+    @neck_magic_item = @character.equipment.neck
 
-    @armor = @character.armor
-    @main_abilities = @character.klass.main_abilities
+    @main_abilities = @klass.main_abilities
 
     @attack_rolls = attack_rolls
 
-    @armor = @character.armor
-    @second = @character.second_hand
     @defenses = {
-      CA: @abilities.reflexes,
-      Vig: @abilities.fortitude,
-      Ref: @abilities.reflexes,
-      Vol: @abilities.will
+      CA: detail_ca,
+      Vig: detail_other_defenses(:Vig, @fortitude_bonus),
+      Ref: detail_other_defenses(:Ref, @reflexes_bonus),
+      Vol: detail_other_defenses(:Vol, @will_bonus)
     }
     @hp = @character.hit_points
   end
@@ -79,12 +86,32 @@ module CharactersServices
     attack_rolls
   end
 
-  def calcul_alteration_bonus(equipment)
-    if equipment.class == Equipment
-      (((equipment.level - 1) / 5) + 1).floor
-    else
-      0
-    end
+  def detail_ca
+    detail = {}
+    detail[:half_level] = @character.half_level
+    detail[:armor_bonus] = @armor&.armor_bonus || 0
+    detail[:shield_bonus] = @second_hand.try(:armor_bonus) || 0
+    detail[:carac_bonus] = @armor&.heavy? ? 0 : @reflexes_bonus
+    detail[:klass_bonus] = 0 # search klass features
+    detail[:alteration_bonus] = calcul_alteration_bonus(@armor_magic_item)
+    detail[:feat_bonus] = 0 # search chosen feats
+    p detail
+    detail[:total] = detail.values.reduce(:+) + 10
+    detail
+  end
+
+  def detail_other_defenses(defense, carac_bonus)
+    detail = {}
+    detail[:half_level] = @character.half_level
+    detail[:armor_bonus] = 0
+    detail[:shield_bonus] = defense == :Ref && @second_hand.try(:armor_bonus) || 0
+    detail[:carac_bonus] = carac_bonus
+    detail[:klass_bonus] = 0 # search klass features
+    detail[:alteration_bonus] = calcul_alteration_bonus(@neck_magic_item)
+    detail[:feat_bonus] = 0 # search chosen feats
+    p detail
+    detail[:total] = detail.values.reduce(:+) + 10
+    detail
   end
 
   # Information to display in show character, skills tab
@@ -103,5 +130,9 @@ module CharactersServices
     magic_stuff.each do |ms|
       @equipped_magic_items_partial_variables << search_show_relation(ms, true, ms.level)
     end
+  end
+
+  def calcul_alteration_bonus(equipment)
+    equipment.class == Equipment ? (((equipment.level - 1) / 5) + 1).floor : 0
   end
 end

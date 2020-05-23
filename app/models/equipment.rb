@@ -9,4 +9,6 @@ class Equipment < ApplicationRecord
   scope :load_relation, -> { joins(:location, :equipped_magic_item).select('equipment.*, magic_items.*') }
   scope :main_weapon, -> { load_relation.where('locations.code': Location::WEAPON).first }
   scope :second_hand, -> { load_relation.where('locations.code': Location::SECOND_HAND).first }
+  scope :armor, -> { load_relation.where('locations.code': Location::ARMOR).first }
+  scope :neck, -> { load_relation.where('locations.code': Location::NECK).first }
 end
