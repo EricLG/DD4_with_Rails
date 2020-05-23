@@ -1,73 +1,55 @@
-<div class="tab-pane" id="stuff" role="tabpanel">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-        <h4 class="col-sm-11 black-bg white-text">Équipements</h4>
-      </div>
-      <div class="row">
-        <div class="col-sm-11">
-
-
-          <table class="table table-condensed table-striped">
-            <thead>
-              <tr>
-                <th class="col-sm-4 thin-text">Objets communs</th>
-                <th class="col-sm-8 thin-text">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @character_common_equipped_items.each do |item| %>
-              <tr>
-                <td class=""><%= item&.name %></td>
-                  <% if item.is_a?(CommonArmor) %>
-                    <td class="">Bonus d'armure : +<%= item&.armor_bonus %> à la CA, malus de compétence : <%= + item&.skill_malus%> | malus de VD : <%= item&.ms_malus %></td>
-                  <% elsif item.is_a?(CommonWeapon) %>
-                    <td class="">Dégâts : <%= item&.damage %> | maniement : <%= item&.proficiency %></td>
-                  <% else %>
-                    <td class=""></td>
-                  <% end %>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <h4 class="col-sm-11 black-bg white-text">Équipements</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-11">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th class="col-sm-4 thin-text">Objets communs</th>
+              <th class="col-sm-8 thin-text">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @character_common_equipped_items.each do |item| %>
+            <tr>
+              <td class=""><%= item&.name %></td>
+                <% if item.is_a?(CommonArmor) %>
+                  <td class="">Bonus d'armure : +<%= item&.armor_bonus %> à la CA, malus de compétence : <%= + item&.skill_malus%> | malus de VD : <%= item&.ms_malus %></td>
+                <% elsif item.is_a?(CommonWeapon) %>
+                  <td class="">Dégâts : <%= item&.damage %> | maniement : <%= item&.proficiency %></td>
+                <% else %>
+                  <td class=""></td>
+                <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-        <h4 class="col-sm-11 black-bg white-text">Équipements magiques</h4>
-      </div>
-        <% @equipped_magic_items_partial_variables.each_slice(3) do |slice| %>
-          <div class="row">
-            <div class="col-sm-11">
-                <div class="row">
-              <% slice.each do |item| %>
-                <div class="col-sm-4">
-                  <%= render "/items/magic_items/_show/show_item", item %>
-                </div>
-              <% end %>
-                </div>
-            </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <h4 class="col-sm-11 black-bg white-text">Équipements magiques</h4>
+    </div>
+      <% @equipped_magic_items_partial_variables.each_slice(3) do |slice| %>
+        <div class="row">
+          <div class="col-sm-11">
+              <div class="row">
+            <% slice.each do |item| %>
+              <div class="col-sm-4">
+                <%= render "/items/magic_items/_show/show_item", item %>
+              </div>
+            <% end %>
+              </div>
           </div>
-        <% end %>
-    </div>
+        </div>
+      <% end %>
   </div>
 </div>
 
-<div class="tab-pane" id="roleplay" role="tabpanel">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-        <h4 class="col-sm-11 black-bg white-text">Roleplay</h4>
-      </div>
-      <div class="row">
-        <div class="col-sm-11">
-          <p><%= @character.roleplay %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
