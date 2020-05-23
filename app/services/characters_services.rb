@@ -54,7 +54,7 @@ module CharactersServices
       Vol: detail_defenses(:Vol, @will_bonus)
     }
     @movement = movement
-    @hp = @character.hit_points
+    @hp = hit_points
   end
 
   def attack_rolls
@@ -164,5 +164,17 @@ module CharactersServices
     mv[:various_bonus] = 0
     mv[:total] = mv.values.reduce(:+)
     mv
+  end
+
+  # Hash - return a hash with all info about hit points
+  def hit_points
+    bonus_feat_hp = @feats_name.include?('Robustesse') ? 5 * ((@character.level - 1) / 10 + 1) : 0
+    full_hp = @klass.base_hp + @constitution.total_value + (@klass.hp_per_level * (@character.level - 1)) + bonus_feat_hp
+    {
+      total: full_hp,
+      half_blooded: (full_hp / 2).floor,
+      healing_surge: (full_hp / 4).floor,
+      healing_surge_by_day: @klass.healing_surge + @constitution.modifier
+    }
   end
 end
