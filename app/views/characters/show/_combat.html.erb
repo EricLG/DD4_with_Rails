@@ -171,12 +171,12 @@
           </thead>
           <tbody>
             <tr>
-              <td><button type="button" class="large-text width-max btn btn-default btn-sm bold" disabled="disabled"><%= @character.race.speed %></button></td>
+              <td><button type="button" class="large-text width-max btn btn-default btn-sm bold" disabled="disabled"><%= @movement[:total] %></button></td>
               <td class="black-bg white-text text-center v-center">VD</td>
-              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @character.race.speed %></button></td>
-              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
-              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @movement[:base] %></button></td>
+              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @movement[:armor_malus] %></button></td>
+              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @movement[:object_bonus] %></button></td>
+              <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= @movement[:various_bonus] %></button></td>
             </tr>
           </tbody>
         </table>

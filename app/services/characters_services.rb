@@ -53,6 +53,7 @@ module CharactersServices
       Ref: detail_defenses(:Ref, @reflexes_bonus),
       Vol: detail_defenses(:Vol, @will_bonus)
     }
+    @movement = movement
     @hp = @character.hit_points
   end
 
@@ -152,5 +153,16 @@ module CharactersServices
                     @feats_name.include?('Volonté de fer') ? bonus_per_tier : 0
                   end
     feats_bonus
+  end
+
+  def movement
+    armor_malus = @race.name == 'Nain' ? 0 : @armor.ms_malus
+    mv = {}
+    mv[:base] = @race.speed
+    mv[:armor_malus] = armor_malus
+    mv[:object_bonus] = 0
+    mv[:various_bonus] = 0
+    mv[:total] = mv.values.reduce(:+)
+    mv
   end
 end
