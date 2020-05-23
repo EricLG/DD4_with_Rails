@@ -37,7 +37,6 @@ module CharactersServices
 
     @attack_rolls = attack_rolls
 
-
     @armor = @character.armor
     @second = @character.second_hand
     @defenses = {

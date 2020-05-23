@@ -38,28 +38,16 @@
 
 <div class="tab-content">
   <div class="tab-pane active" id="combat" role="tabpanel">
-    <% if @character.ability_bonus_ids.empty? %>
-      <p>Vous devez définir vos caractéristiques.</p>
-    <% else %>
-      <%= render "characters/show/combat" %>
-    <% end %>
+    <%= render "characters/show/combat" %>
   </div>
   <div class="tab-pane" id="skill" role="tabpanel">
-    <% if @character.ability_bonus_ids.empty? || @character.skill_bonus_ids.empty? %>
-      <p>Vous devez définir vos caractéristiques et choisir vos formations de compétences.</p>
-    <% else %>
-      <%= render "characters/show/skill" %>
-    <% end %>
+    <%= render "characters/show/skill" %>
   </div>
   <div class="tab-pane" id="feat" role="tabpanel">
     <%= render "characters/show/feat" %>
   </div>
   <div class="tab-pane" id="feature" role="tabpanel">
-    <% if @character.race_choice_ids.empty? || @character.klass_choice_ids.empty? %>
-      <p>Vous devez définir vos aptitudes de race et de classe.</p>
-    <% else %>
-      <%= render "characters/show/feature" %>
-    <% end %>
+    <%= render "characters/show/feature" %>
   </div>
   <%= render "characters/show/stuff" %>
 </div>
