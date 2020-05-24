@@ -183,7 +183,7 @@ module CharactersServices
   end
 
   def movement
-    armor_malus = @race.name == 'Nain' ? 0 : @armor.ms_malus
+    armor_malus = @race.name == 'Nain' ? 0 : @armor&.ms_malus || 0
     mv = {}
     mv[:base] = @race.speed
     mv[:armor_malus] = armor_malus
