@@ -18,8 +18,8 @@ module CharactersServices
     @reflexes_bonus = [@dexterity.modifier, @intelligence.modifier].max
     @will_bonus = [@wisdom.modifier, @charisma.modifier].max
 
-    @chosen_feats = @character.chosen_feats
-    @feats_name = @chosen_feats.map(&:feat).map(&:name)
+    @chosen_feats = @character.chosen_feats.joins(:feat).select('chosen_feats.*, feats.name as feat_name')
+    @feats_name = @chosen_feats.map(&:feat_name)
 
     combat_tab
     skills_tab
@@ -46,7 +46,7 @@ module CharactersServices
     @main_abilities = @klass.main_abilities
 
     @attack_rolls = attack_rolls
-
+    @damage_rolls = damage_rolls
     @defenses = {
       CA: detail_defenses(:CA, @reflexes_bonus),
       Vig: detail_defenses(:Vig, @fortitude_bonus),
@@ -67,8 +67,8 @@ module CharactersServices
 
         alteration_bonus = first_item_should_be_use ? calcul_alteration_bonus(@main_weapon_magic_item) : calcul_alteration_bonus(@second_hand_magic_item)
 
-        feats_bonus = 0
-
+        weapon_expertise_feat = @chosen_feats.select { |f| f.feat_name == 'Expertise aux armes' }.first
+        feats_bonus = weapon_expertise_feat && weapon.weapon_group_ids.include?(weapon_expertise_feat.weapon_group_id) ? @character.bonus_per_tier : 0
         @main_abilities.each do |key, value|
           ab_modifier = @abilities.send(value).modifier
           attack_rolls << {
@@ -86,6 +86,33 @@ module CharactersServices
       end
     end
     attack_rolls
+  end
+
+  def damage_rolls
+    damage_rolls = []
+    first_item_should_be_use = true
+    [@main_common_weapon, @second_hand].each do |weapon|
+      if weapon.class == CommonWeapon
+
+        alteration_bonus = first_item_should_be_use ? calcul_alteration_bonus(@main_weapon_magic_item) : calcul_alteration_bonus(@second_hand_magic_item)
+        weapon_of_choice_feat = @chosen_feats.select { |f| f.feat_name == 'Arme de prédilection' }.first
+        feats_bonus = weapon_of_choice_feat && weapon.weapon_group_ids.include?(weapon_of_choice_feat.weapon_group_id) ? @character.bonus_per_tier : 0
+        @main_abilities.each do |key, value|
+          ability_bonus = @abilities.send(value).modifier
+          damage_rolls << {
+            carac: key,
+            weapon: weapon.name,
+            dice: weapon.damage,
+            total: ability_bonus + alteration_bonus + feats_bonus,
+            ability_bonus: ability_bonus,
+            alteration: alteration_bonus,
+            feats: feats_bonus
+          }
+        end
+        first_item_should_be_use = false
+      end
+    end
+    damage_rolls
   end
 
   def detail_defenses(defense, carac_bonus)
@@ -141,7 +168,7 @@ module CharactersServices
   end
 
   def check_feats_for_defenses_bonus(defense)
-    bonus_per_tier = @character.bonus_per_tier
+    bonus_per_tier = @character.bonus_per_tier(2, 3, 4)
     feats_bonus = case defense
                   when :CA
                     0

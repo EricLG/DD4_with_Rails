@@ -108,13 +108,13 @@ class Character < ApplicationRecord
     max_feat
   end
 
-  def bonus_per_tier
+  def bonus_per_tier(heroic_bonus = 1, paragon_bonus = 2, epic_bonus = 3)
     if self.epic?
-      4
+      epic_bonus
     elsif self.paragon?
-      3
+      paragon_bonus
     else
-      2
+      heroic_bonus
     end
   end
   # Renvoie le nom du personnage sous forme de chemin correct

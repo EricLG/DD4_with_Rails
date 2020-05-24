@@ -10,7 +10,7 @@
             <tr>
               <th class="text-center thin-text">Arme</th>
               <th class="text-center thin-text">Carac</th>
-              <th class="text-center thin-text">Total</th>
+              <th class="text-center thin-text active">Total</th>
               <th class="text-center thin-text">1/2 niv.</th>
               <th class="text-center thin-text">Bonus de carac</th>
               <th class="text-center thin-text">Bonus de maniement</th>
@@ -25,7 +25,7 @@
                 <td class="text-center thin-text v-center" rowspan="2"><%= mar[:weapon] %></td>
               <% end %>
               <td class="text-center thin-text"><%= mar[:carac] %></td>
-              <td class="text-center thin-text">+<%= mar[:total] %></td>
+              <td class="text-center thin-text active bold">+<%= mar[:total] %></td>
               <% if index.even? %>
               <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:half_level] %></td>
               <% end %>
@@ -51,7 +51,34 @@
     </div>
     <div class="row">
       <div class="col-sm-11">
-        <p>WIP Jets de dégâts</p>
+        <table class="table table-condensed table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center thin-text">Arme</th>
+              <th class="text-center thin-text">Carac</th>
+              <th class="text-center thin-text active">Total</th>
+              <th class="text-center thin-text">Bonus de carac</th>
+              <th class="text-center thin-text">Bonus d'altération</th>
+              <th class="text-center thin-text">Bonus de talent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @damage_rolls.each_with_index do |mar, index| %>
+            <tr>
+              <% if index.even? %>
+                <td class="text-center thin-text v-center" rowspan="2"><%= mar[:weapon] %></td>
+              <% end %>
+              <td class="text-center thin-text"><%= mar[:carac] %></td>
+              <td class="text-center thin-text active bold"><%= "#{mar[:dice]} +  #{mar[:total]}" %></td>
+              <td class="text-center thin-text">+<%= mar[:ability_bonus] %></td>
+              <% if index.even? %>
+              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:alteration] %></td>
+              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:feats] %></td>
+              <% end %>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
