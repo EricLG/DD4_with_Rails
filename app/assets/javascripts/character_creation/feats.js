@@ -3,35 +3,37 @@ $(document).on("turbolinks:load", function() {
     var feats_with_add_choice = ['Apprentissage', 'Arme de prédilection', 'Compétence de prédilection',
     'Expertise des focaliseurs', 'Expertise aux armes', 'Linguiste',
     'Maîtrise polyvalente', "Maniement d'arme"]
-    $.ajax({
-      url: "/feats//" + $(this).val() + "/feat_avantage",
-      success: function(data, textStatus, jqHhr) {
-        $("#resume").removeClass("hidden");
-        $("#feat_cat").text(data.category)
-        $("#feat_name").text(data.name)
-        $("#feat_pr").text(data.prerequisites)
-        $("#feat_avantage").text(data.avantage)
 
-        $("#apprentissage").addClass("hidden");
-        $("#weapon-group").addClass("hidden");
-        $("#languages").addClass("hidden");
-        $("#proficiency").addClass("hidden");
-        $("#implement").addClass("hidden");
+    if($(this).val()) {
+      $.ajax({
+        url: "/feats//" + $(this).val() + "/feat_avantage",
+        success: function(data, textStatus, jqHhr) {
+          $("#resume").removeClass("hidden");
+          $("#feat_cat").text(data.category)
+          $("#feat_name").text(data.name)
+          $("#feat_pr").text(data.prerequisites)
+          $("#feat_avantage").text(data.avantage)
 
-        if (feats_with_add_choice.includes(data.name)) {
-          checkForAdditionalDataToFeat(data)
-        }
-      },
-      dataType: "json"
-    });
+          $("#apprentissage").addClass("hidden");
+          $("#weapon-group").addClass("hidden");
+          $("#languages").addClass("hidden");
+          $("#proficiency").addClass("hidden");
+          $("#implement").addClass("hidden");
+
+          if (feats_with_add_choice.includes(data.name)) {
+            checkForAdditionalDataToFeat(data)
+          }
+        },
+        dataType: "json"
+      });
+    }
   });
 
   $( ".select-feat" ).select2({
     theme: "bootstrap",
     placeholder: "Choisissez un talent...",
     allowClear: true,
-  });
-
+  }).val(null).trigger('change');
 
   function checkForAdditionalDataToFeat(feat) {
     if (feat.name === "Apprentissage") {
