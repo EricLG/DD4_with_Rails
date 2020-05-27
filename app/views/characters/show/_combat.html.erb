@@ -31,7 +31,7 @@
               <% end %>
               <td class="text-center thin-text">+<%= mar[:ability_bonus] %></td>
               <% if index.even? %>
-              <td class="text-center thin-text v-center" rowspan="2"><%= mar[:proficiency] %></td>
+              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:proficiency] %></td>
               <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:alteration] %></td>
               <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:feats] %></td>
               <% end %>
@@ -139,7 +139,7 @@
                 <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= bonus[:feat_bonus] %></button></td>
                 <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= bonus[:alteration_bonus] %></button></td>
                 <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= bonus[:shield_bonus] %></button></td>
-                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled">0</button></td>
+                <td><button type="button" class="width-max btn btn-default btn-sm bold" disabled="disabled"><%= bonus[:untyped_bonus] %></button></td>
               </tr>
               <tr>
                 <td colspan=9 class="thin-text">Bonus conditionnels : N/A</td>

@@ -6,7 +6,7 @@ module CharactersServices
     @race = @character.race
     @race_features = @character.race_choices.map(&:feature)
     @classe_features = @character.klass_choices.map(&:feature)
-
+    @classe_features_name = @classe_features.map(&:name)
     # Load abilities
     @strength = @abilities.strength
     @constitution = @abilities.constitution
@@ -47,12 +47,7 @@ module CharactersServices
 
     @attack_rolls = attack_rolls
     @damage_rolls = damage_rolls
-    @defenses = {
-      CA: detail_defenses(:CA, @reflexes_bonus),
-      Vig: detail_defenses(:Vig, @fortitude_bonus),
-      Ref: detail_defenses(:Ref, @reflexes_bonus),
-      Vol: detail_defenses(:Vol, @will_bonus)
-    }
+    @defenses = defenses
     @movement = movement
     @hp = hit_points
   end
@@ -63,7 +58,11 @@ module CharactersServices
     first_item_should_be_use = true
     [@main_common_weapon, @second_hand].each do |weapon|
       if weapon.class == CommonWeapon
-        weapon_proficiency_bonus = proficiencies_name.include?(weapon.name) ? weapon.proficiency : 0
+
+        weapon_proficiency_bonus = proficiencies_name.include?(weapon.name) ? weapon.proficiency.to_i : 0
+        if @classe_features_name.include?('Style du bagarreur') && ['Gantelet cloutés', 'Mains nues'].include?(weapon.name)
+          weapon_proficiency_bonus = [weapon_proficiency_bonus.to_i, @character.bonus_per_tier(2, 4, 6)].max
+        end
 
         alteration_bonus = first_item_should_be_use ? calcul_alteration_bonus(@main_weapon_magic_item) : calcul_alteration_bonus(@second_hand_magic_item)
 
@@ -115,6 +114,15 @@ module CharactersServices
     damage_rolls
   end
 
+  def defenses
+    {
+      CA: detail_defenses(:CA, @reflexes_bonus),
+      Vig: detail_defenses(:Vig, @fortitude_bonus),
+      Ref: detail_defenses(:Ref, @reflexes_bonus),
+      Vol: detail_defenses(:Vol, @will_bonus)
+    }
+  end
+
   def detail_defenses(defense, carac_bonus)
     detail = {}
     detail[:half_level] = @character.half_level
@@ -124,6 +132,7 @@ module CharactersServices
     detail[:klass_bonus] = 0 # search klass features
     detail[:alteration_bonus] = calcul_alteration_bonus(@neck_magic_item)
     detail[:feat_bonus] = check_feats_for_defenses_bonus(defense)
+    detail[:untyped_bonus] = check_sources_for_untyped_bonus(defense)
     detail[:total] = detail.values.reduce(:+) + 10
     detail
   end
@@ -180,6 +189,21 @@ module CharactersServices
                     @feats_name.include?('Volonté de fer') ? bonus_per_tier : 0
                   end
     feats_bonus
+  end
+
+  def check_sources_for_untyped_bonus(defense)
+    wrestler_style = 'Style du bagarreur'
+    bonus = case defense
+            when :CA
+              @classe_features_name.include?(wrestler_style) ? 1 : 0
+            when :Vig
+              @classe_features_name.include?(wrestler_style) ? 2 : 0
+            when :Ref
+              0
+            when :Vol
+              0
+            end
+    bonus
   end
 
   def movement
