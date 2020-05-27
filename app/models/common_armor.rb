@@ -19,4 +19,8 @@ class CommonArmor < ApplicationRecord
   def heavy?
     self.try(:armor_category_heavy) || false
   end
+
+  def hand_free?
+    false
+  end
 end

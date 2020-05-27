@@ -60,7 +60,7 @@ module CharactersServices
       if weapon.class == CommonWeapon
 
         weapon_proficiency_bonus = proficiencies_name.include?(weapon.name) ? weapon.proficiency.to_i : 0
-        if @classe_features_name.include?('Style du bagarreur') && ['Gantelet cloutés', 'Mains nues'].include?(weapon.name)
+        if @classe_features_name.include?('Style du bagarreur') && CommonWeapon::HAND_FREE_WEAPONS.include?(weapon.name)
           weapon_proficiency_bonus = [weapon_proficiency_bonus.to_i, @character.bonus_per_tier(2, 4, 6)].max
         end
 
@@ -190,7 +190,6 @@ module CharactersServices
     bonus
   end
 
-
   def check_feats_for_defenses_bonus(defense)
     bonus_per_tier = @character.bonus_per_tier(2, 3, 4)
     feats_bonus = case defense
@@ -207,18 +206,10 @@ module CharactersServices
   end
 
   def check_sources_for_untyped_bonus(defense)
-    wrestler_style = 'Style du bagarreur'
-    bonus = case defense
-            when :CA
-              @classe_features_name.include?(wrestler_style) ? 1 : 0
-            when :Vig
-              @classe_features_name.include?(wrestler_style) ? 2 : 0
-            when :Ref
-              0
-            when :Vol
-              0
-            end
-    bonus
+    return Feature.brawler_style(defense, @second_hand) if @classe_features_name.include?('Style du bagarreur')
+    return Feature.barbarian_agility(defense, @armor&.heavy?) if @classe_features_name.include?('Agilité du barbare')
+
+    0
   end
 
   def movement

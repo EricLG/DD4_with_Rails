@@ -28,4 +28,18 @@ class Feature < ApplicationRecord
       "Aptitude de classe #{particule}#{self.name}"
     end
   end
+
+  def self.brawler_style(defense, second_hand)
+    return 0 unless second_hand&.hand_free?
+
+    bonus = { CA: 1, Vig: 2, Ref: 0, Vol: 0 }
+    bonus[defense]
+  end
+
+  def self.barbarian_agility(defense, heavy_armor)
+    return 0 if heavy_armor
+
+    bonus = { CA: 1, Vig: 0, Ref: 2, Vol: 0 }
+    bonus[defense]
+  end
 end
