@@ -129,7 +129,7 @@ module CharactersServices
     detail[:armor_bonus] = defense == :CA ? (@armor&.armor_bonus || 0) : 0
     detail[:shield_bonus] = check_shield_bonus(defense)
     detail[:carac_bonus] = defense == :CA && @armor&.heavy? ? 0 : carac_bonus
-    detail[:klass_bonus] = 0 # search klass features
+    detail[:race_klass_bonus] = check_sources_for_race_klass_bonus(defense)
     detail[:alteration_bonus] = calcul_alteration_bonus(@neck_magic_item)
     detail[:feat_bonus] = check_feats_for_defenses_bonus(defense)
     detail[:untyped_bonus] = check_sources_for_untyped_bonus(defense)
@@ -175,6 +175,21 @@ module CharactersServices
                   end
     feats_bonus
   end
+
+  def check_sources_for_race_klass_bonus(defense)
+    bonus = case defense
+            when :CA
+              0
+            when :Vig
+              ['Humain'].include?(@race.name) ? 1 : 0
+            when :Ref
+              ['Humain'].include?(@race.name) ? 1 : 0
+            when :Vol
+              ['Éladrin', 'Goliath', 'Changelin', 'Humain'].include?(@race.name) ? 1 : 0
+            end
+    bonus
+  end
+
 
   def check_feats_for_defenses_bonus(defense)
     bonus_per_tier = @character.bonus_per_tier(2, 3, 4)
