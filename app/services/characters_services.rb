@@ -130,7 +130,7 @@ module CharactersServices
     detail[:shield_bonus] = check_shield_bonus(defense)
     detail[:carac_bonus] = defense == :CA && @armor&.heavy? ? 0 : carac_bonus
     detail[:race_klass_bonus] = check_sources_for_race_klass_bonus(defense)
-    detail[:alteration_bonus] = calcul_alteration_bonus(@neck_magic_item)
+    detail[:alteration_bonus] = defense == :CA ? calcul_alteration_bonus(@armor_magic_item) : calcul_alteration_bonus(@neck_magic_item)
     detail[:feat_bonus] = check_feats_for_defenses_bonus(defense)
     detail[:untyped_bonus] = check_sources_for_untyped_bonus(defense)
     detail[:total] = detail.values.reduce(:+) + 10
