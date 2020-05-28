@@ -177,11 +177,11 @@ class Items::MagicItemsController < ApplicationController
 
     params.require(:magic_item_search).permit(
       :name,
-      :location,
       :rarity,
       :implement_group,
       :source,
       :object_levels,
+      location: [],
       weapon_groups: [],
       armor_categories: [],
       items_levels: []
