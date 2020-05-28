@@ -11,7 +11,7 @@ class CommonWeapon < ApplicationRecord
   scope :elfeWeapon, -> { where(name: ['Arc court', 'Arc long']) }
   scope :dwarfWeapon, -> { where(name: ['Marteau de lancer', 'Marteau de guerre']) }
 
-  HAND_FREE_WEAPONS = ['Gantelet cloutés', 'Mains nues']
+  HAND_FREE_WEAPONS = ['Gantelet cloutés', 'Mains nues'].freeze
 
   def category
     self.weapon_category.name
