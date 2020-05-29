@@ -215,12 +215,14 @@ module CharactersServices
 
   # Hash - return a hash with all info about hit points
   def hit_points
-    bonus_feat_hp = @feats_name.include?('Robustesse') ? 5 * ((@character.level - 1) / 10 + 1) : 0
+    bonus_feat_hp = @feats_name.include?('Robustesse') ? @character.bonus_per_tier(5, 10, 15) : 0
     full_hp = @klass.base_hp + @constitution.total_value + (@klass.hp_per_level * (@character.level - 1)) + bonus_feat_hp
+    healing_surge = (full_hp / 4).floor
+    healing_surge += @constitution.modifier if @race.name == 'Drakéide'
     {
       total: full_hp,
       half_blooded: (full_hp / 2).floor,
-      healing_surge: (full_hp / 4).floor,
+      healing_surge: healing_surge,
       healing_surge_by_day: @klass.healing_surge + @constitution.modifier
     }
   end
