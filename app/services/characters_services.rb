@@ -177,7 +177,7 @@ module CharactersServices
   end
 
   def check_sources_for_race_klass_bonus(defense)
-    Race.race_defenses_bonus(defense, @race.name) + Klass.klass_defenses_bonus(defense, @klass.name)
+    Race.race_defenses_bonus(defense, @race.name, @race_features) + Klass.klass_defenses_bonus(defense, @klass.name)
   end
 
   def check_feats_for_defenses_bonus(defense)

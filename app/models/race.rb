@@ -88,15 +88,43 @@ class Race < ApplicationRecord
     weapons
   end
 
-  def self.race_defenses_bonus(defense, race_name)
+  def self.race_defenses_bonus(defense, race_name, race_choices)
     bonus = case race_name
             when 'Changelin', 'Éladrin', 'Goliath'
               { CA: 0, Vig: 0, Ref: 0, Vol: 1 }
             when 'Humain'
               { CA: 0, Vig: 1, Ref: 1, Vol: 1 }
+            when 'Genasi'
+              self.genasi_bonus_defense(race_choices)
+            when 'Silvyen'
+              self.silvyen_bonus_defense(race_choices)
             else
               { CA: 0, Vig: 0, Ref: 0, Vol: 0 }
             end
     bonus[defense]
+  end
+
+  def self.genasi_bonus_defense(race_choices)
+    if race_choices.map(&:name).include?('Âme de feu')
+      { CA: 0, Vig: 0, Ref: 1, Vol: 0 }
+    elsif race_choices.map(&:name).include?('Âme d\'orage')
+      { CA: 0, Vig: 1, Ref: 0, Vol: 0 }
+    elsif race_choices.map(&:name).include?('Âme de terre')
+      { CA: 0, Vig: 1, Ref: 0, Vol: 0 }
+    else
+      { CA: 0, Vig: 0, Ref: 0, Vol: 0 }
+    end
+  end
+
+  def self.silvyen_bonus_defense(race_choices)
+    if race_choices.map(&:name).include?('Réflexes endurcie')
+      { CA: 0, Vig: 0, Ref: 1, Vol: 0 }
+    elsif race_choices.map(&:name).include?('Volonté endurcie')
+      { CA: 0, Vig: 0, Ref: 0, Vol: 1 }
+    elsif race_choices.map(&:name).include?('Vigueur endurcie')
+      { CA: 0, Vig: 1, Ref: 0, Vol: 0 }
+    else
+      { CA: 0, Vig: 0, Ref: 0, Vol: 0 }
+    end
   end
 end
