@@ -87,4 +87,16 @@ class Race < ApplicationRecord
               end
     weapons
   end
+
+  def self.race_defenses_bonus(defense, race_name)
+    bonus = case race_name
+            when 'Changelin', 'Éladrin', 'Goliath'
+              { CA: 0, Vig: 0, Ref: 0, Vol: 1 }
+            when 'Humain'
+              { CA: 0, Vig: 1, Ref: 1, Vol: 1 }
+            else
+              { CA: 0, Vig: 0, Ref: 0, Vol: 0 }
+            end
+    bonus[defense]
+  end
 end

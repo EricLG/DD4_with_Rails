@@ -79,4 +79,26 @@ class Klass < ApplicationRecord
     end
     abilities_h
   end
+
+  def self.klass_defenses_bonus(defense, klass_name)
+    bonus = case klass_name
+            when 'Barbare', 'Gardien', 'Guerrier'
+              { CA: 0, Vig: 2, Ref: 0, Vol: 0 }
+            when 'Barde', 'Druide', 'Limier', 'Sorcier'
+              { CA: 0, Vig: 0, Ref: 1, Vol: 1 }
+            when 'Batailleur', 'Ensorceleur', 'Mage lames', 'Magicien', 'Prêtre', 'Prêtre des runes', 'Psion'
+              { CA: 0, Vig: 0, Ref: 0, Vol: 2 }
+            when 'Façonneur', 'Flamboyant', 'Maître de guerre', 'Shaman'
+              { CA: 0, Vig: 1, Ref: 0, Vol: 1 }
+            when 'Invocateur', 'Moine', 'Paladin', 'Vengeur'
+              { CA: 0, Vig: 1, Ref: 1, Vol: 1 }
+            when 'Rôdeur'
+              { CA: 0, Vig: 1, Ref: 1, Vol: 0 }
+            when 'Voleur'
+              { CA: 0, Vig: 0, Ref: 2, Vol: 0 }
+            else
+              { CA: 0, Vig: 0, Ref: 0, Vol: 0 }
+            end
+    bonus[defense]
+  end
 end

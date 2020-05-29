@@ -177,17 +177,7 @@ module CharactersServices
   end
 
   def check_sources_for_race_klass_bonus(defense)
-    bonus = case defense
-            when :CA
-              0
-            when :Vig
-              ['Humain'].include?(@race.name) ? 1 : 0
-            when :Ref
-              ['Humain'].include?(@race.name) ? 1 : 0
-            when :Vol
-              ['Éladrin', 'Goliath', 'Changelin', 'Humain'].include?(@race.name) ? 1 : 0
-            end
-    bonus
+    Race.race_defenses_bonus(defense, @race.name) + Klass.klass_defenses_bonus(defense, @klass.name)
   end
 
   def check_feats_for_defenses_bonus(defense)
