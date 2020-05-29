@@ -17,7 +17,7 @@
     <% @character.race.features.first_choice.each do |rf| %>
       <%= tooltip(rf.name, rf.description) do %>
         <label>
-          <%= radio_button_tag "character[character_choice_ids][choice_1][]", "#{rf.id}", false, {class: "choice-1"} %>
+          <%= radio_button_tag "character[character_choice_ids][choice_race][]", "#{rf.id}", false, {class: "choice-1"} %>
           <%= rf.name %>
         </label>
       <% end %>
