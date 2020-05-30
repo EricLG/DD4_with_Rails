@@ -14,6 +14,7 @@ class Feat < ApplicationRecord
 
   scope :feats_for_klass_and_every_klasses, ->(klasses_params) { joins('LEFT OUTER JOIN feats_pr_klasses as p ON p.feat_id = feats.id').where('p.klass_id IS NULL OR p.klass_id = ?', klasses_params) }
   scope :feats_for_race_and_every_races, ->(races_params) { joins('LEFT OUTER JOIN feats_pr_races as r ON r.feat_id = feats.id').where('r.race_id IS NULL OR r.race_id = ?', races_params) }
+  scope :choosable_feats, ->(race, klass, cat, feat_ids) { no_divine_channel.feats_for_klass_and_every_klasses(klass).feats_for_race_and_every_races(race).where(category: cat).where.not(id: feat_ids).group_by(&:category) }
   scope :no_divine_channel, -> { where(divine_channel: false) }
   scope :no_ro, -> { where(only_ro: false) }
   scope :no_eberron, -> { where(only_eberron: false) }

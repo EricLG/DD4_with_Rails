@@ -172,7 +172,7 @@ class CharacterCreationController < ApplicationController
     @acquired_feats = @character.chosen_feats.where(free: false).count
     @max_feats = @character.max_feats
     @categories = Feat.check_categories(@character.level)
-    @feats = Feat.select(:id, :name, :avantage, :category).where(category: @categories).where.not(id: @character.feats.reload.map(&:id)).group_by(&:category)
+    @feats = Feat.select(:id, :name, :avantage, :category).choosable_feats(@character.race_id, @character.klass_id, @categories, @character.feat_ids)
     @new = @character.chosen_feats.build if @acquired_feats < @max_feats
     load_additionnals_models
   end
