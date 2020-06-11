@@ -34,7 +34,11 @@ module CharactersServices
     # Load CommonItem
     @main_common_weapon = @character.main_weapon
     @second_hand = @character.second_hand
+    @main_implement = @character.main_implement
+    @second_implement = @character.second_implement
     @armor = @character.armor_with_heavy_info
+    @main_implement = @character.main_implement
+    @second_implement = @character.second_implement
     # Load proficiencies
     @proficiencies = @character.proficiencies(@chosen_feats)
     # Load MagicItem for commonItem
@@ -42,7 +46,8 @@ module CharactersServices
     @second_hand_magic_item = @character.equipment.second_hand
     @armor_magic_item = @character.equipment.armor
     @neck_magic_item = @character.equipment.neck
-
+    @main_magic_implement = @character.equipment.main_implement
+    @second_magic_implement = @character.equipment.second_implement
     @main_abilities = @klass.main_abilities
 
     @attack_rolls = attack_rolls
@@ -56,23 +61,21 @@ module CharactersServices
     attack_rolls = []
     proficiencies_name = @proficiencies.map(&:name)
     first_item_should_be_use = true
-    [@main_common_weapon, @second_hand].each do |weapon|
-      if weapon.class == CommonWeapon
-
-        weapon_proficiency_bonus = proficiencies_name.include?(weapon.name) ? weapon.proficiency.to_i : 0
-        if @classe_features_name.include?('Style du bagarreur') && CommonWeapon::HAND_FREE_WEAPONS.include?(weapon.name)
+    first_implement_should_be_use = true
+    [@main_common_weapon, @second_hand, @main_implement, @second_implement].each do |item|
+      if item.class == CommonWeapon
+        weapon_proficiency_bonus = proficiencies_name.include?(item.name) ? item.proficiency.to_i : 0
+        if @classe_features_name.include?('Style du bagarreur') && CommonWeapon::HAND_FREE_WEAPONS.include?(item.name)
           weapon_proficiency_bonus = [weapon_proficiency_bonus.to_i, @character.bonus_per_tier(2, 4, 6)].max
         end
-
         alteration_bonus = first_item_should_be_use ? calcul_alteration_bonus(@main_weapon_magic_item) : calcul_alteration_bonus(@second_hand_magic_item)
-
         weapon_expertise_feat = @chosen_feats.select { |f| f.feat_name == 'Expertise aux armes' }.first
-        feats_bonus = weapon_expertise_feat && weapon.weapon_group_ids.include?(weapon_expertise_feat.weapon_group_id) ? @character.bonus_per_tier : 0
+        feats_bonus = weapon_expertise_feat && item.weapon_group_ids.include?(weapon_expertise_feat.weapon_group_id) ? @character.bonus_per_tier : 0
         @main_abilities.each do |key, value|
           ab_modifier = @abilities.send(value).modifier
           attack_rolls << {
             carac: key,
-            weapon: weapon.name,
+            weapon: item.name,
             total: @character.half_level + ab_modifier + weapon_proficiency_bonus.to_i + alteration_bonus + feats_bonus,
             half_level: @character.half_level,
             ability_bonus: ab_modifier,
@@ -82,6 +85,24 @@ module CharactersServices
           }
         end
         first_item_should_be_use = false
+      elsif item.class == Implement
+        alteration_bonus = first_implement_should_be_use ? calcul_alteration_bonus(@main_magic_implement) : calcul_alteration_bonus(@second_magic_implement)
+        implement_expertise_feat = @chosen_feats.select { |f| f.feat_name == 'Expertise des focaliseurs' }.first
+        feats_bonus = implement_expertise_feat && item.implement_group_id == implement_expertise_feat.implement_group_id ? @character.bonus_per_tier : 0
+        @main_abilities.each do |key, value|
+          ab_modifier = @abilities.send(value).modifier
+          attack_rolls << {
+            carac: key,
+            weapon: item.name,
+            total: @character.half_level + ab_modifier + alteration_bonus + feats_bonus,
+            half_level: @character.half_level,
+            ability_bonus: ab_modifier,
+            proficiency: 0,
+            alteration: alteration_bonus,
+            feats: feats_bonus
+          }
+        end
+        first_implement_should_be_use = false
       end
     end
     attack_rolls
@@ -90,18 +111,18 @@ module CharactersServices
   def damage_rolls
     damage_rolls = []
     first_item_should_be_use = true
-    [@main_common_weapon, @second_hand].each do |weapon|
-      if weapon.class == CommonWeapon
-
+    first_implement_should_be_use = true
+    [@main_common_weapon, @second_hand, @main_implement, @second_implement].each do |item|
+      if item.class == CommonWeapon
         alteration_bonus = first_item_should_be_use ? calcul_alteration_bonus(@main_weapon_magic_item) : calcul_alteration_bonus(@second_hand_magic_item)
         weapon_of_choice_feat = @chosen_feats.select { |f| f.feat_name == 'Arme de prédilection' }.first
-        feats_bonus = weapon_of_choice_feat && weapon.weapon_group_ids.include?(weapon_of_choice_feat.weapon_group_id) ? @character.bonus_per_tier : 0
+        feats_bonus = weapon_of_choice_feat && item.weapon_group_ids.include?(weapon_of_choice_feat.weapon_group_id) ? @character.bonus_per_tier : 0
         @main_abilities.each do |key, value|
           ability_bonus = @abilities.send(value).modifier
           damage_rolls << {
             carac: key,
-            weapon: weapon.name,
-            dice: weapon.damage,
+            weapon: item.name,
+            dice: item.damage,
             total: ability_bonus + alteration_bonus + feats_bonus,
             ability_bonus: ability_bonus,
             alteration: alteration_bonus,
@@ -109,6 +130,21 @@ module CharactersServices
           }
         end
         first_item_should_be_use = false
+      elsif item.class == Implement
+        alteration_bonus = first_implement_should_be_use ? calcul_alteration_bonus(@main_magic_implement) : calcul_alteration_bonus(@second_magic_implement)
+        @main_abilities.each do |key, value|
+          ability_bonus = @abilities.send(value).modifier
+          damage_rolls << {
+            carac: key,
+            weapon: item.name,
+            dice: '',
+            total: ability_bonus + alteration_bonus,
+            ability_bonus: ability_bonus,
+            alteration: alteration_bonus,
+            feats: 0
+          }
+        end
+        first_implement_should_be_use = false
       end
     end
     damage_rolls

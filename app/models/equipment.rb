@@ -11,4 +11,6 @@ class Equipment < ApplicationRecord
   scope :second_hand, -> { load_relation.where('locations.code': Location::SECOND_HAND).first }
   scope :armor, -> { load_relation.where('locations.code': Location::ARMOR).first }
   scope :neck, -> { load_relation.where('locations.code': Location::NECK).first }
+  scope :main_implement, -> { load_relation.where('locations.code': Location::IMPLEMENT).first }
+  scope :second_implement, -> { load_relation.where('locations.code': Location::SECOND_IMPLEMENT).first }
 end

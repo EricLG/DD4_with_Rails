@@ -46,6 +46,8 @@ class Character < ApplicationRecord
   belongs_to :main_weapon, class_name: 'CommonWeapon'
   belongs_to :second_hand, polymorphic: true # CommonWeapon or CommonArmor
   belongs_to :armor, class_name: 'CommonArmor'
+  belongs_to :main_implement, class_name: 'Implement'
+  belongs_to :second_implement, class_name: 'Implement'
 
   has_many :equipment
   has_many :equipped_magic_items, through: :equipment
@@ -117,6 +119,7 @@ class Character < ApplicationRecord
       heroic_bonus
     end
   end
+
   # Renvoie le nom du personnage sous forme de chemin correct
   def path_name
     name.mb_chars.downcase.tr(' ', '_').parameterize

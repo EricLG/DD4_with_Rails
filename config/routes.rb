@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :items do
     # Lien du menu principal
     get '/index' => 'magic_items#index'
-    resources :common_weapons, :consumables
+    resources :common_weapons, :consumables, :implements
     resources :common_armors do
       collection do
         get 'shields'
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     end
   end
   namespace :admin do
-    resources :weapon_properties, :features
+    resources :weapon_properties, :features, :implement_properties
     resources :users, only: %i[index edit update destroy]
     get '/index' => 'admin#index'
     get '/export_items' => 'admin#export_items'

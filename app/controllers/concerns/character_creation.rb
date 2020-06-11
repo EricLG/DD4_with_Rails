@@ -24,6 +24,8 @@ module CharacterCreation
       :racial_bonus_choice,
       :roleplay,
       :main_weapon_id,
+      :main_implement_id,
+      :second_implement_id,
       :second_hand_id,
       :second_hand_type,
       :armor_id,

@@ -291,6 +291,8 @@ Location.create([
   { name: "Objets merveilleux"  , code: "wonderful_object"},
   { name: "Consommables"        , code: "expendable"},
   { name: "Munition"            , code: "ammo"},
+  { name: "Main gauche"         , code: "second_hand"},
+  { name: "Focaliseur secondaire" , code: "second_implement"},
 ])
 
 r = "race"

@@ -42,6 +42,7 @@ class CharactersController < ApplicationController
     @users = User.all
     @campaigns = Campaign.all
     @common_weapons = CommonWeapon.all.order(:name)
+    @common_implements = Implement.all.order(:name)
     @common_armors = CommonArmor.armors.order(:name)
     @common_shields = CommonArmor.shields.order(:name)
     @second_hand_type_options = [

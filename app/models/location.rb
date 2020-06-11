@@ -5,6 +5,7 @@ class Location < ApplicationRecord
   SECOND_HAND = 'second_hand'.freeze
   ARMOR = 'chest'.freeze
   IMPLEMENT = 'implement'.freeze
+  SECOND_IMPLEMENT = 'second_implement'.freeze
   HEAD = 'head'.freeze
   NECK = 'neck'.freeze
   BELT = 'belt'.freeze

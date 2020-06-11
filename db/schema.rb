@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_092700) do
+ActiveRecord::Schema.define(version: 2020_05_30_132300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 2020_05_03_092700) do
     t.bigint "second_hand_id"
     t.integer "armor_id"
     t.text "roleplay"
+    t.integer "main_implement_id"
+    t.integer "second_implement_id"
     t.index ["second_hand_type", "second_hand_id"], name: "index_characters_on_second_hand_type_and_second_hand_id"
   end
 
@@ -351,6 +353,31 @@ ActiveRecord::Schema.define(version: 2020_05_03_092700) do
     t.integer "klass_id"
     t.index ["implement_group_id"], name: "index_implement_groups_klasses_on_implement_group_id"
     t.index ["klass_id"], name: "index_implement_groups_klasses_on_klass_id"
+  end
+
+  create_table "implement_properties", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "implement_properties_implements", id: false, force: :cascade do |t|
+    t.bigint "implement_id"
+    t.bigint "implement_property_id"
+    t.index ["implement_id"], name: "index_implement_properties_implements_on_implement_id"
+    t.index ["implement_property_id"], name: "index_implement_properties_implements_on_implement_property_id"
+  end
+
+  create_table "implements", force: :cascade do |t|
+    t.string "name"
+    t.boolean "superior"
+    t.string "weight"
+    t.string "price"
+    t.bigint "implement_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["implement_group_id"], name: "index_implements_on_implement_group_id"
   end
 
   create_table "klasses", id: :serial, force: :cascade do |t|

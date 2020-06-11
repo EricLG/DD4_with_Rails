@@ -2,8 +2,7 @@ module CharactersHelper
   include KlassHelper
 
   def pretty_modifier(modifier)
-    modifier = "+#{modifier}" if modifier > 0
-    modifier
+    modifier.positive? ? "+#{modifier}" : modifier
   end
 
   def modifier(value)

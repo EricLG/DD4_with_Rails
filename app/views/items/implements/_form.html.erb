@@ -1,0 +1,9 @@
+<%= form_for [:items, @implement], {:class => 'form-horizontal'} do |f| %>
+  <%= input_text_form f, :name, 'Nom' %>
+  <%= input_text_form f, :price, 'Prix' %>
+  <%= input_text_form f, :weight, 'Poids' %>
+  <%= input_select_form(f, :superior,  options_for_select({'Oui': true, 'Non': false}, @implement.superior), 'Focaliseur supérieur', { multiple: false, blank: true, size: 1 }) %>
+  <%= input_select_form(f, :implement_group_id,  options_from_collection_for_select(@implement_groups, :id, :name, @implement.implement_group_id), 'Type', { multiple: false, blank: true, size: 1 }) %>
+  <%= input_select_form(f, :implement_property_ids,  options_from_collection_for_select(@implement_properties, :id, :name, @implement.implement_property_ids), 'Propriétés', { multiple: true, blank: true }) %>
+  <%= submit_text_form(f, {add_another: true}) %>
+<% end %>

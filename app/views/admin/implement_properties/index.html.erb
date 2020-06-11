@@ -1,0 +1,27 @@
+<h1>Listing implements properties</h1>
+
+<div class="">
+  <table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @implement_properties.each do |implement_property| %>
+      <tr>
+        <td><%= link_to implement_property.name, admin_implement_property_path(implement_property.id) %></td>
+        <td><%= implement_property.description %></td>
+        <td><%= link_to 'Edit', edit_admin_implement_property_path(implement_property) %></td>
+        <td><%= link_to 'Destroy', admin_implement_property_path(implement_property), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'Ajouter une propriété de focaliseur', new_admin_implement_property_path %>

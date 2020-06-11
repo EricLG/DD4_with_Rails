@@ -25,15 +25,15 @@
                 <td class="text-center thin-text v-center" rowspan="2"><%= mar[:weapon] %></td>
               <% end %>
               <td class="text-center thin-text"><%= mar[:carac] %></td>
-              <td class="text-center thin-text active bold">+<%= mar[:total] %></td>
+              <td class="text-center thin-text active bold"><%= pretty_modifier(mar[:total]) %></td>
               <% if index.even? %>
-              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:half_level] %></td>
+              <td class="text-center thin-text v-center" rowspan="2"><%= pretty_modifier(mar[:half_level]) %></td>
               <% end %>
-              <td class="text-center thin-text">+<%= mar[:ability_bonus] %></td>
+              <td class="text-center thin-text"><%= pretty_modifier(mar[:ability_bonus]) %></td>
               <% if index.even? %>
-              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:proficiency] %></td>
-              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:alteration] %></td>
-              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:feats] %></td>
+              <td class="text-center thin-text v-center" rowspan="2"><%= pretty_modifier(mar[:proficiency]) %></td>
+              <td class="text-center thin-text v-center" rowspan="2"><%= pretty_modifier(mar[:alteration]) %></td>
+              <td class="text-center thin-text v-center" rowspan="2"><%= pretty_modifier(mar[:feats]) %></td>
               <% end %>
             </tr>
           <% end %>
@@ -69,11 +69,11 @@
                 <td class="text-center thin-text v-center" rowspan="2"><%= mar[:weapon] %></td>
               <% end %>
               <td class="text-center thin-text"><%= mar[:carac] %></td>
-              <td class="text-center thin-text active bold"><%= "#{mar[:dice]} +  #{mar[:total]}" %></td>
-              <td class="text-center thin-text">+<%= mar[:ability_bonus] %></td>
+              <td class="text-center thin-text active bold"><%= "#{mar[:dice]} #{pretty_modifier(mar[:total])}" %></td>
+              <td class="text-center thin-text"><%= pretty_modifier(mar[:ability_bonus]) %></td>
               <% if index.even? %>
-              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:alteration] %></td>
-              <td class="text-center thin-text v-center" rowspan="2">+<%= mar[:feats] %></td>
+              <td class="text-center thin-text v-center" rowspan="2"><%= pretty_modifier(mar[:alteration]) %></td>
+              <td class="text-center thin-text v-center" rowspan="2"><%= pretty_modifier(mar[:feats]) %></td>
               <% end %>
             </tr>
           <% end %>

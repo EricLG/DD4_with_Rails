@@ -15,16 +15,24 @@
 
           <tbody>
             <% @character_common_equipped_items.each do |item| %>
-            <tr>
-              <td class=""><%= item&.name %></td>
-                <% if item.is_a?(CommonArmor) %>
-                  <td class="">Bonus d'armure : +<%= item&.armor_bonus %> à la CA, malus de compétence : <%= + item&.skill_malus%> | malus de VD : <%= item&.ms_malus %></td>
-                <% elsif item.is_a?(CommonWeapon) %>
-                  <td class="">Dégâts : <%= item&.damage %> | maniement : <%= item&.proficiency %></td>
-                <% else %>
-                  <td class=""></td>
-                <% end %>
-            </tr>
+              <% if item %>
+                <tr>
+                  <td class=""><%= item&.name %></td>
+                    <% if item.is_a?(CommonArmor) %>
+                      <td class="">Bonus d'armure : +<%= item&.armor_bonus %> à la CA, malus de compétence : <%= + item&.skill_malus%> | malus de VD : <%= item&.ms_malus %></td>
+                    <% elsif item.is_a?(CommonWeapon) %>
+                      <td class="">Dégâts : <%= item&.damage %> | maniement : <%= item&.proficiency %></td>
+                    <% else %>
+                      <td class=""></td>
+                    <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+            <% if @main_implement %>
+              <tr><td><%= @main_implement.name %></td><td></td></tr>
+            <% end %>
+            <% if @second_implement %>
+              <tr><td><%= @second_implement.name %></td><td></td></tr>
             <% end %>
           </tbody>
         </table>
