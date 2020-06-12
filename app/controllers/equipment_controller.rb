@@ -1,5 +1,6 @@
 class EquipmentController < ApplicationController
   def index
+    @characters = @current_user.characters
     @equipments = Equipment.select_names.where(character_id: params['id'])
   end
 
@@ -15,6 +16,7 @@ class EquipmentController < ApplicationController
   end
 
   def edit
+    @characters = @current_user.characters
     @equipment = Equipment.select_names.find(params['id'])
     @locations = Location.all
   end
