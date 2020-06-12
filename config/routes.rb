@@ -96,9 +96,10 @@ Rails.application.routes.draw do
     member do
       patch 'choose_campaign/:camp' => 'characters#choose_campaign', as: 'choose_campaign'
       patch 'remove_campaign/:camp' => 'characters#remove_campaign', as: 'remove_campaign'
-      resources :equipment, only: %i[index edit create update destroy]
     end
+    resources :equipment, only: %i[index]
   end
+  resources :equipment, only: %i[create show edit update destroy]
   resources :campaigns do
     resources :games do
     end

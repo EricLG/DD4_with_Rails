@@ -18,3 +18,6 @@
   <%= submit_text_form(f) %>
 
 <% end %>
+
+<%= link_to 'Retour à l\'équipement', character_equipment_index_path(@equipment.character_id), class: "btn btn-default" %>
+<%= link_to 'Retour au personnage', character_path(@equipment.character_id), class: "btn btn-default" %>

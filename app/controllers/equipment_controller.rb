@@ -1,7 +1,7 @@
 class EquipmentController < ApplicationController
   def index
     @characters = @current_user.characters
-    @equipments = Equipment.select_names.where(character_id: params['id'])
+    @equipments = Equipment.select_names.where(character_id: params['character_id'])
   end
 
   def create
@@ -24,6 +24,7 @@ class EquipmentController < ApplicationController
   def update
     @equipment = Equipment.find_by_id(params[:id])
     if @equipment.update(equipment_params)
+      flash[:success] = 'Votre équipement a bien été mis à jour'
       redirect_back(fallback_location: root_path)
     else
       find_dependancies
