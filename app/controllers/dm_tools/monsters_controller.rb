@@ -89,7 +89,8 @@ class DmTools::MonstersController < ApplicationController
     monsters = monsters.order(level: :asc, name: :asc)
 
     respond_to do |format|
-      format.js { render json: monsters}
+      format.js
+      format.json { render json: monsters }
     end
   end
 

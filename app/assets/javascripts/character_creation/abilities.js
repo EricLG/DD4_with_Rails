@@ -158,7 +158,7 @@ $(document).on("turbolinks:load", function() {
   // Compte le nombre de caractéristique bonus choisi pour un niveau
   function countBonusCaracByLevel(input) {
     var level = input.attr("id").match(/level-\d{1,2}/)[0];
-    return $("."+level).filter(".btn-info").size();
+    return $("."+level).filter(".btn-info").length;
   }
 
   function selectCarac(bonusCaracInput, clickBtn, bonusCaracSpan) {

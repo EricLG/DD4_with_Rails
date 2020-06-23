@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.5.8'
 
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2'
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 4.1.20'
 
@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 #gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
-gem 'bcrypt', '~> 3.1.12'
+gem 'bcrypt', '3.1.12' # 3.1.13 buggy on raspberry, waiting for fixed bug
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,11 +48,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'coffee-rails', '~> 4.2'
 
 # Additional gems
-gem 'jquery-rails', '~> 4.3.3'
-gem 'jquery-ui-rails', '~> 5.0.5'
+gem 'jquery-rails', '~> 4.3'
+gem 'jquery-ui-rails', '~> 6.0'
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'select2-rails', '~> 4.0.3'
-gem 'will_paginate', '~> 3.1.7'
-gem 'carrierwave', '~> 1.3'
+gem 'will_paginate', '~> 3.1'
+gem 'carrierwave', '~> 2.1'
 gem 'photoswipe-rails', '~> 4.1'
 gem 'mini_magick', '~> 4.9'

@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery2
+//= require jquery3
 //= require jquery_ujs
-//= require jquery-ui/datepicker
-//= require jquery-ui/datepicker-fr
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/i18n/datepicker-fr
 //= require select2-full
 //= require twitter/bootstrap
 //= require photoswipe
