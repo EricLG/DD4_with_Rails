@@ -1,7 +1,11 @@
-require 'import_data'
-
 class Encounter < ApplicationRecord
+  include ImportDataServices
+
   belongs_to :source
+  has_many :chosen_monsters
+  has_many :monsters, through: :chosen_monsters
+  accepts_nested_attributes_for :chosen_monsters, allow_destroy: true, reject_if: ->(attributes) { attributes['monster_id'].blank? }
+
   DEFAULT_BUDGET = 500
 
   def self.import_encounters

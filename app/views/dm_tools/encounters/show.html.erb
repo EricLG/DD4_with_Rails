@@ -10,17 +10,45 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @encounter.description %>
+  <%= simple_format(@encounter.description) %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Expérience:</strong>
   <%= @encounter.experience %>
 </p>
 
 <p>
+  <strong>Monstres:</strong>
+  <ul>
+  <% @encounter.chosen_monsters.each do |cm| %>
+    <li><%= link_to cm.monster.name, dm_tools_monster_path(cm.monster.id) %> : x<%= cm.quantity %></li>
+  <% end %>
+  </ul>
+</p>
+
+<div class="row">
+<p><strong>Résumé:</strong></p>
+
+  <% @encounter.chosen_monsters.each do |cm| %>
+    <div class="col-sm-4">
+      <figure>
+        <% image = File.join(
+            Rails.application.config_for(:dungeons)["monsters_dir"],
+            custom_transliterate(cm.monster.source.name),
+            custom_transliterate(cm.monster.category),
+            custom_transliterate(cm.monster.name) + '.jpg'
+        ) %>
+        <%= (image_tag(image, size: "400x70", alt: image, id: "image_#{cm.monster.id}", class: 'zoom img-responsive img-rounded center-block')) %>
+        <figcaption class="text-center"><small><%= cm.monster.name %></small></figcaption>
+      </figure>
+    </div>
+  <% end %>
+</div>
+
+<p>
   <strong>Source:</strong>
-  <%= @encounter.source.name %>
+  <%= @encounter&.source&.name %>
 </p>
 
 <%= link_to 'Edit', edit_dm_tools_encounter_path(@encounter) %> |

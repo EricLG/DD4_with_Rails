@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_132300) do
+ActiveRecord::Schema.define(version: 2020_06_17_184000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -155,6 +155,14 @@ ActiveRecord::Schema.define(version: 2020_05_30_132300) do
     t.integer "language_id"
     t.index ["chosen_feat_id"], name: "index_chosen_feats_languages_on_chosen_feat_id"
     t.index ["language_id"], name: "index_chosen_feats_languages_on_language_id"
+  end
+
+  create_table "chosen_monsters", force: :cascade do |t|
+    t.bigint "encounter_id"
+    t.bigint "monster_id"
+    t.integer "quantity"
+    t.index ["encounter_id"], name: "index_chosen_monsters_on_encounter_id"
+    t.index ["monster_id"], name: "index_chosen_monsters_on_monster_id"
   end
 
   create_table "comments", id: :serial, force: :cascade do |t|

@@ -1,4 +1,4 @@
-module ImportData
+module ImportDataServices
   def self.import_all_informations
     {
       sources: Source.all,
@@ -20,9 +20,9 @@ module ImportData
 
   def self.find_level_array(item, min, array_to_parse, levels)
     if item.gear?
-      ImportData.find_each_level(array_to_parse, levels)
+      ImportDataServices.find_each_level(array_to_parse, levels)
     else
-      ImportData.calcul_level_array(min, levels)
+      ImportDataServices.calcul_level_array(min, levels)
     end
   end
 
@@ -111,7 +111,7 @@ module ImportData
   def self.clear_array_line(line)
     array_line = []
     line.each do |field|
-      array_line << ImportData.clear_field(field)
+      array_line << ImportDataServices.clear_field(field)
     end
     array_line
   end

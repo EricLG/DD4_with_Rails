@@ -1,7 +1,9 @@
-require 'import_data'
-
 class Monster < ApplicationRecord
+  include ImportDataServices
+
   belongs_to :source
+  has_many :chosen_monsters
+  has_many :encounters, through: :chosen_monsters
 
   scope :categories, -> { pluck(:category).join(', ').split(', ').uniq.sort }
   scope :keywords, -> { pluck(:keywords).join(', ').split(', ').uniq.sort }

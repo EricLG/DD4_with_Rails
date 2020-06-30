@@ -1,6 +1,7 @@
-require 'import_data'
 require 'csv'
 class MagicItem < ApplicationRecord
+  include ImportDataServices
+
   has_many :wishlists
   has_many :users, through: :wishlists
   has_many :characters, through: :wishlists
@@ -56,7 +57,7 @@ class MagicItem < ApplicationRecord
   end
 
   def self.import_items
-    all_infos = ImportData.import_all_informations
+    all_infos = ImportDataServices.import_all_informations
     file = File.read(File.join(Rails.root, 'lib', 'import_files', 'items.csv'))
     csv = CSV.parse(file, headers: true, col_sep: ';', quote_char: '"')
     csv.each do |row|

@@ -1,6 +1,6 @@
-require 'import_data'
-
 class Feat < ApplicationRecord
+  include ImportDataServices
+
   belongs_to  :source
   has_many    :needed_feats, class_name: 'Feat', foreign_key: 'top_feat_id'
 
@@ -49,13 +49,13 @@ class Feat < ApplicationRecord
           f.readline
           # "Titre";"Catégorie de talents";"Aptitude";"Aptitude raciale";"Talent";"5: Pouvoir";"Autre prérequis";"Compétences";"8:Classe";"Race";"Avantage";"11Stats";"Source";"Errata";"specifiqueEberron";"specifiqueRO";"divineChannel"
           f.each_line do |l|
-            array_line  = ImportData.clear_array_line(l.split(';', -1))
-            categorie   = ImportData.find_category(array_line[1])
-            klass_feat  = ImportData.find_features(array_line[2], features)
-            race_feat   = ImportData.find_features(array_line[3], features)
+            array_line  = ImportDataServices.clear_array_line(l.split(';', -1))
+            categorie   = ImportDataServices.find_category(array_line[1])
+            klass_feat  = ImportDataServices.find_features(array_line[2], features)
+            race_feat   = ImportDataServices.find_features(array_line[3], features)
             feat_pr     = Feat.where(name: array_line[4].split(',', -1).map(&:strip)) unless array_line[4].blank?
-            sel_klasses = ImportData.find_klass_or_race(array_line[8], klasses)
-            sel_races   = ImportData.find_klass_or_race(array_line[9], races)
+            sel_klasses = ImportDataServices.find_klass_or_race(array_line[8], klasses)
+            sel_races   = ImportDataServices.find_klass_or_race(array_line[9], races)
             source      = sources.find { |s| s.name == array_line[12] }
             all_features = klass_feat + race_feat
             f = Feat.new(

@@ -21,11 +21,13 @@ $(document).on("turbolinks:load", function() {
 
   $("#party_level").change(function() {
     $("#monster_search_level").val($("#party_level").val());
+    $('#encounter_experience').val($("#party_level").val());
     $("#new_monster_search").submit();
   });
 
   $('#budget_form').on('ajax:success', function(event, xhr, status, error) {
     $("#encounter_budget").text(xhr.budget);
+    $('#encounter_level').val(xhr.budget);
     updateEncountersExample(xhr.encounters);
   });
 
@@ -76,7 +78,10 @@ $(document).on("turbolinks:load", function() {
         if ($(this).val() === data.id.toString()) {
           alreadyAdded = $(this).val()
           var qty = $(this).parent().find($("td.qty"));
-          qty.text(parseInt(qty.text()) + 1);
+          var qtyValue = parseInt(qty.text()) + 1;
+          qty.text(qtyValue);
+          var qtyInput = $(this).parents("tr").find(".monster_qty_id");
+          qtyInput.val(qtyValue);
           updateRowTotalXp($(this).parent());
         }
       });
@@ -90,14 +95,20 @@ $(document).on("turbolinks:load", function() {
   // Evenements sur la table
   $("#monsters_list").on("click", ".plus-btn", function(){
     var qty = $(this).parent().prev();
-    qty.text(parseInt(qty.text()) + 1);
+    var qtyValue = parseInt(qty.text()) + 1;
+    qty.text(qtyValue);
+    var qtyInput = $(this).parents("tr").find(".monster_qty_id");
+    qtyInput.val(qtyValue);
     difficultyEncounter(qty.parents("tr").find("td + .experience").text(), 0);
     updateRowTotalXp($(this).parents("tr"));
   });
   $("#monsters_list").on("click", ".moins-btn", function(){
     var qty = $(this).parent().next();
     if (parseInt(qty.text()) > 0) {
-      qty.text(parseInt(qty.text()) - 1);
+      var qtyValue = parseInt(qty.text()) - 1;
+      qty.text(qtyValue);
+      var qtyInput = $(this).parents("tr").find(".monster_qty_id");
+      qtyInput.val(qtyValue);
       difficultyEncounter(0, qty.parents("tr").find("td + .experience").text());
     }
     updateRowTotalXp($(this).parents("tr"));
@@ -110,13 +121,21 @@ $(document).on("turbolinks:load", function() {
 
   // Ajout du template de ligne html
   function addMonsterToTable(data) {
+    var parsedDataXp = data.px ? data.px : 0
     $("#monsters_list").find('tbody')
       .append($('<tr>')
         .attr('id', 'mob-' + data.id)
         .append($('<input>')
           .attr('type', 'hidden')
           .attr('class', 'monster_id')
+          .attr('name', 'encounter[chosen_monsters_attributes][' + data.id + '][monster_id]')
           .attr('value', data.id)
+        )
+        .append($('<input>')
+          .attr('type', 'hidden')
+          .attr('class', 'monster_qty_id')
+          .attr('name', 'encounter[chosen_monsters_attributes][' + data.id + '][quantity]')
+          .attr('value', 1)
         )
         .append($('<td class="noborder-right">')
           .append($('<button>')
@@ -136,8 +155,8 @@ $(document).on("turbolinks:load", function() {
         .append($('<td>').text(data.name))
         .append($('<td>').text(formatRole(data.main_role, data.second_role, data.leader)))
         .append($('<td>').text(data.level))
-        .append($('<td class="experience">').text(data.px))
-        .append($('<td class="totalXp">').text(data.px))
+        .append($('<td class="experience">').text(parsedDataXp))
+        .append($('<td class="totalXp">').text(parsedDataXp))
         .append($('<td class="deleteRow">')
           .append($('<button>')
             .attr('type', 'button')
@@ -160,7 +179,14 @@ $(document).on("turbolinks:load", function() {
 
   function difficultyEncounter(addXp, removeXp) {
     var spanBudget = $("#currentBudget");
-    spanBudget.text(parseInt(spanBudget.text()) + parseInt(addXp) - parseInt(removeXp));
+    var addIntXp = parseInt(addXp)
+    var removeIntXp = parseInt(removeXp)
+    if (isNaN(addIntXp) || isNaN(removeIntXp)) {
+      addIntXp = 0
+      removeIntXp = 0
+    }
+    var newBudget = parseInt(spanBudget.text()) + addIntXp - removeIntXp
+    spanBudget.text(isNaN(newBudget) ? 0 : newBudget);
     updateDifficultyEncounter();
   }
 

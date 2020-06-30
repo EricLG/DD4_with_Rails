@@ -27,7 +27,6 @@ class DmTools::EncountersController < ApplicationController
   # POST /encounters.json
   def create
     @encounter = Encounter.new(encounter_params)
-
     respond_to do |format|
       if @encounter.save
         format.html { redirect_to dm_tools_encounter_path(@encounter), notice: 'Encounter was successfully created.' }
@@ -115,6 +114,15 @@ class DmTools::EncountersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def encounter_params
-    params.require(:encounter).permit(:level, :description)
+    params.require(:encounter).permit(
+      :level,
+      :experience,
+      :description,
+      chosen_monsters_attributes: [
+        :id,
+        :monster_id,
+        :quantity
+      ]
+    )
   end
 end

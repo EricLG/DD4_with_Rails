@@ -1,5 +1,10 @@
 <h4>Total : <span id="currentBudget">0</span> XP. Difficulté de la rencontre : <span id="difficulty">aucune</span>.</h4>
 
+<%= form_for([:dm_tools, @encounter]) do |f| %>
+
+  <%= f.hidden_field :experience, value: 0 %>
+  <%= f.hidden_field :level, value: 1 %>
+
 <table id="monsters_list" class="table table-striped table-bordered table-hover table-condensed">
   <thead>
     <tr>
@@ -16,3 +21,5 @@
 
   </tbody>
 </table>
+<%= f.submit 'Create' %>
+<% end %>
